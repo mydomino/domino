@@ -1,0 +1,51 @@
+.calculator.dark
+  .drawing
+    = embedded_svg "Drawings.svg"
+  .row
+    .col-md-3.col-md-offset-1
+      .selector
+        %h4.center
+          Choose One or More to See
+        %h4.center
+          How
+          %strong Green
+          You Can Go In
+        .dropdown.center
+          .btn-group
+            %button.btn.btn-default.btn-sm.dropdown-toggle
+              Fort Collins, TX
+              %span.caret
+            %ul.dropdown-menu
+              %li Oakland, CA
+              %li Pittsburgh, PA
+        .selector-title
+          .glyphicon.glyphicon-flash Electricity
+        %ul.nav.nav-pills
+          %li= link_to "Rooftop Solar"
+          %li= link_to "Offsite Solar"
+          %li= link_to "Upgrades"
+        .selector-title
+          .glyphicon.glyphicon-fire Heating and Cooling
+        %ul.nav.nav-pills
+          %li= link_to "Thermostat"
+          %li= link_to "Air Heat"
+          %li= link_to "Ground Heat"
+        .selector-title
+          .glyphicon.glyphicon-tint Gasoline
+        %ul.nav.nav-pills
+          %li= link_to "Hybrid"
+          %li= link_to "Hybrid Electric"
+          %li= link_to "All Electric"
+        .start-over
+          = link_to "" do
+            .glyphicon.glyphicon-remove-circle
+            Start over
+    .col-md-3.col-md-offset-3
+      .offsite-solar
+        %h4 Offsite Solar
+        %p
+          Get the financial and energy saving benefits of solar panels with none
+          of the maintenance.
+        %p
+          Up to $2059 more cash in your pocket/year with Offsite Solar and
+          Ground Heat.

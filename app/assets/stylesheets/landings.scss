@@ -1,0 +1,333 @@
+@font-face {
+  font-family: 'lato';
+  src:url('Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'lato';
+  src:url('Lato-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'lato';
+  src:url('Lato-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'lato';
+  src:url('Lato-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'lato';
+  src:url('Lato-Light.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'lato';
+  src:url('Lato-LightItalic.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: italic;
+}
+
+$primary-color: #6E6E6E;
+$light-color: #FFF9F0;
+$green-color: #5FC3A2;
+$footer-links-color: #313131;
+$reserve-button-color: #E0483E;
+
+@mixin border-radius {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  border-radius: 6px;
+}
+
+body {
+  font-family: 'lato', sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 18px;
+  color: $primary-color;
+  background-color: $light-color;
+}
+
+h1 {
+  font-weight: lighter;
+  font-size: 35px;
+}
+h1 strong {
+  font-weight: bold;
+  font-style: italic;
+}
+h2 {
+  font-weight: bold;
+  font-size: 26px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-weight: bold;
+  font-size: 18px;
+}
+h5 {
+  font-size: 18px;
+}
+
+.dark {
+  background-color: $green-color;
+  color: $light-color;
+}
+span.green {
+  font-style: italic;
+  font-weight: bold;
+  color: $green-color;
+}
+.center {text-align: center;  }
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  display: table-cell;
+  vertical-align: middle;
+
+  .element{
+    display: inline-block;
+    float: none;
+  }
+  .row {height: 100%;}
+  a {
+    color: $green-color;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .logo {
+    width: 160px;
+    height: 45px;
+  }
+}
+
+.intro {
+  padding-top: 165px;
+  padding-bottom: 80px;
+  .graphic {margin-bottom: 55px;}
+}
+
+.explanation {
+  padding-top: 80px;
+  padding-bottom: 60px;
+
+  .section {
+    margin-bottom: 70px;
+    h2 {margin-bottom: 38px;}
+  }
+  .info-box {
+    background-color: #ffffff;
+    @include border-radius;
+    padding: 20px;
+
+    .subtext {
+      font-size: 11px;
+      font-weight: lighter;
+      font-style: italic;
+    }
+  }
+}
+
+.calculator {
+  padding-top: 70px;
+  padding-bottom: 180px;
+
+  .drawing {
+    max-width: 80%;
+    height: auto;
+    vertical-align: bottom;
+    position: absolute;
+  }
+  .dropdown-toggle {background-color: rgba(0, 0, 0, 0);}
+  .selector {
+    background-color: $light-color;
+    color: $green-color;
+    @include border-radius;
+    padding: 30px 20px;
+  }
+  .selector-title {
+    font-weight: bold;
+    font-size: 18px;
+    font-style: italic;
+    vertical-align: middle;
+  }
+  .nav-pills {
+    width: 300px;
+    margin-bottom: 18px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid $green-color;
+
+    li {
+      background-color: $light-color;
+      width: 98px;
+      font-size: 12px;
+
+      a {
+        color: $green-color;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+      }
+    }
+    li.active {
+      background-color: $green-color;
+      color: $light-color;
+    }
+  }
+  .start-over {
+    font-weight: lighter;
+    font-size: 12px;
+    a{color: $green-color;}
+  }
+  .offsite-solar {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 11px;
+    @include border-radius;
+    padding: 20px;
+  }
+}
+
+.how {
+  padding-top: 75px;
+  padding-bottom: 50px;
+  h2 {margin-bottom: 38px;}
+
+  .one-two-three .step {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 45px;
+
+    svg {
+      width: 58px;
+      height: 58px;
+    }
+  }
+  .why-reason {
+    @include border-radius;
+    border: 1px solid $green-color;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 125px;
+    height: 228px;
+    h3 {margin-top: 0;}
+
+    svg {
+      width: 125px;
+      height: 125px;
+      bottom: 0;
+      right: 15px;
+      position: absolute;
+    }
+  }
+}
+
+.concierge {
+  padding-top: 70px;
+  padding-bottom: 80px;
+
+  .reason {
+    height: 100px;
+
+    svg {
+      float: left;
+      width: 58px;
+      height: auto;
+    }
+    .reason-content {margin-left: 73px;}
+    p {
+      font-size: 13px;
+      font-weight: lighter;
+    }
+  }
+  .reserve {
+    background-color: $light-color;
+    color: $primary-color;
+    @include border-radius;
+    padding: 40px 10px;
+
+    p {
+      font-style: italic;
+      font-weight: lighter;
+    }
+    .subtext {
+      font-size: 11px;
+      font-weight: lighter;
+      font-style: italic;
+    }
+  }
+}
+
+.footer {
+  padding-top: 30px;
+  table {width: 100%;}
+
+  .links {
+    padding-top: 55px;
+    padding-bottom: 100px;
+    margin-top: 10px;
+    background-color: $footer-links-color;
+    color: $light-color;
+    font-size: 13px;
+    font-weight: normal;
+
+    .logos {padding-left: 20%;}
+    p.link {margin-bottom: 0;}
+    a {
+      font-weight: lighter;
+      font-size: 12px;
+      color: $light-color;
+    }
+  }
+}
+
+button {
+  color: $light-color;
+  @include border-radius;
+  border-style: none;
+  background-color: $green-color;
+  font-size: 13px;
+  font-weight: bold;
+}
+.reserve-button button {
+  background-color: $reserve-button-color;
+  width: 270px;
+  height: 35px;
+}
+.glyphicon-ok {color: $green-color;}
+input {
+  font-size: 12px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+  border-style: none;
+  height: 30px;
+  width: 270px;
+}
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
