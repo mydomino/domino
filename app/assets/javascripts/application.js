@@ -55,15 +55,16 @@ var init = function() {
         })
     });
 }
-var formatCityState = function(cityState) {
+
+function formatCityState(cityState) {
     return toTitleCase(cityState.city) + ', ' + cityState.state.toUpperCase();
 }
-
-$(document).ready( init ); // For direct page loads
-$(document).on( 'page:load', init ); // For following links
 
 function toTitleCase(str) {
     return str.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
+
+$(document).ready( init ); // For direct page loads
+$(document).on( 'page:load', init ); // For following links
