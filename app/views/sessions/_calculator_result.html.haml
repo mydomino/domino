@@ -1,35 +1,44 @@
-.offsite-solar
-  %h4 Offsite Solar
-  %p
+.calculator-result-category#offsite_solar
+  %h3
+    %strong Offsite Solar
+  %h5
     Get the financial and energy saving benefits of solar panels with none
     of the maintenance.
-  %p
-    Up to $2059 more cash in your pocket/year with Offsite Solar and
-    Ground Heat.
-  %p
-    electric-car: $
-    = "#{location.electric_car}"
-  %p
-    electric_heat_pump: $
-    = "#{location.electric_heat_pump}"
-  %p
-    geothermal_heat_pump: $
-    = "#{location.geothermal_heat_pump}"
-  %p
-    hybrid_car: $
-    = "#{location.hybrid_car}"
-  %p
-    led: $
-    = "#{location.led}"
-  %p
-    offsite_solar: $
-    = "#{location.offsite_solar}"
-  %p
-    plug_in_hybrid: $
-    = "#{location.plug_in_hybrid}"
-  %p
-    rooftop_solar: $
-    = "#{location.rooftop_solar}"
-  %p
-    smart_thermostat: $
-    = "#{location.smart_thermostat}"
+.calculator-result-total
+  %h5
+    You could save
+    %span.total $2059
+    each year when you make these upgrades in
+    %span.city= " #{location.city.titleize}, #{location.state.upcase}."
+
+
+
+
+
+  -#%p
+  -#  electric-car: $
+  -#  = "#{location.electric_car}"
+  -#%p
+  -#  electric_heat_pump: $
+  -#  = "#{location.electric_heat_pump}"
+  -#%p
+  -#  geothermal_heat_pump: $
+  -#  = "#{location.geothermal_heat_pump}"
+  -#%p
+  -#  hybrid_car: $
+  -#  = "#{location.hybrid_car}"
+  -#%p
+  -#  led: $
+  -#  = "#{location.led}"
+  -#%p
+  -#  offsite_solar: $
+  -#  = "#{location.offsite_solar}"
+  -#%p
+  -#  plug_in_hybrid: $
+  -#  = "#{location.plug_in_hybrid}"
+  -#%p
+  -#  rooftop_solar: $
+  -#  = "#{location.rooftop_solar}"
+  -#%p
+  -#  smart_thermostat: $
+  -#  = "#{location.smart_thermostat}"
