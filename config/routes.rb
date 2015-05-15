@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   # Subdomains
   get '/', to: 'hundred#index', constraints: { subdomain: /100/ }
 
+  post 'calculate' => 'sessions#calculate'
+  get 'typeahead/:query' => 'sessions#typeahead'
+
+
   # You can have the root of your site routed with "root"
-  root 'main#index'
+  root 'sessions#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

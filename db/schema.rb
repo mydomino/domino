@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508000411) do
+ActiveRecord::Schema.define(version: 20150512205954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "location_savings", force: :cascade do |t|
+  create_table "savings_locations", force: :cascade do |t|
     t.string   "state"
     t.string   "city"
     t.integer  "zipcode"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20150508000411) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "geothermal_heat_pump"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.string   "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

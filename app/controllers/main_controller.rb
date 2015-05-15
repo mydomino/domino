@@ -1,4 +1,4 @@
-class MainController < ApplicationController
+class MainController < SessionController
   def index
     @source = "main"
   end

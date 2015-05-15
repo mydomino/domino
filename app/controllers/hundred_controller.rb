@@ -1,4 +1,4 @@
-class HundredController < MainController
+class HundredController < SessionsController
   def index
     @source = "hundred"
   end

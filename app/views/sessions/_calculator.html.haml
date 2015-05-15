@@ -1,17 +1,11 @@
 .calculator
   %h3.center
-    Choose One or More to See
-    How
+    Choose One or More to See How
     %strong Green
     You Can Go In
-  .dropdown.center
-    -#.btn-group
-    %button.btn.btn-default.btn-sm.dropdown-toggle
-      Fort Collins, TX
-      %span.caret
-    %ul.dropdown-menu
-      %li Oakland, CA
-      %li Pittsburgh, PA
+
+  = form_tag('/calculate', remote: true) do |f|
+    = text_field_tag 'city_or_zip', nil, placeholder: 'Enter City, State or Zip'
   .button-row
     .selector-title
       .glyphicon.glyphicon-flash
