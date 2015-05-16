@@ -182,7 +182,6 @@ span.green {
   }
   .twitter-typeahead {
     width: 220px;
-//    margin: 0 auto;
   }
   input[type=text] {
     background-color: rgba(0, 0, 0, 0);
@@ -227,18 +226,24 @@ span.green {
     font-style: italic;
     vertical-align: middle;
   }
-  .btn-default {
+  .btn {
     color: $light-color;
     background-color: rgba(0, 0, 0, 0);
     width: 100px;
     padding-left: 0;
     padding-right: 0;
   }
-  .btn-default:hover,
-  .btn-default:focus,
-  .btn-default.focus,
-  .btn-default:active,
-  .btn-default.active {
+  input[type=checkbox] {
+    width: 100%;
+  }
+  .btn:hover,
+  .btn:focus {
+    color: $light-color;
+    background-color: $green-color;
+  }
+  .btn.active,
+  .btn.active:hover,
+  .btn.active:focus {
     color: $green-color;
     background-color: $light-color;
   }
@@ -247,6 +252,15 @@ span.green {
     font-size: 16px;
     a{color: $light-color;}
     margin-top: 20px;
+  }
+}
+
+.calculator-result {
+  .result-category {
+    display: none;
+  }
+  .result-category.active {
+    display: inherit;
   }
 }
 

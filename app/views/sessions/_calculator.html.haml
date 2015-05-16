@@ -11,42 +11,33 @@
       .glyphicon.glyphicon-flash
       Electricity
     .btn-group{data: {toggle: "buttons"}}
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "rooftop_solar"}
+      %label.btn.btn-default#rooftop_solar
         Rooftop Solar
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "offsite_solar"}
+      %label.btn.btn-default#offsite_solar
         Offsite Solar
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "led"}
+      %label.btn.btn-default#led
         Upgrades
   .button-row
     .selector-title
       .glyphicon.glyphicon-fire
       Heating and Cooling
     .btn-group{data: {toggle: "buttons"}}
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "smart_thermostat"}
+      %label.btn.btn-default#smart_thermostat
         Thermostat
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "electric_heat_pump"}
+      %label.btn.btn-default#electric_heat_pump
         Air Heat
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "geothermal_heat_pump"}
+      %label.btn.btn-default#geothermal_heat_pump
         Ground Heat
   .button-row
     .selector-title
       .glyphicon.glyphicon-tint
       Gasoline
     .btn-group{data: {toggle: "buttons"}}
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "hybrid_car"}
+      %label.btn.btn-default#hybrid_car
         Hybrid
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "plug_in_hybrid"}
+      %label.btn.btn-default#plug_in_hybrid
         Hybrid Electric
-      %label.btn.btn-default
-        %input{name: "calculator", type: "checkbox", value: "electric_car"}
+      %label.btn.btn-default#electric_car
         All Electric
   .start-over
     = link_to "" do

@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
     # TODO: Write function to check if session already exists, and if not create a new one.
     #   Since multiple functions could potentially create a session object.
     # @session = Session.new(city/state/zip attribute hash from @savings)
-    render :calculate
+    render json: @location
   end
 
   def typeahead
     @location = SavingsLocation.find_city_info(params[:query])
     render json: @location
   end
+
 end
