@@ -4,8 +4,7 @@
     %strong Green
     You Can Go In
 
-  = form_tag('/calculate', remote: true) do |f|
-    = text_field_tag 'city_or_zip', nil, placeholder: 'Enter City, State or Zip'
+  = text_field_tag 'city_or_zip', nil, placeholder: 'Enter City, State or Zip'
   .button-row
     .selector-title
       .glyphicon.glyphicon-flash
