@@ -177,11 +177,10 @@ span.green {
   @include border-radius;
   padding: 15px;
 
-  form {
-    text-align: center;
-  }
   .twitter-typeahead {
     width: 220px;
+    display: table !important;
+    margin: 0 auto;
   }
   input[type=text] {
     background-color: rgba(0, 0, 0, 0);
@@ -256,12 +255,18 @@ span.green {
 }
 
 .calculator-result {
+  display: none;
+
   .result-category {
     display: none;
   }
   .result-category.active {
     display: inherit;
   }
+}
+
+.calculator-result.active {
+  display: inherit;
 }
 
 .how {
