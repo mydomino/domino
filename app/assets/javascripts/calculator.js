@@ -47,19 +47,33 @@ function calculatorInit() {
             }
         }
     }).bind( 'typeahead:select', function( event, suggestion ) {
-        $.ajax({
-            url: '/calculate',
-            data: { id: suggestion.id },
-            method: 'post'
-        })
-        .done( setLocationData );
+        retrieveLocationData(suggestion.id);
     });
 
+    loadGeolocatedLocationData();
     $( '.calculator .btn' ).click( categoryChange );
 }
 
 $( calculatorInit ); // For direct page loads
 $( document ).on( 'page:load', calculatorInit ); // For following links
+
+function loadGeolocatedLocationData() {
+    var geolocation = $( '#city_or_zip' ).val();
+    if( !geolocation ) return;
+    $.ajax({ url: '/typeahead/' + geolocation })
+    .done( function( data ) {
+        if( data.length > 0 ) { retrieveLocationData( data[0].id ) };
+    });
+}
+
+function retrieveLocationData(locationId) {
+    $.ajax({
+        url: '/calculate',
+        data: { id: locationId },
+        method: 'post'
+    })
+    .done( setLocationData );
+}
 
 function formatCityState( cityState ) {
     return toTitleCase( cityState.city ) + ', ' + cityState.state.toUpperCase();
