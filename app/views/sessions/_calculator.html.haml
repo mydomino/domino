@@ -4,7 +4,8 @@
     %strong Green
     You Can Go In
 
-  = text_field_tag 'city_or_zip', nil, placeholder: 'Enter City, State or Zip'
+  = text_field_tag 'city_or_zip', "#{@geolocation[:city]}",
+    placeholder: 'Enter City, State or Zip'
   .button-row
     .selector-title
       .glyphicon.glyphicon-flash
