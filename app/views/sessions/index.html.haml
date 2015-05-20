@@ -1,16 +1,11 @@
 %div{class: @source}
-  -#= render "navbar"
-  -#.source
-  -#  %br
-  -#  %br
-  -#  %br
-  -#  %br
-  -#  %br
-  -#  %br
-  -#  %br
-  -#  %h2= controller_name
-  -#= render "intro_section"
-  -#= render "explanation_section"
+  = render "navbar"
+  .source
+    %br
+    %br
+    %h2= controller_name
+  = render "intro_section"
+  = render "explanation_section"
   = render "calculator_section"
   = render "how_section"
   = render "concierge_section"
