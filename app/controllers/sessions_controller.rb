@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def calculate
-    @location = SavingsLocation.find(params[:id])
+    @location = SavingsLocation.find_by_params(params)
     # TODO: Store location in Session model so if they register we'll have some data
     # TODO: Write function to check if session already exists, and if not create a new one.
     #   Since multiple functions could potentially create a session object.

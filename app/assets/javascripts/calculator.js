@@ -20,7 +20,7 @@ var locationData;
 
 function calculatorInit() {
     $( '#city_or_zip' ).typeahead({
-        hint: true,
+        hint: false,
         minLength: 2
     }, {
         display: function( data ) {
@@ -34,7 +34,11 @@ function calculatorInit() {
             }
         }
     }).bind( 'typeahead:select', function( event, suggestion ) {
-        retrieveLocationData(suggestion.id);
+        retrieveLocationData({ id: suggestion.id });
+    });
+
+    $( '#city_or_zip').change( function() {
+        handleDirectEntry( this.value );
     });
 
     loadGeolocatedLocationData();
@@ -45,20 +49,24 @@ $( calculatorInit ); // For direct page loads
 $( document ).on( 'page:load', calculatorInit ); // For following links
 
 function getSuggestions( query, sync, async ) {
-    if( !query || query.length < 2 ) {
-        sync();
-        async();
-        return;
-    }
+    if( !query ) return;
+
+    if( $.isNumeric( query ) && query.length <= 5 ) return;
+    if( query.length < 2 ) return;
 
     var searchKey = query.substring( 0, 2 ).toLowerCase();
 
     // search cached results
     if( searchKey in locationCache ) {
+        if( locationCache[ searchKey ] == "searching" ) return;
         sync( findMatches( query, locationCache[ searchKey ] ) );
         async();
         return;
     }
+
+    // prevents additional async searches from happening when one is already
+    // in progress
+    locationCache[searchKey] = "searching";
 
     $.ajax({ url: '/typeahead/' + searchKey })
     .done( function( data ) {
@@ -94,14 +102,24 @@ function loadGeolocatedLocationData() {
     if( !geolocation ) return;
     $.ajax({ url: '/typeahead/' + geolocation })
     .done( function( data ) {
-        if( data.length > 0 ) { retrieveLocationData( data[0].id ) };
+        if( data.length > 0 ) { retrieveLocationData({ id: data[0].id }) };
     });
 }
 
-function retrieveLocationData(locationId) {
+function handleDirectEntry( value ) {
+    if( isZip(value) ) {
+        retrieveLocationData({ zip: value });
+    }
+}
+
+function isZip( query ) {
+    return $.isNumeric( query ) && query.length == 5;
+}
+
+function retrieveLocationData( data ) {
     $.ajax({
         url: '/calculate',
-        data: { id: locationId },
+        data: data,
         method: 'post'
     })
     .done( setLocationData );
