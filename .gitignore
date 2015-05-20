@@ -12,6 +12,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .DS_Store
+Guardfile
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
@@ -37,3 +38,5 @@ bower.json
 
 # Ignore RubyMine
 /.idea
+# Ignore application configuration
+/config/application.yml
