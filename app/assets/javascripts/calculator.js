@@ -9,29 +9,16 @@ var categoryExclusions = {
     electric_car: [ 'hybrid_car', 'plug_in_hybrid' ]
 };
 
+// the cache for all the city, state, zip data retrieved from the server
+var locationCache = {};
+
 // the keys of all of the currently selected categories
 var selectedCategories = [];
 
 // stores all of the data for the currently selected location
 var locationData;
 
-// instantiate the bloodhound suggestion engine
-var engine = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    identify: function( obj ) { return obj.id; },
-    remote: {
-        url: '/typeahead/%QUERY',
-        wildcard: '%QUERY'
-    },
-    limit: 5
-});
-
-// initialize the bloodhound suggestion engine
-engine.initialize();
-
 function calculatorInit() {
-    // instantiate the typeahead UI
     $( '#city_or_zip' ).typeahead({
         hint: true,
         minLength: 2
@@ -39,7 +26,7 @@ function calculatorInit() {
         display: function( data ) {
             return formatCityState( data );
         },
-        source: engine.ttAdapter(),
+        source: getSuggestions,
         templates: {
             empty: 'No results found',
             suggestion: function ( data ) {
@@ -56,6 +43,51 @@ function calculatorInit() {
 
 $( calculatorInit ); // For direct page loads
 $( document ).on( 'page:load', calculatorInit ); // For following links
+
+function getSuggestions( query, sync, async ) {
+    if( !query || query.length < 2 ) {
+        sync();
+        async();
+        return;
+    }
+
+    var searchKey = query.substring( 0, 2 ).toLowerCase();
+
+    // search cached results
+    if( searchKey in locationCache ) {
+        sync( findMatches( query, locationCache[ searchKey ] ) );
+        async();
+        return;
+    }
+
+    $.ajax({ url: '/typeahead/' + searchKey })
+    .done( function( data ) {
+        locationCache[searchKey] = data;
+        sync();
+        async( findMatches( query, data ) );
+    });
+}
+
+// Collapses string by removing all spaces and commas and making lower-case.
+function flattenString( str ) {
+    return str.replace( /[, ]/g, '' ).toLowerCase();
+}
+
+function findMatches( query, data ) {
+    var matches = [];
+
+    // extract 5 results from location cache based on search key
+    var i = 0;
+    while( matches.length < 5 && i < data.length ) {
+        var entry = data[ i++ ];
+        var e = flattenString( entry.city + entry.state );
+        var q = flattenString( query );
+        if( e.indexOf( q ) >= 0 )
+            matches.push( entry );
+    }
+
+    return matches;
+}
 
 function loadGeolocatedLocationData() {
     var geolocation = $( '#city_or_zip' ).val();
