@@ -6,13 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-records = JSON.parse(File.read('public/data/location_savings.json'))
+records = JSON.parse(File.read('public/data/savings_location.json'))
 records.each do |state, value|
   value.each do |city, value|
     location = {state: state, city: city}
     value['dollar_savings'].each do |key, value|
       location[key.gsub('-','_')] = value
     end
-    LocationSaving.create(location)
+    SavingsLocation.create(location)
   end
 end

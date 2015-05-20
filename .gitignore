@@ -38,5 +38,6 @@ bower.json
 
 # Ignore RubyMine
 /.idea
+
 # Ignore application configuration
 /config/application.yml
