@@ -1,9 +1,12 @@
 .snippet
-  .created_at= snippet.created_at.strftime("%B %d, %Y")
+  .actions
+    = link_to snippet, {title: "Delete",
+          data: {:confirm => "Are you sure?", toggle: "tooltip"},
+          method: :delete} do
+      .glyphicon.glyphicon-remove-circle
+    |
+    = link_to new_snippet_path(parent_id: snippet),
+          {title: "Create Child", data: {toggle: "tooltip"}, remote: true} do
+      .glyphicon.glyphicon-plus
   .content
     = link_to snippet.name, snippet, remote: true
-  .actions
-    = link_to "New Child", new_snippet_path(parent_id: snippet), remote: true
-    |
-    = link_to "Destroy", snippet, data: {:confirm => "Are you sure?"},
-      :method => :delete

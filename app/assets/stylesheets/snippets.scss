@@ -2,7 +2,8 @@
   margin: 8px 0;
   padding: 8px 15px;
   border: solid 1px #999;
-  width: 300px;
+  width: 200px;
+  height: 35px;
   @include border-radius;
   background-image: -webkit-gradient(
                   linear,
@@ -18,20 +19,18 @@
   );
 }
 
+.snippet .content {
+  margin-top: -5px;
+}
+
 .snippet .content a {
   color: #000;
   text-decoration: none;
 }
 
-.snippet .created_at {
-  color: #555;
-  font-size: 12px;
-  float: right;
-}
-
 .snippet .actions {
   font-size: 12px;
-  margin-top: 5px;
+  float: right;
 }
 
 .snippet .actions a {

@@ -17,3 +17,4 @@
 //= require typeahead.bundle
 
 //= require calculator
+//= require snippets
