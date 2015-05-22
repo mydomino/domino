@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     ip = request.remote_ip
     ip = '75.149.54.14' if ip == '127.0.0.1'
     @geolocation = GeoIp.geolocation(ip)
+    # @geolocation = {city: "San Francisco"}
   end
 
   def calculate

@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512205954) do
+ActiveRecord::Schema.define(version: 20150522035650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "savings_locations", force: :cascade do |t|
     t.string   "state"
@@ -41,5 +47,18 @@ ActiveRecord::Schema.define(version: 20150512205954) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "snippets", force: :cascade do |t|
+    t.string   "key"
+    t.text     "content"
+    t.string   "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.integer  "clone_id"
+  end
+
+  add_index "snippets", ["ancestry"], name: "index_snippets_on_ancestry", using: :btree
+  add_index "snippets", ["clone_id"], name: "index_snippets_on_clone_id", using: :btree
 
 end

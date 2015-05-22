@@ -5,7 +5,7 @@ $footer-links-color: #313131;
 $reserve-button-color: #E0483E;
 
 $hundred-green-color: #0d0f9b;
-.hundred {
+.\00003100 { // must escape .100 for it to be valid in css
   .dark {
     background-color: $hundred-green-color;
   }

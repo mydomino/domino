@@ -1,2 +1,0 @@
-class HundredController < SessionsController
-end

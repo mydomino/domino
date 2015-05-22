@@ -1,0 +1,13 @@
+.row
+  .col-md-2
+    = request.subdomain
+    = link_to root_url do
+      = image_tag "Domino Logo.png"
+  .col-md-10
+    %h3 Domino Site Copy
+.row
+  .col-md-4
+    = nested_snippets @snippets.arrange(order: :name)
+  .col-md-8
+    .form-container
+      = render "form"

@@ -1,0 +1,9 @@
+.snippet
+  .created_at= snippet.created_at.strftime("%B %d, %Y")
+  .content
+    = link_to snippet.name, snippet, remote: true
+  .actions
+    = link_to "New Child", new_snippet_path(parent_id: snippet), remote: true
+    |
+    = link_to "Destroy", snippet, data: {:confirm => "Are you sure?"},
+      :method => :delete

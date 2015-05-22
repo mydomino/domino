@@ -33,6 +33,8 @@ gem 'geo_ip'
 
 gem "figaro"
 
+gem "ancestry"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
