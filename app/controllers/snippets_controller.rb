@@ -33,10 +33,19 @@ class SnippetsController < ApplicationController
     redirect_to snippets_url
   end
 
+  def import
+    Snippet.import(import_params[:file].tempfile)
+    redirect_to snippets_url
+  end
+
   private
 
   def snippet_params
     params.require(:snippet).permit(:name, :content, :parent_id)
+  end
+
+  def import_params
+    params.permit(:file)
   end
 
   def find_snippet

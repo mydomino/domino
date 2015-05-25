@@ -44,3 +44,15 @@
 .nested_snippets .nested_snippets .nested_snippets .nested_snippets {
   margin-left: 0;
 }
+
+.import-export {
+  position: absolute;
+  height: 100%;
+  width: 450px;
+  overflow-y: scroll;
+}
+
+.form-container {
+  position: absolute;
+  left: 450px;
+}
