@@ -35,6 +35,8 @@ gem "figaro"
 
 gem "ancestry"
 
+gem "json"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

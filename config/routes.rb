@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post 'calculate' => 'sessions#calculate'
   get 'typeahead/:query' => 'sessions#typeahead'
 
-  resources :snippets
+  resources :snippets do
+    collection {post :import}
+  end
 
 
   # Example of regular route:

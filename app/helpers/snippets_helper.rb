@@ -10,7 +10,7 @@ module SnippetsHelper
     all_keys = Snippet.where(key: key)
     s = all_keys.find {|s| s.clone.name == current_clone if s.clone}
     s ||= all_keys.find {|s| s.clone == nil}
-    s.content
+    s ? s.content.html_safe : ""
   end
 
 end
