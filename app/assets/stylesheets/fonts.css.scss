@@ -6,13 +6,13 @@
 }
 @font-face {
   font-family: 'lato';
-  src: font-url('Lato-Bold.ttf') format('truetype');
+  src: font-url('Lato-Semibold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'lato';
-  src: font-url('Lato-BoldItalic.ttf') format('truetype');
+  src: font-url('Lato-SemiboldItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: italic;
 }
@@ -33,4 +33,52 @@
   src: font-url('Lato-LightItalic.ttf') format('truetype');
   font-weight: lighter;
   font-style: italic;
+}
+
+
+body {
+  font-family: 'lato', sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 20px;
+}
+
+h1 {
+  font-weight: lighter;
+  font-size: 36px;
+  margin: 0;
+}
+h1 strong {
+  font-weight: bold;
+  font-style: italic;
+}
+h2 {
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0;
+}
+h3 {
+  font-size: 19px;
+  margin: 0;
+}
+h4 {
+  font-weight: lighter;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0;
+}
+h5 {
+  font-size: 16px;
+  font-weight: lighter;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+em {
+  font-style: italic;
+  font-weight: bold;
+  color: $green-color;
 }

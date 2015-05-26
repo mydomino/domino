@@ -1,14 +1,9 @@
-$primary-color: #6E6E6E;
-$light-color: #FFF9F0;
-$green-color: #5FC3A2;
-$footer-links-color: #313131;
-$reserve-button-color: #E0483E;
+$nav-height: 67px;
+$section-height: calc(100vh - #{$nav-height});
 
-$hundred-green-color: #0d0f9b;
-.\00003100 { // must escape .100 for it to be valid in css
-  .dark {
-    background-color: $hundred-green-color;
-  }
+@mixin section-container-height {
+  height: $section-height;
+  min-height: 500px;
 }
 
 @mixin border-radius {
@@ -18,47 +13,6 @@ $hundred-green-color: #0d0f9b;
   border-radius: 6px;
 }
 
-body {
-  font-family: 'lato', sans-serif;
-  font-weight: lighter;
-  font-style: normal;
-  font-size: 18px;
-  color: $primary-color;
-  background-color: $light-color;
-}
-
-h1 {
-  font-weight: lighter;
-  font-size: 35px;
-}
-h1 strong {
-  font-weight: bold;
-  font-style: italic;
-}
-h2 {
-  font-weight: bold;
-  font-size: 26px;
-}
-h3 {
-  font-size: 20px;
-}
-h4 {
-  font-weight: bold;
-  font-size: 18px;
-}
-h5 {
-  font-size: 18px;
-}
-
-.dark {
-  background-color: $green-color;
-  color: $light-color;
-}
-span.green {
-  font-style: italic;
-  font-weight: bold;
-  color: $green-color;
-}
 .center {text-align: center;  }
 
 .container {
@@ -68,8 +22,9 @@ span.green {
 }
 
 .navbar {
-  padding-top: 7px;
-  padding-bottom: 7px;
+  height: $nav-height;
+  padding-top: 8px;
+  padding-bottom: 8px;
   display: table-cell;
   vertical-align: middle;
 
@@ -90,28 +45,55 @@ span.green {
 }
 
 .intro {
-  padding-top: 165px;
-  padding-bottom: 80px;
-  .graphic {margin-bottom: 55px;}
+  @include section-container-height;
+  margin-top: $nav-height;
+
+  .content {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-55%);
+    -ms-transform: translateY(-55%);
+    transform: translateY(-55%);
+  }
+
+  svg {
+    margin-top: 40px;
+  }
 }
 
 .explanation {
-  padding-top: 80px;
-  padding-bottom: 60px;
+  min-height: $section-height;
+  padding: 32px 0;
 
   .section {
-    margin-bottom: 70px;
-    h2 {margin-bottom: 38px;}
+    padding: 16px 0;
+  }
+  li {
+    margin-bottom: 14px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
   }
   .info-box {
     background-color: #ffffff;
     @include border-radius;
     padding: 20px;
 
+    h3 {
+      font-size: 22px;
+      font-weight: bold;
+      padding: 11px 0;
+    }
+    .reserve-button {
+      margin-top: 14px;
+    }
     .subtext {
       font-size: 11px;
       font-weight: lighter;
       font-style: italic;
+      margin-top: 3px;
     }
   }
 }

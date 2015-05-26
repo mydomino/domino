@@ -1,0 +1,6 @@
+$hundred-green-color: #0d0f9b;
+.\00003100 { // must escape .100 for it to be valid in css
+  .dark {
+    background-color: $hundred-green-color;
+  }
+}

@@ -1,0 +1,16 @@
+$primary-color: #6E6E6E;
+$light-color: #FFF9F0;
+$green-color: #5FC3A2;
+$footer-links-color: #313131;
+$reserve-button-color: #E0483E;
+
+body {
+  color: $primary-color;
+  background-color: $light-color;
+}
+
+.dark {
+  background-color: $green-color;
+  color: $light-color;
+}
+

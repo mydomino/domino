@@ -1,9 +1,5 @@
 .calculator
-  %h3.center
-    Choose One or More to See How
-    %strong Green
-    You Can Go In
-
+  %h3.center= snippet 'homepage-calculator-header'
   = text_field_tag 'city_or_zip', "#{@geolocation[:city]}",
     placeholder: 'Enter City, State or Zip'
   .button-row
