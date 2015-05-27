@@ -34,7 +34,6 @@ $section-height: calc(100vh - #{$nav-height});
   }
   .row {height: 100%;}
   a {
-    color: $green-color;
     font-size: 13px;
     font-weight: normal;
   }
@@ -93,7 +92,7 @@ $section-height: calc(100vh - #{$nav-height});
       font-size: 11px;
       font-weight: lighter;
       font-style: italic;
-      margin-top: 3px;
+      margin-top: 4px;
     }
   }
 }
@@ -107,12 +106,6 @@ $section-height: calc(100vh - #{$nav-height});
     height: auto;
     vertical-align: bottom;
     position: absolute;
-  }
-  .offsite-solar {
-    background-color: rgba(0, 0, 0, 0.2);
-    font-size: 11px;
-    @include border-radius;
-    padding: 20px;
   }
 }
 
@@ -133,7 +126,6 @@ $section-height: calc(100vh - #{$nav-height});
   }
   .why-reason {
     @include border-radius;
-    border: 1px solid $green-color;
     padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -170,8 +162,6 @@ $section-height: calc(100vh - #{$nav-height});
     }
   }
   .reserve {
-    background-color: $light-color;
-    color: $primary-color;
     @include border-radius;
     padding: 40px 10px;
 
@@ -195,8 +185,6 @@ $section-height: calc(100vh - #{$nav-height});
     padding-top: 55px;
     padding-bottom: 100px;
     margin-top: 10px;
-    background-color: $footer-links-color;
-    color: $light-color;
     font-size: 13px;
     font-weight: normal;
 
@@ -205,25 +193,20 @@ $section-height: calc(100vh - #{$nav-height});
     a {
       font-weight: lighter;
       font-size: 12px;
-      color: $light-color;
     }
   }
 }
 
 button {
-  color: $light-color;
   @include border-radius;
   border-style: none;
-  background-color: $green-color;
   font-size: 13px;
   font-weight: bold;
 }
 .reserve-button button {
-  background-color: $reserve-button-color;
   width: 270px;
   height: 35px;
 }
-.glyphicon-ok {color: $green-color;}
 input {
   font-size: 12px;
   -webkit-border-radius: 2px;

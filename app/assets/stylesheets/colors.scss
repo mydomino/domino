@@ -1,16 +1,87 @@
-$primary-color: #6E6E6E;
-$light-color: #FFF9F0;
-$green-color: #5FC3A2;
-$footer-links-color: #313131;
-$reserve-button-color: #E0483E;
+//             primary light   green   dark               reserve
+$defaultColor: #6E6E6E #FFF9F0 #5FC3A2 rgba(0, 0, 0, 0.2) #E0483E;
+$hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
+
+@mixin colorSet($color: $defaultColor) {
+  $primary-color: nth($color, 1);
+  $light-color: nth($color, 2);
+  $green-color: nth($color, 3);
+  $dark-color: nth($color, 4);
+  $reserve-button-color: nth($color, 5);
+
+  $footer-links-color: #313131;
+
+  background-color: $light-color;
+  color: $primary-color;
+
+  .calculator .tt-menu,
+  .calculator .btn.active,
+  .calculator .btn.active:hover,
+  .calculator .btn.active:focus,
+  .concierge .reserve {
+    background-color: $light-color;
+  }
+  button,
+  .dark,
+  .calculator .tt-suggestion:hover,
+  .calculator .tt-suggestion:focus,
+  .calculator .tt-cursor,
+  .calculator .btn:hover,
+  .calculator .btn:focus {
+    background-color: $green-color;
+  }
+  .calculator {
+    background-color: $dark-color;
+  }
+  .reserve-button button {
+    background-color: $reserve-button-color;
+  }
+  .footer .links {
+    background-color: $footer-links-color;
+  }
+
+  .calculator .tt-menu {
+    color: $primary-color;
+  }
+  button,
+  .dark,
+  .calculator,
+  .calculator .btn,
+  .calculator .btn:hover,
+  .calculator .btn:focus,
+  .calculator .start-over a,
+  .footer .links,
+  .footer .links a {
+    color: $light-color;
+  }
+  em,
+  .navbar a,
+  .calculator .btn.active,
+  .calculator .btn.active:hover,
+  .calculator .btn.active:focus,
+  .glyphicon-ok {
+    color: $green-color;
+  }
+
+  .how .why-reason {
+    border: 1px solid $green-color;
+  }
+
+  .how .one-two-three circle {
+    fill: $green-color;
+  }
+
+  .how g {
+    stroke: $green-color;
+  }
+}
+
+
 
 body {
-  color: $primary-color;
-  background-color: $light-color;
+  @include colorSet();
 }
 
-.dark {
-  background-color: $green-color;
-  color: $light-color;
+.\00003100 { // must escape .100 for it to be valid in css
+  @include colorSet($hundredColor);
 }
-
