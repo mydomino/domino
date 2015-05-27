@@ -4,16 +4,18 @@ class Snippet < ActiveRecord::Base
 
   validates :name, presence: true
   validates :name,
-    uniqueness: {scope: :clone,
-      if: :name_exists_in_siblings?,
-      message: "name already exists for this node and clone"}
+    uniqueness: {message: 'name already exists for this node and clone'},
+    if: :name_exists_in_siblings_and_clone?
 
-  before_save :set_key
 
-  def name_exists_in_siblings?
-    return false unless parent
-    siblings_excluding_self = parent.children.select { |s| s != self }
-    siblings_excluding_self.map(&:name).include?(name)
+  attr_readonly :key
+
+  before_save :set_key, on: :create
+
+  def name_exists_in_siblings_and_clone?
+    siblings.select do |s|
+        s != self && s.name == self.name && s.clone == self.clone
+    end.any?
   end
 
   def self.import(file)

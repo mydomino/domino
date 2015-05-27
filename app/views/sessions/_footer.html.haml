@@ -1,9 +1,7 @@
 .footer
   .row
     .col-md-5.col-md-offset-2
-      %h5
-        Sign up for genuinely useful emails now and then with tips on
-        %span.green Going Green.
+      %h5= snippet 'footer-newsletterheader'
     .col-md-4
       = text_field_tag 'email', nil, placeholder: "Email address"
       = button_tag "SIGN UP"

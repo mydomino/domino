@@ -1,38 +1,29 @@
 .how
   .row
     .col-md-8.col-md-offset-2
-      %h2 How Domino Works
+      %h2= snippet 'homepage-whydomino-steps-header'
       .row.one-two-three
         .col-md-4.step
           = embedded_svg "Circle1.svg"
-          %h3 A NO-OBLIGATION CHAT
-          %p
-            Your concierge will call you with a few questions to get things rolling.
+          %h3= snippet 'homepage-whydomino-steps-one-header'
+          %p= snippet 'homepage-whydomino-steps-one-content'
         .col-md-4.step
           = embedded_svg "Circle2.svg"
-          %h3 WE GET TO TO WORK
-          %p
-            Your concierge is on the job, finding the best options, incentives and
-            deals for you.
+          %h3= snippet 'homepage-whydomino-steps-two-header'
+          %p= snippet 'homepage-whydomino-steps-two-content'
         .col-md-4.step
           = embedded_svg "Circle3.svg"
-          %h3 YOU SAVE
-          %p
-            Your concierge will explain your options and help with next steps. At no
-            cost to you.
-      %h2 Why Use A Domino Concierge?
+          %h3= snippet 'homepage-whydomino-steps-three-header'
+          %p= snippet 'homepage-whydomino-steps-three-content'
+      %h2= snippet 'homepage-whydomino-header'
       .row
         .col-md-6
           .why-reason
-            %h3 WITH DOMINO BY YOUR SIDE
-            %p
-              You get unbiased, honest answers and negotiated prices working with your
-              Domino concierge. All for free.
+            %h3= snippet 'homepage-whydomino-left-header'
+            %p= snippet 'homepage-whydomino-left-content'
             = embedded_svg "face-happy.svg"
         .col-md-6
           .why-reason
-            %h3 GOING IT ALONE
-            %p
-              You lose family time as you do a ton of research, deal with pushy sales
-              people and often wind up with higher prices.
+            %h3= snippet 'homepage-whydomino-right-header'
+            %p= snippet 'homepage-whydomino-right-content'
             = embedded_svg "face-sad.svg"
