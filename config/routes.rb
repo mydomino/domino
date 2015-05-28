@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :snippets do
     collection {post :import}
+    collection {get :export}
   end
 
 

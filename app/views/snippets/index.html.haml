@@ -9,10 +9,9 @@
     = form_tag import_snippets_path, multipart: true do
       = file_field_tag :file
       = submit_tag "Import"
-    -#= link_to "import", '/'
-    -#|
-    -#= link_to "export", '/'
-    = link_to "Create new", new_snippet_path, remote: true
+    = link_to "export", export_snippets_path
+    |
+    = link_to "create new", new_snippet_path, remote: true
     = nested_snippets @snippets.arrange(order: :name)
   .form-container
     = render "form"

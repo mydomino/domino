@@ -38,6 +38,11 @@ class SnippetsController < ApplicationController
     redirect_to snippets_url
   end
 
+  def export
+    send_data Snippet.export,
+              {filename: "snippet_export_#{Time.now.to_s(:number)}.json"}
+  end
+
   private
 
   def snippet_params
