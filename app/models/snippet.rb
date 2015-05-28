@@ -17,9 +17,8 @@ class Snippet < ActiveRecord::Base
     end.any?
   end
 
-  def self.import(file)
-      snippets = JSON.parse(file.read)
-      parse(snippets)
+  def self.import(snippets)
+      parse JSON.parse(snippets)
   end
 
   def self.export

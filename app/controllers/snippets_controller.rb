@@ -34,7 +34,7 @@ class SnippetsController < ApplicationController
   end
 
   def import
-    Snippet.import(import_params[:file].tempfile)
+    Snippet.import(import_params[:file].tempfile.read)
     redirect_to snippets_url
   end
 

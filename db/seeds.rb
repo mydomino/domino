@@ -16,3 +16,10 @@ records.each do |state, value|
     SavingsLocation.create(location)
   end
 end
+
+records = ['100']
+records.each do |name|
+  Clone.create({name: name})
+end
+
+Snippet.import(File.read('public/data/snippets_production.json'))
