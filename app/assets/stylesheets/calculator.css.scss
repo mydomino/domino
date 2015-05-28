@@ -1,13 +1,16 @@
 .calculator {
-//  background-color: rgba(0, 0, 0, 0.2);
-//  color: $light-color;
   @include border-radius;
   padding: 15px;
+  width: 330px;
 
+  .header {
+    font-weight: bold;
+    text-align: center;
+  }
   .twitter-typeahead {
     width: 220px;
     display: table !important;
-    margin: 0 auto;
+    margin: 10px auto;
   }
   input[type=text] {
     background-color: rgba(0, 0, 0, 0);
@@ -21,8 +24,6 @@
     width: 100%;
   }
   .tt-menu {
-//    background-color: $light-color;
-//    color: $primary-color;
     border-color: rgb(204, 204, 204);
     width: 100%;
     text-align: left;
@@ -39,21 +40,17 @@
     margin-bottom: 0;
     padding: 5px;
   }
-//  .tt-suggestion:hover, .tt-suggestion:focus, .tt-cursor {
-//    background-color: $green-color;
-//  }
 
   .button-row {
     margin-top: 15px;
   }
   .selector-title {
     font-weight: bold;
-    font-size: 18px;
     font-style: italic;
     vertical-align: middle;
+    margin-bottom: 5px;
   }
   .btn {
-//    color: $light-color;
     background-color: rgba(0, 0, 0, 0);
     width: 100px;
     padding-left: 0;
@@ -62,28 +59,16 @@
   input[type=checkbox] {
     width: 100%;
   }
-//  .btn:hover,
-//  .btn:focus {
-//    color: $light-color;
-//    background-color: $green-color;
-//  }
-//  .btn.active,
-//  .btn.active:hover,
-//  .btn.active:focus {
-//    color: $green-color;
-//    background-color: $light-color;
-//  }
-  .start-over {
-    font-weight: 300;
-    font-size: 16px;
-//    a{color: $light-color;}
-    margin-top: 20px;
-  }
 }
 
 .calculator-result {
   display: none;
+  max-width: 330px;
 
+  h5 {
+    margin-top: 15px;
+    line-height: 24px;
+  }
   .result-category {
     display: none;
   }

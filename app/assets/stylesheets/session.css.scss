@@ -33,10 +33,6 @@ $section-height: calc(100vh - #{$nav-height});
     float: none;
   }
   .row {height: 100%;}
-  a {
-    font-size: 13px;
-    font-weight: normal;
-  }
   .logo {
     width: 160px;
     height: 45px;
@@ -82,7 +78,6 @@ $section-height: calc(100vh - #{$nav-height});
 
     h3 {
       font-size: 22px;
-      font-weight: bold;
       padding: 11px 0;
     }
     .reserve-button {
@@ -100,6 +95,8 @@ $section-height: calc(100vh - #{$nav-height});
 .calculator-section {
   padding-top: 70px;
   padding-bottom: 180px;
+  min-height: 584px;
+  height: $section-height;
 
   .drawing {
     max-width: 80%;
@@ -110,34 +107,43 @@ $section-height: calc(100vh - #{$nav-height});
 }
 
 .how {
-  padding-top: 75px;
+  padding-top: 32px;
   padding-bottom: 50px;
-  h2 {margin-bottom: 38px;}
+  h2 {margin-bottom: 24px;}
+  h3 {margin-bottom: 5px;}
 
-  .one-two-three .step {
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-bottom: 45px;
+  .steps {
+    .step {
+      padding-left: 0;
+      padding-right: 48px;
+      margin-bottom: 45px;
+    }
 
     svg {
+      margin-bottom: 20px;
       width: 58px;
       height: 58px;
     }
+  }
+
+  .why-reason-container {
+    padding-left: 0;
+    padding-right: 20px;
   }
   .why-reason {
     @include border-radius;
     padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
-    padding-right: 125px;
-    height: 228px;
+    padding-right: 115px;
+    height: 220px;
     h3 {margin-top: 0;}
 
     svg {
-      width: 125px;
-      height: 125px;
+      width: 90px;
+      height: 90px;
       bottom: 0;
-      right: 15px;
+      right: 22px;
       position: absolute;
     }
   }
@@ -148,7 +154,7 @@ $section-height: calc(100vh - #{$nav-height});
   padding-bottom: 80px;
 
   .reason {
-    height: 100px;
+    min-height: 100px;
 
     svg {
       float: left;
