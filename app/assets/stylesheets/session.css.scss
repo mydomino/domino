@@ -1,42 +1,8 @@
-$nav-height: 67px;
 $section-height: calc(100vh - #{$nav-height});
 
 @mixin section-container-height {
   height: $section-height;
   min-height: 500px;
-}
-
-@mixin border-radius {
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  border-radius: 6px;
-}
-
-.center {text-align: center;  }
-
-.container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar {
-  height: $nav-height;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  display: table-cell;
-  vertical-align: middle;
-
-  .element{
-    display: inline-block;
-    float: none;
-  }
-  .row {height: 100%;}
-  .logo {
-    width: 160px;
-    height: 45px;
-  }
 }
 
 .intro {
@@ -126,24 +92,28 @@ $section-height: calc(100vh - #{$nav-height});
     }
   }
 
-  .why-reason-container {
+  .why-reason-container-left {
     padding-left: 0;
-    padding-right: 20px;
+    padding-right: 18px;
+  }
+  .why-reason-container-right {
+    padding-left: 0;
+    padding-left: 18px;
   }
   .why-reason {
     @include border-radius;
     padding-left: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
-    padding-right: 115px;
-    height: 220px;
+    padding-right: 125px;
+    height: 228px;
     h3 {margin-top: 0;}
 
     svg {
-      width: 90px;
-      height: 90px;
+      width: px;
+      height: 125px;
       bottom: 0;
-      right: 22px;
+      right: 15px;
       position: absolute;
     }
   }
@@ -154,7 +124,7 @@ $section-height: calc(100vh - #{$nav-height});
   padding-bottom: 80px;
 
   .reason {
-    min-height: 100px;
+    height: 100px;
 
     svg {
       float: left;
@@ -183,47 +153,13 @@ $section-height: calc(100vh - #{$nav-height});
   }
 }
 
-.footer {
-  padding-top: 30px;
-  table {width: 100%;}
+.about {
+  .section {
+    margin: 32px 0;
 
-  .links {
-    padding-top: 55px;
-    padding-bottom: 100px;
-    margin-top: 10px;
-    font-size: 13px;
-    font-weight: normal;
-
-    .logos {padding-left: 20%;}
-    p.link {margin-bottom: 0;}
-    a {
-      font-weight: lighter;
-      font-size: 12px;
+    h2 {
+      margin-bottom: 28px;
+      line-height: 42px;
     }
   }
-}
-
-button {
-  @include border-radius;
-  border-style: none;
-  font-size: 13px;
-  font-weight: bold;
-}
-.reserve-button button {
-  width: 270px;
-  height: 35px;
-}
-input {
-  font-size: 12px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  border-radius: 2px;
-  border-style: none;
-  height: 30px;
-  width: 270px;
-}
-.row {
-  margin-left: 0;
-  margin-right: 0;
 }

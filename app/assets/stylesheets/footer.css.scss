@@ -1,0 +1,23 @@
+.footer {
+  padding-top: 30px;
+  table {width: 100%;}
+
+  tr > td {
+    padding-bottom: 40px;
+    p {margin-bottom: 10px;}
+  }
+
+  .links {
+    padding-top: 55px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: normal;
+
+    .logos {padding-left: 20%;}
+    p.link {margin-bottom: 0;}
+    a {
+      font-weight: lighter;
+      font-size: 12px;
+    }
+  }
+}

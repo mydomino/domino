@@ -1,0 +1,23 @@
+$nav-height: 67px;
+
+.navbar {
+  height: $nav-height;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: table-cell;
+  vertical-align: middle;
+
+  .element{
+    display: inline-block;
+    float: none;
+  }
+  .row {height: 100%;}
+  a {
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .logo {
+    width: 160px;
+    height: 45px;
+  }
+}

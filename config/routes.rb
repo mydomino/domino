@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'calculate' => 'sessions#calculate'
   get 'typeahead/:query' => 'sessions#typeahead'
 
+  get 'about' => 'sessions#about'
+
   resources :snippets do
     collection {post :import}
     collection {get :export}

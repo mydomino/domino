@@ -9,34 +9,45 @@
     .col-md-2.col-md-offset-2
       %table
         %tr
-          %td= image_tag "Certified B Corp.png"
-          %td= link_to embedded_svg "facebook.svg"
-          %td= link_to embedded_svg "twitter.svg"
-          %td= link_to embedded_svg "rss.svg"
+          %td
+            = link_to "http://www.bcorporation.net/" do
+              = image_tag "Certified B Corp.png"
+          %td
+            = link_to "http://www.facebook.com/ourdominoeffect" do
+              = embedded_svg "facebook.svg"
+          %td
+            = link_to "http://twitter.com/OurDominoEffect" do
+              = embedded_svg "twitter.svg"
+          %td
+            = link_to "http://www.blog.mydomino.com/" do
+              = embedded_svg "rss.svg"
+        %tr
+          %td{colspan: 4}
+            %p KEY ADVISOR
+            = link_to "http://www.rmi.org/" do
+              = image_tag "rmi-logo.png"
     .col-md-1
       %p ABOUT US
-      %p.link= link_to "Who Is Domino?"
-      %p.link= link_to "Concierge Service"
-      %p.link= link_to "FAQs"
-      %p.link= link_to "Our Blog"
-    .col-md-1
-      %p ELECTRICITY
-      %p.link= link_to "Rooftop Solar"
-      %p.link= link_to "Offsite Solar"
-      %p.link= link_to "Upgrade"
-    .col-md-1
-      %p HEATING & COOLING
-      %p.link= link_to "Thermostat"
-      %p.link= link_to "Air Heat"
-      %p.link= link_to "Ground Heat"
-    .col-md-1
-      %p GASOLINE
-      %p.link= link_to "Hybrid"
-      %p.link= link_to "Hybrid Electric"
-      %p.link= link_to "All Electric"
-    .col-md-1
-      %p LEGAL/CONTACT
-      %p.link= link_to "Terms Of Service"
-      %p.link= link_to "Privacy Policy"
-      %p.link= link_to "Contact Us"
-      %p.link= link_to "Careers"
+      %p.link= link_to "Who Is Domino?", about_path
+      %p.link= link_to "Our Blog", "http://www.blog.mydomino.com/"
+      %p.link= link_to "Careers", "https://hellohired.com/domino"
+      %p.link= link_to "Contact Us", "mailto:info@mydomino.com"
+    -#.col-md-1
+    -#  %p ELECTRICITY
+    -#  %p.link= link_to "Rooftop Solar"
+    -#  %p.link= link_to "Offsite Solar"
+    -#  %p.link= link_to "Upgrade"
+    -#.col-md-1
+    -#  %p HEATING & COOLING
+    -#  %p.link= link_to "Thermostat"
+    -#  %p.link= link_to "Air Heat"
+    -#  %p.link= link_to "Ground Heat"
+    -#.col-md-1
+    -#  %p GASOLINE
+    -#  %p.link= link_to "Hybrid"
+    -#  %p.link= link_to "Hybrid Electric"
+    -#  %p.link= link_to "All Electric"
+    -#.col-md-1
+    -#  %p LEGAL
+    -#  %p.link= link_to "Terms Of Service"
+    -#  %p.link= link_to "Privacy Policy"

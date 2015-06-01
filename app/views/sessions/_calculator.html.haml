@@ -1,7 +1,7 @@
 .calculator
   %h3.header= snippet 'homepage-calculator-header'
   = text_field_tag 'city_or_zip', "#{@geolocation[:city]}",
-    placeholder: 'Enter City, State or Zip'
+    placeholder: 'Enter City, State'
   .button-row
     %h3.selector-title
       .glyphicon.glyphicon-flash
