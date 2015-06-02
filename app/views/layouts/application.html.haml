@@ -8,4 +8,6 @@
     = favicon_link_tag
   %body{class: current_clone}
     .container
+      = yield :navbar if content_for :navbar
       = yield
+      = yield :footer if content_for :footer

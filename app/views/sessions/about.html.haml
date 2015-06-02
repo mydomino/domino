@@ -1,9 +1,16 @@
 .about
   .row
     .col-md-8.col-md-offset-2
+      .header
+        = embedded_svg 'domino-about.svg'
+        %p.title= snippet 'about-definitiontitle'
+        %p= snippet 'about-definition'
       .section
         %h2= snippet 'about-section1-header'
         %p= snippet 'about-section1-content'
+      .quote
+        %h2.testamonial= snippet 'about-testamonial'
+        %p.name= snippet 'about-testamonialname'
       .section
         %h2= snippet 'about-section2-header'
         %p= snippet 'about-section2-content'
@@ -13,3 +20,4 @@
       .section
         %h2= snippet 'about-section4-header'
         %p= snippet 'about-section4-content'
+      = image_tag "team-photo.jpg"

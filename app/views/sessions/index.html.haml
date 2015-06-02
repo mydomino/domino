@@ -1,7 +1,105 @@
-= render "navbar"
-= render "intro_section"
-= render "explanation_section"
-= render "calculator_section"
-= render "how_section"
-= render "concierge_section"
-= render "footer"
+.intro.dark
+  .content.center
+    %h1= snippet 'homepage-intro-header'
+    = embedded_svg "Main Graphic.svg"
+.explanation
+  .row
+    .col-md-5.col-md-offset-2
+      %h2= snippet 'homepage-firstsection-header'
+      .section
+        %p= snippet 'homepage-firstsection-content'
+      %h2= snippet 'homepage-firstsection-listheader'
+      .section
+        %ul
+          %li
+            .glyphicon.glyphicon-ok
+            %i= snippet 'homepage-firstsection-listitems-1'
+          %li
+            .glyphicon.glyphicon-ok
+            %i= snippet 'homepage-firstsection-listitems-2'
+          %li
+            .glyphicon.glyphicon-ok
+            %i= snippet 'homepage-firstsection-listitems-3'
+          %li
+            .glyphicon.glyphicon-ok
+            %i= snippet 'homepage-firstsection-listitems-4'
+    .col-md-3
+      .info-box
+        = embedded_svg "Chat Icon.svg"
+        %h3= snippet 'homepage-firstsection-sidebarheader'
+        %h4= snippet 'homepage-firstsection-sidebarcontent'
+        = render "common/reserve_button"
+        .subtext
+          %p= snippet 'homepage-firstsection-sidebarcaption'
+.calculator-section.dark
+  .drawing
+    = embedded_svg "Drawings.svg"
+  .row
+    .col-md-3.col-md-offset-2
+      = render "calculator"
+    .col-md-3.col-md-offset-2
+      = render "calculator_result"
+.how
+  .row
+    .col-md-8.col-md-offset-2
+      %h2= snippet 'homepage-whydomino-steps-header'
+      .row.steps
+        .col-md-4.step
+          = embedded_svg "Circle1.svg"
+          %h3= snippet 'homepage-whydomino-steps-one-header'
+          %h4= snippet 'homepage-whydomino-steps-one-content'
+        .col-md-4.step
+          = embedded_svg "Circle2.svg"
+          %h3= snippet 'homepage-whydomino-steps-two-header'
+          %h4= snippet 'homepage-whydomino-steps-two-content'
+        .col-md-4.step
+          = embedded_svg "Circle3.svg"
+          %h3= snippet 'homepage-whydomino-steps-three-header'
+          %h4= snippet 'homepage-whydomino-steps-three-content'
+      %h2= snippet 'homepage-whydomino-header'
+      .row
+        .col-md-6.why-reason-container
+          .why-reason
+            %h3= snippet 'homepage-whydomino-left-header'
+            %h4= snippet 'homepage-whydomino-left-content'
+            = embedded_svg "face-happy.svg"
+        .col-md-6.why-reason-container
+          .why-reason
+            %h3= snippet 'homepage-whydomino-right-header'
+            %h4= snippet 'homepage-whydomino-right-content'
+            = embedded_svg "face-sad.svg"
+.concierge.dark
+  .row
+    .col-md-3.col-md-offset-2
+      .reason
+        = embedded_svg "free.svg"
+        .reason-content
+          %h3= snippet 'homepage-concierge-reason1-header'
+          %h4= snippet 'homepage-concierge-reason1-content'
+      .reason
+        = embedded_svg "no-pressure.svg"
+        .reason-content
+          %h3= snippet 'homepage-concierge-reason2-header'
+          %h4= snippet 'homepage-concierge-reason2-content'
+      .reason
+        = embedded_svg "on-your-side.svg"
+        .reason-content
+          %h3= snippet 'homepage-concierge-reason3-header'
+          %h4= snippet 'homepage-concierge-reason3-content'
+      .reason
+        = embedded_svg "unbiased.svg"
+        .reason-content
+          %h3= snippet 'homepage-concierge-reason4-header'
+          %h4= snippet 'homepage-concierge-reason4-content'
+    .col-md-4.col-md-offset-1
+      .reserve.center
+        %h3
+          = snippet 'homepage-concierge-form-headerpre'
+          06237
+          = snippet 'homepage-concierge-form-headerpost'
+        %h4= snippet 'homepage-concierge-form-secondaryheader'
+        %p= text_field_tag 'name', nil, placeholder: "Name"
+        %p= phone_field_tag 'phone', nil, placeholder: "Phone Number"
+        %p= email_field_tag 'email', nil, placeholder: "Email (for a confirmation)"
+        %p= render "common/reserve_button"
+        %p.subtext= snippet 'homepage-concierge-form-footer'

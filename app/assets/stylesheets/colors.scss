@@ -14,6 +14,8 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   background-color: $light-color;
   color: $primary-color;
 
+  .navbar,
+  .navbar-spacer,
   .calculator .tt-menu,
   .calculator .btn.active,
   .calculator .btn.active:hover,
@@ -27,7 +29,8 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   .calculator .tt-suggestion:focus,
   .calculator .tt-cursor,
   .calculator .btn:hover,
-  .calculator .btn:focus {
+  .calculator .btn:focus,
+  .about .quote {
     background-color: $green-color;
   }
   .calculator {
@@ -52,7 +55,8 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   .calculator .btn:focus,
   .calculator .start-over a,
   .footer .links,
-  .footer .links a {
+  .footer .links a,
+  .about .quote {
     color: $light-color;
   }
   em,
@@ -60,6 +64,7 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   .calculator .btn.active,
   .calculator .btn.active:hover,
   .calculator .btn.active:focus,
+  .about .header,
   .glyphicon-ok {
     color: $green-color;
   }
