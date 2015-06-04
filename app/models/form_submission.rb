@@ -12,7 +12,7 @@ class FormSubmission
     # originating_screen: '',
     # timezone: ''
     )
-    # c.save
+    c.save
   end
 
 end
