@@ -2,13 +2,11 @@
 function signupInit() {
     $( '.concierge button' ).click( function() {
         $( this ).text( "We've Received Your Request" );
-        $( '.concierge input' ).prop( 'disabled', true );
         $( '.concierge .reserve').addClass( 'submitted' );
     });
 
     $( '.footer button').click( function() {
         $( this ).text( "Thanks!" );
-        $( '.footer input' ).prop( 'disabled', true );
         $( '.footer .mailing-list').addClass( 'submitted' );
     });
 
