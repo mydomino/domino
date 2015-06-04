@@ -36,11 +36,15 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   .calculator {
     background-color: $dark-color;
   }
-  .reserve-button button {
+  .reserve-button .btn {
     background-color: $reserve-button-color;
   }
   .footer .links {
     background-color: $footer-links-color;
+  }
+  .concierge .reserve.submitted .btn,
+  .footer .mailing-list.submitted .btn {
+    background-color: $primary-color;
   }
 
   .calculator .tt-menu,
@@ -48,12 +52,14 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
     color: $primary-color;
   }
   button,
+  .reserve-button .btn,
   .dark,
   .calculator,
   .calculator .btn,
   .calculator .btn:hover,
   .calculator .btn:focus,
   .calculator .start-over a,
+  .footer .mailing-list.submitted .btn,
   .footer .links,
   .footer .links a,
   .about .quote {
@@ -65,7 +71,8 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   .calculator .btn.active:hover,
   .calculator .btn.active:focus,
   .about .header,
-  .glyphicon-ok {
+  .glyphicon-ok,
+  .glyphicon-ok-circle {
     color: $green-color;
   }
 

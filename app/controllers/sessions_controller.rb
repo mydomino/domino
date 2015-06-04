@@ -23,4 +23,9 @@ class SessionsController < ApplicationController
     render json: @location
   end
 
+  def signup
+    FormSubmission.new(params)
+    head :accepted
+  end
+
 end

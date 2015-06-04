@@ -149,6 +149,18 @@ $section-height: calc(100vh - #{$nav-height});
       font-weight: lighter;
       font-style: italic;
     }
+    .icon {
+      display: none;
+      font-size: 200px;
+      position: absolute;
+      top: 0;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }
+  }
+  .reserve.submitted .icon {
+    display: inherit;
   }
 }
 

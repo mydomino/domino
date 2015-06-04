@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   post 'calculate' => 'sessions#calculate'
   get 'typeahead/:query' => 'sessions#typeahead'
 
+  # Form
+  post 'signup' => 'sessions#signup'
+
   get 'about' => 'sessions#about'
 
   resources :snippets do

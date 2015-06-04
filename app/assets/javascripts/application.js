@@ -18,3 +18,4 @@
 
 //= require calculator
 //= require snippets
+//= require signup

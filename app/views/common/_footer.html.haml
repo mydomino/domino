@@ -3,8 +3,11 @@
     .col-md-5.col-md-offset-2
       %h5= snippet 'footer-newsletterheader'
     .col-md-4
-      = text_field_tag 'email', nil, placeholder: "Email address"
-      = button_tag "SIGN UP"
+      .mailing-list
+        = form_tag({controller: :sessions, action: :signup}, remote: true) do
+          = hidden_field_tag 'name', 'MAILING LIST'
+          = email_field_tag 'email', nil, placeholder: 'Email address'
+          = button_tag 'SIGN UP', type: 'submit', class: 'btn'
   .row.links
     .col-md-2.col-md-offset-2
       %table
