@@ -1,20 +1,20 @@
 class SessionsController < ApplicationController
 
   def index
-    # TODO: Fix this hack.  Ip address should be retrieved/stored in session model.
     # It should use pre-configured data for development environment
     ip = request.remote_ip
     ip = '75.149.54.14' if ip == '127.0.0.1'
     @geolocation = GeoIp.geolocation(ip)
     # @geolocation = {city: "San Francisco"}
+    session[:ip] = ip
+    session[:city] = @geolocation[:city]
+    session[:state] = @geolocation[:region_name]
+    session[:zipcode] = @geolocation[:zip_code]
   end
 
   def calculate
     @location = SavingsLocation.find_by_params(params)
-    # TODO: Store location in Session model so if they register we'll have some data
-    # TODO: Write function to check if session already exists, and if not create a new one.
-    #   Since multiple functions could potentially create a session object.
-    # @session = Session.new(city/state/zip attribute hash from @savings)
+    %i(city state zipcode).each { |key| session[key] = @location[key] }
     render json: @location
   end
 
@@ -24,8 +24,19 @@ class SessionsController < ApplicationController
   end
 
   def signup
-    FormSubmission.new(params)
+    @submission = FormSubmission.new(signup_params)
+    @submission.save
     head :accepted
+  end
+
+  private
+
+  def signup_params
+    keys = %i(ip city state zipcode)
+    session_params = keys.each_with_object({}) do |str, hsh|
+      hsh[str] = session[str]
+    end
+    params.permit(:name, :email, :phone).merge(session_params)
   end
 
 end
