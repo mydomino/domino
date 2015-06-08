@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
 
   def index
-    # It should use pre-configured data for development environment
+    # TODO: It should use pre-configured data for development environment
     ip = request.remote_ip
-    ip = '75.149.54.14' if ip == '127.0.0.1'
-    @geolocation = GeoIp.geolocation(ip)
-    # @geolocation = {city: "San Francisco"}
+    # ip = '75.149.54.14' if ip == '127.0.0.1'
+    # TODO: Temporarily disabling until we can install a better geolocator
+    # @geolocation = GeoIp.geolocation(ip)
+    @geolocation = {city: 'San Francisco', state: 'CA'}
     session[:ip] = ip
     session[:city] = @geolocation[:city]
     session[:state] = @geolocation[:region_name]
