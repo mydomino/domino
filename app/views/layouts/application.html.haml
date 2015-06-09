@@ -6,6 +6,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = favicon_link_tag
+    = render 'layouts/analytics'
   %body{class: current_clone}
     .container
       = yield :navbar if content_for :navbar

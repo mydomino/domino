@@ -1,6 +1,5 @@
 class FormSubmission
   include ActiveModel::Model
-  extend ActiveModel::Callbacks
 
   attr_accessor :name, :email, :phone, :city, :state, :zipcode, :ip, :source
   validates :name, :email, presence: true

@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require typeahead.bundle
 
-//= require calculator
 //= require snippets
+//= require analytics
+//= require calculator
 //= require signup
