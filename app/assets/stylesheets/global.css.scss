@@ -10,10 +10,16 @@
 
 .center {text-align: center;  }
 
-.container {
+body {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+body .container {
+  padding-left: calc((100vw - 1000px) / 2);
+  padding-right: calc((100vw - 1000px) / 2);
+  width: 100%;
 }
 
 button {
