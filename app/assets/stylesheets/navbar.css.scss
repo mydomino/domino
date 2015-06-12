@@ -1,26 +1,24 @@
-$nav-height: 67px;
+$nav-height: 60px;
 
 .navbar {
   height: $nav-height;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px 0;
   display: table-cell;
   vertical-align: middle;
+  border-width: 0;
 
-  .element{
-    display: inline-block;
-    float: none;
-  }
   .row {height: 100%;}
-  a {
-    font-weight: normal;
+  ul{
+    padding-right: 80px;
+    padding-top: 7px;
   }
-  .logo {
-    width: 160px;
-    height: 45px;
-  }
+  li{padding-left: 50px;}
 }
 
-.navbar-spacer {
-  height: $nav-height;
+body.index .navbar li.button {
+  display: none;
+}
+
+body.index .navbar.scrolled li.button {
+  display: inherit;
 }

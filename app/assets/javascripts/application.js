@@ -18,5 +18,6 @@
 
 //= require snippets
 //= require analytics
+//= require navbar
 //= require calculator
 //= require signup

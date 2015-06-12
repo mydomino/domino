@@ -7,7 +7,7 @@
     = csrf_meta_tags
     = favicon_link_tag
     = render 'layouts/analytics'
-  %body{class: current_clone}
+  %body{class: action_name}
     = yield :navbar if content_for :navbar
     = yield
     = yield :footer if content_for :footer

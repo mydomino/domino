@@ -33,6 +33,23 @@ button {
   height: 35px;
   font-weight: bold;
 }
+.getstarted-button .btn {
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  border-radius: 30px;
+  width: 263px;
+  height: 40px;
+  border-width: 0;
+  padding: 0;
+  font-size: 24px;
+  padding-top: 3px;
+}
+.small .getstarted-button .btn {
+  width: 151px;
+  height: 32px;
+  font-size: 18px;
+}
 input {
   font-size: 12px;
   -webkit-border-radius: 2px;

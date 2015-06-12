@@ -1,6 +1,8 @@
 //             primary light   green   dark               reserve
-$defaultColor: #6E6E6E #FFF9F0 #5FC3A2 rgba(0, 0, 0, 0.2) #E0483E;
+$defaultColor: #6E6E6E #FFF9F0 #5FC3A2 rgba(0, 0, 0, 0.2) #db5461;
 $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
+
+$overlayColor: rgba(48, 48, 48, 0.7);
 
 @mixin colorSet($color: $defaultColor) {
   $primary-color: nth($color, 1);
@@ -14,8 +16,7 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   background-color: $light-color;
   color: $primary-color;
 
-  .navbar,
-  .navbar-spacer,
+  .navbar.scrolled,
   .calculator .tt-menu,
   .calculator .btn.active,
   .calculator .btn.active:hover,
@@ -24,6 +25,7 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
     background-color: $light-color;
   }
   button,
+  .navbar,
   .dark,
   .calculator .tt-suggestion:hover,
   .calculator .tt-suggestion:focus,
@@ -36,7 +38,8 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
   .calculator {
     background-color: $dark-color;
   }
-  .reserve-button .btn {
+  .reserve-button .btn,
+  .getstarted-button .btn {
     background-color: $reserve-button-color;
   }
   .footer .links {
@@ -52,7 +55,9 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
     color: $primary-color;
   }
   button,
+  .navbar a,
   .reserve-button .btn,
+  .getstarted-button .btn,
   .dark,
   .calculator,
   .calculator .btn,
@@ -66,11 +71,12 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
     color: $light-color;
   }
   em,
-  .navbar a,
+  .navbar.scrolled a,
   .calculator .btn.active,
   .calculator .btn.active:hover,
   .calculator .btn.active:focus,
   .about .header,
+  .how p.header,
   .glyphicon-ok,
   .glyphicon-ok-circle {
     color: $green-color;
@@ -80,16 +86,29 @@ $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
     border: 1px solid $green-color;
   }
 
+  .navbar.scrolled g,
   .how .steps circle {
     fill: $green-color;
   }
+  .navbar g {
+    fill: $light-color;
+  }
 
+  .how .steps g {
+    stroke: $light-color;
+  }
   .how g {
     stroke: $green-color;
   }
 }
 
+.overlay {
+  background-color: $overlayColor;
+}
 
+body.index .navbar {
+  background-color: rgba(0, 0, 0, 0);
+}
 
 body {
   @include colorSet();
