@@ -34,10 +34,7 @@ button {
   font-weight: bold;
 }
 .getstarted-button .btn {
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  border-radius: 30px;
+  @include border-radius;
   width: 263px;
   height: 40px;
   border-width: 0;
