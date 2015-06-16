@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     session_params = keys.each_with_object({}) do |str, hsh|
       hsh[str] = session[str]
     end
-    params.permit(:name, :email, :phone).merge(session_params)
+    params.permit(:name, :email, :phone, :address).merge(session_params)
   end
 
 end

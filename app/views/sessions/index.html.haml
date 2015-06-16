@@ -4,43 +4,43 @@
     %h1.title= snippet 'homepage-intro-header'
     %h3.title= snippet 'homepage-intro-subtitle'
     = render 'common/getstarted_button'
-.container.explanation
-  .row
-    .col-md-8
-      %h2= snippet 'homepage-firstsection-header'
-      .section
-        %p= snippet 'homepage-firstsection-content'
-      %h2= snippet 'homepage-firstsection-listheader'
-      .section
-        %ul
-          %li
-            .glyphicon.glyphicon-ok
-            %i= snippet 'homepage-firstsection-listitems-1'
-          %li
-            .glyphicon.glyphicon-ok
-            %i= snippet 'homepage-firstsection-listitems-2'
-          %li
-            .glyphicon.glyphicon-ok
-            %i= snippet 'homepage-firstsection-listitems-3'
-          %li
-            .glyphicon.glyphicon-ok
-            %i= snippet 'homepage-firstsection-listitems-4'
-    .col-md-4
-      .info-box
-        = embedded_svg "Chat Icon.svg"
-        %h3= snippet 'homepage-firstsection-sidebarheader'
-        %p= snippet 'homepage-firstsection-sidebarcontent'
-        = render "common/getstarted_button"
-        .subtext
-          %p= snippet 'homepage-firstsection-sidebarcaption'
-.container.calculator-section.dark
-  .row
-    .col-md-4
-      = render "calculator"
-    .col-md-4.col-md-offset-4
-      = render "calculator_result"
+-#.container.explanation
+-#  .row
+-#    .col-md-8
+-#      %h2= snippet 'homepage-firstsection-header'
+-#      .section
+-#        %p= snippet 'homepage-firstsection-content'
+-#      %h2= snippet 'homepage-firstsection-listheader'
+-#      .section
+-#        %ul
+-#          %li
+-#            .glyphicon.glyphicon-ok
+-#            %i= snippet 'homepage-firstsection-listitems-1'
+-#          %li
+-#            .glyphicon.glyphicon-ok
+-#            %i= snippet 'homepage-firstsection-listitems-2'
+-#          %li
+-#            .glyphicon.glyphicon-ok
+-#            %i= snippet 'homepage-firstsection-listitems-3'
+-#          %li
+-#            .glyphicon.glyphicon-ok
+-#            %i= snippet 'homepage-firstsection-listitems-4'
+-#    .col-md-4
+-#      .info-box
+-#        = embedded_svg "Chat Icon.svg"
+-#        %h3= snippet 'homepage-firstsection-sidebarheader'
+-#        %p= snippet 'homepage-firstsection-sidebarcontent'
+-#        = render "common/getstarted_button"
+-#        .subtext
+-#          %p= snippet 'homepage-firstsection-sidebarcaption'
+-#.container.calculator-section.dark
+-#  .row
+-#    .col-md-4
+-#      = render "calculator"
+-#    .col-md-4.col-md-offset-4
+-#      = render "calculator_result"
 .container.how
-  %h1= snippet 'homepage-whydomino-steps-header'
+  %h1.center= snippet 'homepage-whydomino-steps-header'
   .row.steps
     .col-md-4.step
       = embedded_svg "Circle1.svg"
@@ -54,44 +54,75 @@
       = embedded_svg "Circle3.svg"
       %p.header= snippet 'homepage-whydomino-steps-three-header'
       %p= snippet 'homepage-whydomino-steps-three-content'
-.container.concierge.dark#concierge
-  .row
-    .col-md-5
-      .reason
-        = embedded_svg "free.svg"
-        .reason-content
-          %h3= snippet 'homepage-concierge-reason1-header'
-          %p= snippet 'homepage-concierge-reason1-content'
-      .reason
-        = embedded_svg "no-pressure.svg"
-        .reason-content
-          %h3= snippet 'homepage-concierge-reason2-header'
-          %p= snippet 'homepage-concierge-reason2-content'
-      .reason
-        = embedded_svg "on-your-side.svg"
-        .reason-content
-          %h3= snippet 'homepage-concierge-reason3-header'
-          %p= snippet 'homepage-concierge-reason3-content'
-      .reason
-        = embedded_svg "unbiased.svg"
-        .reason-content
-          %h3= snippet 'homepage-concierge-reason4-header'
-          %p= snippet 'homepage-concierge-reason4-content'
-    .col-md-6.col-md-offset-1
-      .reserve.center
-        %h3
-          = snippet 'homepage-concierge-form-headerpre'
-          6237
-          = snippet 'homepage-concierge-form-headerpost'
-        %p= snippet 'homepage-concierge-form-secondaryheader'
-        = form_tag({controller: :sessions, action: :signup}, remote: true) do
-          %p= text_field_tag 'name', nil, placeholder: "Name"
-          %p= phone_field_tag 'phone', nil, placeholder: "Phone Number"
-          %p= email_field_tag 'email', nil,
-            placeholder: "Email (for a confirmation)"
-          %p.reserve-button
-            = button_tag "Reserve My FREE Consultation", type: 'submit',
-              class: 'btn'
-        %p.subtext= snippet 'homepage-concierge-form-footer'
-        .icon
-          .glyphicon.glyphicon-ok-circle
+.concierge.dark
+  .container.top
+    .overlay
+      %h1.content.center= snippet 'homepage-concierge-header1'
+  .container.middle
+    .row
+      .col-xs-8.col-xs-offset-2
+        .reserve.center#concierge
+          .title
+            %h3= snippet 'homepage-concierge-form-header'
+          = form_tag({controller: :sessions, action: :signup}, remote: true) do
+            = hidden_field_tag 'name', 'WEBSITE FORM'
+            %p
+              = email_field_tag 'email', nil,
+                placeholder: snippet('homepage-concierge-form-emaillabel')
+              %br
+              = snippet 'homepage-concierge-form-emailtag'
+            %p
+              = text_field_tag 'address', nil,
+                placeholder: snippet('homepage-concierge-form-addresslabel')
+              %br
+              = snippet 'homepage-concierge-form-addresstag'
+            .reserve-button
+              = button_tag snippet('homepage-concierge-form-submitlabel'),
+                type: 'submit', class: 'btn'
+          .icon
+            .glyphicon.glyphicon-ok-circle
+  .container.bottom
+    .overlay
+    %h2= snippet 'homepage-concierge-header2'
+    = render 'common/getstarted_button'
+-#.container.concierge.dark#concierge
+-#  .row
+-#    .col-md-5
+-#      .reason
+-#        = embedded_svg "free.svg"
+-#        .reason-content
+-#          %h3= snippet 'homepage-concierge-reason1-header'
+-#          %p= snippet 'homepage-concierge-reason1-content'
+-#      .reason
+-#        = embedded_svg "no-pressure.svg"
+-#        .reason-content
+-#          %h3= snippet 'homepage-concierge-reason2-header'
+-#          %p= snippet 'homepage-concierge-reason2-content'
+-#      .reason
+-#        = embedded_svg "on-your-side.svg"
+-#        .reason-content
+-#          %h3= snippet 'homepage-concierge-reason3-header'
+-#          %p= snippet 'homepage-concierge-reason3-content'
+-#      .reason
+-#        = embedded_svg "unbiased.svg"
+-#        .reason-content
+-#          %h3= snippet 'homepage-concierge-reason4-header'
+-#          %p= snippet 'homepage-concierge-reason4-content'
+-#    .col-md-6.col-md-offset-1
+-#      .reserve.center
+-#        %h3
+-#          = snippet 'homepage-concierge-form-headerpre'
+-#          6237
+-#          = snippet 'homepage-concierge-form-headerpost'
+-#        %p= snippet 'homepage-concierge-form-secondaryheader'
+-#        = form_tag({controller: :sessions, action: :signup}, remote: true) do
+-#          %p= text_field_tag 'name', nil, placeholder: "Name"
+-#          %p= phone_field_tag 'phone', nil, placeholder: "Phone Number"
+-#          %p= email_field_tag 'email', nil,
+-#            placeholder: "Email (for a confirmation)"
+-#          %p.reserve-button
+-#            = button_tag "Reserve My FREE Consultation", type: 'submit',
+-#              class: 'btn'
+-#        %p.subtext= snippet 'homepage-concierge-form-footer'
+-#        .icon
+-#          .glyphicon.glyphicon-ok-circle

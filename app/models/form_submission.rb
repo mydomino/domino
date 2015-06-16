@@ -1,7 +1,7 @@
 class FormSubmission
   include ActiveModel::Model
 
-  attr_accessor :name, :email, :phone, :city, :state, :zipcode, :ip, :source
+  attr_accessor :name, :email, :phone, :address, :city, :state, :zipcode, :ip, :source
   validates :name, :email, presence: true
 
   def save
@@ -10,6 +10,7 @@ class FormSubmission
         last_name: @name,
         email: @email,
         phone: @phone,
+        street: @address,
         city: @city,
         state: @state,
         zip_code: @zipcode,

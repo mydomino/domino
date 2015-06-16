@@ -1,13 +1,4 @@
 .footer
-  .row
-    .col-md-5.col-md-offset-2
-      %h5= snippet 'footer-newsletterheader'
-    .col-md-4
-      .mailing-list
-        = form_tag({controller: :sessions, action: :signup}, remote: true) do
-          = hidden_field_tag 'name', 'MAILING LIST'
-          = email_field_tag 'email', nil, placeholder: 'Email address'
-          = button_tag 'SIGN UP', type: 'submit', class: 'btn'
   .row.links
     .col-md-2.col-md-offset-2
       %table
@@ -29,7 +20,7 @@
             %p KEY ADVISOR
             = link_to "http://www.rmi.org/" do
               = image_tag "rmi-logo.png"
-    .col-md-1
+    .col-md-2
       %p ABOUT US
       %p.link= link_to "Who Is Domino?", about_path
       %p.link= link_to "Our Blog", "http://www.blog.mydomino.com/"
