@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'signup' => 'sessions#signup'
 
   get 'about' => 'sessions#about'
+  get 'getstarted' => 'sessions#getstarted'
 
   resources :snippets do
     collection {post :import}

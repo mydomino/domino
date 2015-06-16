@@ -15,7 +15,8 @@ $nav-height: 60px;
   li{padding-left: 50px;}
 }
 
-body.index .navbar li.button {
+body.index .navbar li.button,
+body.getstarted .navbar li.button {
   display: none;
 }
 

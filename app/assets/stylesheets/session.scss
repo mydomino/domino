@@ -103,6 +103,11 @@ $viewport-height: calc(100vh - #{$nav-height});
     }
   }
 
+  #concierge {
+    position: relative;
+    top: -40px;
+  }
+
   .reserve {
     height: 525px;
     @include border-radius;
@@ -111,8 +116,13 @@ $viewport-height: calc(100vh - #{$nav-height});
     .title, p {padding-bottom: 30px;}
 
     input, button {
-      width: 90%;
+      width: 100%;
       height: 60px;
+    }
+
+    button {
+      font-size: 24px;
+      font-weight: lighter;
     }
 
     .icon {

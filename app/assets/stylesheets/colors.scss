@@ -76,6 +76,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   .calculator .btn.active:hover,
   .calculator .btn.active:focus,
   .about .header,
+  .how h1,
   .how p.header,
   .concierge .title,
   .glyphicon-ok,
@@ -107,7 +108,8 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   background-color: $overlayColor;
 }
 
-body.index .navbar {
+body.index .navbar,
+body.getstarted .navbar {
   background-color: rgba(0, 0, 0, 0);
 }
 
