@@ -33,7 +33,8 @@
           %p.first= snippet 'homepage-concierge-contactphone'
           .imgcontainer
             = image_tag 'email_icon.png'
-          %p= snippet 'homepage-concierge-contactemail'
+          %p= link_to snippet('homepage-concierge-contactemail'),
+            "mailto:#{snippet('homepage-concierge-contactemail')}"
   .container.bottom
     .overlay
     %h2= snippet 'homepage-concierge-header2'
