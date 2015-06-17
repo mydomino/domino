@@ -96,9 +96,9 @@ $viewport-height: calc(100vh - #{$nav-height});
     .content {
       position: relative;
       top: calc(50% + #{$nav-height});
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+      -webkit-transform: translateY(-55%);
+      -ms-transform: translateY(-55%);
+      transform: translateY(-55%);
       .title {padding-bottom: 30px;}
     }
   }
@@ -115,9 +115,19 @@ $viewport-height: calc(100vh - #{$nav-height});
     padding: 35px 80px;
     .title, p {padding-bottom: 30px;}
 
+    form {
+      width: 90%;
+      margin: 0 auto;
+    }
+
     input, button {
       width: 100%;
       height: 60px;
+    }
+
+    input {
+      padding-left: 20px;
+      font-size: 18px;
     }
 
     button {
@@ -138,6 +148,25 @@ $viewport-height: calc(100vh - #{$nav-height});
 
   .reserve.submitted .icon {
     display: inherit;
+  }
+
+  .moreways {
+    margin-top: 25px;
+  }
+
+  .table {
+    margin-top: 15px;
+    margin-bottom: 0;
+    display:table;
+    text-align: left;
+
+    .imgcontainer, p {
+      display:table-cell;
+      vertical-align:middle;
+    }
+
+    .imgcontainer {padding-right: 8px;}
+    p.first {padding-right: 20px;}
   }
 
   .middle {

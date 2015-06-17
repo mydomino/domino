@@ -26,6 +26,14 @@
                 type: 'submit', class: 'btn'
           .icon
             .glyphicon.glyphicon-ok-circle
+        %p.center.moreways= snippet 'homepage-concierge-contact'
+        .table.center
+          .imgcontainer
+            = image_tag 'phone_icon.png'
+          %p.first= snippet 'homepage-concierge-contactphone'
+          .imgcontainer
+            = image_tag 'email_icon.png'
+          %p= snippet 'homepage-concierge-contactemail'
   .container.bottom
     .overlay
     %h2= snippet 'homepage-concierge-header2'
