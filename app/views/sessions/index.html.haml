@@ -61,3 +61,24 @@
     .content
       %h1= snippet 'homepage-meet-title'
       %h3= snippet 'homepage-meet-description'
+.container.loveus
+  %h1.center= snippet 'homepage-whydomino-steps-header'
+  .table
+    .reason
+      .imgcontainer
+        = embedded_svg 'on-your-side.svg'
+      %p
+        %h3= snippet 'homepage-whycustomersloveus-reason1-header'
+        = snippet 'homepage-whycustomersloveus-reason1-content'
+    .reason
+      .imgcontainer
+        = embedded_svg 'no-pressure.svg'
+      %p
+        %h3= snippet 'homepage-whycustomersloveus-reason2-header'
+        = snippet 'homepage-whycustomersloveus-reason2-content'
+    .reason
+      .imgcontainer
+        = embedded_svg 'free.svg'
+      %p
+        %h3= snippet 'homepage-whycustomersloveus-reason3-header'
+        = snippet 'homepage-whycustomersloveus-reason3-content'

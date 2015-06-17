@@ -105,6 +105,29 @@ $viewport-height: calc(100vh - #{$nav-height});
   }
 }
 
+.loveus {
+  margin-top: 45px;
+  h1 {padding-bottom: 60px;}
+
+  .table {
+    margin: 0 auto;
+    display:table;
+    max-width: 600px;
+
+    .reason {display: table-row;}
+
+    .imgcontainer {
+      padding-bottom: 100px;
+      padding-right: 35px;
+    }
+
+    .imgcontainer, p {
+      display:table-cell;
+      vertical-align:middle;
+    }
+  }
+}
+
 .concierge {
   .top {
     height: 100vh;

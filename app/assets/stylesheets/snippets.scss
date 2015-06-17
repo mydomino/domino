@@ -21,6 +21,9 @@
 
 .snippet .content {
   margin-top: -5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 130px;
 }
 
 .snippet .content a {
