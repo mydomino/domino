@@ -54,7 +54,7 @@
       = embedded_svg "Circle3.svg"
       %p.header= snippet 'homepage-whydomino-steps-three-header'
       %p= snippet 'homepage-whydomino-steps-three-content'
-.meet
+.meet-millers
   = image_tag 'meet-millers.jpg'
   .container.text
     .overlay
@@ -82,3 +82,11 @@
       %p
         %h3= snippet 'homepage-whycustomersloveus-reason3-header'
         = snippet 'homepage-whycustomersloveus-reason3-content'
+.meet-dan
+  .overlay
+  = image_tag 'feature-concierge-dan.jpg'
+  .container.text
+    .content
+      %h3= snippet 'homepage-meetconcierge-header'
+      %h3= snippet 'homepage-meetconcierge-content'
+      = render 'common/getstarted_button'
