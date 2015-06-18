@@ -151,6 +151,16 @@ $viewport-height: calc(100vh - #{$nav-height});
   h3 {padding-bottom: 30px;}
 }
 
+.exit {
+  padding: 100px 0;
+  h1 {margin: 35px 0 15px;}
+
+  p {
+    max-width: 650px;
+    margin: 0 auto 50px auto;
+  }
+}
+
 .concierge {
   .top {
     height: 100vh;
