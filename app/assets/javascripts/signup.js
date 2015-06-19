@@ -1,10 +1,8 @@
 
 function signupInit() {
-    $( '.concierge button' ).click( function() {
-        $( this ).text( "We've Received Your Request" );
-        $( '.concierge .reserve').addClass( 'submitted' );
-    });
-
+    /**
+     * Animate scroll directly to form anchor
+     */
     $('a[href*=#]:not([href=#])').click(function() {
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 

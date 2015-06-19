@@ -21,8 +21,10 @@
                 placeholder: snippet('homepage-concierge-form-addresslabel')
               %br
               = snippet 'homepage-concierge-form-addresstag'
+            .errors
             .reserve-button
               = button_tag snippet('homepage-concierge-form-submitlabel'),
+                disable_with: snippet('homepage-concierge-form-submittinglabel'),
                 type: 'submit', class: 'btn'
           .icon
             .glyphicon.glyphicon-ok-circle

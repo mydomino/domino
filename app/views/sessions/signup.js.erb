@@ -1,0 +1,9 @@
+<%- if @submission.errors.any? %>
+    $('.errors').html('<%= j(render 'errors') %>');
+<%- else %>
+    $('.errors').html('');
+    $( '.concierge .reserve').addClass( 'submitted' );
+    $( 'input, button' ).prop('disabled', true);
+    $( '.concierge button')
+        .text('<%= j(snippet 'homepage-concierge-form-submittedlabel') %>');
+<%- end %>

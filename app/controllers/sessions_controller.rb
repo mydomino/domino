@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   def signup
     @submission = FormSubmission.new(signup_params)
     @submission.save
-    head :accepted
+    render :signup
   end
 
   private

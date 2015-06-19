@@ -92,6 +92,10 @@ $overlayColor: rgba(48, 48, 48, 0.7);
     border: 1px solid $green-color;
   }
 
+  .concierge .errors {
+    color: $reserve-button-color;
+  }
+
   .navbar.scrolled g,
   .how .steps circle {
     fill: $green-color;

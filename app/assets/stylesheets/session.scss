@@ -184,7 +184,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   }
 
   .reserve {
-    height: 525px;
+    height: 100%;
     @include border-radius;
     margin-top: -100px;
     padding: 35px 80px;
@@ -215,9 +215,9 @@ $viewport-height: calc(100vh - #{$nav-height});
       font-size: 200px;
       position: absolute;
       top: 0;
-      margin: 0 auto;
       left: 0;
       right: 0;
+      text-align: center;
     }
   }
 
