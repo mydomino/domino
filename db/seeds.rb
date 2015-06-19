@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-records = JSON.parse(File.read('public/data/savings_location.json'))
+records = JSON.parse(File.read('db/data/savings_location.json'))
 records.each do |state, value|
   value.each do |city, value|
     location = {state: state, city: city}
@@ -22,4 +22,4 @@ records.each do |name|
   Clone.create({name: name})
 end
 
-Snippet.import(File.read('public/data/snippets_production.json'))
+Snippet.import(File.read('db/data/snippets_production.json'))
