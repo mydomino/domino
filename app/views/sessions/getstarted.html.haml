@@ -24,8 +24,8 @@
             .errors
             .reserve-button
               = button_tag snippet('homepage-concierge-form-submitlabel'),
-                disable_with: snippet('homepage-concierge-form-submittinglabel'),
-                type: 'submit', class: 'btn'
+                type: 'submit', class: 'btn',
+                data: {disable_with: snippet('homepage-concierge-form-submittinglabel')}
           .icon
             .glyphicon.glyphicon-ok-circle
         %p.center.moreways= snippet 'homepage-concierge-contact'
