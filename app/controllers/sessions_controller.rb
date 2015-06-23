@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  caches_page :index, :about, :getstarted
 
   def index
     # TODO: It should use pre-configured data for development environment

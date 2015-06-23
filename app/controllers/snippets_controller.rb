@@ -25,6 +25,8 @@ class SnippetsController < ApplicationController
 
   def update
     @snippet.update(snippet_params)
+    # TODO: Should change this to a publisher-subscriber or similar pattern
+    expire_page controller: :sessions, action: [:index, :about, :getstarted]
     redirect_to snippets_url
   end
 
