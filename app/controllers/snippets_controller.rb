@@ -17,6 +17,7 @@ class SnippetsController < ApplicationController
   def create
     @snippet = Snippet.new(snippet_params)
     if @snippet.save
+      expire_cache
       redirect_to snippets_url
     else
       render :new
@@ -26,18 +27,20 @@ class SnippetsController < ApplicationController
   def update
     @snippet.update(snippet_params)
     # TODO: Should change this to a publisher-subscriber or similar pattern
-    expire_page controller: :sessions, action: [:index, :about, :getstarted]
+    expire_cache
     redirect_to snippets_url
   end
 
   def destroy
     @snippet.destroy
+    expire_cache
     redirect_to snippets_url
   end
 
   def import
     Snippet.destroy_all
     Snippet.import(import_params[:file].tempfile.read)
+    expire_cache
     redirect_to snippets_url
   end
 
@@ -58,5 +61,9 @@ class SnippetsController < ApplicationController
 
   def find_snippet
     @snippet = Snippet.find(params[:id])
+  end
+
+  def expire_cache
+    expire_page controller: :sessions, action: [:index, :about, :getstarted]
   end
 end
