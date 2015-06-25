@@ -42,7 +42,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   .getstarted-button .btn {
     background-color: $reserve-button-color;
   }
-  .footer .links {
+  .footer {
     background-color: $footer-links-color;
   }
   .concierge .reserve.submitted .btn,
@@ -67,9 +67,9 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   .meet-millers,
   .meet-dan,
   .concierge a,
-  .footer .mailing-list.submitted .btn,
-  .footer .links,
-  .footer .links a,
+  .footer,
+  .footer .link a,
+  .footer p a,
   .about .quote {
     color: $light-color;
   }

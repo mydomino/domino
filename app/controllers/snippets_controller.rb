@@ -38,7 +38,6 @@ class SnippetsController < ApplicationController
   end
 
   def import
-    Snippet.destroy_all
     Snippet.import(import_params[:file].tempfile.read)
     expire_cache
     redirect_to snippets_url

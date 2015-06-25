@@ -1,47 +1,30 @@
-.footer
-  .row.links
-    .col-md-2.col-md-offset-2
-      %table
-        %tr
-          %td
-            = link_to "http://www.bcorporation.net/" do
-              = image_tag "Certified B Corp-pending.jpg"
-          %td
-            = link_to "http://www.facebook.com/ourdominoeffect" do
-              = embedded_svg "facebook.svg"
-          %td
-            = link_to "http://twitter.com/OurDominoEffect" do
-              = embedded_svg "twitter.svg"
-          %td
-            = link_to "http://www.blog.mydomino.com/" do
-              = embedded_svg "rss.svg"
-        %tr
-          %td{colspan: 4}
-            %p KEY ADVISOR
-            = link_to "http://www.rmi.org/" do
-              = image_tag "rmi-logo.png"
+.container.footer
+  .top
+    %p.link= link_to 'ABOUT', about_path
+    %p.link= link_to 'BLOG', "http://www.beyondfossilfuels.org",
+      target: '_blank'
+    %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
+    %p.link= link_to 'CAREERS', "https://hellohired.com/domino"
+  .row
+    .col-md-5.social
+      .link
+        = link_to "http://www.facebook.com/ourdominoeffect", target: '_blank' do
+          = image_tag 'facebook.png'
+      .link
+        = link_to "http://twitter.com/OurDominoEffect", target: '_blank' do
+          = image_tag 'twitter.png'
+      .link
+        = link_to "http://www.beyondfossilfuels.org", target: '_blank' do
+          = image_tag 'rss.png'
+      %p= snippet 'footer-contact'
     .col-md-2
-      %p ABOUT US
-      %p.link= link_to "Who Is Domino?", about_path
-      %p.link= link_to "Our Blog", "http://www.beyondfossilfuels.org"
-      %p.link= link_to "Careers", "https://hellohired.com/domino"
-      %p.link= link_to "Contact Us", "mailto:info@mydomino.com"
-    -#.col-md-1
-    -#  %p ELECTRICITY
-    -#  %p.link= link_to "Rooftop Solar"
-    -#  %p.link= link_to "Offsite Solar"
-    -#  %p.link= link_to "Upgrade"
-    -#.col-md-1
-    -#  %p HEATING & COOLING
-    -#  %p.link= link_to "Thermostat"
-    -#  %p.link= link_to "Air Heat"
-    -#  %p.link= link_to "Ground Heat"
-    -#.col-md-1
-    -#  %p GASOLINE
-    -#  %p.link= link_to "Hybrid"
-    -#  %p.link= link_to "Hybrid Electric"
-    -#  %p.link= link_to "All Electric"
-    -#.col-md-1
-    -#  %p LEGAL
-    -#  %p.link= link_to "Terms Of Service"
-    -#  %p.link= link_to "Privacy Policy"
+      %p Key Advisor
+      = link_to "http://www.rmi.org" do
+        = image_tag "rmi-logo.png"
+    .col-md-3.seia
+      = link_to "http://www.seia.org" do
+        = image_tag "seia.png"
+    .col-md-2
+      = link_to "http://www.bcorporation.net" do
+        = image_tag "Certified B Corp-pending.png"
+  .copyright= snippet 'footer-copyright'

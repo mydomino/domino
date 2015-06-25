@@ -18,7 +18,8 @@ class Snippet < ActiveRecord::Base
   end
 
   def self.import(snippets)
-      parse JSON.parse(snippets)
+    destroy_all
+    parse JSON.parse(snippets)
   end
 
   def self.export
