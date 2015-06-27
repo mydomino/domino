@@ -1,4 +1,5 @@
 class SnippetsController < ApplicationController
+  http_basic_authenticate_with name: "domino", password: "domino2030"
   before_filter :find_snippet, :only => [:show, :update, :destroy]
 
   def index
