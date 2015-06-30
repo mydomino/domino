@@ -65,5 +65,6 @@ class SnippetsController < ApplicationController
 
   def expire_cache
     expire_page controller: :sessions, action: [:index, :about, :getstarted]
+    expire_fragment(%r{.*})
   end
 end

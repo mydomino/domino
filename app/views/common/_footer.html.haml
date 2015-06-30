@@ -1,30 +1,31 @@
-.container.footer
-  .top
-    %p.link= link_to 'ABOUT', about_path
-    %p.link= link_to 'BLOG', "http://www.beyondfossilfuels.org",
-      target: '_blank'
-    %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
-    %p.link= link_to 'CAREERS', "https://hellohired.com/domino"
-  .row
-    .col-md-5.social
-      .link
-        = link_to "http://www.facebook.com/ourdominoeffect", target: '_blank' do
-          = image_tag 'facebook.png'
-      .link
-        = link_to "http://twitter.com/OurDominoEffect", target: '_blank' do
-          = image_tag 'twitter.png'
-      .link
-        = link_to "http://www.beyondfossilfuels.org", target: '_blank' do
-          = image_tag 'rss.png'
-      %p= snippet 'footer-contact'
-    .col-md-2
-      %p Key Advisor
-      = link_to "http://www.rmi.org" do
-        = image_tag "rmi-logo.png"
-    .col-md-3.seia
-      = link_to "http://www.seia.org" do
-        = image_tag "seia.png"
-    .col-md-2
-      = link_to "http://www.bcorporation.net" do
-        = image_tag "Certified B Corp-pending.png"
-  .copyright= snippet 'footer-copyright'
+= cache('footer') do
+  .container.footer
+    .top
+      %p.link= link_to 'ABOUT', about_path
+      %p.link= link_to 'BLOG', "http://www.beyondfossilfuels.org",
+        target: '_blank'
+      %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
+      %p.link= link_to 'CAREERS', "https://hellohired.com/domino"
+    .row
+      .col-md-5.social
+        .link
+          = link_to "http://www.facebook.com/ourdominoeffect", target: '_blank' do
+            = image_tag 'facebook.png'
+        .link
+          = link_to "http://twitter.com/OurDominoEffect", target: '_blank' do
+            = image_tag 'twitter.png'
+        .link
+          = link_to "http://www.beyondfossilfuels.org", target: '_blank' do
+            = image_tag 'rss.png'
+        %p= snippet 'footer-contact'
+      .col-md-2
+        %p Key Advisor
+        = link_to "http://www.rmi.org" do
+          = image_tag "rmi-logo.png"
+      .col-md-3.seia
+        = link_to "http://www.seia.org" do
+          = image_tag "seia.png"
+      .col-md-2
+        = link_to "http://www.bcorporation.net" do
+          = image_tag "Certified B Corp-pending.png"
+    .copyright= snippet 'footer-copyright'
