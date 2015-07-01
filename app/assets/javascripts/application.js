@@ -16,6 +16,9 @@
 //= require bootstrap
 //= require typeahead.bundle
 
+// Third party
+//= require heap
+
 //= require snippets
 //= require analytics
 //= require navbar
