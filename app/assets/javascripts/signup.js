@@ -1,5 +1,9 @@
 
 function signupInit() {
+    $( '.concierge button' ).click( function() {
+        ga('send', 'event', 'form', 'submit');
+    });
+
     /**
      * Animate scroll directly to form anchor
      */
