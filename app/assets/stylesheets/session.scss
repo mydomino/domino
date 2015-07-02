@@ -302,3 +302,8 @@ $viewport-height: calc(100vh - #{$nav-height});
     margin: 0 auto;
   }
 }
+
+.privacy-policy, .terms-of-service {
+  margin: 70px 0;
+  h3 {margin-top: 30px;}
+}

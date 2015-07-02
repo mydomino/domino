@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'about' => 'sessions#about'
   get 'getstarted' => 'sessions#getstarted'
+  get 'terms' => 'sessions#terms'
+  get 'privacy' => 'sessions#privacy'
 
   resources :snippets do
     collection {post :import}
