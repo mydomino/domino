@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
     # @geolocation = GeoIp.geolocation(ip)
     @geolocation = {city: 'San Francisco', state: 'CA'}
     session[:ip] = ip
+    session[:referer] ||= request.referer
+    session[:browser] = request.user_agent
+    session[:start_time] = Time.now
+    session[:campaign] = request['utm_campaign']
     session[:city] = @geolocation[:city]
     session[:state] = @geolocation[:region_name]
     session[:zipcode] = @geolocation[:zip_code]
@@ -34,7 +38,7 @@ class SessionsController < ApplicationController
   private
 
   def signup_params
-    keys = %i(ip city state zipcode)
+    keys = %i(ip city state zipcode referer browser start_time campaign)
     session_params = keys.each_with_object({}) do |str, hsh|
       hsh[str] = session[str]
     end
