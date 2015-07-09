@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
 
     puts "*****1 #{request.remote_ip}"
     puts "*****2 #{session[:ip]}"
+    puts "*****4 #{request.location.city}"
 
     session[:state] = request.location.state_code
     session[:zipcode] = request.location.postal_code
