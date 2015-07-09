@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
     puts "*****2 #{session[:ip]}"
     puts "*****4 #{request.location.city}"
     puts "*****5 #{Geocoder.search(request.remote_ip, ip_address: true).first}"
+    puts "*****6 #{request.location}"
+    puts "*****7 #{request.location.methods(false)}"
 
     session[:state] = request.location.state_code
     session[:zipcode] = request.location.postal_code
