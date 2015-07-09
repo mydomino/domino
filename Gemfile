@@ -28,8 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass'
 
-# gem 'geocoder'
-gem 'geo_ip'
+gem 'geocoder'
 
 gem "figaro"
 
