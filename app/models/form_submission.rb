@@ -6,6 +6,7 @@ class FormSubmission
   validates :name, :email, presence: true
 
   def save
+    puts "*****3 #{@ip}"
     return false if invalid?
     lead = RubyZoho::Crm::Lead.new(
         last_name: @name,

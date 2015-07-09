@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
     session[:start_time] = Time.now
     session[:campaign] = request['utm_campaign']
     session[:city] = request.location.city
+
+    puts "*****1 #{request.remote_ip}"
+    puts "*****2 #{session[:ip]}"
+
     session[:state] = request.location.state_code
     session[:zipcode] = request.location.postal_code
   end
