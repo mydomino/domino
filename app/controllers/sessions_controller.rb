@@ -9,15 +9,6 @@ class SessionsController < ApplicationController
     session[:start_time] = Time.now
     session[:campaign] = request['utm_campaign']
     session[:city] = request.location.city
-
-    puts "*****1 #{request.remote_ip}"
-    puts "*****2 #{session[:ip]}"
-    puts "*****4 #{request.location.city}"
-    puts "*****5 #{Geocoder.search(request.remote_ip, ip_address: true).first}"
-    puts "*****6 #{request.location}"
-    puts "*****7 #{request.location.methods(false)}"
-    puts "*****8 #{request.location.latitude}"
-
     session[:state] = request.location.state_code
     session[:zipcode] = request.location.postal_code
   end
