@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  caches_page :index, :about
+  caches_page :about
 
   def index
     env['HTTP_X_REAL_IP'] = '184.23.234.242' if Rails.env.development?
