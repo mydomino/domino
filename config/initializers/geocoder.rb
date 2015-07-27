@@ -11,5 +11,5 @@ Geocoder.configure(
   #:api_key => "...",
 
   # geocoding service request timeout, in seconds (default 3):
-  #:timeout => 15
+  :timeout => 15
 )
