@@ -35,6 +35,7 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+.env
 
 # Ignore RubyMine
 /.idea
