@@ -8,9 +8,16 @@ class SessionsController < ApplicationController
     session[:browser] = request.user_agent
     session[:start_time] = Time.now
     session[:campaign] = request['utm_campaign']
-    session[:city] = request.location.city
-    session[:state] = request.location.state_code
-    session[:zipcode] = request.location.postal_code
+    if !request.location.nil?
+      session[:city] = request.location.city
+      session[:state] = request.location.state_code
+      session[:zipcode] = request.location.postal_code
+    else
+      session[:city] = ""
+      session[:state] = ""
+      session[:zipcode] = ""
+    end
+
   end
 
   def calculate
