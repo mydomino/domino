@@ -41,6 +41,8 @@ GEM
     addressable (2.3.8)
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
+    animate-rails (1.0.8)
+      rails
     arel (6.0.0)
     autoprefixer-rails (5.1.11)
       execjs
@@ -247,6 +249,7 @@ PLATFORMS
 DEPENDENCIES
   actionpack-page_caching
   ancestry
+  animate-rails
   bootstrap-sass
   byebug
   capybara

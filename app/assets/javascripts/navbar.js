@@ -1,10 +1,12 @@
+
+
 $( window ).scroll( function( event ) {
     var scroll = $( window ).scrollTop();
-    if( scroll == 0 ) {
+    if( scroll < 300 ) {
         $( 'body.index .navbar, body.getstarted .navbar' )
-            .removeClass( 'scrolled' );
+            .removeClass( 'scrolled animated slideInDown' );
     } else {
         $( 'body.index .navbar, body.getstarted .navbar' )
-            .addClass( 'scrolled' );
+            .addClass( 'scrolled animated slideInDown' );
     }
 });

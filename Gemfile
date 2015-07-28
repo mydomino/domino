@@ -11,7 +11,7 @@ gem 'html2haml'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'animate-rails'
 gem 'bootstrap-sass'
 gem 'figaro'
 gem 'ancestry'
