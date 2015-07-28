@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605004502) do
+ActiveRecord::Schema.define(version: 20150728231324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,23 +20,6 @@ ActiveRecord::Schema.define(version: 20150605004502) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "savings_locations", force: :cascade do |t|
-    t.string   "state"
-    t.string   "city"
-    t.integer  "zipcode"
-    t.integer  "electric_car"
-    t.integer  "electric_heat_pump"
-    t.integer  "hybrid_car"
-    t.integer  "led"
-    t.integer  "offsite_solar"
-    t.integer  "plug_in_hybrid"
-    t.integer  "rooftop_solar"
-    t.integer  "smart_thermostat"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.integer  "geothermal_heat_pump"
   end
 
   create_table "snippets", force: :cascade do |t|
