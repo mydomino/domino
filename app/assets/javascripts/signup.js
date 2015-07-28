@@ -16,6 +16,13 @@ function signupInit() {
       }
     }
   });
+  /*//Autofill city, disabled for now
+  $.getJSON("http://www.telize.com/geoip?callback=?",
+    function(json) {
+      console.log(json)
+      $('input[name="city"]').val( json.city);
+    }
+  );*/
 }
 $( signupInit ); // For direct page loads
 $( document ).on( 'page:load', signupInit ); // For following links

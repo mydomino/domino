@@ -12,16 +12,14 @@
               %h3= snippet 'homepage-concierge-form-header'
             = form_tag({controller: :sessions, action: :signup}, remote: true) do
               = hidden_field_tag 'name', 'WEBSITE FORM'
-              %p
-                = email_field_tag 'email', nil,
-                  placeholder: snippet('homepage-concierge-form-emaillabel')
-                %br
-                = snippet 'homepage-concierge-form-emailtag'
-              %p
-                = text_field_tag 'address', nil,
-                  placeholder: snippet('homepage-concierge-form-addresslabel')
-                %br
-                = snippet 'homepage-concierge-form-addresstag'
+              = email_field_tag 'email', nil,
+                placeholder: snippet('homepage-concierge-form-emaillabel')
+              %br
+              = snippet 'homepage-concierge-form-emailtag'
+              = text_field_tag 'address', nil,
+                placeholder: snippet('homepage-concierge-form-addresslabel')
+              %br
+              = snippet 'homepage-concierge-form-addresstag'
               .errors
               .reserve-button
                 = button_tag snippet('homepage-concierge-form-submitlabel'),
