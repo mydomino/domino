@@ -6,6 +6,9 @@ module GraphicsHelper
     if options[:class].present?
       svg['class'] = options[:class]
     end
+    if options[:style].present?
+      svg['style'] = options[:style]
+    end
     doc.to_html.html_safe
   end
 end
