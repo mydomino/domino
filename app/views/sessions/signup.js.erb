@@ -6,4 +6,6 @@
   $( 'input, button' ).prop('disabled', true);
   $( '.concierge button')
       .text('<%= j(snippet 'homepage-concierge-form-submittedlabel') %>');
+  //Track conversions to GA, Heap, FB, and anyone else we need.
+  track_lead_creation();
 <%- end %>
