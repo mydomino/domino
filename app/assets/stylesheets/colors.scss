@@ -1,5 +1,5 @@
-//             primary light   green   dark               reserve
-$defaultColor: #6E6E6E #FFF9F0 #5FC3A2 rgba(0, 0, 0, 0.2) #db5461;
+//             primary light   blue    dark               reserve
+$defaultColor: #6E6E6E #FFFFFF #02CCFF rgba(0, 0, 0, 0.2) #db5461;
 $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
 
 $overlayColor: rgba(48, 48, 48, 0.7);
@@ -7,7 +7,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
 @mixin colorSet($color: $defaultColor) {
   $primary-color: nth($color, 1);
   $light-color: nth($color, 2);
-  $green-color: nth($color, 3);
+  $blue-color: nth($color, 3);
   $dark-color: nth($color, 4);
   $reserve-button-color: nth($color, 5);
 
@@ -33,7 +33,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   .calculator .btn:hover,
   .calculator .btn:focus,
   .about .quote {
-    background-color: $green-color;
+    background-color: $blue-color;
   }
   .calculator {
     background-color: $dark-color;
@@ -85,11 +85,11 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   .loveus h1,
   .glyphicon-ok,
   .glyphicon-ok-circle {
-    color: $green-color;
+    color: $blue-color;
   }
 
   .how .why-reason {
-    border: 1px solid $green-color;
+    border: 1px solid $blue-color;
   }
 
   .concierge .errors {
@@ -98,7 +98,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
 
   .navbar.scrolled g,
   .how .steps circle {
-    fill: $green-color;
+    fill: $blue-color;
   }
   .navbar g {
     fill: $light-color;
@@ -108,7 +108,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
     stroke: $light-color;
   }
   .how g {
-    stroke: $green-color;
+    stroke: $blue-color;
   }
 }
 

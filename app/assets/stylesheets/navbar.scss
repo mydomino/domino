@@ -1,8 +1,8 @@
-$nav-height: 60px;
+$nav-height: 100px;
 
 .navbar {
   height: $nav-height;
-  padding: 8px 0;
+  padding: 12px 0;
   display: table-cell;
   vertical-align: middle;
   border-width: 0;
@@ -10,7 +10,7 @@ $nav-height: 60px;
   .row {height: 100%;}
   ul{
     padding-right: 80px;
-    padding-top: 7px;
+    padding-top: 20px;
   }
   li{padding-left: 50px;}
 }
