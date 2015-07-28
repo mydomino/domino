@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.5"
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -30,13 +30,13 @@ gem 'bootstrap-sass'
 
 gem 'geocoder'
 
-gem "figaro"
+gem 'figaro'
 
-gem "ancestry"
+gem 'ancestry'
 
-gem "json"
+gem 'json'
 
-gem "rubyzoho"
+gem 'rubyzoho'
 
 gem 'actionpack-page_caching'
 
@@ -54,6 +54,9 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'rack-mini-profiler'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -61,10 +64,14 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem "guard", ">= 2.2.2",       :require => false
-  gem "guard-livereload",        :require => false
-  gem "rack-livereload"
-  gem "rb-fsevent",              :require => false
+  gem 'guard', '>= 2.2.2',       :require => false
+  gem 'guard-livereload',        :require => false
+  gem 'rack-livereload'
+  gem 'rb-fsevent',              :require => false
+end
+
+group :test do
+  gem 'webmock'
 end
 
 group :production do
