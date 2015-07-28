@@ -4,6 +4,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   height: 100vh;
   min-height: 500px;
   background: url(homepage-hero.jpg) no-repeat;
+  background-position: center center;
   background-size: cover;
   position: relative;
 
@@ -165,6 +166,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   .top {
     height: 100vh;
     background: url(form-hero.jpg) no-repeat;
+    background-position: center center;
     background-size: cover;
     position: relative;
 

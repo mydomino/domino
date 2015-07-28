@@ -35,6 +35,10 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   .about .quote {
     background-color: $blue-color;
   }
+  input
+  {
+    border-color: $blue-color;
+  }
   .calculator {
     background-color: $dark-color;
   }
