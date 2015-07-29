@@ -17,4 +17,11 @@ XML
 
     expect(page).to have_css('button[disabled]')
   end
+  scenario "with invalid data" do
+
+    visit getstarted_path
+    find('form button[type="submit"]').click 
+
+    expect(page).to have_css('.errors li', text: "Email can't be blank")
+  end
 end
