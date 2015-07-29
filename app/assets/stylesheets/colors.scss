@@ -27,11 +27,6 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   button,
   .navbar,
   .dark,
-  .calculator .tt-suggestion:hover,
-  .calculator .tt-suggestion:focus,
-  .calculator .tt-cursor,
-  .calculator .btn:hover,
-  .calculator .btn:focus,
   .about .quote {
     background-color: $blue-color;
   }
@@ -118,6 +113,8 @@ $overlayColor: rgba(48, 48, 48, 0.7);
 
 .overlay {
   background-color: $overlayColor;
+  background-blend-mode: multiply;
+  color: #FFFFFF;
 }
 
 body.index .navbar,

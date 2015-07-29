@@ -10,7 +10,7 @@
                 <g id="Get-to-Work" transform="translate(587.000000, 175.000000)">
                     <g id="Circle-2-+-2" transform="translate(2.000000, 0.000000)">
                         <circle id="Circle-2" fill="#5EC3A2" sketch:type="MSShapeGroup" cx="37.5" cy="37.5" r="37.5"></circle>
-                        <text id="2" sketch:type="MSTextLayer" font-family="Lato" font-size="48" font-weight="bold" sketch:alignment="middle" fill="#FFFAF1">
+                        <text id="2" sketch:type="MSTextLayer" font-family="ProximaNovaA" font-size="48" font-weight="bold" sketch:alignment="middle" fill="#FFFAF1">
                             <tspan x="24.58" y="54">2</tspan>
                         </text>
                     </g>

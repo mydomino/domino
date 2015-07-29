@@ -1,12 +1,12 @@
 .footer {
-  .top {
-    padding: 40px 0 60px;
+  text-align: center;
+  padding-top: 30px;
+  .row
+  {
+    margin-bottom: 30px;
+  }
+  .links {
     text-align: center;
-
-    .link {
-      padding: 0 20px;
-      display: inline-block;
-    }
   }
 
   .social .link {
@@ -19,7 +19,7 @@
     display: block;
   }
 
-  .seia {padding-top: 20px;}
+  .seia {padding-top: 35px;}
 
   .copyright {
     padding: 45px 0 25px;

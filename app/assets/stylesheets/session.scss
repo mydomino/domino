@@ -2,154 +2,70 @@ $viewport-height: calc(100vh - #{$nav-height});
 
 .intro {
   height: 100vh;
-  min-height: 500px;
-  background: url(homepage-hero.jpg) no-repeat;
+  min-height: 700px;
+  background-image: url(homepage-hero.jpg);
+  background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
-
+  display: flex;
   .content {
-    position: relative;
-    top: calc(50% + #{$nav-height});
-    -webkit-transform: translateY(-55%);
-    -ms-transform: translateY(-55%);
-    transform: translateY(-55%);
-    .title {padding-bottom: 30px;}
-  }
-}
-
-.explanation {
-  min-height: $viewport-height;
-  padding: 32px 0;
-
-  .section {
-    padding: 16px 0;
-  }
-  li {
-    margin-bottom: 14px;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  .info-box {
-    background-color: #ffffff;
-    @include border-radius;
-    padding: 20px;
-
-    h3 {
-      font-size: 22px;
-      padding: 11px 0;
-    }
-    .reserve-button {
-      margin-top: 14px;
-    }
-    .subtext {
-      font-size: 11px;
-      font-weight: lighter;
-      font-style: italic;
-      margin-top: 4px;
-    }
-  }
-}
-
-.calculator-section {
-  padding-top: 70px;
-  padding-bottom: 180px;
-  min-height: 584px;
-  height: $viewport-height;
-
-  .drawing {
-    max-width: 80%;
-    height: auto;
-    vertical-align: bottom;
-    position: absolute;
+    margin: auto;
+    text-align: center;
+    align-self: center;
+    .title {margin-bottom: 30px;}
   }
 }
 
 .how {
-  padding-top: 80px;
-  min-height: 560px;
+  padding: 80px 0px;
   h1 {margin-bottom: 50px;}
 
   .steps {
-    .step {
-      padding-left: 0;
-      padding-right: 48px;
-      margin-bottom: 45px;
-    }
-
     svg {
       width: 58px;
       height: 58px;
+      font-family: 'ProximaNovaA' !important;
     }
   }
 }
 
 .meet-millers {
   position: relative;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .text {
+  min-height: 600px;
+  background-image: image-url('meet-millers.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: none;
+  .content.foreground.overlay{
     position: absolute;
-    bottom: 0;
-  }
-
-  .content {
-    position: relative;
-    padding: 10px 0;
+    bottom: 0px;
+    top:auto;
+    height: auto;
+    padding: 10px 0px;
   }
 }
 
 .loveus {
-  margin-top: 45px;
   h1 {padding-bottom: 60px;}
-
-  .table {
-    margin: 0 auto;
-    display:table;
-    max-width: 600px;
-
-    .reason {display: table-row;}
-
-    .imgcontainer {
-      padding-bottom: 100px;
-      padding-right: 35px;
-    }
-
-    .imgcontainer, p {
-      display:table-cell;
-      vertical-align:middle;
+  .reasons
+  {
+    .row
+    {
+      padding-bottom: 60px;
     }
   }
 }
-
 .meet-dan {
   position: relative;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .text {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
+  min-height: 600px;
+  background-image: image-url('feature-concierge-dan.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: none;
   .content {
-    position: relative;
-    padding: 80px 0 80px 30px;
-    max-width: 440px;
+    padding: 100px 0px;
   }
-
-  h3 {padding-bottom: 30px;}
 }
 
 .exit {
@@ -161,60 +77,57 @@ $viewport-height: calc(100vh - #{$nav-height});
     margin: 0 auto 50px auto;
   }
 }
-
-.concierge {
-  .top {
-    height: 100vh;
-    background: url(form-hero.jpg) no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-
-    .content {
-      position: relative;
-      top: calc(50% + #{$nav-height});
-      -webkit-transform: translateY(-55%);
-      -ms-transform: translateY(-55%);
-      transform: translateY(-55%);
-      .title {padding-bottom: 30px;}
-    }
+.concierge.hero {
+  height: 100vh;
+  background-image: url(form-hero.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  .content {
+    margin: auto;
+    text-align: center;
+    align-self: center;
+    .title {margin-bottom: 30px;}
   }
+}
+.getstarted
+{
+  background: #00CCFF;
+  color: #FFF;
 
-  #concierge {
-    position: relative;
-    top: -40px;
+  .contact-method
+  {
+    padding-bottom: 30px;
   }
-
-  .reserve {
-    height: 100%;
+  .panel.reserve 
+  {
     @include border-radius;
     margin-top: -100px;
-    padding: 35px 80px;
-    .title, p {padding-bottom: 30px;}
-
-    form {
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    input, button {
-      width: 100%;
-      height: 60px;
+    padding: 35px 0px;
+    color: #6E6E6E;
+    .title, p {
+      padding-bottom: 30px;
     }
 
     input {
-      padding-left: 20px;
-      font-size: 18px;
+      width: 100%;
+      padding: 30px;
+      font-size: 1.8rem;
     }
 
-    button {
-      font-size: 24px;
-      font-weight: lighter;
+    button
+    {
+      font-size: 3rem;
+      width: 100%;
+      padding: 10px;
+      padding-top: 15px;
     }
 
     .icon {
       display: none;
-      font-size: 200px;
+      font-size: 25rem;
       position: absolute;
       top: 0;
       left: 0;
@@ -231,38 +144,14 @@ $viewport-height: calc(100vh - #{$nav-height});
     margin-top: 25px;
   }
 
-  .table {
-    margin-top: 15px;
-    margin-bottom: 0;
-    display:table;
-    text-align: left;
-
-    .imgcontainer, p {
-      display:table-cell;
-      vertical-align:middle;
-    }
-
-    .imgcontainer {padding-right: 8px;}
-    p.first {padding-right: 20px;}
-  }
-
-  .middle {
-    margin-bottom: 100px;
-  }
-
-  .bottom {
-    max-height: 500px;
-    background: url(team-photo.jpg) no-repeat;
+  .team {
+    background-image: url(team-photo.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
     background-size: cover;
     padding-top: 100px;
     padding-bottom: 100px;
     position: relative;
-    h2 {position: inherit}
-
-    .getstarted-button {
-      padding-top: 50px;
-      position: inherit;
-    }
   }
 }
 
@@ -289,7 +178,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   .quote {
     padding: 24px 40px;
     margin: 30px 0;
-    .testamonial {
+    .testimonial {
       line-height: 48px;
       margin-bottom: 8px;
     }

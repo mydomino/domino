@@ -1,41 +1,50 @@
 = cache('getstarted') do
-  .concierge.dark
-    .container.top
-      .overlay
-        %h1.content.center= snippet 'homepage-concierge-header1'
-    .container.middle
-      .row
-        .col-xs-8.col-xs-offset-2
-          .reserve
-            #concierge
+  .concierge.hero.overlay
+    %h1.content
+      = snippet 'homepage-concierge-header1'
+  .row
+    .col-xs-12.col-sm-8.col-sm-offset-2
+      .reserve.panel#reserve
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
             .title
               %h3= snippet 'homepage-concierge-form-header'
-            = form_tag({controller: :sessions, action: :signup}, remote: true) do
-              = hidden_field_tag 'name', 'WEBSITE FORM'
-              = email_field_tag 'email', nil,
-                placeholder: snippet('homepage-concierge-form-emaillabel')
-              %br
-              = snippet 'homepage-concierge-form-emailtag'
-              = text_field_tag 'address', nil,
-                placeholder: snippet('homepage-concierge-form-addresslabel')
-              %br
-              = snippet 'homepage-concierge-form-addresstag'
-              .errors
-              .reserve-button
-                = button_tag snippet('homepage-concierge-form-submitlabel'),
-                  type: 'submit', class: 'btn'
-            .icon
-              .glyphicon.glyphicon-ok-circle
-          %p.center.moreways= snippet 'homepage-concierge-contact'
-          .table.center
-            .imgcontainer
-              = image_tag 'phone_icon.png'
-            %p.first= snippet 'homepage-concierge-contactphone'
-            .imgcontainer
-              = image_tag 'email_icon.png'
-            %p= link_to snippet('homepage-concierge-contactemail'),
-              "mailto:#{snippet('homepage-concierge-contactemail')}"
-    .container.bottom
-      .overlay
-      %h2= snippet 'homepage-concierge-header2'
-      = render 'common/getstarted_button'
+              = form_tag({controller: :sessions, action: :signup}, remote: true) do
+                = hidden_field_tag 'name', 'WEBSITE FORM'
+                = email_field_tag 'email', nil,
+                  placeholder: snippet('homepage-concierge-form-emaillabel')
+                %br
+                = snippet 'homepage-concierge-form-emailtag'
+                = text_field_tag 'address', nil,
+                  placeholder: snippet('homepage-concierge-form-addresslabel')
+                %br
+                = snippet 'homepage-concierge-form-addresstag'
+                .errors
+                .reserve-button
+                  = button_tag snippet('homepage-concierge-form-submitlabel'),
+                    type: 'submit', class: 'btn'
+              .icon
+                .glyphicon.glyphicon-ok-circle
+  .row
+    .col-xs-12.text-center{style: "margin-bottom: 20px;"}
+      %p=snippet 'homepage-concierge-contact'
+  .row
+    .col-xs-12.col-sm-4.col-sm-offset-2.contact-method
+      .row.no-padding
+        .col-xs-3
+          = image_tag 'phone_icon.png'
+        .col-xs-9
+          %p= snippet 'homepage-concierge-contactphone'
+    .col-xs-12.col-sm-4.contact-method
+      .row.no-padding
+        .col-xs-3
+          = image_tag 'email_icon.png'
+        .col-xs-9
+          %p= link_to snippet('homepage-concierge-contactemail'), "mailto:#{snippet('homepage-concierge-contactemail')}"
+  .team.overlay
+    .row
+      .col-xs-12
+        .container
+          %h2= snippet 'homepage-concierge-header2'
+          %div{style: "text-align:center;"}
+            = render 'common/getstarted_button'

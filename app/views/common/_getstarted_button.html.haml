@@ -1,5 +1,5 @@
 .getstarted-button
-  - @anchor = 'concierge' if action_name == 'getstarted'
+  - @anchor = 'reserve' if action_name == 'getstarted'
   = link_to getstarted_path(anchor: @anchor) do
-    .btn.btn-default
-      %p= snippet 'common-getstartedbutton'
+    %button.btn
+      =snippet 'common-getstartedbutton'

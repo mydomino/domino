@@ -10,7 +10,7 @@
                 <g id="Call" transform="translate(108.000000, 175.000000)">
                     <g id="Circle-+-1">
                         <circle id="Circle" fill="#5EC3A2" sketch:type="MSShapeGroup" cx="37.5" cy="37.5" r="37.5"></circle>
-                        <text id="1" sketch:type="MSTextLayer" font-family="Lato" font-size="48" font-weight="bold" sketch:alignment="middle" fill="#FFFAF1">
+                        <text id="1" sketch:type="MSTextLayer" font-family="ProximaNovaA" font-size="48" font-weight="bold" sketch:alignment="middle" fill="#FFFAF1">
                             <tspan x="22.58" y="54">1</tspan>
                         </text>
                     </g>

@@ -1,22 +1,28 @@
 = cache('footer') do
-  .container.footer
-    .top
-      %p.link= link_to 'ABOUT', about_path
-      %p.link= link_to 'BLOG', "http://www.beyondfossilfuels.org",
-        target: '_blank'
-      %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
-      %p.link= link_to 'CAREERS', "https://hellohired.com/domino"
-      %p.link= link_to 'TERMS', terms_path
-      %p.link= link_to 'PRIVACY', privacy_path
-    .row
-      .col-md-5.social
-        .link
+  .footer
+    .container
+      .row.links
+        .col-xs-4.col-md-2
+          %p.link= link_to 'ABOUT', about_path
+        .col-xs-4.col-md-2
+          %p.link= link_to 'BLOG', "http://www.beyondfossilfuels.org",
+          target: '_blank'
+        .col-xs-4.col-md-2
+          %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
+        .col-xs-4.col-md-2
+          %p.link= link_to 'CAREERS', "https://hellohired.com/domino"
+        .col-xs-4.col-md-2
+          %p.link= link_to 'TERMS', terms_path
+        .col-xs-4.col-md-2
+          %p.link= link_to 'PRIVACY', privacy_path
+      .row.social
+        .col-xs-4
           = link_to "http://www.facebook.com/ourdominoeffect", target: '_blank' do
             = image_tag 'facebook.png'
-        .link
+        .col-xs-4
           = link_to "http://twitter.com/OurDominoEffect", target: '_blank' do
             = image_tag 'twitter.png'
-        .link
+        .col-xs-4
           = link_to "http://www.beyondfossilfuels.org", target: '_blank' do
             = image_tag 'rss.png'
         %p= snippet 'footer-contact'
@@ -34,4 +40,3 @@
       .col-xs-12.text-center
         =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:108px;height:41px", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge')
     .copyright= snippet 'footer-copyright'
-    
