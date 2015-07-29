@@ -2,16 +2,24 @@ $nav-height: 100px;
 
 .navbar {
   height: $nav-height;
-  padding: 12px 0;
-  display: table-cell;
-  vertical-align: middle;
+  padding: 12px 20px;
   border-width: 0;
 
-  .row {height: 100%;}
-  ul{
+  .row 
+  {
+    height: 100%;
+  }
+  li:not(.button)
+  {
+    padding-left: 50px;
     padding-top: 20px;
   }
-  li{padding-left: 50px;}
+  li.button .btn.small
+  {
+    font-size: 1.8rem;
+    padding-top: 10px;
+    background-color: #DB5461;
+  }
 }
 
 body.index .navbar li.button,

@@ -11,4 +11,7 @@
           %li
             %p= link_to 'Blog', 'http://www.beyondfossilfuels.org', target: '_blank'
           %li.button
-            .small= render 'common/getstarted_button'
+            = link_to getstarted_path(anchor: @anchor), class: 'button' do
+              %button.btn.small
+                =snippet 'common-getstartedbutton'
+
