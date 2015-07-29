@@ -1,9 +1,15 @@
 = cache('navbar') do
-  .row.navbar.navbar-default.navbar-fixed-top
-    .container
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-      .navbar-header.pull-right
-        %ul.nav.navbar-nav
+  %nav.navbar.navbar-default.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+      #navbar.navbar-collapse.collapse
+        %ul.nav.navbar-nav.pull-right
           %li
             %p= link_to 'About', about_path
           %li
@@ -14,4 +20,3 @@
             = link_to getstarted_path(anchor: @anchor), class: 'button' do
               %button.btn.small
                 =snippet 'common-getstartedbutton'
-
