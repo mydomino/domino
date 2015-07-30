@@ -79,6 +79,7 @@ $viewport-height: calc(100vh - #{$nav-height});
 }
 .concierge.hero {
   height: 100vh;
+  min-height: 600px;
   background-image: url(form-hero.jpg);
   background-repeat: no-repeat;
   background-position: center center;
