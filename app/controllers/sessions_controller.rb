@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :start_timing
+  before_action :start_timing, :capture_utm_campaign
   caches_page :about
 
   def index
@@ -19,13 +19,16 @@ class SessionsController < ApplicationController
 
   def set_tracking_variables
     session[:ip]          ||= request.remote_ip
-    session[:campaign]    ||= request['utm_campaign']
     session[:referer]     ||= request.referer
     session[:browser]     ||= request.user_agent
   end
 
   def start_timing
     session[:start_time]  ||= Time.now
+  end
+
+  def capture_utm_campaign
+    session[:campaign]    ||= request['utm_campaign']
   end
 
   def signup_params

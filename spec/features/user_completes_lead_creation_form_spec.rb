@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'rack_session_access/capybara'
 WebMock.disable_net_connect!(:allow => "127.0.0.1")
 
 RSpec.feature "User completes lead creation form", :type => :feature, :js => true do
@@ -23,5 +24,14 @@ XML
     find('form button[type="submit"]').click 
 
     expect(page).to have_css('.errors li', text: "Email can't be blank")
+  end
+end
+RSpec.feature "Lead captures utm_campaign", :type => :feature do
+  scenario "with a utm_campaign set" do
+    visit '/?utm_campaign=my_campaign'
+    
+    visit getstarted_path
+    
+    expect(page.get_rack_session_key('campaign')).to eq('my_campaign')
   end
 end
