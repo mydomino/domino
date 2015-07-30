@@ -1,17 +1,44 @@
 $nav-height: 100px;
+@media (max-width: 768px) {
+  .navbar .navbar-collapse ul.navbar-nav
+  {
+    width: 100%;
+  }
+  .navbar-collapse
+  {
+    background: #FFF;
+    ul.navbar-nav li a
+    {
+      color: #02CCFF;
+    }
+  }
+}
+.navbar-toggle
+{
+  margin-top: 15px;
+}
 
 .navbar {
-  height: $nav-height;
-  padding: 12px 20px;
-  border-width: 0;
-
-  .row 
+  &.fixed
   {
-    height: 100%;
+    position: fixed;
   }
+  height: $nav-height;
+  padding-top: 12px;
+  border-width: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1030;
+
+  .navbar-header
+  {
+    padding: 0px 20px;
+  }
+
   li:not(.button)
   {
-    padding-left: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
     padding-top: 20px;
   }
   li.button .btn.small
@@ -28,5 +55,5 @@ body.getstarted .navbar li.button {
 }
 
 body.index .navbar.scrolled li.button {
-  display: inherit;
+  display: inline-block;
 }

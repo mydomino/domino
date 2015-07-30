@@ -17,6 +17,7 @@ $overlayColor: rgba(48, 48, 48, 0.7);
   color: $primary-color;
 
   .navbar.scrolled,
+  .navbar.scrolled .collapse,
   .calculator .tt-menu,
   .calculator .btn.active,
   .calculator .btn.active:hover,
