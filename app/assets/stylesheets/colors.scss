@@ -2,7 +2,7 @@
 $defaultColor: #6E6E6E #FFFFFF #02CCFF rgba(0, 0, 0, 0.2) #db5461;
 $hundredColor: #6E6E6E #fdfdfd #3ebaec #0167ba            #ff9900;
 
-$overlayColor: rgba(48, 48, 48, 0.7);
+$overlayColor: rgba(48, 48, 48, 0.65);
 
 @mixin colorSet($color: $defaultColor) {
   $primary-color: nth($color, 1);
