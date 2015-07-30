@@ -1,2 +1,3 @@
 User-agent: Google
 Disallow:
+Sitemap: http://www.mydomino.com/sitemap.xml.gz

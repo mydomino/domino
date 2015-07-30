@@ -18,6 +18,7 @@ gem 'ancestry'
 gem 'json'
 gem 'rubyzoho'
 gem 'actionpack-page_caching'
+gem 'sitemap_generator'
 
 gem 'unicorn'
 
