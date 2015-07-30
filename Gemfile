@@ -19,6 +19,7 @@ gem 'json'
 gem 'rubyzoho'
 gem 'actionpack-page_caching'
 gem 'sitemap_generator'
+gem 'intercom-rails'
 
 gem 'unicorn'
 
