@@ -1,6 +1,7 @@
 $viewport-height: calc(100vh - #{$nav-height});
 
 .intro {
+  padding-top: 100px;
   height: 100vh;
   min-height: 700px;
   background-image: url(homepage-hero.jpg);
@@ -78,6 +79,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   }
 }
 .concierge.hero {
+  padding-top: 100px;
   height: 100vh;
   min-height: 600px;
   background-image: url(form-hero.jpg);
