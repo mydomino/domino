@@ -10,13 +10,14 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
 XML
     WebMock.stub_request(:post, "https://crm.zoho.com/crm/private/xml/Leads/insertRecords").
       to_return(:status => 200, :body => response_body, :headers => {})
-    
+
     visit getstarted_path
 
     fill_in "email", with: "josh@mydomino.com"
     find('form button[type="submit"]').click 
 
     expect(page).to have_css('button[disabled]')
+    expect(page).to have_css('.reserve.submitted')
   end
   scenario "with invalid data" do
 
