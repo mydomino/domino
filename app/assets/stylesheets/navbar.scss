@@ -18,6 +18,14 @@ $nav-height: 100px;
   margin-top: 15px;
 }
 
+.navbar.scrolled
+{
+  ul.navbar-nav li a
+  {
+    color: #02CCFF;
+  }
+}
+
 .navbar {
   &.fixed
   {
@@ -43,7 +51,7 @@ $nav-height: 100px;
     }
     padding-left: 25px;
     padding-right: 25px;
-    padding-top: 20px;
+    padding-top: 10px;
   }
   li.button .btn.small
   {
