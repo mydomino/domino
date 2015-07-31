@@ -60,6 +60,12 @@ $viewport-height: calc(100vh - #{$nav-height});
     }
   }
 }
+.testimonials
+{
+  background-color: #E26C74;
+  color: #FFF;
+  min-height: 600px;
+}
 .meet-dan {
   position: relative;
   min-height: 600px;
