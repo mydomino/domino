@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
-  root 'sessions#index'
 
-  post 'signup' => 'sessions#signup'
+  root 'pages#index'
 
-  get 'about' => 'sessions#about'
-  get 'getstarted' => 'sessions#getstarted'
-  get 'terms' => 'sessions#terms'
-  get 'privacy' => 'sessions#privacy'
+  post 'signup' => 'pages#signup'
+  get 'about' => 'pages#about'
+  get 'terms' => 'pages#terms'
+  get 'privacy' => 'pages#privacy'
 
-  resources :snippets do
-    collection {post :import}
-    collection {get :export}
-  end
+  resources :leads, only: [:create, :new]
+  get 'getstarted' => 'leads#new'
+  get 'get_started' => 'leads#new'
 
 end
