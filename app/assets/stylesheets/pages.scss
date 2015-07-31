@@ -82,53 +82,54 @@ $viewport-height: calc(100vh - #{$nav-height});
     background-color: rgba(226, 108, 116, .8);
     .carousel-caption
     {
+      padding: 50px 0px;
       min-height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
   }
-  p.testimonial {
-    border: 1px solid #FFF;
-    font-size: 3.5rem;
-    line-height: 3.5rem;
-    padding: 20px;
-    margin: auto;
-    position: relative;
-    span.byline
+  div.testimonial
+  {
+    p.byline
     {
-      display: inline-block;
-      position: absolute;
-      bottom: -95px;
-      line-heght: 2.5rem;
-      left: 25px;
+      padding-left: 40px;
       text-align: left;
-      font-size: 2.5rem;
-
     }
-    &::before 
+    p.testimonial 
     {
-      content: "";
-      position: absolute;
-      bottom: -20px;
-      left: 70px;
-      border-width: 20px 20px 0;
-      border-style: solid;
-      border-color: #FFF transparent;
-      display: block;
-      width: 0;
-    }
-    &::after 
-    {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 71px;
-      border-width: 19px 19px 0;
-      border-style: solid;
-      border-color: rgba(226, 108, 116, 1) transparent;
-      display: block;
-      width: 0;
+      border: 1px solid #FFF;
+      font-size: 3rem;
+      line-height: 3rem;
+      padding: 20px;
+      margin: auto;
+      margin-bottom: 20px;
+      position: relative;
+      &::before
+      {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 70px;
+        border-width: 20px 20px 0;
+        border-style: solid;
+        border-color: #FFF transparent;
+        display: block;
+        width: 0;
+      }
+      &::after 
+      {
+        content: "";
+        position: absolute;
+        bottom: -18px;
+        left: 71px;
+        border-width: 19px 19px 0;
+        border-style: solid;
+        border-color: rgba(226, 108, 116, 1) transparent;
+        display: block;
+        width: 0;
+      }
     }
   }
 }
