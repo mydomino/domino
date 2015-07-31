@@ -62,21 +62,40 @@
       %ol.carousel-indicators
         %li.active{data: {target: '#testimonials-carousel', slide: {to: '0'}}}
         %li.active{data: {target: '#testimonials-carousel', slide: {to: '1'}}}
+        %li.active{data: {target: '#testimonials-carousel', slide: {to: '2'}}}
       .carousel-inner{role: 'listbox'}
         .item.active
           .container
-            =image_tag 'homepage-hero.jpg'
             .carousel-caption
               %p.testimonial
                 I wanted to go solar, but I wasn't sure if it made sense or which company to go with. The Domino concierge service was exactly what I needed.
-              %h1 Item 1
+                %span.byline
+                  Julie C.
+                  %br
+                  Sebastapol, California
         .item
           .container
-            =image_tag 'homepage-hero.jpg'
             .carousel-caption
               %p.testimonial
                 With very little effort on my part, I'll be saving hundreds a month and using clean energy.
-              %h1 Item 2
+                %span.byline
+                  David H.
+                  %br
+                  San Jose, California
+        .item
+          .container
+            .carousel-caption
+              %p.testimonial
+                I’ve been thinking about converting to clean energy for years, but never got down to it. Thank goodness for Domino!
+                %span.byline
+                  Susan P.
+                  %br
+                  Weston, Connecticut
+      %a.left.carousel-control{href: '#testimonials-carousel', onClick: "$('#testimonials-carousel').carousel('next')", role: 'button', data: {slide: 'prev'}}
+        %span.glyphicon.glyphicon-chevron-left{aria: {hidden: 'true'}}
+      %a.right.carousel-control{href: '#testimonials-carousel', onClick: "$('#testimonials-carousel').carousel('prev')", role: 'button', data: {slide: 'next'}}
+        %span.glyphicon.glyphicon-chevron-right{aria: {hidden: 'true'}}
+
   .meet-dan
     .content.foreground.overlay
       .row

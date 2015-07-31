@@ -62,9 +62,75 @@ $viewport-height: calc(100vh - #{$nav-height});
 }
 .testimonials
 {
-  background-color: #E26C74;
+  .carousel-control.left, .carousel-control.right
+  {
+    background:transparent;
+  }
+  background-image: image_url('testimonials.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   color: #FFF;
   min-height: 600px;
+  border-radius: 6px;
+  .item, .carousel-inner
+  {
+    min-height: 600px;
+  }
+  .item
+  {
+    background-color: rgba(226, 108, 116, .8);
+    .carousel-caption
+    {
+      min-height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  p.testimonial {
+    border: 1px solid #FFF;
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+    padding: 20px;
+    margin: auto;
+    position: relative;
+    span.byline
+    {
+      display: inline-block;
+      position: absolute;
+      bottom: -95px;
+      line-heght: 2.5rem;
+      left: 25px;
+      text-align: left;
+      font-size: 2.5rem;
+
+    }
+    &::before 
+    {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 70px;
+      border-width: 20px 20px 0;
+      border-style: solid;
+      border-color: #FFF transparent;
+      display: block;
+      width: 0;
+    }
+    &::after 
+    {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 71px;
+      border-width: 19px 19px 0;
+      border-style: solid;
+      border-color: rgba(226, 108, 116, 1) transparent;
+      display: block;
+      width: 0;
+    }
+  }
 }
 .meet-dan {
   position: relative;
