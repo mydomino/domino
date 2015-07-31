@@ -2,9 +2,9 @@
   $('.errors').html('<%= j(render 'errors') %>');
 <%- else %>
   $('.errors').html('');
-  $( '.concierge .reserve').addClass( 'submitted' );
+  $( '.reserve').addClass( 'submitted' );
   $( 'input, button' ).prop('disabled', true);
-  $( '.concierge button')
+  $( '.reserve button')
       .text('<%= j(snippet 'homepage-concierge-form-submittedlabel') %>');
   //Track conversions to GA, Heap, FB, and anyone else we need.
   track_lead_creation();
