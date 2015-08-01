@@ -50,4 +50,6 @@
         .container
           %h2= snippet 'homepage-concierge-header2'
           %div{style: "text-align:center;"}
-            = render 'common/getstarted_button'
+            = link_to getstarted_path(anchor: 'reserve') do
+              %button.btn.large
+                GET STARTED
