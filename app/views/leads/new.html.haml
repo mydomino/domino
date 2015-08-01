@@ -1,28 +1,31 @@
 = cache('getstarted') do
   .concierge.hero.overlay
     %h1.content
-      = snippet 'homepage-concierge-header1'
+      100% clean energy is awesome.
+      %br
+      Domino makes it easy.
   .row
     .col-xs-12.col-sm-8.col-sm-offset-2
       .reserve.panel#reserve
         .row
           .col-xs-12.col-sm-8.col-sm-offset-2
             .title
-              %h3= snippet 'homepage-concierge-form-header'
-              = form_tag({controller: :sessions, action: :signup}, remote: true) do
+              %h3
+                And it starts with a quick chat. 
+                %br
+                We don’t mean to exaggerate, but this phone call could change the world.
+              = form_tag({controller: :leads, action: :create}, remote: true) do
                 = hidden_field_tag 'name', 'WEBSITE FORM'
                 = email_field_tag 'email', nil,
-                  placeholder: snippet('homepage-concierge-form-emaillabel')
+                  placeholder: 'Email'
                 %br
-                = snippet 'homepage-concierge-form-emailtag'
+                %p So we can find a convenient time. No spam, no ads. 
                 = text_field_tag 'address', nil,
-                  placeholder: snippet('homepage-concierge-form-addresslabel')
+                  placeholder: 'Address (Optional)'
                 %br
-                = snippet 'homepage-concierge-form-addresstag'
+                %p Helps us research your options before we talk.
                 .errors
-                .reserve-button
-                  = button_tag snippet('homepage-concierge-form-submitlabel'),
-                    type: 'submit', class: 'btn'
+                %button.btn{type: 'submit'} "LET'S ROCK 'N ROLL"
               .icon
                 .glyphicon.glyphicon-ok-circle
   .row

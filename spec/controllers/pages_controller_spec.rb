@@ -1,9 +1,9 @@
 require 'rails_helper'
-require 'sessions_controller'
+require 'pages_controller'
 
-describe SessionsController do
+describe PagesController do
   it 'adds browser info to session' do
-    get :getstarted
+    get :index
 
     expect(session[:browser]).to eq('Rails Testing')
   end

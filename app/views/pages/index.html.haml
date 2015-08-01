@@ -5,7 +5,10 @@
         .col-xs-12
           %h1.title.bespoke-dynamic= snippet 'homepage-intro-header'
           %h3.title= snippet 'homepage-intro-subtitle'
-          = render 'common/getstarted_button'
+          = link_to getstarted_path(anchor: 'reserve') do
+            %button.btn.large
+              GET STARTED
+
   .how
     .container
       .row

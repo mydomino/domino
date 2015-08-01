@@ -15,12 +15,17 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "buttons";
 @import "colors";
 @import "fonts";
 @import "forms";
 @import "global";
 @import "navbar";
 @import "footer";
-@import "session";
-@import "snippets";
+@import "pages";
+
+body
+{
+  color: $primary-color !important;
+}
+

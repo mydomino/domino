@@ -1,15 +1,9 @@
-class SessionsController < ApplicationController
-  before_action :start_timing, :capture_utm_campaign
-  caches_page :about
-
-  def index
-  end
-
-  def getstarted
+class LeadsController < ApplicationController
+  def new
     set_tracking_variables
   end
 
-  def signup
+  def create
     @lead = FormSubmission.new(signup_params)
     @lead.save
     render :signup
@@ -23,14 +17,6 @@ class SessionsController < ApplicationController
     session[:browser]     ||= request.user_agent
   end
 
-  def start_timing
-    session[:start_time]  ||= Time.now
-  end
-
-  def capture_utm_campaign
-    session[:campaign]    ||= request['utm_campaign']
-  end
-
   def signup_params
     keys = %i(ip referer browser start_time campaign)
     session_params = keys.each_with_object({}) do |str, hsh|
@@ -38,5 +24,4 @@ class SessionsController < ApplicationController
     end
     params.permit(:name, :email, :address).merge(session_params)
   end
-
 end
