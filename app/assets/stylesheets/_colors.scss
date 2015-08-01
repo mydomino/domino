@@ -1,4 +1,4 @@
-$primary-color: #6E6E6E;
+$gray: #6E6E6E;
 $dark-gray: #313131;
 $white: #FFFFFF;
 $blue: #02CCFF;
@@ -9,4 +9,17 @@ $red: #db5461;
   background-color: $dark-transparent;
   background-blend-mode: multiply;
   color: $white;
+  p, h1, h2, h3, h4, h5, h6
+  {
+    color: $white;
+  }
+}
+
+.blue
+{
+  background-color: $blue;
+  p, h1, h2, h3, h4, h5
+  {
+    color: $white;
+  }
 }

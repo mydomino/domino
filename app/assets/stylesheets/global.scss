@@ -19,6 +19,13 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  p {
+    color: $gray;
+  }
+  h1, h2, h3, h4, h5, h6
+  {
+    color: $blue;
+  }
 }
 
 body .container {
@@ -31,12 +38,7 @@ img{
   max-width: 100%;
 }
 
-button {
-  @include border-radius;
-  border-style: none;
-  font-size: 13px;
-  font-weight: bold;
-}
+
 .getstarted-button .btn {
   @include border-radius;
   font-size: 3rem;
