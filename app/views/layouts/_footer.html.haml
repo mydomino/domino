@@ -1,19 +1,19 @@
 = cache('footer') do
   .footer
     .container
-      .row.links
-        .col-xs-4.col-md-1.col-md-offset-3
+      .row.no-padding.links
+        .col-xs-4.col-md-2.col-lg-offset-2
           %p.link= link_to 'ABOUT', about_path
-        .col-xs-4.col-md-1
+        .col-xs-4.col-md-2.col-lg-1
           %p.link= link_to 'BLOG', "http://www.beyondfossilfuels.org",
           target: '_blank'
-        .col-xs-4.col-md-1
+        .col-xs-4.col-md-2.col-lg-1
           %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
-        .col-xs-4.col-md-1
+        .col-xs-4.col-md-2.col-lg-1
           %p.link= link_to 'CAREERS', "https://hellohired.com/domino"
-        .col-xs-4.col-md-1
+        .col-xs-4.col-md-2.col-lg-1
           %p.link= link_to 'TERMS', terms_path
-        .col-xs-4.col-md-1
+        .col-xs-4.col-md-2.col-lg-1
           %p.link= link_to 'PRIVACY', privacy_path
       .row
         .col-xs-12.col-sm-6.col-md-4
@@ -29,7 +29,12 @@
                 = image_tag 'rss.png'
           .row
             .col-xs-12{style: "text-align:left;"}
-              %p= snippet 'footer-contact'
+              %p 
+                myconcierge@mydomino.com
+                %br
+                510-454-8522
+                %br
+                9am to 9pm ET, Monday-Friday
         .col-xs-12.col-sm-6.col-md-5.col-md-offset-3
           .row
             .col-xs-4
@@ -45,4 +50,4 @@
           .row
             .col-xs-5.pull-right.text-center
               =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:108px;height:41px", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge')
-    .copyright= snippet 'footer-copyright'
+    .copyright Copyright 2015, Domino2030, Inc.

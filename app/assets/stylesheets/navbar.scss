@@ -1,51 +1,13 @@
-$nav-height: 100px;
-//mobile
-@media (max-width: 767px) {
-  .navbar .navbar-collapse ul.navbar-nav
-  {
-    width: 100%;
-  }
-  .navbar-collapse
-  {
-    background: #FFF;
-    ul.navbar-nav li a
-    {
-      color: #02CCFF;
-    }
-  }
-}
-@media (max-width: $screen-md-min)
-{
-  nav.scrolled ul.navbar-nav li:not(.button)
-  {
-    display: none;
-  }
-}
-.navbar-toggle
-{
-  margin-top: 15px;
-}
+//States:
+//Top-of-screen(not scrolled), Desktop
+//Scrolled, Desktop
+//Top of Screen, Mobile,
+//Scrolled, mobile
 
-.navbar.scrolled
-{
-  ul.navbar-nav li a
-  {
-    color: $blue;
-  }
-  svg
-  {
-    g
-    {
-      fill: $blue;
-    }
-  }
-}
+$nav-height: 100px;
 
 .navbar {
-  &.fixed
-  {
-    position: fixed;
-  }
+  background-color: transparent;
   height: $nav-height;
   padding-top: 12px;
   border-width: 0;
@@ -57,7 +19,7 @@ $nav-height: 100px;
   {
     padding: 0px 20px;
   }
-  
+
   svg
   {
     g
@@ -83,17 +45,58 @@ $nav-height: 100px;
     padding-top: 10px;
     background-color: #DB5461;
   }
+
+  &.fixed
+  {
+    position: fixed;
+  }
+}
+//scrolled
+.navbar.scrolled
+{
+  background-color: $white;
+  color: $blue;
+
+  ul.navbar-nav li a
+  {
+    color: $blue;
+  }
+  svg
+  {
+    g
+    {
+      fill: $blue;
+    }
+  }
 }
 
-body.index .navbar li.button,
-body.getstarted .navbar li.button {
+.navbar:not(.scrolled) li.button 
+{
   display: none;
 }
 
-body.index .navbar.scrolled li.button {
-  display: inline-block;
+//mobile
+@media (max-width: 767px) {
+  .navbar .navbar-collapse ul.navbar-nav
+  {
+    width: 100%;
+  }
+  .navbar-collapse
+  {
+    background: #FFF;
+    ul.navbar-nav li a
+    {
+      color: #02CCFF;
+    }
+  }
 }
-
+@media (max-width: $screen-md-min)
+{
+  nav.scrolled ul.navbar-nav li:not(.button)
+  {
+    display: none;
+  }
+}
 .navbar-toggle
 {
   margin-top: 15px;

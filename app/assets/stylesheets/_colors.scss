@@ -5,43 +5,8 @@ $blue: #02CCFF;
 $dark-transparent: rgba(48, 48, 48, 0.65);
 $red: #db5461;
 
-.navbar.scrolled,
-.navbar.scrolled .collapse,
-.panel
-{
-  background-color: $white;
-  color: $blue;
-}
-
-.btn 
-{
-  background-color: $red;
-  color: #FFF;
-  text-shadow: 0px 2px rgba(0,0,0,.3);
-  box-shadow: 0px 2px rgba(0,0,0,.5);
-  &:hover, &:focus, &:active
-  {
-    color: #FFF;
-  }
-}
-
-input
-{
-  border-color: $blue;
-}
-
-.footer 
-{
-  background-color: $dark-gray;
-}
-
 .overlay {
   background-color: $dark-transparent;
   background-blend-mode: multiply;
   color: $white;
-}
-
-body .navbar
-{
-  background-color: transparent;
 }
