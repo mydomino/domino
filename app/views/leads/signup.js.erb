@@ -5,7 +5,7 @@
   $( '.reserve').addClass( 'submitted' );
   $( 'input, button' ).prop('disabled', true);
   $( '.reserve button')
-      .text('<%= j(snippet 'homepage-concierge-form-submittedlabel') %>');
+      .text('COMPLETED');
   //Track conversions to GA, Heap, FB, and anyone else we need.
   track_lead_creation();
 <%- end %>
