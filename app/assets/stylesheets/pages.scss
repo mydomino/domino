@@ -181,44 +181,6 @@ $viewport-height: calc(100vh - #{$nav-height});
   background: #00CCFF;
   color: #FFF;
 
-  .contact-method
-  {
-    padding-bottom: 30px;
-  }
-  .panel.reserve 
-  {
-    @include border-radius;
-    margin-top: -100px;
-    padding: 35px 0px;
-    color: #6E6E6E;
-    .title, p {
-      padding-bottom: 30px;
-    }
-
-    input {
-      width: 100%;
-      padding: 30px;
-      font-size: 1.8rem;
-    }
-
-    button
-    {
-      font-size: 3rem;
-      width: 100%;
-      padding: 10px;
-      padding-top: 15px;
-    }
-
-    .icon {
-      display: none;
-      font-size: 25rem;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-    }
-  }
 
   .reserve.submitted .icon {
     display: inherit;

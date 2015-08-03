@@ -1,67 +1,56 @@
-// Selectors in here should be truly global - used in multiple places throughout
-// the app.
-
 @mixin border-radius {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   border-radius: 6px;
 }
+.container {
+  width: 1000px;
+  max-width: 95%;
+  padding: 0px;
+}
+img
+{
+  max-width: 100%;
+}
 
-.text-center {text-align: center;  }
-.row.no-padding {
-  [class*="col-"] {
+
+.panel.reserve 
+{
+  @include border-radius;
+  margin-top: -100px;
+  padding: 35px 0px;
+  color: #6E6E6E;
+  .title, p {
+    padding-bottom: 30px;
+  }
+
+  
+
+  .icon {
+    display: none;
+    font-size: 25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+}
+
+
+/*Utility Classes*/
+.text-center
+{
+  text-align: center;
+}
+.row.no-padding 
+{
+  &>[class*="col-"] 
+  {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-}
-body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  p {
-    color: $gray;
-  }
-  h1, h2, h3, h4, h5, h6
-  {
-    color: $blue;
-  }
-}
-
-body .container {
-  width: 1000px;
-  max-width: 100%;
-  padding: 0px;
-}
-
-img{
-  max-width: 100%;
-}
-
-
-.getstarted-button .btn {
-  @include border-radius;
-  font-size: 3rem;
-  padding: 10px 30px;
-  padding-top: 17px;
-}
-.small .getstarted-button .btn {
-  width: 151px;
-  height: 32px;
-  font-size: 18px;
-}
-input {
-  font-size: 12px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  border-radius: 2px;
-  height: 30px;
-  width: 270px;
-}
-.row {
-  margin-left: 0;
-  margin-right: 0;
 }
 .foreground {
   position: absolute;
@@ -74,3 +63,7 @@ input {
 {
   width: 100%;
 }
+
+
+
+

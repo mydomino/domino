@@ -4,3 +4,19 @@ input
   border-style: solid;
   border-color: $blue;
 }
+form
+{
+  input 
+  {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+  }
+  button, .btn
+  {
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 10px;
+    padding-top: 15px;
+  }
+}
