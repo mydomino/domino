@@ -1,32 +1,23 @@
 .footer {
   text-align: center;
-  color: #FFF;
   padding-top: 30px;
   background-color: $dark-gray;
-
   a, p
   {
     color: #FFF;
   }
-
-  .row
+  img
   {
-    margin-bottom: 30px;
-  }
-
-  img {
+    max-width: 100%;
     margin: 0 auto;
-    display: block;
   }
-
   .seia
   {
-    padding-top: 35px;
+    padding-top: 30px;
   }
 
   .copyright
   {
     padding: 45px 0 25px;
-    text-align: center;
   }
 }
