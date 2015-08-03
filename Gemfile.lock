@@ -257,6 +257,7 @@ DEPENDENCIES
   actionpack-page_caching
   ancestry
   animate-rails
+  autoprefixer-rails
   bootstrap-sass
   byebug
   capybara
