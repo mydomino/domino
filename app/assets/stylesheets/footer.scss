@@ -2,14 +2,13 @@
   text-align: center;
   padding-top: 30px;
   background-color: $dark-gray;
+  .row
+  {
+    margin-bottom: 40px;
+  }
   a, p
   {
     color: #FFF;
-  }
-  img
-  {
-    max-width: 100%;
-    margin: 0 auto;
   }
   .seia
   {

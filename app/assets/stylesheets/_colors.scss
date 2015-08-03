@@ -4,22 +4,3 @@ $white: #FFFFFF;
 $blue: #02CCFF;
 $dark-transparent: rgba(48, 48, 48, 0.65);
 $red: #db5461;
-
-.overlay {
-  background-color: $dark-transparent;
-  background-blend-mode: multiply;
-  color: $white;
-  p, h1, h2, h3, h4, h5, h6
-  {
-    color: $white;
-  }
-}
-
-.blue
-{
-  background-color: $blue;
-  p, h1, h2, h3, h4, h5
-  {
-    color: $white;
-  }
-}

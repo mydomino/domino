@@ -178,10 +178,6 @@ $viewport-height: calc(100vh - #{$nav-height});
 }
 .new
 {
-  background: #00CCFF;
-  color: #FFF;
-
-
   .reserve.submitted .icon {
     display: inherit;
   }
