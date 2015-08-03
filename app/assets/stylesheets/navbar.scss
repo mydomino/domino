@@ -32,6 +32,11 @@ $nav-height: 100px;
   {
     a
     {
+      &:hover
+      {
+        color: #FFF;
+        text-decoration: underline;
+      }
       color: #FFF;
     }
 
@@ -59,6 +64,10 @@ $nav-height: 100px;
 
   ul.navbar-nav li a
   {
+    &:hover
+    {
+      color: $blue;
+    }
     color: $blue;
   }
   svg
