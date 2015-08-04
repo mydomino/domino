@@ -11,18 +11,18 @@ class Lead < ActiveRecord::Base
         first_name: first_name,
         last_name: last_name,
         email: email,
-        phone: @phone,
-        street: @address,
-        city: @city,
-        state: @state,
-        zip_code: @zip_code,
-        source: @source,
-        ip_address: @ip,
-        referrer: @referer,
+        phone: phone,
+        street: address,
+        city: city,
+        state: state,
+        zip_code: zip_code,
+        source: source,
+        ip_address: ip,
+        referrer: referer,
         #can just be start_time - created_at
-        time_on_site: time_diff(@start_time),
-        campaign: @campaign,
-        browser: @browser
+        time_on_site: created_at - start_time,
+        campaign: campaign,
+        browser: browser
     )
     zoho_lead.save
     self.update_attribute(:saved_to_zoho, true)
@@ -30,21 +30,6 @@ class Lead < ActiveRecord::Base
 
   def geocode
     #todo
-  end
-
-  def time_diff(start_time)
-    return if !start_time
-    seconds_diff = (Time.parse(start_time) - Time.now).to_i.abs
-
-    hours = seconds_diff / 3600
-    seconds_diff -= hours * 3600
-
-    minutes = seconds_diff / 60
-    seconds_diff -= minutes * 60
-
-    seconds = seconds_diff
-
-    "#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
   end
 
 end
