@@ -1,6 +1,8 @@
 class Lead < ActiveRecord::Base
   after_save :save_to_zoho
-  validates :last_name, :email, presence: true
+  validates :last_name, presence: true
+  validates :phone, presence: true, unless: Proc.new { |lead| lead.email.present? }
+  validates :email, presence: true, unless: Proc.new { |lead| lead.phone.present? }
 
   private
 

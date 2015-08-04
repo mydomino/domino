@@ -29,9 +29,9 @@ describe Lead, type: :model do
   
   end
 
-  it 'cannot be saved without an email' do
+  it 'cannot be saved without an email or phone number' do
 
-    lead = FactoryGirl.build(:lead, email: "")
+    lead = FactoryGirl.build(:lead, email: "", phone: "")
 
     expect(lead.save).to be false
 
