@@ -1,12 +1,17 @@
 class LeadsController < ApplicationController
   def new
     set_tracking_variables
+    @lead = Lead.new
   end
 
   def create
-    @lead = FormSubmission.new(signup_params)
-    @lead.save
-    render :signup
+    @lead = Lead.create(lead_params)
+    if(@lead.save)
+      render :signup
+    else
+      flash[:alert] = 'There was an error'
+      render :new
+    end
   end
 
   private
@@ -17,11 +22,14 @@ class LeadsController < ApplicationController
     session[:browser]     ||= request.user_agent
   end
 
-  def signup_params
+  def lead_params
+    params.permit(:name, :email, :address).merge(session_params)
+  end
+
+  def session_params
     keys = %i(ip referer browser start_time campaign)
-    session_params = keys.each_with_object({}) do |str, hsh|
+    keys.each_with_object({}) do |str, hsh|
       hsh[str] = session[str]
     end
-    params.permit(:name, :email, :address).merge(session_params)
   end
 end

@@ -1,0 +1,12 @@
+= form_for @lead, remote: true do |lead|
+  = lead.hidden_field :last_name, value: 'WEBSITE FORM'
+  = lead.email_field :email, placeholder: 'Email'
+  %br
+  %p So we can find a convenient time. No spam, no ads. 
+  = lead.text_field 'address', placeholder: 'Address (Optional)'
+  %br
+  %p Helps us research your options before we talk.
+  .errors
+  %button.btn{type: 'submit'} LET'S ROCK 'N ROLL
+.icon
+  .glyphicon.glyphicon-ok-circle

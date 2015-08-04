@@ -1,8 +1,6 @@
 class Lead < ActiveRecord::Base
-
-  attr_accessor :name, :email, :phone, :address, :city, :state, :zipcode, :ip,
-                :source, :referer, :start_time, :campaign, :browser
-  validates :name, :email, presence: true
+  after_save :save_to_zoho
+  validates :first_name, :last_name, :email, presence: true
 
   private
 

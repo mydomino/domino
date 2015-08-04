@@ -30,6 +30,8 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rack-mini-profiler'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'capybara'
   gem 'selenium-webdriver'
 

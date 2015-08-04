@@ -1,10 +1,8 @@
 require 'rails_helper'
 require 'pages_controller'
 
-describe LeadsController do
-  it 'adds browser info to session' do
-    get :new
-
-    expect(session[:browser]).to eq('Rails Testing')
-  end
+describe PagesController do
+  it 'displays the home page'
+  it 'displays the about page'
+  it 'displays the terms page'
 end
