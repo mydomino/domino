@@ -3,9 +3,17 @@
     .content.container
       .row
         .col-xs-12
-          %h1.title.bespoke-dynamic= snippet 'homepage-intro-header'
-          %h3.title= snippet 'homepage-intro-subtitle'
-          = render 'common/getstarted_button'
+          %h1.title.bespoke-dynamic
+            100% clean energy is awesome.
+            %br
+            Domino makes it easy.
+          %h3.title
+            From solar panels to smart thermostats and everything in between,
+            %br
+            we’ve done the research and lined up deals so you don’t have to.
+          = link_to getstarted_path(anchor: 'reserve') do
+            %button.btn.large
+              GET STARTED
   .how
     .container
       .row
