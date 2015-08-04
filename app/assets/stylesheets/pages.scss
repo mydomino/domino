@@ -201,7 +201,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   }
 }
 
-.about
+.about, .terms
 {
   .navbar:not(.scrolled)
   {
@@ -223,9 +223,4 @@ $viewport-height: calc(100vh - #{$nav-height});
   {
     margin-bottom: 25px;
   }
-}
-
-.privacy-policy, .terms-of-service {
-  margin: 70px 0;
-  h3 {margin-top: 30px;}
 }
