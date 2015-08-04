@@ -1,11 +1,12 @@
-class FormSubmission
-  include ActiveModel::Model
+class Lead < ActiveRecord::Base
 
   attr_accessor :name, :email, :phone, :address, :city, :state, :zipcode, :ip,
                 :source, :referer, :start_time, :campaign, :browser
   validates :name, :email, presence: true
 
-  def save
+  private
+
+  def save_to_zoho
     return false if invalid?
     lead = RubyZoho::Crm::Lead.new(
         last_name: @name,
@@ -24,8 +25,6 @@ class FormSubmission
     )
     lead.save
   end
-
-  private
 
   def time_diff(start_time)
     return if !start_time
