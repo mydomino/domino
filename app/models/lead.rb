@@ -1,5 +1,5 @@
 class Lead < ActiveRecord::Base
-  after_commit :save_to_zoho
+  after_save :save_to_zoho
   validates :last_name, :email, presence: true
 
   private

@@ -7,8 +7,8 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
   scenario "with valid data and expects form to be disabled" do
     visit getstarted_path
 
-    fill_in "email", with: "josh@mydomino.com"
-    fill_in "phone", with: "6078575974"
+    fill_in "lead_email", with: "josh@mydomino.com"
+    fill_in "lead_phone", with: "6078575974"
     find('form button[type="submit"]').click 
 
     expect(page).to have_css('button[disabled]')
