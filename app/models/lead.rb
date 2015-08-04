@@ -6,7 +6,7 @@ class Lead < ActiveRecord::Base
 
   def save_to_zoho
     return false if invalid?
-    return true if loaded?
+    return true if saved_to_zoho
     zoho_lead = RubyZoho::Crm::Lead.new(
         first_name: first_name,
         last_name: last_name,
@@ -25,6 +25,7 @@ class Lead < ActiveRecord::Base
         browser: @browser
     )
     zoho_lead.save
+    self.update_attribute(:saved_to_zoho, true)
   end
 
   def geocode
