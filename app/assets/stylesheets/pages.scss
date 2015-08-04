@@ -199,8 +199,12 @@ $viewport-height: calc(100vh - #{$nav-height});
 
 .about
 {
-  nav
+  .navbar:not(.scrolled)
   {
+    li.button
+    {
+      display: block;
+    }
     background-color: $blue;
   }
   h1, h2, h3, .blue

@@ -1,10 +1,21 @@
 $( window ).scroll( function( event ) {
-    var scroll = $( window ).scrollTop();
-    if( scroll < 300 ) {
-        $( 'body.index .navbar, body.getstarted .navbar' )
-            .removeClass( 'scrolled animated slideInDown fixed' );
-    } else {
-        $( 'body.index .navbar, body.getstarted .navbar' )
-            .addClass( 'scrolled animated slideInDown fixed' );
-    }
+  var scroll = $( window ).scrollTop();
+  if( scroll < 300 ) 
+  {
+    hideNavBar();
+  }
+  else
+  {
+    showNavBar();
+  }
 });
+
+function showNavBar()
+{
+  $( '.navbar' ).addClass( 'scrolled animated slideInDown fixed' );
+}
+
+function hideNavBar()
+{
+  $( '.navbar' ).removeClass( 'scrolled animated slideInDown fixed' );
+}
