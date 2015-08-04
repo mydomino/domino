@@ -32,4 +32,8 @@ form
       border-radius: 2px;
     }
   }
+  &+.icon.success
+  {
+    color: $blue;
+  }
 }
