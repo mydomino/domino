@@ -1,27 +1,34 @@
 class Lead < ActiveRecord::Base
-  after_save :save_to_zoho
-  validates :first_name, :last_name, :email, presence: true
+  after_commit :save_to_zoho
+  validates :last_name, :email, presence: true
 
   private
 
   def save_to_zoho
     return false if invalid?
-    lead = RubyZoho::Crm::Lead.new(
-        last_name: @name,
-        email: @email,
+    return true if loaded?
+    zoho_lead = RubyZoho::Crm::Lead.new(
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
         phone: @phone,
         street: @address,
         city: @city,
         state: @state,
-        zip_code: @zipcode,
+        zip_code: @zip_code,
         source: @source,
         ip_address: @ip,
         referrer: @referer,
+        #can just be start_time - created_at
         time_on_site: time_diff(@start_time),
         campaign: @campaign,
         browser: @browser
     )
-    lead.save
+    zoho_lead.save
+  end
+
+  def geocode
+    #todo
   end
 
   def time_diff(start_time)

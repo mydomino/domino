@@ -6,12 +6,8 @@ class LeadsController < ApplicationController
 
   def create
     @lead = Lead.create(lead_params)
-    if(@lead.save)
-      render :signup
-    else
-      flash[:alert] = 'There was an error'
-      render :new
-    end
+    @lead.save
+    render :new_callback
   end
 
   private
@@ -23,7 +19,7 @@ class LeadsController < ApplicationController
   end
 
   def lead_params
-    params.permit(:name, :email, :address).merge(session_params)
+    params.require(:lead).permit(:last_name, :email, :address, :phone).merge(session_params)
   end
 
   def session_params
