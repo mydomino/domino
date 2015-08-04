@@ -1,18 +1,19 @@
-= form_for @lead, remote: true do |lead|
-  .name
-    = lead.hidden_field :last_name, value: 'WEBSITE FORM'
-  .email
-    = lead.email_field :email, placeholder: 'Email'
-    %br
-    %p So we can find a convenient time. No spam, no ads. 
-  .phone
-    =lead.text_field :phone, placeholder: 'Phone'
-    %br
-  .address{style: 'display:none'}
-    = lead.text_field 'address', placeholder: 'Address (Optional)'
-    %br
-    %p Helps us research your options before we talk.
-  .errors
-  %button.btn{type: 'submit'} LET'S ROCK 'N ROLL
-.icon
-  .glyphicon.glyphicon-ok-circle.success
+.form-wrapper{style: 'position: relative'}
+  = form_for @lead, remote: true do |lead|
+    .name
+      = lead.hidden_field :last_name, value: 'WEBSITE FORM'
+    .email
+      = lead.email_field :email, placeholder: 'Email'
+      %br
+      %p So we can find a convenient time. No spam, no ads. 
+    .phone
+      =lead.text_field :phone, placeholder: 'Phone'
+      %br
+    .address{style: 'display:none'}
+      = lead.text_field 'address', placeholder: 'Address (Optional)'
+      %br
+      %p Helps us research your options before we talk.
+    .errors
+    %button.btn{type: 'submit'} LET'S ROCK 'N ROLL
+  .success
+    .glyphicon.glyphicon-ok-circle.huge

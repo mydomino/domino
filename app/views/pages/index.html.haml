@@ -2,7 +2,7 @@
   .intro.overlay
     .content.container
       .row
-        .col-xs-12
+        .col-xs-12.col-med-6
           %h1.title.bespoke-dynamic
             100% clean energy is awesome.
             %br
@@ -14,6 +14,16 @@
           = link_to getstarted_path(anchor: 'reserve') do
             %button.btn.large
               GET STARTED
+  .intro.overlay
+    .content.container
+      .row
+        .col-xs-12.col-md-6
+          %h1.title.bespoke-dynamic.text-left
+            100% clean energy is awesome.
+            %br
+            Domino makes it easy.
+        .col-xs-12.col-md-6
+          = render 'leads/form' 
   .how
     .container
       .row

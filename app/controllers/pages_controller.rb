@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   caches_page :about
 
   def index
-
+    @lead = Lead.new
   end
 
   def about
