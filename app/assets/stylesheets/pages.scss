@@ -24,6 +24,10 @@ $viewport-height: calc(100vh - #{$nav-height});
 
   .steps {
     svg {
+      circle
+      {
+        fill: $blue;
+      }
       width: 58px;
       height: 58px;
       font-family: 'ProximaNovaA' !important;
