@@ -186,6 +186,7 @@ $viewport-height: calc(100vh - #{$nav-height});
 {
   .reserve.submitted .icon {
     display: inherit;
+    color: $blue;
   }
 
   .moreways {
