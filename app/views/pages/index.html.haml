@@ -102,6 +102,10 @@
                   Susan P.
                   %br
                   Weston, Connecticut
+      %a.left.carousel-control{href: "#testimonials-carousel", onclick: '$("#testimonials-carousel").carousel("prev")', role: "button", data: {slide: 'prev'}}
+        %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
+      %a.right.carousel-control{href: "#testimonials-carousel", onclick: '$("#testimonials-carousel").carousel("next")', role: "button", data: {slide: 'next'}}
+        %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
   .meet-dan
     .content.foreground.overlay
       .container
