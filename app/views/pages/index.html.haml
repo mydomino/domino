@@ -65,6 +65,43 @@
               .col-xs-8
                 %h3 FREE
                 %p Domino’s concierge service is 100% free for homeowners in the U.S.
+  .testimonials
+    #testimonials-carousel.carousel.slide{data: {ride: 'carousel'}}
+      %ol.carousel-indicators
+        %li.active{data: {target: '#testimonials-carousel', slide: {to: '0'}}}
+        %li.active{data: {target: '#testimonials-carousel', slide: {to: '1'}}}
+        %li.active{data: {target: '#testimonials-carousel', slide: {to: '2'}}}
+      .carousel-inner{role: 'listbox'}
+        .item.active
+          .container
+            .carousel-caption
+              .testimonial
+                %p.testimonial
+                  I wanted to go solar, but I wasn't sure if it made sense or which company to go with. The Domino concierge service was exactly what I needed.
+                %p.byline
+                  Julie C.
+                  %br
+                  Sebastapol, California
+        .item
+          .container
+            .carousel-caption
+              .testimonial
+                %p.testimonial
+                  With very little effort on my part, I'll be saving hundreds a month and using clean energy.
+                %p.byline
+                  David H.
+                  %br
+                  San Jose, California
+        .item
+          .container
+            .carousel-caption
+              .testimonial
+                %p.testimonial
+                  I’ve been thinking about converting to clean energy for years, but never got down to it. Thank goodness for Domino!
+                %p.byline
+                  Susan P.
+                  %br
+                  Weston, Connecticut
   .meet-dan
     .content.foreground.overlay
       .container
