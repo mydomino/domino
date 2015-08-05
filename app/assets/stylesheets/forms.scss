@@ -2,6 +2,7 @@ form
 {
   input 
   {
+    background-color: transparent;
     width: 100%;
     padding: 15px 30px;
     font-size: 1.1rem;
@@ -24,17 +25,29 @@ form
     {
       list-style-type: none;
       padding: 0;
+      padding-top: 10px;
+      border: 1px solid rgba(255,0,0,.5);
+      border-radius: 2px;
     }
     li
     {
       color: red;
       padding: 5px;
-      border: 1px solid rgba(255,0,0,.5);
-      border-radius: 2px;
+      background-color: $white;
+      text-align: left;
     }
   }
-  &+.icon.success
+  &+.success
   {
+    display: none;
+    position: absolute;
+    top: 0px;
     color: $blue;
+    width: 100%;
+    text-align: center;
   }
+}
+.glyphicon.huge
+{
+  font-size: 15rem;
 }

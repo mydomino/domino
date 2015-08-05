@@ -1,3 +1,5 @@
 %ul
   - @lead.errors.full_messages.each do |error_message|
-    %li= error_message
+    %li
+      .glyphicon.glyphicon-remove
+      = error_message

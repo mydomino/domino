@@ -11,8 +11,8 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
     fill_in "lead_phone", with: "6078575974"
     find('form button[type="submit"]').click 
 
-    expect(page).to have_css('button[disabled]')
-    expect(page).to have_css('.reserve.submitted')
+    expect(page).to have_css('form', visible: false)
+    expect(page).to have_css('.success', visible: true)
   end
   scenario "with invalid data" do
 
