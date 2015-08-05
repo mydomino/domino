@@ -22,6 +22,8 @@ gem 'rubyzoho'
 gem 'actionpack-page_caching'
 gem 'sitemap_generator'
 gem 'intercom-rails'
+gem 'airbrake'
+
 
 gem 'unicorn'
 
@@ -46,5 +48,4 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'airbrake'
 end
