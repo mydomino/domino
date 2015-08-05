@@ -1,5 +1,5 @@
 = cache('index') do
-  .intro.overlay
+  #clickthrough.intro.overlay
     .content.container
       .row
         .col-xs-12.col-med-6
@@ -14,7 +14,7 @@
           = link_to getstarted_path(anchor: 'reserve') do
             %button.btn.large
               GET STARTED
-  .intro.overlay
+  #signup.intro.overlay{style: "display: none;"}
     .content.container
       .row
         .col-xs-12.col-md-6
