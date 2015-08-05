@@ -39,6 +39,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    airbrake (4.3.0)
+      builder
+      multi_json
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     animate-rails (1.0.8)
@@ -263,6 +266,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-page_caching
+  airbrake
   ancestry
   animate-rails
   autoprefixer-rails
