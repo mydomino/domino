@@ -26,14 +26,15 @@ form
       list-style-type: none;
       padding: 0;
       padding-top: 10px;
+      border: 1px solid rgba(255,0,0,.5);
+      border-radius: 2px;
     }
     li
     {
       color: red;
       padding: 5px;
-      border: 1px solid rgba(255,0,0,.5);
-      border-radius: 2px;
       background-color: $white;
+      text-align: left;
     }
   }
   &+.success
