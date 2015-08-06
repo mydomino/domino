@@ -1,13 +1,13 @@
 class LeadsController < ApplicationController
   def new
-    set_tracking_variables
     @lead = Lead.new
   end
 
   def create
+    set_tracking_variables
     @lead = Lead.create(lead_params)
     @lead.save
-    render :new_callback
+    render 'new_callback.js'
   end
 
   private

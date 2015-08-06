@@ -3,7 +3,7 @@ require 'leads_controller'
 
 describe LeadsController do
   it 'adds browser info to session' do
-    get :new
+    post :create, :lead => {"email" => Faker::Internet.email}
 
     expect(session[:browser]).to eq('Rails Testing')
   end
