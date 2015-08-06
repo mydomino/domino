@@ -23,7 +23,7 @@ gem 'actionpack-page_caching'
 gem 'sitemap_generator'
 gem 'intercom-rails'
 gem 'airbrake'
-
+gem 'newrelic_rpm'
 
 gem 'unicorn'
 
@@ -36,7 +36,6 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'selenium-webdriver'
-
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
