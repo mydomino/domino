@@ -1,7 +1,7 @@
 .form-wrapper{style: 'position: relative'}
   = form_for @lead, remote: true do |lead|
-    .name{style: 'display:none'}
-      = lead.text_field :first_name
+    .name
+      = lead.hidden_field :last_name, value: 'WEBSITE FORM'
     .email
       = lead.email_field :email, placeholder: 'Email'
       %br
