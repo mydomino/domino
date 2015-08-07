@@ -1,13 +1,18 @@
 .form-wrapper{style: 'position: relative'}
   = form_for @lead, remote: true do |lead|
-    .name
-      = lead.hidden_field :last_name, value: 'WEBSITE FORM'
+    .name{style: 'display:none'}
+      = lead.label :first_name
+      = lead.text_field :first_name
+      = lead.label :last_name
+      = lead.text_field :last_name
     .email
-      = lead.email_field :email, placeholder: 'Email'
+      = lead.label :email
+      = lead.email_field :email, placeholder: ''
       %br
-      %p So we can find a convenient time. No spam, no ads. 
+      %small So we can find a convenient time. No spam, no ads. 
     .phone
-      =lead.text_field :phone, placeholder: 'Phone'
+      =lead.label :phone
+      =lead.text_field :phone
       %br
     .address{style: 'display:none'}
       = lead.text_field 'address', placeholder: 'Address (Optional)'

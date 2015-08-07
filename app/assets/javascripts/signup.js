@@ -9,7 +9,16 @@ function track_lead_creation()
 function animate_form_success()
 {
   form = $('form');
-  form.addClass('animated fadeOutDown');
+  form.addClass('animated fadeOutDown').hide();
   success = $('.success');
   success.show().addClass('animated fadeInDown');
+}
+
+function animate(element, animation, callback)
+{
+  element.addClass('animated ' + animation);
+  element.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    element.removeClass('animated ' + animation);
+  });
+  element.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', callback);
 }

@@ -12,6 +12,7 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
     find('form button[type="submit"]').click 
 
     expect(page).to have_css('form', visible: false)
+    expect(page).not_to have_css('.errors li')
     expect(page).to have_css('.success', visible: true)
   end
   scenario "with invalid data" do
