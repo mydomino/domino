@@ -1,6 +1,8 @@
 button, .btn 
 {
   border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 10px;
   border-style: none;
   font-weight: bold;
   background-color: $red;
@@ -19,7 +21,14 @@ button, .btn
 
 .btn.large, button.large
 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 15px 30px;
   padding-top: 20px;
+}
+.btn.small, button.small
+{
+  padding: .6rem .3rem .3rem;
+  line-height: 1.3rem;
+  font-size: 1.1rem;
+  background-color: #DB5461;
 }

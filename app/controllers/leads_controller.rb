@@ -6,6 +6,7 @@ class LeadsController < ApplicationController
   def create
     set_tracking_variables
     @lead = Lead.create(lead_params)
+    @lead.last_name = "Not Given" if(@lead.last_name == '') 
     @lead.save
     render 'new_callback.js'
   end
@@ -19,7 +20,7 @@ class LeadsController < ApplicationController
   end
 
   def lead_params
-    params.require(:lead).permit(:last_name, :email, :address, :phone).merge(session_params)
+    params.require(:lead).permit(:first_name, :last_name, :email, :address, :phone).merge(session_params)
   end
 
   def session_params

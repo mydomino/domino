@@ -38,6 +38,11 @@ img
   width: 100%;
 }
 
+.fast
+{
+  //animation-duration: .75s;
+}
+
 @mixin border-radius {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
