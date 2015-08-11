@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'
 
+  get '/blog' => redirect("/blog/")
+
+
 end
