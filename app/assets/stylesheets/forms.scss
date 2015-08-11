@@ -52,6 +52,31 @@ form
     text-align: center;
   }
 }
+.form-inline
+{
+  input:not([type="submit"])
+  {
+    padding: 5px;
+    font-size: .9rem;
+    line-height: 1.2rem;
+    height: 30px;
+    color: $gray;
+  }
+}
+.blue
+{
+  input.form-control
+  {
+    border: none;
+  }
+}
+.panel
+{
+  input.form-control
+  {
+    border: 2px solid $blue;
+  }
+}
 .glyphicon.huge
 {
   font-size: 15rem;
