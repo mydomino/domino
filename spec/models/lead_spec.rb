@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'helpers/zoho_mock'
-require 'helpers/mandrill_mock'
 
 describe Lead, type: :model do
   it 'has a valid factory' do
