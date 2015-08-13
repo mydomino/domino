@@ -15,6 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'animate-rails'
 gem 'normalize-rails'
 gem 'bootstrap-sass'
+gem 'font_assets'
 gem 'figaro'
 gem 'ancestry'
 gem 'json'
