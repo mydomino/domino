@@ -15,9 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require typeahead.bundle
-
-// Third party
 //= require snippets
+//= require bespoke
 //= require analytics
 //= require navbar
 //= require signup
