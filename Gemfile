@@ -23,7 +23,6 @@ gem 'sitemap_generator'
 gem 'intercom-rails'
 gem 'airbrake'
 gem 'newrelic_rpm'
-gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 
 gem 'unicorn'
