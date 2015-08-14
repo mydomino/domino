@@ -41,7 +41,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   background-image: image-url('meet-millers.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: none;
+  background-repeat: no-repeat;
   .content.foreground.overlay{
     position: absolute;
     bottom: 0px;
@@ -145,7 +145,7 @@ $viewport-height: calc(100vh - #{$nav-height});
   background-image: image-url('feature-concierge-dan.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: none;
+  background-repeat: no-repeat;
   button
   {
     margin-top: 30px;
