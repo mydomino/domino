@@ -9,7 +9,7 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
 
     fill_in "lead_email", with: "josh@mydomino.com"
     fill_in "lead_phone", with: "6078575974"
-    find('form button[type="submit"]').click 
+    find('form input[type="submit"]').click 
 
     expect(page).to have_css('form', visible: false)
     expect(page).not_to have_css('.errors li')
@@ -18,7 +18,7 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
   scenario "with invalid data" do
 
     visit getstarted_path
-    find('form button[type="submit"]').click 
+    find('form input[type="submit"]').click 
 
     expect(page).to have_css('.errors li', text: "Email can't be blank")
   end
