@@ -10,7 +10,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'haml-rails'
 gem 'html2haml'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'animate-rails'
 gem 'normalize-rails'
