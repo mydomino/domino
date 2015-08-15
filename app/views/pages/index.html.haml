@@ -1,143 +1,125 @@
-= cache('index') do
-  #clickthrough.intro.overlay
-    .content.container
-      .row
-        .col-xs-12.col-med-6
-          %h1.title.bespoke-dynamic
-            100% clean energy is awesome.
-            %br
-            Domino makes it easy.
-          %h3.title
-            From solar panels to smart thermostats and everything in between,
-            %br
-            we’ve done the research and lined up deals so you don’t have to.
-          = link_to getstarted_path do
-            %button.btn.large
-              GET STARTED
-  #signup.intro.overlay{style: "display: none;"}
-    .content.container
-      .row
-        .col-xs-12.col-md-6
-          %h1.title.bespoke-dynamic.text-left{style: "padding-top: 90px;"}
-            100% clean energy is awesome.
-            %br
-            Domino makes it easy.
-        .col-xs-12.col-md-6
-          .panel.reserve
-            .row
-              .col-xs-12.col-sm-10.col-sm-offset-1
-                %h3
-                  And it starts with a quick chat. 
-                = render 'leads/form'
-  .how
-    .container
-      .row
-        .col-xs-12
-          %h1.text-center We'll do the work. You'll do the saving.
+#clickthrough.intro.overlay
+  .content.container
+    .row
+      .col-xs-12.col-med-6
+        %h1.title.bespoke-dynamic
+          You can save money by switching to clean energy now. Let Domino be your guide. 
+        %h3.title
+          We make it easy for you to take meaningful actions for a clean energy future -- from solar panels to smart thermostats and everything in between. 
+        = link_to getstarted_path do
+          %button.btn.large
+            GET STARTED
+.how
+  .container
+    .row
+      .col-xs-12
+        %h1.text-center You want to switch to clean energy. But where do you start? We’ll do the work. You’ll do the saving.
+        .row.steps
+          .col-xs-12.step
+            = embedded_svg "Circle1.svg", class: 'pull-left'
+            %h3 MAKE AN APPOINTMENT TO TALK
 
-          .row.steps
-            .col-xs-12.col-md-4.step
-              = embedded_svg "Circle1.svg"
-              %h3 WE CALL YOU
-              %p Since no two homes, families and lifestyles are the same - our concierge will ask you a few questions to understand your needs.
-            .col-xs-12.col-md-4.step
-              = embedded_svg "Circle2.svg"
-              %h3 WE FIND SAVINGS
-              %p Clean energy often means switching from a pricey to a cheap energy source. There are 100s of ways to do that, we’ll investigate what’s right for you.
-            .col-xs-12.col-md-4.step
-              = embedded_svg "Circle3.svg"
-              %h3 WE GET IT DONE
-              %p We’ll recommend the best path to clean energy + savings. And we’ll stay with you from start to finish. At no cost to you.
-  .meet-millers
-    .content.foreground.overlay
-      .container
+            %p You’ll get a personal energy concierge who will chat with you to see what makes sense for your home, family, and lifestyle.
+          .col-xs-12.step
+            = embedded_svg "Circle2.svg", class: 'pull-left'
+            %h3 RELAX WHILE WE FIND SAVINGS
+            %p There are 100s of ways to save energy and money. Wading through it all is a hassle. We do the research and line up deals so you don’t have to.
+          .col-xs-12.step
+            = embedded_svg "Circle3.svg", class: 'pull-left'
+            %h3 LET US GUIDE YOU
+            %p From recommending specific energy-saving actions tailored to you, to connecting you with trustworthy partners to get it all done - we’re with you all the way.
         .row
-          .col-xs-12
-            %h1 Meet the Millers
-            %h3 Their power bills were through the roof. Domino helped them get a great deal on solar. And then super-sized the savings with an electric car.
-  .loveus
-    .container
-      .row
-        .col-xs-12.col-md-8.col-md-offset-2
-          %h1.text-center Here’s why customers love us…
-          .reasons
-            .row
-              .col-xs-4
-                = embedded_svg 'on-your-side.svg', class: 'full-width'
-              .col-xs-8
-                %h3 ON YOUR SIDE
-                %p We’ll hustle for the best deals, but if solar or any other action doesn’t work for you, we’ll tell you.
-                  
-            .row
-              .col-xs-4
-                = embedded_svg 'no-pressure.svg', class: 'full-width'
-              .col-xs-8
-                %h3 NO PRESSURE
-                %p Our concierges are not salespeople and are not paid commissions.              
-            .row
-              .col-xs-4
-                = embedded_svg 'free.svg', class: 'full-width'
-              .col-xs-8
-                %h3 FREE
-                %p Domino’s concierge service is 100% free for homeowners in the U.S.
-  .testimonials
-    #testimonials-carousel.carousel.slide{data: {ride: 'carousel'}}
-      %ol.carousel-indicators
-        %li.active{data: {target: '#testimonials-carousel', slide: {to: '0'}}}
-        %li.active{data: {target: '#testimonials-carousel', slide: {to: '1'}}}
-        %li.active{data: {target: '#testimonials-carousel', slide: {to: '2'}}}
-      .carousel-inner{role: 'listbox'}
-        .item.active
-          .container
-            .carousel-caption
-              .testimonial
-                %p.testimonial
-                  I wanted to go solar, but I wasn't sure if it made sense or which company to go with. The Domino concierge service was exactly what I needed.
-                %p.byline
-                  Julie C.
-                  %br
-                  Sebastapol, California
-        .item
-          .container
-            .carousel-caption
-              .testimonial
-                %p.testimonial
-                  With very little effort on my part, I'll be saving hundreds a month and using clean energy.
-                %p.byline
-                  David H.
-                  %br
-                  San Jose, California
-        .item
-          .container
-            .carousel-caption
-              .testimonial
-                %p.testimonial
-                  I’ve been thinking about converting to clean energy for years, but never got down to it. Thank goodness for Domino!
-                %p.byline
-                  Susan P.
-                  %br
-                  Weston, Connecticut
-      %a.left.carousel-control{href: "#testimonials-carousel", onclick: '$("#testimonials-carousel").carousel("prev")', role: "button", data: {slide: 'prev'}}
-        %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
-      %a.right.carousel-control{href: "#testimonials-carousel", onclick: '$("#testimonials-carousel").carousel("next")', role: "button", data: {slide: 'next'}}
-        %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
-  .meet-dan
-    .content.foreground.overlay
-      .container
-        .row
-          .col-xs-12.col-sm-6.col-md-4.col-md-offset-1
-            %h3 MEET A CONCIERGE: DAN EATON
-            %h3 "This is not just a job for me. I drive a beast of an electric car, my house is powered by the sun and my water heaters are tankless. And I’ll talk about this stuff all day if you don’t stop me."
-            = link_to getstarted_path do
-              %button.btn.large
-                GET STARTED
-  .exit.blue.text-center
+          .col-xs-12.text-center
+            %h3 More cash. Less carbon. Small actions. Epic effect.
+.meet-millers
+  .content.foreground.overlay
     .container
       .row
         .col-xs-12
-          = image_tag 'google-search-box.png'
-          %h1 Google doesn’t have all the answers.
-          %p No two homes, families or lifestyles are the same. Domino gives you a FREE concierge who will find a clean energy + savings plan that works for YOU.
+          %h1 Meet the Millers
+          %h3 Their power bills were through the roof. Domino helped them get a great deal on solar. And then super-sized the savings with an electric car.
+.loveus
+  .container
+    .row
+      .col-xs-12.col-md-8.col-md-offset-2
+        %h1.text-center Here’s why customers love us…
+        .reasons
+          .row
+            .col-xs-4
+              = embedded_svg 'no-pressure.svg', class: 'full-width'
+            .col-xs-8
+              %h3 We listen to you
+              %p There’s no family like yours. We take into account your unique home and lifestyle to help you find the actions that are right for you.
+          .row
+            .col-xs-4
+              = embedded_svg 'on-your-side.svg', class: 'full-width'
+            .col-xs-8
+              %h3 We’re on your side
+              %p Our concierges are advisors, not salespeople on commission. They love being your partner and will not pressure you to take a specific action. If something doesn’t work for you, they’ll tell you.            
+          .row
+            .col-xs-4
+              = embedded_svg 'free.svg', class: 'full-width'
+            .col-xs-8
+              %h3 We’re free
+              %p Domino’s concierge service is 100% free for homeowners in the U.S. We’ve vetted the companies we partner with, and we get a referral fee from the ones you choose to work with. Everyone wins.
+.testimonials
+  #testimonials-carousel.carousel.slide{data: {ride: 'carousel'}}
+    %ol.carousel-indicators
+      %li.active{data: {target: '#testimonials-carousel', slide: {to: '0'}}}
+      %li.active{data: {target: '#testimonials-carousel', slide: {to: '1'}}}
+      %li.active{data: {target: '#testimonials-carousel', slide: {to: '2'}}}
+    .carousel-inner{role: 'listbox'}
+      .item.active
+        .container
+          .carousel-caption
+            .testimonial
+              %p.testimonial
+                I wanted to go solar, but I wasn't sure if it made sense or which company to go with. The Domino concierge service was exactly what I needed.
+              %p.byline
+                Julie C.
+                %br
+                Sebastapol, California
+      .item
+        .container
+          .carousel-caption
+            .testimonial
+              %p.testimonial
+                With very little effort on my part, I'll be saving hundreds a month and using clean energy.
+              %p.byline
+                David H.
+                %br
+                San Jose, California
+      .item
+        .container
+          .carousel-caption
+            .testimonial
+              %p.testimonial
+                I’ve been thinking about converting to clean energy for years, but never got down to it. Thank goodness for Domino!
+              %p.byline
+                Susan P.
+                %br
+                Weston, Connecticut
+    %a.left.carousel-control{href: "#testimonials-carousel", onclick: '$("#testimonials-carousel").carousel("prev")', role: "button", data: {slide: 'prev'}}
+      %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
+    %a.right.carousel-control{href: "#testimonials-carousel", onclick: '$("#testimonials-carousel").carousel("next")', role: "button", data: {slide: 'next'}}
+      %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
+.meet-dan
+  .content.foreground.overlay
+    .container
+      .row
+        .col-xs-12.col-sm-6.col-md-4.col-md-offset-1
+          %h3 MEET A CONCIERGE: DAN EATON
+          %h3 "This is not just a job for me. I drive a beast of an electric car, my house is powered by the sun and my water heaters are tankless. And I’ll talk about this stuff all day if you don’t stop me."
           = link_to getstarted_path do
             %button.btn.large
               GET STARTED
+.exit.blue.text-center
+  .container
+    .row
+      .col-xs-12
+        = image_tag 'google-search-box.png'
+        %h1 Google doesn’t have all the answers.
+        %p No two homes, families or lifestyles are the same. Domino gives you a FREE concierge who will find a clean energy + savings plan that works for YOU.
+        = link_to getstarted_path do
+          %button.btn.large
+            GET STARTED

@@ -1,51 +1,51 @@
-= cache('getstarted') do
-  .concierge.hero.overlay
-    %h1.content
-      100% clean energy is awesome.
-      %br
-      Domino makes it easy.
-  .blue
-    .container
-      .row
-        .col-xs-12.col-sm-8.col-sm-offset-2
-          .reserve.panel#reserve{style: "margin-top: -100px;"}
-            .row
-              .col-xs-12.col-sm-8.col-sm-offset-2
-                %h3
-                  And it starts with a quick chat. 
-                  %br
-                  We don’t mean to exaggerate, but this phone call could change the world.
-                =render 'form'
-  .blue
-    .container
-      .row
-        .col-xs-12.text-center{style: "margin-bottom: 20px;"}
-          %p OTHER WAYS TO REACH A DOMINO CONCIERGE
-  .blue
-    .container
-      .row{style: 'padding-bottom: 30px;'}
-        .col-xs-12.col-sm-4.col-sm-offset-2.contact-method
-          .row.no-padding
-            .col-xs-3
-              = image_tag 'phone_icon.png'
-            .col-xs-9
-              %p 
-                800-979-2215
+
+.concierge.hero.overlay
+  %h1.content
+    100% clean energy is awesome.
+    %br
+    Domino makes it easy.
+.blue
+  .container
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        .reserve.panel#reserve{style: "margin-top: -100px;"}
+          .row
+            .col-xs-12.col-sm-8.col-sm-offset-2
+              %h3
+                And it starts with a quick chat. 
                 %br
-                9am to 9pm ET, Monday-Friday
-        .col-xs-12.col-sm-4.contact-method
-          .row.no-padding
-            .col-xs-3
-              = image_tag 'email_icon.png'
-            .col-xs-9
-              %p= link_to 'myconcierge@mydomino.com', "mailto:myconcierge@mydomino.com"
-    .team.overlay
-      .container
-        .row
-          .col-xs-12
-            .container
-              %h2 We’re not salespeople, we’re energy wonks. We’re obsessed with clean energy actions that don’t compromise your lifestyle and put more cash back in your pocket.
-              %div{style: "text-align:center;"}
-                = link_to getstarted_path(anchor: 'reserve') do
-                  %button.btn.large
-                    GET STARTED
+                We don’t mean to exaggerate, but this phone call could change the world.
+              =render 'form'
+.blue
+  .container
+    .row
+      .col-xs-12.text-center{style: "margin-bottom: 20px;"}
+        %p OTHER WAYS TO REACH A DOMINO CONCIERGE
+.blue
+  .container
+    .row{style: 'padding-bottom: 30px;'}
+      .col-xs-12.col-sm-4.col-sm-offset-2.contact-method
+        .row.no-padding
+          .col-xs-3
+            = image_tag 'phone_icon.png'
+          .col-xs-9
+            %p 
+              800-979-2215
+              %br
+              9am to 9pm ET, Monday-Friday
+      .col-xs-12.col-sm-4.contact-method
+        .row.no-padding
+          .col-xs-3
+            = image_tag 'email_icon.png'
+          .col-xs-9
+            %p= link_to 'myconcierge@mydomino.com', "mailto:myconcierge@mydomino.com"
+  .team.overlay
+    .container
+      .row
+        .col-xs-12
+          .container
+            %h2 We’re not salespeople, we’re energy wonks. We’re obsessed with clean energy actions that don’t compromise your lifestyle and put more cash back in your pocket.
+            %div{style: "text-align:center;"}
+              = link_to getstarted_path(anchor: 'reserve') do
+                %button.btn.large
+                  GET STARTED

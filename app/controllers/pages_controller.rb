@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  caches_page :about
+  caches_page :about, :terms, :index, :privacy
 
   def index
     @lead = Lead.new
