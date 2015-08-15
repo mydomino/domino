@@ -25,8 +25,5 @@ module Domino
     
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
-    # Enable page caching
-    config.action_controller.page_cache_directory = Rails.public_path
   end
 end

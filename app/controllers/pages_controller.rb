@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  caches_page :about, :terms, :index, :privacy
+  caches_action :index, :about, :terms, :privacy
 
   def index
     @lead = Lead.new
@@ -15,12 +15,6 @@ class PagesController < ApplicationController
 
   def privacy
 
-  end
-
-  def signup
-    @lead = FormSubmission.new(signup_params)
-    @lead.save
-    render :signup
   end
 
 end
