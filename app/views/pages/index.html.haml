@@ -3,9 +3,13 @@
     .row
       .col-xs-12.col-med-6
         %h1.title.bespoke-dynamic
-          You can save money by switching to clean energy now. Let Domino be your guide. 
+          Ready for cool savings with clean energy?
+          %br
+          Let Domino be your guide.  
         %h3.title
-          We make it easy for you to take meaningful actions for a clean energy future -- from solar panels to smart thermostats and everything in between. 
+          From solar panels to smart thermostats and everything in between, 
+          %br
+          we’ve done the research and lined up deals so you don’t have to.
         = link_to getstarted_path do
           %button.btn.large
             GET STARTED
@@ -13,23 +17,24 @@
   .container
     .row
       .col-xs-12
-        %h1.text-center You want to switch to clean energy. But where do you start?
-        %br
-        We’ll do the work. You’ll do the saving.
+        %h1.text-center We’ll do the work. You’ll do the saving.
+        %h3.text-center All you have to do is:
         .row.steps
           .col-xs-12.step
-            = embedded_svg "Circle1.svg", class: 'pull-left'
-            %h3 MAKE AN APPOINTMENT TO TALK
-
-            %p You’ll get a personal energy concierge who will chat with you to see what makes sense for your home, family, and lifestyle.
+            .step-icon.text-center
+              = embedded_svg "Circle1.svg"
+            %h3 Connect with us
+            %p You’ll talk to a friendly and knowledgable energy concierge, who will help determine what makes sense for your home, family, and lifestyle. 
           .col-xs-12.step
-            = embedded_svg "Circle2.svg", class: 'pull-left'
-            %h3 RELAX WHILE WE FIND SAVINGS
-            %p There are 100s of ways to save energy and money. Wading through it all is a hassle. We do the research and line up deals so you don’t have to.
+            .step-icon.text-center
+              = embedded_svg "Circle2.svg"
+            %h3 Relax while we find savings
+            %p There are 100s of ways to save energy and money, but wading through it all is a hassle. Your concierge will put together a home energy plan with specific actions tailored for your family.
           .col-xs-12.step
-            = embedded_svg "Circle3.svg", class: 'pull-left'
-            %h3 LET US GUIDE YOU
-            %p From recommending specific energy-saving actions tailored to you, to connecting you with trustworthy partners to get it all done - we’re with you all the way.
+            .step-icon.text-center
+              = embedded_svg "Circle3.svg"
+            %h3 Count on us to get it done
+            %p From recommending trustworthy products to getting you competitive quotes from reputable partners - we're with you all the way to get it done. 
         .row
           .col-xs-12.text-center
             %h3 More cash. Less carbon. Small actions. Epic effect.
@@ -50,20 +55,20 @@
             .col-xs-4
               = embedded_svg 'no-pressure.svg', class: 'full-width'
             .col-xs-8
-              %h3 We listen to you
+              %h3 We listen
               %p There’s no family like yours. We take into account your unique home and lifestyle to help you find the actions that are right for you.
           .row
             .col-xs-4
               = embedded_svg 'on-your-side.svg', class: 'full-width'
             .col-xs-8
               %h3 We’re on your side
-              %p Our concierges are advisors, not salespeople on commission. They love being your partner and will not pressure you to take a specific action. If something doesn’t work for you, they’ll tell you.            
+              %p Our concierges are advisors, not salespeople on commission. They love being your partner and will not pressure you to take a specific action. If something doesn’t work for you, they’ll tell you.           
           .row
             .col-xs-4
               = embedded_svg 'free.svg', class: 'full-width'
             .col-xs-8
               %h3 We’re free
-              %p Domino’s concierge service is 100% free for homeowners in the U.S. We’ve vetted the companies we partner with, and we get a referral fee from the ones you choose to work with. Everyone wins.
+              %p Domino’s concierge service is 100% free for consumers. We get a referral fee from the companies you choose to work with. Everyone wins.
 .testimonials
   #testimonials-carousel.carousel.slide{data: {ride: 'carousel'}}
     %ol.carousel-indicators
