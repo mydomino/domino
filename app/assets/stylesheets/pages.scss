@@ -10,6 +10,10 @@ $viewport-height: calc(100vh - #{$nav-height});
   background-size: cover;
   position: relative;
   display: flex;
+  &.alternate-background
+  {
+    background-image: url(bike.png);
+  }
   .content {
     margin: auto;
     text-align: center;
