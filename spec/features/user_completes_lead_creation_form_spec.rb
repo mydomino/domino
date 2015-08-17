@@ -9,7 +9,7 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
     visit getstarted_path
 
     fill_in "lead_first_name", with: Faker::Name.first_name
-    #fill_in "lead_last_name", with: Faker::Name.last_name
+    fill_in "lead_last_name", with: Faker::Name.last_name
     fill_in "lead_email", with: Faker::Internet.email
     fill_in "lead_phone", with: Faker::PhoneNumber.phone_number
     find('form input[type="submit"]').click 
