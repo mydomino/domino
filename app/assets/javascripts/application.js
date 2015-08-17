@@ -15,7 +15,7 @@
 //= require bootstrap
 //= require typeahead.bundle
 //= require snippets
-//= require bespoke
+//= require dynamic
 //= require analytics
 //= require navbar
 //= require signup
