@@ -38,13 +38,7 @@ describe Lead, type: :model do
   end
 
   it 'saves itself to Zoho upon creation' do
-
-    zoho_lead = spy('zoho_lead')
-    allow(RubyZoho::Crm::Lead).to receive(:new).and_return(zoho_lead)
-
-    lead = FactoryGirl.create(:lead)
-
-    expect(zoho_lead).to have_received(:save)
+    expect { FactoryGirl.create(:lead) }.to enqueue_a(SaveToZohoJob)
   end
 
   it 'send an email to the correct address' do
