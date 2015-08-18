@@ -206,6 +206,9 @@ GEM
     roxml (3.3.1)
       activesupport (>= 2.3.0)
       nokogiri (>= 1.3.3)
+    rspec-activejob (0.4.1)
+      activejob (>= 4.2)
+      rspec-mocks
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -326,6 +329,7 @@ DEPENDENCIES
   rack_session_access
   rails (= 4.2.3)
   rails_12factor
+  rspec-activejob
   rspec-rails
   rubyzoho
   sass-rails (~> 5.0)
