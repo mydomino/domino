@@ -23,6 +23,7 @@ gem 'sitemap_generator'
 gem 'intercom-rails'
 gem 'airbrake'
 gem 'newrelic_rpm'
+gem 'delayed_job_active_record'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 
 gem 'unicorn'
