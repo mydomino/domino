@@ -1,7 +1,6 @@
 require 'rails_helper'
 require 'rack_session_access/capybara'
-require 'helpers/zoho_mock'
-require 'faker'
+
 WebMock.disable_net_connect!(:allow => "127.0.0.1")
 
 RSpec.feature "User completes lead creation form", :type => :feature, :js => true do

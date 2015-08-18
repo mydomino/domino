@@ -1,12 +1,14 @@
 class Lead < ActiveRecord::Base
-  after_create :deliver_thank_you_email, :save_to_zoho, :geocode
+  geocoded_by :ip
+  reverse_geocoded_by :latitude, :longitude, :city => :city
+  after_create :queue_geocode, :deliver_thank_you_email, :save_to_zoho
   validates :last_name, presence: true
   #Commenting out the 'either phone or email logic'
   #validates :phone, presence: true, unless: Proc.new { |lead| lead.email.present? }
   validates :email, presence: true#, unless: Proc.new { |lead| lead.phone.present? }
 
   def geocoded?
-    city.present? || state.present? || zip_code.present?
+    address.present? || city.present? || state.present? || zip_code.present?
   end
 
   private
@@ -16,7 +18,7 @@ class Lead < ActiveRecord::Base
     SaveToZohoJob.perform_later self
   end 
 
-  def geocode
+  def queue_geocode
     LeadGeocoderJob.perform_later self
   end
 

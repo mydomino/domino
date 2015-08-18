@@ -51,6 +51,5 @@ describe Lead, type: :model do
 
   it 'geocodes its ip upon creation' do 
     expect { subject }.to enqueue_a(LeadGeocoderJob)
-    expect(subject).to be_geocoded
   end
 end
