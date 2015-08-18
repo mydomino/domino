@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   get '/blog' => redirect("/blog/")
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
 end

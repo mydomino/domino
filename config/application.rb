@@ -20,6 +20,9 @@ module Domino
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    #Yay DelayedJob!
+    config.active_job.queue_adapter = :delayed_job
+
     #CORS Font stuff
     config.font_assets.origin = '*'
     
