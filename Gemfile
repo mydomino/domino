@@ -27,25 +27,27 @@ gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'workless'
+gem 'geocoder'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 
 gem 'unicorn'
 
 group :development, :test do
+  gem 'simplecov'
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'rack-mini-profiler'
   gem 'rspec-rails'
   gem 'rspec-activejob'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
 
 group :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'rack_session_access'
   gem 'webmock'
 end
