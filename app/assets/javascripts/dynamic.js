@@ -22,5 +22,7 @@ var QueryString = function () {
 }();
 
 $(document).ready(function(){
-  $('.dynamic').text(QueryString.dynamic);
+  var dynamic_text = QueryString.dynamic;
+  var dynamic_with_spaces = dynamic_text.replace(/\+/g, ' ');
+  $('.dynamic').text(dynamic_with_spaces);
 });
