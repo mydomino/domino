@@ -9,6 +9,7 @@ describe SaveToZohoJob do
 
     SaveToZohoJob.perform_now(lead)
     expect(zoho_lead).to have_received(:save)
+    expect(lead).to be_saved_to_zoho
   end
 
 end

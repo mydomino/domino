@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'terms' => 'pages#terms'
   get 'privacy' => 'pages#privacy'
 
-  resources :leads, only: [:create, :new]
+  resources :leads, only: [:create, :new, :index]
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'
 

@@ -1,4 +1,10 @@
 class LeadsController < ApplicationController
+  http_basic_authenticate_with name: "domino", password: "danthepenguinstud", only: :index
+
+  def index
+    @leads = Lead.all
+  end
+
   def new
     @lead = Lead.new
   end

@@ -20,5 +20,6 @@ class SaveToZohoJob < ActiveJob::Base
         browser: lead.browser
     )
     zoho_lead.save
+    lead.update_attributes(saved_to_zoho: true)
   end
 end

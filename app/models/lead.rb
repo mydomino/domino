@@ -6,10 +6,7 @@ class Lead < ActiveRecord::Base
   #Commenting out the 'either phone or email logic'
   #validates :phone, presence: true, unless: Proc.new { |lead| lead.email.present? }
   validates :email, presence: true#, unless: Proc.new { |lead| lead.phone.present? }
-
-  def geocoded?
-    address.present? || city.present? || state.present? || zip_code.present?
-  end
+  default_scope { order('created_at DESC') }
 
   private
 
