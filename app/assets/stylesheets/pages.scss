@@ -182,6 +182,11 @@ $viewport-height: calc(100vh - #{$nav-height});
   background-size: cover;
   position: relative;
   display: flex;
+  .overlay
+  {
+    display: flex;
+    min-height: 100vh;
+  }
   .content {
     margin: auto;
     text-align: center;
