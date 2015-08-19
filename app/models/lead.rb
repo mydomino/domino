@@ -11,9 +11,8 @@ class Lead < ActiveRecord::Base
   private
 
   def save_to_zoho
-    return false if invalid?
     SaveToZohoJob.perform_later self
-  end 
+  end
 
   def queue_geocode
     LeadGeocoderJob.perform_later self
