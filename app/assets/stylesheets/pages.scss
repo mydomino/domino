@@ -174,7 +174,7 @@ $viewport-height: calc(100vh - #{$nav-height});
 }
 .concierge.hero {
   padding-top: 100px;
-  height: 100vh;
+  height: auto;
   min-height: 600px;
   background-image: url(form-hero.jpg);
   background-repeat: no-repeat;
@@ -185,7 +185,8 @@ $viewport-height: calc(100vh - #{$nav-height});
   .overlay
   {
     display: flex;
-    min-height: 100vh;
+    min-height: 600px;
+    height: 75vh;
   }
   .content {
     margin: auto;
