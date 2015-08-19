@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require typeahead.bundle
 //= require snippets
 //= require dynamic
 //= require analytics
