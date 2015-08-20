@@ -59,7 +59,8 @@ $nav-height: 100px;
 {
   background-color: $white;
   color: $blue;
-
+  height: auto;
+  padding-top: 0px;
   ul.navbar-nav li a
   {
     &:hover

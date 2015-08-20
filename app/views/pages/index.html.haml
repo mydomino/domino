@@ -14,6 +14,12 @@
           = link_to getstarted_path do
             %button.btn.large
               GET STARTED
+          .learn-more{style: "padding-top:40px;"}
+            =link_to anchor: 'how-it-works' do
+              How it Works
+            %br
+            =link_to anchor: 'how-it-works' do
+              .glyphicon.glyphicon-chevron-down
 #energy-guide.intro.alternate-background{style: 'display: none;'}
   .overlay
     .content.container
@@ -28,7 +34,7 @@
           = link_to getstarted_path do
             %button.btn.large
               Get Started
-.how
+.how#how-it-works
   .container
     .row
       .col-xs-12
