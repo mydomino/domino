@@ -13,10 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require snippets
-//= require dynamic
+//= require navbar
 //= require nprogress
 //= require nprogress-ajax
-//= require analytics
-//= require navbar
+//= require dynamic
 //= require signup
