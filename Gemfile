@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rack-mini-profiler'
   gem 'rspec-rails'
   gem 'rspec-activejob'
+  gem 'teaspoon-jasmine'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
