@@ -15,6 +15,8 @@
 //= require bootstrap
 //= require snippets
 //= require dynamic
+//= require nprogress
+//= require nprogress-ajax
 //= require analytics
 //= require navbar
 //= require signup

@@ -29,6 +29,7 @@ gem 'delayed_job_web'
 gem 'workless'
 gem 'geocoder'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
+gem 'nprogress-rails'
 
 gem 'unicorn'
 

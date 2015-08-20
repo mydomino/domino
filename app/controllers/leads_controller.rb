@@ -10,6 +10,7 @@ class LeadsController < ApplicationController
   end
 
   def create
+    sleep(1)
     set_tracking_variables
     @lead = Lead.create(lead_params)
     @lead.last_name = "Not Given" if(@lead.last_name == '') 
