@@ -1,6 +1,12 @@
 class Lead < ActiveRecord::Base
-  geocoded_by :ip
-  reverse_geocoded_by :latitude, :longitude, :city => :city
+  geocoded_by :ip, :lookup => :telize
+  reverse_geocoded_by :latitude, :longitude do |obj,results|
+  if geo = results.first
+    obj.city = geo.city
+    obj.zip_code = geo.postal_code
+    obj.state = geo.state
+  end
+end
   after_create :queue_geocode, :deliver_thank_you_email, :save_to_zoho
   validates :last_name, presence: true
   #Commenting out the 'either phone or email logic'

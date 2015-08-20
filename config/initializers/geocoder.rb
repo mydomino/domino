@@ -1,7 +1,9 @@
 Geocoder.configure(
   # geocoding options
-  # :timeout      => 3,           # geocoding service timeout (secs)
-  :lookup       => :geocoder_ca,     # name of geocoding service (symbol)
+  :timeout      => 5,           # geocoding service timeout (secs)
+  :ip_lookup    => :freegeoip,
+  :lookup       => :mapquest,      # name of geocoding service (symbol)
+  :mapquest     => {api_key: '8LrAyCQQ3qT2So1Uw9ennoRjzE1GDaQj'}
   # :language     => :en,         # ISO-639 language code
   # :use_https    => false,       # use HTTPS for lookup requests? (if supported)
   # :http_proxy   => nil,         # HTTP proxy server (user:pass@host:port)
