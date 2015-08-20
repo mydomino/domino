@@ -1,6 +1,6 @@
 Geocoder.configure(
   # geocoding options
-  :timeout      => 5,           # geocoding service timeout (secs)
+  :timeout      => 30,           # geocoding service timeout (secs)
   :ip_lookup    => :freegeoip,
   :lookup       => :mapquest,      # name of geocoding service (symbol)
   :mapquest     => {api_key: '8LrAyCQQ3qT2So1Uw9ennoRjzE1GDaQj'}
