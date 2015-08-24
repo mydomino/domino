@@ -4,6 +4,7 @@ describe "Signup Tracker", ->
     window.ga = jasmine.createSpy("ga")
     window._fbq = jasmine.createSpyObj("fb", ["push"])
     window.heap = jasmine.createSpyObj("heap", ["track"])
+    window.goog_report_conversion = jasmine.createSpy("goog_report_conversion")
 
     return
 
@@ -15,5 +16,6 @@ describe "Signup Tracker", ->
     track_lead_creation()
 
     expect(ga).toHaveBeenCalled()
+    expect(goog_report_conversion).toHaveBeenCalled()
     expect(_fbq.push).toHaveBeenCalled()
     expect(heap.track).toHaveBeenCalled()
