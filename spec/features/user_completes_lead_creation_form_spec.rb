@@ -35,3 +35,12 @@ RSpec.feature "utm_campaign is properly captured", :type => :feature do
     expect(page.get_rack_session_key('campaign')).to eq('my_campaign')
   end
 end
+RSpec.feature "gclid is captured as adwords", :type => :feature do
+  scenario "with a gclid set" do
+    visit '/?gclid=l3421j32kl4j3214oij324'
+    
+    visit getstarted_path
+    
+    expect(page.get_rack_session_key('campaign')).to eq('adwords')
+  end
+end
