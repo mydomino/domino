@@ -5,6 +5,7 @@ function track_lead_creation()
   heap.track('lead creation', {});
   window['optimizely'] = window['optimizely'] || [];
   window['optimizely'].push(["trackEvent", "leadCreated"]);
+  goog_report_conversion();
 }
 function animate_form_success()
 {
