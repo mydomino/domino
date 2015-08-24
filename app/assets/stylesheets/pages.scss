@@ -30,15 +30,17 @@ $viewport-height: calc(100vh - #{$nav-height});
   h1 {margin-bottom: 50px;}
 
   .steps {
-    svg {
-      circle
-      {
-        fill: $blue;
-      }
-      width: 58px;
-      height: 58px;
-      margin: 10px;
-      font-family: 'ProximaNovaA' !important;
+    .icon
+    {
+      width: 75px;
+      margin: auto;
+      background-color: #02CCFF;
+      color: white;
+      height: 75px;
+      font-size: 50px;
+      border-radius: 50%;
+      font-weight: bold;
+      padding-top: 10px; 
     }
   }
 }
