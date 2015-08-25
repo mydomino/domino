@@ -39,13 +39,15 @@
             = image_tag 'email_icon.png'
           .col-xs-9
             %p= link_to 'myconcierge@mydomino.com', "mailto:myconcierge@mydomino.com"
-  .team.overlay
-    .container
-      .row
-        .col-xs-12
-          .container
-            %h2 We’re not salespeople, we’re energy wonks. We’re obsessed with clean energy actions that don’t compromise your lifestyle and put more cash back in your pocket.
-            %div{style: "text-align:center;"}
-              = link_to getstarted_path(anchor: 'reserve') do
-                %button.btn.large
-                  GET STARTED
+.team
+  .overlay
+    .content
+      .container
+        .row
+          .col-xs-12
+            .container
+              %h2 We’re not salespeople, we’re energy wonks. We’re obsessed with clean energy actions that don’t compromise your lifestyle and put more cash back in your pocket.
+              %div{style: "text-align:center;"}
+                = link_to getstarted_path(anchor: 'reserve') do
+                  %button.btn.large
+                    GET STARTED
