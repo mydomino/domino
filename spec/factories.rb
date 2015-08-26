@@ -10,6 +10,8 @@ FactoryGirl.define do
   end
   
   factory :recommendation
-  factory :amazon_product
+  factory :amazon_product do 
+    product_id 'B009GDHYPQ'
+  end
 
 end

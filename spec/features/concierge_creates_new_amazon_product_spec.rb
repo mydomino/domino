@@ -2,7 +2,7 @@ require 'rails_helper'
 
 
 RSpec.feature "Concierge creates a new product", :type => :feature do
-  let(:product_id) { 'B009GDHYPQ' }
+  let(:product_id) { 'B009GDHYPQ' }  #Nest Thermostat ID
 
   scenario "by inputting the item's Amazon ID" do
 
