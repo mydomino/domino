@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'solar' => 'pages#solar'
 
   resources :leads, only: [:create, :new, :index]
+  resources :recommendations, only: [:new]
+
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'
 

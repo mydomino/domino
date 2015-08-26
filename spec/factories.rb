@@ -8,4 +8,8 @@ FactoryGirl.define do
     start_time Time.now
     ip Faker::Internet.ip_v4_address
   end
+
+  factory :recommendation do
+
+  end
 end
