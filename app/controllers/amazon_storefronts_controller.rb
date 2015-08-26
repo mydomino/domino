@@ -1,0 +1,3 @@
+class AmazonStorefrontsController < ApplicationController
+  
+end
