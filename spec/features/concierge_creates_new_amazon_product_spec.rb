@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 
-RSpec.feature "Concierge creates a new product", :type => :feature do
+RSpec.feature "Concierge creates a new product", :type => :feature, 
+focus: true do
   let(:product_id) { 'B009GDHYPQ' }  #Nest Thermostat ID
 
   scenario "by inputting the item's Amazon ID" do
@@ -11,5 +12,6 @@ RSpec.feature "Concierge creates a new product", :type => :feature do
     click_on "Create"
 
     expect(page).to have_content(product_id)
+    expect(page).to have_content(AmazonProduct.first.name)
   end
 end

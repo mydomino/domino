@@ -1,8 +1,4 @@
-=form_for @amazon_storefront do |form|
-  =form.label :lead_name, "Lead's Name"
-  =form.text_field :lead_name
-  -@amazon_products.each do |product|
-    =label_tag do
-      =check_box_tag "amazon_storefront[recommendation_ids][]", product.id
-      =product.id
-  
+.container
+  .row
+    .col-xs-12
+      =render 'form'

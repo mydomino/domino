@@ -1,11 +1,14 @@
 .container
   .row
-    .col-xs-12
+    .col-xs-8.col-xs-offset-2.text-center
       -@amazon_products.each do |product|
         %h2
+          =product.name
+        %h3
           =time_ago_in_words product.created_at
           ago
         =image_tag product.image_url
         %pre
           Url:
           =product.url
+        %hr

@@ -1,0 +1,5 @@
+=simple_form_for @amazon_storefront do |form|
+  =form.label :lead_name, "Lead's Name"
+  =form.text_field :lead_name
+  =form.association :amazon_products, collection: @amazon_products, as: :check_boxes
+  =form.submit "Create"

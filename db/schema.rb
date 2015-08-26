@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826220739) do
+ActiveRecord::Schema.define(version: 20150826225836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150826220739) do
     t.datetime "updated_at",  null: false
     t.string   "price"
     t.string   "xml"
+    t.string   "name"
   end
 
   create_table "amazon_storefronts", force: :cascade do |t|
@@ -82,11 +83,10 @@ ActiveRecord::Schema.define(version: 20150826220739) do
   end
 
   create_table "recommendations", force: :cascade do |t|
-    t.integer "recommendable_id"
-    t.string  "recommendable_type"
     t.integer "user_id"
     t.integer "concierge_id"
     t.integer "amazon_storefront_id"
+    t.integer "amazon_product_id"
   end
 
   create_table "snippets", force: :cascade do |t|
