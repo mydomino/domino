@@ -8,6 +8,9 @@ describe AmazonProduct, type: :model do
     expect(subject).to be_valid
   end
 
-  it 'does some stuff'
+  it 'gets its name, URL, image and price from the Amazon API after create'
+
+  it 'schedules a call to the Amazon API after create'
+
 
 end
