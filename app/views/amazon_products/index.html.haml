@@ -1,1 +1,8 @@
-=@amazon_products.inspect
+-@amazon_products.each do |product|
+  %h2
+    =time_ago_in_words product.created_at
+    ago
+  =image_tag product.image_url
+  %pre
+    Url:
+    =product.url

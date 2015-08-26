@@ -9,6 +9,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'helpers/zoho_mock'
 require 'helpers/geocoder_mock'
+require 'helpers/amazon_mock'
 require 'faker'
 
 # Add additional requires below this line. Rails is not loaded until this point!
