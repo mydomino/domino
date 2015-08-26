@@ -30,6 +30,7 @@ gem 'workless'
 gem 'geocoder'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'nprogress-rails'
+gem 'vacuum'
 
 gem 'unicorn'
 
