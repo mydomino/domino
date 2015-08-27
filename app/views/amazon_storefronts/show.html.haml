@@ -20,17 +20,6 @@
           .col-xs-12
             .row
               -@amazon_storefront.amazon_products.each do |product|
-                .col-xs-12.col-sm-4.col-md-3
-                  .amazon_picture
-                    =image_tag product.image_url
-                  =link_to product.name, product.url, target: '_blank'
-:javascript
-  $(document).ready(function(){
-    var maxHeight = 0;
+                =render product
 
-    $("div.amazon_picture img").each(function(){
-       if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
-    });
 
-    $("div.amazon_picture").height(maxHeight);
-  });

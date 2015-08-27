@@ -80,6 +80,14 @@ h1, h2, h3, h4, h5, h6
 {
   color: #00CCFF;
 }
+.bold
+{
+  font-weight: bold;
+}
+.uppercase
+{
+  text-transform: uppercase;
+}
 .container {
   width: 1000px;
   max-width: 95%;
@@ -202,12 +210,8 @@ img
   @include border-radius;
   padding: 60px;
   background-color: #F9F9F9;
-  h1, h2, h3, a
+  h1, h2, h3, h4, h5, a
   {
     color: #5F5F5F;
-  }
-  h2.bold
-  {
-    font-weight: bold;
   }
 }

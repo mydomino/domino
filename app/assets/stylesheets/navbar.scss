@@ -18,7 +18,8 @@ $nav-height: 100px;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 0px; 
+  z-index: 1000;
   svg g
   {
     fill: $blue;
@@ -44,7 +45,6 @@ $nav-height: 100px;
   &.navbar-overlay
   {
     background-color: rgba(48, 48, 48, 0.65);
-    z-index: 1000;
     position: absolute;
     svg g
     {

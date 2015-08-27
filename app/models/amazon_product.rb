@@ -19,8 +19,7 @@ class AmazonProduct < ActiveRecord::Base
     self.name = parsed_response.at_css("Title").content
     self.url = parsed_response.at_css("DetailPageURL").content
     self.image_url = parsed_response.at_css("LargeImage URL").content
-
-    #self.price = parsed_response.at_css("DetailPageURL").content
+    self.price = parsed_response.at_css("Price FormattedPrice").content
     self.save
   end
 end
