@@ -2,24 +2,26 @@
   .amazon_product{data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
     .amazon_picture
       =image_tag amazon_product.image_url
-    =link_to amazon_product.name, amazon_product.url, target: '_blank'
+    =amazon_product.name
+    =link_to '', amazon_product.url, target: '_blank', class: 'pull-right glyphicon glyphicon-new-window'
 .modal.fade{id: "product-#{amazon_product.id}"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        .row
-          .col-xs-12.col-sm-6
-            =image_tag amazon_product.image_url
-          .col-xs-12.col-sm-6
-            %h3
-              =amazon_product.name
-            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            =link_to amazon_product.price, amazon_product.url, class: "btn blue", target: "_blank"
-        %hr
-        .row
-          .col-xs-12
-            %h5.uppercase.bold How This Helps
-            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .container
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          .row
+            .col-xs-12.col-sm-6
+              =image_tag amazon_product.image_url
+            .col-xs-12.col-sm-6
+              %h3
+                =amazon_product.name
+              %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              =link_to amazon_product.price, amazon_product.url, class: "btn blue", target: "_blank"
+          %hr
+          .row
+            .col-xs-12
+              %h5.uppercase.bold How This Helps
+              %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
