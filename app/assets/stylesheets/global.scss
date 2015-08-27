@@ -76,6 +76,10 @@ h1, h2, h3, h4, h5, h6
 .uppercase
 {
   text-transform: uppercase;
+.gray
+{
+  background-color: #F9F9F9;
+}
 .blue-text
 {
   color: #00CCFF;
@@ -205,11 +209,11 @@ img
 {
   font-size: 2rem;
 }
-.panel.gray
+.panel.gray, .store.panel
 {
   @include border-radius;
   padding: 60px;
-  background-color: #F9F9F9;
+  background-color: #FFFFFF;
   h1, h2, h3, h4, h5, a
   {
     color: #5F5F5F;

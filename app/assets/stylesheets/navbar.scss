@@ -20,6 +20,10 @@ $nav-height: 100px;
   padding-top: 10px;
   margin-bottom: 0px; 
   z-index: 1000;
+  &.gray
+  {
+    background-color: #F9F9F9;
+  }
   svg g
   {
     fill: $blue;
