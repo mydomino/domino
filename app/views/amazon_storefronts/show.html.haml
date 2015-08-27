@@ -12,10 +12,12 @@
               =image_tag product.image_url
             =product.name
 :javascript
-  var maxHeight = 0;
+  $(document).ready(function(){
+    var maxHeight = 0;
 
-  $("div.amazon_picture img").each(function(){
-     if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
+    $("div.amazon_picture img").each(function(){
+       if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
+    });
+
+    $("div.amazon_picture").height(maxHeight);
   });
-
-  $("div.amazon_picture").height(maxHeight);
