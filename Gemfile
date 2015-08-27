@@ -32,6 +32,7 @@ gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'nprogress-rails'
 gem 'vacuum'
 gem 'simple_form'
+gem 'stringex'
 
 gem 'unicorn'
 

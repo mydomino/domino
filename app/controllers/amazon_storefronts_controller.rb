@@ -20,7 +20,7 @@ class AmazonStorefrontsController < ApplicationController
   end
 
   def show
-    @amazon_storefront = AmazonStorefront.find(params[:id])
+    @amazon_storefront = AmazonStorefront.find_by_url(params[:id])
   end
 
   private

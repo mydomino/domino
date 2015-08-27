@@ -76,11 +76,19 @@ h1, h2, h3, h4, h5, h6
 .uppercase
 {
   text-transform: uppercase;
+.blue-text
+{
+  color: #00CCFF;
 }
 .container {
   width: 1000px;
   max-width: 95%;
   padding: 0px;
+}
+.amazon_picture, .amazon_picture img
+{
+  background-color: $white;
+  max-height: 225px;
 }
 img
 {
@@ -188,4 +196,18 @@ img
 .glyphicon.large
 {
   font-size: 2rem;
+}
+.panel.gray
+{
+  @include border-radius;
+  padding: 60px;
+  background-color: #F9F9F9;
+  h1, h2, h3, a
+  {
+    color: #5F5F5F;
+  }
+  h2.bold
+  {
+    font-weight: bold;
+  }
 }

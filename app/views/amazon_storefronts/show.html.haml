@@ -1,22 +1,29 @@
 .container
   .row
     .col-xs-12.col-md-8.col-md-offset-2
-      %h2.bold
-        Hi, 
-        =@amazon_storefront.lead_name
-  .row
-    .col-xs-12.col-md-8.col-md-offset-2
-      .panel
-        %h2
-          ="#{@amazon_storefront.concierge.name}'s Recommendations"
-  .row
-    .col-xs-12.col-md-8.col-md-offset-2
-      .row
-        -@amazon_storefront.amazon_products.each do |product|
-          .col-xs-12.col-sm-6.col-md-4
-            .amazon_picture
-              =image_tag product.image_url
-            =link_to product.name, product.url, target: '_blank'
+      .panel.gray
+        %h2.bold
+          Hi, 
+          =@amazon_storefront.lead_name
+        .row
+          .col-xs-12
+            %h3
+              Our team of nerds loves to test and research green technologies.
+            %p
+              These
+              %strong.blue-text
+                hand-picked product recommendations
+              will help you save energy and money.
+              =#"#{@amazon_storefront.concierge.name}'s Recommendations"
+        %hr
+        .row
+          .col-xs-12
+            .row
+              -@amazon_storefront.amazon_products.each do |product|
+                .col-xs-12.col-sm-4.col-md-3
+                  .amazon_picture
+                    =image_tag product.image_url
+                  =link_to product.name, product.url, target: '_blank'
 :javascript
   $(document).ready(function(){
     var maxHeight = 0;

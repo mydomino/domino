@@ -7,16 +7,23 @@
 $nav-height: 100px;
 
 .navbar {
-  background-color: rgba(48, 48, 48, 0.65);
+  background-color: $white;
   border-radius: 0px;
   height: $nav-height;
-  padding-top: 12px;
   border-width: 0;
-  position: absolute;
   width: 100%;
   z-index: 1000;
 
   &.logo-only
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  margin-bottom: 0px;
+  svg g
+  {
+    fill: $blue;
+  }
+  .navbar-header
   {
      .nav
      {
@@ -34,6 +41,16 @@ $nav-height: 100px;
     background-color: rgba(48, 48, 48, 0.65);
   }
 
+  &.navbar-overlay
+  {
+    background-color: rgba(48, 48, 48, 0.65);
+    z-index: 1000;
+    position: absolute;
+    svg g
+    {
+      fill: $white;
+    }
+  }      
   li:not(.button)
   {
     a
@@ -49,12 +66,7 @@ $nav-height: 100px;
       }
       color: #FFF;
     }
-
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 10px;
   }
-
   &.fixed
   {
     position: fixed;
