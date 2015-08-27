@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Concierge adds a new storefront", :type => :feature, focus: true do
+RSpec.feature "Concierge adds a new storefront", :type => :feature do
   let(:full_name) { Faker::Name.name }
   scenario "by selecting products from a dropdown list" do
     amazon_product = FactoryGirl.create(:amazon_product)

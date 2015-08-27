@@ -54,7 +54,7 @@ RSpec.configure do |config|
   # get run.
 =end
   config.filter_run :focus
-#  config.run_all_when_everything_filtered = true
+  config.run_all_when_everything_filtered = true
 =begin
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options. We recommend

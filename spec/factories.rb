@@ -13,5 +13,8 @@ FactoryGirl.define do
   factory :amazon_product do 
     product_id 'B009GDHYPQ'
   end
+  factory :amazon_storefront do
+    lead_name Faker::Name.name
+  end
 
 end
