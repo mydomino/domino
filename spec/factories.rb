@@ -10,6 +10,11 @@ FactoryGirl.define do
   end
   
   factory :recommendation
+
+  factory :concierge do
+    name Faker::Name.name
+  end
+
   factory :amazon_product do 
     product_id 'B009GDHYPQ'
   end

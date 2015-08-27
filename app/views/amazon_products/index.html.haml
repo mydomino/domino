@@ -1,14 +1,8 @@
 .container
   .row
-    .col-xs-8.col-xs-offset-2.text-center
-      -@amazon_products.each do |product|
-        %h2
-          =product.name
-        %h3
-          =time_ago_in_words product.created_at
-          ago
-        =image_tag product.image_url
-        %pre
-          Url:
-          =product.url
-        %hr
+    .col-xs-12.text-center
+      %h2 Product Library
+      %table.table
+        -@amazon_products.each do |product|
+          =render 'product_row', product: product
+      =link_to "Add New", new_amazon_product_path, class: 'btn btn-default right'

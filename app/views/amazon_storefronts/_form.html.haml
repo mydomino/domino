@@ -2,4 +2,5 @@
   =form.label :lead_name, "Lead's Name"
   =form.text_field :lead_name
   =form.association :amazon_products, collection: @amazon_products, as: :check_boxes
-  =form.submit "Create"
+  =form.association :concierge, collection: @concierges, as: :select
+  =form.submit "Create", class: 'btn btn-default'

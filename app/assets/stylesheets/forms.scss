@@ -24,6 +24,12 @@ form
   {
     cursor: not-allowed;
   }
+  .checkbox
+  {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
   button[type="submit"], .btn[type="submit"]
   {
     font-size: 2rem;

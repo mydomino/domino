@@ -4,6 +4,7 @@ class AmazonStorefrontsController < ApplicationController
   def new
     @amazon_storefront = AmazonStorefront.new
     @amazon_products = AmazonProduct.all
+    @concierges = Concierge.all
   end
 
   def create
@@ -25,7 +26,7 @@ class AmazonStorefrontsController < ApplicationController
   private
 
   def amazon_storefront_params
-    params.require(:amazon_storefront).permit(:lead_name, :recommendations_attributes => [:amazon_product_id])
+    params.require(:amazon_storefront).permit(:lead_name, :concierge_id, :recommendations_attributes => [:amazon_product_id])
   end
 
 end

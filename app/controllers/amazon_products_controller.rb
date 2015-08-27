@@ -14,6 +14,10 @@ class AmazonProductsController < ApplicationController
     end
   end
 
+  def edit
+    @amazon_product = AmazonProduct.find(params[:id])
+  end
+
   def index
     @amazon_products = AmazonProduct.all
   end

@@ -1,8 +1,14 @@
 .container
   .row
-    .col-xs-12
-      %h1
+    .col-xs-12.col-md-8.col-md-offset-2
+      %h2.bold
+        Hi, 
         =@amazon_storefront.lead_name
+  .row
+    .col-xs-12.col-md-8.col-md-offset-2
+      .panel
+        %h2
+          ="#{@amazon_storefront.concierge.name}'s Recommendations"
   .row
     .col-xs-12.col-md-8.col-md-offset-2
       .row
@@ -10,7 +16,7 @@
           .col-xs-12.col-sm-6.col-md-4
             .amazon_picture
               =image_tag product.image_url
-            =product.name
+            =link_to product.name, product.url, target: '_blank'
 :javascript
   $(document).ready(function(){
     var maxHeight = 0;
