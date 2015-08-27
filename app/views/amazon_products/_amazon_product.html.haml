@@ -17,8 +17,7 @@
             %h3
               =amazon_product.name
             %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            %button.btn.blue
-              =amazon_product.price
+            =link_to amazon_product.price, amazon_product.url, class: "btn blue", target: "_blank"
         %hr
         .row
           .col-xs-12
