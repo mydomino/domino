@@ -25,6 +25,6 @@ class AmazonProductsController < ApplicationController
   private
 
   def amazon_product_params
-    params.require(:amazon_product).permit(:product_id)
+    params.require(:amazon_product).permit(:product_id, :url)
   end
 end

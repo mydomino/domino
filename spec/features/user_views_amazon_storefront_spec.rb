@@ -12,7 +12,7 @@ RSpec.feature "User views storefront", :type => :feature do
     visit amazon_storefront_path storefront
 
     expect(page).to have_content storefront.lead_name
-    expect(page.find_link(product.name)).to be_present
+    expect(page).to have_css('.amazon_product', text: product.name)
   end
 
   def create_storefront

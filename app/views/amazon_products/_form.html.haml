@@ -1,4 +1,6 @@
 =simple_form_for @amazon_product do |form|
   =form.label :product_id, "Product ID"
   =form.text_field :product_id
+  =form.label :url, "Product URL"
+  =form.text_field :url
   =form.submit "Create", class: "btn btn-default"
