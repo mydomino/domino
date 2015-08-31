@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="122px" height="122px" viewBox="0 0 122 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch Beta 3.4 (15009) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 33</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Solar-web-10a" sketch:type="MSArtboardGroup" transform="translate(-775.000000, -1127.000000)">
+            <g id="We-cut-the-time-it-t-+-Clock-+-Page-1-+-compass" sketch:type="MSLayerGroup" transform="translate(688.000000, 1127.000000)">
+                <g id="compass" transform="translate(87.000000, 0.000000)">
+                    <circle id="Oval-33" stroke="#65E7CA" stroke-width="6" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="61" cy="61" r="61"></circle>
+                    <text id="N" sketch:type="MSTextLayer" font-family="Proxima Nova A" font-size="17.0000007" font-weight="420" line-spacing="16.3199997" fill="#111111">
+                        <tspan x="55.5777778" y="26.8444444">N</tspan>
+                    </text>
+                    <text id="E" sketch:type="MSTextLayer" font-family="Proxima Nova A" font-size="17.0000007" font-weight="420" line-spacing="16.3199997" fill="#111111">
+                        <tspan x="101.666667" y="70.9">E</tspan>
+                    </text>
+                    <text id="S" sketch:type="MSTextLayer" font-family="Proxima Nova A" font-size="17.0000007" font-weight="420" line-spacing="16.3199997" fill="#111111">
+                        <tspan x="56.2555556" y="116.311111">S</tspan>
+                    </text>
+                    <text id="W" sketch:type="MSTextLayer" font-family="Proxima Nova A" font-size="17.0000007" font-weight="420" line-spacing="16.3199997" fill="#111111">
+                        <tspan x="10.8444444" y="70.9">W</tspan>
+                    </text>
+                    <g id="Triangle-1-+-Triangle-1-Copy" transform="translate(61.398272, 61.480070) rotate(-322.000000) translate(-61.398272, -61.480070) translate(52.398272, 17.480070)" sketch:type="MSShapeGroup">
+                        <polygon id="Triangle-1-Copy" opacity="0.68358209" fill="#000000" transform="translate(9.133333, 65.575000) rotate(-180.000000) translate(-9.133333, -65.575000) " points="9.13333333 43.7166667 17.2666667 87.4333333 1 87.4333333 "></polygon>
+                        <polygon id="Triangle-1" fill="#EE5151" points="9.13333333 5.68434189e-14 17.2666667 43.7166667 1 43.7166667 "></polygon>
+                        <circle id="Oval-35" fill="#D8D8D8" cx="9.082054" cy="43.2393835" r="8.5"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
