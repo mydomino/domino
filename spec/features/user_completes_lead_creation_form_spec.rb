@@ -15,7 +15,8 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
 
     expect(page).to have_css('form', visible: false)
     expect(page).not_to have_css('.errors li')
-    expect(page).to have_css('.success', visible: true)
+    expect(page).to have_css('form input:disabled', visible: true)
+    expect(page).to have_css('form input[type="submit"]:disabled')
   end
   scenario "without any data" do
 
