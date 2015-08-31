@@ -21,12 +21,14 @@ $nav-height: 100px;
     padding: 0px 20px;
   }
 
-  svg
+  background-color: transparent;
+  svg g
   {
-    g
-    {
-      fill: $white;
-    }
+    fill: $white;
+  }
+  &.dark
+  {
+    background-color: rgba(48, 48, 48, 0.65);
   }
 
   li:not(.button)

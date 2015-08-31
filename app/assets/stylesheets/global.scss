@@ -1,3 +1,59 @@
+.hero
+{
+  background-size: cover;
+  background-position: center center;
+  color: #FFF;
+  padding-bottom: 75px;
+  text-shadow: 0px 1px 2px rgba(0,0,0,.3);
+  h1, h2, h3, h4, h5, h6
+  {
+    color: #FFF;
+  }
+}
+.navbar+.hero
+{
+  padding-top: 125px;
+}
+.padding
+{
+  padding: 40px 0;
+}
+.icon
+{
+  svg
+  {
+    width: 100%;
+  }
+}
+.panel
+{
+  padding: 30px;
+  color: $gray;
+}
+.transparent
+{
+  color: #FFF;
+  background-color: transparent;
+  box-shadow: none;
+  form input
+  {
+    border-color: #FFF;
+  }
+}
+.seafoam
+{
+  background-color: #58E2C2;
+  color: #FFF;
+  h1, h2, h3, h4, h5, h6
+  {
+    color: #FFF;
+  }
+  form input:not([type="submit"])
+  {
+    background-color: #DDDDDD;
+    border: 0px;
+  }
+}
 .blue
 {
   background: #00CCFF;
