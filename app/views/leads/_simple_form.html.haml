@@ -1,5 +1,5 @@
 .form-wrapper{style: 'position: relative'}
-  = form_for @lead, remote: true do |lead|
+  = form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
     .container
       .row
         .col-xs-12.col-sm-6
