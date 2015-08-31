@@ -17,4 +17,8 @@ class PagesController < ApplicationController
 
   end
 
+  def solar
+
+  end
+
 end
