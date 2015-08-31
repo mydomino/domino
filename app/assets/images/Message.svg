@@ -5,12 +5,12 @@
     <desc>Created with Sketch Beta.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Solar-web-2c" sketch:type="MSArtboardGroup" transform="translate(-128.000000, -1131.000000)">
-            <g id="Unbiased-answers-to--+-Group" sketch:type="MSLayerGroup" transform="translate(72.000000, 1131.000000)">
-                <g id="Message" transform="translate(56.000000, 0.000000)" sketch:type="MSShapeGroup">
-                    <circle id="Oval" fill="#50E3C2" cx="64" cy="64" r="64"></circle>
+        <g id="Solar-web-7a" sketch:type="MSArtboardGroup" transform="translate(-125.000000, -1131.000000)">
+            <g id="Unbiased-answers-to--+-Group" sketch:type="MSLayerGroup" transform="translate(41.000000, 1131.000000)">
+                <g id="Message" transform="translate(84.000000, 0.000000)" sketch:type="MSShapeGroup">
+                    <circle id="Oval-Copy" fill="#7F93A5" cx="64" cy="64" r="64"></circle>
                     <path d="M73.375,34.61 L23.375,34.61 C19.9235,34.61 17.125,37.408 17.125,40.86 L17.125,70.0265 C17.125,73.478 19.9235,76.277 23.375,76.277 L27.2545,76.277 L27.6855,76.277 L27.6855,84.9255 L39.1075,76.277 L73.3755,76.277 C76.8265,76.277 79.6255,73.478 79.6255,70.0265 L79.6255,40.86 C79.625,37.408 76.826,34.61 73.375,34.61 L73.375,34.61 Z" id="Shape" fill="#FFFFFF"></path>
-                    <path d="M104.625,55.3515 L54.625,55.3515 C51.1735,55.3515 48.375,58.1495 48.375,61.6015 L48.375,90.7685 C48.375,94.2195 51.1735,97.0185 54.625,97.0185 L57.427,97.0185 L68.849,105.667 L68.849,97.0185 L104.6255,97.0185 C108.0765,97.0185 110.8755,94.2195 110.8755,90.7685 L110.8755,61.6015 C110.875,58.1495 108.076,55.3515 104.625,55.3515 L104.625,55.3515 Z" id="Shape" fill="#34AD62"></path>
+                    <path d="M104.625,55.3515 L54.625,55.3515 C51.1735,55.3515 48.375,58.1495 48.375,61.6015 L48.375,90.7685 C48.375,94.2195 51.1735,97.0185 54.625,97.0185 L57.427,97.0185 L68.849,105.667 L68.849,97.0185 L104.6255,97.0185 C108.0765,97.0185 110.8755,94.2195 110.8755,90.7685 L110.8755,61.6015 C110.875,58.1495 108.076,55.3515 104.625,55.3515 L104.625,55.3515 Z" id="Shape" fill="#00CCFF"></path>
                     <circle id="Oval" fill="#FFFFFF" cx="64.7545" cy="76.2775" r="5"></circle>
                     <circle id="Oval" fill="#FFFFFF" cx="79.8405" cy="76.2775" r="5"></circle>
                     <circle id="Oval" fill="#FFFFFF" cx="94.495" cy="76.2775" r="5"></circle>
