@@ -8,7 +8,11 @@
         %h1.dynamic{style: "margin-bottom: 30px;"} What is the best solar company?
         .transparent
           =render 'leads/simple_form', button_text: "Ask an Expert", button_class: 'pull-left btn blue uppercase'
-.seafoam.padding{style: "  font-size: 1.4rem;line-height: 2.5rem;"}
+    .row
+      .col-xs-12.text-center{style: "padding-top: 40px;"}
+        =link_to anchor: 'ready-for-solar' do
+          .glyphicon.glyphicon-chevron-down.large
+#ready-for-solar.seafoam.padding{style: "  font-size: 1.4rem;line-height: 2.5rem;"}
   .container
     .row
       .col-xs-12{style: "margin-bottom: 60px;" }
@@ -16,7 +20,7 @@
   .container
     .row
       .col-xs-12.col-sm-4.text-center
-        %span.bold{style: "font-size: 50px;line-height: 40px"}
+        %span.bold{style: "font-weight: bold; font-size: 50px;line-height: 40px"}
           20%
         %br
         .caption{style: "font-size: 15px;line-height: 18px;margin-bottom:40px;letter-spacing: .09rem;"}
@@ -24,7 +28,7 @@
           %br
           savings per month
       .col-xs-12.col-sm-4.text-center
-        %span.bold{style: "font-size: 50px;line-height: 40px"}
+        %span.bold{style: "font-weight: bold; font-size: 50px;line-height: 40px"}
           3wks
         %br
         .caption{style: "font-size: 15px;line-height: 18px;margin-bottom:40px;letter-spacing: .09rem;"}
@@ -32,7 +36,7 @@
           %br
           from concept to contract
       .col-xs-12.col-sm-4.text-center
-        %span.bold{style: "font-size: 50px;line-height: 40px"}
+        %span.bold{style: "font-weight: bold; font-size: 50px;line-height: 40px"}
           7.2tons
         %br
         .caption{style: "font-size: 15px;line-height: 18px;margin-bottom:40px;letter-spacing: .09rem;"}
