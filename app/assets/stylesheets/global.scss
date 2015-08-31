@@ -60,6 +60,17 @@
   background: #00CCFF;
   color: #FFF;
 }
+h1, h2, h3, h4, h5, h6
+{
+  &.blue-text
+  {
+    color: #00CCFF !important;
+  }
+}
+.uppercase
+{
+  text-transform: uppercase;
+}
 .container {
   width: 1000px;
   max-width: 95%;
