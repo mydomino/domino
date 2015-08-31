@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   end
 
   def solar
-
+    @lead = Lead.new
   end
 
 end
