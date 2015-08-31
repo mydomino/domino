@@ -63,9 +63,8 @@
 .granite
   .container-fluid
     .row
-      .col-xs-12.col-md-5.testimonial-image
-        =image_tag('david_pic.jpg')
-      .col-xs-10.col-xs-offset-1.col-md-7.col-md-offset-0.padding
+      .col-xs-12.col-md-5.testimonial-image{style: "min-height: 410px;background-image: url(\"#{image_path('david_pic.jpg')}\");background-size: cover;background-position: center center;"}
+      .col-xs-10.col-xs-offset-1.col-md-7.col-md-offset-0{style: "padding-top:40px;padding-bottom:40px;"}
         %h4.uppercase Domino Testimonials
         %h2{style: "padding: 50px 0px;max-width: 720px;"}
           "With very little effort on my part, I'll be saving hundreds a month and using clean energy."
