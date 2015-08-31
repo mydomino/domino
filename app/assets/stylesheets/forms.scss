@@ -5,6 +5,8 @@ form
     width: 100%;
     text-align: left;
     margin-bottom: 0px;
+    font-weight: normal;
+    text-transform: uppercase;
   }
   input:not([type="submit"])
   {
@@ -24,6 +26,7 @@ form
     margin-top: 20px;
     padding: 20px 50px 10px;
     letter-spacing: .15rem;
+    text-transform: uppercase;
   }
   .errors
   {

@@ -16,6 +16,14 @@ $nav-height: 100px;
   width: 100%;
   z-index: 1000;
 
+  &.logo-only
+  {
+     .nav
+     {
+      display: none;
+     }
+  }
+
   .navbar-header
   {
     padding: 0px 20px;

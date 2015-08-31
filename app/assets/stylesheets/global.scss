@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center center;
   color: #FFF;
-  padding-bottom: 75px;
+  padding-bottom: 30px;
   text-shadow: 0px 1px 2px rgba(0,0,0,.3);
   h1, h2, h3, h4, h5, h6, a
   {
@@ -35,18 +35,19 @@
   color: #FFF;
   background-color: transparent;
   box-shadow: none;
-  form input
+  form input:not([type="submit"])
   {
-    border-color: #FFF;
+    border: none;
+    background-color: rgba(255,255,255,.5);
   }
 }
 .seafoam
 {
   background-color: #58E2C2;
-  color: #FFF;
+  color: #000;
   h1, h2, h3, h4, h5, h6
   {
-    color: #FFF;
+    color: #000;
   }
   form input:not([type="submit"])
   {

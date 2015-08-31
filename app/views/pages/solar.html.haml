@@ -1,5 +1,5 @@
 -content_for :navbar_class do
-  navbar-roll-down navbar-overlay
+  navbar-roll-down navbar-overlay logo-only
 
 .solar.hero
   .container
@@ -8,15 +8,17 @@
         %h1.dynamic{style: "margin-bottom: 30px;"} What is the best solar company?
         .transparent
           =render 'leads/simple_form', button_text: "Ask an Expert", button_class: 'pull-left btn blue uppercase'
-    .row
+    #bottom.row
       .col-xs-12.text-center{style: "padding-top: 40px;"}
-        =link_to anchor: 'ready-for-solar' do
+        =link_to anchor: 'bottom' do
           .glyphicon.glyphicon-chevron-down.large
 #ready-for-solar.seafoam.padding{style: "  font-size: 1.4rem;line-height: 2.5rem;"}
   .container
     .row
       .col-xs-12{style: "margin-bottom: 60px;" }
-        You're ready to go solar -- but you don't want pressure from salespeople or confusing quotes. We're green energy gurus with your best interests at heart. We aren't salespeople. We're guides who help you save energy, money, and time -- and it's 100% free.
+        %h2
+          You're ready to go solar -- but you don't want pressure from salespeople or confusing quotes.
+        We're green energy gurus with your best interests at heart. We aren't salespeople. We're guides who help you save energy, money, and time -- and it's 100% free.
   .container
     .row
       .col-xs-12.col-sm-4.text-center
@@ -78,7 +80,7 @@
       %h3.uppercase.bold{style: "padding-bottom: 10px;color: #333"} How Domino Works
       We make a small referral free from the vendors you choose to work with, at no additional cost to you. This referral fee costs the vendors less than acquiring customers in other ways, so you save cold hard cash. Our goal is to empower you to take action. As a B Corporation, our bottom line is creating 1 billion actions toward our clean energy future.
     .col-sm-5.hidden-xs
-      =image_tag('penguin_vertical', style: "position: absolute;")
+      =embedded_svg('penguin_no_logo.svg', style: "position: absolute; width: 600px; top: -40px;")
 .seafoam
   .container
     .row
