@@ -20,6 +20,10 @@ form
     border-color: $blue;
     margin-bottom: 30px;
   }
+  input[disabled]
+  {
+    cursor: not-allowed;
+  }
   button[type="submit"], .btn[type="submit"]
   {
     font-size: 2rem;

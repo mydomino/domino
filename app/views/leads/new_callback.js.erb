@@ -1,7 +1,6 @@
 <%- if @lead.errors.any? %>
   $('.errors').html('<%= j(render 'errors') %>');
   animate($('.errors'), 'shake');
-
 <%- else %>
   animate_form_success();
   track_lead_creation();

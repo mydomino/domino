@@ -12,10 +12,8 @@ function animate_form_success()
   form = $('form');
   inputs = $('form input');
   inputs.attr('disabled', 'true')
-  $('form input[type="submit"]').val('completed')
-  //form.addClass('animated fadeOutDown').hide();
-  //success = $('.success');
-  //success.show().addClass('animated fadeInDown');
+  $('form input[type="submit"]').val('Thanks!')
+  $('<p>We will be in touch in the next 2 business days.</p>').insertAfter('form input[type="submit"]')
 }
 
 function animate(element, animation, callback)
