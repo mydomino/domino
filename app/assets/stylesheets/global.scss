@@ -76,6 +76,7 @@ h1, h2, h3, h4, h5, h6
 .uppercase
 {
   text-transform: uppercase;
+}
 .gray
 {
   background-color: #F9F9F9;
@@ -124,7 +125,8 @@ img
     padding-right: 0 !important;
   }
 }
-.foreground {
+.foreground 
+{
   position: absolute;
   top: 0;
   left: 0;
@@ -141,7 +143,8 @@ img
   //animation-duration: .75s;
 }
 
-@mixin border-radius {
+@mixin border-radius 
+{
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
@@ -164,7 +167,8 @@ img
   }
 }
 
-.overlay {
+.overlay 
+{
   background-color: $dark-transparent;
   background-blend-mode: multiply;
   color: $white;
@@ -195,7 +199,8 @@ img
     font-size: 1.2rem; 
   }
 
-  .icon {
+  .icon 
+  {
     display: none;
     font-size: 25rem;
     position: absolute;
