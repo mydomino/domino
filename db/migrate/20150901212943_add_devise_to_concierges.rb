@@ -1,5 +1,6 @@
 class AddDeviseToConcierges < ActiveRecord::Migration
   def self.up
+    remove_column :concierges, :email
     change_table(:concierges) do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""

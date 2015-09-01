@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827190156) do
+ActiveRecord::Schema.define(version: 20150901212943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,22 @@ ActiveRecord::Schema.define(version: 20150827190156) do
   end
 
   create_table "concierges", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "picture"
+    t.string   "name"
+    t.string   "picture"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
   end
+
+  add_index "concierges", ["email"], name: "index_concierges_on_email", unique: true, using: :btree
+  add_index "concierges", ["reset_password_token"], name: "index_concierges_on_reset_password_token", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
