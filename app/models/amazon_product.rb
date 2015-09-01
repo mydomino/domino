@@ -6,7 +6,7 @@ class AmazonProduct < ActiveRecord::Base
   private
 
   def retrieve_amazon_details
-    if(product_id.empty?)
+    if !product_id.present?
       extract_id_from_url url
     end
     response = query_amazon_api product_id
@@ -14,7 +14,7 @@ class AmazonProduct < ActiveRecord::Base
   end
 
   def extract_id_from_url url
-    self.product_id = /amazon.com\/.*[dg]p\/(?:product)?\/(\w*)/.match(url)[1]
+    self.product_id = /amazon.com\/.*[dg]p\/(?:product\/)?(\w*)/.match(url)[1]
   end
 
   def query_amazon_api id

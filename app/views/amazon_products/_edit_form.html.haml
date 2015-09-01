@@ -1,0 +1,10 @@
+=simple_form_for @amazon_product do |form|
+  =form.label :product_id
+  =form.text_field :product_id, disabled: true
+  =form.label :url
+  =form.text_field :url, disabled: true
+  =form.label :name
+  =form.text_field :name
+  =form.label :description
+  =form.text_area :description
+  =form.submit "Save", class: "btn btn-default"

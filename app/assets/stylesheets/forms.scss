@@ -8,7 +8,7 @@ form
     font-weight: normal;
     text-transform: uppercase;
   }
-  input:not([type="submit"])
+  input, textarea
   {
     background-color: transparent;
     width: 100%;
@@ -23,6 +23,12 @@ form
   input[disabled]
   {
     cursor: not-allowed;
+    background-color: #eee;
+  }
+  textarea
+  {
+    max-width: 100%;
+    width: 100%;
   }
   .checkbox
   {

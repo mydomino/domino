@@ -1,3 +1,8 @@
-%h1
-  ="Edit #{@amazon_product.name}"
-=render 'form'
+.container
+  .row
+    .small-12
+      %h1
+        ="Edit #{@amazon_product.name}"
+      =render 'edit_form'
+      %pre
+        =@amazon_product.xml
