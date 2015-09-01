@@ -9,11 +9,12 @@ function track_lead_creation()
 }
 function animate_form_success()
 {
+  $('.errors').hide()
   form = $('form');
   inputs = $('form input');
   inputs.attr('disabled', 'true')
   $('form input[type="submit"]').val('Thanks!')
-  $('<p>We will be in touch in the next 2 business days.</p>').insertAfter('form input[type="submit"]')
+  $('<p style="clear:both;">We will be in touch in the next 2 business days.</p>').insertAfter('form input[type="submit"]')
 }
 
 function animate(element, animation, callback)
