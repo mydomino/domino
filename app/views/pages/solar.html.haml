@@ -1,6 +1,11 @@
 -content_for :navbar_class do
-  navbar-overlay logo-only
-
+  roll-down navbar-overlay
+-content_for :navbar do
+  %ul.nav.navbar-nav.pull-right
+    %li.button
+      = link_to '#bottom-cta', class: 'button' do
+        %button.btn.small
+          GET STARTED
 .solar.hero
   .container
     .row
@@ -8,9 +13,9 @@
         %h1.dynamic{style: "margin-bottom: 20px;"} What is the best solar company?
         .transparent
           =render 'leads/simple_form', button_text: "Ask an Expert", button_class: 'pull-left btn blue uppercase'
-    .row
+    .row#down-button
       .col-xs-12.text-center{style: "padding-top: 40px;"}
-        =link_to anchor: 'ready-for-solar' do
+        =link_to '#down-button' do
           .glyphicon.glyphicon-chevron-down.large
 #ready-for-solar.granite.padding{style: "  font-size: 1.4rem;line-height: 2.5rem;"}
   .container
@@ -82,7 +87,7 @@
         Our bottom line is creating 1 billion actions toward our clean energy future.
     .col-sm-6.col-sm-offset-1.hidden-xs
       =image_tag('penguin_vertical')
-.granite.padding
+#bottom-cta.granite.padding{style: 'padding-top:100px;'}
   .container
     .row
       .col-xs-12
