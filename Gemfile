@@ -33,6 +33,7 @@ gem 'nprogress-rails'
 gem 'vacuum'
 gem 'simple_form'
 gem 'stringex'
+gem 'devise'
 
 gem 'unicorn'
 
