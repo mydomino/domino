@@ -12,10 +12,10 @@ $( window ).scroll( function( event ) {
 
 function showNavBar()
 {
-  $( '.navbar' ).addClass( 'scrolled animated slideInDown fixed' );
+  $( '.navbar.roll-down' ).addClass( 'scrolled animated slideInDown fixed' );
 }
 
 function hideNavBar()
 {
-  $( '.navbar' ).removeClass( 'scrolled animated slideInDown fixed' );
+  $( '.navbar.roll-down' ).removeClass( 'scrolled animated slideInDown fixed' );
 }

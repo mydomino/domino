@@ -10,9 +10,12 @@ function track_lead_creation()
 function animate_form_success()
 {
   form = $('form');
-  form.addClass('animated fadeOutDown').hide();
-  success = $('.success');
-  success.show().addClass('animated fadeInDown');
+  inputs = $('form input');
+  inputs.attr('disabled', 'true')
+  $('form input[type="submit"]').val('completed')
+  //form.addClass('animated fadeOutDown').hide();
+  //success = $('.success');
+  //success.show().addClass('animated fadeInDown');
 }
 
 function animate(element, animation, callback)

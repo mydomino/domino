@@ -19,6 +19,29 @@
     font-weight: 300;
     font-style: normal;
 }
+@font-face {
+    font-family: 'ProximaNovaA';
+    src: url('proximanovaa-bold-webfont.eot');
+    src: url('proximanovaa-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('proximanovaa-bold-webfont.woff2') format('woff2'),
+         url('proximanovaa-bold-webfont.woff') format('woff'),
+         url('proximanovaa-bold-webfont.ttf') format('truetype'),
+         url('proximanovaa-bold-webfont.svg#proxima_nova_abold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'ProximaNovaA';
+    src: url('proximanovaa-boldit-webfont.eot');
+    src: url('proximanovaa-boldit-webfont.eot?#iefix') format('embedded-opentype'),
+         url('proximanovaa-boldit-webfont.woff2') format('woff2'),
+         url('proximanovaa-boldit-webfont.woff') format('woff'),
+         url('proximanovaa-boldit-webfont.ttf') format('truetype'),
+         url('proximanovaa-boldit-webfont.svg#proxima_nova_abold_italic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
 
 html
 {
@@ -26,7 +49,8 @@ html
   line-height: 30px;
 }
 
-body {
+body 
+{
   font-family: 'ProximaNovaA', sans-serif;
   font-weight: 300;
   font-size: 1.1rem;
@@ -60,6 +84,6 @@ h3
 }
 h4 
 {
-  font-size: .75rem;
-  line-height: 1.25rem;
+  font-size: 1.33rem;
+  line-height: 1.5rem;
 }

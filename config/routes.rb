@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
   get 'privacy' => 'pages#privacy'
+  get 'solar' => 'pages#solar'
 
   resources :leads, only: [:create, :new, :index]
   get 'getstarted' => 'leads#new'
