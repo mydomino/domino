@@ -1,5 +1,5 @@
 -content_for :navbar_class do
-  navbar-roll-down navbar-overlay logo-only
+  navbar-overlay logo-only
 
 .solar.hero
   .container
@@ -8,9 +8,9 @@
         %h1.dynamic{style: "margin-bottom: 20px;"} What is the best solar company?
         .transparent
           =render 'leads/simple_form', button_text: "Ask an Expert", button_class: 'pull-left btn blue uppercase'
-    #bottom.row
+    .row
       .col-xs-12.text-center{style: "padding-top: 40px;"}
-        =link_to anchor: 'bottom' do
+        =link_to anchor: 'ready-for-solar' do
           .glyphicon.glyphicon-chevron-down.large
 #ready-for-solar.granite.padding{style: "  font-size: 1.4rem;line-height: 2.5rem;"}
   .container

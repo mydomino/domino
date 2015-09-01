@@ -1,3 +1,6 @@
+-content_for :navbar_class do
+  dark overlay
+
 .concierge.hero
   .overlay
     %h1.content
@@ -15,7 +18,7 @@
                 And it starts with a quick chat. 
                 %br
                 We don’t mean to exaggerate, but this phone call could change the world.
-              =render 'form'
+              =render 'form', button_text: 'Get Started'
 .blue
   .container
     .row

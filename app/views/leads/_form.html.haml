@@ -11,17 +11,11 @@
     .email
       = lead.label :email, 'Email (Required)'
       = lead.email_field :email, placeholder: ''
-      %br
-      %small So we can find a convenient time. No spam, no ads. 
     .phone
       =lead.label :phone
       =lead.text_field :phone
       %br
     .address{style: 'display:none'}
-      = lead.text_field 'address', placeholder: 'Address (Optional)'
-      %br
-      %p Helps us research your options before we talk.
+      =lead.text_field 'address', placeholder: 'Address (Optional)'
     .errors
-    = lead.submit "Submit", data: {disable_with: "Submitting..."}, class: 'btn'
-  .success
-    .glyphicon.glyphicon-ok-circle.huge
+    =lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: "Submitting..."}, class: local_assigns.fetch(:button_class, "btn uppercase")
