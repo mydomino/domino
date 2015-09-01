@@ -31,6 +31,11 @@ form
     padding: 20px 50px 10px;
     letter-spacing: .15rem;
     text-transform: uppercase;
+    &.complete:disabled
+    {
+      background-color: #016B84;
+      opacity: 1;
+    }
   }
   .errors
   {

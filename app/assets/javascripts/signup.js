@@ -15,6 +15,7 @@ function animate_form_success()
   inputs.attr('disabled', 'true')
   $('form input[type="submit"]').val('Thanks!')
   $('<p style="clear:both;">We will be in touch in the next 2 business days.</p>').insertAfter('form input[type="submit"]')
+  $('form input[type="submit"]').addClass('complete')
 }
 
 function animate(element, animation, callback)
