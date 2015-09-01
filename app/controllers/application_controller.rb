@@ -3,8 +3,22 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :start_timing, :capture_utm_campaign
+  layout :layout_by_resource
 
-  private  
+
+  private
+
+  def after_sign_in_path_for concierge
+    amazon_products_path
+  end
+
+  def layout_by_resource
+    if devise_controller? && resource_name == :concierge
+      "concierge"
+    else
+      "application"
+    end
+  end
 
   def start_timing
     session[:start_time]  ||= Time.now

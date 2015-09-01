@@ -1,4 +1,5 @@
 class AmazonStorefrontsController < ApplicationController
+  before_action :authenticate_concierge!, except: :show
   layout 'concierge'
 
   def new

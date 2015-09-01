@@ -8,6 +8,10 @@ form
     font-weight: normal;
     text-transform: uppercase;
   }
+  .checkbox label
+  {
+    text-transform: none;
+  }
   input, textarea
   {
     background-color: transparent;
@@ -30,7 +34,7 @@ form
     max-width: 100%;
     width: 100%;
   }
-  .checkbox
+  &.new_amazon_storefront .checkbox
   {
     border: 1px solid #ddd;
     padding: 10px;

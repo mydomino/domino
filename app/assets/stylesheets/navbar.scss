@@ -13,13 +13,16 @@ $nav-height: 100px;
   border-width: 0;
   width: 100%;
   z-index: 1000;
-
   &.logo-only
   {
     nav
     {
       display: none;
     }
+  }
+  &.blue
+  {
+    background-color: $blue;
   }
   padding-left: 25px;
   padding-right: 25px;
@@ -29,6 +32,11 @@ $nav-height: 100px;
   &.gray
   {
     background-color: #F9F9F9;
+    color: $blue;
+    svg g
+    {
+      fill: $blue;
+    }
   }
   svg g
   {

@@ -1,4 +1,5 @@
 class AmazonProductsController < ApplicationController
+  before_action :authenticate_concierge!
   layout 'concierge'
 
   def new
