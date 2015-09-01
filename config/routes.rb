@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :concierges
+  
   root 'pages#index'
 
   post 'signup' => 'pages#signup'
