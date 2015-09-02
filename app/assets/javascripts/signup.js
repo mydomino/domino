@@ -10,12 +10,18 @@ function track_lead_creation()
 function animate_form_success()
 {
   $('.errors').hide()
-  form = $('form');
-  inputs = $('form input');
+  var form = $('form');
+  var inputs = $('form input');
+  var button = $('form input[type="submit"]');
+
   inputs.attr('disabled', 'true')
-  $('form input[type="submit"]').val('Thanks!')
-  $('<p style="clear:both;">We will be in touch soon.</p>').insertAfter('form input[type="submit"]')
-  $('form input[type="submit"]').addClass('complete')
+  setTimeout(function()
+  {
+    button.val('Thanks!')
+    $('<p style="clear:both;">We will be in touch soon.</p>').insertAfter(button);
+    button.addClass('complete')
+  });
+
 }
 
 function animate(element, animation, callback)
