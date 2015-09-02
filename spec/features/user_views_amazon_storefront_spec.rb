@@ -16,6 +16,8 @@ RSpec.feature "User views storefront", :type => :feature do
   end
 
   def create_storefront
+    concierge = FactoryGirl.create(:concierge)
+    login_as(concierge, :scope => :concierge)
     visit new_amazon_storefront_path
     fill_in "Lead's Name", with: Faker::Name.name
     check(product.name)

@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-xs-12
+      %table.table.store_list
+        %tr
+          %th
+            Lead Name
+          %th
+            Created At
+        - @amazon_storefronts.each do |store|
+          %tr
+            %td
+              =store.lead_name
+            %td
+              =time_ago_in_words store.created_at
+              ago
+            %td
+              =link_to "View Store", amazon_storefront_path(store), target: 'blank'

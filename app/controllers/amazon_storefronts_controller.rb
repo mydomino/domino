@@ -24,6 +24,10 @@ class AmazonStorefrontsController < ApplicationController
     @amazon_storefront = AmazonStorefront.find_by_url(params[:id])
   end
 
+  def index
+    @amazon_storefronts = AmazonStorefront.all
+  end
+
   private
 
   def amazon_storefront_params
