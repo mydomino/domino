@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :leads, only: [:create, :new, :index]
   resources :amazon_storefronts, path: '/store/', only: [:new, :create, :show, :index]
   resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :index, :update]
+  resources :recommendations, only: [] do
+    post 'complete'
+  end
+
 
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'

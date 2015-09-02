@@ -1,6 +1,6 @@
 class AmazonProduct < ActiveRecord::Base
-  has_many :recommendations
-  has_many :amazon_storefronts, through: :recommendations
+  has_many :recommendations, as: :recommendable
+  has_many :amazon_storefronts, through: :recommendations, source: :recommendable
   after_create :retrieve_amazon_details
 
   private

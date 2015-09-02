@@ -11,8 +11,8 @@ class AmazonStorefrontsController < ApplicationController
   def create
     @amazon_storefront = AmazonStorefront.create(amazon_storefront_params)
     if @amazon_storefront.save
-      params[:amazon_storefront][:amazon_product_ids].each do |product_id|
-        Recommendation.create(amazon_product_id: product_id, amazon_storefront_id: @amazon_storefront.id)
+      params[:amazon_product_ids].each do |product_id|
+        Recommendation.create(recommendable_id: product_id, amazon_storefront_id: @amazon_storefront.id, recommendation_type: 'AmazonProduct')
       end
       redirect_to @amazon_storefront
     else

@@ -1,6 +1,9 @@
 =simple_form_for @amazon_storefront do |form|
   =form.label :lead_name, "Lead's Name"
   =form.text_field :lead_name
-  =form.association :amazon_products, collection: @amazon_products, as: :check_boxes
+  -@amazon_products.each do |product|
+    .checkbox
+      =check_box_tag "amazon_product_ids[]", product.id
+      =label_tag product.name
   =form.association :concierge, collection: @concierges, as: :select
   =form.submit "Create", class: 'btn btn-default'
