@@ -14,12 +14,12 @@ function animate_form_success()
   var inputs = $('form input');
   var button = $('form input[type="submit"]');
 
-  inputs.attr('disabled', 'true')
   setTimeout(function()
   {
     button.val('Thanks!')
     $('<p style="clear:both;">We will be in touch soon.</p>').insertAfter(button);
     button.addClass('complete')
+    inputs.attr('disabled', 'true')
   });
 
 }
