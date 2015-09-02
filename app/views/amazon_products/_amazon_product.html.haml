@@ -1,8 +1,11 @@
 .col-xs-12.col-sm-4
-  .amazon_product{class: amazon_product.id, data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
+  .amazon_product{class: amazon_product.id,data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
     .amazon_picture
       =image_tag amazon_product.image_url
     =amazon_product.name
+    -if(recommendation.done)
+      .done
+        .glyphicon.glyphicon-ok-circle
   =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
   =#link_to '', amazon_product.url, target: '_blank', class: 'pull-right glyphicon glyphicon-new-window'
 .modal.fade{id: "product-#{amazon_product.id}"}

@@ -13,4 +13,14 @@
 .amazon_product
 {
   cursor: pointer;
+  .done
+  {
+    width: 100%;
+    text-align: right;
+    font-size: 3rem;
+    position: absolute;
+    top: 0px;
+    padding-right: 30px;
+    color: rgba(0,0,0,.3);
+  }
 }
