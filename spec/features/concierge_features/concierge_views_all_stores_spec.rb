@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 
-RSpec.feature "Views all stores", :type => :feature, focus: true do
+RSpec.feature "Views all stores", :type => :feature do
   let!(:store) { FactoryGirl.create(:amazon_storefront) }
   let(:concierge) { FactoryGirl.create(:concierge) }
   scenario "through the web" do

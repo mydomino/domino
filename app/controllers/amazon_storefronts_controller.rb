@@ -22,6 +22,7 @@ class AmazonStorefrontsController < ApplicationController
 
   def show
     @amazon_storefront = AmazonStorefront.find_by_url(params[:id])
+    render layout: 'storefront'
   end
 
   def index
