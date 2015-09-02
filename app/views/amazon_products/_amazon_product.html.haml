@@ -1,5 +1,5 @@
 .col-xs-12.col-sm-4
-  .amazon_product{data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
+  .amazon_product{class: amazon_product.recommendation.id, data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
     .amazon_picture
       =image_tag amazon_product.image_url
     =amazon_product.name

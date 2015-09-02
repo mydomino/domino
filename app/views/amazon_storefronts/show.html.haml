@@ -19,7 +19,6 @@
         .row
           .col-xs-12
             .row
-              -@amazon_storefront.amazon_products.each do |product|
-                =render product
-
+              -@amazon_storefront.recommendations.each do |recommendation|
+                =render recommendation
 
