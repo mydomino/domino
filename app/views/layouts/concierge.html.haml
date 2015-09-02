@@ -16,5 +16,6 @@
     = favicon_link_tag 'favicon.ico'
   %body.gray
     = render 'layouts/navbar'
-    = flash_messages
+    .alerts
+      -flash_messages
     = yield

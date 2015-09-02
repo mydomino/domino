@@ -219,7 +219,7 @@ img
   @include border-radius;
   padding: 60px;
   background-color: #FFFFFF;
-  h1, h2, h3, h4, h5, a
+  h1, h2, h3, h4, h5, a:not(.btn)
   {
     color: #5F5F5F;
   }
