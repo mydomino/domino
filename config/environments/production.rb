@@ -89,4 +89,10 @@ Rails.application.configure do
     :authentication => 'login',
     :domain => 'mydomino.com'
   }
+
+
+  config.after_initialize do
+    #DelayedJob Workless
+    Delayed::Job.scaler = :local
+  end
 end
