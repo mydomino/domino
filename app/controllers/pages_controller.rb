@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  caches_action :index, :about, :terms, :privacy
+  caches_action :index, :about, :terms, :privacy, :solar
 
   def index
     @lead = Lead.new
