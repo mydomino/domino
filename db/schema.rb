@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903173436) do
+ActiveRecord::Schema.define(version: 20150903185858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150903173436) do
     t.boolean "done"
     t.integer "recommendable_id"
     t.string  "recommendable_type"
+    t.text    "comment"
   end
 
   create_table "snippets", force: :cascade do |t|
