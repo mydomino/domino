@@ -1,0 +1,1 @@
+Concierge.create(email: 'josh@mydomino.com', password: 'password', password_confirmation: 'password', name: 'Josh Morrow')

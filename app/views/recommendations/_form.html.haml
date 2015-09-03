@@ -1,6 +1,6 @@
 =simple_form_for @recommendation do |form|
   =form.association :amazon_storefront, label_method: :lead_name
-  =select_tag :recommendable_id, options_from_collection_for_select(AmazonProduct.all, :id, :name)
+  =form.select :recommendable_id, options_from_collection_for_select(AmazonProduct.all, :id, :name)
   =form.label :comment, "A comment about this recommendation"
   =form.text_area :comment
   =form.submit "Save", class: "btn blue"
