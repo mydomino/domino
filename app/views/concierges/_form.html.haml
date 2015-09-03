@@ -1,0 +1,5 @@
+=simple_form_for @concierge do |form|
+  =form.input :name
+  %h3 Password
+  =link_to "Change my password", edit_concierge_password_path(@concierge)
+  =form.submit "Save"

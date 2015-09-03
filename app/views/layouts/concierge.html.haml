@@ -1,7 +1,11 @@
 -content_for :navbar do
   %ul.nav.navbar-nav.pull-right
-    %li
-      =link_to "Log Out", destroy_concierge_session_path, method: "DELETE"
+    -if(concierge_signed_in?)
+      %li
+        Logged In As
+        =current_concierge.name
+      %li
+        =link_to "Log Out", destroy_concierge_session_path, method: "DELETE"
 -content_for :navbar_class do
   blue
 

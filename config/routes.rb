@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :concierges
-  
+  get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'
+  resources :concierges, only: [:update]
+
   root 'pages#index'
 
   post 'signup' => 'pages#signup'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :leads, only: [:create, :new, :index]
   resources :amazon_storefronts, path: '/store/', only: [:new, :create, :show, :index]
-  resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :index, :update]
+  resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
   resources :recommendations, only: [:new, :create] do
     post 'complete'
   end
