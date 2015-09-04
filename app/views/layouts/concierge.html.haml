@@ -2,8 +2,7 @@
   %ul.nav.navbar-nav.pull-right
     -if(concierge_signed_in?)
       %li
-        Logged In As
-        =current_concierge.name
+        =link_to "Logged In As #{current_concierge.name}", edit_concierge_path
       %li
         =link_to "Log Out", destroy_concierge_session_path, method: "DELETE"
 -content_for :navbar_class do

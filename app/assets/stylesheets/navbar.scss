@@ -11,64 +11,9 @@ $nav-height: 100px;
   border-radius: 0px;
   height: $nav-height;
   border-width: 0;
-  width: 100%;
   z-index: 1000;
-  &.logo-only
-  {
-    nav
-    {
-      display: none;
-    }
-  }
-  &.blue
-  {
-    background-color: $blue;
-  }
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 10px;
+  padding: 10px 25px 0px;
   margin-bottom: 0px; 
-  z-index: 1000;
-  &.gray
-  {
-    background-color: #F9F9F9;
-    color: $blue;
-    svg g
-    {
-      fill: $blue;
-    }
-  }
-  svg g
-  {
-    fill: $blue;
-  }
-  .navbar-header
-  {
-     .nav
-     {
-      display: none;
-     }
-  }
-
-  background-color: transparent;
-  svg g
-  {
-    fill: $white;
-  }
-  &.dark
-  {
-    background-color: rgba(48, 48, 48, 0.65);
-  }
-
-  &.overlay
-  {
-    background-color: rgba(48, 48, 48, 0.65);
-    position: absolute;
-    svg g
-    {
-      fill: $white;
-    }
-  }      
   li:not(.button)
   {
     a
@@ -85,6 +30,39 @@ $nav-height: 100px;
       color: #FFF;
     }
   }
+  //don't display navs on a logo only navbar
+  &.logo-only
+  {
+    nav
+    {
+      display: none;
+    }
+  }
+  &.blue
+  {
+    background-color: $blue;
+    svg g
+    {
+      fill: $white;
+    }
+  }
+  &.gray
+  {
+    background-color: #F9F9F9;
+    color: $blue;
+  }
+  &.dark
+  {
+    background-color: rgba(48, 48, 48, 0.65);
+    svg g
+    {
+      fill: $white;
+    }
+  }
+  &.overlay
+  {
+    position: absolute;
+  }      
   &.fixed
   {
     position: fixed;

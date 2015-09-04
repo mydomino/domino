@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for concierge
-    amazon_products_path
+    amazon_storefronts_path
   end
 
   def layout_by_resource
