@@ -10,6 +10,7 @@ class AmazonStorefrontsController < ApplicationController
 
   def create
     @amazon_storefront = AmazonStorefront.create(amazon_storefront_params)
+    @amazon_storefront.concierge = current_concierge
     if @amazon_storefront.save
       if(params[:amazon_product_ids].present?)
         params[:amazon_product_ids].each do |product_id|

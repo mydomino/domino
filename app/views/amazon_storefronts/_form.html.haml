@@ -5,5 +5,4 @@
     .checkbox
       =check_box_tag "amazon_product_ids[]", product.id
       =label_tag product.name
-  =form.association :concierge, collection: @concierges, as: :select
   =form.submit "Create", class: 'btn btn-default'

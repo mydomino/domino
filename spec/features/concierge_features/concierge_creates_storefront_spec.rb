@@ -9,7 +9,6 @@ RSpec.feature "Concierge creates a new empty storefront", :type => :feature do
 
     visit new_amazon_storefront_path
     fill_in "Lead's Name", with: Faker::Name.name
-    select(concierge.name, :from => 'Concierge')
     click_on "Create"
   end
 end
