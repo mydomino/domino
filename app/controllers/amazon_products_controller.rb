@@ -11,7 +11,7 @@ class AmazonProductsController < ApplicationController
     if @amazon_product.save
       redirect_to edit_amazon_product_path @amazon_product
     else
-      render :new
+      render :new, flash
     end
   end
 

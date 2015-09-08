@@ -29,3 +29,11 @@ button, .btn, a.btn
   font-size: 1.1rem;
   background-color: #DB5461;
 }
+.btn-default
+{
+  background-color: $red;
+  &:hover, &:active, &:focus
+  { 
+    background-color: $red;
+  }
+}
