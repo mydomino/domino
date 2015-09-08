@@ -34,6 +34,7 @@ gem 'vacuum'
 gem 'simple_form'
 gem 'stringex'
 gem 'devise'
+gem 'gravatar_image_tag'
 
 gem 'unicorn'
 
