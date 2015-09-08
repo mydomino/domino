@@ -6,8 +6,13 @@
         .done
           .glyphicon.glyphicon-ok-circle
     =amazon_product.name
-  -unless(recommendation.done)
-    =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+
+/    .mark-done{style: 'position: absolute; left:-150px; top:6px;background: #51E0A3; color: white;padding: 10px;z-index:100;border-radius: 10px 0px 0px 10px;display:none;' }
+/      I've purchased this.
+/  -unless(recommendation.done)
+/   =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+
+
 .modal.fade{id: "product-#{amazon_product.id}"}
   .container
     .modal-dialog
@@ -25,6 +30,8 @@
               %p
                 =amazon_product.description
               =link_to amazon_product.price, amazon_product.url, class: "btn blue", target: "_blank"
+              -unless(recommendation.done)
+                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
           -if recommendation.comment.present?
             %hr
             .row
