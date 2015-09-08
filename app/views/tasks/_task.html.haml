@@ -2,8 +2,7 @@
   .task.panel.row
     .col-xs-2.blue.text-center
       Completed?
-      %button.transparent.full-width.uppercase
-        yes
+      =link_to "Yes", recommendation_complete_path(recommendation.id), class: 'btn transparent full-width uppercase'
     .col-xs-10
       %h5.uppercase.bold
         =task.name
