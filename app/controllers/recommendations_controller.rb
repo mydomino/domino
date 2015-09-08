@@ -1,5 +1,6 @@
 class RecommendationsController < ApplicationController
   before_action :authenticate_concierge!, except: :complete
+  layout 'concierge'
 
   def complete
     @recommendation = Recommendation.find(params[:recommendation_id])
