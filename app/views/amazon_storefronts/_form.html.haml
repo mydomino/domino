@@ -1,6 +1,8 @@
 =simple_form_for @amazon_storefront do |form|
   =form.label :lead_name, "Lead's Name"
   =form.text_field :lead_name
+  =form.label :lead_email, "Lead's Email"
+  =form.text_field :lead_email
   -@amazon_products.each do |product|
     .checkbox
       =check_box_tag "amazon_product_ids[]", product.id

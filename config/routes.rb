@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'solar' => 'pages#solar'
 
   resources :leads, only: [:create, :new, :index]
-  resources :amazon_storefronts, path: '/store/', only: [:new, :create, :show, :index]
+  resources :amazon_storefronts, path: '/storefronts/', only: [:new, :create, :show, :index]
   resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
   resources :recommendations, only: [:new, :create] do
     post 'complete'

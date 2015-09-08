@@ -12,6 +12,6 @@ RSpec.feature "Concierge logs in", :type => :feature do
     click_on "Log in"
 
     
-    expect(current_path).to eq(amazon_products_path)
+    expect(current_path).to eq(amazon_storefronts_path)
   end
 end

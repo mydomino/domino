@@ -35,7 +35,7 @@ class AmazonStorefrontsController < ApplicationController
   private
 
   def amazon_storefront_params
-    params.require(:amazon_storefront).permit(:lead_name, :concierge_id, :recommendations_attributes => [:amazon_product_id])
+    params.require(:amazon_storefront).permit(:lead_name, :lead_email, :concierge_id, :recommendations_attributes => [:amazon_product_id])
   end
 
 end
