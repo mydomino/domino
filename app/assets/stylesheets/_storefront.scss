@@ -1,6 +1,7 @@
 .amazon_picture
 {
   display: flex;
+  position: relative;
   img
   {
     margin: auto;
@@ -22,7 +23,7 @@
     height: 100%;
     display: flex;
     font-size: 10rem;
-    color: $blue;
+    color: #51E0A3;
     .glyphicon
     {
       margin: auto;

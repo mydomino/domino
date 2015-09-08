@@ -1,2 +1,4 @@
 -if(recommendation.recommendable_type == 'AmazonProduct')
   =render 'amazon_products/amazon_product', amazon_product: recommendation.recommendable, recommendation: recommendation
+-if(recommendation.recommendable_type == 'Task')
+  =render 'tasks/task', task: recommendation.recommendable, recommendation: recommendation

@@ -1,0 +1,42 @@
+.col-xs-12.col-sm-4
+  .amazon_product{class: task.id,data: {toggle: 'modal', target: "#task-#{task.id}"}}
+    .amazon_picture
+      =image_tag image_path('energy_icon')
+      -if(recommendation.done)
+        .done
+          .glyphicon.glyphicon-ok-circle
+    =task.name
+
+/    .mark-done{style: 'position: absolute; left:-150px; top:6px;background: #51E0A3; color: white;padding: 10px;z-index:100;border-radius: 10px 0px 0px 10px;display:none;' }
+/      I've purchased this.
+/  -unless(recommendation.done)
+/   =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+
+
+.modal.fade{id: "task-#{task.id}"}
+  .container
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          .row
+            .col-xs-12.col-sm-6
+              =image_tag image_path('energy_icon')
+            .col-xs-12.col-sm-6
+              %h3
+                =task.name
+              %p
+                =task.description
+              -unless(recommendation.done)
+                =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+          -if recommendation.comment.present?
+            %hr
+            .row
+              .col-xs-12
+                %h5.uppercase.bold 
+                  =recommendation.concierge.name
+                  Says
+                %p
+                  =recommendation.comment
