@@ -4,6 +4,8 @@
       %li
         =link_to "Logged In As #{current_concierge.name}", edit_concierge_path
       %li
+        =link_to "Dashboard", amazon_storefronts_path
+      %li
         =link_to "Log Out", destroy_concierge_session_path, method: "DELETE"
 -content_for :navbar_class do
   blue
