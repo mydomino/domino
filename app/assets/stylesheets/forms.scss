@@ -24,6 +24,10 @@ form
     border-color: $blue;
     margin-bottom: 30px;
   }
+  select
+  {
+    width: 100%;
+  }
   input[disabled]
   {
     cursor: not-allowed;
