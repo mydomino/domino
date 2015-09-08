@@ -50,6 +50,10 @@ $nav-height: 100px;
   {
     background-color: #F9F9F9;
     color: $blue;
+    svg g
+    {
+      fill: $blue;
+    }
   }
   &.dark
   {
