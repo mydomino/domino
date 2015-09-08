@@ -3,7 +3,7 @@
     .col-xs-12.col-sm-6.col-md-9
       .row
         -@amazon_storefronts.each do |store|
-          .col-xs-12.col-sm-6.col-md-4.text-center
+          .col-xs-12.col-sm-6.col-md-4.text-center.storefront
             .avatar
               =link_to amazon_storefront_path(store), target: 'blank' do
                 =gravatar_image_tag(store.lead_email, gravatar: { size: 150, default: image_url("default_avatar.png") })
@@ -12,7 +12,7 @@
             =time_ago_in_words store.created_at
             ago
             %br
-            =link_to "Make Recommendation", new_recommendation_path
+            =link_to "Make Recommendation", new_amazon_storefront_recommendation_path(amazon_storefront_id: store.id)
     .col-xs-12col-sm-6.col-md-3
       =link_to "New Storefront", new_amazon_storefront_path, class: 'btn'
       =link_to "Product Library", amazon_products_path, class: 'btn'

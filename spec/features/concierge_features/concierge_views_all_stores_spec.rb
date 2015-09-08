@@ -9,6 +9,6 @@ RSpec.feature "Views all stores", :type => :feature do
 
     visit amazon_storefronts_path
 
-    expect(page).to have_css('.store_list td', text: store.lead_name)
+    expect(page).to have_css('.storefront', text: store.lead_name)
   end
 end

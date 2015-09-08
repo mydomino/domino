@@ -11,7 +11,6 @@ RSpec.feature "Concierge makes a recommendation" do
 
     visit amazon_storefronts_path
     click_on "Make Recommendation"
-    select storefront.lead_name
     select product.name
     fill_in 'comment', with: Faker::Lorem.paragraph
     click_on 'Save'

@@ -9,10 +9,12 @@ class RecommendationsController < ApplicationController
   end
 
   def new
+    @storefront = AmazonStorefront.find(params[:amazon_storefront_id])
     @recommendation = Recommendation.new
   end
 
   def create
+    @storefront = AmazonStorefront.find_by_url(params[:amazon_storefront_id])
     @recommendation = Recommendation.new(recommendation_params)
     @recommendation.concierge = current_concierge
     @recommendation.recommendable_type = "AmazonProduct"
@@ -26,7 +28,7 @@ class RecommendationsController < ApplicationController
   private
 
   def recommendation_params
-    params.require(:recommendation).permit(:comment, :amazon_storefront_id, :recommendable_id)
+    params.require(:recommendation).permit(:comment, :recommendable_id).merge(amazon_storefront_id: @storefront.id)
   end 
 
 end

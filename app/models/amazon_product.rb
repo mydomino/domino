@@ -22,7 +22,7 @@ class AmazonProduct < ActiveRecord::Base
 
   def query_amazon_api id
     request = Vacuum.new
-    request.associate_tag = 'tag'
+    request.associate_tag = 'domino09d-20'
     response = request.item_lookup(
       query: {
         'ItemId' => id,

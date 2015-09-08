@@ -9,7 +9,7 @@ describe AmazonProduct, type: :model do
   end
 
   it 'gets its name, URL, image and price from the Amazon API after create' do
-    product = AmazonProduct.create(product_id: 'B009GDHYPQ')
+    product = AmazonProduct.create(url: 'http://www.amazon.com/Nest-Learning-Thermostat-2nd-Generation/dp/B009GDHYPQ')
 
     expect(product.name).not_to be_blank
   end
