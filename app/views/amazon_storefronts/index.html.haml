@@ -6,7 +6,7 @@
           .col-xs-12.col-sm-6.col-md-4.text-center
             .avatar
               =link_to amazon_storefront_path(store), target: 'blank' do
-                =gravatar_image_tag(store.lead_email, gravatar: { size: 150, default: image_url("penguin_vertical.png") })
+                =gravatar_image_tag(store.lead_email, gravatar: { size: 150, default: image_url("default_avatar.png") })
             =store.lead_name
             %br
             =time_ago_in_words store.created_at
