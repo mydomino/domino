@@ -19,6 +19,14 @@
         .row
           .col-xs-12
             .row
-              -@amazon_storefront.recommendations.each do |recommendation|
-                =render recommendation
+              %h4 Tasks
+              -@tasks.each do |task|
+                =render task
+        %hr
+        .row
+          .col-xs-12
+            .row
+              %h4 Products
+              -@products.each do |product|
+                =render product
 

@@ -7,6 +7,17 @@
     margin: auto;
   }
 }
+.task.panel
+{
+  height: 120px;
+  border: 1px solid #ccc;
+  padding: 0px;
+  div[class^=col]
+  {
+    padding: 20px;
+    height: 100%;
+  }
+}
 .store.panel
 {
   margin-bottom: 100px;
