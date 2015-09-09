@@ -30,6 +30,14 @@ $nav-height: 100px;
       color: #FFF;
     }
   }
+  .dropdown-menu > li > a 
+  {
+    color: #333;
+    &:hover
+    {
+      color: #333;
+    }
+  }
   //don't display navs on a logo only navbar
   &.logo-only
   {
@@ -99,6 +107,14 @@ $nav-height: 100px;
 .navbar:not(.scrolled) li.button 
 {
   display: none;
+}
+
+.concierge.navbar-fixed-top
+{
+  min-height: 20px;
+  height: auto;
+  padding: 0px;
+  background: $dark-gray;
 }
 
 //mobile

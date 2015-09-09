@@ -1,0 +1,21 @@
+%nav.navbar.navbar-default.navbar-fixed-top.concierge{role: "navigation"}
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %a.navbar-brand{href: "#"} Concierge Menu
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        =link_to "Add Recommendation", new_amazon_storefront_recommendation_path(@amazon_storefront)
+/      %li.dropdown
+/        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+/          Dropdown
+/          %b.caret
+/        %ul.dropdown-menu
+/          %li
+/            %a{href: "#"} Action
+/          %li
+/            %a{href: "#"} Another action
+/          %li
+/            %a{href: "#"} Something else here
+/          %li
+/            %a{href: "#"} Separated link

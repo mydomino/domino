@@ -33,6 +33,7 @@ gem 'nprogress-rails'
 gem 'vacuum'
 gem 'simple_form'
 gem 'stringex'
+gem 'friendly_id'
 gem 'devise'
 gem 'gravatar_image_tag'
 

@@ -16,12 +16,12 @@ class RecommendationsController < ApplicationController
   end
 
   def new
-    @storefront = AmazonStorefront.find(params[:amazon_storefront_id])
+    @storefront = AmazonStorefront.friendly.find(params[:amazon_storefront_id])
     @recommendation = Recommendation.new
   end
 
   def create
-    @storefront = AmazonStorefront.find_by_url(params[:amazon_storefront_id])
+    @storefront = AmazonStorefront.friendly.find(params[:amazon_storefront_id])
     @recommendation = Recommendation.new(recommendation_params)
     @recommendation.concierge = current_concierge
     if @recommendation.save
