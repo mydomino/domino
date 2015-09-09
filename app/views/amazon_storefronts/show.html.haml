@@ -15,18 +15,18 @@
                 hand-picked product recommendations
               will help you save energy and money.
               =#"#{@amazon_storefront.concierge.name}'s Recommendations"
-        %hr
         .row
           .col-xs-12
             .row
-              %h4 Tasks
+              %h4.uppercase{style: "font-weight: 400;margin-top:72px;"} Tasks
+              %hr{style: "margin-top:8px;"}
               -@tasks.each do |task|
                 =render task
-        %hr
         .row
           .col-xs-12
             .row
-              %h4 Products
+              %h4.uppercase{style: "font-weight: 400;margin-top: 150px;"} Products
+              %hr{style: "margin-top:8px;"}
               -@products.each do |product|
                 =render product
 
