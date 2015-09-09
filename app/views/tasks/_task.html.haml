@@ -1,10 +1,29 @@
 .col-xs-12
   .task.panel.row
-    .col-xs-2.blue.text-center
-      Completed?
-      =link_to "Yes", recommendation_complete_path(recommendation.id), class: 'btn transparent full-width uppercase'
-    .col-xs-10
-      %h5.uppercase.bold
-        =task.name
-      %p
-        =task.description
+    .col-xs-3.done-state
+      .row{style: 'width: 100%;height: 100%;padding: 0px;'}
+        -if !recommendation.done
+          .col-xs-6.gray
+            .content
+              .glyphicon.glyphicon-unchecked
+          .col-xs-6
+            .content
+              .glyphicon.glyphicon-leaf.blue
+          .col-xs-12.slide
+            .blue{style: "height: 100%;display: flex;width : 100%;padding: 20px;"}
+              .content
+                Completed?
+                =link_to "Yes", recommendation_complete_path(recommendation.id), class: 'small btn transparent uppercase', method: "POST"
+        -else
+          .col-xs-6.green
+            .content
+              .glyphicon.glyphicon-ok
+          .col-xs-6
+            .content
+              .glyphicon.glyphicon-leaf.blue
+    .col-xs-9
+      .content
+        %h5.uppercase.bold
+          =task.name
+        %p
+          =task.description

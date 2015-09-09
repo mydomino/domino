@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
-  resources :tasks, only: [:new, :create]
+  resources :tasks, only: [:new, :create, :index, :destroy, :edit]
 
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'

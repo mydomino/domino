@@ -110,7 +110,7 @@ form
 }
 .panel
 {
-  input.form-control
+  input.form-control, textarea.form-control
   {
     border: 2px solid $blue;
   }

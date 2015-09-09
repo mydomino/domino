@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-xs-12.col-sm-9
+      %h1 Tasks
+      .row
+        -@tasks.each do |task|
+          .col-xs-12.col-md-4
+            .panel
+              =task.name
+              =link_to "Edit", edit_task_path(task), class: 'btn small full-width'
+              =link_to "Delete", task_path(task), method: 'DELETE', confirm: 'Are you sure?', class: 'btn small full-width'
+    .col-xs-12.col-sm-3
+      =link_to "New Task", new_task_path, class: 'small btn full-width'

@@ -66,6 +66,16 @@
     background-color: #2FD5FC;
   }
 }
+.glyphicon.blue
+{
+  color: $blue;
+  background-color: inherit;
+}
+.green
+{
+  background-color: #51E0A3;
+  color: #FFF;
+}
 h1, h2, h3, h4, h5, h6
 {
   &.blue-text

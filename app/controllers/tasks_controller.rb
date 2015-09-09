@@ -9,10 +9,14 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to amazon_storefronts_path
+      redirect_to tasks_path
     else
       render :new
     end
+  end
+
+  def index
+    @tasks = Task.all
   end
 
   private
