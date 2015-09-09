@@ -115,6 +115,10 @@ $nav-height: 100px;
   height: auto;
   padding: 0px;
   background: $dark-gray;
+  .navbar-brand
+  {
+    color: #FFF;
+  }
 }
 
 //mobile
