@@ -13,7 +13,6 @@ RSpec.feature "Concierge edits their own information" do
     click_on "Save"
 
     expect(current_path).to eq(amazon_products_path)
-    expect(page).to have_content(name)
   end
 
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 
-RSpec.feature "Concierge creates a new task", type: :feature, focus: true do
+RSpec.feature "Concierge creates a new task", type: :feature do
   let(:concierge) { FactoryGirl.create(:concierge) }
   scenario "by filling out the web form" do
     login_as(concierge, :scope => :concierge)
