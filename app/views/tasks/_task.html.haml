@@ -18,6 +18,8 @@
           .col-xs-6.green
             .content
               .glyphicon.glyphicon-ok
+              .undo{style: "font-size: 12px;position: absolute; left:20px; bottom: 10px;"}
+                =link_to 'Undo', recommendation_undo_complete_path(recommendation), style: "color: #fff;", method: "DELETE"
           .col-xs-6
             .content
               .glyphicon.glyphicon-leaf.blue

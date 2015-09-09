@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :recommendations, only: [] do
     post 'complete'
+    delete 'undo' => 'recommendations#undo', as: 'undo_complete'
   end
 
   resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
