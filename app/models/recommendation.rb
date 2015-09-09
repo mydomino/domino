@@ -5,6 +5,7 @@ class Recommendation < ActiveRecord::Base
 
   scope :tasks, -> { where(recommendable_type: 'Task') }
   scope :products, -> { where(recommendable_type: 'AmazonProduct') }
+  scope :done, -> { where(done: true) }
 
   def global_recommendable
     self.recommendable.to_global_id if self.recommendable.present?

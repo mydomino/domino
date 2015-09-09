@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     delete 'undo' => 'recommendations#undo', as: 'undo_complete'
   end
 
+  resource :analytics, only: [:show]
+
   resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
   resources :tasks, only: [:new, :create, :index, :destroy, :edit]
 

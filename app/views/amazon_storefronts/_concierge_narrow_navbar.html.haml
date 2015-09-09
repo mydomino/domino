@@ -5,7 +5,9 @@
       %a.navbar-brand{href: "#"} Concierge Menu
     %ul.nav.navbar-nav.navbar-right
       %li
-        =link_to "Add Recommendation", new_amazon_storefront_recommendation_path(@amazon_storefront)
+        =link_to new_amazon_storefront_recommendation_path(@amazon_storefront) do
+          .glyphicon.glyphicon-plus
+          Add Recommendation
 /      %li.dropdown
 /        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
 /          Dropdown
