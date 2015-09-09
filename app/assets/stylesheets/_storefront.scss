@@ -27,6 +27,11 @@
     overflow: hidden;
     padding: 0px;
     text-align: center;
+    .gray
+    {
+      background-color: #d8d8d8;
+      color: #FFF;
+    }
     div[class^=col]
     {
       .content
