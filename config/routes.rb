@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resource :analytics, only: [:show]
 
   resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
-  resources :tasks, only: [:new, :create, :index, :destroy, :edit]
+  resources :tasks
 
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'

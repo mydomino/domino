@@ -19,6 +19,25 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    if @task.update_attributes(task_params)
+      redirect_to tasks_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.delete
+    redirect_to tasks_path
+  end
+
   private
 
   def task_params
