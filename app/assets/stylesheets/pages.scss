@@ -150,10 +150,10 @@ $viewport-height: calc(100vh - #{$nav-height});
     }
   }
 }
-.meet-dan {
+div[class^="meet-"] {
   position: relative;
   min-height: 600px;
-  background-image: image-url('feature-concierge-dan.jpg');
+  height: auto;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -164,6 +164,18 @@ $viewport-height: calc(100vh - #{$nav-height});
   .content {
     padding: 100px 0px;
   }
+}
+.meet-dan
+{
+  background-image: image-url('feature-concierge-dan.jpg');
+}
+.meet-mel
+{
+  background-image: image-url('mel_concierge.jpg');
+}
+.meet-laura
+{
+  background-image: image-url('laura_concierge.jpg');
 }
 
 .exit {
