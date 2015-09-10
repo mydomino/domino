@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :amazon_storefronts, path: '/dashboard/', only: [:new, :create, :show, :index] do
     resources :recommendations, only: [:new, :create]
   end
-  resources :recommendations, only: [] do
+  resources :recommendations, only: [:destroy] do
     post 'complete'
     delete 'undo' => 'recommendations#undo', as: 'undo_complete'
   end

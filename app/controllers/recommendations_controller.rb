@@ -27,7 +27,8 @@ class RecommendationsController < ApplicationController
     if @recommendation.save
       redirect_to amazon_storefront_path @recommendation.amazon_storefront
     else
-
+      flash[:alert] = 'The storefront already contains that recommendation'
+      render :new
     end
   end
 
