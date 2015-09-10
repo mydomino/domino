@@ -30,8 +30,10 @@
               %p
                 =amazon_product.description
               =link_to "#{amazon_product.price} on Amazon", amazon_product.url, class: "btn blue full-width", target: "_blank"
-              -unless(recommendation.done)
+              -if(!recommendation.done)
                 =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+              -else
+                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn full-width', method: "DELETE"
           -if recommendation.comment.present?
             %hr
             .row
