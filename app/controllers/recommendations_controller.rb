@@ -5,7 +5,7 @@ class RecommendationsController < ApplicationController
   def complete
     @recommendation = Recommendation.find(params[:recommendation_id])
     @recommendation.update_attributes(done: true)
-    #flash[:success] = 'You\'ve marked that recommendation as completed! <a href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
+    flash[:success] = 'You\'ve marked that recommendation as completed! <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
     redirect_to @recommendation.amazon_storefront
   end
 
