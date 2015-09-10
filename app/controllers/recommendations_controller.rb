@@ -1,5 +1,5 @@
 class RecommendationsController < ApplicationController
-  before_action :authenticate_concierge!, except: :complete, :undo
+  before_action :authenticate_concierge!, except: [:complete, :undo]
   layout 'concierge'
 
   def complete
