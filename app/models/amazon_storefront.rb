@@ -1,10 +1,25 @@
 class AmazonStorefront < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :lead_name, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
 
   has_many :recommendations
   has_many :amazon_products, through: :recommendations, source: :recommendable, source_type: :AmazonProduct
   belongs_to :concierge
 
+  def slug_candidates
+    #OK, there has to be a better way to do this but I don't know it : (
+    [
+      :lead_name,
+      [:lead_name, '1'],
+      [:lead_name, '2'],
+      [:lead_name, '3'],
+      [:lead_name, '4'],
+      [:lead_name, '5'],
+      [:lead_name, '6'],
+      [:lead_name, '7'],
+      [:lead_name, '8'],
+      [:lead_name, '9']
+    ]
+  end
 
 end
