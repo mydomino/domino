@@ -1,7 +1,7 @@
 .col-xs-12.col-sm-4
   .amazon_product{class: amazon_product.id,data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
-    -if concierge_signed_in
-      =link_to "Delete", recommendation_path(recommendation), method: "DELETE"
+    -if concierge_signed_in?
+      =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;"
     .amazon_picture
       =image_tag amazon_product.image_url
       -if(recommendation.done)

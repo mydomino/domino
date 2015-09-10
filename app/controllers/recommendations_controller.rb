@@ -32,6 +32,14 @@ class RecommendationsController < ApplicationController
     end
   end
 
+  def destroy
+    @recommendation = Recommendation.find(params[:id])
+    @amazon_storefront = @recommendation.amazon_storefront
+    @recommendation.delete
+    flash[:notice] = 'Recommendation Removed'
+    redirect_to @amazon_storefront
+  end
+
   private
 
   def recommendation_params
