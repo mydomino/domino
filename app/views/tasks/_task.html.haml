@@ -25,6 +25,8 @@
               .glyphicon.glyphicon-leaf.blue
     .col-xs-9
       .content{style: "width:100%;"}
+        -if concierge_signed_in?
+          =link_to "", recommendation_path(recommendation), method: "DELETE", class: "glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;position:absolute;right:0px;top:0px;border-bottom-right-radius: 0px; border-top-left-radius: 0px;"
         %h5.uppercase.bold
           =task.name
         %p
