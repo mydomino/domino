@@ -7,33 +7,13 @@
 $nav-height: 100px;
 
 .navbar {
-  background-color: rgba(48, 48, 48, 0.65);
+  background-color: $white;
   border-radius: 0px;
   height: $nav-height;
-  padding-top: 12px;
   border-width: 0;
-  position: absolute;
-  width: 100%;
   z-index: 1000;
-
-  &.logo-only
-  {
-     .nav
-     {
-      display: none;
-     }
-  }
-
-  background-color: transparent;
-  svg g
-  {
-    fill: $white;
-  }
-  &.dark
-  {
-    background-color: rgba(48, 48, 48, 0.65);
-  }
-
+  padding: 10px 25px 0px;
+  margin-bottom: 20px; 
   li:not(.button)
   {
     a
@@ -49,12 +29,52 @@ $nav-height: 100px;
       }
       color: #FFF;
     }
-
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 10px;
   }
-
+  .dropdown-menu > li > a 
+  {
+    color: #333;
+    &:hover
+    {
+      color: #333;
+    }
+  }
+  //don't display navs on a logo only navbar
+  &.logo-only
+  {
+    nav
+    {
+      display: none;
+    }
+  }
+  &.blue
+  {
+    background-color: $blue;
+    svg g
+    {
+      fill: $white;
+    }
+  }
+  &.gray
+  {
+    background-color: #F9F9F9;
+    color: $blue;
+    svg g
+    {
+      fill: $blue;
+    }
+  }
+  &.dark
+  {
+    background-color: rgba(48, 48, 48, 0.65);
+    svg g
+    {
+      fill: $white;
+    }
+  }
+  &.overlay
+  {
+    position: absolute;
+  }      
   &.fixed
   {
     position: fixed;
@@ -87,6 +107,18 @@ $nav-height: 100px;
 .navbar:not(.scrolled) li.button 
 {
   display: none;
+}
+
+.concierge.navbar-fixed-top
+{
+  min-height: 20px;
+  height: auto;
+  padding: 0px;
+  background: $dark-gray;
+  .navbar-brand
+  {
+    color: #FFF;
+  }
 }
 
 //mobile

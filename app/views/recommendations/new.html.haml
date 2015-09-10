@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-xs-12.col-sm-6
+      .panel
+        %h1 New Recommendation
+        =render 'form'
+    .col-xs-12.col-sm-6
+      %h4
+        Current Recommendations for
+        =@storefront.lead_name
+      %ul
+        -@storefront.recommendations.each do |recommendation|
+          =render 'recommendation_list', recommendation: recommendation

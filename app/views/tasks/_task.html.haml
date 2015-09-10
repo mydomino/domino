@@ -1,0 +1,31 @@
+.col-xs-12
+  .task.panel.row
+    .col-xs-3.done-state
+      .row{style: 'width: 100%;height: 100%;padding: 0px;'}
+        -if !recommendation.done
+          .col-xs-6.gray
+            .content
+              .glyphicon.glyphicon-unchecked
+          .col-xs-6
+            .content
+              .glyphicon.glyphicon-leaf.blue
+          .col-xs-12.slide
+            .blue{style: "height: 100%;display: flex;width : 100%;padding: 20px;"}
+              .content
+                Completed?
+                =link_to "Yes", recommendation_complete_path(recommendation.id), class: 'small btn transparent uppercase', method: "POST"
+        -else
+          .col-xs-6.green
+            .content
+              .glyphicon.glyphicon-ok
+              .undo{style: "font-size: 12px;position: absolute; left:20px; bottom: 10px;"}
+                =link_to 'Undo', recommendation_undo_complete_path(recommendation), style: "color: #fff;", method: "DELETE"
+          .col-xs-6
+            .content
+              .glyphicon.glyphicon-leaf.blue
+    .col-xs-9
+      .content{style: "width:100%;"}
+        %h5.uppercase.bold
+          =task.name
+        %p
+          =task.description

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  devise_for :concierges
+  get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'
+  resources :concierges, only: [:update]
+
   root 'pages#index'
 
   post 'signup' => 'pages#signup'
@@ -9,6 +13,19 @@ Rails.application.routes.draw do
   get 'solar' => 'pages#solar'
 
   resources :leads, only: [:create, :new, :index]
+  resources :amazon_storefronts, path: '/storefronts/', only: [:new, :create, :show, :index] do
+    resources :recommendations, only: [:new, :create]
+  end
+  resources :recommendations, only: [] do
+    post 'complete'
+    delete 'undo' => 'recommendations#undo', as: 'undo_complete'
+  end
+
+  resource :analytics, only: [:show]
+
+  resources :amazon_products, path: '/products/', only: [:new, :create, :edit, :update, :index]
+  resources :tasks, only: [:new, :create, :index, :destroy, :edit]
+
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'
 

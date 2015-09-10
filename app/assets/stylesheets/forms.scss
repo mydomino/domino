@@ -8,7 +8,18 @@ form
     font-weight: normal;
     text-transform: uppercase;
   }
-  input:not([type="submit"])
+  .checkbox label
+  {
+    text-transform: none;
+  }
+  .checkbox
+  {
+    input[type="checkbox"], .checkbox-inline input[type="checkbox"]
+    {
+      margin-left: 0px;
+    }
+  }
+  input, textarea
   {
     background-color: transparent;
     width: 100%;
@@ -20,9 +31,25 @@ form
     border-color: $blue;
     margin-bottom: 30px;
   }
+  select
+  {
+    width: 100%;
+  }
   input[disabled]
   {
     cursor: not-allowed;
+    background-color: #eee;
+  }
+  textarea
+  {
+    max-width: 100%;
+    width: 100%;
+  }
+  &.new_amazon_storefront .checkbox
+  {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
   }
   button[type="submit"], .btn[type="submit"]
   {
@@ -83,7 +110,7 @@ form
 }
 .panel
 {
-  input.form-control
+  input.form-control, textarea.form-control
   {
     border: 2px solid $blue;
   }

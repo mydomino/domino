@@ -30,6 +30,11 @@ gem 'workless'
 gem 'geocoder'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'nprogress-rails'
+gem 'vacuum'
+gem 'simple_form'
+gem 'friendly_id'
+gem 'devise'
+gem 'gravatar_image_tag'
 
 gem 'unicorn'
 
@@ -43,6 +48,7 @@ group :development, :test do
   gem 'teaspoon-jasmine'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'erb2haml'
 end
 
 group :test do
