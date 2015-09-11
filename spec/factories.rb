@@ -11,6 +11,11 @@ FactoryGirl.define do
   
   factory :recommendation
 
+  factory :task do
+    name Faker::Lorem.words(4)
+    description Faker::Lorem.paragraph
+  end
+
   factory :concierge do
     name Faker::Name.name
     email Faker::Internet.email
