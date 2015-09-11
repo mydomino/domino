@@ -2,7 +2,7 @@
   .container
     / Brand and toggle get grouped for better mobile display
     .navbar-header
-      %a.navbar-brand{href: "#"} Concierge Menu
+      =link_to 'Concierge Menu', amazon_storefronts_path, class: 'navbar-brand'
     %ul.nav.navbar-nav.navbar-right
       %li
         =link_to new_amazon_storefront_recommendation_path(@amazon_storefront) do
