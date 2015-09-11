@@ -31,7 +31,7 @@ class AmazonStorefrontsController < ApplicationController
   end
 
   def index
-    @amazon_storefronts = AmazonStorefront.all
+    @amazon_storefronts = AmazonStorefront.where(concierge: current_concierge)
   end
 
   private
