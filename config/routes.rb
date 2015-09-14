@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :concierges
-  get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'
+  devise_for :concierges, skip: [:registrations]                                   
+  as :concierge do
+    get 'concierges/edit' => 'devise/registrations#edit', :as => 'edit_concierge_registration'    
+    put 'concierges' => 'devise/registrations#update', :as => 'concierge_registration'
+    get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'  
+  end
   resources :concierges, only: [:update]
 
   root 'pages#index'
-
   post 'signup' => 'pages#signup'
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
