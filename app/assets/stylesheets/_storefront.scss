@@ -7,9 +7,15 @@
     margin: auto;
   }
 }
+@media(min-width: 992px)
+{
+  .task.panel
+  {
+    height: 157px;
+  }
+}
 .task.panel
 {
-  height: 157px;
   border: 1px solid #ccc;
   padding: 0px;
   div[class^=col]
