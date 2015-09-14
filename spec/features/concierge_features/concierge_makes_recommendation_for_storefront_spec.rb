@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Concierge makes a recommendation" do
 
   let(:concierge) { FactoryGirl.create(:concierge) }
-  let!(:storefront) { FactoryGirl.create(:amazon_storefront) }
+  let!(:storefront) { FactoryGirl.create(:amazon_storefront, concierge: concierge) }
   let!(:product) { FactoryGirl.create(:amazon_product) }
 
   scenario "for an existing storefront" do
