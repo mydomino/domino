@@ -34,25 +34,24 @@ class RecommendationsController < ApplicationController
 
   def bulk_update
     @storefront = AmazonStorefront.friendly.find(params[:amazon_storefront_id])
-    if(params[:amazon_storefront][:amazon_product_ids].present?)
-      params[:amazon_storefront][:amazon_product_ids].each do |product|
-        Recommendation.create(recommendable_id: product, recommendable_type: "AmazonProduct", amazon_storefront: @storefront)
-      end
-    end
-    if(params[:amazon_storefront][:task_ids].present?)
-      params[:amazon_storefront][:task_ids].each do |task|
-        Recommendation.create(recommendable_id: task, recommendable_type: "Task", amazon_storefront: @storefront)
-      end
+    if(!params[:amazon_storefront].nil?)
+      new_product_recommendations = params[:amazon_storefront][:amazon_product_ids]
+      @storefront.amazon_product_ids = params[:amazon_storefront][:amazon_product_ids]
+      new_task_recommendations = params[:amazon_storefront][:amazon_product_ids]
+      @storefront.task_ids = params[:amazon_storefront][:task_ids]
+    else
+      @storefront.amazon_product_ids = []
+      @storefront.task_ids = []
     end
     redirect_to @storefront
   end
 
   def destroy
     @recommendation = Recommendation.find(params[:id])
-    @amazon_storefront = @recommendation.amazon_storefront
+    @storefront = @recommendation.amazon_storefront
     @recommendation.delete
     flash[:notice] = 'Recommendation Removed'
-    redirect_to @amazon_storefront
+    redirect_to @storefront
   end
 
   private
