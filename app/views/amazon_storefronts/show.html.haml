@@ -5,13 +5,24 @@
     {
       padding-top: 40px;
     }
+  .modal.fade#new-recommendation
+    .container
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+          .modal-body
+            .row
+              .col-xs-12
+                =render 'recommendations/form'
 .container
   .row
     .col-xs-12
       .store.panel
         %h2.bold.text-center
           Hi, 
-          =@amazon_storefront.lead_name
+          =@storefront.lead_name
         .row
           .col-xs-12
             %h3
@@ -21,7 +32,7 @@
               %strong.blue-text
                 hand-picked product recommendations
               will help you save energy and money.
-              =#"#{@amazon_storefront.concierge.name}'s Recommendations"
+              =#"#{@storefront.concierge.name}'s Recommendations"
         .row
           .col-xs-12
             .row

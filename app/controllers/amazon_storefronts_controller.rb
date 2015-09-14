@@ -24,9 +24,10 @@ class AmazonStorefrontsController < ApplicationController
   end
 
   def show
-    @amazon_storefront = AmazonStorefront.friendly.find(params[:id])
-    @tasks = @amazon_storefront.recommendations.tasks
-    @products = @amazon_storefront.recommendations.products
+    @storefront = AmazonStorefront.friendly.find(params[:id])
+    @recommendation = @storefront.recommendations.build
+    @tasks = @storefront.recommendations.tasks
+    @products = @storefront.recommendations.products
     render layout: 'storefront'
   end
 
