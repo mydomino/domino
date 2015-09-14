@@ -1,9 +1,9 @@
 class AmazonStorefront < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
-
   has_many :recommendations
   has_many :amazon_products, through: :recommendations, source: :recommendable, source_type: :AmazonProduct
+  has_many :tasks, through: :recommendations, source: :recommendable, source_type: :Task
   belongs_to :concierge
 
   def slug_candidates

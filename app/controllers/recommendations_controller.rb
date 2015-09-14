@@ -32,6 +32,21 @@ class RecommendationsController < ApplicationController
     end
   end
 
+  def bulk_update
+    @storefront = AmazonStorefront.friendly.find(params[:amazon_storefront_id])
+    if(params[:amazon_storefront][:amazon_product_ids].present?)
+      params[:amazon_storefront][:amazon_product_ids].each do |product|
+        Recommendation.create(recommendable_id: product, recommendable_type: "AmazonProduct", amazon_storefront: @storefront)
+      end
+    end
+    if(params[:amazon_storefront][:task_ids].present?)
+      params[:amazon_storefront][:task_ids].each do |task|
+        Recommendation.create(recommendable_id: task, recommendable_type: "Task", amazon_storefront: @storefront)
+      end
+    end
+    redirect_to @storefront
+  end
+
   def destroy
     @recommendation = Recommendation.find(params[:id])
     @amazon_storefront = @recommendation.amazon_storefront
@@ -44,6 +59,6 @@ class RecommendationsController < ApplicationController
 
   def recommendation_params
     params.require(:recommendation).permit(:comment, :global_recommendable).merge(amazon_storefront_id: @storefront.id)
-  end 
+  end
 
 end

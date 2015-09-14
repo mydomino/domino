@@ -1,0 +1,4 @@
+=simple_form_for(@storefront, url: amazon_storefront_bulk_update_path(@storefront)) do |form|
+  =form.association :amazon_products, collection: AmazonProduct.all, as: :check_boxes, label: "Products", include_hidden: false
+  =form.association :tasks, collection: Task.all, as: :check_boxes, label: "Tasks", checked_value: "true", include_hidden: false
+  =form.submit "Save", class: "blue"
