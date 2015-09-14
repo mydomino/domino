@@ -3,7 +3,7 @@
 .container
   .row
     .col-xs-12.col-sm-6.col-sm-push-3
-      %h3.text-center.uppercase{style: "margin:100px auto 20px;"} Concierge
+      %h3.text-center.uppercase.bold{style: "margin:100px auto 20px;"} Concierge
       .panel
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .form-inputs

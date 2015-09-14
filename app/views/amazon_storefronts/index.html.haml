@@ -1,9 +1,9 @@
 .container
   .row
-    .col-xs-12.col-sm-6.col-md-9
+    .col-xs-12
       .row
         -@amazon_storefronts.each do |store|
-          .col-xs-12.col-sm-6.col-md-4.text-center.storefront
+          .col-xs-12.col-sm-6.col-md-3.text-center.storefront
             .avatar
               =link_to amazon_storefront_path(store), target: 'blank' do
                 =gravatar_image_tag(store.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
@@ -19,13 +19,9 @@
             ago
             %br
             =link_to "Make Recommendation", new_amazon_storefront_recommendation_path(amazon_storefront_id: store.id)
-        .col-xs-12.col-sm-6.col-md-4.text-center.storefront
+        .col-xs-12.col-sm-6.col-md-3.text-center.storefront
           =link_to new_amazon_storefront_path do
             .new_storefront{style: "padding: 80px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
               .icon
                 .glyphicon.glyphicon-plus{style: 'background-color: #02CCFF; color: #FFF;font-size: 2rem; padding: 8px 8px 10px 10px;border-radius: 50%;'}
               Create a new dashboard
-
-    .col-xs-12col-sm-6.col-md-3
-      =link_to "Product Library", amazon_products_path, class: 'small full-width btn'
-      =link_to "Action Library", tasks_path, class: 'small full-width btn'
