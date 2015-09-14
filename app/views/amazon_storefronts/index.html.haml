@@ -9,6 +9,12 @@
                 =gravatar_image_tag(store.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
             =store.lead_name
             %br
+            =store.recommendations.done.count
+            \/
+            =store.recommendations.count
+            recommendations done
+            %br
+            Created
             =time_ago_in_words store.created_at
             ago
             %br
