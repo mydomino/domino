@@ -79,6 +79,14 @@ $nav-height: 100px;
   {
     position: fixed;
   }
+  &.transparent
+  {
+    background: transparent;
+    svg g
+    {
+      fill: $white;
+    }
+  }
 }
 //scrolled
 .navbar.scrolled
