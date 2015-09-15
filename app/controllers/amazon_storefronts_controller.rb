@@ -12,11 +12,6 @@ class AmazonStorefrontsController < ApplicationController
     @amazon_storefront = AmazonStorefront.create(amazon_storefront_params)
     @amazon_storefront.concierge = current_concierge
     if @amazon_storefront.save
-      if(params[:amazon_product_ids].present?)
-        params[:amazon_product_ids].each do |product_id|
-          Recommendation.create(recommendable_id: product_id, amazon_storefront_id: @amazon_storefront.id, recommendable_type: 'AmazonProduct')
-        end
-      end
       redirect_to @amazon_storefront
     else
       render :new

@@ -18,3 +18,4 @@
 //= require nprogress-ajax
 //= require dynamic
 //= require signup
+//= require storefront

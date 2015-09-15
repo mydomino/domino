@@ -29,6 +29,10 @@ button, .btn, a.btn
   font-size: 1.1rem;
   background-color: #DB5461;
 }
+.btn.tiny
+{
+  padding: 5px 20px 3px;
+}
 .btn-default
 {
   background-color: $red;
@@ -46,4 +50,8 @@ button, .btn, a.btn
 a.btn
 {
   text-decoration: none !important;
+}
+.btn.gray
+{
+  background-color: #C4C5C5;
 }

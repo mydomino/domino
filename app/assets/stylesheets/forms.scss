@@ -56,7 +56,14 @@ form
       background-color: #016B84;
       opacity: 1;
     }
+    &.tiny
+    {
+      font-size: 1rem;
+      margin-top: 0px;
+      padding: 7px 20px 3px;;
+    }
   }
+
   .errors
   {
     ul

@@ -3,9 +3,4 @@
   =form.text_field :lead_name
   =form.label :lead_email, "Lead's Email"
   =form.text_field :lead_email
-  =label_tag "Products"
-  -@amazon_products.each do |product|
-    .checkbox
-      =check_box_tag "amazon_product_ids[]", product.id
-      =label_tag product.name
   =form.submit "Create", class: 'btn btn-default'

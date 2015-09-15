@@ -45,6 +45,7 @@
             .row
               %h4.uppercase{style: "font-weight: 400;margin-top: 150px;"} Products
               %hr{style: "margin-top:8px;"}
-              -@products.each do |product|
-                =render product
-
+              -@products.each_slice(3) do |products|
+                .row
+                  -products.each do |product|
+                    =render product

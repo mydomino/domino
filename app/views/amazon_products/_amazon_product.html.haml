@@ -8,12 +8,15 @@
         .done
           .glyphicon.glyphicon-ok
     =amazon_product.name
-
-/    .mark-done{style: 'position: absolute; left:-150px; top:6px;background: #51E0A3; color: white;padding: 10px;z-index:100;border-radius: 10px 0px 0px 10px;display:none;' }
-/      I've purchased this.
-/  -unless(recommendation.done)
-/   =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
-
+  .comment
+    -if recommendation.comment.present?
+      =recommendation.comment
+    -else
+      %button.btn.tiny.gray.uppercase{data: {"reveal-next" => "add-comment"}}
+        .glyphicon.glyphicon-plus
+        Comment
+      .add-comment{style: "display: none;"}
+        =render 'recommendations/comment_form', recommendation: recommendation
 
 .modal.fade{id: "product-#{amazon_product.id}"}
   .container
