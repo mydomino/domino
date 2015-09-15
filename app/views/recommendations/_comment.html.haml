@@ -2,5 +2,13 @@
   -if recommendation.comment.present?
     .comment-box.gray
       =recommendation.comment
-  -if concierge_signed_in?
-    =render 'recommendations/comment_form', recommendation: recommendation
+      -if concierge_signed_in?
+        %span{data: {"reveal-next" => "add-comment"}, style: "position: absolute; display: inline-block; right: 20px; bottom: 4px;cursor: pointer;"}
+          Edit
+        =render 'recommendations/comment_form', recommendation: recommendation
+  -else
+    -if concierge_signed_in?
+      %button.btn.tiny.gray.uppercase{data: {"reveal-next" => "add-comment"}}
+        .glyphicon.glyphicon-plus
+        Comment
+      =render 'recommendations/comment_form', recommendation: recommendation
