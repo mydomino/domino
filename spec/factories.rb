@@ -16,6 +16,7 @@ FactoryGirl.define do
   factory :task do
     name Faker::Lorem.words(4)
     description Faker::Lorem.paragraph
+    icon "energy"
   end
 
   factory :concierge do
