@@ -1,6 +1,6 @@
 class AmazonProduct < ActiveRecord::Base
   has_many :recommendations, as: :recommendable
-  has_many :amazon_storefronts, through: :recommendations, source: :recommendable
+  has_many :dashboards, through: :recommendations, source: :recommendable
 
   validates_format_of :url, :with => /amazon.com\/.*[dg]p\/(?:product\/)?(\w*)/, message: "Not a valid Amazon product URL"
 

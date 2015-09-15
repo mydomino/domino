@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
   
   factory :recommendation do
-    amazon_storefront
+    dashboard
   end
 
   factory :task do
@@ -28,7 +28,7 @@ FactoryGirl.define do
   factory :amazon_product do 
     url 'http://www.amazon.com/Nest-Learning-Thermostat-2nd-Generation/dp/B009GDHYPQ'
   end
-  factory :amazon_storefront do
+  factory :dashboard do
     lead_name Faker::Name.name
   end
 

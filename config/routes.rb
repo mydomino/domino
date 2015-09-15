@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'solar' => 'pages#solar'
 
   resources :leads, only: [:create, :new, :index]
-  resources :amazon_storefronts, path: '/dashboard/', only: [:new, :create, :show, :index] do
+  resources :dashboards, path: '/dashboard/', only: [:new, :create, :show, :index] do
     resources :recommendations, only: [:new, :create]
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
   end

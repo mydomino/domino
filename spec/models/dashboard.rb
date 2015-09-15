@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe AmazonStorefront, type: :model do
+describe Dashboard, type: :model do
   
-  let(:subject) { FactoryGirl.create(:amazon_storefront) } 
+  let(:subject) { FactoryGirl.create(:dashboard) } 
   let(:product) { FactoryGirl.create(:amazon_product, id: 2000) }
   let(:task) { FactoryGirl.create(:task, id: 2000) }
 

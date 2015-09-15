@@ -1,16 +1,16 @@
 class Recommendation < ActiveRecord::Base
-  belongs_to :amazon_storefront
+  belongs_to :dashboard
   belongs_to :recommendable, polymorphic: true
   belongs_to :concierge
-  validates :recommendable_id, uniqueness: {scope: [:amazon_storefront_id, :recommendable_type] }
-  validates :amazon_storefront_id, presence: true
+  validates :recommendable_id, uniqueness: {scope: [:dashboard_id, :recommendable_type] }
+  validates :dashboard_id, presence: true
   scope :tasks, -> { where(recommendable_type: 'Task') }
   scope :products, -> { where(recommendable_type: 'AmazonProduct') }
   after_create :assign_concierge
   scope :done, -> { where(done: true) }
 
   def assign_concierge
-    self.update_attribute(:concierge_id, amazon_storefront.concierge_id)
+    self.update_attribute(:concierge_id, dashboard.concierge_id)
   end
 
   def global_recommendable

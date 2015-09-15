@@ -11,6 +11,6 @@ RSpec.feature "Concierge logs in", :type => :feature do
     fill_in "Password", with: concierge.password
     click_on "Enter"
     
-    expect(current_path).to eq(amazon_storefronts_path)
+    expect(current_path).to eq(dashboards_path)
   end
 end
