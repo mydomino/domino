@@ -8,15 +8,7 @@
         .done
           .glyphicon.glyphicon-ok
     =amazon_product.name
-  .comment
-    -if recommendation.comment.present?
-      =recommendation.comment
-    -else
-      %button.btn.tiny.gray.uppercase{data: {"reveal-next" => "add-comment"}}
-        .glyphicon.glyphicon-plus
-        Comment
-      .add-comment{style: "display: none;"}
-        =render 'recommendations/comment_form', recommendation: recommendation
+  =render 'recommendations/comment', recommendation: recommendation
 
 .modal.fade{id: "product-#{amazon_product.id}"}
   .container

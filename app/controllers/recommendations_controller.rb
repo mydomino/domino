@@ -22,7 +22,7 @@ class RecommendationsController < ApplicationController
 
   def create
     @storefront = AmazonStorefront.friendly.find(params[:amazon_storefront_id])
-    @recommendation = Recommendation.new(recommendation_params)
+    @recommendation = Recommendation.new(create_recommendation_params)
     @recommendation.concierge = current_concierge
     if @recommendation.save
       redirect_to amazon_storefront_path @recommendation.amazon_storefront
@@ -30,6 +30,12 @@ class RecommendationsController < ApplicationController
       flash[:alert] = 'The storefront already contains that recommendation'
       render :new
     end
+  end
+
+  def update
+    @recommendation = Recommendation.find(params[:id])
+    @recommendation.update_attributes(update_recommendation_params)
+    redirect_to @recommendation.amazon_storefront
   end
 
   def bulk_update
@@ -56,8 +62,12 @@ class RecommendationsController < ApplicationController
 
   private
 
-  def recommendation_params
+  def create_recommendation_params
     params.require(:recommendation).permit(:comment, :global_recommendable).merge(amazon_storefront_id: @storefront.id)
+  end
+
+  def update_recommendation_params
+    params.require(:recommendation).permit(:comment)
   end
 
 end

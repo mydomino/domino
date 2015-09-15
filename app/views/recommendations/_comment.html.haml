@@ -1,0 +1,6 @@
+.concierge_comment
+  -if recommendation.comment.present?
+    .comment-box.gray
+      =recommendation.comment
+  -if concierge_signed_in?
+    =render 'recommendations/comment_form', recommendation: recommendation

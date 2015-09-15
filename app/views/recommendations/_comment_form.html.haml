@@ -1,3 +1,7 @@
-=simple_form_for recommendation do |form|
-  =form.input :comment
-  =form.submit "Save", class: 'btn tiny'
+%button.btn.tiny.gray.uppercase{data: {"reveal-next" => "add-comment"}}
+  .glyphicon.glyphicon-plus
+    Comment
+.add-comment{style: "display: none;"}
+  =simple_form_for recommendation do |form|
+    =form.input :comment
+    =form.submit "Save", class: 'btn tiny'

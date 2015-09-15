@@ -9,7 +9,9 @@ FactoryGirl.define do
     ip Faker::Internet.ip_v4_address
   end
   
-  factory :recommendation
+  factory :recommendation do
+    amazon_storefront
+  end
 
   factory :task do
     name Faker::Lorem.words(4)
