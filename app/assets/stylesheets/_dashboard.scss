@@ -8,75 +8,6 @@
     margin: auto;
   }
 }
-@media(min-width: 992px)
-{
-  .task.panel
-  {
-    height: 157px;
-  }
-}
-@media(max-width: 991px)
-{
-  .hidden-xs
-  {
-      display: none !important;
-  }
-}
-.task.panel
-{
-  border: 1px solid #ccc;
-  padding: 0px;
-  div[class^=col]
-  {
-    display: flex;
-    height: 100%;
-    .content
-    {
-      margin: auto;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-  .done-state
-  {
-    overflow: hidden;
-    padding: 0px;
-    text-align: center;
-    .gray
-    {
-      background-color: #d8d8d8;
-      color: #FFF;
-    }
-    div[class^=col]
-    {
-      .content
-      {
-        font-size: 24px;
-        .glyphicon
-        {
-          font-size: 48px;
-        }
-        .btn
-        {
-          font-size: 24px;
-          padding: 4px 20px;
-          padding-top: 12px;
-        }
-      }
-    }
-    .slide
-    {
-      left: -100%;
-      position: absolute;
-      padding-left: 0px;
-    }
-    &:hover .slide
-    {
-      left: 0px;
-      transition: 1s;
-    }
-  }
-}
 .store.panel
 {
   margin-bottom: 100px;
@@ -100,11 +31,66 @@
     }
   }
 }
+.recommendation
+{
+  border-radius: 6px;
+  overflow: hidden;
+  border: 3px solid $ultra-light-gray;
+  &:hover
+  {
+    border: 3px solid $blue; 
+  }
+  position: relative;
+  .status
+  {
+    padding: 5px 8px;
+    .completion-status-icon
+    {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 1px solid $blue;
+      display: inline-block;
+      position:relative;
+      bottom: -3px;
+    }
+    &.completed .completion-status-icon
+    {
+      background-color: $blue;
+      border: 1px solid $white;
+      box-shadow: 0px 0px 0px 2px $blue;
+    }
+  }
+  .icon
+  {
+    margin-top: 40px;
+    img
+    {
+      max-height: 80px;
+      width: auto;
+    }
+  }
+  .title
+  {
+    padding: 0px 20px;
+    margin: 20px 0px 10px;
+  }
+  .description
+  {
+    padding: 0px 40px 60px;
+    font-size: .9rem;
+    p
+    {
+      height: 80px;
+      overflow: hidden;
+    }
+  }
+}
 .comment-box
 {
   padding: 15px;
   font-size: .8rem;
   color: #333;
-  background-color: #EEE;
+  background-color: $ultra-light-gray;
   border-radius: 6px;
 }

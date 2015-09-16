@@ -1,6 +1,6 @@
 .form-wrapper{style: 'position: relative'}
-  = form_for @lead, remote: true do |lead|
-    .name
+  = form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
+    .container
       .row
         .col-xs-12.col-sm-6
           = lead.label :first_name
@@ -8,14 +8,15 @@
         .col-xs-12.col-sm-6
           = lead.label :last_name
           = lead.text_field :last_name
-    .email
-      = lead.label :email, 'Email (Required)'
-      = lead.email_field :email, placeholder: ''
-    .phone
-      =lead.label :phone
-      =lead.text_field :phone
-      %br
-    .address{style: 'display:none'}
-      =lead.text_field 'address', placeholder: 'Address (Optional)'
-    .errors
-    =lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn uppercase")
+      .row
+        .col-xs-12
+          = lead.label :email, 'Email'
+          = lead.email_field :email, placeholder: ''
+      .row
+        .col-xs-12
+          =lead.label :phone
+          =lead.text_field :phone
+      .errors
+      .row
+        .col-xs-12.text-center
+          = lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn blue uppercase large")

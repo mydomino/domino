@@ -1,5 +1,7 @@
 .col-xs-12.col-sm-4
   .recommendation
+    -if concierge_signed_in?
+      =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;position: absolute;top: 5px; right: 5px; z-index:1;"
     =render recommendation.recommendable, recommendation: recommendation
     =render 'recommendations/comment', recommendation: recommendation
 

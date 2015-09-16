@@ -7,23 +7,18 @@ button, .btn, a.btn
   font-size: 1.2rem;
   border-radius: 4px;
   margin-bottom: 10px;
-  background: $light-gray;
-  color: $gray;
-  &:hover, &:active, &:focus
-  { 
-    background-color: $light-gray;
-    color: $gray;
-  }
 }
 
 .btn-default
 {
   background-color: $red;
   color: $white;
+  border: none;
   &:hover, &:active, &:focus
   { 
-    background-color: auto;
-    color: auto;
+    background-color: $red;
+    color: $white;
+    border: none;
   }
 }
 

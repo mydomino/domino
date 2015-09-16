@@ -14,7 +14,7 @@ form
   }
   input, textarea
   {
-    background-color: transparent;
+    background-color: $white;
     width: 100%;
     padding: 15px 30px;
     font-size: 1.1rem;
@@ -40,11 +40,6 @@ form
   }
   button[type="submit"], .btn[type="submit"]
   {
-    font-size: 2rem;
-    margin-top: 20px;
-    padding: 20px 50px 10px;
-    letter-spacing: .15rem;
-    text-transform: uppercase;
     &.complete:disabled
     {
       background-color: #016B84;

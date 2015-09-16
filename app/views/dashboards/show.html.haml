@@ -3,8 +3,9 @@
   :css
     body
     {
-      padding-top: 40px;
+      padding-top: 60px;
     }
+
   .modal.fade#new-recommendation
     .container
       .modal-dialog
@@ -17,28 +18,28 @@
               .col-xs-12
                 =render 'recommendations/bulk_add_form'
 .container
-  .row
+  .row.text-center
     .col-xs-12
-      .store.panel
-        %h2.bold.text-center
-          Hi, 
-          =@dashboard.lead_name
+      %h1.text-gray
+        Hi, 
+        =@dashboard.lead_name
+  .row.text-center{style: "margin-bottom: 60px;"}
+    .col-xs-12
+      %h3.text-gray
+        Our team of nerds loves to test and research green technologies.
+      %p.text-gray
+        These
+        %strong.blue-text
+          hand-picked product recommendations
+        will help you save energy and money.
+        =#"#{@dashboard.concierge.name}'s Recommendations"
+
+  .store.panel
+    .row
+      .col-xs-12
         .row
-          .col-xs-12
-            %h3
-              Our team of nerds loves to test and research green technologies.
-            %p
-              These
-              %strong.blue-text
-                hand-picked product recommendations
-              will help you save energy and money.
-              =#"#{@dashboard.concierge.name}'s Recommendations"
-        .row
-          .col-xs-12
+          %h3.text-center Your Recommendations
+          -@dashboard.recommendations.each_slice(3) do |recommendations|
             .row
-              %h4.uppercase{style: "font-weight: 400;"} Recommendations
-              %hr{style: "margin-top:8px;"}
-              -@dashboard.recommendations.each_slice(3) do |recommendations|
-                .row
-                  -recommendations.each do |recommendation|
-                    =render recommendation
+              -recommendations.each do |recommendation|
+                =render recommendation

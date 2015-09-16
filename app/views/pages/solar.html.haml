@@ -13,7 +13,7 @@
       .col-xs-12.col-sm-6
         %h1.dynamic{style: "margin-bottom: 20px;"} What is the best solar company?
         .transparent
-          =render 'leads/simple_form', button_text: "Ask an Expert", button_class: 'pull-left btn blue uppercase'
+          =render 'leads/form', button_text: "Ask an Expert", button_class: 'pull-left btn blue uppercase'
     .row#down-button
       .col-xs-12.text-center{style: "padding-top: 40px;"}
         =link_to '#down-button' do
@@ -97,4 +97,4 @@
   .container
     .row
       .col-xs-12.col-sm-8.col-sm-offset-2
-        =render 'leads/simple_form', namespace: 'bottom'
+        =render 'leads/form', namespace: 'bottom'

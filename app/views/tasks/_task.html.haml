@@ -1,13 +1,27 @@
 
-.task{class: task.id,data: {toggle: 'modal', target: "#task-#{task.id}"}}
-  -if concierge_signed_in?
-    =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;"
-  .task_icon
+.task{class: task.id, data: {toggle: 'modal', target: "#task-#{task.id}"}}
+  .status.uppercase{class: ('completed' if recommendation.done)}
+    .completion-status-icon
+    Completed
+  .icon.text-center
     =image_tag task.icon
-    -if(recommendation.done)
-      .done
-        .glyphicon.glyphicon-ok
-  =task.name
+  %h4.uppercase.bold.title.text-center
+    =task.name
+  .description
+    %p
+      =task.description
+
+
+
+
+
+
+
+
+
+
+
+
 
 .modal.fade{id: "task-#{task.id}"}
   .container
