@@ -4,7 +4,7 @@ RSpec.feature "Concierge creates a new empty storefront", :type => :feature do
   let(:full_name) { Faker::Name.name }
   let!(:concierge) { FactoryGirl.create(:concierge) }
   scenario "by filling out the form" do
-    amazon_product = FactoryGirl.create(:amazon_product)
+    product = FactoryGirl.create(:product)
     login_as(concierge, scope: :concierge)
 
     visit new_dashboard_path

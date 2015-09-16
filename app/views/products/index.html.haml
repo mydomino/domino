@@ -3,7 +3,7 @@
     .col-xs-12.text-center
       %h2 Product Library
       %table.table
-        -@amazon_products.each do |product|
+        -@products.each do |product|
           =render 'product_row', product: product
-      =link_to "Add New", new_amazon_product_path, class: 'btn btn-default pull-right'
+      =link_to "Add New", new_product_path, class: 'btn btn-default pull-right'
       =link_to "Dashboards", dashboards_path, class: 'btn btn-default pull-left'

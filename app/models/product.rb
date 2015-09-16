@@ -1,4 +1,4 @@
-class AmazonProduct < ActiveRecord::Base
+class Product < ActiveRecord::Base
   has_many :recommendations, as: :recommendable
   has_many :dashboards, through: :recommendations, source: :recommendable
 

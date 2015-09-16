@@ -25,7 +25,7 @@ FactoryGirl.define do
     password Faker::Internet.password
   end
 
-  factory :amazon_product do 
+  factory :product do 
     url 'http://www.amazon.com/Nest-Learning-Thermostat-2nd-Generation/dp/B009GDHYPQ'
   end
   factory :dashboard do

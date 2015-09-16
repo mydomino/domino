@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Dashboard, type: :model do
   
   let(:subject) { FactoryGirl.create(:dashboard) } 
-  let(:product) { FactoryGirl.create(:amazon_product, id: 2000) }
+  let(:product) { FactoryGirl.create(:product, id: 2000) }
   let(:task) { FactoryGirl.create(:task, id: 2000) }
 
   it 'has a valid factory' do

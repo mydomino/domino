@@ -1,16 +1,16 @@
 .col-xs-12.col-sm-4
-  .amazon_product{class: amazon_product.id,data: {toggle: 'modal', target: "#product-#{amazon_product.id}"}}
+  .product{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
     -if concierge_signed_in?
       =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;"
     .amazon_picture
-      =image_tag amazon_product.image_url
+      =image_tag product.image_url
       -if(recommendation.done)
         .done
           .glyphicon.glyphicon-ok
-    =amazon_product.name
+    =product.name
   =render 'recommendations/comment', recommendation: recommendation
 
-.modal.fade{id: "product-#{amazon_product.id}"}
+.modal.fade{id: "product-#{product.id}"}
   .container
     .modal-dialog
       .modal-content
@@ -20,13 +20,13 @@
         .modal-body
           .row
             .col-xs-12.col-sm-6
-              =image_tag amazon_product.image_url
+              =image_tag product.image_url
             .col-xs-12.col-sm-6
               %h3
-                =amazon_product.name
+                =product.name
               %p
-                =amazon_product.description
-              =link_to "#{amazon_product.price} on Amazon", amazon_product.url, class: "btn blue full-width", target: "_blank"
+                =product.description
+              =link_to "#{product.price} on Amazon", product.url, class: "btn blue full-width", target: "_blank"
               -if(!recommendation.done)
                 =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
               -else

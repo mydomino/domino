@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915230836) do
+ActiveRecord::Schema.define(version: 20150915232630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "amazon_products", force: :cascade do |t|
-    t.string   "url"
-    t.string   "product_id"
-    t.string   "description"
-    t.string   "image_url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "price"
-    t.string   "xml"
-    t.string   "name"
-  end
 
   create_table "concierges", force: :cascade do |t|
     t.string   "name"
@@ -93,6 +81,18 @@ ActiveRecord::Schema.define(version: 20150915230836) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "geocoded"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "url"
+    t.string   "product_id"
+    t.string   "description"
+    t.string   "image_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "price"
+    t.string   "xml"
+    t.string   "name"
   end
 
   create_table "recommendations", force: :cascade do |t|

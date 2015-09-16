@@ -12,7 +12,7 @@ RSpec.feature "Concierge edits their own information" do
     fill_in 'Name', with: name
     click_on "Save"
 
-    expect(current_path).to eq(amazon_products_path)
+    expect(current_path).to eq(products_path)
   end
 
 end

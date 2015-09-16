@@ -5,7 +5,7 @@ class Recommendation < ActiveRecord::Base
   validates :recommendable_id, uniqueness: {scope: [:dashboard_id, :recommendable_type] }
   validates :dashboard_id, presence: true
   scope :tasks, -> { where(recommendable_type: 'Task') }
-  scope :products, -> { where(recommendable_type: 'AmazonProduct') }
+  scope :products, -> { where(recommendable_type: 'Product') }
   after_create :assign_concierge
   scope :done, -> { where(done: true) }
 

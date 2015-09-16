@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
 
   def new
     @dashboard = Dashboard.new
-    @amazon_products = AmazonProduct.all
+    @products = Product.all
     @concierges = Concierge.all
   end
 
@@ -33,7 +33,7 @@ class DashboardsController < ApplicationController
   private
 
   def dashboard_params
-    params.require(:dashboard).permit(:lead_name, :lead_email, :concierge_id, :recommendations_attributes => [:amazon_product_id])
+    params.require(:dashboard).permit(:lead_name, :lead_email, :concierge_id, :recommendations_attributes => [:product_id])
   end
 
 end

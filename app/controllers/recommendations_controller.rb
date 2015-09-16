@@ -41,12 +41,12 @@ class RecommendationsController < ApplicationController
   def bulk_update
     @storefront = Dashboard.friendly.find(params[:dashboard_id])
     if(!params[:dashboard].nil?)
-      new_product_recommendations = params[:dashboard][:amazon_product_ids]
-      @storefront.amazon_product_ids = params[:dashboard][:amazon_product_ids]
-      new_task_recommendations = params[:dashboard][:amazon_product_ids]
+      new_product_recommendations = params[:dashboard][:product_ids]
+      @storefront.product_ids = params[:dashboard][:product_ids]
+      new_task_recommendations = params[:dashboard][:product_ids]
       @storefront.task_ids = params[:dashboard][:task_ids]
     else
-      @storefront.amazon_product_ids = []
+      @storefront.product_ids = []
       @storefront.task_ids = []
     end
     redirect_to @storefront

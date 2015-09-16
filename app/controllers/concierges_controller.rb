@@ -8,7 +8,7 @@ class ConciergesController < ApplicationController
 
   def update
     if current_concierge.update_attributes(concierge_params)
-      redirect_to amazon_products_path
+      redirect_to products_path
     else
       render :edit  
     end

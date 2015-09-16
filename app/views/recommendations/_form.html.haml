@@ -1,6 +1,6 @@
 =simple_form_for [@storefront, @recommendation] do |form|
   =form.label "Recommendation", :recommendable_id
-  =form.grouped_collection_select :global_recommendable, [ AmazonProduct, Task ], :all, :model_name, :to_global_id, :name
+  =form.grouped_collection_select :global_recommendable, [ Product, Task ], :all, :model_name, :to_global_id, :name
   =form.label :comment, "A comment about this recommendation"
   =form.text_area :comment
   =form.submit "Save", class: "btn blue"

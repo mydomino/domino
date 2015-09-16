@@ -4,7 +4,7 @@ RSpec.feature "Concierge makes a recommendation" do
 
   let(:concierge) { FactoryGirl.create(:concierge) }
   let!(:storefront) { FactoryGirl.create(:dashboard, concierge: concierge) }
-  let!(:product) { FactoryGirl.create(:amazon_product) }
+  let!(:product) { FactoryGirl.create(:product) }
 
   scenario "for an existing storefront" do
     login_as(concierge, scope: :concierge)
