@@ -19,7 +19,7 @@ class DashboardsController < ApplicationController
 
   def show
     @dashboard = Dashboard.friendly.find(params[:id])
-    render layout: 'storefront'
+    render layout: 'dashboard'
   end
 
   def index

@@ -1,27 +1,41 @@
 button, .btn, a.btn
 {
+  box-shadow: none;
+  text-shadow: none;
+  text-decoration: none;
+  padding: .5rem 1.7rem .25rem;
+  font-size: 1.2rem;
   border-radius: 4px;
-  padding: 1rem;
   margin-bottom: 10px;
-  border-style: none;
-  background-color: $red;
-  color: $white;
-  &:hover, &:focus, &:active
-  {
-    color: $white;
+  background: $light-gray;
+  color: $gray;
+  &:hover, &:active, &:focus
+  { 
+    background-color: $light-gray;
+    color: $gray;
   }
 }
-.btn:hover
+
+.btn-default
 {
+  background-color: $red;
   color: $white;
+  &:hover, &:active, &:focus
+  { 
+    background-color: auto;
+    color: auto;
+  }
 }
 
 .btn.large, button.large
 {
-  font-size: 1.5rem;
-  padding: 15px 30px;
-  padding-top: 20px;
+  font-size: 2rem;
+  margin-top: 20px;
+  padding: 20px 50px 10px;
+  letter-spacing: .15rem;
+  text-transform: uppercase;
 }
+
 .btn.small, button.small
 {
   padding: .6rem .8rem .3rem;
@@ -29,29 +43,15 @@ button, .btn, a.btn
   font-size: 1.1rem;
   background-color: #DB5461;
 }
+
 .btn.tiny
 {
   padding: 5px 20px 3px;
 }
-.btn-default
-{
-  background-color: $red;
-  &:hover, &:active, &:focus
-  { 
-    background-color: $red;
-  }
-}
+
 .btn.transparent, button.transparent
 {
   background-color: transparent;
   border: 2px solid $white;
   color: white;
-}
-a.btn
-{
-  text-decoration: none !important;
-}
-.btn.gray
-{
-  background-color: #C4C5C5;
 }
