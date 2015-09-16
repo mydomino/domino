@@ -36,6 +36,8 @@
   border-radius: 6px;
   overflow: hidden;
   border: 3px solid $ultra-light-gray;
+  min-height: 375px;
+  margin-bottom: 20px;
   &:hover
   {
     border: 3px solid $blue; 
@@ -77,13 +79,10 @@
   }
   .description
   {
-    padding: 0px 40px 60px;
+    padding: 0px 40px;
     font-size: .9rem;
-    p
-    {
-      height: 80px;
-      overflow: hidden;
-    }
+    height: 80px;
+    overflow: hidden;
   }
 }
 .comment-box
