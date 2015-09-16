@@ -1,4 +1,22 @@
--if(recommendation.recommendable_type == 'Product')
-  =render 'products/product', product: recommendation.recommendable, recommendation: recommendation
--if(recommendation.recommendable_type == 'Task')
-  =render 'tasks/task', task: recommendation.recommendable, recommendation: recommendation
+.col-xs-12.col-sm-4
+  =render recommendation.recommendable, recommendation: recommendation
+  =render 'recommendations/comment', recommendation: recommendation
+
+.modal.fade{id: "#{recommendation.recommendable_type}-#{recommendation.recommendable_id}"}
+  .container
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          =render recommendation.recommendable, recommendation: recommendation
+          -if recommendation.comment.present?
+            %hr
+            .row
+              .col-xs-12
+                %h5.uppercase.bold 
+                  =recommendation.concierge.name
+                  Says
+                %p
+                  =recommendation.comment

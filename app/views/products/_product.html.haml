@@ -1,14 +1,13 @@
-.col-xs-12.col-sm-4
-  .product{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
-    -if concierge_signed_in?
-      =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;"
-    .amazon_picture
-      =image_tag product.image_url
-      -if(recommendation.done)
-        .done
-          .glyphicon.glyphicon-ok
-    =product.name
-  =render 'recommendations/comment', recommendation: recommendation
+
+.product{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
+  -if concierge_signed_in?
+    =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn-danger btn", style: "padding: 4px;"
+  .amazon_picture
+    =image_tag product.image_url
+    -if(recommendation.done)
+      .done
+        .glyphicon.glyphicon-ok
+  =product.name
 
 .modal.fade{id: "product-#{product.id}"}
   .container

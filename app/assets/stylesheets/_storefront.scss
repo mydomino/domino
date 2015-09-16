@@ -1,7 +1,8 @@
-.amazon_picture
+.amazon_picture, .task_icon
 {
   display: flex;
   position: relative;
+  min-height: 225px;
   img
   {
     margin: auto;
@@ -80,7 +81,7 @@
 {
   margin-bottom: 100px;
 }
-.amazon_product
+.product, .task
 {
   cursor: pointer;
   .done

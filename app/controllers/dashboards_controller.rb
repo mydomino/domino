@@ -4,7 +4,6 @@ class DashboardsController < ApplicationController
 
   def new
     @dashboard = Dashboard.new
-    @products = Product.all
     @concierges = Concierge.all
   end
 
@@ -19,10 +18,7 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    @storefront = Dashboard.friendly.find(params[:id])
-    @recommendation = @storefront.recommendations.build
-    @tasks = @storefront.recommendations.tasks
-    @products = @storefront.recommendations.products
+    @dashboard = Dashboard.friendly.find(params[:id])
     render layout: 'storefront'
   end
 

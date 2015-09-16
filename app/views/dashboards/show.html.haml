@@ -22,7 +22,7 @@
       .store.panel
         %h2.bold.text-center
           Hi, 
-          =@storefront.lead_name
+          =@dashboard.lead_name
         .row
           .col-xs-12
             %h3
@@ -32,20 +32,13 @@
               %strong.blue-text
                 hand-picked product recommendations
               will help you save energy and money.
-              =#"#{@storefront.concierge.name}'s Recommendations"
+              =#"#{@dashboard.concierge.name}'s Recommendations"
         .row
           .col-xs-12
             .row
-              %h4.uppercase{style: "font-weight: 400;margin-top:72px;"} Actions
+              %h4.uppercase{style: "font-weight: 400;"} Recommendations
               %hr{style: "margin-top:8px;"}
-              -@tasks.each do |task|
-                =render task
-        .row
-          .col-xs-12
-            .row
-              %h4.uppercase{style: "font-weight: 400;margin-top: 150px;"} Products
-              %hr{style: "margin-top:8px;"}
-              -@products.each_slice(3) do |products|
+              -@dashboard.recommendations.each_slice(3) do |recommendations|
                 .row
-                  -products.each do |product|
-                    =render product
+                  -recommendations.each do |recommendation|
+                    =render recommendation
