@@ -4,6 +4,7 @@ class Recommendation < ActiveRecord::Base
   belongs_to :concierge
   validates :recommendable_id, uniqueness: {scope: [:dashboard_id, :recommendable_type] }
   validates :dashboard_id, presence: true
+  default_scope { order("done DESC") }
   scope :tasks, -> { where(recommendable_type: 'Task') }
   scope :products, -> { where(recommendable_type: 'Product') }
   after_create :assign_concierge

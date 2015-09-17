@@ -55,6 +55,7 @@
       display: inline-block;
       position:relative;
       bottom: -3px;
+      background-color: #D8D8D8;
     }
     &.completed .completion-status-icon
     {
@@ -87,6 +88,18 @@
     height: 80px;
     overflow: hidden;
   }
+  &.completed
+  {
+    opacity: .5;
+    &:hover
+    {
+      opacity: 1;
+    }
+  }
+  &:hover
+  {
+    cursor: pointer;
+  }
 }
 .btn-group.filters .btn
 {
@@ -98,6 +111,7 @@
   }
   font-size: .9rem;
   padding: .6rem .6rem .4rem;
+  margin: 16px 0px 56px;
 }
 .comment-box
 {
