@@ -13,3 +13,7 @@
           %li
             Recommendations Completed:
             =@recommendations_completed_count
+    .col-xs-12
+      %pre
+        Products: 
+        =@recommendations.to_json

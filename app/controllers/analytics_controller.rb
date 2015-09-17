@@ -7,5 +7,6 @@ class AnalyticsController < ApplicationController
     @dashboard_count = Dashboard.all.count
     @recommendations_count = Recommendation.all.count
     @recommendations_completed_count = Recommendation.done.count
+    @recommendations = Recommendation.all
   end
 end

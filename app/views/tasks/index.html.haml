@@ -7,8 +7,8 @@
           .col-xs-12.col-sm-6.col-md-3
             .panel
               =task.name
-              =link_to "Edit", edit_task_path(task), class: 'btn small full-width'
-              =link_to "Delete", task_path(task), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'btn small full-width'
+              =link_to "Edit", edit_task_path(task), class: 'btn btn-default small full-width'
+              =link_to "Delete", task_path(task), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'btn btn-default small full-width'
         .col-xs-12.col-sm-6.col-md-3.text-center.storefront
           =link_to new_task_path do
             .new_storefront{style: "padding:50px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
