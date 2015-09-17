@@ -25,9 +25,9 @@
                 =product.description
               =link_to "#{product.price} on Amazon", product.url, class: "btn blue full-width", target: "_blank"
               -if(!recommendation.done)
-                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "POST"
               -else
-                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn full-width', method: "DELETE"
+                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "DELETE"
           -if recommendation.comment.present?
             %hr
             .row

@@ -68,7 +68,7 @@
     margin-top: 40px;
     img
     {
-      max-height: 80px;
+      max-height: 104px;
       width: auto;
     }
   }
@@ -76,6 +76,9 @@
   {
     padding: 0px 20px;
     margin: 20px 0px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .description
   {

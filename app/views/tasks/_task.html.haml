@@ -26,9 +26,9 @@
               %p
                 =task.description
               -if(!recommendation.done)
-                =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn full-width', method: "POST"
+                =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "POST"
               -else
-                =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'btn full-width', method: "DELETE"
+                =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "DELETE"
           -if recommendation.comment.present?
             %hr
             .row
