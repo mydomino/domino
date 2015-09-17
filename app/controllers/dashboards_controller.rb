@@ -18,7 +18,15 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    @dashboard = Dashboard.friendly.find(params[:id])
+    @dashboard = Dashboard.friendly.find(params[:id].downcase)
+    @filter = params[:filter]
+    if(@filter == 'products')
+      @recommendations = @dashboard.recommendations.where(recommendable_type: "Product")
+    elsif(@filter == 'actions')
+      @recommendations = @dashboard.recommendations.where(recommendable_type: "Task")
+    else
+      @recommendations = @dashboard.recommendations
+    end
     render layout: 'dashboard'
   end
 

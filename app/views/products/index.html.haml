@@ -4,6 +4,6 @@
       %h2 Product Library
       %table.table
         -@products.each do |product|
-          =render 'product_row', product: product
+          =render product
       =link_to "Add New", new_product_path, class: 'btn btn-default pull-right'
       =link_to "Dashboards", dashboards_path, class: 'btn btn-default pull-left'

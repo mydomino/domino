@@ -85,6 +85,17 @@
     overflow: hidden;
   }
 }
+.btn-group.filters .btn
+{
+  &.btn-transparent
+  {
+    background-color: #FFF;
+    color: $gray;
+    border-color: $light-gray;
+  }
+  font-size: .9rem;
+  padding: .6rem .6rem .4rem;
+}
 .comment-box
 {
   padding: 15px;

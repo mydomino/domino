@@ -230,3 +230,10 @@ img
     color: #5F5F5F;
   }
 }
+@media(max-width: 500px)
+{
+  .panel.gray, .store.panel
+  {
+    padding: 10px;
+  }
+}

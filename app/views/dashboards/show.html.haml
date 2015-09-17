@@ -22,7 +22,7 @@
     .col-xs-12
       %h1.text-gray
         Hi, 
-        =@dashboard.lead_name
+        =@dashboard.lead_name.titleize
   .row.text-center{style: "margin-bottom: 60px;"}
     .col-xs-12
       %h3.text-gray
@@ -36,9 +36,14 @@
   .store.panel
     .row
       .col-xs-12
-        .row
-          %h3.text-center Your Recommendations
-          -@dashboard.recommendations.each_slice(3) do |recommendations|
-            .row
-              -recommendations.each do |recommendation|
-                =render recommendation
+        %h3.text-center Your Recommendations    
+    .row
+      .col-xs-12
+        .btn-group.pull-right.filters{"aria-label" => "Filters", :role => "group"}
+          =link_to 'All', {filter: "all"}, class: "btn uppercase #{@filter.nil? ? 'blue' : 'btn-transparent'}"
+          =link_to 'Products', {filter: "products"}, class: "btn uppercase #{(@filter == 'products') ? 'blue' : 'btn-transparent' }"
+          =link_to 'Actions', {filter: "actions"}, class: "btn uppercase #{(@filter == 'actions') ? 'blue' : 'btn-transparent' }"
+    -@recommendations.each_slice(3) do |recommendations|
+      .row
+        -recommendations.each do |recommendation|
+          =render recommendation

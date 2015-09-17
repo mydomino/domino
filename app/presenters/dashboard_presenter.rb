@@ -1,0 +1,3 @@
+class DashboardPresenter < BasePresenter
+  
+end

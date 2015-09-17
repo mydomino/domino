@@ -4,7 +4,7 @@ class AnalyticsController < ApplicationController
 
 
   def show
-    @storefront_count = AmazonStorefront.all.count
+    @dashboard_count = Dashboard.all.count
     @recommendations_count = Recommendation.all.count
     @recommendations_completed_count = Recommendation.done.count
   end

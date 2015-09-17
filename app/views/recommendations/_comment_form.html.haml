@@ -1,4 +1,4 @@
 .add-comment{style: "display: none;"}
   =simple_form_for recommendation do |form|
-    =form.input :comment, label: false
-    =form.submit "Save", class: 'btn tiny'
+    =form.input :comment, label: false, input_html: {style: "margin: 0;"}
+    =form.submit "Save", class: 'btn tiny light-gray'
