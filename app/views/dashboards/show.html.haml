@@ -43,9 +43,9 @@
           =link_to 'All', {filter: nil}, class: "btn uppercase #{@filter.nil? ? 'blue' : 'btn-transparent'}"
           =link_to 'Products', {filter: "products"}, class: "btn uppercase #{(@filter == 'products') ? 'blue' : 'btn-transparent' }"
           =link_to 'Actions', {filter: "actions"}, class: "btn uppercase #{(@filter == 'actions') ? 'blue' : 'btn-transparent' }"
-    .progress
-      .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "20", :role => "progressbar", :style => "width: 20%"}
-        20% Complete
+    /.progress
+    /  .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "20", :role => "progressbar", :style => "width: 20%"}
+    /    20% Complete
     -@recommendations.each_slice(3) do |recommendations|
       .row
         -recommendations.each do |recommendation|
