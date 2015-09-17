@@ -2,8 +2,15 @@
   .row
     .col-xs-12.text-center
       %h2 Product Library
-      %table.table
-        -@products.each do |product|
-          =render product
-      =link_to "Add New", new_product_path, class: 'btn btn-default pull-right'
-      =link_to "Dashboards", dashboards_path, class: 'btn btn-default pull-left'
+      .row
+        .col-xs-12.col-md-4.col-md-push-4
+          =link_to new_product_path do
+            .new_storefront{style: "padding:10px 0px; margin: 10px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
+              .icon
+                .glyphicon.glyphicon-plus{style: 'background-color: #02CCFF; color: #FFF;font-size: 2rem; padding: 8px 8px 10px 10px;border-radius: 50%;'}
+              Add a new Product
+      -@products.each_slice(3) do |products|
+        .row
+          -products.each do |product|
+            .col-xs-12.col-sm-6.col-md-4
+              =render 'products/index_product', product: product
