@@ -34,6 +34,13 @@ class DashboardsController < ApplicationController
     @dashboards = Dashboard.where(concierge: current_concierge)
   end
 
+  def destroy
+    @dashboard = Dashboard.friendly.find(params[:id])
+    @dashboard.destroy
+
+    redirect_to dashboards_path
+  end
+
   private
 
   def dashboard_params

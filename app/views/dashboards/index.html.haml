@@ -2,23 +2,24 @@
   .row
     .col-xs-12
       .row
-        -@dashboards.each do |store|
+        -@dashboards.each do |dashboard|
           .col-xs-12.col-sm-6.col-md-3.text-center.storefront
             .avatar
-              =link_to dashboard_path(store), target: 'blank' do
-                =gravatar_image_tag(store.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
-            =store.lead_name
+              =link_to dashboard_path(dashboard), target: 'blank' do
+                =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
+            =dashboard.lead_name
             %br
-            =store.recommendations.done.count
+            =dashboard.recommendations.done.count
             \/
-            =store.recommendations.count
+            =dashboard.recommendations.count
             recommendations done
             %br
             Created
-            =time_ago_in_words store.created_at
+            =time_ago_in_words dashboard.created_at
             ago
             %br
-            =link_to "Make Recommendation", new_dashboard_recommendation_path(dashboard_id: store.id)
+            =link_to "Make Recommendation", new_dashboard_recommendation_path(dashboard_id: dashboard.id)
+            =link_to "Delete", dashboard_path(dashboard), method: "DELETE", data: {confirm: "Are you sure?"}
         .col-xs-12.col-sm-6.col-md-3.text-center.storefront
           =link_to new_dashboard_path do
             .new_storefront{style: "padding: 80px 0px; border: 4px dashed #DDD;border-radius: 4px;"}

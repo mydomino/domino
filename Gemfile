@@ -39,6 +39,7 @@ gem 'gravatar_image_tag'
 gem 'unicorn'
 
 group :development, :test do
+  gem 'database_cleaner'
   gem 'simplecov'
   gem 'byebug'
   gem 'dotenv-rails'
