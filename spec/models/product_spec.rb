@@ -14,6 +14,14 @@ describe Product, type: :model do
     expect(product.name).not_to be_blank
   end
 
+  it 'correctly extracts a URL if it is not given an ID', focus: true do
+    product = Product.new(url: 'http://www.amazon.com/Nest-Learning-Thermostat-2nd-Generation/dp/B009GDHYPQ')
+
+    expect(product.product_id).to be_nil
+    product.save
+    expect(product.product_id).to eq('B009GDHYPQ')
+  end
+
   it 'schedules a call to the Amazon API after create'
 
 

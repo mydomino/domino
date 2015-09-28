@@ -9,9 +9,7 @@ class Lead < ActiveRecord::Base
 end
   after_create :queue_geocode, :deliver_thank_you_email, :save_to_zoho
   validates :last_name, presence: true
-  #Commenting out the 'either phone or email logic'
-  #validates :phone, presence: true, unless: Proc.new { |lead| lead.email.present? }
-  validates :email, presence: true#, unless: Proc.new { |lead| lead.phone.present? }
+  validates :email, presence: true
   default_scope { order('created_at DESC') }
 
   private
