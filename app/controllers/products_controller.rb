@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to edit_product_path @product
     else
-      render :new, flash
+      render :new
     end
   end
 
