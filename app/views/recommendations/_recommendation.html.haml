@@ -4,12 +4,3 @@
       =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn", style: "padding: 4px;position: absolute;top: 5px; right: 5px; z-index:1;"
     =render recommendation.recommendable, recommendation: recommendation
     =render 'recommendations/comment', recommendation: recommendation
-
-.modal.fade{id: "#{recommendation.recommendable_type.downcase}-#{recommendation.recommendable_id}"}
-  .container
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
