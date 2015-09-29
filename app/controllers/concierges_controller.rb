@@ -10,7 +10,7 @@ class ConciergesController < ApplicationController
     if current_concierge.update_attributes(concierge_params)
       redirect_to products_path
     else
-      render :edit  
+      render :edit
     end
   end
 
