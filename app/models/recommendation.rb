@@ -1,14 +1,18 @@
 class Recommendation < ActiveRecord::Base
+  
   belongs_to :dashboard
   belongs_to :recommendable, polymorphic: true
   belongs_to :concierge
+
   validates :recommendable_id, uniqueness: {scope: [:dashboard_id, :recommendable_type] }
   validates :dashboard_id, presence: true
+
   default_scope { order("done ASC") }
   scope :tasks, -> { where(recommendable_type: 'Task') }
   scope :products, -> { where(recommendable_type: 'Product') }
-  after_create :assign_concierge, :set_done_to_false
   scope :done, -> { where(done: true) }
+
+  after_create :assign_concierge, :set_done_to_false
 
   def assign_concierge
     self.update_attribute(:concierge_id, dashboard.concierge_id)

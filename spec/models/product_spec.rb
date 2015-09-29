@@ -22,7 +22,4 @@ describe Product, type: :model do
     expect(product.product_id).to eq('B009GDHYPQ')
   end
 
-  it 'schedules a call to the Amazon API after create'
-
-
 end
