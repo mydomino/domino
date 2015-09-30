@@ -4,7 +4,7 @@ RSpec.feature "User views dashboard", :type => :feature do
 
   let!(:product) { FactoryGirl.create(:product) }
   let!(:concierge) { FactoryGirl.create(:concierge) }
-  let!(:dashboard) { FactoryGirl.create(:dashboard, concierge: concierge) }
+  let!(:dashboard) { FactoryGirl.create(:dashboard, concierge: concierge, lead_name: "John Doe") }
 
   scenario "to buy a product from Amazon" do
     dashboard.products << product
