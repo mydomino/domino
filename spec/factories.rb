@@ -30,6 +30,7 @@ FactoryGirl.define do
   end
   factory :dashboard do
     lead_name Faker::Name.name
+    lead_email Faker::Internet.email
   end
 
 end

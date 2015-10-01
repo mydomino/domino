@@ -5,6 +5,7 @@ class Dashboard < ActiveRecord::Base
   has_many :products, through: :recommendations, source: :recommendable, source_type: :Product
   has_many :tasks, through: :recommendations, source: :recommendable, source_type: :Task
   belongs_to :concierge
+  validates :lead_email, presence: true
 
   def slug_candidates
     #OK, there has to be a better way to do this but I don't know it : (

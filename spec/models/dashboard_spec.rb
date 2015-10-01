@@ -14,6 +14,12 @@ describe Dashboard, type: :model do
     expect { subject.recommendations } .not_to raise_error
   end
 
+  it 'requires an email' do
+    dashboard = FactoryGirl.build(:dashboard, lead_email: '')
+
+    expect(dashboard.save).to be false
+  end
+
   it 'can have two different types of recommendations with the same ID added' do
     expect(product.id).to eq(task.id)
 
