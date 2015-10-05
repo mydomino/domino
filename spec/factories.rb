@@ -28,6 +28,7 @@ FactoryGirl.define do
   factory :product do 
     url 'http://www.amazon.com/Nest-Learning-Thermostat-2nd-Generation/dp/B009GDHYPQ'
   end
+  
   factory :dashboard do
     lead_name Faker::Name.name
     lead_email Faker::Internet.email
