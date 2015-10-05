@@ -88,6 +88,14 @@
     height: 80px;
     overflow: hidden;
   }
+  .glyphicon-remove.btn
+  {
+    color: #d9534f;
+    &:hover
+    {
+      color: #A23D3A;
+    }
+  }
   &.completed
   {
     opacity: .5;
