@@ -131,6 +131,8 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    heap (0.3.0)
+      httparty (~> 0.13)
     heroku-api (0.3.23)
       excon (~> 0.44)
       multi_json (~> 1.8)
@@ -362,6 +364,7 @@ DEPENDENCIES
   geocoder
   gravatar_image_tag
   haml-rails
+  heap
   html2haml
   intercom-rails
   jquery-rails

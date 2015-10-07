@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'friendly_id'
 gem 'devise'
 gem 'gravatar_image_tag'
+gem 'heap'
 
 gem 'unicorn'
 
