@@ -1,26 +1,22 @@
-.container
+.container.dashboards
   .row
     .col-xs-12
       .row
         -@dashboards.each do |dashboard|
-          .col-xs-12.col-sm-6.col-md-3.text-center.storefront
-            .avatar
-              =link_to dashboard_path(dashboard), target: 'blank' do
-                =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
-            =dashboard.lead_name
-            %br
-            =dashboard.recommendations.done.count
-            \/
-            =dashboard.recommendations.count
-            recommendations done
-            %br
-            Created
-            =time_ago_in_words dashboard.created_at
-            ago
-            %br
-            =link_to "Make Recommendation", new_dashboard_recommendation_path(dashboard_id: dashboard.id)
-            =link_to "Delete", dashboard_path(dashboard), method: "DELETE", data: {confirm: "Are you sure?"}
-        .col-xs-12.col-sm-6.col-md-3.text-center.storefront
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            .dashboard-list
+              .avatar
+                =link_to dashboard_path(dashboard), target: 'blank' do
+                  =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
+              .h4.uppercase
+                =dashboard.lead_name
+              %br
+              =dashboard.recommendations.done.count
+              \/
+              =dashboard.recommendations.count
+              %br
+              =link_to "Delete", dashboard_path(dashboard), method: "DELETE", data: {confirm: "Are you sure?"}
+        .col-xs-12.col-sm-6.col-md-3.text-center.dashboard-list
           =link_to new_dashboard_path do
             .new_storefront{style: "padding: 80px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
               .icon
