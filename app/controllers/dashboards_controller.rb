@@ -21,9 +21,9 @@ class DashboardsController < ApplicationController
     @dashboard = Dashboard.friendly.find(params[:id].downcase)
     @filter = params[:filter]
     if(@filter == 'products')
-      @recommendations = @dashboard.recommendations.where(recommendable_type: "Product")
+      @recommendations = @dashboard.recommendations.where(recommendable_type: "Product").includes(:recommendable)
     elsif(@filter == 'actions')
-      @recommendations = @dashboard.recommendations.where(recommendable_type: "Task")
+      @recommendations = @dashboard.recommendations.where(recommendable_type: "Task").includes(:recommendable)
     else
       @recommendations = @dashboard.recommendations
     end
@@ -33,7 +33,7 @@ class DashboardsController < ApplicationController
   def index
     @filter = params[:filter]
     if(@filter == 'mine')
-      @dashboards = Dashboard.where(concierge: current_concierge)
+      @dashboards = Dashboard.where(concierge: current_concierge).includes(:recommendations)
     else
       @dashboards = Dashboard.all
     end
