@@ -11,14 +11,16 @@
               .h4.uppercase
                 =dashboard.lead_name
               %br
-              =dashboard.recommendations.done.count
+              .progress
+                .progress-bar{role: 'progressbar', style: "width: #{recommendation_progress}%", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
+                  .sr-only
+                    x% complete
+              =dashboard.recommendations.tasks.done.count
               \/
-              =dashboard.recommendations.count
-              %br
-              =link_to "Delete", dashboard_path(dashboard), method: "DELETE", data: {confirm: "Are you sure?"}
+              =dashboard.recommendations.tasks.count
         .col-xs-12.col-sm-6.col-md-3.text-center.dashboard-list
           =link_to new_dashboard_path do
-            .new_storefront{style: "padding: 80px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
+            .new_storefront{style: "padding: 90px 0px;"}
               .icon
-                .glyphicon.glyphicon-plus{style: 'background-color: #02CCFF; color: #FFF;font-size: 2rem; padding: 8px 8px 10px 10px;border-radius: 50%;'}
+                .glyphicon.glyphicon-plus{style: 'background-color: #02CCFF; color: #FFF;font-size: 2rem; padding: 8px 8px 15px 10px;border-radius: 50%;'}
               Create a new dashboard

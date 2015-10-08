@@ -1,0 +1,3 @@
+class DashboardsHelper < ApplicationHelper
+  
+end
