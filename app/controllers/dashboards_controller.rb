@@ -31,7 +31,12 @@ class DashboardsController < ApplicationController
   end
 
   def index
-    @dashboards = Dashboard.where(concierge: current_concierge)
+    @filter = params[:filter]
+    if(@filter == 'mine')
+      @dashboards = Dashboard.where(concierge: current_concierge)
+    else
+      @dashboards = Dashboard.all
+    end
   end
 
   def destroy
