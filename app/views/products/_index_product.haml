@@ -1,5 +1,5 @@
-.product{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
+.product-list{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
   .amazon_picture
     =image_tag product.image_url
-  %h4.uppercase.bold.title.text-center
+  %h4.uppercase.bold.title.text-center{style: "white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"}
     =product.name

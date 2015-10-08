@@ -1,0 +1,21 @@
+%nav.navbar.navbar-default{class: content_for(:navbar_class) }
+  .navbar-header
+    %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to image_tag('penguin_logo_gradient', {style: "margin-left: 30px; max-height: 80px;"}), root_path
+  #navbar.navbar-collapse.collapse
+    .navbar-right
+      =link_to "+ Dashboards", dashboards_path, class: 'navbar-btn btn light-gray', style: "border-radius: 20px;"
+      =link_to "+ Products", products_path, class: 'navbar-btn btn light-gray', style: "border-radius: 20px;"
+      =link_to "+ Actions", tasks_path, class: 'navbar-btn btn light-gray', style: "border-radius: 20px;"
+      -if(concierge_signed_in?)
+        %span.dropdown
+          =gravatar_image_tag(current_concierge.email, gravatar: { size: 80, default: "http://mydomino.com/assets/default_avatar.png" }, data: {toggle: "dropdown"}, style: "border-radius: 50%;")
+          %ul.dropdown-menu
+            %li
+              =link_to "My Profile", edit_concierge_path
+            %li
+              =link_to "Log Out", destroy_concierge_session_path, method: "DELETE"

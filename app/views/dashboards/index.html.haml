@@ -1,28 +1,35 @@
-.container
+.container.dashboards
+  .row
+    .col-xs-12
+      .btn-group.pull-left.filters{"aria-label" => "New Dashboarf", :role => "group"}
+        .btn.blue.uppercase
+          New Dashboard
+      .btn-group.pull-right.filters{"aria-label" => "Filters", :role => "group"}
+        =link_to 'All', {filter: nil}, class: "btn uppercase #{@filter.nil? ? 'blue' : 'btn-transparent'}"
+        =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
   .row
     .col-xs-12
       .row
         -@dashboards.each do |dashboard|
-          .col-xs-12.col-sm-6.col-md-3.text-center.storefront
-            .avatar
-              =link_to dashboard_path(dashboard), target: 'blank' do
-                =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
-            =dashboard.lead_name
-            %br
-            =dashboard.recommendations.done.count
-            \/
-            =dashboard.recommendations.count
-            recommendations done
-            %br
-            Created
-            =time_ago_in_words dashboard.created_at
-            ago
-            %br
-            =link_to "Make Recommendation", new_dashboard_recommendation_path(dashboard_id: dashboard.id)
-            =link_to "Delete", dashboard_path(dashboard), method: "DELETE", data: {confirm: "Are you sure?"}
-        .col-xs-12.col-sm-6.col-md-3.text-center.storefront
-          =link_to new_dashboard_path do
-            .new_storefront{style: "padding: 80px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
-              .icon
-                .glyphicon.glyphicon-plus{style: 'background-color: #02CCFF; color: #FFF;font-size: 2rem; padding: 8px 8px 10px 10px;border-radius: 50%;'}
-              Create a new dashboard
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            .dashboard-list
+              .avatar
+                =link_to dashboard_path(dashboard), target: 'blank' do
+                  =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
+              .h4.uppercase
+                =dashboard.lead_name
+              %br
+              .progress{style: "margin-bottom: 0px;height: 15px;"}
+                .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{product_progress dashboard}%;", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
+              .stats.text-left
+                %small.uppercase.bold
+                  Products
+                %small.pull-right.bold
+                  ="#{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count}"
+              .progress{style: "margin-bottom: 0px;height: 15px;"}
+                .progress-bar.progress-bar-danger{role: 'progressbar', style: "width: #{task_progress dashboard}%", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
+              .stats.text-left
+                %small.uppercase.bold
+                  Tasks
+                %small.pull-right.bold
+                  ="#{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count}"

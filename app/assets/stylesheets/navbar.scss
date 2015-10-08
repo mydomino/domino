@@ -54,9 +54,18 @@ $nav-height: 100px;
       fill: $white;
     }
   }
-  &.gray
+  &.ultra-light-gray
   {
     background-color: #F9F9F9;
+    color: $blue;
+    svg g
+    {
+      fill: $blue;
+    }
+  }
+  &.light-gray
+  {
+    background-color: #D8D8D8;
     color: $blue;
     svg g
     {
@@ -122,9 +131,8 @@ $nav-height: 100px;
   min-height: 20px;
   height: auto;
   padding: 0px;
-  background: $dark-gray;
   z-index: 2;
-  background-color: $blue;
+  background-color: #DDD;
   .navbar-brand
   {
     color: #FFF;

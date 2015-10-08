@@ -1,18 +1,5 @@
--content_for :navbar do
-  %ul.nav.navbar-nav.pull-right
-    -if(concierge_signed_in?)
-      %li
-        =link_to "My Profile", edit_concierge_path
-      %li
-        =link_to "Dashboards", dashboards_path
-      %li
-        =link_to "Product Library", products_path
-      %li
-        =link_to "Action Library", tasks_path
-      %li
-        =link_to "Log Out", destroy_concierge_session_path, method: "DELETE"
 -content_for :navbar_class do
-  blue
+  light-gray
 
 !!!
 %html
@@ -24,8 +11,8 @@
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/analytics'
-  %body.ultra-light-gray
-    = render 'layouts/navbar'
+  %body
+    = render 'layouts/concierge_navbar'
     .container
       .alerts
         =flash_messages

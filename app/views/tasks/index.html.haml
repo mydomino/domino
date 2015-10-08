@@ -1,17 +1,14 @@
 .container
   .row
-    .col-xs-12
-      %h1 Actions
-      .row
-        -@tasks.each do |task|
-          .col-xs-12.col-sm-6.col-md-3
-            .panel
+    .col-xs-12.text-center
+      =link_to "Add a new Task", new_task_path, class: 'btn blue'
+  .row
+    -@tasks.each do |task|
+      .col-xs-12.col-sm-6.col-md-3
+        .panel
+          .icon.text-center
+            =image_tag task.icon, style: "max-height: 100px;margin-bottom: 10px;"
+            %h5.uppercase.bold.text-center
               =task.name
-              =link_to "Edit", edit_task_path(task), class: 'btn btn-default small full-width'
-              =link_to "Delete", task_path(task), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'btn btn-default small full-width'
-        .col-xs-12.col-sm-6.col-md-3.text-center.storefront
-          =link_to new_task_path do
-            .new_storefront{style: "padding:50px 0px; border: 4px dashed #DDD;border-radius: 4px;"}
-              .icon
-                .glyphicon.glyphicon-plus{style: 'background-color: #02CCFF; color: #FFF;font-size: 2rem; padding: 8px 8px 10px 10px;border-radius: 50%;'}
-              Create a new Action
+          =link_to "Edit", edit_task_path(task), class: 'pull-left'
+          =link_to "Delete", task_path(task), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'pull-right'
