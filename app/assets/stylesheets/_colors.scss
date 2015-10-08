@@ -1,9 +1,9 @@
-$light-gray: #C4C5C5;
+$light-gray: #E1E1E1;
 $ultra-light-gray: #F9F9F9;
-$dark-gray: #5F5F5F;
+$dark-gray: #666666;
 $ultra-dark-gray: #313131;
 $white: #FFFFFF;
-$blue: #02CCFF;
+$blue: #00CCFF;
 $dark-transparent: rgba(48, 48, 48, 0.65);
 $red: #db5461;
 
@@ -12,7 +12,7 @@ $red: #db5461;
   background-color: $ultra-light-gray;
 }
 .btn.light-gray, button.light-gray
-{ 
+{
   color: $white;
   background-color: $light-gray;
 }
