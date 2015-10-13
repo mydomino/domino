@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'get_started' => 'leads#new'
 
   get 'EnergyAwareness' => 'leads#energy_awareness'
+  get 'energy-awareness' => 'leads#energy_awareness'
 
   get '/blog' => redirect("/blog/")
 
