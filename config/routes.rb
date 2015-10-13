@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'
 
+  get 'EnergyAwareness' => 'leads#energy_awareness'
+
   get '/blog' => redirect("/blog/")
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]

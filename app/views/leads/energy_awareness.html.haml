@@ -1,0 +1,22 @@
+-content_for :navbar_class do
+  dark overlay
+
+.concierge.hero
+  .overlay
+    %h1.content
+      Enter our Energy Awareness Month giveaway!
+.blue
+  .container
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        .reserve.panel#reserve{style: "margin-top: -100px;"}
+          .row
+            .col-xs-12.col-sm-8.col-sm-offset-2
+              Fill in the form below for a free chat with a Domino Concierge, and you’ll be entered in a drawing to win your choice of: 
+              %ul.text-left
+                %li Nest 3rd Generation Learning Thermostat
+                %li Kill A Watt Home Electricity Usage Monitor
+                %li Automatic Smart Driving Assistant
+              Enter by October 31 for your chance to win!
+              =render 'form', button_text: 'Get Started'
+              %small By submitting this form, you confirm that you have read and agree to the official Sweepstakes rules and conditions.

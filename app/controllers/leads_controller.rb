@@ -9,6 +9,10 @@ class LeadsController < ApplicationController
     @lead = Lead.new
   end
 
+  def energy_awareness
+    @lead = Lead.new
+  end
+
   def create
     set_tracking_variables
     @lead = Lead.create(lead_params)
