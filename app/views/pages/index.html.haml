@@ -7,13 +7,18 @@
       .row
         .col-xs-12.col-med-6
           %h1.title.dynamic
-            Ready for cool savings with clean energy?
-            %br
-            Let Domino be your guide.  
+            Domino provides you with: 
           %h3.title
-            From solar panels to smart thermostats and everything in between, 
-            %br
-            we’ve done the research and lined up deals so you don’t have to.
+            %ul
+              %li An energy plan with personalized recommendations to save you money
+              %li Home solar quotes from some of the most trusted companies in the industry
+              %li A custom dashboard to track your progress towards 100% clean energy
+          .col-xs-12.col-sm-4
+            =image_tag('dashboard.png', style: "transform: rotate(-30deg);position: relative; bottom: -80px; right: -100px;")
+          .col-xs-12.col-sm-4
+            =image_tag('checklist.png')
+          .col-xs-12.col-sm-4
+            =image_tag('energy_plan.png', style: "transform: rotate(30deg);position: relative; bottom: -80px; left: -100px;")
           = link_to getstarted_path do
             %button.btn.btn-default.large
               GET STARTED
