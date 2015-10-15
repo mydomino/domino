@@ -3,9 +3,9 @@
 require ::File.expand_path('../config/environment', __FILE__)
 
 use Rack::ReverseProxy do
-  reverse_proxy /^\/blog(\/.*)$/, 'http://www.beyondfossilfuels.org$1', :timeout => 500, :preserve_host => true
+  reverse_proxy /^\/blog(\/.*)$/, 'http://mydomino.wpengine.com$1', :timeout => 500, :preserve_host => true
 
-  reverse_proxy /^\/wp-admin(\/.*)$/, 'http://www.beyondfossilfuels.org/wp-admin/$1', :timeout => 500, :preserve_host => true
+  reverse_proxy /^\/wp-admin(\/.*)$/, 'http://mydomino.wpengine.com/wp-admin/$1', :timeout => 500, :preserve_host => true
 end
 
 if Rails.env.production?
