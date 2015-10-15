@@ -7,7 +7,7 @@ function track_lead_creation()
   window['optimizely'].push(["trackEvent", "leadCreated"]);
   goog_report_conversion();
 }
-function animate_form_success()
+function animate_form_success(thankYouText)
 {
   $('.errors').hide()
   var form = $('form');
@@ -17,7 +17,7 @@ function animate_form_success()
   setTimeout(function()
   {
     button.val('Thanks!')
-    $('<p style="clear:both;">We will be in touch soon.</p>').insertAfter(button);
+    $('<p style="clear:both;">'+thankYouText+'</p>').insertAfter(button);
     button.addClass('complete')
     inputs.attr('disabled', 'true')
   });
