@@ -26,9 +26,32 @@
               %br
               %br
               %br
-              =render 'form', button_text: 'Get Started'
-              %small By submitting this form, you confirm that you have read and agree to the official 
-              %a{data: {toggle: 'modal', target: '#rules-modal'}} Sweepstakes rules and conditions.
+              .form-wrapper{style: 'position: relative'}
+                = form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
+                  .container
+                    .row
+                      = hidden_field :lead, :form_name, {value: "energy_awareness_contest"}
+                      .col-xs-12.col-sm-6
+                        = lead.label :first_name
+                        = lead.text_field :first_name
+                      .col-xs-12.col-sm-6
+                        = lead.label :last_name
+                        = lead.text_field :last_name
+                    .row
+                      .col-xs-12
+                        = lead.label :email, 'Email'
+                        = lead.email_field :email, placeholder: ''
+                    .row
+                      .col-xs-12
+                        =lead.label :phone
+                        =lead.text_field :phone
+                    .errors
+                    .row
+                      .col-xs-12.text-center
+                        = lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn blue uppercase large")
+              %small 
+                By submitting this form, you confirm that you have read and agree to the official
+                %a{data: {toggle: 'modal', target: '#rules-modal'}} Sweepstakes rules and conditions.
 .modal.fade{id: "rules-modal"}
   .container
     .modal-dialog

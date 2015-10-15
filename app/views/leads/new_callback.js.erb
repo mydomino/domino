@@ -2,6 +2,6 @@
   $('.errors').html('<%= j(render 'errors') %>');
   animate($('.errors'), 'shake');
 <%- else %>
-  animate_form_success();
+  animate_form_success('<%= @thank_you_text %>');
   track_lead_creation();
 <%- end %>

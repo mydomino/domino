@@ -18,6 +18,11 @@ class LeadsController < ApplicationController
     @lead = Lead.create(lead_params)
     @lead.last_name = "Not Given" if(@lead.last_name == '') 
     @lead.save
+    if(params[:lead][:form_name] == 'energy_awareness_contest')
+      @thank_you_text = "Your entry has been received! We'll be in touch soon!"
+    else
+      @thank_you_text = "We will be in touch soon!"
+    end
     render 'new_callback.js'
   end
 
