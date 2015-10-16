@@ -1,33 +1,27 @@
 -content_for :navbar_class do
-  roll-down dark overlay
+  roll-down overlay blue
 
-#clickthrough.intro
-  .overlay
-    .content.container
-      .row
-        .col-xs-12.col-med-6
-          %h1.title.dynamic
-            Domino provides you with: 
-          %h3.title
-            %ul
-              %li An energy plan with personalized recommendations to save you money
-              %li Home solar quotes from some of the most trusted companies in the industry
-              %li A custom dashboard to track your progress towards 100% clean energy
-          .col-xs-12.col-sm-4
-            =image_tag('dashboard.png', style: "transform: rotate(-30deg);position: relative; bottom: -80px; right: -100px;")
-          .col-xs-12.col-sm-4
-            =image_tag('checklist.png')
-          .col-xs-12.col-sm-4
-            =image_tag('energy_plan.png', style: "transform: rotate(30deg);position: relative; bottom: -80px; left: -100px;")
-          = link_to getstarted_path do
-            %button.btn.btn-default.large
-              GET STARTED
-          .learn-more{style: "padding-top:40px;"}
-            =link_to anchor: 'how-it-works' do
-              How it Works
-            %br
-            =link_to anchor: 'how-it-works' do
-              .glyphicon.glyphicon-chevron-down
+#sky.intro
+  .content.container
+    .row
+      .col-xs-12.col-med-6
+        %h2.title.dynamic
+          From assisting you with solar to helping you save money, we do it all.
+        .col-xs-12.col-sm-4
+          =image_tag('dashboard.png')
+        .col-xs-12.col-sm-4
+          =image_tag('checklist.png')
+        .col-xs-12.col-sm-4
+          =image_tag('energy_plan.png')
+        = link_to getstarted_path do
+          %button.btn.btn-default.large.blue
+            GET STARTED
+        .learn-more{style: "padding-top:40px;"}
+          =link_to anchor: 'how-it-works' do
+            How it Works
+          %br
+          =link_to anchor: 'how-it-works' do
+            .glyphicon.glyphicon-chevron-down
 #energy-guide.intro.alternate-background{style: 'display: none;'}
   .overlay
     .content.container

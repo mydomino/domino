@@ -9,6 +9,11 @@ button, .btn, a.btn
   margin-bottom: 10px;
 }
 
+.btn.blue
+{
+  background-image: linear-gradient(#277BB7, #205F8B);
+}
+
 .btn-default
 {
   background-color: $red;
