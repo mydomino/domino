@@ -246,6 +246,29 @@ img
     color: #5F5F5F;
   }
 }
+.textimonial .quote
+{
+  font-size: 1.7rem;
+  padding: 0px 40px;
+}
+.testimonial .quote:before {
+ content: '\201C';
+  font-size: 175px;
+  line-height: 0px;
+  float: left;
+  position: relative;
+  bottom: -70px;
+  left: -60px;
+}
+.testimonial .quote:after {
+  content: '\201E';
+  font-size: 170px;
+  line-height: 0px;
+  position: relative;
+  top: -40px;
+  right: -50px;
+  float: right;
+ }
 @media(max-width: 500px)
 {
   .panel.gray, .store.panel

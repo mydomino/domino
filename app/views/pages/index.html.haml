@@ -40,16 +40,17 @@
         .col-xs-12.col-md-4.col-md-push-4
           =embedded_svg 'testimonial.svg', style: 'margin-bottom: 40px'
       .row
-        .col-xs-12.col-md-8.col-md-push-2{style: 'font-size: 1.4rem;'}
-          With very little effort on my part, I'll be saving hundreds a month and using clean energy.
-          .text-center
+        .col-xs-12.col-md-8.col-md-push-2
+          .quote{style: 'font-size: 1.7rem;'}
+            With very little effort on my part, I'll be saving hundreds a month and using clean energy.
+          .text-center.uppercase
             Julia Smith
   .going-solar{style: 'padding: 80px 0px;'}
     .container
       .row
         .col-xs-12.col-md-6
           =embedded_svg('solarpanel.svg')
-        .col-xs-12.col-md-6
+        .col-xs-12.col-md-6{style: "padding-top: 100px;"}
           %h3{style: 'color: #165683'}
             Going solar is difficult.
             %br
@@ -61,21 +62,21 @@
   .suggestions.light-sky-gradient{style: 'padding: 80px 0px;position: relative;z-index:2;'}
     .container
       .row
-        .col-xs-12.col-md-6
+        .col-xs-12.col-md-5{style: "padding-top: 100px;"}
           %h3{style: 'color: #165683'}
             Domino makes suggestions to help you save money.
           %p
             Don’t worry our concierges are not salespeople.
           %p
             They love being your partner and will not pressure you to take a specific action. If something doesn’t work for you, they’ll tell you.
-        .col-xs-12.col-md-6
+        .col-xs-12.col-md-6.col-md-push-1
           =embedded_svg('products.svg')
   .energy-plan{style: 'background-color: #b4f1ff'}
     .container
       .row
         .col-xs-12.col-md-5
           =embedded_svg('energyplan.svg', style: 'position: relative; top: -200px;z-index:1;')
-        .col-xs-12.col-md-5.col-md-push-2{style: 'padding-top: 230px;'}
+        .col-xs-12.col-md-5.col-md-push-2{style: 'padding-top: 130px;'}
           %h3{style: 'color: #165683'}
             We give you a customized energy plan for free.
           %p
