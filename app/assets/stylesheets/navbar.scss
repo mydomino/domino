@@ -18,6 +18,9 @@ $nav-height: 100px;
   {
     a
     {
+      padding-top: 25px;
+      text-transform: uppercase;
+      text-decoration: none;
       &:focus
       {
         color: $white;
@@ -48,7 +51,7 @@ $nav-height: 100px;
   }
   &.blue
   {
-    background-color: $blue;
+    background-color: #42c9ff;
     svg g
     {
       fill: $white;
@@ -119,11 +122,6 @@ $nav-height: 100px;
       fill: $blue;
     }
   }
-}
-
-.navbar:not(.scrolled) li.button 
-{
-  display: none;
 }
 
 .concierge.navbar-fixed-top
