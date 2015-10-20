@@ -10,6 +10,14 @@
     color: #FFF;
   }
 }
+.sky-gradient
+{
+  background-image: linear-gradient(#42c9ff, #aae5fb);
+}
+.light-sky-gradient
+{
+  background-image: linear-gradient(#d5f7ff, #ffffff 30%);
+}
 .navbar+.hero
 {
   padding-top: 125px;
@@ -20,6 +28,10 @@
 }
 .icon
 {
+  &.twohundred svg//so hacky I know
+  {
+    max-height: 200px;
+  }
   svg
   {
     width: 100%;
@@ -57,7 +69,7 @@
     color: #000;
   }
 }
-.blue, .btn.blue
+.blue
 {
   background: #00CCFF;
   color: #FFF;
@@ -233,6 +245,11 @@ img
   {
     color: #5F5F5F;
   }
+}
+.textimonial .quote
+{
+  font-size: 1.7rem;
+  padding: 0px 40px;
 }
 @media(max-width: 500px)
 {
