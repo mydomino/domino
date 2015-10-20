@@ -1,7 +1,31 @@
 -content_for :navbar_class do
-  roll-down overlay blue
+  hidden
 
-.experiment{style: 'padding-top: 100px;'}
+.experiment
+  %nav.navbar.navbar-default{class: 'blue roll-down', style: 'margin-bottom: 0;' }
+    .container
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+      #navbar.navbar-collapse.collapse
+        -if content_for? :navbar
+          =yield(:navbar)
+        -else
+          %ul.nav.navbar-nav.pull-right
+            %li
+              = link_to 'About', about_path
+            %li
+              = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank'
+            %li
+              = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
+            %li.button
+              = link_to getstarted_path, class: 'button' do
+                %button.btn.small.transparent.dark-blue
+                  GET STARTED
   .sky-gradient.text-center
     .container
       .row
@@ -87,22 +111,28 @@
 
 
 .default{style: "display: none;"}
-  #sky.intro
-    .content.container
-      .row
-        .col-xs-12.col-med-6
-          %h2.title.dynamic
-            From assisting you with solar to helping you save money, we do it all.
-
-          = link_to getstarted_path do
-            %button.btn.btn-default.large.blue
-              GET STARTED
-          .learn-more{style: "padding-top:40px;"}
-            =link_to anchor: 'how-it-works' do
-              How it Works
-            %br
-            =link_to anchor: 'how-it-works' do
-              .glyphicon.glyphicon-chevron-down
+  #clickthrough.intro
+    .overlay
+      .content.container
+        .row
+          .col-xs-12.col-med-6
+            %h1.title.dynamic
+              Ready for cool savings with clean energy?
+              %br
+              Let Domino be your guide.  
+            %h3.title
+              From solar panels to smart thermostats and everything in between, 
+              %br
+              we’ve done the research and lined up deals so you don’t have to.
+            = link_to getstarted_path do
+              %button.btn.btn-default.large
+                GET STARTED
+            .learn-more{style: "padding-top:40px;"}
+              =link_to anchor: 'how-it-works' do
+                How it Works
+              %br
+              =link_to anchor: 'how-it-works' do
+                .glyphicon.glyphicon-chevron-down
   #energy-guide.intro.alternate-background{style: 'display: none;'}
     .overlay
       .content.container
