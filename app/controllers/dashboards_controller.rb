@@ -33,9 +33,9 @@ class DashboardsController < ApplicationController
   def index
     @filter = params[:filter]
     if(@filter == 'mine')
-      @dashboards = Dashboard.where(concierge: current_concierge).includes(:recommendations)
+      @dashboards = Dashboard.where(concierge: current_concierge).includes(:recommendations, :tasks, :products)
     else
-      @dashboards = Dashboard.all
+      @dashboards = Dashboard.all.includes(:recommendations)
     end
   end
 
