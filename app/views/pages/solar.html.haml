@@ -1,11 +1,21 @@
--content_for :navbar_class do
-  roll-down overlay transparent
--content_for :navbar do
-  %ul.nav.navbar-nav.pull-right
-    %li.button
-      = link_to '#bottom-cta', class: 'button' do
-        %button.btn.small
-          GET STARTED
+%nav.navbar.navbar-default{class: 'roll-down overlay transparent'}
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+    #navbar.navbar-collapse.collapse
+      -if content_for? :navbar
+        =yield(:navbar)
+      -else
+        %ul.nav.navbar-nav.pull-right
+          %li.button
+            = link_to '#bottom-cta', class: 'button' do
+              %button.btn.small.transparent.dark-blue
+                GET STARTED
 
 .solar.hero
   .container
