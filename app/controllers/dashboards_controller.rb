@@ -18,7 +18,7 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    @dashboard = Dashboard.friendly.find(params[:id].downcase)
+    @dashboard = Dashboard.find_by_slug(params[:id].downcase)
     @filter = params[:filter]
     if(@filter == 'products')
       @recommendations = @dashboard.recommendations.where(recommendable_type: "Product").includes(:recommendable)
