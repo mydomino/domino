@@ -47,12 +47,12 @@
     .col-xs-12.col-md-6.text-center
       .panel{style: 'border: 2px solid #00CCFF'}
         %h3{style: 'color: #333;'} Solar
-        =embedded_svg('line_solar.svg')
+        =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         %p We help you pick out the right solar choice for you. Whether you already have quotes or not, we'll assist you all the way.
     .col-xs-12.col-md-6.text-center
       .panel{style: 'border: 2px solid #00CCFF'}
         %h3{style: 'color: #333;'} Energy Analysis
-        =embedded_svg('line_energy.svg')
+        =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         %p A brief analysis of your current energy usage. We'll customize a plan to help you save money.
     .col-xs-12.text-right
       =link_to 'Next', step_2_get_started_path, class: "btn btn-default"

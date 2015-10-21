@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008214255) do
+ActiveRecord::Schema.define(version: 20151021184557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,8 +44,6 @@ ActiveRecord::Schema.define(version: 20151008214255) do
     t.string   "lead_email"
   end
 
-  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
-
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -61,6 +59,19 @@ ActiveRecord::Schema.define(version: 20151008214255) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "get_starteds", force: :cascade do |t|
+    t.boolean  "solar"
+    t.boolean  "energy_plan"
+    t.string   "area_code"
+    t.integer  "average_electric_bill"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "leads", force: :cascade do |t|
     t.string   "first_name"
@@ -108,9 +119,6 @@ ActiveRecord::Schema.define(version: 20151008214255) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
-  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "icon"
