@@ -1,0 +1,58 @@
+%nav.navbar.navbar-default.narrow{class: 'ultra-light-gray' }
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.pull-right
+        %li.selected
+          =link_to '#' do
+            %span.circle.light-gray
+              1
+            Interests
+        %li
+          =link_to '#' do
+            %span.circle.light-gray
+              2
+            Home Details
+        %li
+          =link_to '#' do
+            %span.circle.light-gray
+              3
+            Dashboard
+
+
+
+.container
+  .row
+    .col-xs-12.text-center{style: 'padding-top: 200px;padding-bottom: 100px;'}
+      %h3{style: 'color: #333;'} Let's talk about what interests you...
+      %p 
+        Knowing your interest allows us to give you 
+        %strong
+          product recommendations
+        at the end.
+    .col-xs-12
+      %hr
+    .col-xs-12.text-center
+      %p
+        Choose the offering(s) that you would like.
+        %span{style: 'color:#BBB'}
+          (Select all that apply)
+  .row
+    .col-xs-12.col-md-6.text-center
+      .panel{style: 'border: 2px solid #00CCFF'}
+        %h3{style: 'color: #333;'} Solar
+        =embedded_svg('line_solar.svg')
+        %p We help you pick out the right solar choice for you. Whether you already have quotes or not, we'll assist you all the way.
+    .col-xs-12.col-md-6.text-center
+      .panel{style: 'border: 2px solid #00CCFF'}
+        %h3{style: 'color: #333;'} Energy Analysis
+        =embedded_svg('line_energy.svg')
+        %p A brief analysis of your current energy usage. We'll customize a plan to help you save money.
+    .col-xs-12.text-right
+      =link_to 'Next', step_2_get_started_path, class: "btn btn-default"

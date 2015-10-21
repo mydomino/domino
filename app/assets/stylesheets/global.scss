@@ -232,6 +232,22 @@ img
     text-align: center;
   }
 }
+span.circle
+{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 35px;
+  background: black;
+  text-align: center;
+  border-radius: 50%;
+  &.light-gray
+  {
+    background-color: #D8D8D8;
+    color: #F9F9F9;
+    font-weight: bold;
+  }
+}
 .glyphicon.large
 {
   font-size: 2rem;
