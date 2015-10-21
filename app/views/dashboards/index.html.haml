@@ -8,29 +8,33 @@
         =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
   .row
     .col-xs-12
-      .row
-        -@dashboards.each do |dashboard|
-          .col-xs-12.col-sm-6.col-md-3.text-center
-            .dashboard-list
-              .avatar
-                =link_to dashboard_path(dashboard), target: 'blank' do
-                  =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
-              .h4.uppercase
-                =dashboard.lead_name
-              %br
-              .progress{style: "margin-bottom: 0px;height: 15px;"}
-                .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{product_progress dashboard}%;", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
-              .stats.text-left
-                %small.uppercase.bold
-                  Products
-                %small.pull-right.bold
-                  ="#{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count}"
-              .progress{style: "margin-bottom: 0px;height: 15px;"}
-                .progress-bar.progress-bar-danger{role: 'progressbar', style: "width: #{task_progress dashboard}%", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
-              .stats.text-left
-                %small.uppercase.bold
-                  Actions
-                %small.pull-right.bold
-                  ="#{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count}"
+      -@dashboards.each_slice(4) do |dashboards|
+        .row
+          -dashboards.each do |dashboard|
+            .col-xs-12.col-sm-6.col-md-3.text-center
+              .dashboard-list
+                .avatar
+                  =link_to dashboard_path(dashboard), target: 'blank' do
+                    =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
+                .h4.uppercase
+                  =dashboard.lead_name
                 %br
-                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'pull-right'
+                .progress{style: "margin-bottom: 0px;height: 15px;"}
+                  .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{product_progress dashboard}%;", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
+                .stats.text-left
+                  %small.uppercase.bold
+                    Products
+                  %small.pull-right.bold
+                    ="#{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count}"
+                .progress{style: "margin-bottom: 0px;height: 15px;"}
+                  .progress-bar.progress-bar-danger{role: 'progressbar', style: "width: #{task_progress dashboard}%", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
+                .stats.text-left
+                  %small.uppercase.bold
+                    Actions
+                  %small.pull-right.bold
+                    ="#{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count}"
+                  %br
+                  =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'pull-right'
+  .row
+    .col-xs-12
+      = will_paginate @dashboards

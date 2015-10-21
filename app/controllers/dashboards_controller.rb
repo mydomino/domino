@@ -33,10 +33,10 @@ class DashboardsController < ApplicationController
   def index
     @filter = params[:filter]
     if(@filter == 'all')
-      @dashboards = Dashboard.all
+      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16)
     else
       @filter = 'mine'
-      @dashboards = Dashboard.where(concierge: current_concierge).includes(:recommendations)
+      @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
     end
   end
 
