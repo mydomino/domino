@@ -4,7 +4,7 @@
       .btn-group.pull-left.filters{"aria-label" => "New Dashboarf", :role => "group"}
         =link_to "New Dashboard", new_dashboard_path, class: 'btn blue uppercase'
       .btn-group.pull-right.filters{"aria-label" => "Filters", :role => "group"}
-        =link_to 'All', {filter: nil}, class: "btn uppercase #{@filter.nil? ? 'blue' : 'btn-transparent'}"
+        =link_to 'All', {filter: 'all'}, class: "btn uppercase #{(@filter == 'all') ? 'blue' : 'btn-transparent'}"
         =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
   .row
     .col-xs-12
