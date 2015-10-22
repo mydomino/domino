@@ -1,5 +1,7 @@
 =simple_form_for @task do |form|
   =form.input :name
   =form.input :description
+  =form.input :cta_link
+  =form.input :cta_text
   =form.select :icon, collection: Task::ICON_OPTIONS
   =form.submit "Save", class: 'btn blue'

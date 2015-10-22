@@ -35,3 +35,6 @@
                     ="#{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count}"
                   %br
                   =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'pull-right'
+  .row
+    .col-xs-12
+      = will_paginate @dashboards

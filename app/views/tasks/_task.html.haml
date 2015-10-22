@@ -25,6 +25,8 @@
                 =task.name
               %p
                 =task.description
+              -if(task.cta_link.present?)
+                =link_to task.cta_text, task.cta_link, class: 'btn blue btn-default full-width'
               -if(!recommendation.done)
                 =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "POST"
               -else
