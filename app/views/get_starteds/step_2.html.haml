@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default{class: 'ultra-light-gray' }
+%nav.navbar.navbar-default.narrow{class: 'ultra-light-gray' }
   .container
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -14,7 +14,7 @@
             %span.circle.light-gray
               1
             Interests
-        %li
+        %li.selected
           =link_to '#' do
             %span.circle.light-gray
               2
@@ -39,18 +39,12 @@
     .col-xs-12
       %hr
   .row
-    =simple_form_for @get_started, url: get_started_path do |form|
-      =form.input :area_code
-      %h4 What is your average electricity bill?
-      #amount
-      #slider
-      #slider-graphics
-        .slider-bar{style: 'position: relative;'}
-          .tick-mark{style: 'left: 10%;'}
-          .tick-mark{style: 'left: 30%;'}
-          .tick-mark{style: 'left: 50%;'}
-          .tick-mark{style: 'left: 70%;'}
-          .tick-mark{style: 'left: 90%;'}
+    .col-xs-12.col-md-6.col-md-push-3
+      =simple_form_for @get_started, url: get_started_path do |form|
+        =form.input :area_code
+        %h4 What is your average electricity bill?
+        #slider.col-xs-12.col-sm-10{style: 'margin: 20px 0px;padding: 0px;'}
+        #amount.col-xs-12.col-sm-2{style: 'color: #00CCFF; font-size: 2rem;font-weight: bold;margin: 10px 0px;'} $0
     .col-xs-12.text-right
       =link_to 'Next', step_3_get_started_path, class: "btn btn-default"
 

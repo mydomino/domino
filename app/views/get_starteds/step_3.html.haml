@@ -29,7 +29,7 @@
 
 .container
   .row
-    .col-xs-12.text-center{style: 'padding-top: 200px;padding-bottom: 100px;'}
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 120px;padding-bottom: 100px;'}
       %h3{style: 'color: #333;'}
         Almost done...
       %p 
@@ -40,16 +40,17 @@
     .col-xs-12
       %hr
   .row
-    =simple_form_for @get_started, url: get_started_path do |form|
-      =form.input :first_name
-      =form.input :last_name
-      %h4 What is your preferred method of contact?
+    .col-xs-12.col-md-8.col-md-push-2
+      =simple_form_for @get_started, url: get_started_path do |form|
+        =form.input :first_name
+        =form.input :last_name
+        %h4 What is your preferred method of contact?
 
-      .btn-group{role: 'group'}
-        .btn.btn-transparent{style: 'border: 1px solid #ccc;'}
-          Email
-        .btn.btn-transparent.selected{style: 'border: 1px solid #ccc;'}
-          Phone
+        .btn-group{role: 'group'}
+          .btn.btn-transparent{style: 'border: 1px solid #ccc;'}
+            Email
+          .btn.btn-transparent.selected{style: 'border: 1px solid #ccc;'}
+            Phone
 
     .col-xs-12.text-right
       =link_to 'Next', step_3_get_started_path, class: "btn btn-default"

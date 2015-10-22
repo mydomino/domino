@@ -32,6 +32,14 @@ $nav-height: 100px;
       }
       color: #FFF;
     }
+    &.selected
+    {
+      background-color: $blue;
+      a
+      {
+        color: #FFF;
+      }
+    }
   }
   .dropdown-menu > li > a 
   {

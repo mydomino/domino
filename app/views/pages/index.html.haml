@@ -50,7 +50,7 @@
 
       .row
         .col-xs-12.text-center{style: 'padding-bottom: 30px;'}
-          =link_to 'Get Started', new_lead_path, class: 'btn dark-blue gradient uppercase large', style: 'font-size: 1.5rem;border: none;'
+          =link_to 'Get Started', step_1_get_started_path, class: 'btn dark-blue gradient uppercase large', style: 'font-size: 1.5rem;border: none;'
   .testimonial.light-gray{style: 'padding-top: 60px;background-color: #f3f3f3;'}
     .container
       .row
@@ -126,7 +126,7 @@
             %li
               = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
             %li.button
-              = link_to getstarted_path, class: 'button' do
+              = link_to step_1_get_started_path, class: 'button' do
                 %button.btn.small.btn-default
                   GET STARTED
   #clickthrough.intro

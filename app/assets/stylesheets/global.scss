@@ -262,6 +262,16 @@ span.circle
     color: #5F5F5F;
   }
 }
+.panel.selectable
+{
+  min-height: 425px;
+  border: 4px solid #ccc;
+  &:hover
+  {
+    cursor: pointer;
+    border: 4px solid $blue;
+  }
+}
 .textimonial .quote
 {
   font-size: 1.7rem;
