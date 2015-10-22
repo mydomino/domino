@@ -42,7 +42,7 @@
     .col-xs-12.col-md-6.col-md-push-3
       =simple_form_for @get_started, url: get_started_path do |form|
         =form.input :area_code
-        %h4 What is your average electricity bill?
+        %h4{style: 'color: #333;'} What is your average electricity bill?
         #slider.col-xs-12.col-sm-10{style: 'margin: 20px 0px;padding: 0px;'}
         #amount.col-xs-12.col-sm-2{style: 'color: #00CCFF; font-size: 2rem;font-weight: bold;margin: 10px 0px;'} $0
     .col-xs-12.text-right
