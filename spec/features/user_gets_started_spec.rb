@@ -7,14 +7,12 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
     click_on 'Get Started'
     find('#solar').click
     click_on 'Next'
-  end
-
-  scenario 'and two comes after one' do
-    visit step_1_get_started_path
-
+    fill_in :get_started_area_code, with: '12345'
     click_on 'Next'
-
-    expect(current_path).to eq(step_2_get_started_path)
+    fill_in :get_started_first_name, with: "Josh"
+    fill_in :get_started_last_name, with: "Morrow"
+    find('#phone').click
+    click_on "Next"
   end
 
   scenario 'and three comes after two'
