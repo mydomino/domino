@@ -19,4 +19,5 @@
 //= require nprogress-ajax
 //= require dynamic
 //= require signup
+//= require formance
 //= require storefront

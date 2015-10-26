@@ -10,12 +10,12 @@
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.pull-right
         %li
-          =link_to '#' do
+          =link_to step_1_get_started_path do
             %span.circle.light-gray
               1
             Interests
         %li
-          =link_to '#' do
+          =link_to step_2_get_started_path do
             %span.circle.light-gray
               2
             Home Details
@@ -41,16 +41,41 @@
       %hr
   .row
     .col-xs-12.col-md-8.col-md-push-2
-      =simple_form_for @get_started, url: get_started_path do |form|
-        =form.input :first_name
-        =form.input :last_name
+      =simple_form_for @lead, url: leads_path, remote: true do |form|
+        .row
+          .col-xs-12.col-md-6
+            =form.input :first_name
+          .col-xs-12.col-md-6
+            =form.input :last_name
         %h4 What is your preferred method of contact?
 
         .btn-group{role: 'group'}
           #email.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
             Email
-          #phone.btn.btn-transparent.selected{style: 'border: 1px solid #ccc;'}
+          #phone.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
             Phone
+        #email-field{style: "display: none"}
+          =form.input :email
+        #phone-field{style: "display: none"}
+          =form.input :phone
+        .errors
+        =form.submit 'Next', class: "btn btn-default"
 
-    .col-xs-12.text-right
-      =link_to 'Next', step_3_get_started_path, class: "btn btn-default"
+:javascript
+  $('#lead_phone').formance('format_phone_number');
+  $('#email').click(function()
+  {
+    $('#phone-field').hide();
+    $('#email-field').show();
+    $('#email').removeClass('selected');
+    $('#phone').removeClass('selected');
+    $('#email').addClass('selected');
+  });
+  $('#phone').click(function()
+  {
+    $('#email-field').hide();
+    $('#phone-field').show();
+    $('#phone').removeClass('selected');
+    $('#email').removeClass('selected');
+    $('#phone').addClass('selected');
+  });

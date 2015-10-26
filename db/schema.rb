@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022191950) do
+ActiveRecord::Schema.define(version: 20151026220612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20151022191950) do
 
   create_table "get_starteds", force: :cascade do |t|
     t.boolean  "solar"
-    t.boolean  "energy_plan"
+    t.boolean  "energy_analysis"
     t.string   "area_code"
     t.integer  "average_electric_bill"
     t.string   "first_name"
@@ -88,12 +88,13 @@ ActiveRecord::Schema.define(version: 20151022191950) do
     t.datetime "start_time"
     t.string   "campaign"
     t.string   "browser"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.boolean  "saved_to_zoho"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "geocoded"
+    t.integer  "get_started_id"
   end
 
   create_table "products", force: :cascade do |t|
