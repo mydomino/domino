@@ -55,4 +55,6 @@
         =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         %p A brief analysis of your current energy usage. We'll customize a plan to help you save money.
     .col-xs-12.text-right
-      =link_to 'Next', step_2_get_started_path, class: "btn btn-default"
+      =simple_form_for :get_started, method: 'GET', url: step_2_get_started_path do |lead|
+        something
+        =lead.submit 'Next', class: "btn btn-default"

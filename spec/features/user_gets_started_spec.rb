@@ -15,8 +15,4 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
     click_on "Next"
   end
 
-  scenario 'and three comes after two'
-
-  scenario 'after completing all fields and submitting a lead is created'
-
 end
