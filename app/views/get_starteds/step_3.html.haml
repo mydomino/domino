@@ -42,6 +42,7 @@
   .row
     .col-xs-12.col-md-8.col-md-push-2
       =simple_form_for @lead, url: leads_path, remote: true do |form|
+        =form.hidden_field :get_started_id
         .row
           .col-xs-12.col-md-6
             =form.input :first_name

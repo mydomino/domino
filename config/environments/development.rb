@@ -43,8 +43,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
-  config.after_initialize do
+  #config.after_initialize do
     #DelayedJob Workless
-    Delayed::Job.scaler = :local
-  end
+  #  Delayed::Job.scaler = :local
+  #end
 end

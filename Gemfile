@@ -27,7 +27,6 @@ gem 'newrelic_rpm'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
-gem 'workless'
 gem 'geocoder'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'nprogress-rails'
@@ -65,4 +64,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'workless'
 end
