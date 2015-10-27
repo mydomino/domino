@@ -19,7 +19,6 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
     expect(page).to have_css('form input[type="submit"]:disabled')
   end
   scenario "without any data" do
-
     visit getstarted_path
     find('form input[type="submit"]').click 
 

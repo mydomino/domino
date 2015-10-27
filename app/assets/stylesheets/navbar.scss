@@ -39,6 +39,11 @@ $nav-height: 100px;
       {
         color: #FFF;
       }
+      span.circle.light-gray
+      {
+        background-color: #FFF;
+        color: $blue;
+      }
     }
   }
   .dropdown-menu > li > a 

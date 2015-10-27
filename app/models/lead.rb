@@ -7,7 +7,7 @@ class Lead < ActiveRecord::Base
       obj.state = geo.state
     end
   end
-  after_create :queue_geocode, :deliver_thank_you_email, :save_to_zoho
+  after_create :geocode, :deliver_thank_you_email, :save_to_zoho
   validates :last_name, presence: true
   validates :email, presence: true
   default_scope { order('created_at DESC') }
@@ -19,7 +19,7 @@ class Lead < ActiveRecord::Base
     SaveToZohoJob.perform_later self
   end
 
-  def queue_geocode
+  def geocode
     LeadGeocoderJob.perform_later self
   end
 
