@@ -13,11 +13,14 @@ class GetStartedsController < ApplicationController
   end
 
   def finish
+    render plain: params
+=begin
     set_tracking_variables
     @lead = Lead.create(lead_params)
     @lead.last_name = "Not Given" if(@lead.last_name == '') 
     @lead.save
     render 'step_3'
+=end
   end
 
   private
