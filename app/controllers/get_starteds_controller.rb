@@ -12,7 +12,32 @@ class GetStartedsController < ApplicationController
     @lead = Lead.new(get_started: @get_started)
   end
 
+  def finish
+    set_tracking_variables
+    @lead = Lead.create(lead_params)
+    @lead.last_name = "Not Given" if(@lead.last_name == '') 
+    @lead.save
+    render 'step_3'
+  end
+
   private
+
+  def session_params
+    keys = %i(ip referer browser start_time campaign)
+    keys.each_with_object({}) do |str, hsh|
+      hsh[str] = session[str]
+    end
+  end
+  
+  def lead_params
+    params.require(:lead).permit(:first_name, :last_name, :email, :address, :phone, :get_started_id).merge(session_params)
+  end
+
+  def set_tracking_variables
+    session[:ip]          ||= request.remote_ip
+    session[:referer]     ||= request.referer
+    session[:browser]     ||= request.user_agent
+  end
 
   def set_get_started
     if(session[:get_started_id].nil?)

@@ -35,13 +35,13 @@
       %p 
         We just need some basic information so we can contact you to send your dashboard. The dashboard will show you 
         %strong
-          products suggestions
+          product suggestions
         &ndash; personalized for you!
     .col-xs-12
       %hr
   .row
     .col-xs-12.col-md-8.col-md-push-2
-      =simple_form_for @lead, url: leads_path, remote: true do |form|
+      =simple_form_for @lead, url: finish_get_started_path do |form|
         =form.hidden_field :get_started_id
         .row
           .col-xs-12.col-md-6
@@ -60,7 +60,7 @@
         #phone-field{style: "display: none"}
           =form.input :phone
         .errors
-        =form.submit 'Next', class: "btn btn-default"
+        =form.submit 'Next', class: "btn btn-default pull-right"
 
 :javascript
   $('#lead_phone').formance('format_phone_number');

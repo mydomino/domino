@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get '1' => 'get_starteds#step_1', as: 'step_1'
     get '2' => 'get_starteds#step_2', as: 'step_2'
     get '3' => 'get_starteds#step_3', as: 'step_3'
+    post 'finish' => 'get_starteds#finish', as: 'finish'
   end
 
   get 'EnergyAwareness' => 'leads#energy_awareness'
