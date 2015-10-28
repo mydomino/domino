@@ -3,6 +3,7 @@ class SaveToZohoJob < ActiveJob::Base
 
   def perform(lead)
     zoho_lead = RubyZoho::Crm::Lead.new.tap do |zoho_lead|
+      byebug
       zoho_lead.first_name = lead.first_name
       zoho_lead.last_name = lead.last_name
       zoho_lead.email = lead.email
@@ -10,7 +11,7 @@ class SaveToZohoJob < ActiveJob::Base
       zoho_lead.street = lead.address
       zoho_lead.city = lead.city
       zoho_lead.state = lead.state
-      zoho_lead.source = lead.source
+      zoho_lead.lead_source = lead.source
       zoho_lead.ip_address = lead.ip
       zoho_lead.referrer = lead.referer
       zoho_lead.time_on_site = lead.created_at - lead.start_time
@@ -19,7 +20,7 @@ class SaveToZohoJob < ActiveJob::Base
       if(lead.get_started.present?)
         zoho_lead.interested_in_solar = lead.get_started.solar
         zoho_lead.interested_in_energy_plan = lead.get_started.energy_analysis
-        zoho_lead.average_electric_bill = lead.get_started.average_electric_bill
+        zoho_lead.monthly_electric_bill = lead.get_started.average_electric_bill
         zoho_lead.zip_code = lead.get_started.area_code
       end
     end
