@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-xs-12
+      .panel
+        %h1 New Contest Page
+        =simple_form_for @contest do |form|
+          =form.input :name
+          =form.input :end_date
+          =form.submit "Create Contest"

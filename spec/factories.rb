@@ -34,4 +34,8 @@ FactoryGirl.define do
     lead_email Faker::Internet.email
   end
 
+  factory :contest do
+    
+  end
+
 end
