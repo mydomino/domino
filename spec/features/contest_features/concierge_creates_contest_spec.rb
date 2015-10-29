@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Concierge creates new contest' do
   let(:concierge) { FactoryGirl.create(:concierge) }
-  scenario 'through the new contest page', focus: true do
+  scenario 'through the new contest page' do
     login_as(concierge, :scope => :concierge)
 
     visit new_contest_path
