@@ -2,6 +2,10 @@ class ContestsController < ApplicationController
   before_action :authenticate_concierge!, except: :show
   layout 'concierge', except: :show
 
+  def index
+    @contests = Contest.all
+  end
+
   def new
     @contest = Contest.new
   end
