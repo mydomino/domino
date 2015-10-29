@@ -8,8 +8,6 @@ RSpec.feature 'Concierge views contest index page' do
 
     visit contests_path
 
-
-
   end 
 
 end
