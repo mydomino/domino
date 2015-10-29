@@ -31,15 +31,15 @@
   .row
     .col-xs-12.text-center{style: 'padding-top: 200px;padding-bottom: 100px;'}
       %h3{style: 'color: #333;'} Let's talk about what interests you...
-      %p 
-        Knowing your interest allows us to give you 
+      %p
+        Knowing your interest allows us to give you
         %strong
           product recommendations
         at the end.
     .col-xs-12
       %hr
-    .col-xs-12.text-center
-      %p
+    .col-xs-12
+      %p{style:'padding-top:50px;padding-bottom:50px'}
         Choose the offering(s) that you would like.
         %span{style: 'color:#BBB'}
           (Select all that apply)
@@ -48,18 +48,18 @@
       #solar.panel.selectable{class: ('selected' if @get_started.solar)}
         %h3{style: 'color: #333;'} Solar
         =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
-        %p We help you pick out the right solar choice for you. Whether you already have quotes or not, we'll assist you all the way.
+        %p{style:'text-align:left'} We help you pick out the right solar choice for you. Whether you already have quotes or not, we'll assist you all the way.
     .col-xs-12.col-md-6.text-center
       #energy-analysis.panel.selectable{class: ('selected' if @get_started.energy_analysis)}
         %h3{style: 'color: #333;'} Energy Analysis
         =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
-        %p A brief analysis of your current energy usage. We'll customize a plan to help you save money.
+        %p{style:'text-align:left'} A brief analysis of your current energy usage. We'll customize a plan to help you save money.
     .col-xs-12
       =simple_form_for :get_started, method: 'GET', url: step_2_get_started_path do |lead|
         %div{style: 'display: none;'}
           =lead.input :solar, as: :radio_buttons
           =lead.input :energy_analysis, as: :radio_buttons
-        =lead.submit 'Next', class: "btn btn-default pull-right"
+        =lead.submit 'NEXT', class: "btn btn-default pull-right",style:'margin-top:50px;margin-bottom:50px'
 :javascript
   function toggle_solar()
   {
