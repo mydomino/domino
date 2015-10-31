@@ -71,6 +71,7 @@ form
       text-align: left;
     }
   }
+
   &+.success
   {
     display: none;
@@ -79,6 +80,7 @@ form
     text-align: center;
   }
 }
+
 .form-inline
 {
   input:not([type="submit"])
@@ -96,6 +98,15 @@ form
   {
     border: none;
   }
+}
+
+.hr
+{
+  pd-50
+  {
+    padding-bottom:50px;
+  }  
+
 }
 .panel
 {

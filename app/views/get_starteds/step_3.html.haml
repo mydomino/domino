@@ -40,16 +40,15 @@
     .col-xs-12
       %hr
   .row
-    .col-xs-12.col-md-8.col-md-push-2
-      =simple_form_for @lead, url: finish_get_started_path do |form|
+    =simple_form_for @lead, url: finish_get_started_path do |form|
+      .col-xs-12.col-md-6{style:'padding:50px 0 0'}
         =form.hidden_field :get_started_id
         .row
           .col-xs-12.col-md-6
             =form.input :first_name
           .col-xs-12.col-md-6
             =form.input :last_name
-        %h4 What is your preferred method of contact?
-
+        %h4{style:'padding-bottom:25px'} What is your preferred method of contact?
         .btn-group{role: 'group'}
           #email.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
             Email
@@ -59,6 +58,7 @@
           =form.input :email
         #phone-field{style: "display: none"}
           =form.input :phone
+      .col-xs-12.text-right{style:"margin:50px 0 50px"}
         .errors
         =form.submit 'Next', class: "btn btn-default pull-right"
 
