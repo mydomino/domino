@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'User views contest page' do
 
   scenario 'and expects to see the headline and the end date' do
-    contest = FactoryGirl.create(:contest, name: "My Fancy Giveaway", end_date: Date.today + 5)
+    contest = FactoryGirl.create(:contest, headline: "My Fancy Giveaway", end_date: Date.today + 5)
 
     visit contest_path(contest)
 

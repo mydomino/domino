@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :products, path: '/products/', only: [:new, :create, :edit, :update, :index]
   resources :tasks
 
-  resources :contests, only: [:new, :create, :show, :index]
+  resources :contests
 
   get 'getstarted' => 'leads#new'
   get 'get_started' => 'leads#new'

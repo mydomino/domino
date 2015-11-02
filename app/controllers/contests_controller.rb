@@ -27,6 +27,19 @@ class ContestsController < ApplicationController
     end
   end
 
+  def edit
+    @contest = Contest.friendly.find(params[:id])
+  end
+
+  def update
+    @contest = Contest.friendly.find(params[:id])
+    if(@contest.update_attributes(contest_params))
+      redirect_to @contest
+    else
+      render :edit
+    end
+  end
+
   private
 
   def contest_params
