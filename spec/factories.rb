@@ -34,4 +34,10 @@ FactoryGirl.define do
     lead_email Faker::Internet.email
   end
 
+  factory :contest do
+    name Faker::Lorem.words(4)
+    start_date (Date.today - 1)
+    end_date (Date.today + 1)
+  end
+
 end

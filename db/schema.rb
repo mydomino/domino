@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022191950) do
+ActiveRecord::Schema.define(version: 20151029223702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20151022191950) do
 
   add_index "concierges", ["email"], name: "index_concierges_on_email", unique: true, using: :btree
   add_index "concierges", ["reset_password_token"], name: "index_concierges_on_reset_password_token", unique: true, using: :btree
+
+  create_table "contests", force: :cascade do |t|
+    t.string   "slug"
+    t.string   "name"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "start_date"
+    t.string   "headline"
+  end
 
   create_table "dashboards", force: :cascade do |t|
     t.string   "lead_name"
@@ -62,13 +72,9 @@ ActiveRecord::Schema.define(version: 20151022191950) do
 
   create_table "get_starteds", force: :cascade do |t|
     t.boolean  "solar"
-    t.boolean  "energy_plan"
+    t.boolean  "energy_analysis"
     t.string   "area_code"
     t.integer  "average_electric_bill"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
@@ -88,12 +94,13 @@ ActiveRecord::Schema.define(version: 20151022191950) do
     t.datetime "start_time"
     t.string   "campaign"
     t.string   "browser"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.boolean  "saved_to_zoho"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "geocoded"
+    t.integer  "get_started_id"
   end
 
   create_table "products", force: :cascade do |t|
