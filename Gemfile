@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'animate-rails'
 gem 'normalize-rails'
 gem 'bootstrap-sass'
-gem 'font_assets'
+gem 'font_assets', github: 'ericallam/font_assets', ref: '457dcfddc4318e83679e9a0935612924b7717085'
 gem 'json'
 gem 'rubyzoho'
 gem 'actionpack-action_caching'
