@@ -12,7 +12,7 @@ default: &default
 development:
   <<: *default
   host: localhost
-  username: asciiman
+  username: domino
   database: domino-dev
 
 # Warning: The database defined as "test" will be erased and
