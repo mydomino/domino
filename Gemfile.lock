@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/ericallam/font_assets.git
+  revision: ae6671f2aca867a1103bae2fdaaeb91cf71d6639
+  specs:
+    font_assets (0.1.12)
+      rack
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,8 +131,6 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.8)
-    font_assets (0.1.11)
-      rack
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.8)
@@ -372,7 +377,7 @@ DEPENDENCIES
   erb2haml
   factory_girl_rails
   faker
-  font_assets
+  font_assets!
   friendly_id
   geocoder
   gravatar_image_tag
