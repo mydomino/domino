@@ -22,7 +22,7 @@
 .contest.hero
   .overlay
     %h1.content.dynamic
-      Enter our Energy Awareness Month giveaway!
+      =@contest.headline
 .blue
   .container
     .row
@@ -40,7 +40,10 @@
                   =link_to 'Kill A Watt Home Electricity Usage Monitor', 'http://www.amazon.com/Automatic-Link1-ON-Smart-Driving-Assistant/dp/B00FJXKE5E%20http://www.amazon.com/P3-International-P4480-Electricity-Electronic/dp/B001U638PM?tag=domino09d-20'
                 %li 
                   =link_to 'Nest 3rd Generation Learning Thermostat', 'http://www.amazon.com/gp/product/B0131RG6VK?tag=domino09d-20'
-              %strong Enter by November 31 for your chance to win!
+              %strong 
+                Enter by 
+                =@contest.end_date.strftime('%B %e')
+                for your chance to win!
               %br
               %br
               %br
@@ -96,7 +99,11 @@
 
                 4.  Sweepstakes Period
 
-                The Sweepstakes begins on November 1, 2015 at 12:01 AM Pacific Daylight Time and ends on November 30, 2015 at 11:59 PM Pacific Daylight Time (the "Sweepstakes Period"). Entries that are submitted before or after the Sweepstakes Period will be disqualified. Submissions will be accepted for the duration of the Sweepstakes using any of the following methods:
+                The Sweepstakes begins on 
+                =@contest.start_date.strftime('%B %e, %Y')
+                at 12:01 AM Pacific Daylight Time and ends on 
+                =@contest.end_date.strftime('%B %e, %Y')
+                at 11:59 PM Pacific Daylight Time (the "Sweepstakes Period"). Entries that are submitted before or after the Sweepstakes Period will be disqualified. Submissions will be accepted for the duration of the Sweepstakes using any of the following methods:
 
                 Online
 

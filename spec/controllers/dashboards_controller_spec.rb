@@ -10,7 +10,7 @@ describe DashboardsController do
   it 'does not require authentication to view a dashboard' do
     dashboard = FactoryGirl.create(:dashboard)
 
-    get :show, id: dashboard.id
+    get :show, id: dashboard.slug
 
     expect(response).to have_http_status(:success)
   end

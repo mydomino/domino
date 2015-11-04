@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   resources :products, path: '/products/', only: [:new, :create, :edit, :update, :index]
   resources :tasks
 
+  resources :contests
+
   get 'getstarted' => 'leads#new'
   resource :get_started, only: [:show, :create] do
     get '1' => 'get_starteds#step_1', as: 'step_1'

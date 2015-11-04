@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-xs-12
+      %h1 Contests
+  .row
+    .col-xs-12
+      =render @contests
+  .row
+    .col-xs-12
+      =link_to "New Contest", new_contest_path, class: 'btn blue pull-right'

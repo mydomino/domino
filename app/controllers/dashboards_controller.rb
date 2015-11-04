@@ -18,7 +18,7 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    @dashboard = Dashboard.friendly.find(params[:id].downcase)
+    @dashboard = Dashboard.find_by_slug(params[:id].downcase)
     @filter = params[:filter]
     if(@filter == 'products')
       @recommendations = @dashboard.recommendations.where(recommendable_type: "Product").includes(:recommendable)
@@ -32,10 +32,11 @@ class DashboardsController < ApplicationController
 
   def index
     @filter = params[:filter]
-    if(@filter == 'mine')
-      @dashboards = Dashboard.where(concierge: current_concierge).includes(:recommendations)
+    if(@filter == 'all')
+      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16)
     else
-      @dashboards = Dashboard.all
+      @filter = 'mine'
+      @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
     end
   end
 

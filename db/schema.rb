@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027171841) do
+
+ActiveRecord::Schema.define(version: 20151029223702) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +35,16 @@ ActiveRecord::Schema.define(version: 20151027171841) do
 
   add_index "concierges", ["email"], name: "index_concierges_on_email", unique: true, using: :btree
   add_index "concierges", ["reset_password_token"], name: "index_concierges_on_reset_password_token", unique: true, using: :btree
+
+  create_table "contests", force: :cascade do |t|
+    t.string   "slug"
+    t.string   "name"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "start_date"
+    t.string   "headline"
+  end
 
   create_table "dashboards", force: :cascade do |t|
     t.string   "lead_name"
