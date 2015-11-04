@@ -107,10 +107,6 @@ h1, h2, h3, h4, h5, h6
 {
   font-weight: bold;
 }
-.uppercase
-{
-  text-transform: uppercase;
-}
 .container {
   width: 1000px;
   max-width: 95%;
@@ -135,15 +131,15 @@ img
 {
   text-align: center;
 }
-.row.no-padding 
+.row.no-padding
 {
-  &>[class*="col-"] 
+  &>[class*="col-"]
   {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
 }
-.foreground 
+.foreground
 {
   position: absolute;
   top: 0;
@@ -161,7 +157,7 @@ img
   //animation-duration: .75s;
 }
 
-@mixin border-radius 
+@mixin border-radius
 {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -189,7 +185,7 @@ img
   }
 }
 
-.overlay 
+.overlay
 {
   background-color: $dark-transparent;
   background-blend-mode: multiply;
@@ -201,7 +197,7 @@ img
   }
 }
 
-.panel.reserve 
+.panel.reserve
 {
   @include border-radius;
   padding: 35px 10px;
@@ -215,13 +211,13 @@ img
   {
     margin-bottom: 20px;
   }
-  p 
+  p
   {
-    color: $gray; 
-    font-size: 1.2rem; 
+    color: $gray;
+    font-size: 1.2rem;
   }
 
-  .icon 
+  .icon
   {
     display: none;
     font-size: 25rem;
