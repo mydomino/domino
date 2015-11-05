@@ -15,8 +15,11 @@ class GetStartedsController < ApplicationController
   def finish
     set_tracking_variables
     @lead = Lead.create(lead_params)
-    @lead.save
-    render :thank_you
+    if @lead.save
+      render :thank_you
+    else
+      render :step_3
+    end
   end
 
   private

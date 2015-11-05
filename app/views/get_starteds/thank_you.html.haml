@@ -12,17 +12,17 @@
         %li
           =link_to step_1_get_started_path do
             %span.circle.light-gray
-              1
+              .glyphicon.glyphicon-ok
             Interests
         %li
           =link_to step_2_get_started_path do
             %span.circle.light-gray
-              2
+              .glyphicon.glyphicon-ok
             Home Details
         %li
-          =link_to '#' do
+          =link_to step_3_get_started_path do
             %span.circle.light-gray
-              3
+              .glyphicon.glyphicon-ok
             Dashboard
 
 
@@ -41,5 +41,4 @@
         =@lead.first_name.capitalize
         =@lead.last_name.capitalize
       %h3{style:'color:#333;font-weight:normal'}
-        We will contact you soon about 
-        =@lead.interests_as_string
+        ="We will contact you soon#{@lead.interests_as_string}"

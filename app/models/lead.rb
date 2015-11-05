@@ -8,7 +8,6 @@ class Lead < ActiveRecord::Base
     end
   end
   after_create :schedule_geocode, :deliver_thank_you_email, :save_to_zoho
-  validates :last_name, presence: true
   validate :email_or_phone
   default_scope { order('created_at DESC') }
   belongs_to :get_started
@@ -24,8 +23,8 @@ class Lead < ActiveRecord::Base
   end
 
   def interests_as_string
-    return 'your energy plan' if !get_started.present?
-    interests = ''
+    return '' if (!get_started.present? || !(get_started.solar || get_started.energy_analysis))
+    interests = ' about '
     interests << 'solar energy' if get_started.solar
     interests << ' and ' if get_started.solar and get_started.energy_analysis
     interests << 'your energy plan' if get_started.energy_analysis
