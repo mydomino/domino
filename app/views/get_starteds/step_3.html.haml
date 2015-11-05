@@ -29,7 +29,7 @@
 
 .container
   .row
-    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 160px;'}
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 56px;'}
       %h2{style: 'color: #333;'}
         Almost done...
       %p
@@ -38,17 +38,17 @@
           product suggestions
         &ndash; personalized for you!
     .col-xs-12
-      %hr
+      %hr.pd-64
   .row
     =simple_form_for @lead, url: finish_get_started_path do |form|
-      .col-xs-12.col-md-6{style:'padding:50px 0 0'}
+      .col-xs-12.col-md-6
         =form.hidden_field :get_started_id
         .row
           .col-xs-12.col-md-6
             =form.input :first_name
           .col-xs-12.col-md-6
             =form.input :last_name
-        %h4{style:'color:#333;padding:32px 0 32px'} What is your preferred method of contact?
+        %h4{style:'color:#333;font-weight:normal;padding:32px 0 32px'} What is your preferred method of contact?
         .btn-group{role: 'group'}
           #email.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
             Email
@@ -58,9 +58,9 @@
           =form.input :email
         #phone-field{style: "display: none"}
           =form.input :phone
-      .col-xs-12.text-right{style:"margin:50px 0 50px"}
+      .col-xs-12.text-right
         .errors
-        =form.submit 'Next', class: "btn blue btn-default pull-right uppercase"
+        =form.submit 'Next', class: "btn blue btn-default pull-right uppercase" ,style:'margin: 56px 0 160px;letter-spacing:4px;'
 
 :javascript
   $('#lead_phone').formance('format_phone_number');

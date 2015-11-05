@@ -29,7 +29,7 @@
 
 .container
   .row
-    .col-xs-12.text-center{style: 'padding-top: 160px;padding-bottom: 160px;'}
+    .col-xs-12.text-center{style: 'padding-top: 160px;padding-bottom: 56px;'}
       %h2{style: 'color: #333;'} Let's talk about what interests you...
       %p
         Knowing your interest allows us to give you
@@ -59,7 +59,7 @@
         %div{style: 'display: none;'}
           =lead.input :solar, as: :radio_buttons
           =lead.input :energy_analysis, as: :radio_buttons
-        =lead.submit 'Next', class: "btn blue btn-default pull-right uppercase",style:'margin-top:50px;margin-bottom:50px'
+        =lead.submit 'Next', class: "btn blue btn-default pull-right uppercase",style:'margin: 56px 0 160px;letter-spacing:4px;'
 :javascript
   function toggle_solar()
   {

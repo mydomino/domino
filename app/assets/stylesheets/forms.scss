@@ -5,8 +5,10 @@ form
     width: 100%;
     text-align: left;
     margin-bottom: 0px;
+    font-size:1.33rem;
     font-weight: normal;
-    
+    text-transform: capitalize;
+
   }
   .checkbox label
   {
@@ -100,13 +102,9 @@ form
   }
 }
 
-.hr
+hr.pd-64
 {
-  pd-50
-  {
-    padding-bottom:50px;
-  }
-
+    padding-bottom:64px;
 }
 .panel
 {
