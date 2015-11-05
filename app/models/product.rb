@@ -30,6 +30,10 @@ class Product < ActiveRecord::Base
     return response
   end
 
+  def update_price
+    
+  end
+
   def parse_amazon_response response
     parsed_response = Nokogiri::XML(response.body)
     self.xml = response.body
