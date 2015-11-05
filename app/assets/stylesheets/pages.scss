@@ -293,14 +293,6 @@ div[class^="meet-"] {
 }
 .about, .terms
 {
-  .navbar:not(.scrolled)
-  {
-    li.button
-    {
-      display: block;
-    }
-    background-color: $blue;
-  }
   h1, h2, h3, .blue
   {
     margin-bottom: 30px;
