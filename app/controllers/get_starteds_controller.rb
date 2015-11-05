@@ -17,7 +17,7 @@ class GetStartedsController < ApplicationController
     @lead = Lead.create(lead_params)
     @lead.last_name = "Not Given" if(@lead.last_name == '') 
     @lead.save
-    render 'step_3'
+    render plain: "thank you"
   end
 
   private
