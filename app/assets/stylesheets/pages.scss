@@ -49,7 +49,7 @@ $viewport-height: calc(100vh - #{$nav-height});
       font-size: 50px;
       border-radius: 50%;
       font-weight: bold;
-      padding-top: 20px; 
+      padding-top: 20px;
       line-height: 55px;
     }
   }
@@ -121,7 +121,7 @@ $viewport-height: calc(100vh - #{$nav-height});
       font-size: 1.2rem;
       color: #FFF;
     }
-    p.testimonial 
+    p.testimonial
     {
       color: #FFF;
       border-radius: 6px;
@@ -144,7 +144,7 @@ $viewport-height: calc(100vh - #{$nav-height});
         display: block;
         width: 0;
       }
-      &::after 
+      &::after
       {
         content: "";
         position: absolute;
@@ -290,4 +290,8 @@ div[class^="meet-"] {
       background: #f9f9f9;
     }
   }
+}
+.about {
+  margin: 64px auto 64px;
+
 }
