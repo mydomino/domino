@@ -1,0 +1,43 @@
+%nav.navbar.navbar-default.narrow.ultra-light-gray
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.pull-right
+        %li
+          =link_to step_1_get_started_path do
+            %span.circle.light-gray
+              1
+            Interests
+        %li
+          =link_to step_2_get_started_path do
+            %span.circle.light-gray
+              2
+            Home Details
+        %li
+          =link_to '#' do
+            %span.circle.light-gray
+              3
+            Dashboard
+        %li.selected{style:'background-color:#277BB7;color:#277BB7'}
+          =link_to '#' do
+            %span.circle.light-gray{style:'color:#277BB7'}
+              4
+            Complete
+
+
+
+.container
+  .row
+    .col-xs-12
+
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 120px;'}
+      %h1{style: 'color: #333;padding-bottom:64px'}
+        Thanks Firstname Lastname!
+      %h3{style:'color:#333;font-weight:normal'}
+        We will contact you soon about [solar energy][your energy plan].
