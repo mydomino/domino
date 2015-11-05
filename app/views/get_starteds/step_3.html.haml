@@ -29,11 +29,11 @@
 
 .container
   .row
-    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 120px;padding-bottom: 100px;'}
-      %h3{style: 'color: #333;'}
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 160px;'}
+      %h2{style: 'color: #333;'}
         Almost done...
-      %p 
-        We just need some basic information so we can contact you to send your dashboard. The dashboard will show you 
+      %p
+        We just need some basic information so we can contact you to send your dashboard. The dashboard will show you
         %strong
           product suggestions
         &ndash; personalized for you!
@@ -48,7 +48,7 @@
             =form.input :first_name
           .col-xs-12.col-md-6
             =form.input :last_name
-        %h4{style:'padding-bottom:25px'} What is your preferred method of contact?
+        %h4{style:'color:#333;padding:32px 0 32px'} What is your preferred method of contact?
         .btn-group{role: 'group'}
           #email.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
             Email
@@ -60,7 +60,7 @@
           =form.input :phone
       .col-xs-12.text-right{style:"margin:50px 0 50px"}
         .errors
-        =form.submit 'Next', class: "btn btn-default pull-right uppercase"
+        =form.submit 'Next', class: "btn blue btn-default pull-right uppercase"
 
 :javascript
   $('#lead_phone').formance('format_phone_number');
