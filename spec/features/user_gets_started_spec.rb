@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User follows the 'Get Started' flow to sign up" do
 
-  scenario "beginning on the home page", focus: true, js: true do
+  scenario "beginning on the home page", js: true do
     visit root_path
     click_on 'Get Started'
     find('#solar').click
