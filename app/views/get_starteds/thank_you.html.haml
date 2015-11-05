@@ -27,21 +27,22 @@
 
 
 
-.container
-  .row{style:"margin:160px 0 160px"}
+.container{style:"margin:160px 0 160px"}
+  .row
     -if @lead.get_started.solar
       .col-xs-12.col-md-3.col-md-push-3{class: ("col-md-push-3" if !@lead.get_started.energy_analysis) }
         =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
     -if @lead.get_started.energy_analysis
-      .col-xs-12.col-md-3.col-md-push-3{class: ("col-md-push-3" if !@lead.get_started.solar) }
+      .col-xs-12.col-md-3.col-md-push-3{class: ("col-md-6 col-md-push-3" if !@lead.get_started.solar) }
         =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
+  .row
     .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 20px'}
       %h1{style: 'color: #333;padding-bottom:24px'}
         Thanks
         =@lead.first_name.capitalize
         =@lead.last_name.capitalize
 
-      %h3{style:'color:#333;font-weight:normal'}
+      %h3{style:'color:#333;font-weight:normal;margin-bottom: 64px'}
         ="We will contact you soon#{@lead.interests_as_string}"
     .col-xs-12.col-md-8.col-md-push-2.text-center
       %btn.outline.uppercase.blue-text
