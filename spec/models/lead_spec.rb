@@ -21,12 +21,6 @@ describe Lead, type: :model do
     expect(lead.last_name).to eq("Morrow")
   end
 
-  it 'cannot be saved without a last name' do
-    lead = FactoryGirl.build(:lead, last_name: "")
-
-    expect(lead.save).to be false
-  end
-
   it 'cannot be saved without an email or phone number' do
     lead = FactoryGirl.build(:lead, email: "", phone: "")
 
