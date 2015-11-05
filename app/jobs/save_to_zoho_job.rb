@@ -4,7 +4,7 @@ class SaveToZohoJob < ActiveJob::Base
   def perform(lead)
     zoho_lead = RubyZoho::Crm::Lead.new.tap do |zoho_lead|
       zoho_lead.first_name = lead.first_name
-      zoho_lead.last_name = lead.last_name
+      zoho_lead.last_name = lead.last_name || "Not given"
       zoho_lead.email = lead.email
       zoho_lead.phone = lead.phone
       zoho_lead.street = lead.address
