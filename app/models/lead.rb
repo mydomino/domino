@@ -23,6 +23,15 @@ class Lead < ActiveRecord::Base
     return get_started.energy_analysis
   end
 
+  def interests_as_string
+    return 'your energy plan' if !get_started.present?
+    interests = ''
+    interests << 'solar energy' if get_started.solar
+    interests << ' and ' if get_started.solar and get_started.energy_analysis
+    interests << 'your energy plan' if get_started.energy_analysis
+    interests << '.'
+  end
+
   def monthly_electric_bill
     return false if !get_started.present?
     return get_started.average_electric_bill

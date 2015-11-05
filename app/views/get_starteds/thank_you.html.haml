@@ -24,11 +24,6 @@
             %span.circle.light-gray
               3
             Dashboard
-        %li.selected{style:'background-color:#277BB7;color:#277BB7'}
-          =link_to '#' do
-            %span.circle.light-gray{style:'color:#277BB7'}
-              4
-            Complete
 
 
 
@@ -38,6 +33,9 @@
 
     .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 120px;'}
       %h1{style: 'color: #333;padding-bottom:64px'}
-        Thanks Firstname Lastname!
+        Thanks
+        =@lead.first_name.capitalize
+        =@lead.last_name.capitalize
       %h3{style:'color:#333;font-weight:normal'}
-        We will contact you soon about [solar energy][your energy plan].
+        We will contact you soon about 
+        =@lead.interests_as_string
