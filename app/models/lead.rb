@@ -9,7 +9,7 @@ class Lead < ActiveRecord::Base
   end
   after_create :schedule_geocode, :deliver_thank_you_email, :save_to_zoho
   validates :last_name, presence: true
-  validates :email, presence: true
+  validate :email_or_phone
   default_scope { order('created_at DESC') }
   belongs_to :get_started
 
@@ -35,6 +35,12 @@ class Lead < ActiveRecord::Base
 
 
   private
+
+  def email_or_phone
+    unless(email.present? || phone.present?)
+      errors.add(:contact_method, "Please give us a way to contact you")
+    end
+  end
 
   def save_to_zoho
     SaveToZohoJob.perform_later self
