@@ -46,5 +46,6 @@
       %h3{style:'color:#333;font-weight:normal;margin-bottom: 64px'}
         ="We will contact you soon#{@lead.interests_as_string}"
     .col-xs-12.col-md-8.col-md-push-2.text-center
-      %btn.outline.uppercase.blue-text
-        Back to Home
+      =link_to root_path do
+        %btn.outline.uppercase.blue-text
+          Back to Home
