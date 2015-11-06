@@ -3,6 +3,7 @@ require 'rack_session_access/capybara'
 
 WebMock.disable_net_connect!(:allow => "127.0.0.1")
 
+=begin
 RSpec.feature "User completes lead creation form", :type => :feature, :js => true do
   scenario "with valid data and expects form to be disabled" do
     visit getstarted_path
@@ -19,14 +20,14 @@ RSpec.feature "User completes lead creation form", :type => :feature, :js => tru
     expect(page).to have_css('form input[type="submit"]:disabled')
   end
   scenario "without any data" do
-
     visit getstarted_path
     find('form input[type="submit"]').click 
 
     expect(page).to have_css('.errors li', text: "Email can't be blank")
   end
-
 end
+=end
+
 RSpec.feature "utm_campaign is properly captured", :type => :feature do
   scenario "with a utm_campaign set" do
     visit '/?utm_campaign=my_campaign'

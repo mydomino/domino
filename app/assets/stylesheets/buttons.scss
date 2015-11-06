@@ -20,13 +20,20 @@ button, .btn, a.btn
   background-image: linear-gradient(#287dba, #165683);
 }
 
+.outline
+{
+  border: 2px solid $blue;
+  border-radius:8px;
+  padding: 24px;
+}
+
 .btn-default
 {
   background-color: $red;
   color: $white;
   border: none;
   &:hover, &:active, &:focus
-  { 
+  {
     background-color: $red;
     color: $white;
     border: none;

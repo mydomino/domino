@@ -32,6 +32,19 @@ $nav-height: 100px;
       }
       color: #FFF;
     }
+    &.selected
+    {
+      background-color: $blue;
+      a
+      {
+        color: #FFF;
+      }
+      span.circle.light-gray
+      {
+        background-color: #FFF;
+        color: $blue;
+      }
+    }
   }
   .dropdown-menu > li > a 
   {
@@ -61,6 +74,15 @@ $nav-height: 100px;
   {
     background-color: #F9F9F9;
     color: $blue;
+    border-bottom: 2px solid #D8D8D8;
+    ul li a
+    {
+      color: $blue;
+      &:hover
+      {
+        color: $blue;
+      }
+    }
     svg g
     {
       fill: $blue;
@@ -101,6 +123,16 @@ $nav-height: 100px;
     }
   }
 }
+.navbar.narrow
+{
+  padding: 0px;
+  height: auto;
+  ul li a:not(.button)
+  {
+    padding: 20px;
+  }
+}
+
 //scrolled
 .navbar.scrolled
 {

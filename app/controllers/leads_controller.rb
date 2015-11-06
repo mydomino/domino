@@ -16,7 +16,6 @@ class LeadsController < ApplicationController
   def create
     set_tracking_variables
     @lead = Lead.create(lead_params)
-    @lead.last_name = "Not Given" if(@lead.last_name == '') 
     @lead.save
     if(params[:lead][:form_name] == 'energy_awareness_contest')
       @thank_you_text = "Your entry has been received! We'll be in touch soon!"
@@ -35,7 +34,7 @@ class LeadsController < ApplicationController
   end
 
   def lead_params
-    params.require(:lead).permit(:first_name, :last_name, :email, :address, :phone).merge(session_params)
+    params.require(:lead).permit(:first_name, :last_name, :email, :address, :phone, :get_started_id).merge(session_params)
   end
 
   def session_params

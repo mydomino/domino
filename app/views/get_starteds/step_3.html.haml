@@ -1,0 +1,87 @@
+%nav.navbar.navbar-default.narrow.ultra-light-gray
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.pull-right
+        %li
+          =link_to step_1_get_started_path do
+            %span.circle.light-gray
+              .glyphicon.glyphicon-ok
+            Interests
+        %li
+          =link_to step_2_get_started_path do
+            %span.circle.light-gray
+              .glyphicon.glyphicon-ok
+            Home Details
+        %li.selected
+          =link_to '#' do
+            %span.circle.light-gray
+              3
+            Dashboard
+  
+
+
+
+.container
+  .row
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 56px;'}
+      %h2{style: 'color: #333;'}
+        Almost done...
+      %p
+        We just need some basic information so we can contact you to send your dashboard. The dashboard will show you
+        %strong
+          product suggestions
+        &ndash; personalized for you!
+    .col-xs-12
+      %hr.pd-64
+  .row
+    =simple_form_for @lead, url: finish_get_started_path do |form|
+      .col-xs-12.col-md-6
+        =form.hidden_field :get_started_id
+        .row
+          .col-xs-12.col-md-6
+            =form.input :first_name
+          .col-xs-12.col-md-6
+            =form.input :last_name
+        %h4{style:'color:#333;font-weight:normal;padding:32px 0 32px'}
+          What is your preferred method of contact?
+        -if !@lead.errors.messages[:contact_method].nil?
+          .alert.alert-danger
+            =@lead.errors.messages[:contact_method].first
+        .btn-group{role: 'group'}
+          #email.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
+            Email
+          #phone.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
+            Phone
+        #email-field{style: "display: none"}
+          =form.input :email
+        #phone-field{style: "display: none"}
+          =form.input :phone
+      .col-xs-12.text-right
+        .errors
+        =form.submit 'Next', class: "btn blue btn-default pull-right uppercase" ,style:'margin: 56px 0 160px;letter-spacing:4px;'
+
+:javascript
+  $('#lead_phone').formance('format_phone_number');
+  $('#email').click(function()
+  {
+    $('#phone-field').hide();
+    $('#email-field').show();
+    $('#email').removeClass('selected');
+    $('#phone').removeClass('selected');
+    $('#email').addClass('selected');
+  });
+  $('#phone').click(function()
+  {
+    $('#email-field').hide();
+    $('#phone-field').show();
+    $('#phone').removeClass('selected');
+    $('#email').removeClass('selected');
+    $('#phone').addClass('selected');
+  });

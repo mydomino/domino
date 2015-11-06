@@ -4,6 +4,7 @@ ruby '2.1.5'
 gem 'rails', '4.2.3'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
+gem 'jquery-ui-rails'
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -24,7 +25,6 @@ gem 'newrelic_rpm'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
-gem 'workless'
 gem 'geocoder'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'nprogress-rails'
@@ -65,4 +65,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'workless'
 end

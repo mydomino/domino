@@ -1,0 +1,50 @@
+%nav.navbar.navbar-default.narrow.ultra-light-gray
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.pull-right
+        %li
+          =link_to step_1_get_started_path do
+            %span.circle.light-gray
+              .glyphicon.glyphicon-ok
+            Interests
+        %li
+          =link_to step_2_get_started_path do
+            %span.circle.light-gray
+              .glyphicon.glyphicon-ok
+            Home Details
+        %li
+          =link_to step_3_get_started_path do
+            %span.circle.light-gray
+              .glyphicon.glyphicon-ok
+            Dashboard
+
+
+
+.container{style:"margin:160px auto 160px"}
+  .row
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 20px'}
+      -if @lead.get_started.solar
+        .col-xs-12.col-md-6{class: ("col-md-push-3" if !@lead.get_started.energy_analysis) }
+          =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
+      -if @lead.get_started.energy_analysis
+        .col-xs-12.col-md-6{class: ("col-md-push-3" if !@lead.get_started.solar) }
+          =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
+  .row
+    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 20px'}
+      %h1{style: 'color: #333;padding-bottom:24px'}
+        Thanks
+        =@lead.first_name.capitalize
+        =@lead.last_name.capitalize
+
+      %h3{style:'color:#333;font-weight:normal;margin-bottom: 64px'}
+        ="We will contact you soon#{@lead.interests_as_string}"
+    .col-xs-12.col-md-8.col-md-push-2.text-center
+      %btn.outline.uppercase.blue-text
+        Back to Home

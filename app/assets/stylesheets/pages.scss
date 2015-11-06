@@ -49,7 +49,7 @@ $viewport-height: calc(100vh - #{$nav-height});
       font-size: 50px;
       border-radius: 50%;
       font-weight: bold;
-      padding-top: 20px; 
+      padding-top: 20px;
       line-height: 55px;
     }
   }
@@ -121,7 +121,7 @@ $viewport-height: calc(100vh - #{$nav-height});
       font-size: 1.2rem;
       color: #FFF;
     }
-    p.testimonial 
+    p.testimonial
     {
       color: #FFF;
       border-radius: 6px;
@@ -144,7 +144,7 @@ $viewport-height: calc(100vh - #{$nav-height});
         display: block;
         width: 0;
       }
-      &::after 
+      &::after
       {
         content: "";
         position: absolute;
@@ -279,27 +279,19 @@ div[class^="meet-"] {
     }
   }
 }
-
-.about, .terms
+.btn-group
 {
-  .navbar:not(.scrolled)
+  .btn-transparent
   {
-    li.button
+    &.selected
     {
-      display: block;
+      border: 1px solid #ccc;
+      box-shadow: inset 0px 1px 2px #bbb;
+      background: #f9f9f9;
     }
-    background-color: $blue;
   }
-  h1, h2, h3, .blue
-  {
-    margin-bottom: 30px;
-  }
-  p
-  {
-    margin-bottom: 20px;
-  }
-  .row
-  {
-    margin-bottom: 25px;
-  }
+}
+.container.about {
+  margin: 72px auto 160px;
+
 }

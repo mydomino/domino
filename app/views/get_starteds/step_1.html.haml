@@ -1,0 +1,98 @@
+%nav.navbar.navbar-default.narrow{class: 'ultra-light-gray' }
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.pull-right
+        %li.selected
+          =link_to '#' do
+            %span.circle.light-gray
+              1
+            Interests
+        %li
+          =link_to step_2_get_started_path do
+            %span.circle.light-gray
+              2
+            Home Details
+        %li
+          =link_to step_3_get_started_path do
+            %span.circle.light-gray
+              3
+            Dashboard
+
+
+
+.container
+  .row
+    .col-xs-12.text-center{style: 'padding-top: 160px;padding-bottom: 56px;'}
+      %h2{style: 'color: #333;'} Let's talk about what interests you...
+      %p
+        Knowing your interest allows us to give you
+        %strong
+          product recommendations
+        at the end.
+    .col-xs-12
+      %hr.pd-64
+    .col-xs-12
+      %h4{style:'color:#333;font-weight:normal;padding-bottom:56px'}
+        Choose the offering(s) that you would like.
+        %span{style: 'color:#BBB'}
+          (Select all that apply)
+  .row
+    .col-xs-12.col-md-6.text-center
+      #solar.panel.selectable{class: ('selected' if @get_started.solar)}
+        %h3{style: 'color: #333;padding-bottom:16px'} Solar
+        =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
+        %p{style:'text-align:left'} We help you pick out the right solar choice for you. Whether you already have quotes or not, we'll assist you all the way.
+    .col-xs-12.col-md-6.text-center
+      #energy-analysis.panel.selectable{class: ('selected' if @get_started.energy_analysis)}
+        %h3{style: 'color: #333;padding-bottom:16px'} Energy Analysis
+        =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
+        %p{style:'text-align:left'} A brief analysis of your current energy usage. We'll customize a plan to help you save money.
+    .col-xs-12
+      =simple_form_for :get_started, method: 'GET', url: step_2_get_started_path do |lead|
+        %div{style: 'display: none;'}
+          =lead.input :solar, as: :radio_buttons
+          =lead.input :energy_analysis, as: :radio_buttons
+        =lead.submit 'Next', class: "btn blue btn-default pull-right uppercase",style:'margin: 56px 0 160px;letter-spacing:4px;'
+:javascript
+  function toggle_solar()
+  {
+    if($('input[name="get_started[solar]"]:checked').val() !== 'true')
+    {
+      $('#get_started_solar_true').prop("checked", "true")
+      $('#solar').addClass('selected');
+    }
+    else
+    {
+      $('#get_started_solar_false').prop("checked", "true");
+      $('#solar').removeClass('selected');
+    }
+  }
+  function toggle_energy_analysis()
+  {
+    if($('input[name="get_started[energy_analysis]"]:checked').val() !== 'true')
+    {
+      $('#get_started_energy_analysis_true').prop("checked", "true")
+      $('#energy-analysis').addClass('selected');
+    }
+    else
+    {
+      $('#get_started_energy_analysis_false').prop("checked", "true");
+      $('#energy-analysis').removeClass('selected');
+    }
+  }
+  $(document).ready(function()
+  {
+    $('#solar').click(function(){
+      toggle_solar();
+    });
+    $('#energy-analysis').click(function(){
+      toggle_energy_analysis();
+    })
+  });

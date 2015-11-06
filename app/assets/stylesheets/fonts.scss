@@ -49,12 +49,21 @@ html
   line-height: 30px;
 }
 
-body 
+body
 {
   font-family: 'ProximaNovaA', sans-serif;
   font-weight: 300;
   font-size: 1.1rem;
   font-style: normal;
+}
+.uppercase
+{
+  text-transform: uppercase;
+}
+
+.uppercase{
+  text-transform: uppercase;
+  letter-spacing: .25em;
 }
 
 h1, h2, h3, h4, h5, h6
@@ -67,22 +76,22 @@ p
 {
   color: $gray;
 }
-h1 
+h1
 {
   font-size: 3rem;
   line-height: 4rem;
 }
-h2 
+h2
 {
   font-size: 2.25rem;
   line-height: 3.25rem;
 }
-h3 
+h3
 {
   font-size: 1.75rem;
   line-height: 2.25rem;
 }
-h4 
+h4
 {
   font-size: 1.33rem;
   line-height: 1.5rem;

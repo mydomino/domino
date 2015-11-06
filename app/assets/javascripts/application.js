@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require navbar
 //= require nprogress
 //= require nprogress-ajax
 //= require dynamic
 //= require signup
+//= require formance
 //= require storefront

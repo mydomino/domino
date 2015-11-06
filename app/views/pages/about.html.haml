@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default{class: 'blue' }
+%nav.navbar.navbar-default{class: 'transparent overlay' }
   .container
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -20,29 +20,42 @@
             = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
           %li.button
             = link_to getstarted_path, class: 'button' do
-              %button.btn.small.transparent.dark-blue
+              %button.btn.small.transparent
                 GET STARTED
+.hero.dark{style: "background-image: url('#{image_url('WindPower.png')}');"}
+  .container
+    .row
+      .col-xs-12
+        %h1.text-center{style: 'margin-top: 40px;'} About Domino
+        %h3.text-center{style: 'margin-bottom: 40px;'} Domino is the best way to save money and be fossil fuel free.
 .container.about
   .row
-    .col-xs-12
-      %h2 We all want clean energy, air, and water. The technology for that is available today. But where do we start? How can we do it in a way that doesn’t break the bank? Do we have to make lifestyle sacrifices in the bargain? This confusion can keep us from taking action.
-      %p Enter Domino, a concierge service that’s here to help millions of Americans switch to clean energy and save money at the same time. Our tailored plans involve serious carbon reduction, maximum cash savings, and zero lifestyle compromises. 
-      %p You may have heard of immediate savings with solar for no money down. But in most parts of the country, you can get entirely free of fossil fuels – coal, gas, and oil – and save money in the process. Consumers vote with their wallets. Domino is making it possible for everyone to know their options and to make that change, pocketing the savings along the way.
-  .row
-    .col-xs-12.blue{style: "padding:20px;"}
-      %h2.testimonial "The Domino concierge service is exactly what I needed. I wanted to go solar, but I wasn't sure if it made sense. My concierge is making it easy. I feel like I can get somewhere now."
-      %p.text-right Julie C, Sebastopol CA
-  .row
-    .col-xs-12
-      %h2 What’s Different About Domino
-      %p We know that no two families, homes, cities, or lifestyles are the same. Americans want personalized advice on how to ditch fossil fuels and save, especially for big decisions like solar and electric cars. Our concierge service provides that missing link. 
-      %p Domino concierges are not salespeople and do not work on commission. If solar power or an electric car doesn't make sense for you, we'll tell you! It's your choice what action to take - we just offer options for you to consider.
-  .row
-    .col-xs-12
-      %h2 How Domino Makes Money
-      %p Domino is 100% free for homeowners. We make a small referral fee from vendor products and services purchased or financed through us. This referral fee costs the vendors less than acquiring customers in other ways, so you save.
-  .row
-    .col-xs-12
-      %h2 Who Is Domino
+    .col-xs-12.col-md-8.col-md-push-2
+      .row
+        .col-xs-12
+          %h3.uppercase{style: 'margin-top: 64px;'}
+            Why Domino
+          %p
+            We know that no two families, homes, cities, or lifestyles are the same. Americans want personalized advice on how to ditch fossil fuels and save money, especially for big decisions like solar and electric cars. Our concierge service provides that missing link.
+            %br
+            Domino concierges are not salespeople and do not work on commission. If solar power or an electric car doesn't make sense for you, we'll tell you! It's your choice what action to take - we just offer options for you to consider.
+
+      .row{style: 'margin-top: 32px'}
+        .col-xs-12
+          =image_tag('domino_guarantee.png', style: "max-height: 175px;")
+        .col-xs-12
+          %h4.uppercase{style: 'margin: 30px 0px 0px;color: #777;'} Domino Guarantee
+          %p We stand behind every product and service we provide.
+          %p The Domino Three-Point Guarantee:
+          %p 1) We guarantee that you will receive quality services and products at competitive prices from reputable providers. We only work, and will only refer you, to companies and products with excellent credentials.
+          %p 2) We guarantee you Domino's first-class service throughout the discovery, purchasing, and installation process. You will work with a concierge who is not paid on commission, and whose focus is to help you move beyond fossil fuels without any pressure.
+          %p 3) We guarantee that we will be with you throughout the entire life of any product or service purchased through Domino. Should any issue arise, we will assist you to help resolve the issue to your 100% satisfaction.
+          %h3.uppercase{style:'margin-top:64px'} How Domino Makes Money
+
+          %p Domino is 100% free for homeowners. We make a small referral fee from vendor products and services purchased through us. This referall fee costs the vendors less than acquiring customers in other ways, so you save.
+
+      %h3.uppercase{style:'margin-top:64px'} Domino Team
+
       %p Our team of energy experts and analysts have helped thousands of homeowners save energy and money. We’ve done the research and crunched the numbers on countless energy-saving options, so we can help you see which ones are right for you.
-      = image_tag "team-photo.jpg"
+
+      =image_tag 'team-photo.png'
