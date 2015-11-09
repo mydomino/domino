@@ -36,6 +36,7 @@ gem 'gravatar_image_tag'
 gem 'heap'
 gem 'will_paginate'
 gem 'derailed'
+gem 'textacular'
 
 gem 'unicorn'
 

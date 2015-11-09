@@ -38,6 +38,11 @@ class DashboardsController < ApplicationController
       @filter = 'mine'
       @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
     end
+    #handle search
+    if(params[:search].present?)
+      @search_term = params[:search]
+      @dashboards = @dashboards.basic_search(@search_term).paginate(:page => params[:page], :per_page => 16)
+    end
   end
 
   def destroy
