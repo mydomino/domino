@@ -2,6 +2,7 @@
   .row
     .col-xs-12.text-center
       =link_to "Add a new Product", new_product_path, class: 'btn blue'
+      =link_to "Update Prices from Amazon", update_product_prices_path, class: 'btn blue', method: 'post'
   -@products.each_slice(4) do |products|
     .row
       -products.each do |product|
