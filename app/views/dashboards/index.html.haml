@@ -1,11 +1,18 @@
 .container.dashboards
   .row
     .col-xs-12
-      .btn-group.pull-left.filters{"aria-label" => "New Dashboarf", :role => "group"}
+      .btn-group.pull-left.filters{"aria-label" => "New Dashboard", :role => "group"}
         =link_to "New Dashboard", new_dashboard_path, class: 'btn blue uppercase'
       .btn-group.pull-right.filters{"aria-label" => "Filters", :role => "group"}
         =link_to 'All', {filter: 'all'}, class: "btn uppercase #{(@filter == 'all') ? 'blue' : 'btn-transparent'}"
         =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
+  .row
+    .col-xs-12.col-md-4.col-md-push-4.panel
+      =form_tag dashboards_path, method: 'GET' do
+        =label_tag 'search'
+        =text_field_tag 'search', @search_term
+        =hidden_field_tag 'filter', @filter
+        =submit_tag 'Search', class: 'btn blue pull-right'
   .row
     .col-xs-12
       -@dashboards.each_slice(4) do |dashboards|

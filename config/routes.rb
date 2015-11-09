@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :recommendations, only: [:new, :create]
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
   end
+
   resources :recommendations, only: [:destroy, :update] do
     post 'complete'
     delete 'undo' => 'recommendations#undo', as: 'undo_complete'
