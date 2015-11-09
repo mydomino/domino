@@ -27,7 +27,9 @@ Rails.application.routes.draw do
 
   resource :analytics, only: [:show]
 
-  resources :products, path: '/products/', only: [:new, :create, :edit, :update, :index]
+  resources :products, only: [:new, :create, :edit, :update, :index] do
+  end
+  post 'products/update-prices' => 'products#update_all_amazon_prices', as: 'update_product_prices'
   resources :tasks
 
   resources :contests

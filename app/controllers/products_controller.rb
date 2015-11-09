@@ -32,6 +32,11 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def update_all_amazon_prices
+    UpdateAllAmazonPricesJob.perform_later
+    redirect_to :products
+  end
+
   private
 
   def create_product_params

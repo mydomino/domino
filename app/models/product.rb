@@ -6,6 +6,14 @@ class Product < ActiveRecord::Base
 
   after_create :retrieve_amazon_details
 
+  #to be called by delayed job
+  def update_amazon_price
+    response = query_amazon_api product_id
+    parsed_response = Nokogiri::XML(response.body)
+    self.price = parsed_response.at_css("Price FormattedPrice").content
+    self.save
+  end
+
   private
 
   def retrieve_amazon_details
@@ -43,4 +51,6 @@ class Product < ActiveRecord::Base
     self.price = parsed_response.at_css("Price FormattedPrice").content
     self.save
   end
+
+
 end
