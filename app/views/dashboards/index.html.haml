@@ -12,6 +12,7 @@
         =label_tag 'search'
         =text_field_tag 'search', @search_term
         =hidden_field_tag 'filter', @filter
+        =hidden_field_tag 'view', 'table'
         =submit_tag 'Search', class: 'btn blue pull-right'
   .row
     .col-xs-12
