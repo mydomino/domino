@@ -7,7 +7,7 @@ class Lead < ActiveRecord::Base
       obj.state = geo.state
     end
   end
-  after_create :schedule_geocode, :deliver_thank_you_email, :save_to_zoho
+  after_create :schedule_geocode, :deliver_thank_you_email, :save_to_zoho, :upload_subscription_to_mailchimp
   validate :email_or_phone
   default_scope { order('created_at DESC') }
   belongs_to :get_started
@@ -60,6 +60,16 @@ class Lead < ActiveRecord::Base
 
   def deliver_thank_you_email
     UserMailer.welcome_email(email).deliver_later
+  end
+
+  def upload_subscription_to_mailchimp
+    if(subscribe_to_mailchimp)
+      mailchimp = Mailchimp::API.new(ENV['MAILCHIMP_API_KEY'])
+      mailchimp.lists.subscribe('0e3b74fe55', 
+      { 
+        "email" => email
+      })
+    end
   end
 
 end

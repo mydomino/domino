@@ -63,6 +63,9 @@
           =form.input :email
         #phone-field{style: "display: none"}
           =form.input :phone
+        .row
+          .col-xs-12
+            =form.input :subscribe_to_mailchimp, inline_label: 'Subscribe me to the Domino newsletter'
       .col-xs-12.text-right
         .errors
         =form.submit 'Next', class: "btn blue btn-default pull-right uppercase" ,style:'margin: 56px 0 160px;letter-spacing:4px;'
