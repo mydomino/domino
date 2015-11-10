@@ -30,7 +30,7 @@
                   =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank'
                 %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
 
-                %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actionss
+                %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
                 %td
                   =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}
   .row
