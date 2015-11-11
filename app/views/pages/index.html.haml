@@ -1,62 +1,38 @@
-:javascript
-  $(document).ready(function(){Intercom('shutdown')});
-%script{:async => "true", :charset => "utf-8", :language => "javascript", :src => "//ethn.io/93293.js", :type => "text/javascript"}
+-content_for :navbar_class do
+  bg-transparent
+
 .experiment
-  %nav.clearfix
+  .bg-sky-gradient
     .container
-      .navbar-header
-        %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-      #navbar.navbar-collapse.collapse
-        -if content_for? :navbar
-          =yield(:navbar)
-        -else
-          %ul.nav.navbar-nav.pull-right
-            %li
-              = link_to 'About', about_path
-            %li
-              = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank'
-            %li
-              = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
-            %li.button
-              = link_to step_1_get_started_path, class: 'button' do
-                %button.btn.small.transparent.dark-blue
-                  GET STARTED
-  .sky-gradient.text-center
-    .container
-      .row
-        .col-xs-12.col-md-8.col-md-push-2
-          %h2{style: 'color: white;margin-top: 100px;margin-bottom: 50px;'}
+      .clearfix
+        .sm-col-12.mx-auto.md-col-8.center.py4
+          %h2
             We help you
             %strong save money
             through clean energy—at no charge.
-      .row{style: 'margin-bottom: 100px;'}
-        .col-xs-12.col-sm-4.uppercase.text-center
-          .icon.twohundred
-            =embedded_svg('line_solar.svg', style: 'position: relative; left: -30px;fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;')
+      .clearfix
+        .sm-col.sm-col-12.md-col-4.center
+          .icon
+            =embedded_svg('line_solar.svg', style: 'position: relative; left: -30px;fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
             Solar
             %br
             Energy
-        .col-xs-12.col-sm-4.uppercase.text-center
-          .icon.twohundred
-            =embedded_svg('line_products.svg')
+        .sm-col.sm-col-12.md-col-4.center
+          .icon
+            =embedded_svg('line_products.svg', style: 'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
             Product
             %br
             Suggestions
-        .col-xs-12.col-sm-4.uppercase.text-center
-          .icon.twohundred
-            =embedded_svg('line_energy.svg')
+        .sm-col.sm-col-12.md-col-4.center
+          .icon
+            =embedded_svg('line_energy.svg', style: 'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
             Energy
             %br
             Analysis
 
-      .row
-        .col-xs-12.text-center{style: 'padding-bottom: 30px;'}
-          =link_to 'Get Started', step_1_get_started_path, class: 'btn dark-blue gradient uppercase large', style: 'font-size: 1.5rem;border: none;'
+      .clearfix
+        .sm-col.sm-col-12.center
+          =link_to 'Get Started', step_1_get_started_path, class: 'btn bg-navy white mt4 mb2'
   .testimonial.light-gray{style: 'padding-top: 60px;background-color: #f3f3f3;'}
     .container
       .row
@@ -311,3 +287,7 @@
           = link_to getstarted_path do
             %button.btn.large.uppercase.btn-default
               Get Started
+
+:javascript
+  $(document).ready(function(){Intercom('shutdown')});
+%script{:async => "true", :charset => "utf-8", :language => "javascript", :src => "//ethn.io/93293.js", :type => "text/javascript"}
