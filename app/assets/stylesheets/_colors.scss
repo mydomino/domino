@@ -1,35 +1,29 @@
-$light-gray: #C4C5C5;
-$ultra-light-gray: #F9F9F9;
-$dark-gray: #5F5F5F;
-$ultra-dark-gray: #313131;
 $white: #FFFFFF;
+$gray: #C5C5C5;
 $blue: #00CCFF;
-$dark-transparent: rgba(48, 48, 48, 0.65);
-$red: #db5461;
+$navy: #000000;
+$charcoal: #666666;
+$black-10: rgba(0,0,0,.1);
+$black-20: rgba(0,0,0,.2);
+$black-30: rgba(0,0,0,.3);
 
-.ultra-light-gray
+.white
 {
-  background-color: $ultra-light-gray;
+  background-color: $white;
 }
-.btn.light-gray, button.light-gray
+.gray
 {
-  color: $white;
-  background-color: $light-gray;
-}
-.btn.gray, button.gray
-{
-  color: $white;
   background-color: $gray;
 }
-.btn.dark-gray, button.dark-gray
+.blue
 {
-  color: $white;
-  background-color: $dark-gray;
+  background-color: $blue;
 }
-h1, h2, h3, h4, h5, h6, p
+.navy
 {
-  &.text-gray
-  {
-    color: $gray;
-  }
+  background-color: $navy;
+}
+.charcoal
+{
+  background-color: $charcoal;
 }
