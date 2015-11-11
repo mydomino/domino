@@ -33,61 +33,57 @@
       .clearfix
         .sm-col.sm-col-12.center
           =link_to 'Get Started', step_1_get_started_path, class: 'btn bg-navy white mt4 mb2'
-  .testimonial.light-gray{style: 'padding-top: 60px;background-color: #f3f3f3;'}
+  .bg-gray
     .container
-      .row
-        .col-xs-12.col-md-4.col-md-push-4.text-center
-          =embedded_svg 'testimonial.svg', style: 'margin-bottom: 40px; max-width: 250px;'
-      .row
-        .col-xs-12.col-md-8.col-md-push-2
-          .quote.text-center{style: 'font-size: 1.7rem;'}
+      .clearfix
+        .sm-col-12.md-col-4.mx-auto
+          =embedded_svg 'testimonial.svg'
+      .clearfix
+        .sm-col-12.md-col-8.mx-auto.center
+          .text-center{style: 'font-size: 1.7rem;'}
             =embedded_svg 'quotation_begin.svg', style: "width: 40px;float:left;position:relative;top:-5px;"
             With very little effort on my part, I'll be saving hundreds a month and using clean energy.
             =embedded_svg 'quotation_end.svg', style: "width: 40px; float:right;"
-          .text-center.uppercase.bold{style: "padding-top: 40px; padding-bottom: 40px;"}
+          .text-center.h3.uppercase{style: "padding-top: 40px; padding-bottom: 40px;"}
             Julia C.
             %br
             Sebastapol, CA
-
-  .going-solar{style: 'padding: 80px 0px;'}
-    .container
-      .row
-        .col-xs-12.col-md-6
-          =embedded_svg('solarpanel.svg')
-        .col-xs-12.col-md-6{style: "padding-top: 100px;"}
-          %h3{style: 'color: #165683'}
-            Going solar can be confusing.
-            %br
-            We make it easy.
-          %p
-            Figuring out which solar panels to get can be overwhelming, but it doesn’t have to be.
-          %p
+            
+  .container
+    .clearfix
+      .sm-col-12.md-col.md-col-6
+        =embedded_svg('solarpanel.svg')
+      .sm-col-12.md-col.md-col-6.py4
+        %h3{style: 'color: #165683'}
+          Going solar can be confusing.
+          %br
+          We make it easy.
+        %p
+          Figuring out which solar panels to get can be overwhelming, but it doesn’t have to be.
+        %p
           At Domino, a personal energy savings concierge will help you figure out which solar options are best for your household. We'll get you quotes, help you compare them, and walk you through the whole process.
-  .suggestions.light-sky-gradient{style: 'padding: 80px 0px;position: relative;z-index:2;'}
-    .container
-      .row
-        .col-xs-12.col-md-5{style: "padding-top: 100px;"}
-          %h3{style: 'color: #165683'}
-            Domino makes suggestions to help you save money.
-          %p
-            Don’t worry our concierges are not salespeople. They're suggestion people.
-          %p
-            Domino researches and vets the best energy efficiency products and services on the market. We explain your options, so you can choose what's best for your family. Always your decision, never any pressure.
-        .col-xs-12.col-md-6.col-md-push-1
-          =embedded_svg('products.svg')
-  .energy-plan{style: 'background-color: #b4f1ff'}
-    .container
-      .row
-        .col-xs-12.col-md-5
-          =embedded_svg('energyplan.svg', style: 'position: relative; top: -200px;z-index:1;')
-        .col-xs-12.col-md-5.col-md-push-2{style: 'padding-top: 130px;'}
-          %h3{style: 'color: #165683'}
-            We give you a customized energy plan for free.
-          %p
-            We provide a clear path for you to take actions, big and small, in order to save money and make the switch to clean energy.
-
-
-
+.suggestions.bg-sky-white-gradient{style: 'padding: 80px 0px;position: relative;z-index:2;'}
+  .container
+    .clearfix
+      .sm-col-12.md-col.md-col-6.py4
+        %h3{style: 'color: #165683'}
+          Domino makes suggestions to help you save money.
+        %p
+          Don’t worry our concierges are not salespeople. They're suggestion people.
+        %p
+          Domino researches and vets the best energy efficiency products and services on the market. We explain your options, so you can choose what's best for your family. Always your decision, never any pressure.
+      .sm-col-12.md-col.md-col-6
+        =embedded_svg('products.svg')
+.energy-plan
+  .container
+    .row
+      .sm-col-12.md-col.md-col-6.py4.px4
+        =embedded_svg('energyplan.svg', style: 'position: relative; top: -200px;z-index:1;')
+      .sm-col-12.md-col.md-col-6{style: 'padding-top: 130px;'}
+        %h3{style: 'color: #165683'}
+          We give you a customized energy plan for free.
+        %p
+          We provide a clear path for you to take actions, big and small, in order to save money and make the switch to clean energy.
 
 .default{style: "display: none;"}
   %nav.navbar.navbar-default{class: 'overlay dark roll-down', style: 'margin-bottom: 0;' }
