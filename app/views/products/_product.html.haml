@@ -1,13 +1,13 @@
-.product{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
-  .status.uppercase{class: ('completed' if recommendation.done)}
+.product
+  .status.caps{class: ('completed' if recommendation.done)}
     .completion-status-icon
     Bought
-  .amazon_picture
+  %div
     =image_tag product.image_url
-  %h4.bold.title.text-center
+  %h4.center
     =product.name
     
-.modal.fade{id: "product-#{product.id}"}
+.modal.fade{id: "product-#{product.id}", style: "display:none;"}
   .container
     .modal-dialog
       .modal-content

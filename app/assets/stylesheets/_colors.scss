@@ -1,4 +1,5 @@
 $white: #FFFFFF;
+$light-gray: #F9F9F9;
 $gray: #C5C5C5;
 $blue: #00CCFF;
 $navy: #105585;
@@ -7,21 +8,45 @@ $black-10: rgba(0,0,0,.1);
 $black-20: rgba(0,0,0,.2);
 $black-30: rgba(0,0,0,.3);
 
+.bg-light-gray
+{
+  background-color: $light-gray;
+}
+.light-gray
+{
+  color: $light-gray;
+}
 .bg-gray
 {
   background-color: $gray;
+}
+.gray
+{
+  color: $gray;
 }
 .bg-blue
 {
   background-color: $blue;
 }
+.blue
+{
+  color: $blue;
+}
 .bg-navy
 {
   background-color: $navy;
 }
+.navy
+{
+  color: navy;
+}
 .bg-charcoal
 {
   background-color: $charcoal;
+}
+.charcoal
+{
+  color: $charcoal;
 }
 .bg-transparent
 {
