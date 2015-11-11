@@ -1,8 +1,3 @@
--content_for :navbar do
-  &nbsp;
--content_for :navbar_class do
-  ultra-light-gray
-
 !!!
 %html
   %head
@@ -14,7 +9,7 @@
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/analytics'
   %body.ultra-light-gray
-    = render 'layouts/navbar'
+    = render 'layouts/logo_only_navbar'
     .container.alerts
       =flash_messages
     = yield

@@ -37,6 +37,7 @@ gem 'will_paginate'
 gem 'derailed'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
+gem 'vex_rails'
 
 gem 'unicorn'
 
