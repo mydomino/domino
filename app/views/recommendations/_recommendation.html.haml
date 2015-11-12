@@ -1,5 +1,5 @@
 .sm-col.sm-col-12.md-col-4.p2
-  .recommendation.border.rounded.p2{class: ('completed' if recommendation.done)}
+  .recommendation.border-3.rounded.p2{class: ('completed' if recommendation.done)}
     -if concierge_signed_in?
       =link_to "X", recommendation_path(recommendation), method: "DELETE"
     =render recommendation.recommendable, recommendation: recommendation

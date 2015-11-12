@@ -20,3 +20,4 @@
 //= require signup
 //= require formance
 //= require storefront
+//= require nanomodal.min.js

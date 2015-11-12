@@ -11,5 +11,9 @@
 }
 .recommendation
 {
+  &:hover
+  {
+    border-color: $blue;
+  }
   min-height: 425px;
 }
