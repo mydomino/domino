@@ -755,6 +755,13 @@ hr {
   border-color: rgba(0,0,0,.125);
 }
 
+.border-3
+{
+  border-style: solid;
+  border-width: 3px;
+  border-color: rgba(0,0,0,.125);
+}
+
 .border-top {
   border-top-style: solid;
   border-top-width: 1px;
