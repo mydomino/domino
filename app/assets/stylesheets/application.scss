@@ -13,12 +13,10 @@
  *= require animate
  *= require normalize-rails
  *= require nprogress
- *= require jquery-ui
- *= require vex.css
- *= require vex-theme-default
  */
 
 @import "basscss";
 @import "colors";
 @import "buttons";
 @import "components";
+@import "fonts"
