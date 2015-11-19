@@ -6,34 +6,3 @@
     =image_tag product.image_url
   %h4.bold.title.text-center
     =product.name
-    
-.modal.fade{id: "product-#{product.id}"}
-  .container
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
-          .row
-            .col-xs-12.col-sm-6
-              =image_tag product.image_url
-            .col-xs-12.col-sm-6
-              %h3
-                =product.name
-              %p
-                =product.description
-              =link_to "#{product.price} on Amazon", product.url, class: "btn blue full-width", target: "_blank"
-              -if(!recommendation.done)
-                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "POST"
-              -else
-                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "DELETE"
-          -if recommendation.comment.present?
-            %hr
-            .row
-              .col-xs-12
-                %h5.uppercase.bold 
-                  =recommendation.concierge.name
-                  Says
-                %p
-                  =recommendation.comment
