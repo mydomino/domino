@@ -2,10 +2,10 @@
   .row
     .col-xs-12
       .btn-group.pull-left.filters{"aria-label" => "New Dashboard", :role => "group"}
-        =link_to "New Dashboard", new_dashboard_path, class: 'btn blue uppercase'
+        =link_to "New Dashboard", new_dashboard_path, class: 'btn blue caps'
       .btn-group.pull-right.filters{"aria-label" => "Filters", :role => "group"}
-        =link_to 'All', {filter: 'all'}, class: "btn uppercase #{(@filter == 'all') ? 'blue' : 'btn-transparent'}"
-        =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
+        =link_to 'All', {filter: 'all'}, class: "btn caps #{(@filter == 'all') ? 'blue' : 'btn-transparent'}"
+        =link_to 'Mine', {filter: "mine"}, class: "btn caps #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
   .row
     .col-xs-12.col-md-4.col-md-push-4.panel
       =form_tag dashboards_path, method: 'GET' do
@@ -24,20 +24,20 @@
                 .avatar
                   =link_to dashboard_path(dashboard), target: 'blank' do
                     =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
-                .h4.uppercase
+                .h4.caps
                   =dashboard.lead_name
                 %br
                 .progress{style: "margin-bottom: 0px;height: 15px;"}
                   .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{product_progress dashboard}%;", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
                 .stats.text-left
-                  %small.uppercase.bold
+                  %small.caps.bold
                     Products
                   %small.pull-right.bold
                     ="#{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count}"
                 .progress{style: "margin-bottom: 0px;height: 15px;"}
                   .progress-bar.progress-bar-danger{role: 'progressbar', style: "width: #{task_progress dashboard}%", aria: {valuenow: "", valuemin: "0", valuemax: "100"}}
                 .stats.text-left
-                  %small.uppercase.bold
+                  %small.caps.bold
                     Actions
                   %small.pull-right.bold
                     ="#{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count}"
