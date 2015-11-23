@@ -8,8 +8,8 @@
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/analytics'
-  %body.ultra-light-gray
+  %body.bg-light-gray
     = render 'layouts/logo_only_navbar'
-    .container.alerts
+    .container.bg-transparent
       =flash_messages
     = yield
