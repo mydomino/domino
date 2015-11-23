@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
-  $('a[data-toggle="modal"]').click(function(e){
-   var target = $(e.target).data('target');
+  $('[data-toggle="modal"]').click(function(e){
+   var target = $(e.currentTarget).data('target');
    $(target).show();
    $('body').append('<div class="modal-bg"></div>');
    $('body').addClass('overflow-hidden');
