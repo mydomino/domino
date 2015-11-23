@@ -1,4 +1,4 @@
 =simple_form_for(@dashboard, url: dashboard_bulk_update_path(@dashboard)) do |form|
-  =form.association :products, collection: Product.all, as: :check_boxes, label: "Products", include_hidden: false
+  =form.association :products, collection: Product.all, as: :check_boxes, label: "Products", include_hidden: false, wrapper: :inline_checkbox
   =form.association :tasks, collection: Task.all, as: :check_boxes, label: "Tasks", checked_value: "true", include_hidden: false
   =form.submit "Save", class: "blue"
