@@ -48,7 +48,7 @@
               %br
               %br
               .form-wrapper{style: 'position: relative'}
-                = form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
+                = simple_form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
                   .container
                     .row
                       = hidden_field :lead, :form_name, {value: "energy_awareness_contest"}

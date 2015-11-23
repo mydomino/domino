@@ -7,7 +7,7 @@
   %h4.center
     =product.name
     
-.modal{id: "product-#{product.id}", style: "display:none;"}
+.modal{id: "product-#{product.id}"}
   .container
     .modal-dialog
       .modal-content
@@ -25,9 +25,9 @@
                 =product.description
               =link_to "#{product.price} on Amazon", product.url, class: "btn blue full-width", target: "_blank"
               -if(!recommendation.done)
-                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "POST"
+                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: :post
               -else
-                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "DELETE"
+                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn btn-default full-width', method: :delete
           -if recommendation.comment.present?
             %hr
             .row

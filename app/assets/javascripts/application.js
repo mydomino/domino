@@ -20,4 +20,4 @@
 //= require signup
 //= require formance
 //= require storefront
-//= require modal.js
+//= require modal

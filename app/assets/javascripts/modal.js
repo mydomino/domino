@@ -6,14 +6,13 @@ $(document).ready(function()
    $('body').append('<div class="modal-bg"></div>');
    $('body').addClass('overflow-hidden');
   });
-  $('.modal').click(function()
+  $('.modal').click(function(e)
   {
-    $('.modal-bg').remove();
-    $('.modal').hide();
-    $('body').removeClass('overflow-hidden');
+    if($(e.originalEvent.target).parents('.modal-content').length < 1)
+    {
+      $('.modal-bg').remove();
+      $('.modal').hide();
+      $('body').removeClass('overflow-hidden');
+    }
   });
-  $('.modal .modal-content').click(function(e)
-  {
-    e.stopPropagation();
-  })
 });
