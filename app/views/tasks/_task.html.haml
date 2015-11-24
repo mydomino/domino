@@ -1,10 +1,10 @@
-.task
+.task{data: {toggle: 'modal', target: "#task-#{task.id}"}}
   .status.caps{class: ('completed' if recommendation.done)}
     .completion-status-icon
     Completed
   .center.py3
     =image_tag task.icon
-  %h4.caps.center
+  %h4.center.caps.bold.truncate
     =task.name
   .description
     %p
