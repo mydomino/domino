@@ -25,7 +25,7 @@ class GetStartedsController < ApplicationController
   private
 
   def session_params
-    keys = %i(ip referer browser start_time campaign)
+    keys = %i(ip referer browser start_time campaign source)
     keys.each_with_object({}) do |str, hsh|
       hsh[str] = session[str]
     end
