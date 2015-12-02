@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     return if !session[:campaign].nil?
     session[:campaign] = request['utm_campaign'] if !request['utm_campaign'].nil?
     session[:campaign] = 'adwords' if !request['gclid'].nil?
-    session[:campaign] = '' if request['utm_campaign'].nil?
+    session[:campaign] = '' if request['utm_campaign'].nil? && request['gclid'].nil?
   end
 
   def capture_utm_source
