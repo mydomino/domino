@@ -43,11 +43,7 @@ Rails.application.routes.draw do
     post 'finish' => 'get_starteds#finish', as: 'finish'
   end
 
-  get 'EnergyAwareness' => 'leads#energy_awareness'
-  get 'energy-awareness' => 'leads#energy_awareness'
-
-  get 'EnergyAwareness' => 'leads#energy_awareness'
-
+  get 'smart-home' => 'leads#energy_awareness'
 
   get '/blog' => redirect("/blog/")
 
