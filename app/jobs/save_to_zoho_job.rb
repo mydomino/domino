@@ -14,7 +14,6 @@ class SaveToZohoJob < ActiveJob::Base
       zoho_lead.ip_address = lead.ip
       zoho_lead.referrer = lead.referer
       zoho_lead.time_on_site = lead.created_at - lead.start_time
-      zoho_lead.campaign = lead.campaign
       zoho_lead.browser = lead.browser
       zoho_lead.interested_in_solar = lead.interested_in_solar
       zoho_lead.interested_in_energy_plan = lead.interested_in_energy_plan

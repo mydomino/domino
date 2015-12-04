@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :start_timing, :capture_utm_campaign, :capture_utm_source
+  before_action :start_timing, :capture_utm_campaign
   layout :layout_by_resource
 
 
@@ -31,15 +31,9 @@ class ApplicationController < ActionController::Base
 
   def capture_utm_campaign
     return if !session[:campaign].nil?
-    session[:campaign] = request['utm_campaign'] if !request['utm_campaign'].nil?
-    session[:campaign] = 'adwords' if !request['gclid'].nil?
-    session[:campaign] = '' if request['utm_campaign'].nil? && request['gclid'].nil?
-  end
-
-  def capture_utm_source
-    return if !session[:source].nil?
-    session[:source] = request['utm_source'] if !request['utm_source'].nil?
-    session[:source] = '' if request['utm_source'].nil?
+    session[:source] = request['utm_campaign'] if !request['utm_campaign'].nil?
+    session[:source] = 'adwords' if !request['gclid'].nil?
+    session[:source] = '' if request['utm_campaign'].nil? && request['gclid'].nil?
   end
 
 end
