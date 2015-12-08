@@ -15,7 +15,7 @@
     .col-xs-6
       %h1 Recent Activity
       %ul.list-inline
-        -@recent_events.each do |event|
+        -@recent_events.reverse.each do |event|
           %li.border{style: "border: 2px solid #ccc; padding: 10px;border-radius: 6px;"}
             =event.dashboard.lead_name
             marked
