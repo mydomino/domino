@@ -1,15 +1,25 @@
 .container
   .row
     .col-xs-6
-      .panel
-        %h1 Stats
-        %ul
-          %li
-            Storefronts:
-            =@dashboard_count
-          %li
-            Recommendations Made:
-            =@recommendations_count
-          %li
-            Recommendations Completed:
-            =@recommendations_completed_count
+      %h1 Stats
+      %ul
+        %li
+          Storefronts:
+          =@dashboard_count
+        %li
+          Recommendations Made:
+          =@recommendations_count
+        %li
+          Recommendations Completed:
+          =@recommendations_completed_count
+    .col-xs-6
+      %h1 Recent Activity
+      %ul.list-inline
+        -@recent_events.each do |event|
+          %li.border{style: "border: 2px solid #ccc; padding: 10px;border-radius: 6px;"}
+            =event.dashboard.lead_name
+            marked
+            =event.recommendable.name
+            done
+            =time_ago_in_words event.updated_at
+            ago
