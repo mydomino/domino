@@ -7,7 +7,7 @@ class AnalyticsController < ApplicationController
     @recommendations_count = Recommendation.all.count
     @recommendations_completed_count = Recommendation.done.count
     @recommendations = Recommendation.all
-    @recent_events = Recommendation.done.first(10)
+    @recent_events = Recommendation.done.timestamped.first(10)
   end
 
 end
