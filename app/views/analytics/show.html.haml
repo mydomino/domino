@@ -16,7 +16,7 @@
       %h1 Recent Activity
       %ul.list-inline
         -@recent_events.reverse.each do |event|
-          %li.border{style: "border: 2px solid #ccc; padding: 10px;border-radius: 6px;"}
+          %li.border{style: "border: 2px solid #ccc; padding: 10px;border-radius: 6px;margin-bottom: 10px;"}
             =link_to event.dashboard.lead_name, dashboard_path(event.dashboard)
             marked
             =event.recommendable.name
