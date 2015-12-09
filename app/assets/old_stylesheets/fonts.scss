@@ -59,7 +59,15 @@ body
 .uppercase
 {
   text-transform: uppercase;
+<<<<<<< HEAD
   letter-spacing: .25rem;
+=======
+}
+
+.uppercase{
+  text-transform: uppercase;
+  letter-spacing: .25em;
+>>>>>>> eaf4680e790e54d3f179178c74ac179f9a76aad7
 }
 
 h1, h2, h3, h4, h5, h6
