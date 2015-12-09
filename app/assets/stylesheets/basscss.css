@@ -82,6 +82,10 @@ td {
   padding: .25rem 1rem;
   line-height: inherit;
 }
+.lh0
+{
+  line-height: 0;
+}
 
 th { vertical-align: bottom }
 td { vertical-align: top }
@@ -309,7 +313,7 @@ hr {
 .bold    { font-weight: bold }
 .regular { font-weight: normal }
 .italic  { font-style: italic }
-.caps    { text-transform: uppercase; letter-spacing: .2em; }
+.caps    { text-transform: uppercase; letter-spacing: .2em; font-weight: 300; }
 
 .left-align   { text-align: left }
 .center       { text-align: center }
@@ -352,6 +356,7 @@ hr {
 .right { float: right }
 
 .fit { max-width: 100% }
+.full-height { height: 100vh; }
 
 .border-box { box-sizing: border-box }
 
