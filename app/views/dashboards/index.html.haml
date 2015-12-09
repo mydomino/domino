@@ -3,7 +3,7 @@
     .col.col-12
       %h1.inline-block.m0 Dashboards
       .inline-block.clearfix.right.mt1
-        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue' : 'bg-gray'}"
+        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray'}"
         =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray' }"
       .inline-block.border.p2.mr3.right
         =form_tag dashboards_path, method: 'GET' do
@@ -21,7 +21,7 @@
               .dashboard-list.border.center.rounded.p2.relative
                 .avatar
                   =link_to dashboard_path(dashboard), target: 'blank' do
-                    =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/default_avatar.png" })
+                    =gravatar_image_tag(dashboard.lead_email, gravatar: { size: 150, default: "http://mydomino.com/assets/icon_user.png" })
                 .caps.px3
                   =dashboard.lead_name
                 %br
@@ -44,7 +44,8 @@
                       %small.right.bold
                         ="#{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count}"
                 %br
-                =link_to "x", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute left-0 top-0 bg-gray p1 white'
+                =link_to dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute left-0 top-0 bg-gray p1 white lh1' do
+                  .fa.fa-times
   .clearfix.bg-white
     .col-xs-12.center
       = will_paginate @dashboards
