@@ -68,3 +68,24 @@
   -o-transition: width .6s ease;
   transition: width .6s ease;
 }
+.pagination
+{
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 20px;
+  .previous_page, .next_page, a, em
+  {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: .75em;
+  }
+  .previous_page, a, em
+  {
+    float: left;
+    border-right: 0px;
+  }
+  .next_page
+  {
+    float: right;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+  }
+}

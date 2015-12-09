@@ -38,6 +38,7 @@ gem 'derailed'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'vex_rails'
+gem "font-awesome-rails"
 
 gem 'unicorn'
 
