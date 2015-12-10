@@ -89,3 +89,30 @@
     border-right: 1px solid rgba(0, 0, 0, 0.125);
   }
 }
+nav
+{
+  .nav-bg
+  {
+    height: 100%;
+    background: none;
+    transition: background-color 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
+    display: table;
+    .content
+    {
+      display: none;
+    }
+  }
+  &.open
+  {
+    height: 100%;
+    .nav-bg
+    {
+      background-color: rgba(16, 85, 133, .9);z-index:1000;
+      position: fixed;
+      .content
+      {
+        display: block;
+      }
+    }
+  }
+}

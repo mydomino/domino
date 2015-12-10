@@ -3,7 +3,30 @@
     .sm-col.p2
       = link_to embedded_svg('penguin_horizontal.svg'), root_path
     .sm-col-right
-      = link_to 'About', about_path, class: 'btn py3'
-      = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank', class: 'btn'
-      = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank', class: 'btn'
-      = link_to 'GET STARTED', step_1_get_started_path, class: 'btn'
+      .fa.fa-bars{style: "font-size: 2rem;padding-top: 1.75rem;"}
+
+  .nav-bg.absolute.col-12.top-0.left-0.right-0.white.flex.flex-center
+    .content.flex-auto
+      %h1.inline-block
+        .fa.fa-times.fixed.top-0.right-0.p3
+      %ul.py4.center.list-reset{style: "font-size: 3rem;"}
+        %li
+          = link_to 'About', about_path, class: "white py1 inline-block"
+        %li
+          = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank', class: "white py1 inline-block"
+        %li
+          = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank', class: "white py1 inline-block"
+        %li
+          = link_to 'GET STARTED', step_1_get_started_path, class: 'btn', class: "white py1 inline-block"
+:javascript
+  $('document').ready(function(){
+    $('nav .fa-bars').click(function(){
+      $('nav').addClass('open');
+    })
+
+    $('nav .nav-bg .fa-times').click(function(){
+      $('nav').removeClass('open');
+    })
+  })
+
+
