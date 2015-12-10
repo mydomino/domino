@@ -38,7 +38,7 @@ class Recommendation < ActiveRecord::Base
   def self.to_csv
     CSV.generate do |csv|
       csv << ["User Name", "User Email", "Recommendation Name", "Recommendation Type", "Date Marked Done", "Concierge"]
-      all.includes(:dashboard, :recommendable, :concierge).each do |rec|
+      done.includes(:dashboard, :recommendable, :concierge).each do |rec|
         csv << [rec.dashboard.lead_name, rec.dashboard.lead_email, rec.recommendable.name, rec.recommendable_type, rec.updated_at, rec.concierge.email]
       end
     end
