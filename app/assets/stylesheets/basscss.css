@@ -317,7 +317,7 @@ hr {
 .bold    { font-weight: bold }
 .regular { font-weight: normal }
 .italic  { font-style: italic }
-.caps    { text-transform: uppercase; letter-spacing: .2em; font-weight: 300; }
+.caps    { text-transform: uppercase; letter-spacing: .2em; }
 
 .left-align   { text-align: left }
 .center       { text-align: center }

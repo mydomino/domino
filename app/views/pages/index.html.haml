@@ -6,33 +6,36 @@
     .container
       .clearfix
         .sm-col-12.mx-auto.md-col-8.center.py4
-          %h2
+          %h1
             We help you
-            %strong save money
-            through clean energy—at no charge.
+            save money
+            through clean energy&nbsp;— at no charge.
       .clearfix
         .sm-col.sm-col-12.md-col-4.center
           .icon
             =embedded_svg('line_solar.svg', style: 'position: relative; left: -30px;fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
-            Solar
-            %br
-            Energy
+            %h3.navy.caps
+              Solar
+              %br
+              Energy
         .sm-col.sm-col-12.md-col-4.center
           .icon
             =embedded_svg('line_products.svg', style: 'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
-            Product
-            %br
-            Suggestions
+            %h3.navy.caps
+              Product
+              %br
+              Suggestions
         .sm-col.sm-col-12.md-col-4.center
           .icon
             =embedded_svg('line_energy.svg', style: 'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
-            Energy
-            %br
-            Analysis
+            %h3.navy.caps
+              Energy
+              %br
+              Analysis
 
       .clearfix
         .sm-col.sm-col-12.center
-          =link_to 'Get Started', step_1_get_started_path, class: 'btn bg-navy white mt4 mb2 rounded caps'
+          =link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 rounded caps'
   .bg-light-gray.py4
     .container
       .clearfix
@@ -41,9 +44,9 @@
       .clearfix
         .sm-col-12.md-col-10.mx-auto.center.py2
           .text-center.h1
-            =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;"
+            =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;", class:"mr2"
             With very little effort on my part, I'll be saving hundreds a month and using clean energy.
-            =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;"
+            =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;", class:"ml2"
           .text-center.h3.uppercase.py3
             Julia C.
             %br
@@ -53,19 +56,19 @@
       .sm-col-12.md-col.md-col-6
         =embedded_svg('solarpanel.svg')
       .sm-col-12.md-col.md-col-6.py4
-        %h2{style: 'color: #165683'}
+        %h1
           Going solar can be confusing.
           %br
           We make it easy.
         %p
           Figuring out which solar panels to get can be overwhelming, but it doesn’t have to be.
         %p
-          At Domino, a personal Energy Concierge will help you figure out which solar options are best for your household. We look, compare, and assist you all the way. Always your decision, never any pressure
+          At Domino, a personal Energy Concierge will help you figure out which solar options are best for your household. We look, compare, and assist you all the way. Always your decision, never any pressure.
 .suggestions.bg-sky-white-gradient.py4{style: 'position: relative;z-index:2;'}
   .container
     .clearfix
       .sm-col-12.md-col.md-col-6.py4
-        %h2{style: 'color: #165683'}
+        %h1
           Domino makes suggestions to help you save money.
         %p
           Don’t worry our concierges are not salespeople. They're suggestion people.
@@ -79,7 +82,7 @@
       .sm-col-12.md-col.md-col-6
         =embedded_svg('energyplan.svg', style: 'position: relative; top: -200px;z-index:1;')
       .sm-col-12.md-col.md-col-6
-        %h2{style: 'color: #165683'}
+        %h1
           We give you a customized energy plan for free.
         %p
           We provide a clear path for you to take actions, big and small, in order to save money and make the switch to clean energy.
