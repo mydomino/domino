@@ -61,6 +61,10 @@ class RecommendationsController < ApplicationController
     redirect_to @storefront
   end
 
+  def index
+    send_data Recommendation.done.to_csv
+  end
+
   private
 
   def create_recommendation_params

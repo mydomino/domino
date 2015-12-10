@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
   end
 
-  resources :recommendations, only: [:destroy, :update] do
+  resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'
     delete 'undo' => 'recommendations#undo', as: 'undo_complete'
   end
