@@ -2,11 +2,11 @@
   bg-transparent absolute top-0 white sm-col-12
 
 .experiment
-  .bg-sky-gradient.py4.white
+  .bg-sky-gradient.py4
     .container
-      .clearfix
+      .clearfix.px2
         .sm-col-12.mx-auto.md-col-8.center.py4
-          %h1
+          %h1.white
             We help you
             save money
             through clean energy&nbsp;— at no charge.
@@ -37,22 +37,22 @@
         .sm-col.sm-col-12.center
           =link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 rounded caps'
   .bg-light-gray.py4
-    .container
+    .container.px2
       .clearfix
         .sm-col-12.md-col-4.mx-auto
           =embedded_svg 'testimonial.svg'
       .clearfix
         .sm-col-12.md-col-10.mx-auto.center.py2
-          .text-center.h1
+          .h1.text-center
             =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;", class:"mr2"
             With very little effort on my part, I'll be saving hundreds a month and using clean energy.
             =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;", class:"ml2"
-          .text-center.h3.uppercase.py3
+          .h3.text-center.caps.py3
             Julia C.
             %br
             Sebastapol, CA
   .container.py4
-    .clearfix
+    .clearfix.px2
       .sm-col-12.md-col.md-col-6
         =embedded_svg('solarpanel.svg')
       .sm-col-12.md-col.md-col-6.py4
@@ -66,7 +66,7 @@
           At Domino, a personal Energy Concierge will help you figure out which solar options are best for your household. We look, compare, and assist you all the way. Always your decision, never any pressure.
 .suggestions.bg-sky-white-gradient.py4{style: 'position: relative;z-index:2;'}
   .container
-    .clearfix
+    .clearfix.px2
       .sm-col-12.md-col.md-col-6.py4
         %h1
           Domino makes suggestions to help you save money.
@@ -78,7 +78,7 @@
         =embedded_svg('products.svg')
 .bg-blue.py3
   .container
-    .clearfix
+    .clearfix.px2
       .sm-col-12.md-col.md-col-6
         =embedded_svg('energyplan.svg', style: 'position: relative; top: -200px;z-index:1;')
       .sm-col-12.md-col.md-col-6
