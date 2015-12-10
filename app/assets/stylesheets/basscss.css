@@ -424,7 +424,6 @@ hr {
 .px4 { padding-left: 4rem; padding-right: 4rem }
 
 @media (min-width:40em) {
-  {
     .sm-m0  { margin:        0 }
     .sm-mt0 { margin-top:    0 }
     .sm-mr0 { margin-right:  0 }
@@ -479,10 +478,7 @@ hr {
     .sm-py4 { padding-top: 4rem; padding-bottom: 4rem }
     .sm-px4 { padding-left: 4rem; padding-right: 4rem }
   }
-
-}
 @media (min-width:40em) {
-  {
     .sm-m0  { margin:        0 }
     .sm-mt0 { margin-top:    0 }
     .sm-mr0 { margin-right:  0 }
@@ -537,10 +533,7 @@ hr {
     .sm-py4 { padding-top: 4rem; padding-bottom: 4rem }
     .sm-px4 { padding-left: 4rem; padding-right: 4rem }
   }
-
-}
 @media (min-width:52em) {
-  {
     .md-m0  { margin:        0 }
     .md-mt0 { margin-top:    0 }
     .md-mr0 { margin-right:  0 }
@@ -595,10 +588,7 @@ hr {
     .md-py4 { padding-top: 4rem; padding-bottom: 4rem }
     .md-px4 { padding-left: 4rem; padding-right: 4rem }
   }
-
-}
 @media (min-width:64em) {
-  {
     .lg-m0  { margin:        0 }
     .lg-mt0 { margin-top:    0 }
     .lg-mr0 { margin-right:  0 }
@@ -653,8 +643,6 @@ hr {
     .lg-py4 { padding-top: 4rem; padding-bottom: 4rem }
     .lg-px4 { padding-left: 4rem; padding-right: 4rem }
   }
-
-}
 
 .relative { position: relative }
 .absolute { position: absolute }
