@@ -67,21 +67,21 @@
 .suggestions.bg-sky-white-gradient.py4{style: 'position: relative;z-index:2;'}
   .container
     .clearfix.px2
-      .sm-col-12.md-col.md-col-6.py4
+      .col-12.sm-col-12.md-col-6.right
+        =embedded_svg('products.svg')
+      .col-12.sm-col-12.md-col-6.py4.left
         %h1
           Domino makes suggestions to help you save money.
         %p
           Don’t worry our concierges are not salespeople. They're suggestion people.
         %p
           Domino researches and vets the best energy efficiency products and services on the market. We explain your options, so you can choose what's best for your family. Always your decision, never any pressure.
-      .sm-col-12.md-col.md-col-6
-        =embedded_svg('products.svg')
-.bg-blue.py3
+.bg-blue.pb3
   .container
-    .clearfix.px2
-      .sm-col-12.md-col.md-col-6
-        =embedded_svg('energyplan.svg', style: 'position: relative; top: -200px;z-index:1;')
-      .sm-col-12.md-col.md-col-6
+    .clearfix.mxn2
+      .sm-col-12.md-col.md-col-6.px2
+        =image_tag('icon_energy-plan.png')
+      .sm-col-12.md-col.md-col-6.px2
         %h1
           We give you a customized energy plan for free.
         %p
