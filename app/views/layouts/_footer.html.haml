@@ -1,51 +1,63 @@
-.footer.bg-light-gray
+.footer.bg-light-gray.blue
   .container
-    .clearfix.py2
-      .sm-col-4.md-col-2.lg-col-1.sm-col
+    .clearfix.lg-show
+      .lg-col-1.sm-col.py3
         %p.link= link_to 'ABOUT', about_path
-      .sm-col-4.md-col-2.lg-col-1.sm-col
+      .lg-col-1.sm-col.py3
         %p.link= link_to 'BLOG', "http://www.mydomino.com/blog/",target: '_blank'
-      .sm-col-4.md-col-2.lg-col-1.sm-col
+      .lg-col-1.sm-col.py3
         %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
-      .sm-col-4.md-col-2.lg-col-1.sm-col
-        %p.link= link_to 'TERMS', terms_path, target: "_blank"
-      .sm-col-4.md-col-2.lg-col-1.sm-col
-        %p.link= link_to 'PRIVACY', privacy_path, target: "_blank"
+      .lg-col-3.lg-show.lg-col-right.py1
+        .clearfix.mxn2
+          .col.col-4.px2
+            =embedded_svg('facebook-with-circle.svg')
+          .col.col-4.px2
+            =embedded_svg('twitter-with-circle.svg')
+          .col.col-4.px2
+            =embedded_svg('domino-with-circle.svg')
+    .clearfix.center.lg-left-align 
+      .col-12.mt3.mb2.lg-col.lg-col-3
+        800-979-2215
+        %br
+        9AM-9PM ET, Monday-Friday
+        %br
+        myconcierge@mydomino.com
+    .clearfix.mxn2.lg-hide
+      .col.col-4.py1
+      .col.col-4
+        .clearfix.mxn2
+          .col.col-4.px2
+            =embedded_svg('facebook-with-circle.svg')
+          .col.col-4.px2
+            =embedded_svg('twitter-with-circle.svg')
+          .col.col-4.px2
+            =embedded_svg('domino-with-circle.svg')
+    .clearfix.mt2.lg-mb4
+      .col.col-4.md-col-3.py1.lg-hide
+      .col.col-4.md-col-6.center
+        .clearfix.mxn2
+          .md-col.md-col-4.lg-col-3.py1.px2.mb1
+            .border.rounded
+              = link_to "Rocky Mountain Institute", "http://www.rmi.org", target: "_blank"
+          .md-col.md-col-4.lg-col-3.py1.px2.mb1
+            .border.rounded
+              = link_to "Solar Energy Industry Assocation", "http://www.seia.org", target: "_blank"
+          .md-col.md-col-4.lg-col-3.py1.px2.mb1
+            .border.rounded
+              = link_to "http://www.bcorporation.net" do
+                BBB
+                %br
+                Accredited
+          .md-col.md-show.md-col-4.py1.px2.lg-hide
+          .md-col.md-col-4.px2.mb2.lg-col-3.py1
+            =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:100%;height:auto", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge', target: "_blank")
     .clearfix
-      .sm-col.sm-col-12.md-col-6.lg-col-4
-        .clearfix.mb2
-          .sm-col.sm-col-4
-            = link_to "http://www.facebook.com/ourdominoeffect", target: '_blank' do
-              = image_tag 'facebook.png'
-          .sm-col.sm-col-4
-            = link_to "http://twitter.com/OurDominoEffect", target: '_blank' do
-              = image_tag 'twitter.png'
-          .sm-col.sm-col-4
-            = link_to "http://www.mydomino.com/blog/", target: '_blank' do
-              = image_tag 'rss.png'
+      .md-col.md-col-3.md-show.py1.lg-hide
+      .col-12.md-col.md-col-6.center.mb2.lg-col-6.lg-left-align 
         .clearfix
-          .sm-col.sm-col-12
-            %p
-              myconcierge@mydomino.com
-              %br
-              510-454-8522
-              %br
-              9am to 9pm ET, Monday-Friday
-      .sm-col-right.sm-col-12.md-col-6.lg-col-5
-        .clearfix
-          .sm-col-8.sm-col
-            .clearfix
-              .sm-col.sm-col-6
-                = link_to "http://www.rmi.org", target: "_blank" do
-                  = image_tag "rmi-logo.png"
-              .sm-col.sm-col-6
-                = link_to "http://www.seia.org", target: "_blank" do
-                  = image_tag "seia.png"
-              .sm-col.sm-col-12
-                =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:108px;height:41px", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge', target: "_blank")
-          .sm-col.sm-col-4
-            = link_to "http://www.bcorporation.net", target: "_blank" do
-              = image_tag "Certified B Corp-pending.png"
-    .clearfix
-      .sm-col-left.md-col-right.sm-col-12
-        %p.copyright Copyright 2015, Domino2030, Inc.
+          .col-12.md-col.md-col-6
+            &copy;2015, Domino2030, Inc.
+          .md-show.md-col.md-col-3
+            Terms
+          .md-show.md-col.md-col-3
+            Privacy

@@ -324,6 +324,7 @@ hr {
 .right-align  { text-align: right }
 .justify      { text-align: justify }
 
+
 .nowrap { white-space: nowrap }
 .break-word { word-wrap: break-word }
 
@@ -589,6 +590,7 @@ hr {
     .md-px4 { padding-left: 4rem; padding-right: 4rem }
   }
 @media (min-width: 64em) {
+    .lg-left-align { text-align: left }
     .lg-m0  { margin:        0 }
     .lg-mt0 { margin-top:    0 }
     .lg-mr0 { margin-right:  0 }
