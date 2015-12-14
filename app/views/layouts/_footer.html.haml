@@ -1,11 +1,11 @@
 .footer.bg-light-gray.blue
   .container
     .clearfix.lg-show
-      .lg-col-1.sm-col.py3
+      .lg-col-1.sm-col.mt3
         %p.link= link_to 'ABOUT', about_path
-      .lg-col-1.sm-col.py3
+      .lg-col-1.sm-col.mt3
         %p.link= link_to 'BLOG', "http://www.mydomino.com/blog/",target: '_blank'
-      .lg-col-1.sm-col.py3
+      .lg-col-1.sm-col.mt3
         %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
       .lg-col-3.lg-show.lg-col-right.py1
         .clearfix.mxn2
@@ -15,8 +15,8 @@
             =embedded_svg('twitter-with-circle.svg')
           .col.col-4.px2
             =embedded_svg('domino-with-circle.svg')
-    .clearfix.center.lg-left-align 
-      .col-12.mt3.mb2.lg-col.lg-col-3
+    .clearfix.center.lg-right-align
+      .col-12.mb2.lg-col.lg-col-3.lg-col-right
         800-979-2215
         %br
         9AM-9PM ET, Monday-Friday
@@ -26,24 +26,24 @@
       .col.col-4.py1
       .col.col-4
         .clearfix.mxn2
-          .col.col-4.px2
+          .col.col-4.px3
             =embedded_svg('facebook-with-circle.svg')
-          .col.col-4.px2
+          .col.col-4.px3
             =embedded_svg('twitter-with-circle.svg')
-          .col.col-4.px2
+          .col.col-4.px3
             =embedded_svg('domino-with-circle.svg')
-    .clearfix.mt2.lg-mb4
+    .clearfix.mt2.lg-mb2
       .col.col-4.md-col-3.py1.lg-hide
       .col.col-4.md-col-6.center
         .clearfix.mxn2
-          .md-col.md-col-4.lg-col-3.py1.px2.mb1
-            .border.rounded
+          .md-col.md-col-4.lg-col-4.py1.px1.mb1
+            .border.rounded.p1.h5
               = link_to "Rocky Mountain Institute", "http://www.rmi.org", target: "_blank"
-          .md-col.md-col-4.lg-col-3.py1.px2.mb1
-            .border.rounded
+          .md-col.md-col-4.lg-col-4.py1.px1.mb1
+            .border.rounded.p1.h5
               = link_to "Solar Energy Industry Assocation", "http://www.seia.org", target: "_blank"
-          .md-col.md-col-4.lg-col-3.py1.px2.mb1
-            .border.rounded
+          .md-col.md-col-4.lg-col-4.py1.px1.mb1
+            .border.rounded.p1.h5
               = link_to "http://www.bcorporation.net" do
                 BBB
                 %br
@@ -53,7 +53,7 @@
             =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:100%;height:auto", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge', target: "_blank")
     .clearfix
       .md-col.md-col-3.md-show.py1.lg-hide
-      .col-12.md-col.md-col-6.center.mb2.lg-col-6.lg-left-align 
+      .col-12.md-col.md-col-6.center.mb2.lg-col-6.lg-left-align
         .clearfix
           .col-12.md-col.md-col-6
             &copy;2015, Domino2030, Inc.
