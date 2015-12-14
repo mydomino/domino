@@ -3,13 +3,13 @@
     .sm-col.p2
       = link_to embedded_svg('penguin_horizontal.svg'), root_path
     .sm-col-right
-      .fa.fa-bars{style: "font-size: 2rem;padding-top: 1.75rem;"}
+      .fa.fa-bars.pointer{style: "font-size: 2rem;padding-top: 1.75rem;"}
 
   .nav-bg.absolute.col-12.top-0.left-0.right-0.white.flex.flex-center
     .content.flex-auto
       %h1.inline-block
-        .fa.fa-times.fixed.top-0.right-0.p3
-      %ul.py4.center.list-reset{style: "font-size: 3rem;"}
+        .fa.fa-times.fixed.top-0.right-0.p3.pointer
+      %ul.py4.center.list-reset{ style: "font-size: 3rem;" }
         %li
           = link_to 'About', about_path, class: "white py1 inline-block"
         %li
