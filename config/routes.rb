@@ -28,8 +28,8 @@ Rails.application.routes.draw do
 
   resource :analytics, only: [:show]
 
-  resources :products, only: [:new, :create, :edit, :update, :index] do
-  end
+  resources :products
+  
   post 'products/update-prices' => 'products#update_all_amazon_prices', as: 'update_product_prices'
   resources :tasks
 

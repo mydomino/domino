@@ -1,7 +1,8 @@
 .sm-col.sm-col-12.md-col-4.p2
-  .recommendation.border-3.rounded.p2{class: ('completed' if recommendation.done)}
+  .recommendation.border-3.rounded.p2.relative{class: ('completed' if recommendation.done)}
     -if concierge_signed_in?
-      =link_to "X", recommendation_path(recommendation), method: "DELETE", class: "right"
+      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-0 top-0 bg-gray p1 white lh1' do
+        .fa.fa-times
     =render recommendation.recommendable, recommendation: recommendation
     =render 'recommendations/comment', recommendation: recommendation
 -if(recommendation.recommendable_type == 'Product')
