@@ -1,74 +1,52 @@
-%nav.navbar.navbar-default{class: 'overlay dark' }
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-    #navbar.navbar-collapse.collapse
-      -if content_for? :navbar
-        =yield(:navbar)
-      -else
-        %ul.nav.navbar-nav.pull-right
-          %li
-            = link_to 'About', about_path
-          %li
-            = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank'
-          %li
-            = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
+-content_for :navbar_class do
+  bg-blue white sm-col-12 absolute top-0
 
-.concierge.hero
-  .overlay
-    %h1.content
-      Ready for cool savings with clean energy?
-      %br
-      Let Domino be your guide.
-.blue
+.bg-blue{style: "margin-top:90px;"}
   .container
-    .row
-      .col-xs-12.col-sm-8.col-sm-offset-2
-        .reserve.panel#reserve{style: "margin-top: -100px;"}
-          .row
-            .col-xs-12.col-sm-8.col-sm-offset-2
-              %h3
-                And it starts with a quick chat. 
+    .clearfix.center
+      %h1
+        Ready for cool savings with clean energy?
+        %br
+        Let Domino be your guide.
+    .clearfix.center
+      .sm-col.sm-show.sm-col-2
+        &nbsp;
+      .col.col-12.sm-col-8.bg-white.rounded.p3
+        And it starts with a quick chat. 
+        %br
+        We don’t mean to exaggerate, but this phone call could change the world.
+        =render 'form', button_text: 'Get Started'
+    .clearfix
+      .sm-col.sm-show.sm-col-2
+        &nbsp;
+      .col.col-12.sm-col-8.mt2.mb2.center.caps
+        %p Other ways to reach a Domino concierge
+    .clearfix
+      .sm-col.sm-show.sm-col-2
+        &nbsp;
+      .col.col-12.sm-col-8
+        .clearfix.mxn2
+          .col.col-12.sm-col-6.px2
+            .col.col-3
+              = image_tag 'phone_icon.png'
+            .col.col-9
+              %p 
+                800-979-2215
                 %br
-                We don’t mean to exaggerate, but this phone call could change the world.
-              =render 'form', button_text: 'Get Started'
-.blue
+                9am to 9pm ET, Monday-Friday
+          .col.col-12.sm-col-6.px2
+            .col.col-3
+              = image_tag 'email_icon.png'
+            .col.col-9
+              %p= link_to 'myconcierge@mydomino.com', "mailto:myconcierge@mydomino.com"
+.bg-gray
   .container
-    .row
-      .col-xs-12.text-center{style: "margin-bottom: 20px;"}
-        %p OTHER WAYS TO REACH A DOMINO CONCIERGE
-.blue
-  .container
-    .row{style: 'padding-bottom: 30px;'}
-      .col-xs-12.col-sm-4.col-sm-offset-2.contact-method
-        .row.no-padding
-          .col-xs-3
-            = image_tag 'phone_icon.png'
-          .col-xs-9
-            %p 
-              800-979-2215
-              %br
-              9am to 9pm ET, Monday-Friday
-      .col-xs-12.col-sm-4.contact-method
-        .row.no-padding
-          .col-xs-3
-            = image_tag 'email_icon.png'
-          .col-xs-9
-            %p= link_to 'myconcierge@mydomino.com', "mailto:myconcierge@mydomino.com"
-.team
-  .overlay
-    .content
-      .container
-        .row
-          .col-xs-12
-            .container
-              %h2 We’re not salespeople, we’re energy wonks. We’re obsessed with clean energy actions that don’t compromise your lifestyle and put more cash back in your pocket.
-              %div{style: "text-align:center;"}
-                = link_to getstarted_path(anchor: 'reserve') do
-                  %button.btn.large.btn-default
-                    GET STARTED
+    .clearfix
+      .sm-col.sm-show.sm-col-2
+        &nbsp;
+      .col.col-12.sm-col-8
+        %h2 We’re not salespeople, we’re energy wonks. We’re obsessed with clean energy actions that don’t compromise your lifestyle and put more cash back in your pocket.
+        %div{style: "text-align:center;"}
+          = link_to getstarted_path(anchor: 'reserve') do
+            %button.btn.bg-blue.white.caps.rounded.m3
+              Get Started
