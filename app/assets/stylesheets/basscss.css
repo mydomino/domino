@@ -238,6 +238,7 @@ hr {
   display: inline-block;
   line-height: 1.125rem;
   padding: .5rem 1rem;
+  padding-top: .8rem;
   margin: 0;
   height: auto;
   border: 1px solid transparent;
@@ -1034,7 +1035,7 @@ hr {
 .black  { color: #111 }
 .gray   { color: #aaa }
 .silver { color: #ddd }
-.white  { color: #fff }
+.white  { color: #fff; fill: #fff; }
 
 .aqua  { color: #7fdbff }
 .blue  { color: #0074d9 }
@@ -1083,3 +1084,5 @@ hr {
 .bg-lighten-2 { background-color: rgba(255,255,255,.125) }
 .bg-lighten-3 { background-color: rgba(255,255,255,.25) }
 .bg-lighten-4 { background-color: rgba(255,255,255,.5) }
+
+.pointer:hover { cursor: pointer; }
