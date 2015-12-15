@@ -1,5 +1,8 @@
+-content_for(:logo_class) do
+  blue
+
 .container
-  .row
+  .clearfix
     .col.col-12.center
       %h2
         I see you're interested in our offerings.
@@ -9,16 +12,24 @@
         We use this information to make better recommendations for you.
     .col.col-12
       %hr
-  .row
-    =simple_form_for @get_started, url: step_3_get_started_path, method: 'GET' do |form|
-      .col-12
-        =form.input :area_code
-        =form.hidden_field :average_electric_bill
-        %h4{style:'font-weight:normal;color:#333;padding: 32px 0 8px'} What is your average electricity bill?
-        #slider.col-xs-12.col-sm-10{style: 'margin: 20px 0px;padding: 0px;'}
-        #amount.col-xs-12.col-sm-2{style: 'color: #00CCFF; font-size: 2rem;font-weight: bold;margin: 10px 0px;'} $0
-      .col-xs-12.text-right
-        =form.submit 'Next', class: "btn blue btn-default uppercase",style:'margin: 56px 0 160px;letter-spacing:4px;'
+  =simple_form_for @get_started, url: step_3_get_started_path, method: 'GET' do |form|
+    .clearfix.mt4.mb2
+      .md-show.md-col.md-col-3
+        &nbsp;
+      .col.col-12.md-col-6
+        .clearfix.mxn2
+          .col.col-12.px2
+            =form.label :area_code
+            =form.input_field :area_code, class: "field col-12"
+          .col.col-12.px2
+            %h4{style:'font-weight:normal;color:#333;padding: 32px 0 8px'} What is your average electricity bill?
+            =form.hidden_field :average_electric_bill
+          .col-12.col.sm-col-10.px2.py1
+            #slider
+          .col-12.col.sm-col-2.px2
+            %h1.mt0.mb0.blue.inline-block#amount $0
+    .col-12.right-align.mb3
+      =form.submit 'Next', class: "btn bg-blue white caps rounded"
 
 
 :javascript
