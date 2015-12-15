@@ -49,14 +49,18 @@
 
 body {
   font-family: 'ProximaNovaA',sans-serif;
-  line-height: 1.5;
-  font-size: 100%;
+}
+
+p {
+  font-size: 20px;
+  font-weight:300;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'ProximaNovaA',sans-serif;
   font-weight: normal;
-  line-height: 1.25;
-  margin-top: 1em;
-  margin-bottom: .5em;
+}
+.measure {
+  max-width:40em;
+
 }

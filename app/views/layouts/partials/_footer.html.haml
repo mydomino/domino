@@ -61,9 +61,19 @@
       .md-col.md-col-3.md-show.py1.lg-hide
       .col-12.md-col.md-col-6.center.mb2.lg-col-6.lg-left-align
         .clearfix
-          .col-12.md-col.md-col-6
-            &copy;2015, Domino2030, Inc.
-          .md-show.md-col.md-col-3
-            Terms
-          .md-show.md-col.md-col-3
-            Privacy
+          -# .col-12.md-col.md-col-3
+          -#   &copy;Domino2030, Inc.
+          -# .md-show.md-col.md-col-3
+          -#   Terms of Service
+          -# .md-show.md-col.md-col-3
+          -#   Privacy Policy
+          %ul.list-reset.h5.md-hide
+            %li.inline-block.mr1
+              &copy;2015 Domino2030, Inc.
+          %ul.list-reset.h5.md-show
+            %li.inline-block.mr1
+              &copy;2015 Domino2030, Inc.
+            %li.inline-block.mr1
+              Terms of Service
+            %li.inline-block.mr1
+              Privacy Policy
