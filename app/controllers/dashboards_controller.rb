@@ -10,6 +10,8 @@ class DashboardsController < ApplicationController
   def create
     @dashboard = Dashboard.create(dashboard_params)
     @dashboard.concierge = current_concierge
+    @dashboard.product_ids = Product.where(default: true).ids
+    @dashboard.task_ids = Task.where(default: true).ids
     if @dashboard.save
       redirect_to @dashboard
     else

@@ -17,18 +17,18 @@ class RecommendationsController < ApplicationController
   end
 
   def new
-    @storefront = Dashboard.friendly.find(params[:dashboard_id])
+    @dashboard = Dashboard.friendly.find(params[:dashboard_id])
     @recommendation = Recommendation.new
   end
 
   def create
-    @storefront = Dashboard.friendly.find(params[:dashboard_id])
+    @dashboard = Dashboard.friendly.find(params[:dashboard_id])
     @recommendation = Recommendation.new(create_recommendation_params)
     @recommendation.concierge = current_concierge
     if @recommendation.save
       redirect_to dashboard_path @recommendation.dashboard
     else
-      flash[:alert] = 'The storefront already contains that recommendation'
+      flash[:alert] = 'The dashboard already contains that recommendation'
       render :new
     end
   end
@@ -40,25 +40,25 @@ class RecommendationsController < ApplicationController
   end
 
   def bulk_update
-    @storefront = Dashboard.friendly.find(params[:dashboard_id])
+    @dashboard = Dashboard.friendly.find(params[:dashboard_id])
     if(!params[:dashboard].nil?)
       new_product_recommendations = params[:dashboard][:product_ids]
-      @storefront.product_ids = params[:dashboard][:product_ids]
+      @dashboard.product_ids = params[:dashboard][:product_ids]
       new_task_recommendations = params[:dashboard][:product_ids]
-      @storefront.task_ids = params[:dashboard][:task_ids]
+      @dashboard.task_ids = params[:dashboard][:task_ids]
     else
-      @storefront.product_ids = []
-      @storefront.task_ids = []
+      @dashboard.product_ids = []
+      @dashboard.task_ids = []
     end
-    redirect_to @storefront
+    redirect_to @dashboard
   end
 
   def destroy
     @recommendation = Recommendation.find(params[:id])
-    @storefront = @recommendation.dashboard
+    @dashboard = @recommendation.dashboard
     @recommendation.delete
     flash[:notice] = 'Recommendation Removed'
-    redirect_to @storefront
+    redirect_to @dashboard
   end
 
   def index
@@ -68,7 +68,7 @@ class RecommendationsController < ApplicationController
   private
 
   def create_recommendation_params
-    params.require(:recommendation).permit(:comment, :global_recommendable).merge(dashboard_id: @storefront.id)
+    params.require(:recommendation).permit(:comment, :global_recommendable).merge(dashboard_id: @dashboard.id)
   end
 
   def update_recommendation_params

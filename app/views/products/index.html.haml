@@ -2,9 +2,9 @@
   .clearfix.bg-white.mt3.p2
     .col.col-12.center
       =link_to "Update Prices from Amazon", update_product_prices_path, class: 'btn bg-blue white', method: 'post'
-  .clearfix.bg-white.py3
+  .clearfix.bg-white
     -@products.each_slice(3) do |products|
-      .clearfix
+      .clearfix.mt2
         -products.each do |product|
           .col.col-12.sm-col-4.px2
             .border.center.rounded.p2

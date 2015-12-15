@@ -1,10 +1,14 @@
 .product-list{class: product.id}
+  .right-align
+    =link_to product_toggle_default_path(product.id), method: "POST" do
+      -if (product.default)
+        .fa.fa-check-square-o
+      -else
+        .fa.fa-square-o
+      Default
   .amazon_picture
     =image_tag product.image_url
   %h4.uppercase.bold.title.text-center{style: "white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"}
     =product.name
   %h4.uppercase.bold.title.text-center{style: "white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"}
     =product.price
-  =link_to product_toggle_default_path(product.id), method: "POST" do
-    .fa.fa-square-o
-    Default

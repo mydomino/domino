@@ -7,8 +7,15 @@
       .clearfix.py2
         -tasks.each do |task|
           .col.col-12.sm-col-4.px2
-            .border.center.rounded.p2
-              .icon.center
+            .clearfix.border.center.rounded.p2
+              .col-12.right-align
+                =link_to task_toggle_default_path(task.id), method: "POST" do
+                  -if (task.default)
+                    .fa.fa-check-square-o
+                  -else
+                    .fa.fa-square-o
+                  Default
+              .col-12.icon.center
                 =image_tag task.icon, style: "max-height: 100px;margin-bottom: 10px;"
                 %h5.uppercase.bold.text-center
                   =task.name
