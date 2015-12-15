@@ -12,6 +12,8 @@
         %li
           Recommendations Completed:
           =@recommendations_completed_count
+
+      =link_to "Download Completed Recommendations", recommendations_path(format: 'csv')
     .col-xs-6
       %h1 Recent Activity
       .btn-group.filters{"aria-label" => "Filters", :role => "group"}

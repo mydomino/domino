@@ -5,7 +5,7 @@ class RecommendationsController < ApplicationController
   def complete
     @recommendation = Recommendation.find(params[:recommendation_id])
     @recommendation.update_attributes(done: true)
-    Heap.event("Recommendation Completed")
+    Heap.event("Recommendation Completed", @recommendation.dashboard.lead_email, { recommendation_type: @recommendation.recommendable_type, recommendation_name: @recommendation.recommendable.name })
     flash[:success] = 'You\'ve marked that recommendation as completed! <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
     redirect_to @recommendation.dashboard
   end
@@ -59,6 +59,10 @@ class RecommendationsController < ApplicationController
     @recommendation.delete
     flash[:notice] = 'Recommendation Removed'
     redirect_to @storefront
+  end
+
+  def index
+    send_data Recommendation.done.to_csv
   end
 
   private

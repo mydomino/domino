@@ -21,17 +21,22 @@ Rails.application.routes.draw do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
   end
 
-  resources :recommendations, only: [:destroy, :update] do
+  resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'
     delete 'undo' => 'recommendations#undo', as: 'undo_complete'
   end
 
   resource :analytics, only: [:show]
 
-  resources :products
-  
+  resources :products do
+    post 'toggle_default' => 'products#toggle_default'
+  end
+
   post 'products/update-prices' => 'products#update_all_amazon_prices', as: 'update_product_prices'
-  resources :tasks
+  
+  resources :tasks do
+    post 'toggle_default' => 'tasks#toggle_default'
+  end
 
   resources :contests
 

@@ -38,6 +38,12 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def toggle_default
+    @task = Task.find(params[:id])
+    @task.default = !@task.default
+    redirect_to :index
+  end
+
   private
 
   def task_params
