@@ -37,6 +37,13 @@ class ProductsController < ApplicationController
     redirect_to :products
   end
 
+  def toggle_default
+    @product = Product.find(params[:product_id])
+    @product.default = !@product.default
+    @product.save
+    redirect_to products_path
+  end
+
   private
 
   def create_product_params

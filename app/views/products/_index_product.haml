@@ -5,3 +5,6 @@
     =product.name
   %h4.uppercase.bold.title.text-center{style: "white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"}
     =product.price
+  =link_to product_toggle_default_path(product.id), method: "POST" do
+    .fa.fa-square-o
+    Default
