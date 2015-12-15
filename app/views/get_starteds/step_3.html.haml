@@ -1,72 +1,52 @@
-%nav.navbar.navbar-default.narrow.ultra-light-gray
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.pull-right
-        %li
-          =link_to step_1_get_started_path do
-            %span.circle.light-gray
-              .glyphicon.glyphicon-ok
-            Interests
-        %li
-          =link_to step_2_get_started_path do
-            %span.circle.light-gray
-              .glyphicon.glyphicon-ok
-            Home Details
-        %li.selected
-          =link_to '#' do
-            %span.circle.light-gray
-              3
-            Dashboard
-  
-
-
-
 .container
-  .row
-    .col-xs-12.col-md-8.col-md-push-2.text-center{style: 'padding-top: 160px;padding-bottom: 56px;'}
-      %h2{style: 'color: #333;'}
+  .clearfix
+    .md-show.md-col.md-col-2
+      &nbsp;
+    .col.col-12.md-col-8.center
+      %h2
         Almost done...
       %p
         We just need some basic information so we can contact you to send your dashboard. The dashboard will show you
         %strong
           product suggestions
         &ndash; personalized for you!
-    .col-xs-12
-      %hr.pd-64
-  .row
-    =simple_form_for @lead, url: finish_get_started_path do |form|
-      .col-xs-12.col-md-6
+  .clearfix
+    .col-12
+      %hr
+  =simple_form_for @lead, url: finish_get_started_path do |form|
+    .clearfix
+      .col-12.md-col-6.md-col
         =form.hidden_field :get_started_id
-        .row
-          .col-xs-12.col-md-6
-            =form.input :first_name
-          .col-xs-12.col-md-6
-            =form.input :last_name
-        %h4{style:'color:#333;font-weight:normal;padding:32px 0 32px'}
+        .clearfix.mxn2
+          .col-12.md-col.md-col-6.px2
+            =form.label :first_name
+            =form.input_field :first_name, class: 'field col-12'
+          .col-12.md-col.md-col-6.px2
+            =form.label :last_name
+            =form.input_field :last_name, class: 'field col-12'
+        %h4
           What is your preferred method of contact?
         -if !@lead.errors.messages[:contact_method].nil?
-          .alert.alert-danger
+          .red.border.rounded.p2.mb2
             =@lead.errors.messages[:contact_method].first
-        .btn-group{role: 'group'}
-          #email.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
+        .inline-block.clearfix
+          %button#email.left.btn.rounded-left.bg-blue.white{type: 'button'}
             Email
-          #phone.btn.btn-transparent{style: 'border: 1px solid #ccc;'}
+          %button#phone.left.btn.rounded-right.border-left.bg-blue.white{type: 'button'}
             Phone
         #email-field{style: "display: none"}
-          =form.input :email
-          =form.input :subscribe_to_mailchimp, inline_label: 'Subscribe me to the Domino newsletter'
-        #phone-field{style: "display: none"}
-          =form.input :phone
-      .col-xs-12.text-right
-        .errors
-        =form.submit 'Next', class: "btn blue btn-default pull-right uppercase" ,style:'margin: 56px 0 160px;letter-spacing:4px;'
+          =form.label :email
+          =form.input_field :email, class: 'field col-12'
+          .py2
+            =form.label :subscribe_to_mailchimp do
+              =form.check_box :subscribe_to_mailchimp
+              Subscribe me to the Domino newsletter
+        #phone-field.clearfix{style: "display: none"}
+          =form.label :phone
+          =form.input_field :phone, class: 'field col-12'
+    .clearfix.mt2.mb4
+      .col-12.right-align
+        =form.submit 'Next', class: 'btn bg-blue white rounded caps'
 
 :javascript
   $('#lead_phone').formance('format_phone_number');
