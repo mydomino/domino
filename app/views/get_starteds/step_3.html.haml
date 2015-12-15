@@ -3,8 +3,7 @@
 
 .container
   .clearfix
-    .md-show.md-col.md-col-2
-      &nbsp;
+    .md-show.md-col.md-col-2.py1
     .col.col-12.md-col-8.center
       %h2
         Almost done...
@@ -18,13 +17,15 @@
       %hr
   =simple_form_for @lead, url: finish_get_started_path do |form|
     .clearfix
-      .col-12.md-col-6.md-col
+      .md-show.md-col.md-col-3
+        &nbsp;
+      .col.col-12.md-col-6.md-col
         =form.hidden_field :get_started_id
-        .clearfix.mxn2
-          .col-12.md-col.md-col-6.px2
+        .clearfix.md-mxn2
+          .col.col-12.md-col.md-col-6.md-px2
             =form.label :first_name
             =form.input_field :first_name, class: 'field col-12'
-          .col-12.md-col.md-col-6.px2
+          .col.col-12.md-col.md-col-6.md-px2
             =form.label :last_name
             =form.input_field :last_name, class: 'field col-12'
         %h4
