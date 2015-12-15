@@ -1,32 +1,3 @@
-%nav.navbar.navbar-default.narrow{class: 'ultra-light-gray' }
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.pull-right
-        %li
-          =link_to step_1_get_started_path do
-            %span.circle.light-gray
-              .glyphicon.glyphicon-ok
-            Interests
-        %li.selected
-          =link_to '#' do
-            %span.circle.light-gray
-              2
-            Home Details
-        %li
-          =link_to step_3_get_started_path do
-            %span.circle.light-gray
-              3
-            Dashboard
-
-
-
 .container
   .row
     .col.col-12.center
