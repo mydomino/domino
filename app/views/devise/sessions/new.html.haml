@@ -17,6 +17,6 @@
                     = f.input_field :password, required: false, class: 'col-12 field mb2'
                     = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
                   .form-actions
-                    = f.button :submit, "Sign In", class: "caps btn bg-blue white rounded"
+                    = f.button :submit, "Sign In", class: "caps btn bg-blue col-12 white rounded"
                 .text-center.py2
                   = render "devise/shared/links"
