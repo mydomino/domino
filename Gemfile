@@ -13,7 +13,6 @@ gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'animate-rails'
 gem 'normalize-rails'
-gem 'font_assets', github: 'ericallam/font_assets'
 gem 'json'
 gem 'rubyzoho'
 gem 'actionpack-action_caching'
@@ -38,7 +37,7 @@ gem 'derailed'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'vex_rails'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 gem 'unicorn'
 
