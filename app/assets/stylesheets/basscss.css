@@ -1035,7 +1035,7 @@ hr {
 .black  { color: #111 }
 .gray   { color: #aaa }
 .silver { color: #ddd }
-.white  { color: #fff; fill: #fff; }
+.white  { color: #fff; }
 
 .aqua  { color: #7fdbff }
 .blue  { color: #0074d9 }
