@@ -158,3 +158,12 @@ nav
     background-color: rgba(0,0,0,.3);
   }
 }
+.easeIn {
+  webkit-transition: all 0.8s cubic-bezier(.42,0,1,1);
+  transition: all 0.8s cubic-bezier(.42,0,1,1);
+}
+
+.easeOut {
+  webkit-transition: all 0.8s cubic-bezier(.42,0,0.58,1);
+  transition: all 0.8s cubic-bezier(.42,0,0.58,1);
+}
