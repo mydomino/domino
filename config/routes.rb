@@ -29,9 +29,12 @@ Rails.application.routes.draw do
   resource :analytics, only: [:show]
 
   resources :products, only: [:new, :create, :edit, :update, :index] do
+    post 'toggle_default' => 'products#toggle_default'
   end
   post 'products/update-prices' => 'products#update_all_amazon_prices', as: 'update_product_prices'
-  resources :tasks
+  resources :tasks do
+    post 'toggle_default' => 'tasks#toggle_default'
+  end
 
   resources :contests
 
