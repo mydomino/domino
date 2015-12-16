@@ -5,12 +5,12 @@
       .inline-block.clearfix.right.mt1
         =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray'}"
         =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray' }"
-      .inline-block.border.p2.mr3.right
+      .inline-block.border.rounded.p2.mr3.right
         =form_tag dashboards_path, method: 'GET' do
-          =text_field_tag 'search', @search_term
+          =text_field_tag 'search', @search_term, class: 'field rounded-left'
           =hidden_field_tag 'filter', @filter
           =hidden_field_tag 'view', 'table'
-          =submit_tag 'Search', class: 'btn bg-blue white rounded pull-right'
+          =submit_tag 'Search', class: 'btn bg-blue white rounded-right pull-right'
       
   .clearfix.bg-white.py3
     .col.col-12

@@ -33,10 +33,13 @@
               .col.p2
                 =link_to "+ Action", new_task_path, class: "btn bg-blue white rounded px3 m1 caps"
               .col-right.py1.lh0.mr2
-                =gravatar_image_tag(current_concierge.email, gravatar: { size: 65, default: "http://mydomino.com/assets/default_avatar.png" }, class: 'circle')
-              .col-right.py2
-                .btn.m1
-                  Josh
+                .relative.inline-block{data: {disclosure: ''}}
+                  =gravatar_image_tag(current_concierge.email, gravatar: { size: 65, default: "http://mydomino.com/assets/default_avatar.png" }, class: 'circle')
+                  .no-wrap.bg-white.border.rounded.absolute.right-0{data: {details: ''}}
+                    %a.btn.block
+                      My Profile
+                    %a.btn.block
+                      Log Out
       .alerts
         =flash_messages
       = yield
