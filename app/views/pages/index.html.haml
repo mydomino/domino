@@ -45,10 +45,14 @@
           =embedded_svg 'testimonial.svg'
       .clearfix
         .sm-col-12.md-col-10.mx-auto.center.py2
+          -# .h1.text-center
+          -#   =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;", class:"mr2"
+          -#   With very little effort on my part, I'll be saving hundreds a month and using clean energy.
+          -#   =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;", class:"ml2"
           .h1.text-center
-            =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;", class:"mr2"
-            With very little effort on my part, I'll be saving hundreds a month and using clean energy.
-            =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;", class:"ml2"
+
+            &ldquo; With very little effort on my part, I'll be saving hundreds a month and using clean energy. &rdquo;
+
           .h3.text-center.caps.py3
             Julia C.
             %br
