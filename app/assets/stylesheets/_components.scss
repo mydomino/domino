@@ -95,7 +95,6 @@ nav
   {
     height: 100%;
     background: none;
-    transition: background-color 0.6s cubic-bezier(0.7, 0.01, 0.3, 1);
     display: table;
     z-index: -1;
     .content
@@ -159,6 +158,10 @@ nav
   }
 }
 .easeInOut {
-  webkit-transition: all 0.8s easeInOut;
-  transition: all 0.8s easeInOut;
+  webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.easeInOut-2 {
+  webkit-transition: all 0.4s ease-in-out 4s;
+  transition: all 0.4s ease-in-out 4s;
 }
