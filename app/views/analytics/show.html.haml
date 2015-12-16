@@ -1,30 +1,34 @@
 .container
-  .row
-    .col-xs-6
-      %h1 Stats
-      %ul
-        %li
-          Storefronts:
-          =@dashboard_count
-        %li
-          Recommendations Made:
-          =@recommendations_count
-        %li
-          Recommendations Completed:
-          =@recommendations_completed_count
+  .clearfix.mxn2
+    .col.col-12.sm-col.sm-col-4.py3.px2
+      .bg-white.p2.mt1.rounded.border
+        %h1.mt1 Stats
+        %ul
+          %li
+            Storefronts:
+            =@dashboard_count
+          %li
+            Recommendations Made:
+            =@recommendations_count
+          %li
+            Recommendations Completed:
+            =@recommendations_completed_count
 
-      =link_to "Download Completed Recommendations", recommendations_path(format: 'csv')
-    .col-xs-6
-      %h1 Recent Activity
-      .btn-group.filters{"aria-label" => "Filters", :role => "group"}
-        =link_to 'All', {filter: 'all'}, class: "btn uppercase #{(@filter == 'all') ? 'blue' : 'btn-transparent'}"
-        =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
-      %ul.list-inline
-        -@recent_events.reverse.each do |event|
-          %li.border{style: "border: 2px solid #ccc; padding: 10px;border-radius: 6px;margin-bottom: 10px;"}
-            =link_to event.dashboard.lead_name, dashboard_path(event.dashboard)
-            marked
-            =event.recommendable.name
-            done
-            =time_ago_in_words event.updated_at
-            ago
+        =link_to "Download Completed Recommendations", recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded'
+    .col.col-12.sm-col.sm-col-8.py3.px2
+      .p2.bg-white.rounded.border.mt1
+        %h1.inline-block.mt1 Recent Activity
+        .inline-block.clearfix.right.mt1
+          =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray'}"
+          =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray' }"
+        .clearfix
+          -@recent_events.reverse.each do |event|
+            .col.col-10.p2.border.rounded-left.mt1
+              =link_to event.dashboard.lead_name, dashboard_path(event.dashboard)
+              marked
+              =event.recommendable.name
+              done
+            .col.col-2.p2.bg-blue.white.border.rounded-right.mt1.right-align
+              %small
+                =time_ago_in_words event.updated_at
+                ago

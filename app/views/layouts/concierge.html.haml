@@ -21,6 +21,9 @@
       =link_to tasks_path do
         .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-blue" if(current_page?(:controller => 'tasks'))}"}
           =image_tag "icon_actions.png", class: 'fit'
+      =link_to analytics_path do
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-blue" if(current_page?(controller: 'analytics', action: 'show' ))}"}
+          .fa.fa-line-chart.fit.white{style: "font-size: 1.8rem;"}
     .bg-light-gray{style: "padding-left: 80px;"}
       .clearfix
         .col.col-12.bg-white
