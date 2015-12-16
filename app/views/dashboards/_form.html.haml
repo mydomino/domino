@@ -1,6 +1,9 @@
 =simple_form_for @dashboard do |form|
-  =form.label :lead_name, "Lead's Name"
-  =form.text_field :lead_name
-  =form.label :lead_email, "Lead's Email"
-  =form.text_field :lead_email
-  =form.submit "Create", class: 'btn btn-default'
+  .clearfix
+    =form.label :lead_name, "Lead's Name", class: "block"
+    =form.text_field :lead_name, class: "col-12 field"
+  .clearfix
+    =form.label :lead_email, "Lead's Email"
+    =form.text_field :lead_email, class: "field col-12"
+  .clearfix
+    =form.submit "Create", class: 'btn bg-blue white rounded right mt2'
