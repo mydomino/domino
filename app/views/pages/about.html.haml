@@ -1,36 +1,17 @@
-%nav.navbar.navbar-default{class: 'transparent overlay' }
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-    #navbar.navbar-collapse.collapse
-      -if content_for? :navbar
-        =yield(:navbar)
-      -else
-        %ul.nav.navbar-nav.pull-right
-          %li
-            = link_to 'About', about_path
-          %li
-            = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank'
-          %li
-            = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
-          %li.button
-            = link_to getstarted_path, class: 'button' do
-              %button.btn.small.transparent
-                GET STARTED
-.bg-cover{style: "background-image: url('#{image_url('SkyandWater.jpeg')}');top-position:bottom center;"}
-  .clearfix
+-content_for(:navbar_class) do
+  bg-transparent absolute top-0 z1 white
+-content_for(:logo_class) do
+  white
+
+.bg-cover.py4.flex.flex-center.overlay-3{style: "background-image: url('#{image_url('SkyandWater.jpeg')}');background-position:bottom center;min-height:320px;"}
+  .clearfix.mx-auto.z1
     .col-12.white
-      %h1.center{style: 'margin-top: 40px;'} About Domino
-      %h3.center{style: 'margin-bottom: 40px;'} Our mission is to create 1 billion actions toward a clean energy future.
+      %h1.center.mt2 About Domino
+      %h3.center.mt2 Our mission is to create 1 billion actions toward a clean energy future.
 .container.px2.mb3
   .clearfix
     .col-12
-      .row
+      .clearfix
         .col-12.measure
           %h2.caps.mt4.mb2
             Why Domino

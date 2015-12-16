@@ -144,3 +144,17 @@ nav
     background-color: rgba(0,0,0,.5);
   }
 }
+.overlay-3
+{
+  position: relative;
+  &::after
+  {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+  }
+}
