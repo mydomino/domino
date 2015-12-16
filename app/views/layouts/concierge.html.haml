@@ -35,11 +35,22 @@
               .col-right.py1.lh0.mr2
                 .relative.inline-block{data: {disclosure: ''}}
                   =gravatar_image_tag(current_concierge.email, gravatar: { size: 65, default: "http://mydomino.com/assets/default_avatar.png" }, class: 'circle')
-                  .no-wrap.bg-white.border.rounded.absolute.right-0{data: {details: ''}}
-                    %a.btn.block
-                      My Profile
-                    %a.btn.block
-                      Log Out
+                  .nowrap.bg-white.border.rounded.absolute.right-0{data: {details: ''}}
+                    =link_to 'My Profile', edit_concierge_path, class: 'btn block'
+                    =link_to 'Log Out', destroy_concierge_session_path, method: 'DELETE', class: 'btn block'
       .alerts
         =flash_messages
       = yield
+:javascript
+  $('document').ready(function()
+  {
+    $('[data-disclosure]').click(function(e)
+    {
+      $(e.currentTarget).children('[data-details]').toggle();
+    });
+  });
+:css
+  [data-disclosure] [data-details]
+  {
+    display: none;
+  }
