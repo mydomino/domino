@@ -159,6 +159,6 @@ nav
   }
 }
 .easeInOut {
-  webkit-transition: all 0.8s cubic-bezier(.42,0,0.58,1);
-  transition: all 0.8s cubic-bezier(.42,0,0.58,1);
+  webkit-transition: all 0.8s easeInOut;
+  transition: all 0.8s easeInOut;
 }
