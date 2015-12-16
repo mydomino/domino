@@ -22,10 +22,20 @@
           %p
             Domino concierges are not salespeople and do not work on commission. So we’ll never pressure you to do something you aren’t sure about. Our team helps you take actions that make sense for you.
       .clearfix.mt4
-        .col-12.mt4{style: 'border-radius: 20px;border: 2px solid #ac7d2c;'}
+        .sm-hide.col-12.mt4
+          .left.col-12
+            =image_tag('domino_guarantee.png', style: "max-height: 175px;position: relative; top: -85px;")
+          .col-12
+            %p The Domino Three-Point Guarantee:
+            %p We stand behind every product and service we provide.
+            %p 1) We guarantee that you will receive quality services and products at competitive prices from reputable providers. We only work with, and will only refer you to, companies and products with excellent credentials.
+            %p 2) We guarantee you Domino's first-class service throughout the discovery, purchasing, and installation process. You will work with a concierge who is not paid on commission, and whose focus is to help you move beyond fossil fuels without any pressure.
+            %p 3) We guarantee that we will be with you throughout the entire life of any product or service purchased through Domino. Should any issue arise, we will assist you to help resolve the issue to your 100% satisfaction.
+
+        .sm-show.col-12.mt4{style: 'border-radius: 20px;border: 2px solid #ac7d2c;'}
           .center
             =image_tag('domino_guarantee.png', style: "max-height: 175px;position: relative; top: -85px;")
-          .px2
+          .px3
             %p The Domino Three-Point Guarantee:
             %p We stand behind every product and service we provide.
             %p 1) We guarantee that you will receive quality services and products at competitive prices from reputable providers. We only work with, and will only refer you to, companies and products with excellent credentials.
