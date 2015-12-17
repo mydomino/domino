@@ -4,7 +4,7 @@
       .fa.fa-check
   .rounded-20-bottom.px2.py3.relative.border-left.border-right.border-bottom
     -if concierge_signed_in?
-      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-10 top-10 bg-gray p1 white lh1 z2' do
+      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-10 top-10 bg-gray p1 white lh1 z2 rounded' do
         .fa.fa-times
     =render recommendation.recommendable, recommendation: recommendation
     =render 'recommendations/comment', recommendation: recommendation

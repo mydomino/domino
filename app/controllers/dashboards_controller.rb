@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   before_action :authenticate_concierge!, except: :show
-  layout 'dashboard'
+  layout 'concierge', except: :show
 
   def new
     @dashboard = Dashboard.new
@@ -31,6 +31,9 @@ class DashboardsController < ApplicationController
     else
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
+    end
+        respond_to do |format|
+      format.html {render :layout => 'dashboard'}
     end
   end
 
