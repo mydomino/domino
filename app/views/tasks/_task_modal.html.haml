@@ -2,12 +2,13 @@
   .container
     .modal-dialog
       .modal-content
-        .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
+        .modal-header.relative
+          .absolute.top-0.left-0.close.lh0{"data-dismiss" => "modal"}
+            %span{ style: 'font-size: 2rem;' }
+              .fa.fa-times.blue
         .modal-body
           .clearfix
-            .sm-col.sm-col-12.md-col-6.center
+            .sm-col.sm-col-12.md-col-6.center.py4
               =image_tag task.icon
             .sm-col.sm-col-12.md-col-6
               %h3
@@ -15,16 +16,16 @@
               %p
                 =task.description
               -if(task.cta_link.present?)
-                =link_to task.cta_text, task.cta_link, class: 'btn blue btn-default full-width'
+                =link_to task.cta_text, task.cta_link, class: 'btn block center bg-navy white rounded mb1'
               -if(!recommendation.done)
-                =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "POST"
+                =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn block center bg-blue white rounded', method: "POST"
               -else
-                =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'btn btn-default full-width', method: "DELETE"
+                =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'center btn block bg-blue white rounded', method: "DELETE"
           -if recommendation.comment.present?
             %hr
-            .row
-              .col-xs-12
-                %h5.uppercase.bold
+            .clearfix
+              .col-12
+                %h5.caps.bold
                   =recommendation.concierge.name
                   Says
                 %p

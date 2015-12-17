@@ -15,4 +15,9 @@ $(document).ready(function()
       $('body').removeClass('overflow-hidden');
     }
   });
+  $('[data-dismiss=modal]').click(function(){
+      $('.modal-bg').remove();
+      $('.modal').hide();
+      $('body').removeClass('overflow-hidden');
+  })
 });
