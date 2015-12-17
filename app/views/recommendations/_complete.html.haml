@@ -2,7 +2,7 @@
   .bg-blue.white.center.p2.rounded-20-top
     %h1.mt0.mb0.inline-block
       .fa.fa-check
-  .recommendation.rounded-20-bottom.p2.py3.relative.border-left.border-right.border-bottom
+  .rounded-20-bottom.px2.py3.relative.border-left.border-right.border-bottom
     -if concierge_signed_in?
       =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-10 top-10 bg-gray p1 white lh1 z2' do
         .fa.fa-times
