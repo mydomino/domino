@@ -7,11 +7,14 @@
     .sm-show.sm-col.sm-col-2.py1
     .col.col-12.sm-col-8.center
       .clearfix.mt4.mb2
+        -if !@lead.get_started.energy_analysis || !@lead.get_started.solar
+          .sm-show.sm-col.sm-col-3.py1
+
         -if @lead.get_started.solar
-          .col.col-12.sm-col-6{class: ("col-md-push-3" if !@lead.get_started.energy_analysis) }
+          .col.col-12.sm-col-6
             =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         -if @lead.get_started.energy_analysis
-          .col.col-12.sm-col-6{class: ("col-md-push-3" if !@lead.get_started.solar) }
+          .col.col-12.sm-col-6
             =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
   .clearfix
     .sm-show.sm-col.sm-col-2.py1
