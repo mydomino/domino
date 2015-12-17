@@ -38,6 +38,10 @@
     padding: 40px;
     border-radius: 20px;
   }
+  [data-dismiss=modal]:hover
+  {
+    cursor: pointer;
+  }
 }
 .modal-bg
 {
@@ -50,6 +54,7 @@
   background-color: #000;
   opacity: .5;
 }
+
 .progress
 {
   height: 15px;
