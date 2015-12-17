@@ -23,12 +23,12 @@
           =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray' }"
         .clearfix
           -@recent_events.reverse.each do |event|
-            .col.col-10.p2.border.rounded-left.mt1
+            .col.col-9.p2.border.rounded-left.mt1
               =link_to event.dashboard.lead_name, dashboard_path(event.dashboard)
               marked
               =event.recommendable.name
               done
-            .col.col-2.p2.bg-blue.white.border.rounded-right.mt1.right-align
+            .col.col-3.p2.bg-blue.white.border.rounded-right.mt1.right-align
               %small
                 =time_ago_in_words event.updated_at
                 ago
