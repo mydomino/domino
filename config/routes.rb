@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :concierges, skip: [:registrations]                                   
   as :concierge do
-    get 'concierges/edit' => 'devise/registrations#edit', :as => 'edit_concierge_registration'    
+    get 'concierges/edit' => 'registrations#edit', :as => 'edit_concierge_registration'    
     put 'concierges' => 'devise/registrations#update', :as => 'concierge_registration'
     get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'  
   end
