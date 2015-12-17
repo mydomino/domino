@@ -1,11 +1,8 @@
 .task{data: {toggle: 'modal', target: "#task-#{task.id}"}}
-  .status.caps{class: ('completed' if recommendation.done)}
-    .completion-status-icon
-    Completed
-  .center.py3
-    =image_tag task.icon
+  .center.py2
+    =image_tag task.icon, style: 'max-height: 100px;'
   %h4.center.caps.bold.truncate
     =task.name
-  .description
+  .description{style: 'max-height: 90px;overflow: hidden;' }
     %p
       =task.description

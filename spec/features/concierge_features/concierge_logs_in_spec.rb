@@ -9,7 +9,7 @@ RSpec.feature "Concierge logs in", :type => :feature do
     visit new_concierge_session_path
     fill_in "Email", with: concierge.email
     fill_in "Password", with: concierge.password
-    click_on "Enter"
+    click_on "Sign In"
     
     expect(current_path).to eq(dashboards_path)
   end

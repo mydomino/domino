@@ -1,14 +1,14 @@
-.concierge_comment
+.mt1.relative
   -if recommendation.comment.present?
-    .comment-box.gray
+    .bg-gray.p2.white.rounded
       =recommendation.comment
       -if concierge_signed_in?
-        %span{data: {"reveal-next" => "add-comment"}, style: "position: absolute; display: inline-block; right: 20px; bottom: 4px;cursor: pointer;"}
+        %span{data: {"reveal-next" => "add-comment"}, style: "position: absolute; display: inline-block; right: 10px; bottom: 5px;cursor: pointer;"}
           Edit
         =render 'recommendations/comment_form', recommendation: recommendation
   -else
     -if concierge_signed_in?
-      %button.btn.tiny.light-gray.uppercase{ style: "margin-bottom: 0; margin-top: 40px; width: 100%;", data: {"reveal-next" => "add-comment"} }
-        .glyphicon.glyphicon-plus
+      %button.col-12.btn.bg-gray.caps.white.rounded{data: {"reveal-next" => "add-comment"} }
+        .fa.fa-plus
         Comment
       =render 'recommendations/comment_form', recommendation: recommendation

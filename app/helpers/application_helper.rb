@@ -1,6 +1,6 @@
 module ApplicationHelper
   def class_for flash_type
-    { success: "bg-blue white", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
+    { success: "bg-blue white", error: "bg-red white", alert: "bg-red white", notice: "bg-blue white" }[flash_type.to_sym] || flash_type.to_s
   end
 
   def flash_messages(opts = {})

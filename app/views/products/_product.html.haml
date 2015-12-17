@@ -1,8 +1,5 @@
 .product{data: {toggle: 'modal', target: "#product-#{product.id}"}}
-  .status.caps{class: ('completed' if recommendation.done)}
-    .completion-status-icon
-    Bought
-  %div
-    =image_tag product.image_url
+  %div.flex
+    =image_tag product.image_url, style: 'max-height: 225px;margin: auto;'
   %h4.center.bold.truncate
     =product.name

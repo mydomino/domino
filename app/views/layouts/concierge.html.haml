@@ -41,19 +41,20 @@
                   .nowrap.bg-white.border.rounded.absolute.right-0{data: {details: ''}}
                     =link_to 'My Profile', edit_concierge_path, class: 'btn block'
                     =link_to 'Log Out', destroy_concierge_session_path, method: 'DELETE', class: 'btn block'
-      .alerts
-        =flash_messages
+      .container
+        .alerts
+          =flash_messages
       = yield
-:javascript
-  $('document').ready(function()
-  {
-    $('[data-disclosure]').click(function(e)
-    {
-      $(e.currentTarget).children('[data-details]').toggle();
-    });
-  });
-:css
-  [data-disclosure] [data-details]
-  {
-    display: none;
-  }
+      :javascript
+        $('document').ready(function()
+        {
+          $('[data-disclosure]').click(function(e)
+          {
+            $(e.currentTarget).children('[data-details]').toggle();
+          });
+        });
+      :css
+        [data-disclosure] [data-details]
+        {
+          display: none;
+        }

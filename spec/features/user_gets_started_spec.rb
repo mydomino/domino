@@ -14,7 +14,7 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
     find('#email').click
     fill_in :lead_email, with: "josh@mydomino.com"
     click_on "Next"
-    sleep 5
+    expect(page).to have_content("Thanks Josh Morrow")
 
     expect(Lead.count).to eq(1)
   end

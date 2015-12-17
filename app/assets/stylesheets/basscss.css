@@ -655,6 +655,10 @@ hr {
 .right-0  { right: 0 }
 .bottom-0 { bottom: 0 }
 .left-0   { left: 0 }
+.top-10    { top: 10px }
+.right-10  { right: 10px }
+.bottom-10 { bottom: 10px }
+.left-10   { left: 10px }
 
 .z1 { z-index: 1 }
 .z2 { z-index: 2 }
@@ -1023,11 +1027,15 @@ hr {
 .border-none { border: 0 }
 
 .rounded { border-radius: 3px }
+.rounded-20 { border-radius: 20px }
 .circle  { border-radius: 50% }
 
+
 .rounded-top    { border-radius: 3px 3px 0 0 }
+.rounded-20-top { border-radius: 20px 20px 0 0 }
 .rounded-right  { border-radius: 0 3px 3px 0 }
 .rounded-bottom { border-radius: 0 0 3px 3px }
+.rounded-20-bottom { border-radius: 0 0 20px 20px }
 .rounded-left   { border-radius: 3px 0 0 3px }
 
 .not-rounded { border-radius: 0 }

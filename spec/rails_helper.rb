@@ -48,6 +48,7 @@ RSpec.configure do |config|
   config.before(:each) do |example|
     DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
+    WebMock.disable_net_connect!(:allow_localhost => true)
   end
 
   config.after(:each) do
