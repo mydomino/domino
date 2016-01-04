@@ -38,7 +38,7 @@ gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
 gem 'vex_rails'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 
 gem 'unicorn'
 
