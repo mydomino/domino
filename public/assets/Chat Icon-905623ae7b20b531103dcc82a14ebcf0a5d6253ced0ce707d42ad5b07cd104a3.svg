@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="106px" height="104px" viewBox="0 0 106 104" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>Chat Icon</title>
+    <desc>This browser can't display SVG's :(.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="V17---Dhanur" sketch:type="MSArtboardGroup" transform="translate(-997.000000, -1003.000000)" stroke="#C8C8C8" stroke-width="3">
+            <g id="Explanation" sketch:type="MSLayerGroup" transform="translate(0.000000, 888.000000)">
+                <g id="Talk-to-us" transform="translate(964.000000, 81.000000)" sketch:type="MSShapeGroup">
+                    <g id="Chat-Icon" transform="translate(39.000000, 38.000000)">
+                        <path d="M39.9580082,76.715332 C30.9185243,80.670932 14.660129,89.78375 12.3870968,89.29085 L17.8203125,71.0385742" id="Shape"></path>
+                        <path d="M17.4658065,71.8487 C18.0913548,70.0321 18.1083871,68.5689 16.9796129,67.80785 C6.62864516,60.8282 0,50.1053 0,38.0804 C0,17.0469 20.276129,2.13162821e-14 45.2794839,2.13162821e-14 C65.9504516,2.13162821e-14 83.3852903,11.64825 88.8092903,27.56675 C88.8092903,27.56675 92.8325195,37.3989258 91.4711914,42.8720703" id="Shape"></path>
+                        <path d="M82.1682581,79.54135 C82.0853794,79.3029318 82.0172278,79.0729452 81.9661726,78.8529399 C81.737752,77.8686377 81.8515449,77.0841287 82.5197419,76.6382 C89.9876129,71.6224 94.772129,63.91425 94.772129,55.27145 C94.772129,40.1543 80.139871,27.9 62.0949677,27.9 C44.0485161,27.9 29.4193548,40.1543 29.4193548,55.27145 C29.4193548,70.38705 44.0469677,82.64135 62.0949677,82.64135 C64.9145806,82.64135 83.9907097,92.49935 86.6012903,91.93825 L81.9661726,78.8529381" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

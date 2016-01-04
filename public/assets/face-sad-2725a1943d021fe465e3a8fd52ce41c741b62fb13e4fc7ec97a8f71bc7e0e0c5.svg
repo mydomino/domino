@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="173px" height="168px" viewBox="0 0 173 168" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>Frown Icon Large</title>
+    <desc>This browser can't display SVG's :(.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="V17---Dhanur" sketch:type="MSArtboardGroup" transform="translate(-1212.000000, -3289.000000)" stroke-width="6" stroke="#5EC3A2">
+            <g id="Why-Domino" sketch:type="MSLayerGroup" transform="translate(0.000000, 3042.000000)">
+                <g id="Without-Domino" transform="translate(739.700000, 155.800000)" sketch:type="MSShapeGroup">
+                    <g id="Box">
+                        <g id="Frown-Icon-Large" transform="translate(476.000000, 95.000000)">
+                            <path d="M80,61.0526316 L80,92.4568421" id="Shape"></path>
+                            <path d="M120,61.0526316 L120,92.4568421" id="Shape"></path>
+                            <circle id="Oval-16" cx="99.5" cy="99.5" r="99.5"></circle>
+                            <path d="M54.7368421,120 C54.7368421,131.626316 74.5307789,141.052632 98.9473684,141.052632 C123.367495,141.052632 143.157895,131.626316 143.157895,120" id="Shape-6" transform="translate(98.947368, 130.526316) scale(1, -1) translate(-98.947368, -130.526316) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
