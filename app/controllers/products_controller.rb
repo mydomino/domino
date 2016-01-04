@@ -29,7 +29,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @default_products = Product.where(default: true)
+    @non_default_products = Product.where(default: false)
   end
 
   def update_all_amazon_prices

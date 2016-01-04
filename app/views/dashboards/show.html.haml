@@ -12,9 +12,10 @@
     .container
       .modal-dialog
         .modal-content
-          .modal-header
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
+          .modal-header.relative
+            .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
+              %span{ style: 'font-size: 2rem;' }
+                .fa.fa-times.blue
           .modal-body
             .row
               .col-xs-12
