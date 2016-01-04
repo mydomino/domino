@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :concierges, skip: [:registrations]                                   
   as :concierge do
-    get 'concierges/edit' => 'devise/registrations#edit', :as => 'edit_concierge_registration'    
+    get 'concierges/edit' => 'registrations#edit', :as => 'edit_concierge_registration'    
     put 'concierges' => 'devise/registrations#update', :as => 'concierge_registration'
     get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'  
   end
@@ -28,10 +28,12 @@ Rails.application.routes.draw do
 
   resource :analytics, only: [:show]
 
-  resources :products, only: [:new, :create, :edit, :update, :index] do
+  resources :products do
     post 'toggle_default' => 'products#toggle_default'
   end
+
   post 'products/update-prices' => 'products#update_all_amazon_prices', as: 'update_product_prices'
+  
   resources :tasks do
     post 'toggle_default' => 'tasks#toggle_default'
   end

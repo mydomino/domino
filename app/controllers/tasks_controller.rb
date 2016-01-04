@@ -16,7 +16,8 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all
+    @default_tasks = Task.where(default: true)
+    @non_default_tasks = Task.where(default: false)
   end
 
   def edit
@@ -39,9 +40,10 @@ class TasksController < ApplicationController
   end
 
   def toggle_default
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:task_id])
     @task.default = !@task.default
-    redirect_to :index
+    @task.save
+    redirect_to tasks_path
   end
 
   private

@@ -1,65 +1,37 @@
-%nav.navbar.navbar-default.narrow{class: 'ultra-light-gray' }
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.pull-right
-        %li.selected
-          =link_to '#' do
-            %span.circle.light-gray
-              1
-            Interests
-        %li
-          =link_to step_2_get_started_path do
-            %span.circle.light-gray
-              2
-            Home Details
-        %li
-          =link_to step_3_get_started_path do
-            %span.circle.light-gray
-              3
-            Dashboard
-
-
+-content_for(:logo_class) do
+  blue
 
 .container
-  .row
-    .col-xs-12.text-center{style: 'padding-top: 160px;padding-bottom: 56px;'}
-      %h2{style: 'color: #333;'} Let's talk about what interests you...
+  .clearfix
+    .col-12.center.mt4.mb2
+      %h1.mb0{style: 'color: #333;'} Let's talk about what interests you...
       %p
-        Knowing your interest allows us to give you
-        %strong
-          product recommendations
-        at the end.
-    .col-xs-12
-      %hr.pd-64
-    .col-xs-12
-      %h4{style:'color:#333;font-weight:normal;padding-bottom:56px'}
+        Knowing your interest allows us to give you product recommendations at the end.
+    .col-12
+      %hr.mt4.mb3
+    .col.col-12
+      %h3.py3
         Choose the offering(s) that you would like.
         %span{style: 'color:#BBB'}
           (Select all that apply)
-  .row
-    .col-xs-12.col-md-6.text-center
-      #solar.panel.selectable{class: ('selected' if @get_started.solar)}
-        %h3{style: 'color: #333;padding-bottom:16px'} Solar
+  .clearfix.mxn2
+    .col.col-12.md-col-6.center.px2
+      #solar.panel.selectable.border-3.rounded.p3{class: ('selected' if @get_started.solar), style: 'min-height: 400px;'}
+        %h3.py2 Solar
         =embedded_svg('line_solar.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         %p{style:'text-align:left'} We help you pick out the right solar choice for you. Whether you already have quotes or not, we'll assist you all the way.
-    .col-xs-12.col-md-6.text-center
-      #energy-analysis.panel.selectable{class: ('selected' if @get_started.energy_analysis)}
+    .col.col-12.md-col-6.center.px2
+      #energy-analysis.panel.selectable.border-3.rounded.p3{class: ('selected' if @get_started.energy_analysis), style: 'min-height: 400px;'}
         %h3{style: 'color: #333;padding-bottom:16px'} Energy Analysis
         =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         %p{style:'text-align:left'} A brief analysis of your current energy usage. We'll customize a plan to help you save money.
-    .col-xs-12
+  .clearfix.mt3.mb3
+    .col.col-12.right-align
       =simple_form_for :get_started, method: 'GET', url: step_2_get_started_path do |lead|
         %div{style: 'display: none;'}
           =lead.input :solar, as: :radio_buttons
           =lead.input :energy_analysis, as: :radio_buttons
-        =lead.submit 'Next', class: "btn blue btn-default pull-right uppercase",style:'margin: 56px 0 160px;letter-spacing:4px;'
+        =lead.submit 'Next', class: "btn rounded caps bg-blue white "
 :javascript
   function toggle_solar()
   {

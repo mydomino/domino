@@ -1,23 +1,7 @@
-%nav.navbar.navbar-default.navbar-fixed-top.concierge.blue{role: "navigation"}
+%nav.clearfix.bg-blue.white.fixed.top-0.col-12{style: "z-index: 1000"}
   .container
-    / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      =link_to 'Concierge Menu', dashboards_path, class: 'navbar-brand'
-    %ul.nav.navbar-nav.navbar-right
-      %li
-        %a{data: {toggle: 'modal', target: "#new-recommendation"}}
-          .glyphicon.glyphicon-plus
-          Add Recommendation
-/      %li.dropdown
-/        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-/          Dropdown
-/          %b.caret
-/        %ul.dropdown-menu
-/          %li
-/            %a{href: "#"} Action
-/          %li
-/            %a{href: "#"} Another action
-/          %li
-/            %a{href: "#"} Something else here
-/          %li
-/            %a{href: "#"} Separated link
+    .sm-col.p2
+      = link_to "Concierge Menu", dashboards_path, class: "white"
+    .sm-col-right.p2
+      %a.white{data: {toggle: 'modal', target: "#new-recommendation"}}
+        Add Recommendation

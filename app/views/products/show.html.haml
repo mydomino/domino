@@ -1,0 +1,12 @@
+.container
+  .clearfix.bg-white.mt3.p2.mb4
+    .sm-col.sm-col-12.md-col-6.center
+      =image_tag @product.image_url
+    .sm-col.sm-col-12.md-col-6
+      %h3
+        =@product.name
+      %ul
+        %li
+          =@product.price
+        %li
+          =link_to "View on Amazon", @product.url

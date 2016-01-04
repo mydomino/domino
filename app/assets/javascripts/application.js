@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require bootstrap
 //= require navbar
 //= require nprogress
 //= require nprogress-ajax
@@ -21,3 +20,4 @@
 //= require signup
 //= require formance
 //= require storefront
+//= require modal

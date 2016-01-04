@@ -4,7 +4,8 @@ include Devise::TestHelpers
 
 describe RecommendationsController do
 
-  let(:recommendation) { FactoryGirl.create(:recommendation) }
+  let(:product) { FactoryGirl.create(:product) }
+  let(:recommendation) { FactoryGirl.create(:recommendation, recommendable: product) }
 
   it 'renders complete properly' do
     post :complete, recommendation_id: recommendation.id

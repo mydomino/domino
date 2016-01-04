@@ -11,7 +11,7 @@ RSpec.feature "Concierge deletes dashboard" do
     visit dashboards_path
 
     expect(page).to have_content dashboard.lead_name.upcase
-    click_on "Delete"
+    page.find('.fa.fa-times').click
     page.driver.browser.switch_to.alert.accept
     expect(page).not_to have_content(dashboard.lead_name)
     expect(Dashboard.count).to eq(0)

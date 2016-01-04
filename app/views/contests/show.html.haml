@@ -1,84 +1,69 @@
-%nav.navbar.navbar-default{class: 'overlay dark' }
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to embedded_svg('penguin_horizontal.svg', {style: "margin-top:12px;"}), root_path
-    #navbar.navbar-collapse.collapse
-      -if content_for? :navbar
-        =yield(:navbar)
-      -else
-        %ul.nav.navbar-nav.pull-right
-          %li
-            = link_to 'About', about_path
-          %li
-            = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank'
-          %li
-            = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank'
+-content_for(:navbar_class) do
+  absolute top-0 transparent white z4
 
-.contest.hero
-  .overlay
-    %h1.content.dynamic
-      =@contest.headline
-.blue
+-content_for(:logo_class) do
+  white
+
+.bg-blue
+  .white.bg-white.bg-cover.bg-center.flex.flex-center.overlay{style: "min-height: 400px;background-image: url(#{image_url('DecemberGiveaway.png')})"}
+    .col-12.mx-auto.z1
+      .clearfix
+        .sm-show.sm-col.sm-col-1.md-col-2.py1
+        .col.col-12.sm-col-10.md-col-8.center.inline-block.py4
+          %h1
+            =@contest.headline
   .container
-    .row
-      .col-xs-12.col-sm-8.col-sm-offset-2
-        .reserve.panel#reserve{style: "margin-top: -100px;"}
-          .row
-            .col-xs-12.col-sm-8.col-sm-offset-2
-              Fill in the form below for a free chat with a Domino Concierge, and you’ll be entered in a drawing to win your choice of:
-              %br
-              %br
-              %ul.text-left
-                %li 
-                  =link_to 'Automatic Smart Driving Assistant', 'http://www.amazon.com/Automatic-Link1-ON-Smart-Driving-Assistant/dp/B00FJXKE5E?tag=domino09d-20'
-                %li
-                  =link_to 'Kill A Watt Home Electricity Usage Monitor', 'http://www.amazon.com/Automatic-Link1-ON-Smart-Driving-Assistant/dp/B00FJXKE5E%20http://www.amazon.com/P3-International-P4480-Electricity-Electronic/dp/B001U638PM?tag=domino09d-20'
-                %li 
-                  =link_to 'Nest 3rd Generation Learning Thermostat', 'http://www.amazon.com/gp/product/B0131RG6VK?tag=domino09d-20'
-              %strong 
-                Enter by 
-                =@contest.end_date.strftime('%B %e')
-                for your chance to win!
-              %br
-              %br
-              %br
-              .form-wrapper{style: 'position: relative'}
-                = simple_form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
-                  .container
-                    .row
-                      = hidden_field :lead, :form_name, {value: "energy_awareness_contest"}
-                      .col-xs-12.col-sm-6
-                        = lead.input :first_name
-                      .col-xs-12.col-sm-6
-                        = lead.input :last_name
-                    .row
-                      .col-xs-12
-                        = lead.input :email
-                    .row
-                      .col-xs-12
-                        =lead.input :phone
-                    .row
-                      .col-xs-12
-                        =lead.input :subscribe_to_mailchimp
-                    .errors
-                    .row
-                      .col-xs-12.text-center
-                        = lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn blue uppercase large")
-              %small 
-                By submitting this form, you confirm that you have read and agree to the official
-                %a{data: {toggle: 'modal', target: '#rules-modal'}} Sweepstakes rules and conditions.
+    .clearfix.relative{style: "top: -50px;"}
+      .sm-show.sm-col.sm-col-2.py1
+      .col.col-12.sm-col-8.bg-white.border.rounded.p4.mb4
+        When you talk to a concierge, you’ll be entered to win our Smart Home Savings bundle, including:
+        %ul.left-align.py2
+          %li 
+            =link_to 'Blossom Smart Watering Controller', 'http://www.amazon.com/Blossom-Smart-Watering-Controller-Powerline/dp/B00UHCT7KU/ref=sr_1_1?ie=UTF8&qid=1449082295&sr=8-1&keywords=blossom'
+          %li 
+            =link_to 'Nest 3rd Generation Learning Thermostat', 'http://www.amazon.com/gp/product/B0131RG6VK?tag=domino09d-20'
+        %strong.block.center.mb3 
+          Talk with a concierge by 
+          =@contest.end_date.strftime('%B %e')
+          for your chance to win!
+        = simple_form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
+          .clearfix.sm-mxn2
+            = hidden_field :lead, :form_name, {value: "energy_awareness_contest"}
+            .col-12.sm-col.sm-col-6.sm-px2
+              = lead.label :first_name
+              = lead.text_field :first_name, class: "field col-12"
+            .col-12.sm-col.sm-col-6.sm-px2
+              = lead.label :last_name
+              = lead.text_field :last_name, class: "field col-12"
+          .clearfix.mt2
+            .col.col-12
+              = lead.label :email, 'Email'
+              = lead.email_field :email, class: "field col-12", placeholder: ''
+          .clearfix.mt2
+            .col.col-12
+              =lead.label :phone
+              =lead.text_field :phone, class: "field col-12"
+          .clearfix.mt2
+            .col.col-12
+              =lead.label :subscribe_to_mailchimp do
+                =lead.check_box :subscribe_to_mailchimp
+                Subscribe me to the Domino newsletter
+            .errors
+          .clearfix.mt2
+            .col-12.center
+              = lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn bg-blue caps white rounded")
+        %small.block.mt2
+          By submitting this form, you confirm that you have read and agree to the official
+          %a{data: {toggle: 'modal', target: '#rules-modal'}} Sweepstakes rules and conditions.
+
 .modal.fade{id: "rules-modal"}
   .container
     .modal-dialog
       .modal-content
-        .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
+        .modal-header.relative
+          .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
+            %span{ style: 'font-size: 2rem;' }
+              .fa.fa-times.blue
         .modal-body
           .row
             .col-xs-12

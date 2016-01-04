@@ -10,8 +10,8 @@ RSpec.feature "Concierge changes their password" do
     visit edit_concierge_path(subject)
     click_on "Change my password"
 
-    fill_in "Password", with: new_password
-    fill_in "Password confirmation", with: new_password
+    fill_in "New Password", with: new_password
+    fill_in "New Password Confirmation", with: new_password
 
     fill_in "Current password", with: subject.password
 

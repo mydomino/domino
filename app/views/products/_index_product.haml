@@ -1,10 +1,20 @@
-.product-list{class: product.id,data: {toggle: 'modal', target: "#product-#{product.id}"}}
-  .amazon_picture
+.clearfix.index-product.rounded.flex.flex-center.px2
+  .col.sm-col-2.center
+    %h3
+      =link_to product_toggle_default_path(product.id), method: "POST" do
+        -if (product.default)
+          .fa.fa-check-square-o
+        -else
+          .fa.fa-square-o
+        Default
+  .col.sm-col-2
     =image_tag product.image_url
-  %h4.uppercase.bold.title.text-center{style: "white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"}
-    =product.name
-  %h4.uppercase.bold.title.text-center{style: "white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"}
-    =product.price
-  =link_to product_toggle_default_path(product.id), method: "POST" do
-    .fa.fa-square-o
-    Default
+  .col.sm-col-5
+    %h2.bold
+      =product.name
+    %h3.mt0
+      =product.price
+  .col.sm-col-3
+    .hover-show.right-align
+      =link_to "Edit", edit_product_path(product), class: 'btn white bg-blue rounded'
+      =link_to "Delete", product_path(product), class: 'btn white bg-red rounded', method: "POST"

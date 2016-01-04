@@ -8,7 +8,7 @@ class Dashboard < ActiveRecord::Base
   validates :lead_email, presence: true
 
   def slug_candidates
-    #OK, there has to be a better way to do this but I don't know it : (
+    #OK, there has to be a better way to do this but I don't know it :(
     [
       :lead_name,
       [:lead_name, '1'],

@@ -1,3 +1,6 @@
 =simple_form_for @product do |form|
-  =form.input :url, label: "Product URL"
-  =form.submit "Create", class: "btn btn-default"
+  .clearfix
+    =form.label :url, "Product URL", class: "block"
+    =form.input_field :url, class: "field col-12"
+  .clearfix
+    =form.submit "Create", class: "btn bg-blue white rounded right mt2"
