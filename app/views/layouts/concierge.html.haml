@@ -9,22 +9,22 @@
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
   %body
-    .col.bg-navy.full-height.fixed.top-0.white{style: 'width: 80px;'}
-      .clearfix.px2.py1.center.lh0.mb2
+    .col.bg-light-gray.full-height.fixed.top-0{style: 'width: 80px;'}
+      .clearfix.p1.center.lh0.mb2
         =image_tag "penguin_vertical.png", class: 'fit'
       =link_to dashboards_path do
-        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-blue" if(current_page?(:controller => 'dashboards'))}"}
-          =image_tag "icons_dashboard.png", class: 'fit'
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(:controller => 'dashboards'))}"}
+          =image_tag "icon_dashboard_black.png", class: 'fit'
       =link_to products_path do
-        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-blue" if(current_page?(:controller => 'products'))}"}
-          =image_tag "icons_energy.png", class: 'fit'
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(:controller => 'products'))}"}
+          =image_tag "icon_energy_black.png", class: 'fit'
       =link_to tasks_path do
-        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-blue" if(current_page?(:controller => 'tasks'))}"}
-          =image_tag "icon_actions.png", class: 'fit'
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(:controller => 'tasks'))}"}
+          =image_tag "icon_actions_black.png", class: 'fit'
       =link_to analytics_path do
-        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-blue" if(current_page?(controller: 'analytics', action: 'show' ))}"}
-          .fa.fa-line-chart.fit.white{style: "font-size: 1.8rem;"}
-    .bg-light-gray{style: "padding-left: 80px;"}
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(controller: 'analytics', action: 'show' ))}"}
+          .fa.fa-line-chart.fit.black{style: "font-size: 1.8rem;"}
+    .bg-gray{style: "padding-left: 80px;"}
       .clearfix
         .col.col-12.bg-white
           %nav

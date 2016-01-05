@@ -1,7 +1,16 @@
 -content_for(:logo_class) do
   blue
+-content_for :link_color_class do
+  blue
 
 .container
+  .clearfix
+    .col-12.center
+      .bold.inline-block Step 1
+      .fa.fa-chevron-right.gray.px2.inline-block
+      =link_to "Step 2", step_2_get_started_path
+      .fa.fa-chevron-right.gray.px2.inline-block
+      =link_to "Step 3", step_3_get_started_path
   .clearfix
     .col-12.center.mt4.mb2
       %h1.mb0{style: 'color: #333;'} Let's talk about what interests you...

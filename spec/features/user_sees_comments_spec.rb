@@ -11,8 +11,7 @@ RSpec.feature "User sees comments on products" do
   scenario "by viewing their storefront" do 
     visit dashboard_path storefront
 
-    expect(page).to have_css('.product')
-    expect(page).to have_css('.comment-box', text: comment)
+    expect(page).to have_css('.recommendation .bg-gray', text: comment)
   end
 
 end
