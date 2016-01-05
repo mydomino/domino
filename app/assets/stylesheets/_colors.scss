@@ -1,5 +1,6 @@
 $white: #FFFFFF;
-$light-gray: #F9F9F9;
+$cloud: #F9F9F9;
+$heather: #F1F1F1;
 $gray: #C5C5C5;
 $blue: #00CCFF;
 $navy: #105585;
@@ -8,13 +9,21 @@ $black-10: rgba(0,0,0,.1);
 $black-20: rgba(0,0,0,.2);
 $black-30: rgba(0,0,0,.3);
 
-.bg-light-gray
+.bg-cloud
 {
-  background-color: $light-gray;
+  background-color: $cloud;
 }
-.light-gray
+.bg-heather
 {
-  color: $light-gray;
+  background-color: $heather;
+}
+.hover-bg-heather:hover
+{
+  background-color: $heather;
+}
+.cloud
+{
+  color: $cloud;
 }
 .bg-gray
 {
