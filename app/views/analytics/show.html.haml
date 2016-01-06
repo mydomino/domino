@@ -2,7 +2,7 @@
   .clearfix.mxn2
     .col.col-12.sm-col.sm-col-4.py3.px2
       .bg-white.p2.mt1.rounded
-        %h1.mt1 Stats
+        %h1.mt0 Stats
         %ul
           %li
             Storefronts:
@@ -14,7 +14,8 @@
             Recommendations Completed:
             =@recommendations_completed_count
 
-        =link_to "Download Completed Recommendations", recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded'
+      .bg-white.p2.mt1.rounded
+        %h3.mt0 Dashboards by State
         %table
           %th State
           %th Dashboards
@@ -24,6 +25,8 @@
                 =state
               %td
                 =dashboards
+      .bg-white.p2.mt1.rounded
+        =link_to "Download Completed Recommendations", recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded'
     .col.col-12.sm-col.sm-col-8.py3.px2
       .p2.bg-white.rounded.mt1
         %h1.inline-block.mt1 Recent Activity
