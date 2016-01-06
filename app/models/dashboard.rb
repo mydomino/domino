@@ -5,10 +5,12 @@ class Dashboard < ActiveRecord::Base
   has_many :products, through: :recommendations, source: :recommendable, source_type: :Product
   has_many :tasks, through: :recommendations, source: :recommendable, source_type: :Task
   belongs_to :concierge
+  belongs_to :lead, foreign_key: :lead_email
   validates :lead_email, presence: true
 
+
   def slug_candidates
-    #OK, there has to be a better way to do this but I don't know it : (
+    #OK, there has to be a better way to do this but I don't know it :(
     [
       :lead_name,
       [:lead_name, '1'],

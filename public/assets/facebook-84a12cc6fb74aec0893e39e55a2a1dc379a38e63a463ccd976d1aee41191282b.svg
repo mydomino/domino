@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>Facebook Icon</title>
+    <desc>This browser can't display SVG's :(.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="V17---Dhanur" sketch:type="MSArtboardGroup" transform="translate(-137.000000, -4431.000000)" fill="#FFFAF1">
+            <g id="Footer" sketch:type="MSLayerGroup" transform="translate(-1.000000, 4212.000000)">
+                <g id="Social-Icons" transform="translate(81.000000, 209.000000)" sketch:type="MSShapeGroup">
+                    <path d="M80.2224384,20.6698734 L77.6962119,20.6698734 C77.1958052,20.6698734 76.6903052,21.193181 76.6903052,21.5815237 L76.6903052,24.178963 L80.2160719,24.178963 C80.0747356,26.1703332 79.7856966,27.9923605 79.7856966,27.9923605 L76.672479,27.9923605 L76.672479,39.2823088 L72.0351218,39.2823088 L72.0351218,27.9923605 L69.7775616,27.9923605 L69.7775616,24.1929688 L72.0351218,24.1929688 L72.0351218,21.0862276 C72.0351218,20.5170828 71.9205249,16.7151447 76.787076,16.7151447 L80.2224384,16.7151447 L80.2224384,20.6698734 L80.2224384,20.6698734 Z M75.0006366,10 C65.0587133,10 57,18.0597015 57,27.9987267 C57,37.9402985 65.0587133,46 75.0006366,46 C84.94256,46 93,37.9402985 93,27.9987267 C93,18.0597015 84.94256,10 75.0006366,10 L75.0006366,10 Z" id="Facebook-Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

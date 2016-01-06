@@ -1,35 +1,82 @@
-$light-gray: #C4C5C5;
-$ultra-light-gray: #F9F9F9;
-$dark-gray: #5F5F5F;
-$ultra-dark-gray: #313131;
 $white: #FFFFFF;
+$cloud: #F9F9F9;
+$heather: #F1F1F1;
+$gray: #C5C5C5;
 $blue: #00CCFF;
-$dark-transparent: rgba(48, 48, 48, 0.65);
-$red: #db5461;
+$navy: #105585;
+$charcoal: #666666;
+$black-10: rgba(0,0,0,.1);
+$black-20: rgba(0,0,0,.2);
+$black-30: rgba(0,0,0,.3);
 
-.ultra-light-gray
+.bg-cloud
 {
-  background-color: $ultra-light-gray;
+  background-color: $cloud;
 }
-.btn.light-gray, button.light-gray
+.bg-heather
 {
-  color: $white;
-  background-color: $light-gray;
+  background-color: $heather;
 }
-.btn.gray, button.gray
+.hover-bg-heather:hover
 {
-  color: $white;
+  background-color: $heather;
+}
+.cloud
+{
+  color: $cloud;
+}
+.bg-gray
+{
   background-color: $gray;
 }
-.btn.dark-gray, button.dark-gray
+.gray
 {
-  color: $white;
-  background-color: $dark-gray;
+  color: $gray;
 }
-h1, h2, h3, h4, h5, h6, p
+.bg-blue
 {
-  &.text-gray
-  {
-    color: $gray;
-  }
+  background-color: $blue;
+}
+.blue
+{
+  color: $blue;
+}
+.border-navy
+{
+  border-color: $navy
+}
+.bg-navy
+{
+  background-color: $navy;
+}
+.navy
+{
+  color: $navy;
+}
+.bg-charcoal
+{
+  background-color: $charcoal;
+}
+.charcoal
+{
+  color: $charcoal;
+}
+.border-charcoal {
+  border-color:$charcoal;
+}
+.bg-transparent
+{
+  background-color: transparent;
+}
+.bg-sky-gradient
+{
+  background-image: linear-gradient(#42c9ff, #aae5fb);
+}
+.bg-sky-white-gradient
+{
+  background-image: linear-gradient(#d5f7ff, #ffffff 30%);
+}
+svg
+{
+  fill: currentColor;
 }

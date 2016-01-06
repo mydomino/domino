@@ -1,10 +1,14 @@
 .container
-  .row
-    .col-xs-12.text-center
-      =link_to "Add a new Product", new_product_path, class: 'btn blue'
-      =link_to "Update Prices from Amazon", update_product_prices_path, class: 'btn blue', method: 'post'
-  -@products.each_slice(4) do |products|
-    .row
-      -products.each do |product|
-        .col-xs-12.col-sm-6.col-md-3
+  .clearfix.bg-white.mt3.rounded-top.p2
+    .col.col-12
+      %h1.mt0.inline-block Products
+      =link_to "Update Prices", update_product_prices_path, class: 'btn border rounded relative border-charcoal charcoal', method: 'post', style: "top: -5px;right: -10px;"
+  .clearfix.bg-white.px2
+    -@default_products.each do |product|
+      .clearfix
+        .col.col-12
+          =render 'products/index_product', product: product
+    -@non_default_products.each do |product|
+      .clearfix
+        .col.col-12
           =render 'products/index_product', product: product

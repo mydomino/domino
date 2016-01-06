@@ -11,6 +11,7 @@ class Lead < ActiveRecord::Base
   validate :email_or_phone
   default_scope { order('created_at DESC') }
   belongs_to :get_started
+  has_one :dashboard, foreign_key: :lead_email
 
   def interested_in_solar
     return false if !get_started.present?

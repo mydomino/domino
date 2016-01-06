@@ -1,0 +1,35 @@
+$light-gray: #C4C5C5;
+$ultra-light-gray: #F9F9F9;
+$dark-gray: #5F5F5F;
+$ultra-dark-gray: #313131;
+$white: #FFFFFF;
+$blue: #00CCFF;
+$dark-transparent: rgba(48, 48, 48, 0.65);
+$red: #db5461;
+
+.ultra-light-gray
+{
+  background-color: $ultra-light-gray;
+}
+.btn.light-gray, button.light-gray
+{
+  color: $white;
+  background-color: $light-gray;
+}
+.btn.gray, button.gray
+{
+  color: $white;
+  background-color: $gray;
+}
+.btn.dark-gray, button.dark-gray
+{
+  color: $white;
+  background-color: $dark-gray;
+}
+h1, h2, h3, h4, h5, h6, p
+{
+  &.text-gray
+  {
+    color: $gray;
+  }
+}

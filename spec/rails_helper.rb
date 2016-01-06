@@ -15,7 +15,11 @@ require 'helpers/amazon_mock'
 require 'helpers/heap_mock'
 require 'faker'
 include Warden::Test::Helpers
+
+
 Warden.test_mode!
+WebMock.disable_net_connect!(:allow_localhost => true)
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

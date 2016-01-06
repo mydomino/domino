@@ -1,24 +1,20 @@
-.container.dashboards
-  .row
-    .col-xs-12
-      .btn-group.pull-left.filters{"aria-label" => "New Dashboard", :role => "group"}
-        =link_to "New Dashboard", new_dashboard_path, class: 'btn blue uppercase'
-      .btn-group.pull-right.filters{"aria-label" => "Filters", :role => "group"}
-        =link_to 'All', {filter: 'all'}, class: "btn uppercase #{(@filter == 'all') ? 'blue' : 'btn-transparent'}"
-        =link_to 'Mine', {filter: "mine"}, class: "btn uppercase #{(@filter == 'mine') ? 'blue' : 'btn-transparent' }"
-  .row
-    .col-xs-12.col-md-4.col-md-push-4.panel
-      =form_tag dashboards_path, method: 'GET' do
-        =label_tag 'search'
-        =text_field_tag 'search', @search_term
-        =hidden_field_tag 'filter', @filter
-        =hidden_field_tag 'view', 'table'
-        =submit_tag 'Search', class: 'btn blue pull-right'
-  .row
-    .col-xs-12
+.container
+  .clearfix.bg-white.mt3.mb3.p2
+    .col.col-12
+      %h1.inline-block.m0 Dashboards
+      .inline-block.clearfix.right.mt1
+        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray'}"
+        =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray' }"
+      .inline-block.border.p2.mr3.right
+        =form_tag dashboards_path, method: 'GET' do
+          =text_field_tag 'search', @search_term
+          =hidden_field_tag 'filter', @filter
+          =hidden_field_tag 'view', 'table'
+          =submit_tag 'Search', class: 'btn blue pull-right'
+    .col.col-12
       -@dashboards.each_slice(4) do |dashboards|
-        .row
-          %table.table
+        .clearfix
+          %table.table-light
             %tr
               %th Lead Name
               %th Products Done
@@ -33,6 +29,6 @@
                 %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
                 %td
                   =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}
-  .row
-    .col-xs-12
+  .clearfix
+    .col.col-12
       = will_paginate @dashboards

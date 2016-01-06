@@ -4,7 +4,7 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
 
   scenario "beginning on the home page", js: true do
     visit root_path
-    click_on 'Get Started'
+    first('.btn').click_link('Get Started')
     find('#solar').click
     click_on 'Next'
     fill_in :get_started_area_code, with: '12345'
@@ -13,8 +13,8 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
     fill_in :lead_last_name, with: "Morrow"
     find('#email').click
     fill_in :lead_email, with: "josh@mydomino.com"
-    click_on "Next"
-    sleep 5
+    click_on "Complete"
+    expect(page).to have_content("Thanks Josh Morrow")
 
     expect(Lead.count).to eq(1)
   end

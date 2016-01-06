@@ -1,25 +1,28 @@
 .form-wrapper{style: 'position: relative'}
   = simple_form_for @lead, remote: true, namespace: local_assigns[:namespace] do |lead|
     .container
-      .row
-        .col-xs-12.col-sm-6
-          = lead.label :first_name
-          = lead.text_field :first_name
-        .col-xs-12.col-sm-6
-          = lead.label :last_name
-          = lead.text_field :last_name
-      .row
-        .col-xs-12
-          = lead.label :email, 'Email'
-          = lead.email_field :email, placeholder: ''
-      .row
-        .col-xs-12
-          =lead.label :phone
-          =lead.text_field :phone
-      .row
-        .col-xs-12
-          =lead.input :subscribe_to_mailchimp, inline_label: 'Subscribe me to the Domino newsletter'
+      .clearfix.mxn2.py1
+        .col.col-12.sm-col-6.px2
+          = lead.label :first_name, class: 'block left-align'
+          = lead.text_field :first_name, class: 'field col-12'
+        .col.col-12.sm-col-6.px2
+          = lead.label :last_name, class: 'block left-align'
+          = lead.text_field :last_name, class: 'field col-12'
+      .clearfix.py1
+        .col-12
+          = lead.label :email, 'Email', class: 'block left-align'
+          = lead.email_field :email, placeholder: '', class: 'field col-12'
+      .clearfix.py1
+        .col-12
+          =lead.label :phone, class: 'block left-align'
+          =lead.text_field :phone, class: 'field col-12'
+      .clearfix.py1
+        .col-12.col.center
+          =lead.label :subscribe_to_mailchimp do
+            =lead.check_box :subscribe_to_mailchimp
+            Subscribe me to the Domino newsletter
+
       .errors
-      .row
+      .clearfix
         .col-xs-12.text-center
-          = lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn blue uppercase large")
+          = lead.submit local_assigns.fetch(:button_text, "Get Started"), data: {disable_with: 'Submitting...'}, class: local_assigns.fetch(:button_class, "btn bg-blue white rounded caps")

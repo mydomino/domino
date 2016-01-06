@@ -11,6 +11,7 @@ class Recommendation < ActiveRecord::Base
   scope :tasks, -> { where(recommendable_type: 'Task') }
   scope :products, -> { where(recommendable_type: 'Product') }
   scope :done, -> { where(done: true) }
+  scope :incomplete, -> { where(done: false) }
   scope :timestamped, -> { where("created_at IS NOT NULL AND updated_at IS NOT NULL")}
 
   after_create :assign_concierge, :set_done_to_false

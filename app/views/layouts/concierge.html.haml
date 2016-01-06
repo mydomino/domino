@@ -1,19 +1,64 @@
--content_for :navbar_class do
-  light-gray
-
 !!!
 %html
   %head
     %title Domino - Concierge
-    = render 'layouts/meta'
+    = render 'layouts/partials/meta'
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
-    = render 'layouts/analytics'
+    = render 'layouts/partials/analytics'
   %body
-    = render 'layouts/concierge_navbar'
-    .container
-      .alerts
-        =flash_messages
-    = yield
+    .col.bg-cloud.full-height.fixed.top-0{style: 'width: 80px;'}
+      .clearfix.p1.center.lh0.mb2
+        =image_tag "penguin_vertical.png", class: 'fit'
+      =link_to dashboards_path do
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(:controller => 'dashboards'))}"}
+          =image_tag "icon_dashboard_black.png", class: 'fit'
+      =link_to products_path do
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(:controller => 'products'))}"}
+          =image_tag "icon_energy_black.png", class: 'fit'
+      =link_to tasks_path do
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(:controller => 'tasks'))}"}
+          =image_tag "icon_actions_black.png", class: 'fit'
+      =link_to analytics_path do
+        .clearfix.px2.py1.center.lh0.mb2{class: "#{"bg-gray" if(current_page?(controller: 'analytics', action: 'show' ))}"}
+          .fa.fa-line-chart.fit.black{style: "font-size: 1.8rem;"}
+    .bg-heather{style: "padding-left: 80px;"}
+      .clearfix
+        .col.col-12.bg-white
+          %nav
+            .clearfix
+              .col
+                =link_to "+ User", new_dashboard_path, class: "inline-block p3 bg-blue white caps"
+              .col
+                =link_to "+ Product", new_product_path, class: "blue caps p3 inline-block hover-bg-heather"
+              .col
+                =link_to "+ Action", new_task_path, class: "blue caps p3 inline-block hover-bg-heather"
+              .col-right.py1.lh0.mr2
+                .relative.inline-block{data: {disclosure: ''}}
+                  =gravatar_image_tag(current_concierge.email, gravatar: { size: 65, default: "http://mydomino.com/assets/default_avatar.png" }, class: 'circle')
+                  .nowrap.bg-white.border.rounded.absolute.right-0{data: {details: ''}}
+                    =link_to 'My Profile', edit_concierge_path, class: 'btn block'
+                    =link_to 'Log Out', destroy_concierge_session_path, method: 'DELETE', class: 'btn block'
+      .container
+        .alerts
+          =flash_messages
+      = yield
+      :javascript
+        $('document').ready(function()
+        {
+          $('[data-disclosure]').click(function(e)
+          {
+            $(e.currentTarget).children('[data-details]').toggle();
+          });
+        });
+      :css
+        [data-disclosure] [data-details]
+        {
+          display: none;
+        }
+        body
+        {
+          background-color: #F9F9F9;
+        }

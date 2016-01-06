@@ -29,12 +29,17 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @default_products = Product.where(default: true)
+    @non_default_products = Product.where(default: false)
   end
 
   def update_all_amazon_prices
     UpdateAllAmazonPricesJob.perform_later
     redirect_to :products
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   def toggle_default

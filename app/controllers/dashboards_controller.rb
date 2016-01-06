@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   before_action :authenticate_concierge!, except: :show
-  layout 'concierge'
+  layout 'concierge', except: :show
 
   def new
     @dashboard = Dashboard.new
@@ -10,6 +10,8 @@ class DashboardsController < ApplicationController
   def create
     @dashboard = Dashboard.create(dashboard_params)
     @dashboard.concierge = current_concierge
+    @dashboard.product_ids = Product.where(default: true).ids
+    @dashboard.task_ids = Task.where(default: true).ids
     if @dashboard.save
       redirect_to @dashboard
     else
@@ -21,13 +23,18 @@ class DashboardsController < ApplicationController
     @dashboard = Dashboard.find_by_slug(params[:id].downcase)
     @filter = params[:filter]
     if(@filter == 'products')
-      @recommendations = @dashboard.recommendations.where(recommendable_type: "Product").includes(:recommendable)
+      @completed_recommendations = @dashboard.recommendations.done.where(recommendable_type: "Product").includes(:recommendable)
+      @incomplete_recommendations = @dashboard.recommendations.incomplete.where(recommendable_type: "Product").includes(:recommendable)
     elsif(@filter == 'actions')
-      @recommendations = @dashboard.recommendations.where(recommendable_type: "Task").includes(:recommendable)
+      @completed_recommendations = @dashboard.recommendations.done.where(recommendable_type: "Task").includes(:recommendable)
+      @incomplete_recommendations = @dashboard.recommendations.incomplete.where(recommendable_type: "Task").includes(:recommendable)
     else
-      @recommendations = @dashboard.recommendations
+      @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
+      @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
-    render layout: 'dashboard'
+        respond_to do |format|
+      format.html {render :layout => 'dashboard'}
+    end
   end
 
   def index

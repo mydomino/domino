@@ -1,26 +1,24 @@
--content_for :navbar_class do
-  hidden
-
-.blue{style: "height: 100vh;"}
+.bg-blue
   .container
-    .row
-      .col-xs-12.col-sm-6.col-sm-push-3
-        %h3.text-center.uppercase.bold{style: "margin:100px auto 20px;"} Concierge
-        .panel
-          = simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-            .form-inputs
-              = f.input :email, required: false, autofocus: true
-              = f.input :password, required: false
-              = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-            .form-actions
-              = f.button :submit, "Enter"
-          .text-center
-            = render "devise/shared/links"
-:css
-  .alert
-  {
-    position: absolute;
-    top: 10px;
-    width: 90%;
-    left: 5%;
-  }
+    .flex-auto.center
+      .clearfix
+        .col.sm-col-4
+          &nbsp;
+        .col.sm-col-4
+          .flex.flex-center.full-height
+            .flex-auto
+              %h2.text-center.uppercase.bold.white.caps Concierge
+              .bg-white.rounded.p3
+                =simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+                  .form-inputs
+                    = f.label :email, class: 'left block'
+                    = f.input_field :email, required: false, autofocus: true, class: 'col-12 field mb2'
+                    = f.label :password, class: 'left block'
+                    = f.input_field :password, required: false, class: 'col-12 field mb2'
+                    .left-align
+                      = f.input_field :remember_me, class:'h1', as: :boolean if devise_mapping.rememberable?
+                      = f.label :remember_me
+                  .form-actions
+                    = f.button :submit, "Sign In", class: "caps btn bg-blue col-12 white rounded py2 mt2"
+                .text-center.py2.left-align
+                  = render "devise/shared/links"

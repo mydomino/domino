@@ -1,0 +1,45 @@
+%nav.col-12{class: yield(:navbar_class)}
+  .container
+    .clearfix
+      .col.col-6.sm-col.p2
+        = link_to embedded_svg('penguin_horizontal.svg'), root_path, class: yield(:logo_class)
+      .md-hide.sm-col-right.px2.right-align.right
+        .fa.fa-bars.pointer{style: "font-size: 2rem;padding-top: 1.75rem;"}
+      .px3
+        .py3.md-show.right-align.right
+          .border.border-navy.px1.rounded.caps.btn.narrow
+            =link_to "Get Started", step_1_get_started_path, class: "navy"
+        .py3.md-show.right-align.right
+          .btn
+            =link_to "Blog", blog_path, class: yield(:link_color_class)
+        .py3.md-show.right-align.right
+          .btn
+            =link_to "Press", "http://mydomino.strikingly.com/", class: yield(:link_color_class)
+        .py3.md-show.right-align.right
+          .btn
+            =link_to "About", about_path, class: yield(:link_color_class)
+
+
+    .nav-bg.easeInOut.absolute.col-12.top-0.left-0.right-0.white.flex.flex-center
+      .content.flex-auto
+        %h1.inline-block
+          .fa.fa-times.fixed.top-0.right-0.p3.pointer
+        %ul.py4.center.list-reset{ style: "font-size: 3rem;" }
+          %li
+            = link_to 'About', about_path, class: "white py1 inline-block"
+          %li
+            = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank', class: "white py1 inline-block"
+          %li
+            = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank', class: "white py1 inline-block"
+          %li
+            = link_to 'GET STARTED', step_1_get_started_path, class: 'btn', class: "white py1 inline-block"
+:javascript
+  $('document').ready(function(){
+    $('nav .fa-bars').click(function(){
+      $('nav').addClass('open');
+    })
+
+    $('nav .nav-bg .fa-times').click(function(){
+      $('nav').removeClass('open');
+    })
+  })

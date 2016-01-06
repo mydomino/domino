@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="78px" height="59px" viewBox="0 0 78 59" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>Scales Icon</title>
+    <desc>This browser can't display SVG's :(.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="V17---Dhanur" sketch:type="MSArtboardGroup" transform="translate(-129.000000, -4036.000000)" stroke="#FFFAF1" stroke-width="2">
+            <g id="Concierge-Form" sketch:type="MSLayerGroup" transform="translate(0.000000, 3526.000000)">
+                <g id="Highlights" transform="translate(129.000000, 90.000000)" sketch:type="MSShapeGroup">
+                    <g id="Independent" transform="translate(2.000000, 414.000000)">
+                        <g id="Scales-Icon" transform="translate(0.000000, 6.000000)">
+                            <path d="M12.29,6.27659574 C12.3952144,6.27659574 12.3909507,6.57830376 12.4414261,6.72915777 C16.4884507,18.8243605 24.5825,43.014766 24.5825,43.014766 C21.07375,45.1814468 16.845,46.4468085 12.29,46.4468085 C7.7375,46.4468085 3.50875,45.1827021 0,43.0172766 L8.51125,17.5744681 L11.7329102,7.71655273 L12.5966797,5.57055664" id="Shape"></path>
+                            <path d="M66.07125,17.5744681 C66.07125,17.5744681 66.710872,19.4857498 67.030683,20.4413906 C69.5487887,27.9658491 74.585,43.014766 74.585,43.014766 C71.07625,45.1814468 66.84625,46.4468085 62.29,46.4468085 C57.73875,46.4468085 53.50875,45.1827021 50,43.0172766 L62.29,6.27659574 L65.5302734,15.875 L66.329834,18.0678708" id="Shape"></path>
+                            <path d="M37,1.25531915 L37,53.9787234" id="Shape"></path>
+                            <path d="M6.25,0 C6.25,5.546 20.24125,10.0425532 37.5,10.0425532 C54.76125,10.0425532 68.75,5.546 68.75,0" id="Shape"></path>
+                            <path d="M21.25,59 L21.25,56.4893617 C21.25,55.7964255 21.81125,55.2340426 22.5,55.2340426 L52.5,55.2340426 C53.19125,55.2340426 53.75,55.7964255 53.75,56.4893617 L53.75,59" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

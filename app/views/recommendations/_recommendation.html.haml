@@ -1,7 +1,8 @@
-.col-xs-12.col-sm-4
-  .recommendation{class: ('completed' if recommendation.done)}
+.sm-col.sm-col-12.md-col-4.p2
+  .pointer.border.rounded.p2.relative
     -if concierge_signed_in?
-      =link_to "", recommendation_path(recommendation), method: "DELETE", class: "pull-right glyphicon glyphicon-remove btn", style: "padding: 4px;position: absolute;top: 5px; right: 5px; z-index:1;"
+      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-0 top-0 bg-gray p1 white lh1' do
+        .fa.fa-times
     =render recommendation.recommendable, recommendation: recommendation
     =render 'recommendations/comment', recommendation: recommendation
 -if(recommendation.recommendable_type == 'Product')

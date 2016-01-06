@@ -1,0 +1,76 @@
+.footer.bg-gray.black.border-top
+  .container
+    //large display links
+    .clearfix.lg-show.h3
+      .lg-col-1.sm-col.mt4
+        %p.link= link_to 'ABOUT', about_path, class: "black"
+      .lg-col-1.sm-col.mt4
+        %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank', class: "black"
+      .lg-col-1.sm-col.mt4
+        %p.link= link_to 'BLOG', "http://www.mydomino.com/blog/",target: '_blank', class: "black"
+      .lg-col-3.lg-show.lg-col-right.mt4.mxn2
+        .clearfix
+          .col.col-4.px2
+            =link_to "http://www.facebook.com/ourdominoeffect", class: 'charcoal' do
+              =embedded_svg('facebook-with-circle.svg')
+          .col.col-4.px2
+            =link_to "http://twitter.com/OurDominoEffect", class: 'charcoal' do
+              =embedded_svg('twitter-with-circle.svg')
+          .col.col-4.px2
+            =link_to "http://www.mydomino.com/blog/", class: 'charcoal' do
+              =embedded_svg('domino-with-circle.svg')
+    .clearfix.center
+      .col-12.mb2.lg-hide.mt3
+        800-979-2215
+        %br
+        9AM-9PM ET, Monday-Friday
+        %br
+        myconcierge@mydomino.com
+    .clearfix.lg-hide
+      .col.col-4.py1
+      .col.col-4
+        .clearfix
+          .col.col-4.px1.md-px2.center
+            =embedded_svg('facebook-with-circle.svg', style: "max-width: 40px;")
+          .col.col-4.px1.md-px2.center
+            =embedded_svg('twitter-with-circle.svg', style: "max-width: 40px;")
+          .col.col-4.px1.md-px2.center
+            =embedded_svg('domino-with-circle.svg', style: "max-width: 40px;")
+    .clearfix.lg-mb2
+      .col.col-4.md-col-3.py1.lg-hide
+      .lg-show.lg-col.lg-col-6.lg-col
+        800-979-2215
+        %br
+        9AM-9PM ET, Monday-Friday
+        %br
+        myconcierge@mydomino.com
+    .clearfix
+      .md-col.md-col-3.md-show.py1.lg-hide
+      .col-12.md-col.md-col-6.center.mb2.lg-col-5.lg-left-align.lg-mt3
+        .clearfix
+          %ul.list-reset.h5.md-hide
+            %li.inline-block.mr1
+              &copy;2015 Domino2030, Inc.
+          %ul.list-reset.h5.md-show
+            %li.inline-block.mr1
+              &copy;2015 Domino2030, Inc.
+            %li.inline-block.mr1
+              =link_to 'Terms of Service', terms_path, class: "black"
+            %li.inline-block.mr1
+              =link_to 'Privacy Policy', privacy_path, class: "black"
+      .lg-show.lg-col.lg-col-7.right-align
+        .clearfix.mxn2
+          .inline-block.bg-gray.rounded{style: 'height: 60px;'}
+            = link_to "http://www.rmi.org", target: "_blank" do
+              =image_tag("rmi-logo.png")
+          .inline-block.bg-gray.rounded{style: 'height: 60px;'}
+            = link_to "http://www.seia.org", target: "_blank" do
+              =image_tag("seia.png")
+          .p1.rounded.inline-block.bg-gray.border.border-box{style: 'height: 60px;position: relative; top: -8px;'}
+            = link_to "http://www.bcorporation.net" do
+              =image_tag("Certified B Corp.png")
+          .inline-block.border-box{style: 'height: 60px;'}
+            = link_to "http://www.rmi.org", target: "_blank" do
+              =image_tag("bbb.png")
+          .inline-block.border-box
+            =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:100%;height:60px;width:auto;", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge', target: "_blank")

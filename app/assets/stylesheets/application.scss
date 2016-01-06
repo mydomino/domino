@@ -12,22 +12,14 @@
  *
  *= require animate
  *= require normalize-rails
- *= require nprogress
- *= require nprogress-bootstrap
  *= require jquery-ui
+ *= require nprogress
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "basscss";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "colors";
 @import "buttons";
+@import "components";
 @import "fonts";
-@import "forms";
-@import "global";
-@import "navbar";
-@import "footer";
-@import "pages";
-@import "solar";
-@import "dashboard";
-@import "modals";
-@import "concierge";

@@ -1,100 +1,20 @@
-@font-face {
-    font-family: 'ProximaNovaA';
-    src: font-url('proximanovaa-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('proximanovaa-medium-webfont.woff2') format('woff2'),
-         font-url('proximanovaa-medium-webfont.woff') format('woff'),
-         font-url('proximanovaa-medium-webfont.ttf') format('truetype'),
-         font-url('proximanovaa-medium-webfont.svg#proxima_nova_amedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ProximaNovaA';
-    src: font-url('proximanovaa-light-webfont.eot');
-    src: font-url('proximanovaa-light-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('proximanovaa-light-webfont.woff2') format('woff2'),
-         font-url('proximanovaa-light-webfont.woff') format('woff'),
-         font-url('proximanovaa-light-webfont.ttf') format('truetype'),
-         font-url('proximanovaa-light-webfont.svg#proxima_nova_alight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ProximaNovaA';
-    src: font-url('proximanovaa-bold-webfont.eot');
-    src: font-url('proximanovaa-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('proximanovaa-bold-webfont.woff2') format('woff2'),
-         font-url('proximanovaa-bold-webfont.woff') format('woff'),
-         font-url('proximanovaa-bold-webfont.ttf') format('truetype'),
-         font-url('proximanovaa-bold-webfont.svg#proxima_nova_abold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ProximaNovaA';
-    src: font-url('proximanovaa-boldit-webfont.eot');
-    src: font-url('proximanovaa-boldit-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('proximanovaa-boldit-webfont.woff2') format('woff2'),
-         font-url('proximanovaa-boldit-webfont.woff') format('woff'),
-         font-url('proximanovaa-boldit-webfont.ttf') format('truetype'),
-         font-url('proximanovaa-boldit-webfont.svg#proxima_nova_abold_italic') format('svg');
-    font-weight: bold;
-    font-style: italic;
+body {
+  font-family: 'proxima-nova',sans-serif;
+  line-height: 1.5;
+  font-size: 100%;
 }
 
-html
-{
-  font-size: 16px;
-  line-height: 30px;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'proxima-nova',sans-serif;
+  font-weight: normal;
 }
 
-body
-{
-  font-family: 'ProximaNovaA', sans-serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  font-style: normal;
-}
-.uppercase
-{
-  text-transform: uppercase;
-  letter-spacing: .25rem;
-}
-
-h1, h2, h3, h4, h5, h6
-{
-  margin: 0px;
-  font-weight: 300;
-  color: $blue;
-}
-p
-{
-  color: $gray;
-}
-h1
-{
-  font-size: 3rem;
-  line-height: 4rem;
-}
-h2
-{
-  font-size: 2.25rem;
-  line-height: 3.25rem;
-}
-h3
-{
-  font-size: 1.75rem;
-  line-height: 2.25rem;
-}
-h4
-{
-  font-size: 1.33rem;
-  line-height: 1.5rem;
+.measure {
+  max-width:48em;
 
 }
-h5
-{
-  font-size: 1.1rem;
-  line-height: 1.3rem;
+
+p {
+  font-size: 20px;
+  font-weight:300;
 }
