@@ -1,8 +1,8 @@
 .container
-  .clearfix.bg-white.mt3.p2
+  .clearfix.bg-white.mt3.rounded-top.p2
     .col.col-12
       %h1.mt0.inline-block Products
-      =link_to "Update Prices from Amazon", update_product_prices_path, class: 'btn border rounded relative', method: 'post', style: "top: -5px;right: -10px;"
+      =link_to "Update Prices", update_product_prices_path, class: 'btn border rounded relative border-charcoal charcoal', method: 'post', style: "top: -5px;right: -10px;"
   .clearfix.bg-white.px2
     -@default_products.each do |product|
       .clearfix

@@ -1,7 +1,7 @@
 .container
   .clearfix.mxn2
     .col.col-12.sm-col.sm-col-4.py3.px2
-      .bg-white.p2.mt1.rounded.border
+      .bg-white.p2.mt1.rounded
         %h1.mt1 Stats
         %ul
           %li
@@ -25,11 +25,11 @@
               %td
                 =dashboards
     .col.col-12.sm-col.sm-col-8.py3.px2
-      .p2.bg-white.rounded.border.mt1
+      .p2.bg-white.rounded.mt1
         %h1.inline-block.mt1 Recent Activity
         .inline-block.clearfix.right.mt1
-          =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'border'}"
-          =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'border' }"
+          =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'border gray'}"
+          =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'border gray' }"
         .clearfix
           -@recent_events.reverse.each do |event|
             .clearfix
