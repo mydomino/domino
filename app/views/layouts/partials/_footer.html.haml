@@ -1,4 +1,4 @@
-.footer.bg-heather.black.border-top
+.footer.bg-gray.black.border-top
   .container
     //large display links
     .clearfix.lg-show.h3
@@ -27,12 +27,12 @@
       .col.col-4.py1
       .col.col-4
         .clearfix
-          .col.col-4.px2
-            =embedded_svg('facebook-with-circle.svg')
-          .col.col-4.px2
-            =embedded_svg('twitter-with-circle.svg')
-          .col.col-4.px2
-            =embedded_svg('domino-with-circle.svg')
+          .col.col-4.px1.md-px2.center
+            =embedded_svg('facebook-with-circle.svg', style: "max-width: 40px;")
+          .col.col-4.px1.md-px2.center
+            =embedded_svg('twitter-with-circle.svg', style: "max-width: 40px;")
+          .col.col-4.px1.md-px2.center
+            =embedded_svg('domino-with-circle.svg', style: "max-width: 40px;")
     .clearfix.lg-mb2
       .col.col-4.md-col-3.py1.lg-hide
       .lg-show.lg-col.lg-col-6.lg-col
@@ -43,7 +43,7 @@
         myconcierge@mydomino.com
     .clearfix
       .md-col.md-col-3.md-show.py1.lg-hide
-      .col-12.md-col.md-col-6.center.mb2.lg-col-6.lg-left-align
+      .col-12.md-col.md-col-6.center.mb2.lg-col-5.lg-left-align.lg-mt3
         .clearfix
           %ul.list-reset.h5.md-hide
             %li.inline-block.mr1
@@ -55,19 +55,19 @@
               =link_to 'Terms of Service', terms_path
             %li.inline-block.mr1
               =link_to 'Privacy Policy', privacy_path
-      .col.col-4.md-col-6.center
+      .lg-show.lg-col.lg-col-7.right-align
         .clearfix.mxn2
-          .inline-block.border.bg-gray{style: 'height: 60px;'}
+          .inline-block.bg-gray.rounded{style: 'height: 60px;'}
             = link_to "http://www.rmi.org", target: "_blank" do
               =image_tag("rmi-logo.png")
-          .inline-block.border.bg-gray{style: 'height: 60px;'}
+          .inline-block.bg-gray.rounded{style: 'height: 60px;'}
             = link_to "http://www.seia.org", target: "_blank" do
               =image_tag("seia.png")
-          .p1.rounded.inline-block.bg-black.border-box{style: 'height: 60px;position: relative; top: -8px;'}
+          .p1.rounded.inline-block.bg-gray.border.border-box{style: 'height: 60px;position: relative; top: -8px;'}
             = link_to "http://www.bcorporation.net" do
               =image_tag("Certified B Corp.png")
           .inline-block.border-box{style: 'height: 60px;'}
             = link_to "http://www.rmi.org", target: "_blank" do
               =image_tag("bbb.png")
-          .md-col.md-col-4.lg-col-3
-            =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:100%;height:auto;max-width: 110px;", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge', target: "_blank")
+          .inline-block.border-box
+            =link_to(image_tag('//heapanalytics.com/img/badge.png', style: "width:100%;height:60px;width:auto;", alt: "Heap | Mobile and Web Analytics" ), 'https://heapanalytics.com/?utm_source=badge', target: "_blank")
