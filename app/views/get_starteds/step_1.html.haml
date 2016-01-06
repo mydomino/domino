@@ -5,12 +5,12 @@
 
 .container
   .clearfix
-    .col-12.center
-      .bold.inline-block Step 1
+    .col-12.center.mt4.py2
+      .caps.bold.inline-block Step 1
       .fa.fa-chevron-right.gray.px2.inline-block
-      =link_to "Step 2", step_2_get_started_path
+      =link_to "Step 2", step_2_get_started_path, class:"gray caps"
       .fa.fa-chevron-right.gray.px2.inline-block
-      =link_to "Step 3", step_3_get_started_path
+      =link_to "Step 3", step_3_get_started_path, class:"gray caps"
   .clearfix
     .col-12.center.mt4.mb2
       %h1.mb0{style: 'color: #333;'} Let's talk about what interests you...
@@ -34,13 +34,13 @@
         %h3{style: 'color: #333;padding-bottom:16px'} Energy Analysis
         =embedded_svg('line_energy.svg', style: 'fill-rule: evenodd;clip-rule: evenodd;stroke-linejoin: round;stroke-miterlimit: 1.41421;max-height: 200px;')
         %p{style:'text-align:left'} A brief analysis of your current energy usage. We'll customize a plan to help you save money.
-  .clearfix.mt3.mb3
+  .clearfix.mt4.mb4
     .col.col-12.right-align
       =simple_form_for :get_started, method: 'GET', url: step_2_get_started_path do |lead|
         %div{style: 'display: none;'}
           =lead.input :solar, as: :radio_buttons
           =lead.input :energy_analysis, as: :radio_buttons
-        =lead.submit 'Next', class: "btn rounded caps bg-blue white"
+        =lead.submit 'Next', class: "btn rounded caps h3 bg-blue white px3 py2"
 :javascript
   function toggle_solar()
   {
