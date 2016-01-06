@@ -4,7 +4,7 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
 
   scenario "beginning on the home page", js: true do
     visit root_path
-    click_on 'Get Started'
+    first('.btn').click_link('Get Started')
     find('#solar').click
     click_on 'Next'
     fill_in :get_started_area_code, with: '12345'
