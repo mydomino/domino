@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  root 'pages#index'
+  post 'signup' => 'pages#signup'
+  get 'about' => 'pages#about'
+  get 'terms' => 'pages#terms'
+  get 'privacy' => 'pages#privacy'
+  #get 'solar' => 'pages#solar'
+
   devise_for :concierges, skip: [:registrations]                                   
   as :concierge do
     get 'concierges/edit' => 'registrations#edit', :as => 'edit_concierge_registration'    
@@ -7,13 +14,6 @@ Rails.application.routes.draw do
     get 'concierges/my-profile' => 'concierges#edit', as: 'edit_concierge'  
   end
   resources :concierges, only: [:update]
-
-  root 'pages#index'
-  post 'signup' => 'pages#signup'
-  get 'about' => 'pages#about'
-  get 'terms' => 'pages#terms'
-  get 'privacy' => 'pages#privacy'
-  #get 'solar' => 'pages#solar'
 
   resources :leads, only: [:create, :new, :index]
   resources :dashboards, path: '/dashboard/', only: [:new, :create, :show, :index, :destroy] do
