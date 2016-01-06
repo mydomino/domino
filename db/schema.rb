@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(version: 20160105225832) do
     t.boolean  "geocoded"
     t.integer  "get_started_id"
     t.boolean  "subscribe_to_mailchimp"
-    t.integer  "referred_by_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -116,14 +115,6 @@ ActiveRecord::Schema.define(version: 20160105225832) do
     t.string   "xml"
     t.string   "name"
     t.boolean  "default",     default: false
-  end
-
-  create_table "promo_codes", force: :cascade do |t|
-    t.string   "code"
-    t.date     "start"
-    t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "recommendations", force: :cascade do |t|
