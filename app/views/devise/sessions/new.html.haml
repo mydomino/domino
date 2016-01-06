@@ -15,8 +15,10 @@
                     = f.input_field :email, required: false, autofocus: true, class: 'col-12 field mb2'
                     = f.label :password, class: 'left block'
                     = f.input_field :password, required: false, class: 'col-12 field mb2'
-                    = f.input :remember_me, class:'h1', as: :boolean if devise_mapping.rememberable?
+                    .left-align
+                      = f.input_field :remember_me, class:'h1', as: :boolean if devise_mapping.rememberable?
+                      = f.label :remember_me
                   .form-actions
                     = f.button :submit, "Sign In", class: "caps btn bg-blue col-12 white rounded py2 mt2"
-                .text-center.py2
+                .text-center.py2.left-align
                   = render "devise/shared/links"
