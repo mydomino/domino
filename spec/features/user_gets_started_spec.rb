@@ -13,7 +13,7 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
     fill_in :lead_last_name, with: "Morrow"
     find('#email').click
     fill_in :lead_email, with: "josh@mydomino.com"
-    click_on "Next"
+    click_on "Complete"
     expect(page).to have_content("Thanks Josh Morrow")
 
     expect(Lead.count).to eq(1)
