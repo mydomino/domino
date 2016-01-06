@@ -3,19 +3,22 @@
     //large display links
     .clearfix.lg-show.h3
       .lg-col-1.sm-col.mt4
-        %p.link= link_to 'ABOUT', about_path
+        %p.link= link_to 'ABOUT', about_path, class: "black"
       .lg-col-1.sm-col.mt4
-        %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank'
+        %p.link= link_to 'PRESS', 'http://mydomino.strikingly.com', target: '_blank', class: "black"
       .lg-col-1.sm-col.mt4
-        %p.link= link_to 'BLOG', "http://www.mydomino.com/blog/",target: '_blank'
+        %p.link= link_to 'BLOG', "http://www.mydomino.com/blog/",target: '_blank', class: "black"
       .lg-col-3.lg-show.lg-col-right.mt4.mxn2
         .clearfix
           .col.col-4.px2
-            =embedded_svg('facebook-with-circle.svg')
+            =link_to "http://www.facebook.com/ourdominoeffect", class: 'charcoal' do
+              =embedded_svg('facebook-with-circle.svg')
           .col.col-4.px2
-            =embedded_svg('twitter-with-circle.svg')
+            =link_to "http://twitter.com/OurDominoEffect", class: 'charcoal' do
+              =embedded_svg('twitter-with-circle.svg')
           .col.col-4.px2
-            =embedded_svg('domino-with-circle.svg')
+            =link_to "http://www.mydomino.com/blog/", class: 'charcoal' do
+              =embedded_svg('domino-with-circle.svg')
     .clearfix.center
       .col-12.mb2.lg-hide.mt3
         800-979-2215
@@ -52,9 +55,9 @@
             %li.inline-block.mr1
               &copy;2015 Domino2030, Inc.
             %li.inline-block.mr1
-              =link_to 'Terms of Service', terms_path
+              =link_to 'Terms of Service', terms_path, class: "black"
             %li.inline-block.mr1
-              =link_to 'Privacy Policy', privacy_path
+              =link_to 'Privacy Policy', privacy_path, class: "black"
       .lg-show.lg-col.lg-col-7.right-align
         .clearfix.mxn2
           .inline-block.bg-gray.rounded{style: 'height: 60px;'}
