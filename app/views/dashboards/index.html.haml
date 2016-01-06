@@ -10,7 +10,8 @@
           =text_field_tag 'search', @search_term, class: 'field rounded-left'
           =hidden_field_tag 'filter', @filter
           =hidden_field_tag 'view', 'table'
-          =submit_tag 'Search', class: 'btn bg-blue white rounded-right pull-right'
+          .btn.bg-blue.white.rounded-right.pull-right
+            .fa.fa-search
 
   .clearfix.bg-white.py3
     .col.col-12
