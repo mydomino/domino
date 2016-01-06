@@ -1,5 +1,5 @@
 .sm-col.sm-col-12.md-col-4.p2
-  .recommendation.border-3.p2.py3.relative.rounded-20
+  .recommendation.border.p2.py3.relative.rounded-20
     -if concierge_signed_in?
       =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute rounded right-10 top-10 bg-gray p1 white lh1' do
         .fa.fa-times
