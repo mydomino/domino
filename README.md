@@ -32,4 +32,8 @@ where EMAIL is the new login's email address and PASSWORD is their temporary pas
 Blog Routing
 ============
 
- Our blog is run on Wordpress and is reached via a reverse proxy running on the Rails app.
+ Our blog is run on Wordpress and is reached via a reverse proxy running on the Rails app. The configuration is in /config.ru. Also note that the line:
+ 
+      get '/blog' => redirect("/blog/")
+
+in routes.rb is necessary for this to work.
