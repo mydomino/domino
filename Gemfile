@@ -10,7 +10,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'animate-rails'
 gem 'normalize-rails'
 gem 'json'
@@ -24,7 +23,7 @@ gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'geocoder'
-gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
+gem 'rack-reverse-proxy', require: 'rack/reverse_proxy'
 gem 'nprogress-rails'
 gem 'vacuum'
 gem 'simple_form'
@@ -33,16 +32,19 @@ gem 'devise'
 gem 'gravatar_image_tag'
 gem 'heap'
 gem 'will_paginate'
-gem 'derailed'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
-gem 'vex_rails'
 gem 'font-awesome-sass'
 
 gem 'unicorn'
 
+group :doc do
+  gem 'sdoc', '~> 0.4.0'
+end
+
 group :development, :test do
+  gem 'derailed'
   gem 'html2haml'
   gem 'database_cleaner'
   gem 'simplecov'
