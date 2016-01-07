@@ -2,12 +2,12 @@ Domino Website
 ==============
  This documentation is meant to cover all aspects of the Domino code base.
  
- Stack Choices
- ==============
-  We run on Ruby on Rails with Unicorn as the server hosted on Heroku. We use a Postgres database (per heroku), HAML templating and sass (using basscss as a css framework). 
+Stack Choices
+==============
+ We run on Ruby on Rails with Unicorn as the server hosted on Heroku. We use a Postgres database (per heroku), HAML templating and sass (using basscss as a css framework). 
  
- Static Pages
- ============
+Static Pages
+============
  All static pages are handled by the pages controller. Currently this includes:
  * the home page
  * the signup page
