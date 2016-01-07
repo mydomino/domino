@@ -17,8 +17,8 @@ Static Pages
  
  Note: The solar page is currently commented out in the routes file because it wasn't updated to use basscss and we had practically zero traffic to it.
 
- Concierge Features
- ==================
+Concierge Features
+==================
   Concierges each have their own login (managed using devise). New logins can be created from the rails console, which is reached by running
   
     heroku run rails console -a domino-production
