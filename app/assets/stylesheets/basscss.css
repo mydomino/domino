@@ -1030,6 +1030,7 @@ hr {
 
 .rounded { border-radius: 3px }
 .rounded-20 { border-radius: 20px }
+.pill {border-radius:50px}
 .circle  { border-radius: 50% }
 
 
