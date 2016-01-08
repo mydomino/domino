@@ -1,0 +1,14 @@
+.container
+  .bg-white.p1.mt2
+    %h1.mt0 Recommendations
+    %table.table-light
+      %th
+        Recommendation Name
+      %th
+        Concierge
+      -@done_recommendations.each do |recommendation|
+        %tr
+          %td 
+            =recommendation.recommendable.name
+          %td
+            =recommendation.dashboard.concierge.name

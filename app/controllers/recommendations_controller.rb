@@ -62,7 +62,11 @@ class RecommendationsController < ApplicationController
   end
 
   def index
-    send_data Recommendation.done.to_csv
+    @done_recommendations = Recommendation.includes("recommendable").done
+    respond_to do |format|
+      format.html { render 'index', layout: 'concierge' }
+      format.csv { send_data @done_recommendations.to_csv }
+    end
   end
 
   private
