@@ -47,7 +47,9 @@ Rails.application.routes.draw do
   end
 
   resources :contests
-  get '/smart-home' => 'leads#energy_awareness'
+  #get '/smart-home' => 'leads#energy_awareness'
+  #redirecting the contest page to the root path for now
+  get '/smart-home' => 'pages#index'
 
   resource :analytics, only: [:show]
 

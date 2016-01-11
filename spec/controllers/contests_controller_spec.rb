@@ -19,7 +19,7 @@ describe ContestsController do
 
     get :show, id: contest.id
 
-    expect(response).to redirect_to('/leads/new')
+    expect(response).to redirect_to('/')
   end
 
 

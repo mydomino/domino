@@ -23,7 +23,7 @@ class ContestsController < ApplicationController
     @contest = Contest.friendly.find(params[:id])
     @lead = Lead.new
     if(@contest.end_date.past?)
-      redirect_to new_lead_path
+      redirect_to root_path
     end
   end
 
