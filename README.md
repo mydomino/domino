@@ -59,12 +59,12 @@ Duplicate Slugs
 ---------------
  Duplicate slugs get a number added to the end of them to maintain uniqueness, to the second Tom Waits will be /tom-waits-1 and the third will be /tom-waits-2 and so on.
  
- Recommendations
- ===============
+Recommendations
+===============
  Dashboards connect leads with concierges, and they connect them for the purpose of making recommendations. Both products and tasks are recommendable via a polymorphic relationship.
  
- Products
- ========
+Products
+========
  Products have some interesting behaviours. First of all, they are primarily derived from the Amazon Product Advertising API at the time of creation. Concierges just put in a product URL and we do a few things:
   * Parse out the products ID for use with the API
   * Query the amazon API using that ID
