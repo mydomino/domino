@@ -34,4 +34,15 @@ describe Dashboard, type: :model do
     expect(subject.recommendations.build(recommendable: product).save).to be(false)
   end
 
+  it 'offers a slug candidate that is not taken by adding a number to the name' do
+    dashboard = FactoryGirl.create(:dashboard, lead_name: 'Tom Waits')
+    
+    expect(dashboard.slug).to eq('tom-waits')
+
+    for i in 1..15 do
+      dashboard = FactoryGirl.create(:dashboard, lead_name: 'Tom Waits')
+      expect(dashboard.slug).to eq("tom-waits-#{i}")
+    end
+  end
+
 end

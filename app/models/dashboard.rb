@@ -9,20 +9,26 @@ class Dashboard < ActiveRecord::Base
   validates :lead_email, presence: true
 
 
-  def slug_candidates
-    #OK, there has to be a better way to do this but I don't know it :(
-    [
-      :lead_name,
-      [:lead_name, '1'],
-      [:lead_name, '2'],
-      [:lead_name, '3'],
-      [:lead_name, '4'],
-      [:lead_name, '5'],
-      [:lead_name, '6'],
-      [:lead_name, '7'],
-      [:lead_name, '8'],
-      [:lead_name, '9']
-    ]
+  def slug_candidates(previous_attempts=nil)
+
+    slug ||= self.lead_name.parameterize
+    
+    if(!previous_attempts)
+      if(Dashboard.find_by_slug(slug))
+        previous_attempts = 1  
+      else
+        return slug
+      end
+    end
+
+    slug += "-#{previous_attempts}"
+
+    if(Dashboard.find_by_slug(slug))
+      previous_attempts += 1
+      slug = slug_candidates(previous_attempts)
+    end
+
+    return slug
   end
 
 end
