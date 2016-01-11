@@ -62,3 +62,14 @@ Duplicate Slugs
  Recommendations
  ===============
  Dashboards connect leads with concierges, and they connect them for the purpose of making recommendations. Both products and tasks are recommendable via a polymorphic relationship.
+ 
+ Products
+ ========
+ Products have some interesting behaviours. First of all, they are primarily derived from the Amazon Product Advertising API at the time of creation. Concierges just put in a product URL and we do a few things:
+  * Parse out the products ID for use with the API
+  * Query the amazon API using that ID
+  * Parse those results and store them in the appropriate database columns
+
+Price Changes
+-------------
+Amazon prices change kind of a lot, so there is a button on the products index page to "Update Prices" which creates a UpdateAllAmazonPricesJob (this is also called once a day by the Heroku scheduler).
