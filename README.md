@@ -58,3 +58,7 @@ Right now, we're just using this slugging structure but **there is no account sy
 Duplicate Slugs
 ---------------
  Duplicate slugs get a number added to the end of them to maintain uniqueness, to the second Tom Waits will be /tom-waits-1 and the third will be /tom-waits-2 and so on.
+ 
+ Recommendations
+ ===============
+ Dashboards connect leads with concierges, and they connect them for the purpose of making recommendations. Both products and tasks are recommendable via a polymorphic relationship.
