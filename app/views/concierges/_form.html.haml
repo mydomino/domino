@@ -2,6 +2,7 @@
   .clearfix
     =form.label :name, class: "block"
     =form.input_field :name, class: 'field rounded-left inline-block left'
-    =form.submit "Save", class: 'left inline-block rounded-right btn bg-blue white'
+  .clearfix.mt2
+    =form.submit "Save", class: 'left inline-block rounded btn bg-blue white'
   %h3 Password
   =link_to "Change my password", edit_concierge_registration_path, class: 'btn bg-blue white rounded'
