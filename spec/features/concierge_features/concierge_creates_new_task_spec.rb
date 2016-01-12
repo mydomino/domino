@@ -9,7 +9,7 @@ RSpec.feature "Concierge creates a new task", type: :feature do
     visit new_task_path
     fill_in "Name", with: 'A Thing to be Done'
     fill_in "Description", with: 'Do the thing!'
-    click_on "Save"
+    click_on "Add Action"
 
     expect(Task.all.size).to eq(1)
   end
