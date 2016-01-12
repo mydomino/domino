@@ -6,7 +6,7 @@ module ApplicationHelper
   def flash_messages(opts = {})
     flash_html = ''
     flash.each do |msg_type, message|
-      flash_html << content_tag(:div, message, class: "p2 border #{class_for(msg_type)} rounded", role: 'alert') do
+      flash_html << content_tag(:div, message, class: "p2 border #{class_for(msg_type)} rounded mb2", role: 'alert') do
         concat message.html_safe
       end
     end
