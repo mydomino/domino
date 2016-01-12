@@ -26,14 +26,6 @@ fieldset {
   margin-top: 0;
   margin-bottom: 0;
 }
-input,
-select,
-textarea,
-fieldset
-.field-font {
-  font-size: 1.5rem;
-  height:auto;
-}
 
 label {
   vertical-align: middle;
@@ -52,7 +44,7 @@ input[type=tel],
 input[type=time],
 input[type=url],
 input[type=week] {
-  height: auto;
+  height: 3rem;
   padding: .5rem .5rem;
   vertical-align: middle;
   -webkit-appearance: none;
