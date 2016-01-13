@@ -8,8 +8,8 @@ RSpec.feature "Concierge creates a new empty storefront", :type => :feature do
     login_as(concierge, scope: :concierge)
 
     visit new_dashboard_path
-    fill_in "Lead's Name", with: Faker::Name.name
-    fill_in "Lead's Email", with: Faker::Internet.email
-    click_on "Create"
+    fill_in "Lead Name", with: Faker::Name.name
+    fill_in "Lead Email", with: Faker::Internet.email
+    click_on "Add User"
   end
 end

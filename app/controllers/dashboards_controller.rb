@@ -21,6 +21,8 @@ class DashboardsController < ApplicationController
 
   def show
     @dashboard = Dashboard.find_by_slug(params[:id].downcase)
+    @products = Product.all
+    @tasks = Task.all
     @filter = params[:filter]
     if(@filter == 'products')
       @completed_recommendations = @dashboard.recommendations.done.where(recommendable_type: "Product").includes(:recommendable)
@@ -40,7 +42,7 @@ class DashboardsController < ApplicationController
   def index
     @filter = params[:filter]
     if(@filter == 'all')
-      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16)
+      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
     else
       @filter = 'mine'
       @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
@@ -48,7 +50,7 @@ class DashboardsController < ApplicationController
     #handle search
     if(params[:search].present?)
       @search_term = params[:search]
-      @dashboards = @dashboards.basic_search(@search_term).paginate(:page => params[:page], :per_page => 16)
+      @dashboards = @dashboards.basic_search(@search_term).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
     end
     if(params[:view] == 'table')
       render 'table_index'
