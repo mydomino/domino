@@ -21,6 +21,9 @@ class DashboardsController < ApplicationController
 
   def show
     @dashboard = Dashboard.find_by_slug(params[:id].downcase)
+    if(@dashboard.nil?)
+      not_found
+    end
     @products = Product.all
     @tasks = Task.all
     @filter = params[:filter]

@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :start_timing, :capture_utm_campaign
   layout :layout_by_resource
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 
   private
 
