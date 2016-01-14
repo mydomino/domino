@@ -5,10 +5,10 @@ class AnalyticsController < ApplicationController
   def show
     @filter = params[:filter]
     if(@filter == 'all')
-      @recent_events = Recommendation.done.timestamped.order(:updated_at).last(10)
+      @recent_events = Recommendation.done.includes(:recommendable).timestamped.order(:updated_at).last(50)
     else
       @filter = 'mine'
-      @recent_events = Recommendation.done.timestamped.where(concierge_id: current_concierge.id).order(:updated_at).last(10)
+      @recent_events = Recommendation.done.includes(:recommendable).timestamped.where(concierge_id: current_concierge.id).order(:updated_at).last(50)
     end
     @dashboard_count = Dashboard.all.count
     @recommendations_count = Recommendation.all.count
