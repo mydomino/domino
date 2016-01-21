@@ -1,11 +1,11 @@
 Domino Website
 ==============
  This documentation is meant to cover all aspects of the Domino code base.
- 
+
 Stack Choices
 ==============
- We run on Ruby on Rails with Unicorn as the server hosted on Heroku. We use a Postgres database (per heroku), HAML templating and sass (using basscss as a css framework). 
- 
+ We run on Ruby on Rails with Unicorn as the server hosted on Heroku. We use a Postgres database (per heroku), HAML templating and sass (using basscss as a css framework).
+
 Static Pages
 ============
  All static pages are handled by the pages controller. Currently this includes:
@@ -14,26 +14,26 @@ Static Pages
  * the about page
  * the terms page
  * the privacy page
- 
+
  Note: The solar page is currently commented out in the routes file because it wasn't updated to use basscss and we had practically zero traffic to it.
 
 Concierge Features
 ==================
   Concierges each have their own login (managed using devise). New logins can be created from the rails console, which is reached by running
-  
+
     heroku run rails console -a domino-production
-    
+
 and then typing
 
     Concierge.create(username: EMAIL, password: PASSWORD)
-    
+
 where EMAIL is the new login's email address and PASSWORD is their temporary password (they can change it by going into their profile).
 
 Blog Routing
 ============
 
  Our blog is run on Wordpress and is reached via a reverse proxy running on the Rails app. The configuration is in /config.ru. Also note that the line:
- 
+
       get '/blog' => redirect("/blog/")
 
 in routes.rb is necessary for this to work.
@@ -53,16 +53,16 @@ Dashboards
 
 Dashboards are a major object in this application, they knit together leads, concierges, and recommendations. They are also slugged by the person's name, so Tom Waits would access his energy dashboard by going to mydomino.com/tom-waits
 
-Right now, we're just using this slugging structure but **there is no account system for leads, all of their dashboards are technically public**. They aren't crawlable beacuse the index is password protected and they are only accessible via slugs, not ID's but it's still very important that we don't store personal information on these pages.
+Right now, we're just using this slugging structure but **there is no account system for leads, all of their dashboards are technically public**. They aren't crawlable because the index is password protected and they are only accessible via slugs, not ID's but it's still very important that we don't store personal information on these pages.
 
 Duplicate Slugs
 ---------------
  Duplicate slugs get a number added to the end of them to maintain uniqueness, to the second Tom Waits will be /tom-waits-1 and the third will be /tom-waits-2 and so on.
- 
+
 Recommendations
 ===============
  Dashboards connect leads with concierges, and they connect them for the purpose of making recommendations. Both products and tasks are recommendable via a polymorphic relationship.
- 
+
 Products
 ========
  Products have some interesting behaviours. First of all, they are primarily derived from the Amazon Product Advertising API at the time of creation. Concierges just put in a product URL and we do a few things:
