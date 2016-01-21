@@ -4,7 +4,7 @@ Domino Website
 
 Stack Choices
 ==============
- We run on Ruby on Rails with Unicorn as the server hosted on Heroku. We use a Postgres database (per heroku), HAML templating and sass (using [Basscss](https://www.basscss.com) as a css framework).
+ We run on Ruby on Rails with Unicorn as the server hosted on Heroku. We use a Postgres database (per heroku), HAML templating and sass (using [Basscss](http://www.basscss.com) as a css framework).
 
 Static Pages
 ============
