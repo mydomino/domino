@@ -27,7 +27,12 @@
         .clearfix.mxn2
           .col.col-12.px2
             =form.label :area_code
-            =form.input_field :area_code, class: "field col-12"
+            =form.input_field :area_code, {class: "number field col-12", 'data-formance_length' =>  5}
+            :javascript
+              $('document').ready(function()
+              {
+                $('input.number').formance('format_number');
+              });
           .col.col-12.px2
             %h4{style:'font-weight:normal;color:#333;padding: 32px 0 8px'} What is your average electricity bill?
             =form.hidden_field :average_electric_bill
