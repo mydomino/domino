@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "User follows the 'Get Started' flow to sign up" do
 
+  let(:campaign_name) { Faker::Lorem.words(3).join('_') }
+
   scenario "beginning on the home page", js: true do
-    visit root_path
+    visit "#{root_path}?utm_campaign=#{campaign_name}"
     first('.btn').click_link('Get Started')
     find('#solar').click
     click_on 'Next'
@@ -14,10 +16,13 @@ RSpec.feature "User follows the 'Get Started' flow to sign up" do
     find('#email').click
     fill_in :lead_email, with: "josh@mydomino.com"
     click_on "Complete"
-    expect(page).to have_content("Thanks Josh Morrow")
 
+
+    expect(page).to have_content("Thanks Josh Morrow")
     expect(Lead.count).to eq(1)
+    expect(Lead.first.campaign).to eq(campaign_name)
   end
+
 
   scenario 'user selects solar by clicking on the icon' do
     

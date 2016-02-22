@@ -19,6 +19,7 @@ class SaveToZohoJob < ActiveJob::Base
       zoho_lead.interested_in_energy_plan = lead.interested_in_energy_plan
       zoho_lead.monthly_electric_bill = lead.monthly_electric_bill
       zoho_lead.zip_code = lead.area_code
+      zoho_lead.campaign = lead.campaign
     end
     zoho_lead.save
     lead.update_attributes(saved_to_zoho: true)

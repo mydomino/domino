@@ -38,7 +38,7 @@ class LeadsController < ApplicationController
   end
 
   def session_params
-    keys = %i(ip referer browser start_time source)
+    keys = %i(ip referer browser start_time campaign)
     keys.each_with_object({}) do |str, hsh|
       hsh[str] = session[str]
     end
