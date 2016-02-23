@@ -24,13 +24,6 @@ class GetStartedsController < ApplicationController
 
   private
 
-  def session_params
-    keys = %i(ip referer browser start_time campaign)
-    keys.each_with_object({}) do |str, hsh|
-      hsh[str] = session[str]
-    end
-  end
-  
   def lead_params
     params.require(:lead).permit(:first_name, :last_name, :email, :address, :phone, :get_started_id, :subscribe_to_mailchimp).merge(session_params)
   end
