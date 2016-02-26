@@ -35,6 +35,8 @@ gem 'will_paginate'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
+gem "skylight"
+
 
 gem 'unicorn'
 
