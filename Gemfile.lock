@@ -155,8 +155,6 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
-    intercom-rails (0.2.29)
-      activesupport (> 3.0)
     jeff (1.5.1)
       excon (>= 0.22.1)
     jquery-rails (4.0.5)
@@ -382,7 +380,6 @@ DEPENDENCIES
   haml-rails
   heap
   html2haml
-  intercom-rails
   jquery-rails
   jquery-ui-rails
   json
