@@ -16,9 +16,7 @@ gem 'json'
 gem 'rubyzoho'
 gem 'actionpack-action_caching'
 gem 'sitemap_generator'
-gem 'intercom-rails'
 gem 'airbrake'
-gem 'newrelic_rpm'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
@@ -36,6 +34,7 @@ gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
 gem 'unicorn-worker-killer'
+gem "skylight"
 
 gem 'unicorn'
 
