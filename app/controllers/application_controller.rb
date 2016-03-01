@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for concierge
-    Heap.identify(current_concierge.email, name: current_concierge.name, role: "Concierge")
+    #Background job?
+    #Heap.identify(current_concierge.email, name: current_concierge.name, role: "Concierge")
     dashboards_path
   end
 
