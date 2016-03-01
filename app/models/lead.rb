@@ -65,11 +65,7 @@ class Lead < ActiveRecord::Base
 
   def upload_subscription_to_mailchimp
     if(subscribe_to_mailchimp)
-      mailchimp = Mailchimp::API.new(ENV['MAILCHIMP_API_KEY'])
-      mailchimp.lists.subscribe('0e3b74fe55', 
-      { 
-        "email" => email
-      })
+      SubscribeToMailchimpJob.perform_later self
     end
   end
 

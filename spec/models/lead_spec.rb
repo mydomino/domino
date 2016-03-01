@@ -31,6 +31,12 @@ describe Lead, type: :model do
     expect { subject }.to enqueue_a(SaveToZohoJob)
   end
 
+  it 'subscribes itself to MailChimp upon creation' do
+    lead = FactoryGirl.build(:lead, subscribe_to_mailchimp: true)
+
+    expect{ lead.save }.to enqueue_a(SubscribeToMailchimpJob)
+  end
+
   it 'send an email to the correct address' do
     welcome_email = spy('welcome_email')
     allow(UserMailer).to receive(:welcome_email).and_return(welcome_email)

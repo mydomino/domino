@@ -25,7 +25,13 @@ class GetStartedsController < ApplicationController
   private
 
   def lead_params
-    params.require(:lead).permit(:first_name, :last_name, :email, :address, :phone, :get_started_id, :subscribe_to_mailchimp).merge(session_params)
+    params.require(:lead).permit(:first_name,
+                                 :last_name,
+                                 :email,
+                                 :address,
+                                 :phone,
+                                 :get_started_id,
+                                 :subscribe_to_mailchimp).merge(session_params)
   end
 
   def set_tracking_variables
