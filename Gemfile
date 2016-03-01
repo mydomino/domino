@@ -34,7 +34,6 @@ gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
 gem 'unicorn-worker-killer'
-gem "skylight"
 
 gem 'unicorn'
 
@@ -42,23 +41,26 @@ group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
-group :development, :test do
+group :development do
+  gem 'rack-mini-profiler'
   gem 'derailed'
   gem 'html2haml'
-  gem 'database_cleaner'
-  gem 'simplecov'
-  gem 'byebug'
-  gem 'dotenv-rails'
-  gem 'rack-mini-profiler'
-  gem 'rspec-rails'
-  gem 'rspec-activejob'
-  gem 'teaspoon-jasmine'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
   gem 'erb2haml'
 end
 
+group :development, :test do
+  gem 'byebug'
+  gem 'dotenv-rails'
+  gem 'spring'
+end
+
 group :test do
+  gem 'simplecov'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'rspec-activejob'
+  gem 'teaspoon-jasmine'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'capybara'
@@ -70,4 +72,5 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'workless'
+  gem 'skylight'
 end
