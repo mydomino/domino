@@ -72,6 +72,5 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'workless'
   gem 'skylight'
 end
