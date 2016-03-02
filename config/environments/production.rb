@@ -94,6 +94,6 @@ Rails.application.configure do
 
   config.after_initialize do
     #DelayedJob Workless
-    Delayed::Job.scaler = :local
+    Delayed::Job.scaler = :heroku
   end
 end

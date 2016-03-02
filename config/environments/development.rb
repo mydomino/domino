@@ -50,8 +50,4 @@ Rails.application.configure do
     Bullet.alert = true
   end
 
-  #config.after_initialize do
-    #DelayedJob Workless
-  #  Delayed::Job.scaler = :local
-  #end
 end
