@@ -91,9 +91,4 @@ Rails.application.configure do
     :domain => 'mydomino.com'
   }
 
-
-  config.after_initialize do
-    #DelayedJob Workless
-    Delayed::Job.scaler = :heroku
-  end
 end
