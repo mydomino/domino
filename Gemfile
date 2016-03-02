@@ -47,6 +47,7 @@ group :development do
   gem 'html2haml'
   gem 'web-console', '~> 2.0'
   gem 'erb2haml'
+  gem "bullet"
 end
 
 group :development, :test do

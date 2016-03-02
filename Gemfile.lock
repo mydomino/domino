@@ -52,6 +52,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (8.2.2)
     capybara (2.6.2)
       addressable
@@ -338,6 +341,7 @@ GEM
     unicorn-worker-killer (0.4.4)
       get_process_mem (~> 0)
       unicorn (>= 4, < 6)
+    uniform_notifier (1.9.0)
     vacuum (1.4.0)
       jeff (~> 1.0)
       multi_xml (~> 0.5.0)
@@ -370,6 +374,7 @@ DEPENDENCIES
   airbrake
   animate-rails
   autoprefixer-rails
+  bullet
   byebug
   capybara
   coffee-rails (~> 4.1.0)

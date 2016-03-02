@@ -4,14 +4,13 @@ class DashboardsController < ApplicationController
 
   def new
     @dashboard = Dashboard.new
-    @concierges = Concierge.all
   end
 
   def create
     @dashboard = Dashboard.create(dashboard_params)
     @dashboard.concierge = current_concierge
-    @dashboard.product_ids = Product.where(default: true).ids
-    @dashboard.task_ids = Task.where(default: true).ids
+    @dashboard.products = Product.default
+    @dashboard.tasks = Task.default
     if @dashboard.save
       redirect_to @dashboard
     else
@@ -37,7 +36,7 @@ class DashboardsController < ApplicationController
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
-        respond_to do |format|
+    respond_to do |format|
       format.html {render :layout => 'dashboard'}
     end
   end
@@ -45,15 +44,15 @@ class DashboardsController < ApplicationController
   def index
     @filter = params[:filter]
     if(@filter == 'all')
-      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
+      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16)
     else
       @filter = 'mine'
-      @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
+      @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16)
     end
     #handle search
     if(params[:search].present?)
       @search_term = params[:search]
-      @dashboards = @dashboards.basic_search(@search_term).paginate(:page => params[:page], :per_page => 16).includes(:recommendations)
+      @dashboards = @dashboards.basic_search(@search_term).paginate(:page => params[:page], :per_page => 16)
     end
     if(params[:view] == 'table')
       render 'table_index'
@@ -72,7 +71,7 @@ class DashboardsController < ApplicationController
   private
 
   def dashboard_params
-    params.require(:dashboard).permit(:lead_name, :lead_email, :concierge_id, :recommendations_attributes => [:product_id])
+    params.require(:dashboard).permit(:lead_name, :lead_email, :concierge_id)
   end
 
 end

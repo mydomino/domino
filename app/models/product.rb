@@ -6,6 +6,8 @@ class Product < ActiveRecord::Base
 
   after_create :retrieve_amazon_details
 
+  scope :default, -> { where(default: true) }
+
   #to be called by delayed job
   def update_amazon_price
     response = query_amazon_api product_id

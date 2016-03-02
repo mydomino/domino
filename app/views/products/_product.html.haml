@@ -1,5 +1,6 @@
-.pointer{data: {toggle: 'modal', target: "#product-#{product.id}"}}
-  %div.flex
-    =image_tag product.image_url, style: 'max-height: 225px;margin: auto;'
-  %h4.center.bold.truncate
-    =product.name
+-cache(product.cache_key) do
+  .pointer{data: {toggle: 'modal', target: "#product-#{product.id}"}}
+    %div.flex
+      =image_tag product.image_url, style: 'max-height: 225px;margin: auto;'
+    %h4.center.bold.truncate
+      =product.name

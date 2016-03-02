@@ -21,12 +21,3 @@
                 =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'btn block center bg-blue white rounded', method: "POST"
               -else
                 =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'center btn block bg-blue white rounded', method: "DELETE"
-          -if recommendation.comment.present?
-            %hr
-            .clearfix
-              .col-12
-                %h5.caps.bold
-                  =recommendation.concierge.name
-                  Says
-                %p
-                  =recommendation.comment

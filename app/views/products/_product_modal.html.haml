@@ -20,12 +20,3 @@
                 =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn block center bg-blue white rounded', method: :post
               -else
                 =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn block center bg-blue white rounded', method: :delete
-          -if recommendation.comment.present?
-            %hr
-            .row
-              .col-xs-12
-                %h5.uppercase.bold 
-                  =recommendation.concierge.name
-                  Says
-                %p
-                  =recommendation.comment

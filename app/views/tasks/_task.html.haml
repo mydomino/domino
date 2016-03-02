@@ -1,8 +1,9 @@
-.pointer{data: {toggle: 'modal', target: "#task-#{task.id}"}}
-  .center.py2
-    =image_tag task.icon, style: 'max-height: 100px;'
-  %h4.center.caps.bold.truncate
-    =task.name
-  .description{style: 'max-height: 90px;overflow: hidden;' }
-    %p
-      =task.description
+-cache(task.cache_key) do
+  .pointer{data: {toggle: 'modal', target: "#task-#{task.id}"}}
+    .center.py2
+      =image_tag task.icon, style: 'max-height: 100px;'
+    %h4.center.caps.bold.truncate
+      =task.name
+    .description{style: 'max-height: 90px;overflow: hidden;' }
+      %p
+        =task.description
