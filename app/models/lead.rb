@@ -60,7 +60,7 @@ class Lead < ActiveRecord::Base
   end
 
   def deliver_thank_you_email
-    UserMailer.welcome_email(email).deliver_later if email.present?
+    UserMailer.welcome_email(email).deliver_later if Devise::email_regexp.match(email)
   end
 
   def upload_subscription_to_mailchimp
