@@ -1,3 +1,4 @@
+require 'retries'
 class Product < ActiveRecord::Base
   has_many :recommendations, as: :recommendable, dependent: :destroy
   has_many :dashboards, through: :recommendations, source: :recommendable
@@ -10,9 +11,13 @@ class Product < ActiveRecord::Base
 
   #to be called by delayed job
   def update_amazon_price
-    response = query_amazon_api product_id
+    #retries in case of 503 due to server overloading
+    response = with_retries(:max_tries => 5) { puts "inside retry"; query_amazon_api product_id }
+    # response = query_amazon_api product_id
     parsed_response = Nokogiri::XML(response.body)
-    self.price = parsed_response.at_css("Price FormattedPrice").content
+    # self.price = parsed_response.at_css("Price FormattedPrice").content
+    # Using ternary operation in case product doesn't have a price listing in expected place
+    self.price = !parsed_response.at_css('Price FormattedPrice').nil? ? parsed_response.at_css('Price FormattedPrice').text : parsed_response.at_css('FormattedPrice').text
     self.save
   end
 

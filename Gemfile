@@ -34,6 +34,7 @@ gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
 gem 'unicorn-worker-killer'
+gem 'retries'
 
 gem 'unicorn'
 
