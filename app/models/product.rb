@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   #to be called by delayed job
   def update_amazon_price
     #retries in case of 503 due to server overloading
-    response = with_retries(:max_tries => 5) { puts "inside retry"; query_amazon_api product_id }
+    response = with_retries(:max_tries => 5, :max_sleep_seconds => 2.0 ){ query_amazon_api product_id }
     # response = query_amazon_api product_id
     parsed_response = Nokogiri::XML(response.body)
     # self.price = parsed_response.at_css("Price FormattedPrice").content
