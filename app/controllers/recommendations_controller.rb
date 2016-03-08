@@ -17,10 +17,10 @@ class RecommendationsController < ApplicationController
     redirect_to @recommendation.dashboard
   end
 
-  def new
-    @dashboard = Dashboard.friendly.find(params[:dashboard_id])
-    @recommendation = Recommendation.new
-  end
+  # def new
+  #   @dashboard = Dashboard.friendly.find(params[:dashboard_id])
+  #   @recommendation = Recommendation.new
+  # end
 
   def create
     @dashboard = Dashboard.friendly.find(params[:dashboard_id])
@@ -34,11 +34,11 @@ class RecommendationsController < ApplicationController
     end
   end
 
-  def update
-    @recommendation = Recommendation.find(params[:id])
-    @recommendation.update_attributes(update_recommendation_params)
-    redirect_to @recommendation.dashboard
-  end
+  # def update
+  #   @recommendation = Recommendation.find(params[:id])
+  #   @recommendation.update_attributes(update_recommendation_params)
+  #   redirect_to @recommendation.dashboard
+  # end
 
   def bulk_update
     @dashboard = Dashboard.friendly.find(params[:dashboard_id])
@@ -80,11 +80,11 @@ class RecommendationsController < ApplicationController
   end
 
   def create_recommendation_params
-    params.require(:recommendation).permit(:comment, :global_recommendable).merge(dashboard_id: @dashboard.id)
+    params.require(:recommendation).permit(:global_recommendable).merge(dashboard_id: @dashboard.id)
   end
 
-  def update_recommendation_params
-    params.require(:recommendation).permit(:comment)
-  end
+  # def update_recommendation_params
+  #   params.require(:recommendation).permit(:comment)
+  # end
 
 end
