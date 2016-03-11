@@ -12,23 +12,23 @@
           =hidden_field_tag 'view', 'table'
           =submit_tag 'Search', class: 'btn blue pull-right'
     .col.col-12
-      -@dashboards.each_slice(4) do |dashboards|
-        .clearfix
-          %table.table-light
+      .clearfix
+        %table.table-light
+          %tr
+            %th Lead Name
+            %th Lead Email
+            %th Products Done
+            %th Actions Done
+            %th Delete
+          -@dashboards.each do |dashboard|
             %tr
-              %th Lead Name
-              %th Products Done
-              %th Actions Done
-              %th Delete
-            -dashboards.each do |dashboard|
-              %tr
-                %td
-                  =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank'
-                %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
-
-                %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
-                %td
-                  =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}
+              %td
+                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank'
+              %td #{dashboard.lead_email}
+              %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
+              %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
+              %td
+                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}
   .clearfix
     .col.col-12
       = will_paginate @dashboards
