@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308185847) do
+ActiveRecord::Schema.define(version: 20160314175011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+
+  create_table "clones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "concierges", force: :cascade do |t|
     t.string   "name"
@@ -53,6 +60,8 @@ ActiveRecord::Schema.define(version: 20160308185847) do
     t.datetime "updated_at",                 null: false
     t.string   "lead_email"
   end
+
+  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -128,6 +137,9 @@ ActiveRecord::Schema.define(version: 20160308185847) do
     t.datetime "updated_at"
     t.integer  "updated_by"
   end
+
+  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
+  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "icon"
