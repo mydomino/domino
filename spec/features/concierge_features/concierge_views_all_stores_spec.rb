@@ -9,6 +9,6 @@ RSpec.feature "Views all of their stores" do
 
     visit dashboards_path
 
-    expect(page).to have_css('.dashboard-list', text: store.lead_name)
+    expect(page).to have_css('.dashboard-record', text: store.lead_name)
   end
 end

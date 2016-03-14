@@ -52,12 +52,7 @@ class DashboardsController < ApplicationController
     #handle search
     if(params[:search].present?)
       @search_term = params[:search]
-      @dashboards = @dashboards.basic_search(@search_term).paginate(:page => params[:page], :per_page => 16)
-    end
-    if(params[:view] == 'table')
-      render 'table_index'
-    else
-      render 'index'
+      @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 16)
     end
   end
 

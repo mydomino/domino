@@ -47,6 +47,7 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.3.3.1)
       execjs
+    basscss-rails (4.1.0)
     bcrypt (3.1.10)
     benchmark-ips (2.5.0)
     binding_of_caller (0.7.2)
@@ -364,6 +365,7 @@ DEPENDENCIES
   airbrake
   animate-rails
   autoprefixer-rails
+  basscss-rails
   bullet
   byebug
   capybara
