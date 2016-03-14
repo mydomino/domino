@@ -1,4 +1,5 @@
 class DashboardsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :authenticate_concierge!, except: :show
   layout 'concierge', except: :show
 
@@ -26,6 +27,7 @@ class DashboardsController < ApplicationController
     @products = Product.all
     @tasks = Task.all
     @filter = params[:filter]
+
     if(@filter == 'products')
       @completed_recommendations = @dashboard.recommendations.done.where(recommendable_type: "Product").includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.where(recommendable_type: "Product").includes(:recommendable)
@@ -43,16 +45,17 @@ class DashboardsController < ApplicationController
 
   def index
     @filter = params[:filter]
+
     if(@filter == 'all')
-      @dashboards = Dashboard.all.paginate(:page => params[:page], :per_page => 16)
+      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @filter = 'mine'
-      @dashboards = Dashboard.where(concierge: current_concierge).paginate(:page => params[:page], :per_page => 16)
+      @dashboards = Dashboard.where(concierge: current_concierge).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
     #handle search
     if(params[:search].present?)
       @search_term = params[:search]
-      @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 16)
+      @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
@@ -65,6 +68,13 @@ class DashboardsController < ApplicationController
 
   private
 
+  def sort_column
+    Dashboard.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
+  end
   def dashboard_params
     params.require(:dashboard).permit(:lead_name, :lead_email, :concierge_id)
   end

@@ -13,15 +13,20 @@
           =submit_tag 'Search', class: 'btn blue pull-right'
     .col.col-12
       .clearfix
-        %table.table-light
+        %table.table-light#tbl-dashboards
           %tr
-            %th Lead Name
-            %th Lead Email
+            %th 
+              =sortable "created_at", "Created", filter: @filter
+            %th 
+              =sortable "lead_name", filter: @filter
+            %th 
+              =sortable "lead_email", filter: @filter
             %th Products Done
             %th Actions Done
             %th Delete
           -@dashboards.each do |dashboard|
             %tr.dashboard-record
+              %td #{dashboard.created_at.strftime("%Y-%m-%d")}
               %td
                 =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank'
               %td #{dashboard.lead_email}
