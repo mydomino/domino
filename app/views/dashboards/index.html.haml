@@ -21,7 +21,7 @@
             %th Actions Done
             %th Delete
           -@dashboards.each do |dashboard|
-            %tr
+            %tr.dashboard-record
               %td
                 =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank'
               %td #{dashboard.lead_email}
