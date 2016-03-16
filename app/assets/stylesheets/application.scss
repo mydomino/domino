@@ -16,7 +16,10 @@
  *= require nprogress
  */
 
-@import "basscss";
+@import 'custom';
+@import "basscss/basscss";
+@import "basscss/basscss-addons";
+//@import "basscss7";
 @import "colors";
 @import "buttons";
 @import "components";
