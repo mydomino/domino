@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   caches_action :index, :about, :terms, :privacy, :solar
 
   def index
-    
+    @profile = Profile.new
   end
 
   def about

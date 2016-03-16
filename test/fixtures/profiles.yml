@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  address_line_1: MyString
+  address_line_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  phone: MyString
+  housing: MyString
+  avg_electrical_bill: 1
+  availability_id: 
+  comments: MyString
+  partner_code: MyString
+  onboard_complete: false
+  onboard_step: 1
+
+two:
+  user_id: 
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  address_line_1: MyString
+  address_line_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  phone: MyString
+  housing: MyString
+  avg_electrical_bill: 1
+  availability_id: 
+  comments: MyString
+  partner_code: MyString
+  onboard_complete: false
+  onboard_step: 1
