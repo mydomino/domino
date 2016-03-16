@@ -36,6 +36,7 @@ gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
 gem 'unicorn-worker-killer'
 gem 'retries'
+gem 'pundit'
 
 gem 'unicorn'
 
