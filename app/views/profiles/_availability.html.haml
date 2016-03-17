@@ -1,0 +1,7 @@
+%h1 Availability
+=simple_form_for @profile, remote: true do |form|
+  =form.input :availability
+  =form.label :comments, "Additional Comments"
+  =form.input :comments
+  =form.submit "back"
+  =form.submit "Next"

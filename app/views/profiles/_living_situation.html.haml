@@ -1,0 +1,10 @@
+%h1 Living Situation
+=simple_form_for @profile, remote: true do |form|
+  =form.input :address_line_1
+  =form.input :address_line_2
+  =form.input :city
+  =form.input :state
+  =form.input :zip_code
+  =form.input :phone
+  =form.submit "back"
+  =form.submit "Next"

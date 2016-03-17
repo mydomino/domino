@@ -48,14 +48,17 @@
           %br
             Switch to clean. 
         %p.white Join the action path to your 100% clean energy lifestyle.
-        %form
-          %input.mx1{placeholder: "FIRST NAME"}
-          %input.mx1{placeholder: "LAST NAME"}
-          %br
-          .col-12
-            %input.m1{placeholder: "EMAIL ADDRESS"}
-          %br
-          %input.btn.rounded.bg-blue.white{type: 'Submit', value: 'GET STARTED'}
+        =render 'profiles/steps'
+        #profile-forms.py4
+          =render 'profiles/name_and_email'
+        / %form
+        /   %input.mx1{placeholder: "FIRST NAME"}
+        /   %input.mx1{placeholder: "LAST NAME"}
+        /   %br
+        /   .col-12
+        /     %input.m1{placeholder: "EMAIL ADDRESS"}
+        /   %br
+        /   %input.btn.rounded.bg-blue.white{type: 'Submit', value: 'GET STARTED'}
         /#=link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 pill caps border-none', style:'background-image:linear-gradient(#287dba, #165683)'
 .bg-heather.py4
   .container

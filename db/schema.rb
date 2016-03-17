@@ -11,11 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316173823) do
+ActiveRecord::Schema.define(version: 20160316220506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.boolean  "morning"
+    t.boolean  "afternoon"
+    t.boolean  "evening"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clones", force: :cascade do |t|
     t.string   "name"
@@ -88,6 +103,16 @@ ActiveRecord::Schema.define(version: 20160316173823) do
     t.datetime "updated_at",            null: false
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "offering_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "interests", ["offering_id"], name: "index_interests_on_offering_id", using: :btree
+  add_index "interests", ["profile_id"], name: "index_interests_on_profile_id", using: :btree
+
   create_table "leads", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -132,6 +157,12 @@ ActiveRecord::Schema.define(version: 20160316173823) do
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
+  create_table "offerings", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "url"
     t.string   "product_id"
@@ -144,6 +175,31 @@ ActiveRecord::Schema.define(version: 20160316173823) do
     t.string   "name"
     t.boolean  "default",     default: false
   end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "housing"
+    t.integer  "avg_electrical_bill"
+    t.integer  "availability_id"
+    t.string   "comments"
+    t.string   "partner_code"
+    t.boolean  "onboard_complete"
+    t.integer  "onboard_step"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "profiles", ["availability_id"], name: "index_profiles_on_availability_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "recommendations", force: :cascade do |t|
     t.integer  "user_id"
@@ -185,9 +241,15 @@ ActiveRecord::Schema.define(version: 20160316173823) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "role"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "interests", "offerings"
+  add_foreign_key "interests", "profiles"
+  add_foreign_key "profiles", "availabilities"
+  add_foreign_key "profiles", "users"
 end
