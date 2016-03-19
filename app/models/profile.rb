@@ -7,6 +7,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class Profile < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :availability
   has_many :interests, dependent: :destroy
@@ -14,4 +15,17 @@ class Profile < ActiveRecord::Base
 
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
+
+  after_create :save_to_zoho
+  after_update :update_zoho
+
+  def save_to_zoho
+    SaveToZohoJob.perform_later self
+  end
+
+  def update_zoho
+    UpdateZohoJob.perform_now self
+    # UpdateZohoJob.perform_later self
+
+  end
 end
