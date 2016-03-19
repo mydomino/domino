@@ -1,4 +1,7 @@
 %h1 Living Situation
+-flash.each do |key, value|
+  .flash
+    =value
 =simple_form_for @profile, remote: true do |form|
   =form.input :address_line_1
   =form.input :address_line_2

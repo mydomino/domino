@@ -1,6 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout 'concierge'
+  # layout 'concierge'
   
+  def after_sign_up_path_for(resource)
+    '/' # Or :prefix_to_your_route
+  end
   protected
 
     def after_update_path_for(resource)

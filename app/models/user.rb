@@ -4,4 +4,11 @@ class User < ActiveRecord::Base
   has_one :profile
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  # after_create :schedule_geocode, :deliver_thank_you_email, :save_to_zoho, :upload_subscription_to_mailchimp
+  after_create :save_to_zoho
+
+  def save_to_zoho
+    SaveToZohoJob.perform_later self
+  end
 end

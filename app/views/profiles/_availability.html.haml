@@ -1,4 +1,7 @@
 %h1 Availability
+-flash.each do |key, value|
+  .flash
+    =value
 =simple_form_for @profile, remote: true do |form|
   =form.input :availability
   =form.label :comments, "Additional Comments"
