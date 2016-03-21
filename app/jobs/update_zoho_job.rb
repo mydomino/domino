@@ -1,15 +1,36 @@
 class UpdateZohoJob <  ActiveJob::Base
   queue_as :default
 
+  #TODO CHANGE LEAD TO PROFILE
   def perform(lead)
-    l = RubyZoho::Crm::Lead.find_by_email(lead.email)
-    # byebug
-    RubyZoho::Crm::Lead.update(
-      :id => l.first.leadid,
-      :first_name => lead.first_name,
-      :last_name => lead.last_name,
-      # :email => lead.email
-    )
+    # begin
+      l = RubyZoho::Crm::Lead.find_by_email(lead.email)
+      # byebug
+      RubyZoho::Crm::Lead.update(
+        :id => l.first.leadid,
+        :first_name => lead.first_name,
+        :last_name => lead.last_name,
+
+        :street => "#{lead.address_line_1}, #{lead.address_line_2}",
+        :city => lead.city,
+        :state => lead.state,
+        :zip_code => lead.zip_code,
+        :phone => lead.phone
+        # :email => lead.email
+      )
+
+      #update interests using xml, for only text fields can be updated w/ rubyzoho
+      @interests = []
+      
+      lead.offerings.each do |o|
+        @interests << o.name 
+      end
+
+      uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?authtoken=43a02c5e40acfc842e2e8ed75424ecdf&scope=crmapi&id=#{l.first.leadid}&xmlData=<Leads><row no='1'><FL val='test_interests'>#{@interests.join(';')};</FL></row></Leads>"
+      url = URI.parse(uri);
+      Net::HTTP.post_form(url, {})
+    # rescue => e
+    # end
     # zoho_lead = RubyZoho::Crm::Lead.find_by_email(lead.email) do |zoho_lead|
     #   zoho_lead.first_name = lead.first_name
     #   #last_name is a required field in zoho

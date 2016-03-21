@@ -19,12 +19,23 @@ class Profile < ActiveRecord::Base
   after_create :save_to_zoho
   after_update :update_zoho
 
+  accepts_nested_attributes_for :offerings
+
+  
+
   def save_to_zoho
     SaveToZohoJob.perform_now self
   end
 
   def update_zoho
-    UpdateZohoJob.perform_now self
+    begin
+      UpdateZohoJob.perform_now self
+      # UpdateZohoJob.perform_now self
+    rescue => each
+      puts "UNABLE TO UPDATE RECORD!!!!!!!!!!!!!!"
+    end
+
     # UpdateZohoJob.perform_later self
   end
+  handle_asynchronously :update_zoho, :run_at => Proc.new { 3.minutes.from_now }
 end

@@ -60,10 +60,6 @@ class ProfilesController < ApplicationController
     @response = {form: FORMS[session[:profile_step]], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
   end
-
-  def render_same_response
-    {form: FORMS[session[:profile_step]], method: :put}
-  end
   
   def profile_params
     params.require(:profile).permit(
