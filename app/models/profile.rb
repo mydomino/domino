@@ -20,12 +20,11 @@ class Profile < ActiveRecord::Base
   after_update :update_zoho
 
   def save_to_zoho
-    SaveToZohoJob.perform_later self
+    SaveToZohoJob.perform_now self
   end
 
   def update_zoho
     UpdateZohoJob.perform_now self
     # UpdateZohoJob.perform_later self
-
   end
 end

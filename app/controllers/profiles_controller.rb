@@ -64,6 +64,7 @@ class ProfilesController < ApplicationController
   def render_same_response
     {form: FORMS[session[:profile_step]], method: :put}
   end
+  
   def profile_params
     params.require(:profile).permit(
       :first_name, 
