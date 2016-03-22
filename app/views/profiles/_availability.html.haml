@@ -1,10 +1,36 @@
-%h1 Availability
 -flash.each do |key, value|
   .flash
     =value
-=simple_form_for @profile, remote: true do |form|
-  =form.input :availability
-  =form.label :comments, "Additional Comments"
-  =form.input :comments
-  =form.submit "back"
-  =form.submit "Next"
+%h1.center What's the best time to reach you?
+.clearfix
+  .sm-col.sm-col-4 &nbsp;
+  .sm-col.sm-col-4.center
+    =simple_form_for @profile, remote: true do |form|
+      %button#btn-m.bg-white{type: "button"} M
+      %button#btn-tu{type: "button"} Tu
+      %button#btn-w{type: "button"} W
+      %button#btn-th{type: "button"} Th
+      %button#btn-f{type: "button"} F
+      %button#btn-sa{type: "button"} Sa
+      %button#btn-su{type: "button"} Su
+      %br
+      %button#btn-morning{type: "button"} Mornings
+      %button#btn-afternoon{type: "button"} Afternoons
+      %button#btn-evening{type: "button"} Evenings
+      / =form.input :availability, as: :check_boxes, collection: [['Day 1', 1], ['Day 2', 2]]
+
+      / =form.simple_fields_for :availability, @@profile.availability.build do |a|
+      /   =a
+      / =form.association :availability, :as => :check_boxes, collection: Availability.column_names, :checked => @checked_availability
+      =form.simple_fields_for :availability do |a|
+        =a.input :monday, as: :boolean, checked_value: true, unchecked_value: false
+      end
+
+      %br
+      =form.label  "Comments"
+      %br
+      =form.input_field :comments
+      .sm-col.sm-col-12
+        =form.submit "back"
+        =form.submit "Next"
+

@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
       @profile.onboard_step = session[:profile_step] + 1;
+      @profile.build_availability
       
       if @profile.save
         render_response
@@ -39,6 +40,7 @@ class ProfilesController < ApplicationController
 
     # end
     # @context = context params[:form]
+    #todo render same for with errors in case update cannot be performed
     render_response
   end
 
@@ -73,6 +75,10 @@ class ProfilesController < ApplicationController
       :state, 
       :zip_code, 
       :phone,
+      :housing,
+      :avg_electrical_bill,
+      {:availability_attributes => [:monday] },
+      :comments,
       :partner_code
     )
   end

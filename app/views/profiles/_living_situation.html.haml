@@ -1,27 +1,67 @@
 
-%h1 Let's learn about your home
--flash.each do |key, value|
-  .flash
-    =value
-=simple_form_for @profile, remote: true do |form|
-  =form.input :address_line_1
-  =form.input :address_line_2
-  =form.input :city
-  =form.input :state
-  =form.input :zip_code
-  =form.input :phone
-  =form.input :housing, :as => :hidden, :input_html => { :value => "" }
-  =form.submit "back"
-  =form.submit "Next"
+.clearfix
+  -flash.each do |key, value|
+    .flash.center
+      =value
+  %h1.center Let's learn about your home
+  .sm-col.sm-col-2 &nbsp;
+  =simple_form_for @profile, remote: true do |form|
+    .sm-col.sm-col-4
+      %label ADDRESS LINE 1
+      %br
+      =form.input_field :address_line_1
+      %br
+      %label ADDRESS LINE 2
+      %br
+      =form.input_field :address_line_2, label: false
+      %br
+      %label CITY
+      %br
+      =form.input_field :city
+      %br
+      %label STATE
+      %br
+      =form.input_field :state
+      %br
+      %label ZIP
+      %br
+      =form.input_field :zip_code
+      %br
+      %label PHONE
+      %br  
+      =form.input_field :phone
+      
+    .sm-col.sm-col-4.center
+      %label Housing
+      %br
+      %button#btn-rent{type: "button"} RENT
+      %button#btn-own{type: "button"} OWN
+      #slider
+      %p
+        $
+        %span#slider_val 0
+      =form.input :housing, :as => :hidden, :input_html => { :value => "" }
+      =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => "0" }
 
-%label Housing
-%button#btn-rent RENT
-%button#btn-own OWN
 
-#slider
+    .sm-col.sm-col-12.center
+      =form.submit "back"
+      =form.submit "Next"
 
 :javascript
   $( "#slider" ).slider({
     animate: "fast",
-    max: 500
+    max: 250, 
+    slide: function( event, ui ) {
+      $('#slider_val').html(ui.value);
+      $('#profile_avg_electrical_bill').val(ui.value);
+    }
+  });
+
+  $('#btn-rent').on('click', function(){
+    $('#profile_housing').val("rent")
+  });
+
+  $('#btn-own').on('click', function(){
+    $('#profile_housing').val("own")
   });
