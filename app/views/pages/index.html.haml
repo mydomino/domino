@@ -48,8 +48,8 @@
           %br
             Switch to clean. 
         %p.white Join the action path to your 100% clean energy lifestyle.
-        =render 'profiles/steps'
-        #profile-forms.py4
+        /-=render 'profiles/steps'
+        #profile-forms.py1
           =render 'profiles/name_and_email'
         / %form
         /   %input.mx1{placeholder: "FIRST NAME"}
@@ -60,60 +60,183 @@
         /   %br
         /   %input.btn.rounded.bg-blue.white{type: 'Submit', value: 'GET STARTED'}
         /#=link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 pill caps border-none', style:'background-image:linear-gradient(#287dba, #165683)'
-.bg-heather.py4
-  .container
-    .clearfix.px2
-      .sm-col-12.md-col-4.mx-auto
-        =embedded_svg 'testimonial.svg'
-    .clearfix
-      .sm-col-12.md-col-10.mx-auto.center.py2
-        -# .h1.text-center
-        -#   =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;", class:"mr2"
-        -#   With very little effort on my part, I'll be saving hundreds a month and using clean energy.
-        -#   =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;", class:"ml2"
-        .h1.text-center
+/ .bg-white.max-width-4.mx-auto
+/   .clearfix.py3
+/     %h4.center HOW TO 
+/     %h1.center DITCH &amp; SWITCH  
+/     .sm-col.sm-col-4.mx-auto
+/       %h2.center 1. Talk With Us
+/       %p.center
+/         Chat with our concierges to set up your
+/         %br 
+/           path to clean energy savings
 
-          &ldquo; With very little effort on my part, I'll be saving hundreds a month and using clean energy. &rdquo;
+/     .sm-col.sm-col-4.mx-auto
+/       %h2.center 2. Take Action 
+/       %p.center
+/         Begin your action path with vetted
+/         %br
+/           products & services 
+/     .sm-col.sm-col-4.mx-auto
+/       %h2.center 3. Track Progress
+/       %p.center
+/         Track the progress of your path to a
+/         %br
+/           clean energy lifestyle
 
-        .h3.text-center.caps.py3
-          Julia C.
-          %br
-          Sebastopol, CA
-.container.py4
-  .clearfix.px2
-    .sm-col-12.md-col.md-col-6
-      =embedded_svg('solarpanel.svg')
-    .sm-col-12.md-col.md-col-6.py4
-      %h1
-        Going solar can be confusing.
-        %br
-        We make it easy.
-      %p
-        Figuring out how to go solar can be overwhelming, but it doesn’t have to be.
-      %p
-        At MyDomino, a personal energy savings concierge will help you figure out which solar options are best for your household. We'll get you quotes, help you compare them, and walk you through the whole process.
-.suggestions.bg-sky-white-gradient.py4{style: 'position: relative;z-index:2;'}
-  .container
-    .clearfix.px2
-      .col-12.sm-col-12.md-col-6.right
-        =embedded_svg('products.svg')
-      .col-12.sm-col-12.md-col-6.py4.left
-        %h1
-          MyDomino makes suggestions to help you save money.
-        %p
-          Don’t worry—our concierges are not salespeople. They're suggestion people.
-        %p
-          MyDomino researches and vets the best energy efficiency products and services on the market. We explain your options, so you can choose what's best for your family. Always your decision, never any pressure.
-.bg-blue.px2
-  .container
-    .clearfix
-      .sm-col-12.md-col.md-col-6.md-mb4
-        =image_tag('icon_energy-plan.png')
-      .sm-col-12.md-col.md-col-6.md-p2
-        %h1
-          We give you a customized energy plan for free.
-        %p.mb4
-          We provide a clear path for you to take actions, big and small, in order to save money and make the switch to clean energy.
+.bg-blue
+  .max-width-4.mx-auto
+    .clearfix.py4
+      .sm-col.sm-col-2 &nbsp;
+      .sm-col.sm-col-8.mx-auto
+        %h1.center.bold.white
+          We're All About Good Energy
+        %h2.center.white
+          Good Energy to Power Your Life
+        %p.center.white
+          We're all about helping you switch from expensive, dirty fuel to
+          good clean energy to power your life. We'll cut through the 
+          confusion to make it easy and affordable. We're clean energy
+          nerds committed to helping you join the action path to a 100%
+          clean energy lifestyle, and dedicated to a clean energy domino
+          effect of innovation, hope, and opportunity for everyone.
+        %h2.center.white
+          Good Energy that's Guaranteed
+        %p.center.white
+          We work with, and will only refer you to, companies and products
+          with excellent credentials. Our non-commission concierges' first-
+          class service is guaranteed for the entire life of any product or
+          service purchased through MyDomino. Should any issue arise, we'll
+          help resolve it to your 100% satisfaction. Guaranteed good energy.
+.bg-white
+  .clearfix.py2
+    %h1.center.py4
+      A small investment with epic savings 
+    .sm-col.sm-col-3 &nbsp;
+    .sm-col.sm-col-6
+      %div.rounded{style: "background-color:#f3f3f3;position:relative;"} 
+        %h1.center.blue{style: "font-size: 25px;"}
+          Only
+          %span{style:'font-size: 80px;position:relative;font-weight:200;'}
+            99
+            %span{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
+              $
+          %span{style: 'margin-left:-22px;'}
+            \/year
+        .clearfix
+          .sm-col.sm-col-2 &nbsp;
+          .sm-col.sm-col-8
+            %ul.list-reset{style:'color:#7c7c7c'}
+              %li
+                %h3
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  A live energy savings concierge at your service
+              %li
+                %h3
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  Your personalized path to 100% clean energy and big savings
+              %li
+                %h3
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  An easy to use, cool dashboard to track your progress  
+              %li
+                %h3
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  Access to our seriously cool research on products and vendors  
+              %li  
+                %h3
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  Exclusive energy and environmental educational stuff
+              %li  
+                %h3
+                  %span
+                    %i.fa.fa-check.fa-3.blue 
+                  Privileged access to our product previews and events
+
+.my4{style: 'background-color:#f3f3f3'}
+  .clearfix.mx-auto
+    .sm-col.sm-col-3 &nbsp;
+    .sm-col.sm-col-6
+      %h4.bold.center SMALL ACTIONS, EPIC EFFECT
+      %h1.center.py3
+        "With very little effort, I'm saving hundreds a month and using clean energy."
+      %h4.py3.center
+        JULIE C.
+        %br Sebastopol, CA
+
+.bg-white.py2
+  .clearfix
+    .sm-col.sm-col-2 &nbsp;
+    .sm-col.sm-col-2
+      =image_tag("RMI.png", width: "100px;")
+    .sm-col.sm-col-2
+      =image_tag("SEIA-2.png", width: "100%")
+    .sm-col.sm-col-2.mx-auto
+      =image_tag("Bcorp.png", style: 'display:block;margin:auto;')
+    .sm-col.sm-col-2
+      =image_tag("bbb.png", width: "60px;", style: 'display:block;margin:auto;')
+
+
+
+/ .bg-heather.py4
+/   .container
+/     .clearfix.px2
+/       .sm-col-12.md-col-4.mx-auto
+/         =embedded_svg 'testimonial.svg'
+/     .clearfix
+/       .sm-col-12.md-col-10.mx-auto.center.py2
+/         -# .h1.text-center
+/         -#   =embedded_svg 'quotation_begin.svg',style: "width: 32px;float:left;position:relative;top:-5px;", class:"mr2"
+/         -#   With very little effort on my part, I'll be saving hundreds a month and using clean energy.
+/         -#   =embedded_svg 'quotation_end.svg',style: "width: 32px; float:right;", class:"ml2"
+/         .h1.text-center
+
+/           &ldquo; With very little effort on my part, I'll be saving hundreds a month and using clean energy. &rdquo;
+
+/         .h3.text-center.caps.py3
+/           Julia C.
+/           %br
+/           Sebastopol, CA
+/ .container.py4
+/   .clearfix.px2
+/     .sm-col-12.md-col.md-col-6
+/       =embedded_svg('solarpanel.svg')
+/     .sm-col-12.md-col.md-col-6.py4
+/       %h1
+/         Going solar can be confusing.
+/         %br
+/         We make it easy.
+/       %p
+/         Figuring out how to go solar can be overwhelming, but it doesn’t have to be.
+/       %p
+/         At MyDomino, a personal energy savings concierge will help you figure out which solar options are best for your household. We'll get you quotes, help you compare them, and walk you through the whole process.
+/ .suggestions.bg-sky-white-gradient.py4{style: 'position: relative;z-index:2;'}
+/   .container
+/     .clearfix.px2
+/       .col-12.sm-col-12.md-col-6.right
+/         =embedded_svg('products.svg')
+/       .col-12.sm-col-12.md-col-6.py4.left
+/         %h1
+/           MyDomino makes suggestions to help you save money.
+/         %p
+/           Don’t worry—our concierges are not salespeople. They're suggestion people.
+/         %p
+/           MyDomino researches and vets the best energy efficiency products and services on the market. We explain your options, so you can choose what's best for your family. Always your decision, never any pressure.
+/ .bg-blue.px2
+/   .container
+/     .clearfix
+/       .sm-col-12.md-col.md-col-6.md-mb4
+/         =image_tag('icon_energy-plan.png')
+/       .sm-col-12.md-col.md-col-6.md-p2
+/         %h1
+/           We give you a customized energy plan for free.
+/         %p.mb4
+/           We provide a clear path for you to take actions, big and small, in order to save money and make the switch to clean energy.
 
 :javascript
   /* Replace 'APP_ID' with your app ID */

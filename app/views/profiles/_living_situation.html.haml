@@ -1,4 +1,5 @@
-%h1 Living Situation
+
+%h1 Let's learn about your home
 -flash.each do |key, value|
   .flash
     =value
@@ -9,5 +10,18 @@
   =form.input :state
   =form.input :zip_code
   =form.input :phone
+  =form.input :housing, :as => :hidden, :input_html => { :value => "" }
   =form.submit "back"
   =form.submit "Next"
+
+%label Housing
+%button#btn-rent RENT
+%button#btn-own OWN
+
+#slider
+
+:javascript
+  $( "#slider" ).slider({
+    animate: "fast",
+    max: 500
+  });
