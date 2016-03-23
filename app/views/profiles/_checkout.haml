@@ -1,5 +1,55 @@
-%h1 Checkout 
-=simple_form_for @profile, remote: true do |form|
-  =form.input :partner_code
-  =form.submit 'back'
-  =form.submit "Submit"
+.bg-white
+  .clearfix.py2
+    .sm-col.sm-col-3 &nbsp;
+    .sm-col.sm-col-6
+      %h1.center.blue{style: "font-size: 25px;"}
+        Only
+        %span{style:'font-size: 80px;position:relative;font-weight:200;'}
+          99
+          %span{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
+            $
+        %span{style: 'margin-left:-22px;'}
+          \/year
+      .clearfix
+        .sm-col.sm-col-2 &nbsp;
+        .sm-col.sm-col-8
+          %ul.list-reset{style:'color:#7c7c7c'}
+            %li
+              %h3
+                %span
+                  %i.fa.fa-check.fa-3.blue
+                A live energy savings concierge at your service
+            %li
+              %h3
+                %span
+                  %i.fa.fa-check.fa-3.blue
+                Your personalized path to 100% clean energy and big savings
+            %li
+              %h3
+                %span
+                  %i.fa.fa-check.fa-3.blue
+                An easy to use, cool dashboard to track your progress  
+            %li
+              %h3
+                %span
+                  %i.fa.fa-check.fa-3.blue
+                Access to our seriously cool research on products and vendors  
+            %li  
+              %h3
+                %span
+                  %i.fa.fa-check.fa-3.blue
+                Exclusive energy and environmental educational stuff
+            %li  
+              %h3
+                %span
+                  %i.fa.fa-check.fa-3.blue 
+                Privileged access to our product previews and events
+
+    .sm-col.sm-col-12.center
+      =simple_form_for @profile, remote: true do |form|
+        %label HAVE A PARTNER CODE?
+        =form.input_field :partner_code
+        %button{type: "button"} Apply
+        .sm-col.sm-col-12.center
+          =form.submit 'back'
+          =form.submit "Submit"

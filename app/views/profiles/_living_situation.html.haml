@@ -34,13 +34,13 @@
     .sm-col.sm-col-4.center
       %label Housing
       %br
-      %button#btn-rent{type: "button"} RENT
-      %button#btn-own{type: "button"} OWN
+      %button.btn-housing{type: "button", data: {value: "rent"}, class: "#{'bg-blue' if @profile.housing == 'rent'}"} RENT
+      %button.btn-housing{type: "button", data: {value: "own"}, class: "#{'bg-blue' if @profile.housing == 'own'}"} OWN
       #slider
       %p
         $
         %span#slider_val 0
-      =form.input :housing, :as => :hidden, :input_html => { :value => "" }
+      =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
       =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => "0" }
 
 
@@ -58,10 +58,18 @@
     }
   });
 
-  $('#btn-rent').on('click', function(){
+  $('.btn-housing').on('click', function(){
+    $('.btn-housing').not(this).removeClass('bg-blue');
+    $(this).toggleClass('bg-blue');
+    var val = $(this).data("value"); 
+    $('#profile_housing').val(val);
+  });
+
+  /*$('#btn-rent').on('click', function(){
+    $(this).toggleClass('bg-blue');
     $('#profile_housing').val("rent")
   });
 
   $('#btn-own').on('click', function(){
     $('#profile_housing').val("own")
-  });
+  });*/

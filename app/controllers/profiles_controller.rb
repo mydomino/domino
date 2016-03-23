@@ -77,7 +77,7 @@ class ProfilesController < ApplicationController
       :phone,
       :housing,
       :avg_electrical_bill,
-      {:availability_attributes => [:monday] },
+      {:availability_attributes => [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :morning, :afternoon, :evening] },
       :comments,
       :partner_code
     )

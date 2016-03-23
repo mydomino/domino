@@ -6,25 +6,30 @@
   .sm-col.sm-col-4 &nbsp;
   .sm-col.sm-col-4.center
     =simple_form_for @profile, remote: true do |form|
-      %button#btn-m.bg-white{type: "button"} M
-      %button#btn-tu{type: "button"} Tu
-      %button#btn-w{type: "button"} W
-      %button#btn-th{type: "button"} Th
-      %button#btn-f{type: "button"} F
-      %button#btn-sa{type: "button"} Sa
-      %button#btn-su{type: "button"} Su
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-monday"}, class: "#{'bg-blue' if @profile.availability[:monday]}"} M
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-tuesday"}, class: "#{'bg-blue' if @profile.availability[:tuesday]}"} Tu
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-wednesday"}, class: "#{'bg-blue' if @profile.availability[:wednesday]}"} W
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-thursday"}, class: "#{'bg-blue' if @profile.availability[:thursday]}"} Th
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-friday"}, class: "#{'bg-blue' if @profile.availability[:friday]}"} F
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-saturday"}, class: "#{'bg-blue' if @profile.availability[:saturday]}"} Sa
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-sunday"}, class: "#{'bg-blue' if @profile.availability[:sunday]}"} Su
       %br
-      %button#btn-morning{type: "button"} Mornings
-      %button#btn-afternoon{type: "button"} Afternoons
-      %button#btn-evening{type: "button"} Evenings
-      / =form.input :availability, as: :check_boxes, collection: [['Day 1', 1], ['Day 2', 2]]
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-morning"}, class: "#{'bg-blue' if @profile.availability[:morning]}"} Mornings
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-afternoon"}, class: "#{'bg-blue' if @profile.availability[:afternoon]}"} Afternoons
+      %button.bg-white.btn-availability{type: "button", data: {target: "chk-evening"}, class: "#{'bg-blue' if @profile.availability[:evening]}"} Evenings
 
-      / =form.simple_fields_for :availability, @@profile.availability.build do |a|
-      /   =a
-      / =form.association :availability, :as => :check_boxes, collection: Availability.column_names, :checked => @checked_availability
-      =form.simple_fields_for :availability do |a|
-        =a.input :monday, as: :boolean, checked_value: true, unchecked_value: false
-      end
+      .display-none
+        =form.simple_fields_for :availability do |a|
+          =a.input :monday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-monday' }
+          =a.input :tuesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-tuesday' }
+          =a.input :wednesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-wednesday' }
+          =a.input :thursday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-thursday' }
+          =a.input :friday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-friday' }
+          =a.input :saturday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-saturday' }
+          =a.input :sunday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-sunday' }
+          =a.input :morning, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-morning' }
+          =a.input :afternoon, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-afternoon' }
+          =a.input :evening, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-evening' }
 
       %br
       =form.label  "Comments"
@@ -33,4 +38,13 @@
       .sm-col.sm-col-12
         =form.submit "back"
         =form.submit "Next"
+
+:javascript
+  $('.btn-availability').on('click', function(){
+    $(this).toggleClass('bg-blue');
+    var target = '#' + $(this).data('target');
+    $(target).prop('checked', function( i, val ) {
+      return !val;
+    });
+  });
 
