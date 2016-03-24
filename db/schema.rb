@@ -33,12 +33,6 @@ ActiveRecord::Schema.define(version: 20160322225629) do
     t.integer  "profile_id"
   end
 
-  create_table "clones", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "concierges", force: :cascade do |t|
     t.string   "name"
     t.string   "picture"
@@ -76,8 +70,6 @@ ActiveRecord::Schema.define(version: 20160322225629) do
     t.datetime "updated_at",                 null: false
     t.string   "lead_email"
   end
-
-  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -139,25 +131,6 @@ ActiveRecord::Schema.define(version: 20160322225629) do
     t.boolean  "subscribe_to_mailchimp"
   end
 
-  create_table "models", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.string   "User"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
-  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
-
   create_table "offerings", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -213,9 +186,6 @@ ActiveRecord::Schema.define(version: 20160322225629) do
     t.datetime "updated_at"
     t.integer  "updated_by"
   end
-
-  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
-  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "icon"
