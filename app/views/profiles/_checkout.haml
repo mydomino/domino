@@ -50,6 +50,9 @@
         %label HAVE A PARTNER CODE?
         =form.input_field :partner_code
         %button{type: "button"} Apply
-        .sm-col.sm-col-12.center
-          =form.submit 'back'
-          =form.submit "Submit"
+        .sm-col.sm-col-12.my2
+          .sm-col.sm-col-3 &nbsp;
+          .sm-col.sm-col-3
+            =form.submit 'back'
+          .sm-col.sm-col-3
+            =form.submit "Submit"

@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
       @profile.onboard_complete = false;
       @profile.onboard_step = session[:profile_step] + 1;
       @profile.build_availability
+      @profile.avg_electrical_bill = 0;
       
       if @profile.save
         render_response

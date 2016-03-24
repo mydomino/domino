@@ -11,6 +11,9 @@
       =form.association :offerings, :as => :check_boxes, collection: Offering.all, :checked => @checked_interests
     .sm-col.sm-col-3
       =form.association :offerings, :as => :check_boxes, collection: Offering.all
-    .sm-col.sm-col-12.center  
-      =form.submit "back"
-      =form.submit "Next"
+    .sm-col.sm-col-12.my2
+      .sm-col.sm-col-3 &nbsp;
+      .sm-col.sm-col-3
+        =form.submit "back"
+      .sm-col.sm-col-3
+        =form.submit "Next"

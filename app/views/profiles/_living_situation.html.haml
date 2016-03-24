@@ -4,54 +4,66 @@
     .flash.center
       =value
   %h1.center Let's learn about your home
-  .sm-col.sm-col-2 &nbsp;
+  .sm-col.sm-col-3 &nbsp;
   =simple_form_for @profile, remote: true do |form|
-    .sm-col.sm-col-4
+    .sm-col.sm-col-3
       %label ADDRESS LINE 1
       %br
-      =form.input_field :address_line_1
+      =form.input_field :address_line_1, style: 'width:250px;'
       %br
       %label ADDRESS LINE 2
       %br
-      =form.input_field :address_line_2, label: false
+      =form.input_field :address_line_2, style: 'width:250px;'
       %br
-      %label CITY
-      %br
-      =form.input_field :city
-      %br
-      %label STATE
-      %br
-      =form.input_field :state
-      %br
-      %label ZIP
-      %br
-      =form.input_field :zip_code
+      .inline-block
+        %label CITY
+        %br
+        =form.input_field :city, style: 'width:100px;'
+      .inline-block
+        %label STATE
+        %br
+        =form.input_field :state, style: 'width:50px;'
+      .inline-block
+        %label ZIP
+        %br
+        =form.input_field :zip_code, style: 'width:50px;'
       %br
       %label PHONE
       %br  
       =form.input_field :phone
       
-    .sm-col.sm-col-4.center
-      %label Housing
-      %br
-      %button.btn-housing{type: "button", data: {value: "rent"}, class: "#{'bg-blue' if @profile.housing == 'rent'}"} RENT
-      %button.btn-housing{type: "button", data: {value: "own"}, class: "#{'bg-blue' if @profile.housing == 'own'}"} OWN
-      #slider
-      %p
-        $
-        %span#slider_val 0
+    .sm-col.sm-col-3
+      .mb2
+        %label HOUSING
+        %br
+        %button.btn-housing{type: "button", data: {value: "rent"}, class: "#{'bg-blue' if @profile.housing == 'rent'}"} RENT
+        %button.btn-housing{type: "button", data: {value: "own"}, class: "#{'bg-blue' if @profile.housing == 'own'}"} OWN
+      .mt2
+        %label AVG ELECTRIC BILL
+      .inline-block
+        #slider{style: "width:250px;"}
+      .inline-block
+        %p.m0
+          &nbsp;$
+          %span#slider_val 0
       =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
-      =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => "0" }
+      =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
 
-
-    .sm-col.sm-col-12.center
-      =form.submit "back"
-      =form.submit "Next"
+    .sm-col.sm-col-12.my2
+      .sm-col.sm-col-3 &nbsp;
+      .sm-col.sm-col-3
+        =form.submit "back"
+      .sm-col.sm-col-3
+        =form.submit "Next"
 
 :javascript
   $( "#slider" ).slider({
     animate: "fast",
     max: 250, 
+    value: #{@profile.avg_electrical_bill},
+    create: function( event, ui ) {
+      $('#slider_val').html(#{@profile.avg_electrical_bill});
+    },
     slide: function( event, ui ) {
       $('#slider_val').html(ui.value);
       $('#profile_avg_electrical_bill').val(ui.value);
@@ -64,12 +76,4 @@
     var val = $(this).data("value"); 
     $('#profile_housing').val(val);
   });
-
-  /*$('#btn-rent').on('click', function(){
-    $(this).toggleClass('bg-blue');
-    $('#profile_housing').val("rent")
-  });
-
-  $('#btn-own').on('click', function(){
-    $('#profile_housing').val("own")
-  });*/
+  

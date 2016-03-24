@@ -35,9 +35,12 @@
       =form.label  "Comments"
       %br
       =form.input_field :comments
-      .sm-col.sm-col-12
-        =form.submit "back"
-        =form.submit "Next"
+      .sm-col.sm-col-12.my2
+        .sm-col.sm-col-3 &nbsp;
+        .sm-col.sm-col-3
+          =form.submit "back"
+        .sm-col.sm-col-3
+          =form.submit "Next"
 
 :javascript
   $('.btn-availability').on('click', function(){

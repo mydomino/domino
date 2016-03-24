@@ -1,8 +1,1 @@
-
-if(<%= session[:profile_step] %> == 5){
-  $('#profile_steps').remove()
-}else{
-  $('#profile_steps li').removeClass('red')
-  $("#profile_steps li#step_<%= session[:profile_step] + 1 %>").addClass('red')
-}
 $('#profile-forms').html("<%= j(render @response[:form]) %>");
