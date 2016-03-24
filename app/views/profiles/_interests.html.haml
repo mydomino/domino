@@ -6,7 +6,7 @@
 %p.center.italic (Check all that apply)
 .clearfix
   .sm-col.sm-col-3 &nbsp;
-  =simple_form_for @profile, remote: true do |form|
+  =simple_form_for @profile, remote: true, authenticity_token: true do |form|
     .sm-col.sm-col-3
       =form.association :offerings, :as => :check_boxes, collection: Offering.all, :checked => @checked_interests
     .sm-col.sm-col-3
