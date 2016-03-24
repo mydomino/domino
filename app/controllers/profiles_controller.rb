@@ -9,21 +9,19 @@ class ProfilesController < ApplicationController
     # end
     #case user has started onboarding but hasn't completed
     if @profile = Profile.find_by_email(params[:profile][:email])
-      session[:profile_step] = @profile.onboard_step
       flash[:message] = "Welcome back! Please complete your profile."
       continue_onboard
     else
-      session[:profile_step] = 0;
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
-      @profile.onboard_step = session[:profile_step];
+      @profile.onboard_step = 0;
       @profile.build_availability
       @profile.avg_electrical_bill = 0;
       
       if @profile.save
         render_response
       else
-        @response = {form: FORMS[session[:profile_step]], method: :post}
+        @response = {form: FORMS[@profile.onboard_step], method: :post}
         render "profiles/update.js", content_type: "text/javascript"
       end
     end
@@ -34,7 +32,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    @profile.onboard_step = session[:profile_step] + 1;
+    @profile.onboard_step += 1;
     @profile.update(profile_params)
     #update user email also if changed
     # if params[:profile][:email] != @profile.user
@@ -54,13 +52,13 @@ class ProfilesController < ApplicationController
 
   def get_response
     @back = (params[:commit] == 'back') 
-    @back ? session[:profile_step] -= 1 : session[:profile_step] += 1
+    @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
     
-    {form: FORMS[session[:profile_step]], method: :put}
+    {form: FORMS[@profile.onboard_step], method: :put}
   end
 
   def continue_onboard
-    @response = {form: FORMS[session[:profile_step]], method: :put}
+    @response = {form: FORMS[@profile.onboard_step], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
   end
   
