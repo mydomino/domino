@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    @back = (params[:commit] == 'back') 
+    @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
     @profile.onboard_complete = true if @profile.onboard_step == 5
     @profile.update(profile_params)
