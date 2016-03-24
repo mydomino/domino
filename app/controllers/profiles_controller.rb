@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
       flash[:message] = "Welcome back! Please complete your profile."
       continue_onboard
     else
-      session[:profile_step] = 1;
+      session[:profile_step] = 0;
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
       @profile.onboard_step = session[:profile_step];
@@ -27,7 +27,6 @@ class ProfilesController < ApplicationController
         render "profiles/update.js", content_type: "text/javascript"
       end
     end
-
     
     # @user = User.create(email: params[:profile][:email], password: "domino2016", password_confirmation: "domino2016", role: "lead")
     #errors
