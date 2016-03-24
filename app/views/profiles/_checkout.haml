@@ -1,5 +1,5 @@
 .bg-white
-  .clearfix.py2
+  .clearfix.py4
     .sm-col.sm-col-3 &nbsp;
     .sm-col.sm-col-6
       %h1.center.blue{style: "font-size: 25px;"}
@@ -53,6 +53,6 @@
         .sm-col.sm-col-12.my2
           .sm-col.sm-col-3 &nbsp;
           .sm-col.sm-col-3
-            =form.submit 'BACK'
+            =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
           .sm-col.sm-col-3
-            =form.submit "Submit"
+            =form.submit "SUBMIT", class: "bg-blue white", style: "border: none; border-radius: 20px;width: 120px; height: 40px;"

@@ -3,7 +3,7 @@
   / -flash.each do |key, value|
   /   .flash.center
   /     =value
-  %h1.center Let's learn about your home
+  %h2.center Let's learn about your home
   .sm-col.sm-col-3 &nbsp;
   =simple_form_for @profile, remote: true do |form|
     .sm-col.sm-col-3
@@ -31,7 +31,6 @@
       %label PHONE
       %br  
       =form.input_field :phone
-      
     .sm-col.sm-col-3
       .mb2
         %label HOUSING
