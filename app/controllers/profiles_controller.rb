@@ -13,9 +13,10 @@ class ProfilesController < ApplicationController
       flash[:message] = "Welcome back! Please complete your profile."
       continue_onboard
     else
+      session[:profile_step] = 1;
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
-      @profile.onboard_step = session[:profile_step] + 1;
+      @profile.onboard_step = session[:profile_step];
       @profile.build_availability
       @profile.avg_electrical_bill = 0;
       
