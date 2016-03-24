@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
     else
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
-      @profile.onboard_step = 0;
+      @profile.onboard_step = 1;
       @profile.build_availability
       @profile.avg_electrical_bill = 0;
       
@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @back = (params[:commit] == 'back') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
-    @profile.onboard_complete = true if @profile.onboard_step = 5
+    @profile.onboard_complete = true if @profile.onboard_step == 5
     @profile.update(profile_params)
     #update user email also if changed
     # if params[:profile][:email] != @profile.user

@@ -1,8 +1,8 @@
 
-.clearfix
-  -flash.each do |key, value|
-    .flash.center
-      =value
+.pt4.clearfix
+  / -flash.each do |key, value|
+  /   .flash.center
+  /     =value
   %h1.center Let's learn about your home
   .sm-col.sm-col-3 &nbsp;
   =simple_form_for @profile, remote: true do |form|
@@ -36,8 +36,8 @@
       .mb2
         %label HOUSING
         %br
-        %button.btn-housing{type: "button", data: {value: "rent"}, class: "#{'bg-blue' if @profile.housing == 'rent'}"} RENT
-        %button.btn-housing{type: "button", data: {value: "own"}, class: "#{'bg-blue' if @profile.housing == 'own'}"} OWN
+        %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "#{@profile.housing == 'rent' ? 'bg-blue' : 'bg-white'}"} RENT
+        %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "#{@profile.housing == 'own' ? 'bg-blue' : 'bg-white'}"} OWN
       .mt2
         %label AVG ELECTRIC BILL
       .inline-block
@@ -52,9 +52,9 @@
     .sm-col.sm-col-12.my2
       .sm-col.sm-col-3 &nbsp;
       .sm-col.sm-col-3
-        =form.submit "back"
+        =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
       .sm-col.sm-col-3
-        =form.submit "Next"
+        =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $( "#slider" ).slider({
