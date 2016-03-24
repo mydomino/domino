@@ -5,7 +5,7 @@
 .clearfix
   .sm-col.sm-col-4 &nbsp;
   .sm-col.sm-col-4.center
-    =simple_form_for @profile, remote: true do |form|
+    =simple_form_for @profile, remote: true, authenticity_token: true do |form|
       %button.bg-white.btn-availability{type: "button", data: {target: "chk-monday"}, class: "#{'bg-blue' if @profile.availability[:monday]}"} M
       %button.bg-white.btn-availability{type: "button", data: {target: "chk-tuesday"}, class: "#{'bg-blue' if @profile.availability[:tuesday]}"} Tu
       %button.bg-white.btn-availability{type: "button", data: {target: "chk-wednesday"}, class: "#{'bg-blue' if @profile.availability[:wednesday]}"} W

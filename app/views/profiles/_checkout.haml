@@ -46,7 +46,7 @@
                 Privileged access to our product previews and events
 
     .sm-col.sm-col-12.center
-      =simple_form_for @profile, remote: true do |form|
+      =simple_form_for @profile, remote: true, authenticity_token: true do |form|
         %label HAVE A PARTNER CODE?
         =form.input_field :partner_code
         %button{type: "button"} Apply
