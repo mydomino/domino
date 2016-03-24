@@ -22,11 +22,17 @@
 //= require storefront
 //= require modal
 
-$(function(){
-  $.ajaxSetup({
-    beforeSend: function( xhr ) {
-      var token = $('meta[name="csrf-token"]').attr('content');
-      if (token) xhr.setRequestHeader('X-CSRF-Token', token);
-    }
-  });
-});
+// $(function(){
+//   $.ajaxSetup({
+//     beforeSend: function( xhr ) {
+//       var token = $('meta[name="csrf-token"]').attr('content');
+//       if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+//     }
+//   });
+// });
+
+// $.ajaxSetup({
+//   headers: {
+//     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+//   }
+// });
