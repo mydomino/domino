@@ -3,10 +3,7 @@ class ProfilesController < ApplicationController
   FORMS = ["name_and_email", "interests", "living_situation", "availability", "checkout", "summary"]
   
   def create
-    # @email = params[:profile][:email]
-    # if User.find_by_email(@email)
-
-    # end
+    #todo case user has completed onboarding
     #case user has started onboarding but hasn't completed
     if @profile = Profile.find_by_email(params[:profile][:email])
       flash[:message] = "Welcome back! Please complete your profile."
@@ -34,6 +31,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @back = (params[:commit] == 'back') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
+    @profile.onboard_complete = true if @profile.onboard_step = 5
     @profile.update(profile_params)
     #update user email also if changed
     # if params[:profile][:email] != @profile.user
@@ -47,14 +45,8 @@ class ProfilesController < ApplicationController
   private
 
   def render_response
-    @response = get_response
+    @response = {form: FORMS[@profile.onboard_step], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
-  end
-
-  def get_response
-    
-    
-    {form: FORMS[@profile.onboard_step], method: :put}
   end
 
   def continue_onboard
