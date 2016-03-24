@@ -32,7 +32,8 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    @profile.onboard_step += 1;
+    @back = (params[:commit] == 'back') 
+    @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
     @profile.update(profile_params)
     #update user email also if changed
     # if params[:profile][:email] != @profile.user
@@ -51,8 +52,7 @@ class ProfilesController < ApplicationController
   end
 
   def get_response
-    @back = (params[:commit] == 'back') 
-    @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
+    
     
     {form: FORMS[@profile.onboard_step], method: :put}
   end
