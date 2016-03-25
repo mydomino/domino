@@ -1,46 +1,46 @@
--flash.each do |key, value|
-  .flash
-    =value
-%h1.center What's the best time to reach you?
-.clearfix
-  .sm-col.sm-col-4 &nbsp;
-  .sm-col.sm-col-4.center
-    =simple_form_for @profile, remote: true do |form|
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-monday"}, class: "#{'bg-blue' if @profile.availability[:monday]}"} M
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-tuesday"}, class: "#{'bg-blue' if @profile.availability[:tuesday]}"} Tu
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-wednesday"}, class: "#{'bg-blue' if @profile.availability[:wednesday]}"} W
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-thursday"}, class: "#{'bg-blue' if @profile.availability[:thursday]}"} Th
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-friday"}, class: "#{'bg-blue' if @profile.availability[:friday]}"} F
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-saturday"}, class: "#{'bg-blue' if @profile.availability[:saturday]}"} Sa
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-sunday"}, class: "#{'bg-blue' if @profile.availability[:sunday]}"} Su
-      %br
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-morning"}, class: "#{'bg-blue' if @profile.availability[:morning]}"} Mornings
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-afternoon"}, class: "#{'bg-blue' if @profile.availability[:afternoon]}"} Afternoons
-      %button.bg-white.btn-availability{type: "button", data: {target: "chk-evening"}, class: "#{'bg-blue' if @profile.availability[:evening]}"} Evenings
+/ -flash.each do |key, value|
+/   .flash
+/     =value
+.pt4{style: 'height:450px;'}
+  %h2.center What's the best time to reach you?
+  .clearfix
+    .sm-col.sm-col-4 &nbsp;
+    .sm-col.sm-col-4
+      =simple_form_for @profile, remote: true do |form|
+        .center
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;",data: {target: "chk-monday"}, class: "#{'bg-blue' if @profile.availability[:monday]}"} M
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;",data: {target: "chk-tuesday"}, class: "#{'bg-blue' if @profile.availability[:tuesday]}"} Tu
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;", data: {target: "chk-wednesday"}, class: "#{'bg-blue' if @profile.availability[:wednesday]}"} W
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;", data: {target: "chk-thursday"}, class: "#{'bg-blue' if @profile.availability[:thursday]}"} Th
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;", data: {target: "chk-friday"}, class: "#{'bg-blue' if @profile.availability[:friday]}"} F
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;", data: {target: "chk-saturday"}, class: "#{'bg-blue' if @profile.availability[:saturday]}"} Sa
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;", data: {target: "chk-sunday"}, class: "#{'bg-blue' if @profile.availability[:sunday]}"} Su
+        .m2.center
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;", data: {target: "chk-morning"}, class: "#{'bg-blue' if @profile.availability[:morning]}"} Mornings
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;", data: {target: "chk-afternoon"}, class: "#{'bg-blue' if @profile.availability[:afternoon]}"} Afternoons
+          %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;", data: {target: "chk-evening"}, class: "#{'bg-blue' if @profile.availability[:evening]}"} Evenings
 
-      .display-none
-        =form.simple_fields_for :availability do |a|
-          =a.input :monday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-monday' }
-          =a.input :tuesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-tuesday' }
-          =a.input :wednesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-wednesday' }
-          =a.input :thursday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-thursday' }
-          =a.input :friday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-friday' }
-          =a.input :saturday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-saturday' }
-          =a.input :sunday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-sunday' }
-          =a.input :morning, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-morning' }
-          =a.input :afternoon, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-afternoon' }
-          =a.input :evening, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-evening' }
-
-      %br
-      =form.label  "Comments"
-      %br
-      =form.input_field :comments
-      .sm-col.sm-col-12.my2
-        .sm-col.sm-col-3 &nbsp;
-        .sm-col.sm-col-3
-          =form.submit "back"
-        .sm-col.sm-col-3
-          =form.submit "Next"
+        .display-none
+          =form.simple_fields_for :availability do |a|
+            =a.input :monday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-monday' }
+            =a.input :tuesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-tuesday' }
+            =a.input :wednesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-wednesday' }
+            =a.input :thursday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-thursday' }
+            =a.input :friday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-friday' }
+            =a.input :saturday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-saturday' }
+            =a.input :sunday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-sunday' }
+            =a.input :morning, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-morning' }
+            =a.input :afternoon, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-afternoon' }
+            =a.input :evening, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-evening' }
+        .m2
+          %h2.m0 Comments
+          =form.input_field :comments, style: 'width: 100%;border:2px solid lightgray'
+          .sm-col.sm-col-12.my2
+            .sm-col.sm-col-3
+              =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+            .sm-col.sm-col-6 &nbsp;
+            .sm-col.sm-col-3
+              =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $('.btn-availability').on('click', function(){

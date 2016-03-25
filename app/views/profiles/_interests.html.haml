@@ -1,19 +1,22 @@
--flash.each do |key, value|
-  .flash
-    =value
-%h1.center
-  I am interested in learning more about the following...
-%p.center.italic (Check all that apply)
-.clearfix
-  .sm-col.sm-col-3 &nbsp;
-  =simple_form_for @profile, remote: true do |form|
-    .sm-col.sm-col-3
-      =form.association :offerings, :as => :check_boxes, collection: Offering.all, :checked => @checked_interests
-    .sm-col.sm-col-3
-      =form.association :offerings, :as => :check_boxes, collection: Offering.all
-    .sm-col.sm-col-12.my2
-      .sm-col.sm-col-3 &nbsp;
-      .sm-col.sm-col-3
-        =form.submit "back"
-      .sm-col.sm-col-3
-        =form.submit "Next"
+-content_for :navbar_class do
+  bg-blue fixed white sm-col-12
+/ -flash.each do |key, value|
+/   .flash
+/     =value
+.pt4{style: 'height:450px;'}
+  %h2.center
+    I am interested in learning more about the following...
+  %p.center.italic (Check all that apply)
+  .clearfix
+    .sm-col.sm-col-4 &nbsp;
+    =simple_form_for @profile, remote: true do |form|
+      .sm-col.sm-col-2
+        =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(1,2,3,4,5)
+      .sm-col.sm-col-2
+        =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(6,7,8,9)
+      .sm-col.sm-col-12.my2
+        .sm-col.sm-col-4 &nbsp;
+        .sm-col.sm-col-2
+          =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+        .sm-col.sm-col-1
+          =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"

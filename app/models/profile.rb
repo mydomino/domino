@@ -9,7 +9,7 @@ end
 class Profile < ActiveRecord::Base
 
   belongs_to :user
-  has_one :availability
+  has_one :availability, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :offerings, through: :interests
 

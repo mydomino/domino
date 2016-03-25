@@ -1,12 +1,27 @@
-.bg-sky-gradient.center
-  %h1.white.m0
-    Ditch the dirty.
-    %br
+-content_for :navbar_class do
+  bg-transparent fixed white sm-col-12
+.bg-sky-gradient.pt4{style: 'height:450px;'}
+  .center.white
+    %h1{style: 'font-size:50px;font-weight:100;line-height:50px;'}
+      Ditch the dirty.
+      %br
       Switch to clean. 
     %p.white Join the action path to your 100% clean energy lifestyle.
-  .center
+  .sm-col.sm-col-4 &nbsp;
+  .sm-col.sm-col-4
     =simple_form_for @profile, remote: true, method: @response[:method] do |form|
-      =form.input :first_name, error_html: { class: 'error' }
-      =form.input :last_name, error_html: { class: 'error' }
-      =form.input :email, error_html: { class: 'error' }
-      =form.submit "Get Started"
+      .inline-block.sm-col.sm-col-5
+        %label.white First Name
+        %br
+        =form.input_field :first_name, class: 'bg-transparent white', style: 'border: 2px solid white; width:200px; height:40px; font-size:30px;'
+      .sm-col.sm-col-2 &nbsp;
+      .inline-block.sm-col.sm-col-5
+        %label.white Last Name
+        %br
+        =form.input_field :last_name, class: 'bg-transparent white', style: 'border: 2px solid white; width:200px;height:40px;font-size:30px;', error_html: { class: 'error' }
+      %label.white Email
+      %br
+      =form.input_field :email, class: 'bg-transparent white', style: 'border: 2px solid white; width: 477px;height:40px;font-size:30px;', error_html: { class: 'error' }
+      %br
+      .center.mt2 
+        =form.submit "GET STARTED", class: "bg-blue", style: 'border-radius:40px;border:none;width:250px;height:50px;color:white;'
