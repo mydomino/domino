@@ -20,12 +20,8 @@
     .clearfix.relative{style: "top: -50px;"}
       .sm-show.sm-col.sm-col-2.py1
       .col.col-12.sm-col-8.bg-white.border.rounded.p4.mb4
-        When you talk to a concierge, you’ll be entered to win our Smart Home Savings bundle, including:
-        %ul.left-align.py2
-          %li 
-            =link_to 'Blossom Smart Watering Controller', 'http://www.amazon.com/Blossom-Smart-Watering-Controller-Powerline/dp/B00UHCT7KU/ref=sr_1_1?ie=UTF8&qid=1449082295&sr=8-1&keywords=blossom'
-          %li 
-            =link_to 'Nest 3rd Generation Learning Thermostat', 'http://www.amazon.com/gp/product/B0131RG6VK?tag=domino09d-20'
+        When you talk to a concierge, you’ll be entered to win a 
+        =link_to "Nest smart thermostat!", 'http://www.amazon.com/gp/product/B0131RG6VK?tag=domino09d-20'
         %strong.block.center.mb3 
           Talk with a concierge by 
           =@contest.end_date.strftime('%B %e')
