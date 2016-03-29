@@ -4,19 +4,21 @@
 /   .flash
 /     =value
 .pt4{style: 'height:450px;'}
-  %h2.center
-    I am interested in learning more about the following...
-  %p.center.italic (Check all that apply)
-  .clearfix
-    .sm-col.sm-col-4 &nbsp;
-    =simple_form_for @profile, remote: true do |form|
-      .sm-col.sm-col-2
-        =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(1,2,3,4,5)
-      .sm-col.sm-col-2
-        =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(6,7,8,9)
-      .sm-col.sm-col-12.my2
-        .sm-col.sm-col-4 &nbsp;
-        .sm-col.sm-col-2
-          =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-        .sm-col.sm-col-1
-          =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
+  .max-width-3.mx-auto
+    .clearfix.mb2
+      .col.col-12.center
+        .max-width-1.mx-auto.h2.line-height-2
+          I am interested in learning more about the following...
+      .col.col-12.h4.center.italic (Check all that apply)
+    .clearfix
+      =simple_form_for @profile, remote: true do |form|
+        .max-width-2.mx-auto
+          .sm-col.sm-col-2
+            =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(1,2,3,4,5)
+          .sm-col.sm-col-2
+            =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(6,7,8,9)
+        .sm-col.sm-col-12.my2
+          .col.col-2.left
+            =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+          .col.col-2.right
+            =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
