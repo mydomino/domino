@@ -1,6 +1,6 @@
 -content_for :navbar_class do
   bg-transparent fixed white sm-col-12
-.bg-sky-gradient.pt4{style: 'height:450px;'}
+.bg-sky-gradient.pt4{style: 'height:100%;min-height:450px;'}
   .center.white
     %h1{style: 'font-size:50px;font-weight:100;line-height:50px;'}
       Ditch the dirty.
@@ -12,22 +12,19 @@
     .sm-col.sm-col-12.md-col-4
       =simple_form_for @profile, remote: true, method: @response[:method] do |form|
         .clearfix
-          .sm-col.sm-col-12.md-col-6.px1
+          .sm-col.sm-col-12.md-col-6.px2
             %label.white First Name
             %br
             =form.input_field :first_name, class: 'bg-transparent white fit', style: 'border: 2px solid white; height:40px; font-size:30px;'
-          /.sm-col.md-col-2.sm-hide.xs-hide &nbsp;
-          /.sm-col.sm-col-2.md-hide.lg-hide &nbsp;
-          .sm-col.sm-col-8.md-col-6.px1
+          .sm-col.sm-col-12.md-col-6.px2
             %label.white Last Name
             %br
             =form.input_field :last_name, class: 'bg-transparent white fit', style: 'border: 2px solid white; height:40px;font-size:30px;', error_html: { class: 'error' }
         .clearfix
-          .sm-col.sm-col-8.md-col-12.px1
+          .sm-col.sm-col-12.md-col-12.px2
             %label.white Email
             %br
             =form.input_field :email, class: 'bg-transparent white fit', style: 'border: 2px solid white;height:40px;font-size:30px;'
-        .sm-col.sm-col-12
-          %br
+        .sm-col.sm-col-12.my2
           .center
-            =form.submit "GET STARTED", class: "bg-blue", style: 'border-radius:40px;border:none;width:250px;height:50px;color:white;'
+            =form.submit "GET STARTED", class: "bg-blue", style: 'display:inline;border-radius:40px; border:none; width:250px; height:50px; color:white;'

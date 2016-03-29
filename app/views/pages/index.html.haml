@@ -51,29 +51,35 @@
     /   %br
     /   %input.btn.rounded.bg-blue.white{type: 'Submit', value: 'GET STARTED'}
     /#=link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 pill caps border-none', style:'background-image:linear-gradient(#287dba, #165683)'
-/ .bg-white.max-width-4.mx-auto
-/   .clearfix.py3
-/     %h4.center HOW TO 
-/     %h1.center DITCH &amp; SWITCH  
-/     .sm-col.sm-col-4.mx-auto
-/       %h2.center 1. Talk With Us
-/       %p.center
-/         Chat with our concierges to set up your
-/         %br 
-/           path to clean energy savings
+.bg-white.max-width-4.mx-auto
+  .clearfix.my4
+    %h4.center{style: "margin-bottom:-20px;"} HOW TO 
+    %h1.center.mb4 DITCH &amp; SWITCH  
+    .sm-col.sm-col-4.center
+      .wrapper{style: "height:100px;"}
+        =image_tag "icon_talk.svg"
+      %h2.m0 1. Talk With Us
+      %p.h4.m0
+        Chat with our concierges to set up your
+        %br 
+          path to clean energy savings
 
-/     .sm-col.sm-col-4.mx-auto
-/       %h2.center 2. Take Action 
-/       %p.center
-/         Begin your action path with vetted
-/         %br
-/           products & services 
-/     .sm-col.sm-col-4.mx-auto
-/       %h2.center 3. Track Progress
-/       %p.center
-/         Track the progress of your path to a
-/         %br
-/           clean energy lifestyle
+    .sm-col.sm-col-4.center
+      .wrapper{style: "height:100px;"}
+        =image_tag "icon_action.svg"
+      %h2.m0 2. Take Action 
+      %p.h4.m0
+        Begin your action path with vetted
+        %br
+          products & services 
+    .sm-col.sm-col-4.center
+      .wrapper{style: "height:100px;"}
+        =image_tag "icon_progress.svg"
+      %h2.m0 3. Track Progress
+      %p.h4.m0
+        Track the progress of your path to a
+        %br
+          clean energy lifestyle
 
 .bg-blue
   .max-width-4.mx-auto
@@ -160,17 +166,16 @@
         JULIE C.
         %br Sebastopol, CA
 
-.bg-white.py2
-  .clearfix
-    .sm-col.sm-col-2 &nbsp;
-    .sm-col.sm-col-2
-      =image_tag("RMI.png", width: "100px;")
-    .sm-col.sm-col-2
-      =image_tag("SEIA-2.png", width: "100%")
-    .sm-col.sm-col-2.mx-auto
-      =image_tag("Bcorp.png", style: 'display:block;margin:auto;')
-    .sm-col.sm-col-2
-      =image_tag("bbb.png", width: "60px;", style: 'display:block;margin:auto;')
+.bg-white.py2.max-width-4.clearfix.mx-auto
+  .sm-col.sm-col-2 &nbsp;
+  .sm-col.sm-col-2
+    =image_tag("RMI.png", width: "100px;")
+  .sm-col.sm-col-2
+    =image_tag("SEIA-2.png", width: "100%")
+  .sm-col.sm-col-2.mx-auto
+    =image_tag("Bcorp.png", style: 'display:block;margin:auto;')
+  .sm-col.sm-col-2
+    =image_tag("bbb.png", width: "60px;", style: 'display:block;margin:auto;')
 
 
 

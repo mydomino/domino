@@ -1,0 +1,112 @@
+<svg width="101" height="81" version="2.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>icon_actions</title>
+<desc>Created using Figma (9000)</desc>
+<g id="Canvas" transform="translate(-383 -402)" figma:type="canvas">
+<g id="icon_actions" style="mix-blend-mode:normal;" figma:type="group">
+<g id="Rectangle 96" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(383 402)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 96 Copy" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_stroke" transform="translate(383 431)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 96 Copy 2" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_stroke" transform="translate(383 460)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 97" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(412 409)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 97 Copy 2" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(412 438)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 97 Copy 4" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(412 468)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 97 Copy" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(412 417)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 97 Copy 3" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(412 446)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Rectangle 97 Copy 5" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_fill" transform="translate(412 475)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Path 922" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path3_stroke" transform="translate(389 409)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="
+M 0 3.64865
+C 0 1.63356 1.63356 0 3.64865 0
+L 19.3514 0
+C 21.3664 0 23 1.63356 23 3.64865
+L 23 19.3514
+C 23 21.3664 21.3664 23 19.3514 23
+L 3.64865 23
+C 1.63356 23 0 21.3664 0 19.3514
+L 0 3.64865
+Z"/>
+<path id="path1_stroke" d="
+M 0 3.64865
+L 0 19.3514
+C 0 21.3664 1.63356 23 3.64865 23
+L 19.3514 23
+C 21.3664 23 23 21.3664 23 19.3514
+L 23 3.64865
+C 23 1.63356 21.3664 0 19.3514 0
+L 3.64865 0
+C 1.63356 0 0 1.63356 0 3.64865
+Z
+M 2.91892 19.3514
+L 2.91892 3.64865
+C 2.91892 3.24563 3.24563 2.91892 3.64865 2.91892
+L 19.3514 2.91892
+C 19.7544 2.91892 20.0811 3.24563 20.0811 3.64865
+L 20.0811 19.3514
+C 20.0811 19.7544 19.7544 20.0811 19.3514 20.0811
+L 3.64865 20.0811
+C 3.24563 20.0811 2.91892 19.7544 2.91892 19.3514
+Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="
+M 0 1.5
+C 0 0.671573 0.671573 0 1.5 0
+L 70.5 0
+C 71.3284 0 72 0.671573 72 1.5
+L 72 1.5
+C 72 2.32843 71.3284 3 70.5 3
+L 1.5 3
+C 0.671573 3 0 2.32843 0 1.5
+L 0 1.5
+Z"/>
+<path id="path3_stroke" d="
+M 0.614102 2.97484
+C 0.258542 2.63568 -0.30464 2.64898 -0.643799 3.00454
+C -0.982958 3.3601 -0.969663 3.92328 -0.614102 4.26244
+L 0.614102 2.97484
+Z
+M 4.59323 8
+L 3.97913 8.6438
+C 4.15154 8.80825 4.3827 8.89669 4.62085 8.88929
+C 4.859 8.88189 5.08423 8.77929 5.2461 8.60445
+L 4.59323 8
+Z
+M 12.6529 0.604454
+C 12.9867 0.243885 12.965 -0.319036 12.6045 -0.652866
+C 12.2439 -0.986697 11.681 -0.965022 11.3471 -0.604454
+L 12.6529 0.604454
+Z
+M -0.614102 4.26244
+L 3.97913 8.6438
+L 5.20733 7.3562
+L 0.614102 2.97484
+L -0.614102 4.26244
+Z
+M 5.2461 8.60445
+L 12.6529 0.604454
+L 11.3471 -0.604454
+L 3.94037 7.39555
+L 5.2461 8.60445
+Z"/>
+</defs>
+</svg>

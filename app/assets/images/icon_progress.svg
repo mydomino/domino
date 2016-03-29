@@ -1,0 +1,80 @@
+<svg width="112" height="60" version="2.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>Progress</title>
+<desc>Created using Figma (9000)</desc>
+<g id="Canvas" transform="translate(-715 -409)" figma:type="canvas">
+<g id="Progress" style="mix-blend-mode:normal;" figma:type="group">
+<g id="Path 420" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_stroke" transform="translate(734 419)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Oval 9" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_fill" transform="translate(715 445)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+<use xlink:href="#path2_stroke" transform="translate(715 445)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Oval 9 Copy" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_fill" transform="translate(741 420)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+<use xlink:href="#path2_stroke" transform="translate(741 420)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Oval 9 Copy 2" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_fill" transform="translate(768 443)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+<use xlink:href="#path2_stroke" transform="translate(768 443)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Oval 9 Copy 3" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_fill" transform="translate(803 409)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+<use xlink:href="#path2_stroke" transform="translate(803 409)" fill="#00CCFF" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="
+M 19.4682 11.9049
+L 20.8774 10.4857
+L 19.4729 9.09098
+L 18.0637 10.481
+L 19.4682 11.9049
+Z
+M 44.7398 37
+L 43.3306 38.4192
+L 44.7398 39.8186
+L 46.1491 38.4192
+L 44.7398 37
+Z
+M 1.40447 32.5315
+L 20.8727 13.3287
+L 18.0637 10.481
+L -1.40447 29.6838
+L 1.40447 32.5315
+Z
+M 18.0589 13.324
+L 43.3306 38.4192
+L 46.1491 35.5808
+L 20.8774 10.4857
+L 18.0589 13.324
+Z
+M 46.1491 38.4192
+L 83.4092 1.41916
+L 80.5908 -1.41916
+L 43.3306 35.5808
+L 46.1491 38.4192
+Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="
+M 12 24
+C 18.6274 24 24 18.6274 24 12
+C 24 5.37258 18.6274 0 12 0
+C 5.37258 0 0 5.37258 0 12
+C 0 18.6274 5.37258 24 12 24
+Z"/>
+<path id="path2_stroke" d="
+M 24 12
+C 24 5.37258 18.6274 0 12 0
+C 5.37258 0 0 5.37258 0 12
+C 0 18.6274 5.37258 24 12 24
+C 18.6274 24 24 18.6274 24 12
+Z
+M 12 3
+C 16.9706 3 21 7.02944 21 12
+C 21 16.9706 16.9706 21 12 21
+C 7.02944 21 3 16.9706 3 12
+C 3 7.02944 7.02944 3 12 3
+Z"/>
+</defs>
+</svg>

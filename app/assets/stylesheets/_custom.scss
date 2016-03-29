@@ -1,3 +1,8 @@
 .pointer:hover { cursor : pointer}
 
 .error { color : red }
+
+input,textarea{
+  width:100%;
+  display:block
+}
