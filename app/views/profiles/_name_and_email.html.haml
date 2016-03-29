@@ -7,23 +7,27 @@
       %br
       Switch to clean. 
     %p.white Join the action path to your 100% clean energy lifestyle.
-  .sm-col.md-col-4 &nbsp;
-  .sm-col.sm-col-12.md-col-4
-    =simple_form_for @profile, remote: true, method: @response[:method] do |form|
-      .inline-block.sm-col.sm-col-12.md-col-5
-        %label.white First Name
-        %br
-        =form.input_field :first_name, class: 'bg-transparent white', style: 'border: 2px solid white; width: 100%; height:40px; font-size:30px;'
-      .sm-col.md-col-2 &nbsp;
-      .inline-block.sm-col.sm-col-12.md-col-5
-        %label.white Last Name
-        %br
-        =form.input_field :last_name, class: 'bg-transparent white', style: 'border: 2px solid white; width: 100%; height:40px;font-size:30px;', error_html: { class: 'error' }
-      %br
-      .sm-col.sm-col-12.md-col-12
-        %label.white Email
-        =form.input_field :email, class: 'bg-transparent white', style: 'border: 2px solid white; width: 100%; height:40px;font-size:30px;', error_html: { class: 'error' }
-      .sm-col.sm-col-12
-        %br
-        .center
-          =form.submit "GET STARTED", class: "bg-blue", style: 'border-radius:40px;border:none;width:250px;height:50px;color:white;'
+  .clearfix
+    .sm-col.md-col-4 &nbsp;
+    .sm-col.sm-col-12.md-col-4
+      =simple_form_for @profile, remote: true, method: @response[:method] do |form|
+        .clearfix
+          .sm-col.sm-col-12.md-col-6.px1
+            %label.white First Name
+            %br
+            =form.input_field :first_name, class: 'bg-transparent white fit', style: 'border: 2px solid white; height:40px; font-size:30px;'
+          /.sm-col.md-col-2.sm-hide.xs-hide &nbsp;
+          /.sm-col.sm-col-2.md-hide.lg-hide &nbsp;
+          .sm-col.sm-col-8.md-col-6.px1
+            %label.white Last Name
+            %br
+            =form.input_field :last_name, class: 'bg-transparent white fit', style: 'border: 2px solid white; height:40px;font-size:30px;', error_html: { class: 'error' }
+        .clearfix
+          .sm-col.sm-col-8.md-col-12.px1
+            %label.white Email
+            %br
+            =form.input_field :email, class: 'bg-transparent white fit', style: 'border: 2px solid white;height:40px;font-size:30px;'
+        .sm-col.sm-col-12
+          %br
+          .center
+            =form.submit "GET STARTED", class: "bg-blue", style: 'border-radius:40px;border:none;width:250px;height:50px;color:white;'
