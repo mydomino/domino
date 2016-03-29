@@ -23,6 +23,7 @@
       .sm-col.sm-col-12.md-col-12
         %label.white Email
         =form.input_field :email, class: 'bg-transparent white', style: 'border: 2px solid white; width: 100%; height:40px;font-size:30px;', error_html: { class: 'error' }
-      %br
-      .center.mt2 
-        =form.submit "GET STARTED", class: "bg-blue", style: 'border-radius:40px;border:none;width:250px;height:50px;color:white;'
+      .sm-col.sm-col-12
+        %br
+        .center
+          =form.submit "GET STARTED", class: "bg-blue", style: 'border-radius:40px;border:none;width:250px;height:50px;color:white;'
