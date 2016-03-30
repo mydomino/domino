@@ -1,10 +1,8 @@
--content_for :navbar_class do
-  bg-blue fixed white sm-col-12
 / -flash.each do |key, value|
 /   .flash
 /     =value
-.pt4{style: 'height:450px;'}
-  .max-width-3.mx-auto
+%div#interests.pt4{style: 'height:100%;min-height:450px;'}
+  .max-width-3.mx-auto.mt4
     .clearfix.mb2
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
@@ -12,11 +10,19 @@
       .col.col-12.h4.center.italic (Check all that apply)
     .clearfix
       =simple_form_for @profile, remote: true do |form|
-        .max-width-2.mx-auto
+        .mx-auto
+          .sm-col.sm-col-12
+            .clearfix
+              .sm-col.sm-col-12.md-col-6
+                %button.btn-interest{type: "button", data: {target: "profile_offering_ids_1"}, style: "width: 25px;height: 25px;border-radius: 3px;border: solid 2px #000000;position:relative;background-color:white"}
+                  %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display:none;"} 
+                %label Clean Power Options
+                %button.btn-interest{type: "button", data: {target: "profile_offering_ids_1"}, style: "width: 25px;height: 25px;border-radius: 3px;border: solid 2px #000000;position:relative;background-color:white"}
+                  %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display:none;"} 
+                %label Clean Power Options
           .sm-col.sm-col-4
-            =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(1,2,3,4,5)
-          .sm-col.sm-col-4
-            =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.find(6,7,8,9)
+          .display-none
+            =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
         .sm-col.sm-col-12.mt2.mx-auto
           .sm-col.col-2
             =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
@@ -26,4 +32,23 @@
 :javascript
   $(document).ready(function(){
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+
+    $('.btn-interest').on('click', function(){
+      if($(this).hasClass('active')){
+        $(this).css('background-color', 'white');
+        $(this).css('border-color', 'black');
+        $('i', this).css('display', 'none');
+        $(this).removeClass('active');
+      }else{
+        $(this).css('background-color', '#00CCFF');
+        $(this).css('border-color', '#00CCFF');
+        $('i', this).css('display', 'inline');
+        $(this).addClass('active');
+      }
+      var target = '#' + $(this).data('target');
+      $(target).prop('checked', function( i, val ) {
+        return !val;
+      });
+    });
+
   });            
