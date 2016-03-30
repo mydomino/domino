@@ -1,69 +1,63 @@
 
-.pt4.clearfix
-  / -flash.each do |key, value|
-  /   .flash.center
-  /     =value
-  %h2.center Let's learn about your home
-  .sm-col.sm-col-3 &nbsp;
-  =simple_form_for @profile, remote: true do |form|
-    .sm-col.sm-col-3
-      %label ADDRESS LINE 1
-      %br
-      =form.input_field :address_line_1, style: 'width:250px;'
-      %br
-      %label ADDRESS LINE 2
-      %br
-      =form.input_field :address_line_2, style: 'width:250px;'
-      %br
-      .inline-block
-        %label CITY
-        %br
-        =form.input_field :city, style: 'width:100px;'
-      .inline-block
-        %label STATE
-        %br
-        =form.input_field :state, style: 'width:50px;'
-      .inline-block
-        %label ZIP
-        %br
-        =form.input_field :zip_code, style: 'width:50px;'
-      %br
-      %label PHONE
-      %br  
-      =form.input_field :phone
-    .sm-col.sm-col-3
-      .mb2
-        %label HOUSING
-        %br
-        %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "#{@profile.housing == 'rent' ? 'bg-blue' : 'bg-white'}"} RENT
-        %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "#{@profile.housing == 'own' ? 'bg-blue' : 'bg-white'}"} OWN
-      .mt2
-        %label AVG ELECTRIC BILL
-      .inline-block
-        #slider{style: "width:250px;"}
-      .inline-block
-        %p.m0
-          &nbsp;$
-          %span#slider_val 0
-      =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
-      =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
+.pt4{style: 'height:450px;'}
+  .max-width-3.mx-auto
+    .clearfix.mb2
+      .col.col-12.center
+        .max-width-1.mx-auto.h2.line-height-2
+          Let's learn about your home
+    / -flash.each do |key, value|
+    /   .flash.center
+    /     =value
+    .clearfix
+      =simple_form_for @profile, remote: true do |form|
+        .sm-col.sm-col-6.px4
+          %label ADDRESS LINE 1
+          %br
+          =form.input_field :address_line_1, style: 'border: 1px solid black;'
+          %br
+          %label ADDRESS LINE 2
+          %br
+          =form.input_field :address_line_2, style: 'border: 1px solid black;'
+          %br
+          .inline-block
+            %label CITY
+            %br
+            =form.input_field :city, style: 'width:100px;border: 1px solid black;'
+          .inline-block
+            %label STATE
+            %br
+            =form.input_field :state, style: 'width:50px;border: 1px solid black;'
+          .inline-block
+            %label ZIP
+            %br
+            =form.input_field :zip_code, style: 'width:50px;border: 1px solid black;'
+          %br
+          %label PHONE
+          %br  
+          =form.input_field :phone, style: 'border: 1px solid black;'
+        .sm-col.sm-col-6
+          .mb2
+            %label HOUSING
+            %br
+            %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "#{@profile.housing == 'rent' ? 'bg-blue' : 'bg-white'}"} RENT
+            %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "#{@profile.housing == 'own' ? 'bg-blue' : 'bg-white'}"} OWN
+          .mt2
+            %label AVG ELECTRIC BILL
+          .inline-block
+            #slider{style: "width:250px;"}
+          .inline-block
+            %p.m0
+              &nbsp;$
+              %span#slider_val 0
+          =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
+          =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
 
-    .sm-col.sm-col-12.my2
-      .sm-col.sm-col-3 &nbsp;
-      .sm-col.sm-col-3
-        =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-      .sm-col.sm-col-3
-        =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
-
-
-    .sm-col.sm-col-12.my4
-      %p
-        %input{type:"checkbox", id:"test1"}
-        %label{for:"test1"} Red
-
-
-
-
+        .sm-col.sm-col-12.my2
+          .sm-col.sm-col-3 &nbsp;
+          .sm-col.sm-col-3
+            =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+          .sm-col.sm-col-3
+            =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $(document).ready(function(){
