@@ -3,8 +3,8 @@
     %h1{style: 'font-size:50px;font-weight:100;line-height:50px;'}
       Ditch the dirty.
       %br
-      Switch to clean. 
-    %p.white Join the action path to your 100% clean energy lifestyle.
+      Switch to clean.
+    %mb2.p.white Join the action path to your 100% clean energy lifestyle.
   .clearfix
     .sm-col.md-col-4 &nbsp;
     .sm-col.sm-col-12.md-col-4
@@ -23,11 +23,11 @@
             %label.white Email
             %br
             =form.input_field :email, class: 'bg-transparent white fit', style: 'border: 2px solid white;height:40px;font-size:30px;'
-        .sm-col.sm-col-12.my2
+        .sm-col.sm-col-12.my3
           .center
             =form.submit "GET STARTED", class: "bg-blue", style: 'display:inline;border-radius:40px; border:none; width:250px; height:50px; color:white;'
 
 :javascript
   $(document).ready(function(){
     $('#navbar, #navbar-brand, #link-login').css('color', 'white');
-  });            
+  });
