@@ -81,7 +81,7 @@
         %br
           clean energy lifestyle
 
-.bg-blue
+%div#about-banner
   .max-width-4.mx-auto
     .clearfix.py4
       .sm-col.sm-col-2 &nbsp;
@@ -167,15 +167,15 @@
         %br Sebastopol, CA
 
 .bg-white.py2.max-width-4.clearfix.mx-auto
-  .sm-col.sm-col-2 &nbsp;
-  .sm-col.sm-col-2
-    =image_tag("RMI.png", width: "100px;")
-  .sm-col.sm-col-2
-    =image_tag("SEIA-2.png", width: "100%")
-  .sm-col.sm-col-2.mx-auto
-    =image_tag("Bcorp.png", style: 'display:block;margin:auto;')
-  .sm-col.sm-col-2
-    =image_tag("bbb.png", width: "60px;", style: 'display:block;margin:auto;')
+  .flex.items-center.justify-center
+    .sm-col.sm-col-4.center
+      =image_tag("rmi-logo-black.svg", width: "200px;")
+    .sm-col.sm-col-4.center
+      =image_tag("SEIA-2.png", width: "200px")
+    .sm-col.sm-col-4.center
+      =image_tag("Bcorp.png", width: "100px")
+    .sm-col.sm-col-4.center
+      =image_tag("bbb.png", width: "100px;")
 
 
 
