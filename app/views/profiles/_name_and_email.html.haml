@@ -1,10 +1,10 @@
 %div#name-and-email.pt4{style: 'height:100%;min-height:450px;'}
   .center.white
-    %h1{style: 'font-size:50px;font-weight:100;line-height:50px;'}
+    %h1.mb3{style: 'font-size:50px;font-weight:100;line-height:50px;'}
       Ditch the dirty.
       %br
-      Switch to clean. 
-    %p.white Join the action path to your 100% clean energy lifestyle.
+      Switch to clean.
+    %p.white.mb3 Join the action path to your 100% clean energy lifestyle.
   .clearfix
     .sm-col.md-col-4 &nbsp;
     .sm-col.sm-col-12.md-col-4
@@ -13,21 +13,23 @@
           .sm-col.sm-col-12.md-col-6.px2
             %label.white First Name
             %br
-            =form.input_field :first_name, class: 'bg-transparent white fit', style: 'border: 2px solid white; height:40px; font-size:30px;', placeholder: "John"
+
+            =form.input_field :first_name, class: 'bg-transparent white fit', style: 'border: 2px solid white;border-radius:3px; height:40px; font-size:30px;', placeholder: "John"
+
           .sm-col.sm-col-12.md-col-6.px2
             %label.white Last Name
             %br
-            =form.input_field :last_name, class: 'bg-transparent white fit', style: 'border: 2px solid white; height:40px;font-size:30px;', error_html: { class: 'error' }
+            =form.input_field :last_name, class: 'bg-transparent white fit', style: 'border: 2px solid white;border-radius:3px; height:40px;font-size:30px;', error_html: { class: 'error' }
         .clearfix
-          .sm-col.sm-col-12.md-col-12.px2
+          .sm-col.sm-col-12.md-col-12.px2.mt1
             %label.white Email
             %br
-            =form.input_field :email, class: 'bg-transparent white fit', style: 'border: 2px solid white;height:40px;font-size:30px;'
-        .sm-col.sm-col-12.my2
+            =form.input_field :email, class: 'bg-transparent white fit', style: 'border: 2px solid white;border-radius:3px;height:40px;font-size:30px;'
+        .sm-col.sm-col-12.my3
           .center
             =form.submit "GET STARTED", class: "bg-blue", style: 'display:inline;border-radius:40px; border:none; width:250px; height:50px; color:white;'
 
 :javascript
   $(document).ready(function(){
     $('#navbar, #navbar-brand, #link-login').css('color', 'white');
-  });            
+  });
