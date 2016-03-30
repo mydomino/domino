@@ -31,7 +31,11 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
-    @profile.onboard_complete = true if @profile.onboard_step == 5
+    if @profile.onboard_step == 5 
+      @profile.onboard_complete = true
+      UserMailer.registration_email(@profile.email).deliver_later
+    end
+    
     @profile.update(profile_params)
     #update user email also if changed
     # if params[:profile][:email] != @profile.user

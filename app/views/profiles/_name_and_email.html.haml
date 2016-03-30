@@ -1,5 +1,3 @@
--content_for :navbar_class do
-  bg-transparent fixed white sm-col-12
 %div#name-and-email.pt4{style: 'height:100%;min-height:450px;background: image'}
   .center.white
     %h1{style: 'font-size:50px;font-weight:100;line-height:50px;'}
@@ -28,3 +26,8 @@
         .sm-col.sm-col-12.my2
           .center
             =form.submit "GET STARTED", class: "bg-blue", style: 'display:inline;border-radius:40px; border:none; width:250px; height:50px; color:white;'
+
+:javascript
+  $(document).ready(function(){
+    $('#navbar, #navbar-brand, #link-login').css('color', 'white');
+  });            

@@ -55,24 +55,38 @@
       .sm-col.sm-col-3
         =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
 
-:javascript
-  $( "#slider" ).slider({
-    animate: "fast",
-    max: 250, 
-    value: #{@profile.avg_electrical_bill},
-    create: function( event, ui ) {
-      $('#slider_val').html(#{@profile.avg_electrical_bill});
-    },
-    slide: function( event, ui ) {
-      $('#slider_val').html(ui.value);
-      $('#profile_avg_electrical_bill').val(ui.value);
-    }
-  });
 
-  $('.btn-housing').on('click', function(){
-    $('.btn-housing').not(this).removeClass('bg-blue');
-    $(this).toggleClass('bg-blue');
-    var val = $(this).data("value"); 
-    $('#profile_housing').val(val);
-  });
+    .sm-col.sm-col-12.my4
+      %p
+        %input{type:"checkbox", id:"test1"}
+        %label{for:"test1"} Red
+
+
+
+
+
+:javascript
+  $(document).ready(function(){
+    $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+
+    $( "#slider" ).slider({
+      animate: "fast",
+      max: 250, 
+      value: #{@profile.avg_electrical_bill},
+      create: function( event, ui ) {
+        $('#slider_val').html(#{@profile.avg_electrical_bill});
+      },
+      slide: function( event, ui ) {
+        $('#slider_val').html(ui.value);
+        $('#profile_avg_electrical_bill').val(ui.value);
+      }
+    });
+
+    $('.btn-housing').on('click', function(){
+      $('.btn-housing').not(this).removeClass('bg-blue');
+      $(this).toggleClass('bg-blue');
+      var val = $(this).data("value"); 
+      $('#profile_housing').val(val);
+    });
+  });            
   
