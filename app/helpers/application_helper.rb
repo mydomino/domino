@@ -18,4 +18,6 @@ module ApplicationHelper
     end
     flash_html.html_safe
   end
+
+  
 end

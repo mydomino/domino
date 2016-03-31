@@ -1,11 +1,13 @@
-/ -flash.each do |key, value|
-/   .flash
-/     =value
-.pt4{style: 'height:450px;'}
-  %h2.center What's the best time to reach you?
-  .clearfix
-    .sm-col.sm-col-4 &nbsp;
-    .sm-col.sm-col-4
+%div#availability.pt4{style: 'height:100%;min-height:450px;'}
+  .max-width-3.mx-auto.mt4
+    .clearfix.mb2
+      .col.col-12.center
+        .max-width-1.mx-auto.h2.line-height-2
+          What's the best time to reach you?
+          / -flash.each do |key, value|
+          /   .flash
+          /     =value
+    .clearfix
       =simple_form_for @profile, remote: true do |form|
         .center
           %button.bg-white.btn-availability{type: "button", style: "border: 2px solid lightgray;color:lightgray;width:40px;",data: {target: "chk-monday"}, class: "#{'bg-blue' if @profile.availability[:monday]}"} M
