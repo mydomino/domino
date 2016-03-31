@@ -1,5 +1,4 @@
-
-%div#living-situation.pt4{style: 'height:100%;min-height:450px;'}
+#living-situation.pt4
   .max-width-3.mx-auto.mt4
     .clearfix.mb2
       .col.col-12.center
@@ -8,7 +7,7 @@
     / -flash.each do |key, value|
     /   .flash.center
     /     =value
-    .clearfix
+    .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
         .sm-col.sm-col-12
           .clearfix
@@ -37,12 +36,12 @@
               =form.input_field :phone, style: 'border: 1px solid black;'
             .sm-col.sm-col-6
               .mb2.px4
-                %label.h6.bold HOUSING
+                %label.h6 HOUSING
                 %br
                 %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "#{@profile.housing == 'rent' ? 'bg-blue' : 'bg-white'}"} RENT
                 %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "#{@profile.housing == 'own' ? 'bg-blue' : 'bg-white'}"} OWN
               .mt2.px4
-                %label.h6.bold AVG ELECTRIC BILL
+                %label.h6 AVG ELECTRIC BILL
               .inline-block.pl4
                 #slider{style: "width:200px;"}
               .inline-block
@@ -51,7 +50,7 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
               =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
-          .mt2
+          .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 

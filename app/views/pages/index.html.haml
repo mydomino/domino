@@ -1,58 +1,12 @@
-
-/-content_for :logo_class do
-/  white
 -content_for :navbar_class do
   bg-transparent fixed white sm-col-12
 -content_for :link_color_class do
   white
 
-  /.experiment
-  / .bg-sky-gradient.py4
-  /   .container
-  /     .clearfix.px2
-  /       .sm-col-12.mx-auto.md-col-8.center.py4
-  /         %h1.white
-  /           We help you save money through clean energy&nbsp;— at no charge.
-  /     .clearfix
-  /       .sm-col.sm-col-12.md-col-4.center
-  /         .icon
-  /           =embedded_svg('line_solar.svg', style: 'position: relative; left: -30px;fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
-  /           %h3.navy.caps
-  /             Solar
-  /             %br
-  /             Energy
-  /       .sm-col.sm-col-12.md-col-4.center
-  /         .icon
-  /           =embedded_svg('line_products.svg', style: 'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
-  /           %h3.navy.caps
-  /             Product
-  /             %br
-  /             Suggestions
-  /       .sm-col.sm-col-12.md-col-4.center
-  /         .icon
-  /           =embedded_svg('line_energy.svg', style: 'fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;max-height: 200px;')
-  /           %h3.navy.caps
-  /             Energy
-  /             %br
-  /             Analysis
-
-  /     .clearfix
-  /       .sm-col.sm-col-12.center
-  /         =link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 pill caps border-none', style:'background-image:linear-gradient(#287dba, #165683)'
-  /         .experiment
-/ .bg-sky-gradient.py4
 .bg-white
-  #profile-forms
+  #profile-forms{style: 'height:100%;min-height:550px;border-bottom: 2px solid lightgray;'}
     =render 'profiles/name_and_email'
-    / %form
-    /   %input.mx1{placeholder: "FIRST NAME"}
-    /   %input.mx1{placeholder: "LAST NAME"}
-    /   %br
-    /   .col-12
-    /     %input.m1{placeholder: "EMAIL ADDRESS"}
-    /   %br
-    /   %input.btn.rounded.bg-blue.white{type: 'Submit', value: 'GET STARTED'}
-    /#=link_to 'Get Started', step_1_get_started_path, class: 'h2 lh0 btn bg-navy white px4 py3 mt4 pill caps border-none', style:'background-image:linear-gradient(#287dba, #165683)'
+
 .bg-white.max-width-4.mx-auto
   .clearfix.my4
     %h4.center{style: "margin-bottom:-20px;"} HOW TO
@@ -157,7 +111,7 @@
                     %i.fa.fa-check.fa-3.blue
                   Privileged access to our product previews and events
 
-.my4{style: 'background-color:#f3f3f3'}
+.my2{style: 'background-color:#f3f3f3'}
   .clearfix.mx-auto
     .sm-col.sm-col-3 &nbsp;
     .sm-col.sm-col-6
@@ -168,12 +122,13 @@
         JULIE C.
         %br Sebastopol, CA
 
-.bg-white.py2.max-width-4.clearfix.mx-auto
+.bg-white.py2.max-width-4.clearfix.mx-auto.my2
   .flex.items-center.justify-center
     .sm-col.sm-col-4.center
       =image_tag("rmi-logo-black.svg", width: "200px;")
     .sm-col.sm-col-4.center
       =image_tag("SEIA-2.png", width: "200px")
+    %br.md-hide.lg-hide
     .sm-col.sm-col-4.center
       =image_tag("Bcorp.png", width: "100px")
     .sm-col.sm-col-4.center

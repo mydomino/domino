@@ -1,7 +1,4 @@
-/ -flash.each do |key, value|
-/   .flash
-/     =value
-%div#interests.pt4{style: 'height:100%;min-height:450px;'}
+#interests.pt4
   .max-width-3.mx-auto.mt4
     .clearfix.mb2
       .col.col-12.center
@@ -20,7 +17,7 @@
                 =render "profiles/interest_checkbox", :index => index + 5
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
-          .mt2
+          .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 

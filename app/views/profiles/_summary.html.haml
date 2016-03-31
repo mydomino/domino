@@ -1,12 +1,11 @@
-.clearfix.py4
-  .sm-col.sm-col-4 &nbsp;
-  .sm-col.sm-col-4
-    %h1.blue.center
+:css
+#summary.pt4
+  .max-width-1.mx-auto.mt4
+    %p.h1.blue.center{style: 'line-height:1.2em;'}
       = "Congrats #{@profile.first_name}!"
-      %br
-      You're on the path to a clean
-      %br
-      energy lifestyle :)
+      You're on the path to a clean energy lifestyle
+      %span.absolute 
+        =image_tag "smiley.png"
     %h1.center
       Scroll down to learn more
 

@@ -1,8 +1,8 @@
-%div#availability.pt4{style: 'height:100%;min-height:450px;'}
+#checkout.pt4
   .max-width-3.mx-auto.mt4
     .clearfix.mb2
-      .sm-col.sm-col-12
-        %h1.center.blue{style: "font-size: 25px;"}
+      .sm-col.sm-col-12.mx-auto
+        %h1.center.blue.m0{style: "font-size: 25px;"}
           Only
           %span{style:'font-size: 80px;position:relative;font-weight:200;'}
             99
@@ -10,49 +10,51 @@
               $
           %span{style: 'margin-left:-22px;'}
             \/year
-        %ul.px4.list-reset{style:'color:#7c7c7c;'}
-          %li
-            %h3
-              %span
-                %i.fa.fa-check.fa-3.blue
-              A live energy savings concierge at your service
-          %li
-            %h3
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Your personalized path to 100% clean energy and big savings
-          %li
-            %h3
-              %span
-                %i.fa.fa-check.fa-3.blue
-              An easy to use, cool dashboard to track your progress  
-          %li
-            %h3
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Access to our seriously cool research on products and vendors  
-          %li  
-            %h3
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Exclusive energy and environmental educational stuff
-          %li  
-            %h3
-              %span
-                %i.fa.fa-check.fa-3.blue 
-              Privileged access to our product previews and events
-
-        .clearfix.center
-          =simple_form_for @profile, remote: true do |form|
-            .sm-col.sm-col-4
+        .wrap{style: 'float:left;position:relative;left:50%;'}
+          .content{style: 'float:left;position:relative;left:-50%;'}
+            %ul.px4.list-reset.mt0{style:'color:#555555;'}
+              %li
+                %h4.mt0
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  A live energy savings concierge at your service
+              %li
+                %h4
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  Your personalized path to 100% clean energy and big savings
+              %li
+                %h4
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  An easy to use, cool dashboard to track your progress  
+              %li
+                %h4
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  Access to our seriously cool research on products and vendors  
+              %li  
+                %h4
+                  %span
+                    %i.fa.fa-check.fa-3.blue
+                  Exclusive energy and environmental educational stuff
+              %li  
+                %h4
+                  %span
+                    %i.fa.fa-check.fa-3.blue 
+                  Privileged access to our product previews and events
+        
+        =simple_form_for @profile, remote: true do |form|
+          .clearfix.mx-auto
+            .sm-col.sm-col-12.center.xs-hide.sm-hide
               %label HAVE A PARTNER CODE?
-            .sm-col.sm-col-2
-              =form.input_field :partner_code, style: "border: 2px solid #00CCFF;display:inline;height:40px;padding:0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;"
-            .sm-col.sm-col-4
-              %button.left{type: "button", style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;'} Apply
-            .sm-col.sm-col-12.my2
-              .sm-col.sm-col-3 &nbsp;
-              .sm-col.sm-col-3
-                =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-              .sm-col.sm-col-3
-                =form.submit "SUBMIT", class: "bg-blue white", style: "border: none; border-radius: 20px;width: 120px; height: 40px;"
+              =form.input_field :partner_code,  style: "border: 2px solid #00CCFF;display:inline;height:40px;padding:0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
+              %button{type: "button", style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;color:white;font-weight:100;'} APPLY
+            .sm-col.sm-col-12.center.md-hide.lg-hide
+              %label HAVE A PARTNER CODE?
+            .sm-col.sm-col-12.center.md-hide.lg-hide
+              =form.input_field :partner_code,  style: "border: 2px solid #00CCFF;display:inline;height:40px;padding:0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
+              %button{type: "button", style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;'} Apply
+          .mt2.px2
+            =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+            =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
