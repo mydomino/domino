@@ -8,26 +8,21 @@
         .max-width-1.mx-auto.h2.line-height-2
           I am interested in learning more about the following...
       .col.col-12.h4.center.italic (Check all that apply)
-    .clearfix
+    .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .mx-auto
-          .sm-col.sm-col-12
-            .clearfix
-              .sm-col.sm-col-12.md-col-6
-                %button.btn-interest{type: "button", data: {target: "profile_offering_ids_1"}, style: "width: 25px;height: 25px;border-radius: 3px;border: solid 2px #000000;position:relative;background-color:white"}
-                  %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display:none;"} 
-                %label Clean Power Options
-                %button.btn-interest{type: "button", data: {target: "profile_offering_ids_1"}, style: "width: 25px;height: 25px;border-radius: 3px;border: solid 2px #000000;position:relative;background-color:white"}
-                  %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display:none;"} 
-                %label Clean Power Options
-          .sm-col.sm-col-4
+        .sm-col.sm-col-12
+          .clearfix
+            .sm-col.sm-col-12.md-col-6.px4
+              -5.times do |index|
+                =render "profiles/interest_checkbox", :index => index
+            .sm-col.sm-col-12.md-col-6.px4
+              -4.times do |index|
+                =render "profiles/interest_checkbox", :index => index + 5
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
-        .sm-col.sm-col-12.mt2.mx-auto
-          .sm-col.col-2
-            =form.submit "BACK", class: "bg-white black", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-          .col-2.right
-            =form.submit "NEXT", class: "bg-gray white right border-none", style: "border-radius: 20px;width: 120px; height: 40px;"
+          .mt2
+            =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+            =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $(document).ready(function(){

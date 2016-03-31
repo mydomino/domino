@@ -31,6 +31,9 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
+
+
+
     if @profile.onboard_step == 5 
       @profile.onboard_complete = true
       UserMailer.registration_email(@profile.email).deliver_later
@@ -49,6 +52,10 @@ class ProfilesController < ApplicationController
   private
 
   def render_response
+    if @profile.onboard_step == 1 
+      @active_inputs = @profile.interests.map {|i| i.offering_id }
+      @offerings = Offering.all.map {|o| o.name }
+    end
     @response = {form: FORMS[@profile.onboard_step], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
   end
