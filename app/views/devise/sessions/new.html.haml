@@ -1,24 +1,23 @@
-.bg-blue
-  .container
-    .flex-auto.center
-      .clearfix
-        .col.sm-col-4
-          &nbsp;
-        .col.sm-col-4
-          .flex.flex-center.full-height
-            .flex-auto
-              %h2.text-center.uppercase.bold.white.caps Concierge
-              .bg-white.rounded.p3
-                =simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-                  .form-inputs
-                    = f.label :email, class: 'left block'
-                    = f.input_field :email, required: false, autofocus: true, class: 'col-12 field mb2'
-                    = f.label :password, class: 'left block'
-                    = f.input_field :password, required: false, class: 'col-12 field mb2'
-                    .left-align
-                      = f.input_field :remember_me, class:'h1', as: :boolean if devise_mapping.rememberable?
-                      = f.label :remember_me
-                  .form-actions
-                    = f.button :submit, "Sign In", class: "caps btn bg-blue col-12 white rounded py2 mt2"
-                .text-center.py2.left-align
-                  = render "devise/shared/links"
+-content_for :navbar_class do
+  bg-transparent fixed midgray sm-col-12
+#signin.pt4
+  .max-width-3.mx-auto.mt4
+    .bg-lightgray.rounded.p3.my4.max-width-2.mx-auto
+      %h1.center Login To Your Account
+      =simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+        .form-inputs.max-width-1.mx-auto
+          = f.label :email, class: 'left block'
+          = f.input_field :email, required: false, autofocus: true, class: 'col-12 field mb2'
+          = f.label :password, class: 'left block'
+          = f.input_field :password, required: false, class: 'col-12 field mb2'
+          .flex.items-center
+            = f.input :remember_me, label: false, class:'h1', as: :boolean if devise_mapping.rememberable?
+            %label Remember Me
+          = f.button :submit, "LOG IN", class: "btn bg-blue col-12 white rounded py2 mt2"
+      .text-center.py2.left-align
+        = render "devise/shared/links"
+
+:javascript
+  $(document).ready(function(){
+    $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+  });

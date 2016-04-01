@@ -29,7 +29,6 @@ SimpleForm.setup do |config|
 
   config.default_wrapper = :vertical_form
   config.wrapper_mappings = {
-    check_boxes: :inline_checkbox,
     radio_buttons: :inline_checkbox
   }
 end
