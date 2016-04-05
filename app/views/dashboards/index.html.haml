@@ -33,7 +33,7 @@
               %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
               %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
               %td
-                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}
+                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'} 
   .clearfix
     .col.col-12
-      = will_paginate @dashboards
+      = paginate @dashboards

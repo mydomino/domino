@@ -30,7 +30,8 @@ gem 'friendly_id'
 gem 'devise'
 gem 'gravatar_image_tag'
 gem 'heap'
-gem 'will_paginate'
+# gem 'will_paginate'
+gem 'kaminari'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'rack-timeout'
@@ -39,6 +40,7 @@ gem 'retries'
 gem 'pundit'
 
 gem 'unicorn'
+gem 'activeadmin', github: 'activeadmin'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

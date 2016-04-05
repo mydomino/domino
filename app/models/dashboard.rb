@@ -5,6 +5,9 @@ class Dashboard < ActiveRecord::Base
   has_many :products, through: :recommendations, source: :recommendable, source_type: :Product
   has_many :tasks, through: :recommendations, source: :recommendable, source_type: :Task
   belongs_to :user
+
+  #kaminari pagination
+  # paginates_per 50
   # belongs_to :lead, foreign_key: :lead_email
   # validates :lead_email, presence: true
 

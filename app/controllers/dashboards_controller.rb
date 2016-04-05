@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
   helper_method :sort_column, :sort_direction
   # before_action :authenticate_concierge!, except: :show
-  layout 'concierge', except: :show
+  # layout 'concierge', except: :show
 
   def new
     @dashboard = Dashboard.new
@@ -20,7 +20,6 @@ class DashboardsController < ApplicationController
   end
 
   def show
-
     # @dashboard = Dashboard.find_by_slug(params[:id].downcase)
     @dashboard = Dashboard.find_by_user_id(current_user.id)
     authorize @dashboard, :show
@@ -48,19 +47,24 @@ class DashboardsController < ApplicationController
   end
 
   def index
-    @filter = params[:filter]
+    # @dashboards = Dashboard.all.page 1
+    authorize Dashboard
+    @page = params.has_key?(:page) ? params[:page] : 1
+    @dashboards = Kaminari.paginate_array(Dashboard.all).page(@page)
+    # @dashboards = Dashboard.all
+    # @filter = params[:filter]
 
-    if(@filter == 'all')
-      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    else
-      @filter = 'mine'
-      @dashboards = Dashboard.where(concierge: current_concierge).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    end
-    #handle search
-    if(params[:search].present?)
-      @search_term = params[:search]
-      @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
-    end
+    # if(@filter == 'all')
+    #   @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    # else
+    #   @filter = 'mine'
+    #   @dashboards = Dashboard.where(concierge: current_concierge).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    # end
+    # #handle search
+    # if(params[:search].present?)
+    #   @search_term = params[:search]
+    #   @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
+    # end
   end
 
   def destroy

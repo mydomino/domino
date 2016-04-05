@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :profiles
 
   devise_for :users, controllers: { registrations: "registrations" }
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   #lead routes
   # resources :leads, only: [:create, :new, :index]
   get '/dashboard' => 'dashboards#show'
+  get '/dashboards' => 'dashboards#index'
   # resources :dashboards, path: '/dashboard/', only: [:new, :create, :show, :index, :destroy] do
   #   # resources :recommendations, only: [:new, :create]
   #   # patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
