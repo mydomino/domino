@@ -28,3 +28,20 @@ button{
 .domino-gray{
   color: #666666;
 }
+
+input{
+  padding-left: 10px;
+}
+
+#name-and-email ::placeholder{
+  color: #B6C7CB;
+  font-weight: 100;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+/* for jquery placeholder */
+.placeholder {
+  
+}
+

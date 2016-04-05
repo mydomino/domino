@@ -4,37 +4,37 @@
   white
 
 .bg-white
-  #profile-forms{style: 'height:100%;min-height:550px;border-bottom: 2px solid lightgray;'}
+  #profile-forms{style: 'height:100%;min-height:530px;border-bottom: 2px solid lightgray;'}
     =render 'profiles/name_and_email'
 
 .bg-white.max-width-4.mx-auto
   .clearfix.my4
     %h4.center{style: "margin-bottom:-20px;"} HOW TO
     %h1.center.mb4 DITCH &amp; SWITCH
-    .sm-col.sm-col-4.center.mb3.sm-mb0
+    .sm-col.sm-col-4.center.mb3.sm-mb0.px2
       .wrapper{style: "height:100px;"}
         =image_tag "icon_talk.svg"
       %h2.m0 1. Talk With Us
       %p.h4.m0
         Chat with our concierges to set up your
-        %br
+        %br.sm-hide
           path to clean energy savings
 
-    .sm-col.sm-col-4.center.mb3.sm-b0
+    .sm-col.sm-col-4.center.mb3.sm-b0.px2
       .wrapper{style: "height:100px;"}
         =image_tag "icon_action.svg"
       %h2.m0 2. Take Action
       %p.h4.m0
         Begin your action path with vetted
-        %br.mt0
+        %br.sm-hide
           products & services
-    .sm-col.sm-col-4.center
+    .sm-col.sm-col-4.center.px2
       .wrapper{style: "height:100px;"}
         =image_tag "icon_progress.svg", class:"mt2"
       %h2.m0 3. Track Progress
       %p.h4.m0
         Track the progress of your path to a
-        %br
+        %br.sm-hide
           clean energy lifestyle
 
 %div#about-banner
@@ -64,54 +64,49 @@
           service purchased through MyDomino. Should any issue arise, we'll
           help resolve it to your 100% satisfaction. Guaranteed good energy.
 .bg-white
-  .clearfix.py2
-    %h1.center.py4
+  .clearfix.max-width-3.py2.mx-auto
+    %h1.center.pt4
       A small investment with epic savings
-    .sm-col.sm-col-3 &nbsp;
-    .sm-col.sm-col-6
-      %div.rounded{style: "background-color:#f3f3f3;position:relative;"}
-        %h1.center.blue{style: "font-size: 25px;"}
-          Only
-          %span{style:'font-size: 80px;position:relative;font-weight:200;'}
-            99
-            %span{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
-              $
-          %span{style: 'margin-left:-22px;'}
-            \/year
-        .clearfix
-          .sm-col.sm-col-2 &nbsp;
-          .sm-col.sm-col-8
-            %ul.list-reset{style:'color:#7c7c7c'}
-              %li
-                %h3
-                  %span
-                    %i.fa.fa-check.fa-3.blue
-                  A live energy savings concierge at your service
-              %li
-                %h3
-                  %span
-                    %i.fa.fa-check.fa-3.blue
-                  Your personalized path to 100% clean energy and big savings
-              %li
-                %h3
-                  %span
-                    %i.fa.fa-check.fa-3.blue
-                  An easy to use, cool dashboard to track your progress
-              %li
-                %h3
-                  %span
-                    %i.fa.fa-check.fa-3.blue
-                  Access to our seriously cool research on products and vendors
-              %li
-                %h3
-                  %span
-                    %i.fa.fa-check.fa-3.blue
-                  Exclusive energy and environmental educational stuff
-              %li
-                %h3
-                  %span
-                    %i.fa.fa-check.fa-3.blue
-                  Privileged access to our product previews and events
+    %div.rounded.m4{style: "background-color:#f3f3f3;position:relative;"}
+      %h1.center.blue{style: "font-size: 25px;"}
+        Only
+        %span{style:'font-size: 80px;position:relative;font-weight:200;'}
+          99
+          %span{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
+            $
+        %span{style: 'margin-left:-22px;'}
+          \/year
+      %ul.list-reset.ml4.pb4{style:'color:#7c7c7c;'}
+        %li
+          %h3
+            %span
+              %i.fa.fa-check.fa-3.blue
+            A live energy savings concierge at your service
+        %li
+          %h3
+            %span
+              %i.fa.fa-check.fa-3.blue
+            Your personalized path to 100% clean energy and big savings
+        %li
+          %h3
+            %span
+              %i.fa.fa-check.fa-3.blue
+            An easy to use, cool dashboard to track your progress
+        %li
+          %h3
+            %span
+              %i.fa.fa-check.fa-3.blue
+            Access to our seriously cool research on products and vendors
+        %li
+          %h3
+            %span
+              %i.fa.fa-check.fa-3.blue
+            Exclusive energy and environmental educational stuff
+        %li
+          %h3
+            %span
+              %i.fa.fa-check.fa-3.blue
+            Privileged access to our product previews and events
 
 .my2{style: 'background-color:#f3f3f3'}
   .clearfix.mx-auto

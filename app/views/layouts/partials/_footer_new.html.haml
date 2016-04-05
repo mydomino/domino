@@ -1,8 +1,10 @@
-%div{style: 'background-color:#f3f3f3'}
+#footer
   .max-width-4.mx-auto
     .clearfix
-      .sm-col.sm-col-3.ml4
-        %p.h5
+      .sm-col.sm-col-3.ml4.mt2
+        .white
+          = image_tag "mydomino_esc_horizontal", class: 'fit'
+        %p#footer-address.h5
           327 19th Street
           %br
           Oakland, CA 94612
@@ -11,33 +13,50 @@
           %br
           800-979-2215
 
-      .sm-col.sm-col-8
+      .sm-col.sm-col-8.domino-gray
         .inline-block.m2.right
           %h4{style: 'margin-bottom: -10px;'} GET SOCIAL
           %ul.list-reset.h5
-            %li Facebook
-            %li Twitter
+            %li
+              = link_to 'https://www.facebook.com/ourdominoeffect', target: '_blank' do
+                %i.fa.fa-facebook{style: 'width: 13px;'}
+                Facebook
+            %li
+              = link_to "https://twitter.com/OurDominoEffect", target: '_blank' do 
+                %i.fa.fa-twitter
+                Twitter
         .inline-block.m2.right
           %h4{style: 'margin-bottom: -10px;'} ABOUT US
           %ul.list-reset.h5
-            %li Press
-            %li Careers
-            %li FAQ
+            %li
+              =link_to "Press", "http://mydomino.strikingly.com", target: '_blank'
+            %li
+              =link_to "Careers", "https://www.hellohired.com/domino", target: '_blank'
+            %li
+              =link_to "FAQ", "#"      
         .inline-block.m2.right
           %h4{style: 'margin-bottom: -10px;'} COMPANY
           %ul.list-reset.h5
-            %li Home
-            %li Blog
-            %li Terms of Service
-            %li Privacy Policy
+            %li
+              =link_to "Home", root_path
+            %li
+              =link_to "News", "/blog"
+            %li
+              =link_to "Terms of Service", terms_path
+            %li
+              =link_to "Privacy Policy", privacy_path
         .inline-block.m2.right
           %h4{style: 'margin-bottom: -10px;'} LEARN MORE
           %ul.list-reset.h5
             %li 
               =link_to "Clean Power", "/blog/category/clean-power/"
-            %li Heating & Cooling
-            %li Transportation
-            %li Energy Freedom
-            %li Concierge Corner
+            %li 
+              =link_to "Heating & Cooling", "/blog/category/heating-and-cooling/"
+            %li
+              =link_to "Transportation", "/blog/category/transportation/"
+            %li
+              =link_to "Energy Freedom", "/blog/category/energy-freedom/"
+            %li
+              =link_to "Concierge Corner", "/blog/category/concierge-corner/"
 
         
