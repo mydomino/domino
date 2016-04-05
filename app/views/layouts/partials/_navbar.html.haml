@@ -7,7 +7,10 @@
         .fa.fa-bars.pointer{style: "font-size: 2rem;padding-top: 1.75rem;"}
       .xs-hide.sm-hide.py3.px3.my1.sm-hide
         .right
-          =link_to "LOG IN", new_user_session_path, class: 'white border p1 rounded text-decoration-none', id: "link-login"
+          -if user_signed_in?
+            =link_to 'LOG OUT', destroy_user_session_path, method: :delete
+          -else
+            =link_to "LOG IN", new_user_session_path, class: 'white border p1 rounded text-decoration-none', id: "link-login"
         .right-align.right.mx2
           %i.fa.fa-phone.fa-2
           800-979-2215
@@ -23,8 +26,7 @@
               = link_to 'Press', 'http://mydomino.strikingly.com', target: '_blank', class: "white py1 inline-block"
             %li
               = link_to 'Blog', 'http://www.mydomino.com/blog/', target: '_blank', class: "white py1 inline-block"
-            %li
-              = link_to 'GET STARTED', step_1_get_started_path, class: "btn white py1 inline-block"
+
 :javascript
   $(document).ready(function(){
 

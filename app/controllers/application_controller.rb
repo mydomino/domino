@@ -13,14 +13,15 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_in_path_for concierge
+  def after_sign_in_path_for resource
     #Background job?
     #Heap.identify(current_concierge.email, name: current_concierge.name, role: "Concierge")
-    dashboards_path
+    #use roles here to determine appropriate path
+    dashboard_path
   end
 
-  def after_sign_out_path_for(resource_or_scope)
-    new_concierge_session_path
+  def after_sign_out_path_for(resource)
+    root_path
   end
 
   def layout_by_resource

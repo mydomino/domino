@@ -1,0 +1,9 @@
+-if object.errors.any?
+  #error_explanation.mx-auto.center
+    .alert.alert-error
+      %h3.mb0
+        = "The form contains #{pluralize(object.errors.count, 'error')}."
+    %ul.inline-block.mt0.mb2
+    -object.errors.full_messages.each do |msg|
+      %li 
+        =msg

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324221644) do
+ActiveRecord::Schema.define(version: 20160405204330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20160324221644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "profile_id"
+  end
+
+  create_table "clones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "concierges", force: :cascade do |t|
@@ -69,7 +75,11 @@ ActiveRecord::Schema.define(version: 20160324221644) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "lead_email"
+    t.integer  "user_id"
   end
+
+  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
+  add_index "dashboards", ["user_id"], name: "index_dashboards_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -187,6 +197,9 @@ ActiveRecord::Schema.define(version: 20160324221644) do
     t.integer  "updated_by"
   end
 
+  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
+  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
+
   create_table "tasks", force: :cascade do |t|
     t.string   "icon"
     t.string   "name"
@@ -220,6 +233,7 @@ ActiveRecord::Schema.define(version: 20160324221644) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "availabilities", "profiles"
+  add_foreign_key "dashboards", "users"
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
   add_foreign_key "profiles", "availabilities"

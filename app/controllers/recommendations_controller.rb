@@ -51,7 +51,7 @@ class RecommendationsController < ApplicationController
       @dashboard.product_ids = []
       @dashboard.task_ids = []
     end
-    redirect_to @dashboard
+    redirect_to dashboard_path
   end
 
   def destroy
@@ -73,9 +73,9 @@ class RecommendationsController < ApplicationController
   private
 
   def current_concierge_maybe
-    if(!current_concierge.nil?)
-      return current_concierge.id
-    end
+    # if(!current_concierge.nil?)
+    #   return current_concierge.id
+    # end
     return ''
   end
 

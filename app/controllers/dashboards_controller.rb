@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_action :authenticate_concierge!, except: :show
+  # before_action :authenticate_concierge!, except: :show
   layout 'concierge', except: :show
 
   def new
@@ -20,7 +20,10 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    @dashboard = Dashboard.find_by_slug(params[:id].downcase)
+
+    # @dashboard = Dashboard.find_by_slug(params[:id].downcase)
+    @dashboard = Dashboard.find_by_user_id(current_user.id)
+    authorize @dashboard, :show
     if(@dashboard.nil?)
       not_found
     end
@@ -38,9 +41,10 @@ class DashboardsController < ApplicationController
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
-    respond_to do |format|
-      format.html {render :layout => 'dashboard'}
-    end
+    # respond_to do |format|
+    #   format.html {render :layout => 'dashboard'}
+    # end
+    render :layout => 'dashboard'
   end
 
   def index

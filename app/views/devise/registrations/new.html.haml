@@ -1,12 +1,38 @@
-.clearfix.mx-auto.max-width-4
-  .sm-col.sm-col-12.md-col-6
-    %h2 Sign up
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = f.error_notification
-      .form-inputs
-        = f.input :email, required: true, autofocus: true, input_html: {id: 'sign_up_code', value: @email}
-        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-        = f.input :password_confirmation, required: true
-      .form-actions
-        = f.button :submit, "Sign up"
-    = render "devise/shared/links"
+/ .clearfix.mx-auto.max-width-4
+/   .sm-col.sm-col-12.md-col-6
+/     %h2 Sign up
+/     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+/       = f.error_notification
+/       .form-inputs
+/         = f.input :email, required: true, autofocus: true, input_html: {id: 'sign_up_code', value: @email}
+/         = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+/         = f.input :password_confirmation, required: true
+/       .form-actions
+/         = f.button :submit, "Sign up"
+/     = render "devise/shared/links"
+-content_for :navbar_class do
+  bg-transparent fixed midgray sm-col-12
+#signup.pt4
+  .max-width-3.mx-auto.mt4
+    .bg-lightgray.rounded.p3.mt4.max-width-2.mx-auto
+      .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
+        = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
+      %h1.center.domino-gray Register Your Account
+      =simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+        .form-inputs.max-width-1.mx-auto
+          %label.domino-gray Email Address
+          = f.input_field :email, required: true, value: "#{@email}", class: 'mb2 mt1', style: 'height: 40px;'
+          %label.domino-gray Password
+          = f.input_field :password, required: true, autofocus: true,class: 'mt1 mb2', style: 'height: 40px;'
+          %label.domino-gray Password Confirmation
+          = f.input_field :password_confirmation, required: true, class: 'mt1', style: 'height: 40px;'
+          = f.button :submit, "REGISTER", class: "bg-blue white py2", style: 'border-radius:40px; border:none;height:50px; color:white;'
+          .mt2.center
+    %p.center.domino-gray
+      Already have an account?
+      %span.blue
+        = link_to "Log In", new_user_session_path, class: 'text-decoration-none blue'
+:javascript
+  $(document).ready(function(){
+    $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+  });

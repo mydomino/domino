@@ -1,25 +1,25 @@
--content_for :logo_class do
-  blue
--if concierge_signed_in?
-  =render 'concierge_narrow_navbar'
-  :css
-    body
-    {
-      padding-top: 60px;
-    }
+/ -content_for :logo_class do
+/   blue
+/ -if concierge_signed_in?
+/   =render 'concierge_narrow_navbar'
+/   :css
+/     body
+/     {
+/       padding-top: 60px;
+/     }
 
-  .modal.fade#new-recommendation
-    .container
-      .modal-dialog
-        .modal-content
-          .modal-header.relative
-            .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
-              %span{ style: 'font-size: 2rem;' }
-                .fa.fa-times.blue
-          .modal-body
-            .row
-              .col-xs-12
-                =render 'recommendations/bulk_add_form'
+/ .modal.fade#new-recommendation
+/   .container
+/     .modal-dialog
+/       .modal-content
+/         .modal-header.relative
+/           .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
+/             %span{ style: 'font-size: 2rem;' }
+/               .fa.fa-times.blue
+/         .modal-body
+/           .row
+/             .col-xs-12
+/               =render 'recommendations/bulk_add_form'
 .bg-heather
   .container
     .bg-white.rounded.mb2
@@ -27,7 +27,7 @@
         .sm-col.sm-col-12
           %h1.charcoal
             Hi,
-            =@dashboard.lead_name.titleize
+            = current_user.profile.first_name.titleize
       .clearfix.center.charcoal
         .sm-col.sm-col-12
           %p

@@ -11,11 +11,12 @@ class ProfilesController < ApplicationController
     else
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
-      @profile.onboard_step = 1;
+      @profile.onboard_step = 0;
       @profile.build_availability
       @profile.avg_electrical_bill = 0;
       
       if @profile.save
+        @profile.update(onboard_step: 1);
         render_response
       else
         @response = {form: FORMS[@profile.onboard_step], method: :post}
