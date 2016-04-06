@@ -10,8 +10,17 @@ $black-10: rgba(0,0,0,.1);
 $black-20: rgba(0,0,0,.2);
 $black-30: rgba(0,0,0,.3);
 
+
 .black{
   color: $black;
+}
+
+.bg-white{
+  background-color: $white;
+}
+
+.white{
+  color: $white;
 }
 .bg-cloud
 {
@@ -84,3 +93,5 @@ svg
 {
   fill: currentColor;
 }
+
+

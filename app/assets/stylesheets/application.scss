@@ -16,13 +16,12 @@
  *= require nprogress
  */
 
-@import 'custom';
-@import 'responsive-spacing';
 @import "basscss/basscss";
-@import "basscss/basscss-addons";
-//@import "basscss7";
 @import "colors";
+@import "custom";
 @import "buttons";
+@import 'responsive-spacing';
+//@import "basscss7";
 @import "components";
 @import "fonts";
 @import "concierge_tools";
