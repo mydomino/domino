@@ -45,3 +45,5 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   .line-height-4 { line-height: $line-height-4 }
 
 }
+
+.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
