@@ -21,11 +21,16 @@ class DashboardsController < ApplicationController
 
   def show
     # @dashboard = Dashboard.find_by_slug(params[:id].downcase)
-    @dashboard = Dashboard.find_by_user_id(current_user.id)
-    authorize @dashboard, :show
-    if(@dashboard.nil?)
-      not_found
-    end
+    if !user_signed_in?
+      #set flash message to please sign in to access dashboard
+      redirect_to new_user_session_path
+      return
+    else
+      @dashboard = Dashboard.find_by_user_id(current_user.id)
+      authorize @dashboard, :show    end
+    # if(@dashboard.nil?)
+    #   not_found
+    # end
     @products = Product.all
     @tasks = Task.all
     @filter = params[:filter]

@@ -17,11 +17,15 @@ class ApplicationController < ActionController::Base
     #Background job?
     #Heap.identify(current_concierge.email, name: current_concierge.name, role: "Concierge")
     # stored_location_for(resource) ||
-    if resource.role == 'concierge'
-      dashboards_path
-    else
-      dashboard_path
-    end
+    # byebug
+    # if resource.is_a? AdminUser
+    #   admin_root_path
+    # elsif resource.role == 'concierge'
+    #   dashboards_path
+    # else
+    #   dashboard_path
+    # end
+    '/'
   end
 
   def after_sign_out_path_for(resource)
