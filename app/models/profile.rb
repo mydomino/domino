@@ -13,8 +13,8 @@ class Profile < ActiveRecord::Base
   has_many :interests, dependent: :destroy
   has_many :offerings, through: :interests
 
-  validates :first_name, :last_name, :email, presence: true
-  validates :email, uniqueness: true, email: true
+  # validates :first_name, :last_name, :email, presence: true
+  # validates :email, uniqueness: true, email: true
 
   # after_create :save_to_zoho
   # after_update :update_zoho
