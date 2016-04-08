@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   caches_action :index, :about, :terms, :privacy, :solar
-
+  skip_after_action :verify_authorized
   def index
     @profile = Profile.new
     @response = {form: 'name_and_email', method: :post}

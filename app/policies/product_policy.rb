@@ -1,0 +1,3 @@
+class ProductPolicy < RecommendationPolicy
+ 
+end

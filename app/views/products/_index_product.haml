@@ -1,4 +1,4 @@
-.clearfix.index-product.rounded.flex.flex-center.px2
+.clearfix.rounded.flex.items-center.px2
   .col.sm-col-2.center
     %h3
       =link_to product_toggle_default_path(product.id), method: "POST" do
@@ -8,13 +8,12 @@
           .fa.fa-square-o
         Default
   .col.sm-col-2
-    =image_tag product.image_url
+    =image_tag product.image_url, width: "150px"
   .col.sm-col-5
     %h3.bold
       =product.name
     %h3.mt0
       =product.price
-  .col.sm-col-3
-    .hover-show.right-align
-      =link_to "Edit", edit_product_path(product), class: 'btn white bg-blue rounded'
-      =link_to "Delete", product_path(product), class: 'btn white bg-red rounded', method: "POST"
+  .col.sm-col-3.center.hover-show
+    =link_to "Edit", edit_product_path(product), class: 'white bg-blue text-decoration-none rounded block p2 btn'
+    =link_to "Delete", product_path(product), class: 'white bg-red text-decoration-none rounded block btn',  method: "POST"

@@ -9,7 +9,15 @@ $black: #333333;
 $black-10: rgba(0,0,0,.1);
 $black-20: rgba(0,0,0,.2);
 $black-30: rgba(0,0,0,.3);
+$red: #FF0000;
 
+.red {
+  color: $red;
+}
+
+.bg-red {
+  background-color: $red;
+}
 
 .black{
   color: $black;

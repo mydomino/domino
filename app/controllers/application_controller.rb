@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  # after_action :verify_authorized
+  # skip_authorization if devise_controller
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
@@ -7,11 +9,19 @@ class ApplicationController < ActionController::Base
   before_action :start_timing, :capture_utm_campaign
   layout :layout_by_resource
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
 
   private
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
 
   def after_sign_in_path_for resource
     #Background job?

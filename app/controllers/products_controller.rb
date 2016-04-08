@@ -1,13 +1,28 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_concierge!
+  before_action :authenticate_user!
+  after_action :verify_authorized
+
   layout 'concierge'
+
+  def index
+    authorize Product
+    @default_products = Product.where(default: true)
+    @non_default_products = Product.where(default: false)
+  end
+
+  def show
+    @product = Product.find(params[:id])
+  end
 
   def new
     @product = Product.new
+    authorize @product
   end
 
   def create
     @product = Product.new(create_product_params)
+    authorize @product
+
     if @product.save
       redirect_to edit_product_path @product
     else
@@ -28,18 +43,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  def index
-    @default_products = Product.where(default: true)
-    @non_default_products = Product.where(default: false)
-  end
-
   def update_all_amazon_prices
     UpdateAllAmazonPricesJob.perform_later
     redirect_to :products
-  end
-
-  def show
-    @product = Product.find(params[:id])
   end
 
   def toggle_default

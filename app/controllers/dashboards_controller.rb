@@ -1,36 +1,24 @@
 class DashboardsController < ApplicationController
+
   helper_method :sort_column, :sort_direction
   # before_action :authenticate_concierge!, except: :show
   layout 'concierge', except: :show
+
   def index
-    # @dashboards = Dashboard.all.page 1
     authorize Dashboard
-    # if(params[:search].present?)
-    #   @search_term = params[:search]
-    #   @dashboards = Dashboard.all
-    #   @dashboards = @dashboards.fuzzy_search(@search_term)
-    #   @dashboards = Kaminari.paginate_array(@dashboards).page(1).per(20)
-    #   return
-    # else
     @page = params.has_key?(:page) ? params[:page] : 1
-    # @dashboards = Kaminari.paginate_array(Dashboard.all).page(@page)
-    # @dashboards = Dashboard.all
     @filter = params[:filter]
+
     if(@filter == 'all' || @filter == nil)
-      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction) 
-      # @dashboards = Kaminari.paginate_array(Dashboard.all.order(sort_column + " " + sort_direction)).page(@page)
+      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).page @page
     else
-    #   @filter = 'mine'
       @dashboards = Dashboard.where(concierge_id: current_user.id).order(sort_column + " " + sort_direction)
     end
-    @dashboards = Kaminari.paginate_array(@dashboards).page(@page)
 
-    #handle search
-    # if(params[:search].present?)
-    #   @search_term = params[:search]
-    #   @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
-    # end
-    # end
+    if(params.has_key? :search)
+      @search_term = params[:search]
+      @dashboards = @dashboards.fuzzy_search(@search_term).page @page
+    end
   end
 
   def new
@@ -63,9 +51,6 @@ class DashboardsController < ApplicationController
       end
       authorize @dashboard, :show    
     end
-    # if(@dashboard.nil?)
-    #   not_found
-    # end
     @products = Product.all
     @tasks = Task.all
     @filter = params[:filter]
@@ -80,9 +65,6 @@ class DashboardsController < ApplicationController
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
-    # respond_to do |format|
-    #   format.html {render :layout => 'dashboard'}
-    # end
     render :layout => 'dashboard'
   end
 

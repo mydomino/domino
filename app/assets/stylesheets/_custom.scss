@@ -146,25 +146,21 @@ input{
   }
 }
 
-#dashboard, #dashboards {
-    .btn {
-    font-family: inherit;
-    font-size: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 1.125rem;
-    padding: .5rem 1rem;
-    margin: 0;
-    height: auto;
-    border: 1px solid transparent;
-    vertical-align: middle;
-    -webkit-appearance: none;
-    color: inherit;
-    /*background-color: transparent;*/
-  }
-}
 
+ .btn {
+      font-family: inherit;
+      font-size: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 1.125rem;
+      padding: .5rem 1rem;
+      margin: 0;
+      height: auto;
+      border: 1px solid transparent;
+      vertical-align: middle;
+      -webkit-appearance: none;
+    }
 #dashboards{
   .table-light th, .table-light td {
      border-bottom-width: 1px; 
@@ -229,3 +225,5 @@ input{
     }
   }
 }
+
+.flash-msg-box {position: absolute; top: 50px;}
