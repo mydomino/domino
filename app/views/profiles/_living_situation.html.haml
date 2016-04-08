@@ -38,8 +38,8 @@
               .mb2.px4
                 %label.h6 HOUSING
                 %br
-                %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "#{@profile.housing == 'rent' ? 'bg-blue' : 'bg-white'}"} RENT
-                %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "#{@profile.housing == 'own' ? 'bg-blue' : 'bg-white'}"} OWN
+                %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "bg-white #{@profile.housing == 'rent' ? 'btn-housing-active' : 'bg-white'}"} RENT
+                %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "bg-white #{@profile.housing == 'own' ? 'btn-housing-active' : 'bg-white'}"} OWN
               .mt2.px4
                 %label.h6 AVG ELECTRIC BILL
               .inline-block.pl4
@@ -52,7 +52,7 @@
               =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
           .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+            =form.submit "NEXT", disabled: true, class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 
 :javascript
@@ -73,10 +73,27 @@
     });
 
     $('.btn-housing').on('click', function(){
-      $('.btn-housing').not(this).removeClass('bg-blue');
-      $(this).toggleClass('bg-blue');
+      $('.btn-housing').not(this).removeClass('btn-housing-active');
+      $(this).toggleClass('btn-housing-active');
       var val = $(this).data("value"); 
       $('#profile_housing').val(val);
+    });
+
+     //initial state check if any checkbox is selected
+    if( $('#profile_housing').val() != "" ){
+      $("input[value='NEXT']").removeAttr("disabled");
+      $("input[value='NEXT']").addClass("btn-submit-active");
+    }
+
+    //state machine
+    $('.btn-housing').on('click', function(){
+      if( $('.btn-housing.btn-housing-active').size() > 0 ){
+        $("input[value='NEXT']").prop("disabled", false);
+        $("input[value='NEXT']").addClass("btn-submit-active");
+      }else{
+        $("input[value='NEXT']").attr("disabled", true);
+        $("input[value='NEXT']").removeClass("btn-submit-active");
+      }
     });
   });            
   
