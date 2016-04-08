@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   #lead routes
   # resources :leads, only: [:create, :new, :index]
-  get '/dashboard' => 'dashboards#show'
+  get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards
   # get '/dashboard/:id' => 'dashboards#show'
   # get '/dashboard' => 'dashboards#show'

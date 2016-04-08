@@ -3,16 +3,17 @@
     .col.col-12
       %h1.inline-block.m0 Dashboards
 
-      .inline-block.clearfix.right.mt1
-        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray'}"
-        =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray' }"
+      .inline-block.right.mt1
+        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray black'}"
+        =link_to 'Mine', {filter: "mine"}, class: "left btn caps rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray black' }"
         /.inline-block.border.p2.mr3.right
-      .inline-block.p2.mr3.right
+      .p2.mr3.right{style: 'width:400px;'} 
         =form_tag dashboards_path, method: 'GET' do
-          =text_field_tag 'search', @search_term
+          .inline-block
+            =text_field_tag 'search', @search_term, style: 'height: 1.6em;'
           =hidden_field_tag 'filter', @filter
           =hidden_field_tag 'view', 'table'
-          =submit_tag 'Search', class: 'btn blue pull-right'
+          =submit_tag 'Search', class: 'btn white pull-right bg-blue border', style: "margin-right: 64px; width: 128px;height:32px;border-radius:16px;"
 
     .col.col-12
       .clearfix
@@ -21,9 +22,9 @@
             %th 
               =sortable "created_at", "Created", filter: @filter
             %th 
-              =sortable "lead_name", filter: @filter
+              =sortable "lead_name", "Name", filter: @filter
             %th 
-              =sortable "lead_email", filter: @filter
+              =sortable "lead_email", "Email", filter: @filter
             %th Products Done
             %th Actions Done
             %th Delete
@@ -31,7 +32,7 @@
             %tr.dashboard-record
               %td #{dashboard.created_at.strftime("%Y-%m-%d")}
               %td
-                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank'
+                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none'
               %td #{dashboard.lead_email}
               %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
               %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions

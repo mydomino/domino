@@ -32,9 +32,11 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    authorize @product
   end
 
   def update
+    authorize Product
     @product = Product.find(params[:id])
     if @product.update_attributes(edit_product_params)
       redirect_to products_path
@@ -44,6 +46,7 @@ class ProductsController < ApplicationController
   end
 
   def update_all_amazon_prices
+    authorize Product
     UpdateAllAmazonPricesJob.perform_later
     redirect_to :products
   end
@@ -52,6 +55,13 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:product_id])
     @product.default = !@product.default
     @product.save
+    redirect_to products_path
+  end
+
+  def destroy
+    authorize Product
+    @product = Product.find(params[:id])
+    @product.destroy
     redirect_to products_path
   end
 

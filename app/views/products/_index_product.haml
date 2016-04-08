@@ -1,7 +1,7 @@
 .clearfix.rounded.flex.items-center.px2
   .col.sm-col-2.center
     %h3
-      =link_to product_toggle_default_path(product.id), method: "POST" do
+      =link_to product_toggle_default_path(product.id), method: "POST", class: 'text-decoration-none blue' do
         -if (product.default)
           .fa.fa-check-square-o
         -else
@@ -16,4 +16,4 @@
       =product.price
   .col.sm-col-3.center.hover-show
     =link_to "Edit", edit_product_path(product), class: 'white bg-blue text-decoration-none rounded block p2 btn'
-    =link_to "Delete", product_path(product), class: 'white bg-red text-decoration-none rounded block btn',  method: "POST"
+    =link_to "Delete", product_path(product), class: 'white bg-red text-decoration-none rounded block btn',  method: :delete

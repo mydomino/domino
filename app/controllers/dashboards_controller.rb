@@ -11,8 +11,9 @@ class DashboardsController < ApplicationController
 
     if(@filter == 'all' || @filter == nil)
       @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).page @page
+      @filter = 'all'
     else
-      @dashboards = Dashboard.where(concierge_id: current_user.id).order(sort_column + " " + sort_direction)
+      @dashboards = Dashboard.where(concierge_id: current_user.id).order(sort_column + " " + sort_direction).page @page
     end
 
     if(params.has_key? :search)

@@ -1,10 +1,10 @@
 =simple_form_for @product do |form|
   =form.label :product_id
-  =form.text_field :product_id, disabled: true
+  =form.text_field :product_id, disabled: true, class: 'mb1'
   =form.label :url
-  =form.text_field :url, disabled: true
+  =form.text_field :url, disabled: true, class: 'mb1'
   =form.label :name
   =form.text_field :name
   =form.label :description
-  =form.text_area :description
-  =form.submit "Update Product", class: "btn btn-default"
+  =form.text_area :description, class: 'mb1'
+  =form.submit "Update Product", class: "btn-domino bg-blue white mb2"

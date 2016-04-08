@@ -10,4 +10,8 @@ class RecommendationPolicy < ApplicationPolicy
   def index?
     user.role == 'concierge'
   end
+
+  def update?
+    user.role == 'concierge'
+  end
 end
