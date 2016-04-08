@@ -7,12 +7,12 @@
       .col.col-12.h4.center.italic (Check all that apply)
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .sm-col.sm-col-12
-          .clearfix
-            .sm-col.sm-col-12.md-col-6.px4
+        .max-width-2.mx-auto
+          .flex.justify-center
+            .inline-block
               -5.times do |index|
                 =render "profiles/interest_checkbox", :index => index
-            .sm-col.sm-col-12.md-col-6.px4
+            .inline-block.align-top.ml2
               -4.times do |index|
                 =render "profiles/interest_checkbox", :index => index + 5
           .display-none
@@ -49,6 +49,7 @@
       $("input[value='NEXT']").addClass("btn-submit-active");
     }
 
+    //state machine
     $('.btn-interest').on('click', function(){
       if( $('.active').size() > 0 ){
         $("input[value='NEXT']").prop("disabled", false);
