@@ -19,7 +19,7 @@
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
           .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+            =form.submit "NEXT", disabled: true, class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $(document).ready(function(){
@@ -41,6 +41,22 @@
       $(target).prop('checked', function( i, val ) {
         return !val;
       });
+    });
+
+    //initial state check if any checkbox is selected
+    if( $('.active').size() > 0 ){
+      $("input[value='NEXT']").removeAttr("disabled");
+      $("input[value='NEXT']").addClass("btn-submit-active");
+    }
+
+    $('.btn-interest').on('click', function(){
+      if( $('.active').size() > 0 ){
+        $("input[value='NEXT']").prop("disabled", false);
+        $("input[value='NEXT']").addClass("btn-submit-active");
+      }else{
+        $("input[value='NEXT']").attr("disabled", true);
+        $("input[value='NEXT']").removeClass("btn-submit-active");
+      }
     });
 
   });            

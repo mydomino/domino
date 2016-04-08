@@ -1,8 +1,12 @@
-.pointer:hover { cursor : pointer}
+.pointer:hover { 
+  cursor: pointer
+}
 
-.error { color : red }
+.error {
+  /*color : red*/ 
+}
 
-input,textarea{
+input,textarea {
   width:100%;
   display:block;
 }
@@ -54,7 +58,7 @@ input{
 
 #profile-forms{
   input.error{
-    border-color: red!important;
+    border-color: $light-red!important;
   }
 
   input[type=text], input[type=email],input[type=tel], textarea {
@@ -229,3 +233,8 @@ input{
 }
 
 .flash-msg-box {position: absolute; top: 50px;}
+
+.btn-disabled {
+  cursor: not-allowed!important;
+}
+
