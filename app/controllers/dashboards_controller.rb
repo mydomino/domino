@@ -1,7 +1,37 @@
 class DashboardsController < ApplicationController
   helper_method :sort_column, :sort_direction
   # before_action :authenticate_concierge!, except: :show
-  # layout 'concierge', except: :show
+  layout 'concierge', except: :show
+  def index
+    # @dashboards = Dashboard.all.page 1
+    authorize Dashboard
+    # if(params[:search].present?)
+    #   @search_term = params[:search]
+    #   @dashboards = Dashboard.all
+    #   @dashboards = @dashboards.fuzzy_search(@search_term)
+    #   @dashboards = Kaminari.paginate_array(@dashboards).page(1).per(20)
+    #   return
+    # else
+    @page = params.has_key?(:page) ? params[:page] : 1
+    # @dashboards = Kaminari.paginate_array(Dashboard.all).page(@page)
+    # @dashboards = Dashboard.all
+    @filter = params[:filter]
+    if(@filter == 'all' || @filter == nil)
+      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction) 
+      # @dashboards = Kaminari.paginate_array(Dashboard.all.order(sort_column + " " + sort_direction)).page(@page)
+    else
+    #   @filter = 'mine'
+      @dashboards = Dashboard.where(concierge_id: current_user.id).order(sort_column + " " + sort_direction)
+    end
+    @dashboards = Kaminari.paginate_array(@dashboards).page(@page)
+
+    #handle search
+    # if(params[:search].present?)
+    #   @search_term = params[:search]
+    #   @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
+    # end
+    # end
+  end
 
   def new
     @dashboard = Dashboard.new
@@ -26,8 +56,13 @@ class DashboardsController < ApplicationController
       redirect_to new_user_session_path
       return
     else
-      @dashboard = Dashboard.find_by_user_id(current_user.id)
-      authorize @dashboard, :show    end
+      if params.has_key? :id
+        @dashboard = Dashboard.find(params[:id])
+      else
+        @dashboard = Dashboard.find_by_user_id(current_user.id)
+      end
+      authorize @dashboard, :show    
+    end
     # if(@dashboard.nil?)
     #   not_found
     # end
@@ -51,26 +86,7 @@ class DashboardsController < ApplicationController
     render :layout => 'dashboard'
   end
 
-  def index
-    # @dashboards = Dashboard.all.page 1
-    authorize Dashboard
-    @page = params.has_key?(:page) ? params[:page] : 1
-    @dashboards = Kaminari.paginate_array(Dashboard.all).page(@page)
-    # @dashboards = Dashboard.all
-    # @filter = params[:filter]
-
-    # if(@filter == 'all')
-    #   @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    # else
-    #   @filter = 'mine'
-    #   @dashboards = Dashboard.where(concierge: current_concierge).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    # end
-    # #handle search
-    # if(params[:search].present?)
-    #   @search_term = params[:search]
-    #   @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
-    # end
-  end
+ 
 
   def destroy
     @dashboard = Dashboard.friendly.find(params[:id])

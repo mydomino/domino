@@ -80,3 +80,152 @@ input{
   }
 
 }
+
+/* styles for dashboard recommendations */
+.rounded-20 {
+  border-radius: 20px;
+}
+
+.rounded-20-top {
+  border-radius: 20px 20px 0 0;
+}
+
+.rounded-20-bottom {
+  border-radius: 0 0 20px 20px;
+}
+
+/*.border-recommendation {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,0.125);
+}*/
+
+#dashboard{
+  hr {
+      border: 0;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: rgba(0,0,0,0.125);
+  }
+
+
+  .border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,0.125);
+  }
+  .border-left {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: rgba(0,0,0,0.125);
+  }
+
+  .border-bottom {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0,0,0,0.125);
+  }
+
+  .border-right {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: rgba(0,0,0,0.125);
+  }
+  .caps {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
+  .white {
+    color: white;
+  }
+  p {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+#dashboard, #dashboards {
+    .btn {
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.125rem;
+    padding: .5rem 1rem;
+    margin: 0;
+    height: auto;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    color: inherit;
+    /*background-color: transparent;*/
+  }
+}
+
+#dashboards{
+  .table-light th, .table-light td {
+     border-bottom-width: 1px; 
+     border-bottom-style: solid; 
+     border-bottom-color: rgba(0,0,0,0.125); 
+     padding: 4px;
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    max-width: 100%;
+    width: 100%;
+    
+    tbody {
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+    }
+
+    tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+    }
+  }
+  .pagination a, .pagination span.current, .pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+}
+
+  .pagination {
+      border-left: 1px solid #ddd;
+    .first{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .page{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .next{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .last{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+  }
+}

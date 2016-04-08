@@ -20,12 +20,11 @@ class ApplicationController < ActionController::Base
     # byebug
     # if resource.is_a? AdminUser
     #   admin_root_path
-    # elsif resource.role == 'concierge'
-    #   dashboards_path
-    # else
-    #   dashboard_path
-    # end
-    '/'
+    if resource.role == 'concierge'
+      dashboards_path
+    else
+      dashboard_path
+    end
   end
 
   def after_sign_out_path_for(resource)
