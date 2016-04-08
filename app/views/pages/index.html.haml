@@ -61,8 +61,8 @@
       service purchased through MyDomino. Should any issue arise, we'll
       help resolve it to your 100% satisfaction. Guaranteed good energy.
 .bg-white
-  .clearfix.max-width-3.py2.mx-auto
-    %h1.center.pt4
+  .clearfix.max-width-3.pb2.mx-auto
+    %h1.center.pt3
       A small investment with epic savings
     %div.rounded.m4{style: "background-color:#f3f3f3;position:relative;"}
       %h1.center.blue{style: "font-size: 25px;"}
@@ -73,7 +73,7 @@
             $
         %span{style: 'margin-left:-22px;'}
           \/year
-      %ul.list-reset.ml4.pb4{style:'color:#7c7c7c;'}
+      %ul.list-reset.ml4.mr2.pb2{style:'color:#7c7c7c;'}
         %li
           %h3
             %span
@@ -110,7 +110,7 @@
     .sm-col.sm-col-3 &nbsp;
     .sm-col.sm-col-6
       %h4.py3.center.black SMALL ACTIONS, EPIC EFFECT
-      %div.col-8.mx-auto
+      %div.col-10.mx-auto
         %h1.center.py3.black.line-height-2
           &#8220;With very little effort, I'm saving hundreds a month and using clean energy.&#8221;
       %h4.py3.center.black
@@ -118,7 +118,7 @@
         %br Sebastopol, CA
 
 .bg-white.py2.max-width-4.clearfix.mx-auto.my2
-  .flex.items-center.justify-center
+  .flex.items-center.justify-center.xs-hide.sm-hide
     .sm-col.sm-col-4.center
       =image_tag("rmi-logo-black.svg", width: "200px;")
     .sm-col.sm-col-4.center
@@ -128,7 +128,18 @@
       =image_tag("Bcorp.png", width: "100px")
     .sm-col.sm-col-4.center
       =image_tag("bbb.png", width: "100px;")
-
+  /mobile
+  .md-hide.lg-hide
+    .sm-col.sm-col-12.center.p1
+      .inline-block.pr2
+        =image_tag("rmi-logo-black.svg", width: "200px;")
+      .inline-block.pl2 
+        =image_tag("SEIA-2.png", width: "200px")
+    .sm-col.sm-col-12.center.p1
+      .inline-block.pr4
+        =image_tag("Bcorp.png", width: "100px")
+      .inline-block.pl4 
+        =image_tag("bbb.png", width: "100px;")
 
 :javascript
   /* Replace 'APP_ID' with your app ID */
