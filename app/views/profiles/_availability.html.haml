@@ -1,7 +1,7 @@
 :css
   .btn-day{
     border: 2px solid lightgray;
-    color:lightgray;
+    / color:lightgray;
     width:55px;
     height: 50px;
   }
@@ -15,6 +15,14 @@
 
   .btn-availability{
     font-weight: 100;
+  }
+  .btn-availability-active{
+    background-color: #00ccff;
+    color: white
+  }
+  .btn-availability-inactive{
+    background-color: white;
+    color: #d3d3d3;
   }
   .mln10px{
     margin-left:-10px;
@@ -32,17 +40,17 @@
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
         .center
-          %button.bg-white.btn-availability.btn-day{type: "button", style: "border-top-left-radius: 25px;border-bottom-left-radius: 25px;", data: {target: "chk-monday"}, class: "#{'bg-blue' if @profile.availability[:monday]}"} M
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-tuesday"}, class: "#{'bg-blue' if @profile.availability[:tuesday]}"} Tu
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-wednesday"}, class: "#{'bg-blue' if @profile.availability[:wednesday]}"} W
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-thursday"}, class: "#{'bg-blue' if @profile.availability[:thursday]}"} Th
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-friday"}, class: "#{'bg-blue' if @profile.availability[:friday]}"} F
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-saturday"}, class: "#{'bg-blue' if @profile.availability[:saturday]}"} Sa
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", style: "border-top-right-radius: 25px;border-bottom-right-radius: 25px;", data: {target: "chk-sunday"}, class: "#{'bg-blue' if @profile.availability[:sunday]}"} Su
+          %button.bg-white.btn-availability.btn-day{type: "button", style: "border-top-left-radius: 25px;border-bottom-left-radius: 25px;", data: {target: "chk-monday"}, class: "#{ @profile.availability[:monday] ? 'btn-availability-active': 'btn-availability-inactive'}"} M
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-tuesday"}, class: "#{ @profile.availability[:tuesday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Tu
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-wednesday"}, class: "#{ @profile.availability[:wednesday] ? 'btn-availability-active': 'btn-availability-inactive'}"} W
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-thursday"}, class: "#{ @profile.availability[:thursday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Th
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-friday"}, class: "#{  @profile.availability[:friday] ? 'btn-availability-active': 'btn-availability-inactive'}"} F
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-saturday"}, class: "#{ @profile.availability[:saturday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Sa
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", style: "border-top-right-radius: 25px;border-bottom-right-radius: 25px;", data: {target: "chk-sunday"}, class: "#{ @profile.availability[:sunday] ? 'btn-availability-active': 'btn-availability-inactive'}" }Su
         .m2.center
-          %button.bg-white.btn-availability.btn-time{type: "button", style: "border-top-left-radius: 20px;border-bottom-left-radius: 20px;", data: {target: "chk-morning"}, class: "#{'bg-blue' if @profile.availability[:morning]}"} Mornings
-          %button.bg-white.btn-availability.btn-time.mln10px{type: "button", data: {target: "chk-afternoon"}, class: "#{'bg-blue' if @profile.availability[:afternoon]}"} Afternoons
-          %button.bg-white.btn-availability.btn-time.mln10px{type: "button", style: "border-top-right-radius: 20px;border-bottom-right-radius: 20px;",data: {target: "chk-evening"}, class: "#{'bg-blue' if @profile.availability[:evening]}"} Evenings
+          %button.bg-white.btn-availability.btn-time{type: "button", style: "border-top-left-radius: 20px;border-bottom-left-radius: 20px;", data: {target: "chk-morning"}, class: "#{'bg-blue white' if @profile.availability[:morning]}"} Mornings
+          %button.bg-white.btn-availability.btn-time.mln10px{type: "button", data: {target: "chk-afternoon"}, class: "#{'bg-blue white' if @profile.availability[:afternoon]}"} Afternoons
+          %button.bg-white.btn-availability.btn-time.mln10px{type: "button", style: "border-top-right-radius: 20px;border-bottom-right-radius: 20px;",data: {target: "chk-evening"}, class: "#{'bg-blue white' if @profile.availability[:evening]}"} Evenings
 
         .display-none
           =form.simple_fields_for :availability do |a|
@@ -64,11 +72,21 @@
           =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
-  $('.btn-availability').on('click', function(){
-    $(this).toggleClass('bg-blue');
-    var target = '#' + $(this).data('target');
-    $(target).prop('checked', function( i, val ) {
-      return !val;
-    });
-  });
+  $(document).ready(function(){
 
+    $('.btn-availability').on('click', function(){
+      if( $(this).hasClass('btn-availability-inactive') ){
+        $(this).removeClass('btn-availability-inactive');
+        $(this).addClass('btn-availability-active');
+      }else{
+        $(this).removeClass('btn-availability-active');
+        $(this).addClass('btn-availability-inactive');
+      }
+
+      var target = '#' + $(this).data('target');
+      $(target).prop('checked', function( i, val ) {
+        return !val;
+      });
+    });
+    
+  });

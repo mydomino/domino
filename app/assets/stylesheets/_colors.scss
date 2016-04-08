@@ -11,7 +11,11 @@ $black-20: rgba(0,0,0,.2);
 $black-30: rgba(0,0,0,.3);
 $red: #FF0000;
 $light-red: #D65A5A;
+$light-gray: #d3d3d3;
 
+.light-gray {
+  color: $light-gray;
+}
 .red {
   color: $red;
 }
