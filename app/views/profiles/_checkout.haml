@@ -46,15 +46,25 @@
         
         =simple_form_for @profile, remote: true do |form|
           .clearfix.mx-auto
-            .sm-col.sm-col-12.center.xs-hide.sm-hide
+            .sm-col.sm-col-12.center
               %label HAVE A PARTNER CODE?
-              =form.input_field :partner_code,  style: "border: 2px solid #00CCFF;display:inline;height:40px;padding:0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
-              %button{type: "button", style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;color:white;font-weight:100;'} APPLY
-            .sm-col.sm-col-12.center.md-hide.lg-hide
-              %label HAVE A PARTNER CODE?
-            .sm-col.sm-col-12.center.md-hide.lg-hide
-              =form.input_field :partner_code,  style: "border: 2px solid #00CCFF;display:inline;height:40px;padding:0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
-              %button{type: "button", style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;'} Apply
+              =form.input_field :partner_code, class: 'blue', style: "padding-left: 8px; border: 2px solid #00CCFF;display:inline;height:34px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
+              %button{type: "button", id: 'btn-apply', style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;color:white;font-weight:100;'} APPLY
           .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+
+:javascript
+  $(document).ready(function(){
+    $('#btn-apply').on('click', function(){
+      var partnerCode = $('#profile_partner_code').val();
+      $.ajax({
+        type: "POST",
+        url: '/profiles/#{@profile.id}/apply-partner-code', //sumbits it to the given url of the form
+        data: { '_method':'PUT', 'profile': {'partner_code': partnerCode }},
+        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+      }).success(function(json){
+          console.log("success", json);
+      });
+    });
+  });

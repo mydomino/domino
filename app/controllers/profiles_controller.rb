@@ -48,6 +48,12 @@ class ProfilesController < ApplicationController
     render_response
   end
 
+  def apply_partner_code
+    @profile = Profile.find(params[:id])
+    @profile.update(profile_params)
+    render 'profiles/apply_partner_code', content_type: "text/javascript"
+  end
+
   private
 
   def render_response

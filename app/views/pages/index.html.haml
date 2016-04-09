@@ -117,29 +117,30 @@
         JULIE C.
         %br Sebastopol, CA
 
-.bg-white.py2.max-width-4.clearfix.mx-auto.my2
+.bg-white.clearfix.mx-auto.m2
   .flex.items-center.justify-center.xs-hide.sm-hide
-    .sm-col.sm-col-4.center
+    .inline-block.p3
       =image_tag("rmi-logo-black.svg", width: "200px;")
-    .sm-col.sm-col-4.center
+    .inline-block.p3
       =image_tag("SEIA-2.png", width: "200px")
-    %br.md-hide.lg-hide
-    .sm-col.sm-col-4.center
+    .inline-block.p3
       =image_tag("Bcorp.png", width: "100px")
-    .sm-col.sm-col-4.center
+    .inline-block.p3
       =image_tag("bbb.png", width: "100px;")
   /mobile
   .md-hide.lg-hide
-    .sm-col.sm-col-12.center.p1
-      .inline-block.pr2
-        =image_tag("rmi-logo-black.svg", width: "200px;")
-      .inline-block.pl2 
-        =image_tag("SEIA-2.png", width: "200px")
-    .sm-col.sm-col-12.center.p1
-      .inline-block.pr4
-        =image_tag("Bcorp.png", width: "100px")
-      .inline-block.pl4 
-        =image_tag("bbb.png", width: "100px;")
+    .sm-col.sm-col-12.p1
+      .flex.items-center.justify-center
+        .inline-block.p2
+          =image_tag("rmi-logo-black.svg", width: "200px;")
+        .inline-block.p2 
+          =image_tag("SEIA-2.png", width: "200px")
+    .sm-col.sm-col-12.p1
+      .flex.items-center.justify-center.pb1
+        .inline-block.px4
+          =image_tag("Bcorp.png", width: "100px")
+        .inline-block.px4
+          =image_tag("bbb.png", width: "100px;")
 
 :javascript
   /* Replace 'APP_ID' with your app ID */
