@@ -14,26 +14,27 @@
             .sm-col.sm-col-6.px2
               %label.h4 ADDRESS LINE 1
               %br
-              =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-width-2 height-40"
-              %label.h4 ADDRESS LINE 2
+              =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
+              %label.h4 ADDRESS LINE 2 (Optional)
               %br
               =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-width-2 height-40"
               .clearfix
                 .sm-col.sm-col-12.md-col-6.md-pr2
                   %label.h4 CITY
                   %br
-                  =form.input_field :city, class: "h3 bg-transparent rounded border border-width-2 height-40"
+                  =form.input_field :city, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
                 .sm-col.sm-col-6.md-col-3.sm-pr2
                   %label.h4 STATE
                   %br
-                  =form.input_field :state, class: "h3 bg-transparent rounded border border-width-2 height-40"
+                  =form.input_field :state, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
                 .sm-col.sm-col-6.md-col-3
                   %label.h4 ZIP
                   %br
-                  =form.input_field :zip_code, class: "h3 bg-transparent rounded border border-width-2 height-40"
+                  =form.input_field :zip_code, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
               %label.h4 PHONE
               %br
-              =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40"
+              =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
+
             .sm-col.sm-col-6
               .mb2.sm-pl4
                 %label.h4 HOUSING
@@ -41,14 +42,14 @@
                 %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "bg-white #{@profile.housing == 'rent' ? 'btn-housing-active' : 'bg-white'}"} RENT
                 %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "bg-white #{@profile.housing == 'own' ? 'btn-housing-active' : 'bg-white'}"} OWN
               .mt2.px4.sm-mt3
-                %label.h4 AVG ELECTRIC BILL
+                %label.h4 AVG ELECTRIC BILL (Optional)
               .inline-block.pl4
                 #slider{style: "width:200px;"}
               .inline-block
                 %h2.m0
                   &nbsp;$
                   %span#slider_val 0
-              =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
+              =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing , class: 'required-field'}
               =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
           .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
@@ -56,7 +57,8 @@
 
 
 :javascript
-  $(document).ready(function(){
+  $( document ).ready( function() {
+
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
 
     $( "#slider" ).slider({
@@ -72,27 +74,44 @@
       }
     });
 
+    $requiredFields = $('.required-field');
+    var requiredFieldsComplete = false;
+
+    var validateRequiredFields = function($fields){
+      $.each($fields,function(index, value){
+        if($(value).val() == ""){
+          requiredFieldsComplete = false;
+          $("input[value='NEXT']").attr("disabled", true);
+          $("input[value='NEXT']").removeClass("btn-submit-active");
+          return false;
+        }
+        if($('#profile_housing').val() != ""){
+          requiredFieldsComplete = true;
+          $("input[value='NEXT']").prop("disabled", false);
+          $("input[value='NEXT']").addClass("btn-submit-active");
+        }
+      });
+    }
+
+    //initial state
+    validateRequiredFields($requiredFields);
+
+    //state machine
+    $requiredFields.bind('input change', function(){
+      validateRequiredFields($requiredFields);
+    });
+
     $('.btn-housing').on('click', function(){
       $('.btn-housing').not(this).removeClass('btn-housing-active');
       $(this).toggleClass('btn-housing-active');
-      var val = $(this).data("value");
-      $('#profile_housing').val(val);
-    });
-
-     //initial state check if any checkbox is selected
-    if( $('#profile_housing').val() != "" ){
-      $("input[value='NEXT']").removeAttr("disabled");
-      $("input[value='NEXT']").addClass("btn-submit-active");
-    }
-
-    //state machine
-    $('.btn-housing').on('click', function(){
-      if( $('.btn-housing.btn-housing-active').size() > 0 ){
-        $("input[value='NEXT']").prop("disabled", false);
-        $("input[value='NEXT']").addClass("btn-submit-active");
+      if( $('.btn-housing-active').size() > 0 ){
+        var val = $(this).data("value"); 
+        $('#profile_housing').val(val);
+        validateRequiredFields($requiredFields);
       }else{
-        $("input[value='NEXT']").attr("disabled", true);
-        $("input[value='NEXT']").removeClass("btn-submit-active");
+        $('#profile_housing').val("");
+        validateRequiredFields($requiredFields);
       }
     });
-  });
+  });            
+
