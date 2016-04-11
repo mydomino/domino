@@ -50,7 +50,7 @@ class DashboardsController < ApplicationController
       else
         @dashboard = Dashboard.find_by_user_id(current_user.id)
       end
-      authorize @dashboard, :show    
+      authorize @dashboard   
     end
     @products = Product.all
     @tasks = Task.all

@@ -1,6 +1,5 @@
-=simple_form_for @product do |form|
-  .clearfix
-    =form.label :url, "Product URL", class: "block"
-    =form.input_field :url, class: "field col-12"
-  .clearfix
-    =form.submit "Add Product", class: "btn bg-blue white h3 px3 py2 rounded mt3"
+.max-width-3.mx-auto.product-form
+  =simple_form_for @product do |form|
+    =form.label :url, "Product URL"
+    =form.input_field :url, class: 'h3 bg-transparent rounded border border-width-2 height-40'
+    =form.submit "Add Product", class: "bg-blue white h3 px3 mt3 border-none", style: 'width: 300px; line-height: 40px; height: 40px; border-radius: 20px;'

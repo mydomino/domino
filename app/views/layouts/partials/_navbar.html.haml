@@ -8,7 +8,8 @@
       .xs-hide.sm-hide.py3.px3.my1.sm-hide
         .right
           -if user_signed_in?
-            =link_to 'LOG OUT', destroy_user_session_path, method: :delete
+            =link_to 'ACTION DASHBOARD', user_dashboard_path, class: 'white border p1 rounded text-decoration-none'
+            =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: 'white border p1 rounded text-decoration-none'
           -else
             =link_to "LOG IN", new_user_session_path, class: 'white border p1 rounded text-decoration-none', id: "link-login"
         .right-align.right.mx2

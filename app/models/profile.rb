@@ -37,5 +37,6 @@ class Profile < ActiveRecord::Base
 
     # UpdateZohoJob.perform_later self
   end
+  # takes time for zoho record to propogate through api, needs further testing
   handle_asynchronously :update_zoho, :run_at => Proc.new { 3.minutes.from_now }
 end

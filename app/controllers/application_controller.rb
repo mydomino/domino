@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     if resource.role == 'concierge'
       dashboards_path
     else
-      dashboard_path
+      user_dashboard_path
     end
   end
 

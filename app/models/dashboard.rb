@@ -33,5 +33,4 @@ class Dashboard < ActiveRecord::Base
 
   #   return slug
   # end
-
 end
