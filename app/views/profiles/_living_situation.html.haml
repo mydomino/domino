@@ -36,14 +36,14 @@
               =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
 
             .sm-col.sm-col-6
-              .mb2.sm-pl4
+              .mb2.px2.sm-pl4
                 %label.h4 HOUSING
                 %br
                 %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "bg-white #{@profile.housing == 'rent' ? 'btn-housing-active' : 'bg-white'}"} RENT
                 %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "bg-white #{@profile.housing == 'own' ? 'btn-housing-active' : 'bg-white'}"} OWN
-              .mt2.px4.sm-mt3
+              .mt2.px2.sm-mt3
                 %label.h4 AVG ELECTRIC BILL (Optional)
-              .inline-block.pl4
+              .inline-block.px2.sm-pl4
                 #slider{style: "width:200px;"}
               .inline-block
                 %h2.m0
@@ -51,7 +51,7 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing , class: 'required-field'}
               =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
-          .mt2.px2
+          .mt3.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "NEXT", disabled: true, class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
@@ -105,7 +105,7 @@
       $('.btn-housing').not(this).removeClass('btn-housing-active');
       $(this).toggleClass('btn-housing-active');
       if( $('.btn-housing-active').size() > 0 ){
-        var val = $(this).data("value"); 
+        var val = $(this).data("value");
         $('#profile_housing').val(val);
         validateRequiredFields($requiredFields);
       }else{
@@ -113,5 +113,4 @@
         validateRequiredFields($requiredFields);
       }
     });
-  });            
-
+  });
