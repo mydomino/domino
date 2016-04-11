@@ -9,11 +9,15 @@
     border: 2px solid lightgray;
     color:lightgray;
     width: 100px;
-    height: 40px;
+    height: 50px;
     font-size: 14px;
   }
 
   .btn-availability{
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
   }
   .btn-availability-active{
     background-color: #00ccff;
@@ -23,10 +27,20 @@
 
   .btn-availability-inactive{
     background-color: white;
-    color: #d3d3d3;
+    color: #666;
   }
   .mln10px{
     margin-left:-10px;
+  }
+  .pill-left {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+  }
+
+  .pill-right {
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+
   }
 #availability.pt4
   .max-width-3.mx-auto.mt4
@@ -49,9 +63,9 @@
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-saturday"}, class: "#{ @profile.availability[:saturday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Sa
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", style: "border-top-right-radius: 25px;border-bottom-right-radius: 25px;", data: {target: "chk-sunday"}, class: "#{ @profile.availability[:sunday] ? 'btn-availability-active': 'btn-availability-inactive'}" }Su
         .m2.center
-          %button.bg-white.btn-availability.btn-time{type: "button", style: "border-top-left-radius: 20px;border-bottom-left-radius: 20px;", data: {target: "chk-morning"}, class: "#{ @profile.availability[:morning] ? 'btn-availability-active': 'btn-availability-inactive' }"} Mornings
-          %button.bg-white.btn-availability.btn-time.mln10px{type: "button", data: {target: "chk-afternoon"}, class: "#{ @profile.availability[:afternoon] ? 'btn-availability-active': 'btn-availability-inactive' }"} Afternoons
-          %button.bg-white.btn-availability.btn-time.mln10px{type: "button", style: "border-top-right-radius: 20px;border-bottom-right-radius: 20px;",data: {target: "chk-evening"}, class: "#{ @profile.availability[:evening] ? 'btn-availability-active': 'btn-availability-inactive' }"} Evenings
+          %button.bg-white.btn-availability.btn-time.pill-left{type: "button", data: {target: "chk-morning"}, class: "#{ @profile.availability[:morning] ? 'btn-availability-active': 'btn-availability-inactive' }"} Mornings
+          %button.bg-white.btn-availability.btn-time.btn-day.mln10px{type: "button", data: {target: "chk-afternoon"}, class: "#{ @profile.availability[:afternoon] ? 'btn-availability-active': 'btn-availability-inactive' }"} Afternoons
+          %button.bg-white.btn-availability.btn-time.pill-right.mln10px{type: "button",data: {target: "chk-evening"}, class: "#{ @profile.availability[:evening] ? 'btn-availability-active': 'btn-availability-inactive' }"} Evenings
 
         .display-none
           =form.simple_fields_for :availability do |a|
