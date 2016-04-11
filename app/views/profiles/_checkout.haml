@@ -52,7 +52,7 @@
               %button{type: "button", id: 'btn-apply', style: 'display:inline;padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;color:white;font-weight:100;'} APPLY
           .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+            =form.submit "NEXT", class: "bg-gray white right border-none inline-block btn-submit-active", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $(document).ready(function(){
@@ -62,7 +62,7 @@
         type: "POST",
         url: '/profiles/#{@profile.id}/apply-partner-code', //sumbits it to the given url of the form
         data: { '_method':'PUT', 'profile': {'partner_code': partnerCode }},
-        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+        dataType: "script" // you want a difference between normal and ajax-calls, and json is standard
       }).success(function(json){
           console.log("success", json);
       });

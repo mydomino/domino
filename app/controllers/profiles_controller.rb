@@ -50,11 +50,19 @@ class ProfilesController < ApplicationController
 
   def apply_partner_code
     @profile = Profile.find(params[:id])
-    @profile.update(profile_params)
-    render 'profiles/apply_partner_code', content_type: "text/javascript"
+    @code_valid = validate_partner_code(params[:profile][:partner_code])
+    if @code_valid
+      @profile.update(profile_params)
+      render 'profiles/apply_partner_code.js', content_type: "text/javascript"
+    end
   end
 
   private
+
+  def validate_partner_code(code)
+    @partner_code = PartnerCode.find_by_code(code)
+    @partner_code.nil? 
+  end
 
   def render_response
     if @profile.onboard_step == 1 
