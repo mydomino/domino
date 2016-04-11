@@ -1,9 +1,9 @@
-.pointer:hover { 
+.pointer:hover {
   cursor: pointer
 }
 
 .error {
-  /*color : red*/ 
+  /*color : red*/
 }
 
 input,textarea {
@@ -22,7 +22,7 @@ button{
 
 #about-banner{
   background: image-url('homepage_banner_about.jpg');
-  background-size:cover 
+  background-size:cover
 }
 
 .bg-lightgray{
@@ -46,7 +46,7 @@ input{
 
 /* for jquery placeholder */
 .placeholder {
-  
+
 }
 
 .border-width-2 {
@@ -71,9 +71,9 @@ input{
     margin: 0px 1px 3px 0px;
     /*border: 1px solid #DDDDDD;*/
   }
-   
+
   input[type=text]:focus, input[type=email]:focus,input[type=tel]:focus, textarea:focus {
-    box-shadow: 0 0 0 2px #001f3f;
+    border-color: #00ccff;
     padding: 3px 0px 3px 8px;
     margin: 0px 1px 3px 0px;
     /*border: 1px solid rgba(81, 203, 238, 1);*/
@@ -169,9 +169,9 @@ input{
 #dashboards{
 
   .table-light th, .table-light td {
-     border-bottom-width: 1px; 
-     border-bottom-style: solid; 
-     border-bottom-color: rgba(0,0,0,0.125); 
+     border-bottom-width: 1px;
+     border-bottom-style: solid;
+     border-bottom-color: rgba(0,0,0,0.125);
      padding: 4px;
   }
   table {
@@ -179,7 +179,7 @@ input{
     border-spacing: 0;
     max-width: 100%;
     width: 100%;
-    
+
     tbody {
       display: table-row-group;
       vertical-align: middle;
@@ -237,4 +237,3 @@ input{
 .btn-disabled {
   cursor: not-allowed!important;
 }
-

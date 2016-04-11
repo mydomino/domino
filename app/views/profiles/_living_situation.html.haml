@@ -11,41 +11,41 @@
       =simple_form_for @profile, remote: true do |form|
         .sm-col.sm-col-12
           .clearfix
-            .sm-col.sm-col-6.px4
-              %label.h6 ADDRESS LINE 1
+            .sm-col.sm-col-6.px2
+              %label.h4 ADDRESS LINE 1
               %br
               =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-width-2 height-40"
-              %label.h6 ADDRESS LINE 2
+              %label.h4 ADDRESS LINE 2
               %br
               =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-width-2 height-40"
               .clearfix
                 .sm-col.sm-col-12.md-col-6.md-pr2
-                  %label.h6 CITY
+                  %label.h4 CITY
                   %br
                   =form.input_field :city, class: "h3 bg-transparent rounded border border-width-2 height-40"
                 .sm-col.sm-col-6.md-col-3.sm-pr2
-                  %label.h6 STATE
+                  %label.h4 STATE
                   %br
                   =form.input_field :state, class: "h3 bg-transparent rounded border border-width-2 height-40"
                 .sm-col.sm-col-6.md-col-3
-                  %label.h6 ZIP
+                  %label.h4 ZIP
                   %br
                   =form.input_field :zip_code, class: "h3 bg-transparent rounded border border-width-2 height-40"
-              %label.h6 PHONE
-              %br  
+              %label.h4 PHONE
+              %br
               =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40"
             .sm-col.sm-col-6
-              .mb2.px4
-                %label.h6 HOUSING
+              .mb2.sm-pl4
+                %label.h4 HOUSING
                 %br
                 %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "bg-white #{@profile.housing == 'rent' ? 'btn-housing-active' : 'bg-white'}"} RENT
                 %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "bg-white #{@profile.housing == 'own' ? 'btn-housing-active' : 'bg-white'}"} OWN
-              .mt2.px4
-                %label.h6 AVG ELECTRIC BILL
+              .mt2.px4.sm-mt3
+                %label.h4 AVG ELECTRIC BILL
               .inline-block.pl4
                 #slider{style: "width:200px;"}
               .inline-block
-                %p.m0
+                %h2.m0
                   &nbsp;$
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing }
@@ -61,7 +61,7 @@
 
     $( "#slider" ).slider({
       animate: "fast",
-      max: 250, 
+      max: 250,
       value: #{@profile.avg_electrical_bill},
       create: function( event, ui ) {
         $('#slider_val').html(#{@profile.avg_electrical_bill});
@@ -75,7 +75,7 @@
     $('.btn-housing').on('click', function(){
       $('.btn-housing').not(this).removeClass('btn-housing-active');
       $(this).toggleClass('btn-housing-active');
-      var val = $(this).data("value"); 
+      var val = $(this).data("value");
       $('#profile_housing').val(val);
     });
 
@@ -95,5 +95,4 @@
         $("input[value='NEXT']").removeClass("btn-submit-active");
       }
     });
-  });            
-  
+  });
