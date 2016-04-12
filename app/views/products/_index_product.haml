@@ -16,4 +16,4 @@
       =product.price
   .col.sm-col-3.center.hover-show
     =link_to "Edit", edit_product_path(product), class: 'white bg-blue text-decoration-none rounded block p2 btn'
-    =link_to "Delete", product_path(product), class: 'white bg-red text-decoration-none rounded block btn',  method: :delete
+    =link_to "Delete", product_path(product), class: 'white bg-red text-decoration-none rounded block btn',  method: :delete, data: {confirm: 'Are you sure?'}

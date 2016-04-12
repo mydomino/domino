@@ -1,5 +1,5 @@
 class RecommendationsController < ApplicationController
-  before_action :authenticate_concierge!, except: [:complete, :undo]
+  before_action :authenticate_user!, except: [:complete, :undo]
   layout 'concierge'
 
   def complete
@@ -41,7 +41,8 @@ class RecommendationsController < ApplicationController
   # end
 
   def bulk_update
-    @dashboard = Dashboard.friendly.find(params[:dashboard_id])
+    # @dashboard = Dashboard.friendly.find(params[:dashboard_id])
+    @dashboard = Dashboard.find(params[:dashboard_id]);
     if(!params[:dashboard].nil?)
       new_product_recommendations = params[:dashboard][:product_ids]
       @dashboard.product_ids = params[:dashboard][:product_ids]
@@ -51,7 +52,7 @@ class RecommendationsController < ApplicationController
       @dashboard.product_ids = []
       @dashboard.task_ids = []
     end
-    redirect_to dashboard_path
+    redirect_to dashboard_path(@dashboard)
   end
 
   def destroy

@@ -1,5 +1,6 @@
-.clearfix.mx-auto.rounded.max-width-4
-  %h1
-    ="Edit #{@product.name}"
-  .max-width-2
-    =render 'edit_form'
+.clearfix.mx-auto.rounded.max-width-4.m4.bg-white
+  .max-width-3.mx-auto
+    %h1
+      ="Edit #{@product.name}"
+    .max-width-2.mx-auto.recommendation-form
+      =render 'edit_form'

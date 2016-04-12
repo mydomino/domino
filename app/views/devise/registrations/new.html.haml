@@ -12,22 +12,22 @@
 /     = render "devise/shared/links"
 -content_for :navbar_class do
   bg-transparent fixed midgray sm-col-12
-#signup.pt4
+#signup.devise-form.pt4
   .max-width-3.mx-auto.mt4
-    .bg-lightgray.rounded.p3.mt4.max-width-2.mx-auto
+    .bg-lightgray.rounded.pt3.mt4.max-width-2.mx-auto
       .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
         = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
       %h1.center.domino-gray Register Your Account
       =simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
         .form-inputs.max-width-1.mx-auto
           %label.domino-gray Email Address
-          = f.input_field :email, required: true, value: "#{@email}", class: 'mb2 mt1', style: 'height: 40px;'
+          = f.input_field :email, readonly: true, value: "#{@email}", class: 'mb2 mt1', style: 'height: 40px;'
           %label.domino-gray Password
           = f.input_field :password, required: true, autofocus: true,class: 'mt1 mb2', style: 'height: 40px;'
           %label.domino-gray Password Confirmation
           = f.input_field :password_confirmation, required: true, class: 'mt1', style: 'height: 40px;'
-          = f.button :submit, "REGISTER", class: "bg-blue white py2", style: 'border-radius:40px; border:none;height:50px; color:white;'
-          .mt2.center
+          .py3
+            = f.button :submit, "REGISTER", class: "bg-blue white", style: 'border-radius:40px; border:none;height:50px; color:white;'
     %p.center.domino-gray
       Already have an account?
       %span.blue

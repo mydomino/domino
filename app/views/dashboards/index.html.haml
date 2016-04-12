@@ -1,12 +1,10 @@
 #dashboards.container
-  .clearfix.bg-white.mt3.mb3.p2.max-width-4.mx-auto
+  .clearfix.bg-white.mt3.mb1.p2.max-width-4.mx-auto
     .col.col-12
       %h1.inline-block.m0 Dashboards
-
-      .inline-block.right.mt1
+      .inline-block.right.mt2
         =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray black'}"
         =link_to 'Mine', {filter: "mine"}, class: "left btn caps rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray black' }"
-        /.inline-block.border.p2.mr3.right
       .p2.mr3.right{style: 'width:400px;'} 
         =form_tag dashboards_path, method: 'GET' do
           .inline-block
@@ -18,7 +16,7 @@
     .col.col-12
       .clearfix
         %table.table-light#tbl-dashboards
-          %tr
+          %tr.left-align
             %th 
               =sortable "created_at", "Created", filter: @filter
             %th 
@@ -32,12 +30,12 @@
             %tr.dashboard-record
               %td #{dashboard.created_at.strftime("%Y-%m-%d")}
               %td
-                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none'
+                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none blue'
               %td #{dashboard.lead_email}
               %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
               %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
               %td
-                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'} 
-  .clearfix.max-width-4.mx-auto
+                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'text-decoration-none red' 
+  .clearfix.max-width-4.mx-auto.center
     .col.col-12
       = paginate @dashboards

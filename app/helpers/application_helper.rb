@@ -2,9 +2,9 @@ module ApplicationHelper
 
   def sortable(column, title = nil, filter: "mine")
     title ||= column.titleize
-    css_class = column == sort_column ? "current #{sort_direction}" : nil
+    css_class = column == sort_column ? "current #{sort_direction} " : nil
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    link_to title, {:sort => column, :direction => direction, :filter => filter}, {:class => "#{css_class} text-decoration-none"}
+    link_to title, {:sort => column, :direction => direction, :filter => filter}, {:class => "#{css_class} text-decoration-none black"}
   end
 
   def class_for flash_type

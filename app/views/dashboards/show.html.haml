@@ -1,25 +1,22 @@
 / -content_for :logo_class do
 /   blue
-/ -if concierge_signed_in?
-/   =render 'concierge_narrow_navbar'
-/   :css
-/     body
-/     {
-/       padding-top: 60px;
-/     }
-
-/ .modal.fade#new-recommendation
-/   .container
-/     .modal-dialog
-/       .modal-content
-/         .modal-header.relative
-/           .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
-/             %span{ style: 'font-size: 2rem;' }
-/               .fa.fa-times.blue
-/         .modal-body
-/           .row
-/             .col-xs-12
-/               =render 'recommendations/bulk_add_form'
+-if current_user.role == 'concierge'
+  =render 'concierge_narrow_navbar'
+  :css
+    body
+    {
+      padding-top: 60px;
+    }
+  .modal.fade#new-recommendation.max-width-4.mx-auto
+    .modal-dialog
+      .modal-content
+        .modal-header.relative
+          .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
+            %span{ style: 'font-size: 2rem;' }
+              .fa.fa-times.blue
+        .modal-body
+          =render 'recommendations/bulk_add_form'
+                
 #dashboard.bg-heather.max-width-4.mx-auto
   .bg-white.rounded.mb2
     .clearfix.center

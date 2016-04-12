@@ -2,15 +2,6 @@
   cursor: pointer
 }
 
-.error {
-  /*color : red*/
-}
-
-input,textarea {
-  width:100%;
-  display:block;
-}
-
 button{
   outline: none;
 }
@@ -37,11 +28,16 @@ input{
   padding-left: 10px;
 }
 
-#name-and-email ::placeholder{
-  color: #B6C7CB;
-  font-weight: 100;
-  font-size: 20px;
-  margin-top: 20px;
+#name-and-email {
+  input {
+    border: 2px solid white;
+  } 
+  ::placeholder{
+    color: #B6C7CB;
+    font-weight: 100;
+    font-size: 20px;
+    margin-top: 20px;
+  }
 }
 
 /* for jquery placeholder */
@@ -53,15 +49,31 @@ input{
   border-width: 2px;
 }
 
+.border-light {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0,0,0,0.125);
+}
 
+.devise-form, .recommendation-form{
+  input[type], textarea, select {
+    border: 1px solid #DDDDDD;
+  }
+}
+#profile-forms, .recommendation-form, .devise-form{
+  input,textarea {
+    width:100%;
+    display:block;
+  }
+  input[type=submit]{
+    display: inline;
+  }
 
-
-#profile-forms, .product-form{
   input.error{
     border-color: $light-red!important;
   }
 
-  input[type=text], input[type=email],input[type=tel], input[type=url], textarea, select {
+  input, textarea, select {
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
@@ -69,10 +81,9 @@ input{
     outline: none;
     padding: 3px 0px 3px 8px;
     margin: 0px 1px 3px 0px;
-    /*border: 1px solid #DDDDDD;*/
   }
 
-  input[type=text]:focus, input[type=email]:focus,input[type=tel]:focus, input[type=url]:focus, textarea:focus, select:focus {
+  input:focus, textarea:focus, select:focus {
     border-color: #00ccff;
     padding: 3px 0px 3px 8px;
     margin: 0px 1px 3px 0px;
@@ -82,6 +93,7 @@ input{
   .height-40{
     height:40px;
   }
+
   select{
     -webkit-appearance: none;
     border-color: black;

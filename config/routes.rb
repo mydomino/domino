@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   #lead routes
   # resources :leads, only: [:create, :new, :index]
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
-  resources :dashboards
+  resources :dashboards do
+    patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
+  end
   # resources :dashboards, path: '/dashboard/', only: [:new, :create, :show, :index, :destroy] do
   #   # resources :recommendations, only: [:new, :create]
   #   # patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'

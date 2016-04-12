@@ -1,8 +1,5 @@
-.container
-  .clearfix
-    .col.col-12.sm-col.sm-col-6.py3
-      .bg-white.rounded.p2
-        %h1.mt0
-          Edit 
-          = @task.name
-        =render 'form', submit_text: 'Update Action'
+.clearfix.mx-auto.rounded.max-width-4.m2.bg-white
+  %h1.center
+    ="Edit #{@task.name}"
+  .max-width-2.mx-auto.recommendation-form
+    =render 'form', submit_text: 'Update Action'

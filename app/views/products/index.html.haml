@@ -1,7 +1,7 @@
-#products.max-width-4.mx-auto
-  .clearfix.bg-white.mt3.rounded-top.p2
+#products.max-width-4.mx-auto.my4
+  .clearfix.bg-white.rounded-top.px2
     .col.col-12
-      %h1.mt0.inline-block Products
+      %h1.mt0.inline-block.p2 Products
       =link_to "Update Prices", update_product_prices_path, class: 'btn border rounded relative border-charcoal charcoal', method: 'post', style: "top: -5px;right: -10px;"
   .clearfix.bg-white.px2
     -@default_products.each do |product|
