@@ -10,11 +10,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   
   root 'pages#index'
-  # post 'signup' => 'pages#signup'
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
   get 'privacy' => 'pages#privacy'
-  #get 'solar' => 'pages#solar'
 
   #concierge routes
   # devise_for :concierges, skip: [:registrations]                                   
@@ -29,9 +27,6 @@ Rails.application.routes.draw do
   # resources :leads, only: [:create, :new, :index]
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards
-  # get '/dashboard/:id' => 'dashboards#show'
-  # get '/dashboard' => 'dashboards#show'
-  # get '/dashboards' => 'dashboards#index'
   # resources :dashboards, path: '/dashboard/', only: [:new, :create, :show, :index, :destroy] do
   #   # resources :recommendations, only: [:new, :create]
   #   # patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
@@ -51,16 +46,7 @@ Rails.application.routes.draw do
     post 'toggle_default' => 'tasks#toggle_default'
   end
 
-  # get 'getstarted' => 'leads#new'
-  # resource :get_started, only: [:show, :create] do
-  #   get '1' => 'get_starteds#step_1', as: 'step_1'
-  #   get '2' => 'get_starteds#step_2', as: 'step_2'
-  #   get '3' => 'get_starteds#step_3', as: 'step_3'
-  #   post 'finish' => 'get_starteds#finish', as: 'finish'
-  # end
-
   resources :contests
-  #get '/smart-home' => 'leads#energy_awareness'
   #redirecting the contest page to the root path for now
   get '/smart-home' => 'pages#index'
 

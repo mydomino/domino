@@ -1,15 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
-  # layout 'concierge'
   
   def new
-    #check if user completed onboarding
-    #check if user already registered
+    #check if user already registered, if so redirect to login page
     @email = params[:email]
     if User.find_by_email(@email)
       redirect_to new_user_session_path
-    else
-      @profile = Profile.find_by_email(@email)
-      if @profile
+    else #check if user completed onboarding
+      if @profile = Profile.find_by_email(@email)
         if @profile.onboard_complete
           super
         else
@@ -30,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
     current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: current_user.email)
     current_user.dashboard.products = Product.default
     current_user.dashboard.tasks = Task.default
-    current_user.update(role: 'lead') #default role 
+    current_user.update(role: 'lead') #default role is lead 
   end
 
   def after_sign_up_path_for(resource)
@@ -39,8 +36,8 @@ class RegistrationsController < Devise::RegistrationsController
   
   protected
 
-    def after_update_path_for(resource)
-      edit_concierge_path
-    end
+  def after_update_path_for(resource)
+    edit_concierge_path
+  end
 
 end

@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
-  # before_action :authenticate_concierge!, except: :show
+  before_action :authenticate_user!, except: :show
   layout 'concierge', except: :show
 
   def index

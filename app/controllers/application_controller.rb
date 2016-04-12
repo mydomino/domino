@@ -53,4 +53,6 @@ class ApplicationController < ActionController::Base
       hsh[str] = session[str]
     end
   end
+
+
 end
