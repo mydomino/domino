@@ -1,5 +1,5 @@
 class AnalyticsController < ApplicationController
-  before_action :authenticate_concierge!
+  # before_action :authenticate_concierge!
   layout 'concierge'
 
   def show

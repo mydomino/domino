@@ -1,16 +1,11 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  # after_action :verify_authorized
-  # skip_authorization if devise_controller
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
   before_action :start_timing, :capture_utm_campaign
   layout :layout_by_resource
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
@@ -24,12 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for resource
-    #Background job?
-    #Heap.identify(current_concierge.email, name: current_concierge.name, role: "Concierge")
-    # stored_location_for(resource) ||
-    # byebug
-    # if resource.is_a? AdminUser
-    #   admin_root_path
     if resource.role == 'concierge'
       dashboards_path
     else
