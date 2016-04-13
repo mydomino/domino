@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!
   layout 'concierge', except: :show
 
   def index
@@ -22,21 +22,21 @@ class DashboardsController < ApplicationController
     end
   end
 
-  def new
-    @dashboard = Dashboard.new
-  end
+  # def new
+  #   @dashboard = Dashboard.new
+  # end
 
-  def create
-    @dashboard = Dashboard.create(dashboard_params)
-    @dashboard.concierge = current_concierge
-    @dashboard.products = Product.default
-    @dashboard.tasks = Task.default
-    if @dashboard.save
-      redirect_to @dashboard
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @dashboard = Dashboard.create(dashboard_params)
+  #   # @dashboard.concierge = current_concierge
+  #   @dashboard.products = Product.default
+  #   @dashboard.tasks = Task.default
+  #   if @dashboard.save
+  #     redirect_to @dashboard
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def show
     # @dashboard = Dashboard.find_by_slug(params[:id].downcase)

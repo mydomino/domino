@@ -3,9 +3,9 @@
     %h1.mt0.mb0.inline-block
       .fa.fa-check
   .rounded-20-bottom.px2.py3.relative.border-left.border-right.border-bottom
-    / -if concierge_signed_in?
-    /   =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-10 top-10 bg-gray p1 white lh1 z2 rounded' do
-    /     .fa.fa-times
+    -if current_user.role == 'concierge'
+      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-10 top-10 bg-gray p1 white lh1 rounded' do
+        .fa.fa-times
     =render recommendation.recommendable, recommendation: recommendation
 -if(recommendation.recommendable_type == 'Product')
   =render 'products/product_modal', recommendation: recommendation, product: recommendation.recommendable

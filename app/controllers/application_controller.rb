@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
   before_action :start_timing, :capture_utm_campaign
-  layout :layout_by_resource
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -28,14 +27,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
     root_path
-  end
-
-  def layout_by_resource
-    if devise_controller? && resource_name == :concierge
-      "blank"
-    else
-      "application"
-    end
   end
 
   def start_timing
