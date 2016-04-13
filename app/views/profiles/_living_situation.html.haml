@@ -30,7 +30,7 @@
                 .sm-col.sm-col-6.md-col-3
                   %label.h4 ZIP
                   %br
-                  =form.input_field :zip_code, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field", maxlength: "5"
+                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "h3 bg-transparent rounded border border-width-2 height-40 required-field", maxlength: "5"
               %label.h4 PHONE
               %br
               =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
@@ -60,6 +60,8 @@
   $( document ).ready( function() {
 
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+
+    $('#profile_phone').formance('format_phone_number');
 
     $( "#slider" ).slider({
       animate: "fast",
@@ -113,4 +115,7 @@
         validateRequiredFields($requiredFields);
       }
     });
+
+     //mobile
+    $(window).scrollTop(0)
   });
