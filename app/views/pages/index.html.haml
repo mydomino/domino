@@ -132,15 +132,15 @@
     .sm-col.sm-col-12.p1
       .flex.items-center.justify-center
         .inline-block.p2
-          =image_tag("rmi-logo-black.svg", width: "200px;")
+          =image_tag("rmi-logo-black.svg", width: "100%;", style: 'max-width:200px;')
         .inline-block.p2
-          =image_tag("SEIA-2.png", width: "200px")
+          =image_tag("SEIA-2.png", width: "100%;", style: 'max-width:200px;')
     .sm-col.sm-col-12.p1
       .flex.items-center.justify-center.pb1
-        .inline-block.px4
-          =image_tag("Bcorp.png", width: "100px")
-        .inline-block.px4
-          =image_tag("bbb.png", width: "100px;")
+        .inline-block.px2
+          =image_tag("Bcorp.png", width: "100%", style: 'min-width: 100px;')
+        .inline-block.px2
+          =image_tag("bbb.png", width: "100%;", style: 'max-width: 100px;')
 
 :javascript
   /* Replace 'APP_ID' with your app ID */
