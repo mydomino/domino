@@ -5,3 +5,26 @@
     background-color: $gray;
   }
 }
+
+.btn-domino {
+  /*max-width: 256px;*/
+  height:3em;
+  padding:1em;
+  line-height: 1em;
+  border-radius: 1.5em;
+  border: none;
+  text-decoration: none;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  line-height: 1rem;
+  padding: .5rem 1rem;
+  /*margin: 0;*/
+  height: auto;
+  /*border: 1px solid transparent;*/
+  vertical-align: middle;
+  -webkit-appearance: none;
+}

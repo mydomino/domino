@@ -83,6 +83,10 @@ input{
     margin: 0px 1px 3px 0px;
   }
 
+  input[type=submit] {
+    padding: 0!important;
+  }
+
   input:focus, textarea:focus, select:focus {
     border-color: #00ccff;
     padding: 3px 0px 3px 8px;
@@ -169,22 +173,6 @@ input{
     margin-top: 0;
     margin-bottom: 1rem;
   }
-}
-
-
-.btn {
-  font-family: inherit;
-  font-size: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 1rem;
-  padding: .5rem 1rem;
-  margin: 0;
-  height: auto;
-  /*border: 1px solid transparent;*/
-  vertical-align: middle;
-  -webkit-appearance: none;
 }
 
 #dashboards{

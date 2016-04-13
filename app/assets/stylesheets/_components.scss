@@ -1,19 +1,10 @@
-.btn-domino {
-  max-width: 256px;
-  height:3em;
-  padding:1em;
-  line-height: 1em;
-  border-radius: 1.5em;
-  border: none;
-}
-
 .recommendation
 {
+  min-height: 310px;
   &:hover
   {
     border-color: $blue;
   }
-  min-height: 310px;
 }
 
 .index-product

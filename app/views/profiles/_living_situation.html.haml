@@ -36,7 +36,7 @@
               =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
 
             .sm-col.sm-col-6.sm-pl4
-              .mb2.px2
+              .mb2.px2{style: 'height:64px;'}
                 %label.h4 HOUSING
                 %br
                 %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "bg-white #{@profile.housing == 'rent' ? 'btn-housing-active' : 'bg-white'}"} RENT

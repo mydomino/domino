@@ -59,3 +59,14 @@
       .clearfix
         -recommendations.each do |recommendation|
           =render 'recommendations/complete', recommendation: recommendation
+
+:javascript
+  /*$(document).ready(function(){
+    $('.recommendation').on('mouseover', function(){
+      $(this).css('border-color', '#00ccff');
+    });
+
+    $('.recommendation').on('mouseout', function(){
+      $(this).css('border-color', 'rgba(0, 0, 0, 0.125)');
+    });
+  });*/
