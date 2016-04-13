@@ -2,16 +2,19 @@
 /   %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display:none;"} 
 / %label Clean Power Options
 
+
 /activestate
 -if @active_inputs.include? index+1
-  %button.btn-interest.active.mb2{ type: "button", data: {target: "profile_offering_ids_#{index+1}"}, style: "width: 25px;height: 25px; border-radius: 3px; border: solid 2px #00CCFF; position:relative; background-color: #00CCFF"}
-    %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display: inline;"} 
-  %label 
-    = "#{@offerings[index]}"
+  .flex.justify-center
+    %button.btn-interest.active.mb2{ type: "button", data: {target: "profile_offering_ids_#{index+1}"}, style: "width: 25px;height: 25px; border-radius: 3px; border: solid 2px #00CCFF; position:relative; background-color: #00CCFF"}
+      %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display: inline;"} 
+    %label 
+      = "#{@offerings[index]}"
   %br
--else 
-  %button.btn-interest.mb2{ type: "button", data: {target: "profile_offering_ids_#{index+1}"}, style: "width: 25px;height: 25px; border-radius: 3px; border: solid 2px #000000; position:relative; background-color: white"}
-    %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display: none"} 
-  %label 
-    = "#{@offerings[index]}"
-  %br
+-else
+  .flex.jusify-center
+    %button.btn-interest.mb2{ type: "button", data: {target: "profile_offering_ids_#{index+1}"}, style: "width: 25px;height: 25px; border-radius: 3px; border: solid 2px #000000; position:relative; background-color: white"}
+      %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display: none"} 
+    %label.ml1 
+      = "#{@offerings[index]}"
+    %br

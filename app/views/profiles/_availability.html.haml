@@ -40,7 +40,17 @@
   .pill-right {
     border-top-right-radius: 2em;
     border-bottom-right-radius: 2em;
+  }
 
+  @media only screen and (max-width: 400px) {
+    .btn-day {
+        width: 44px;
+        height: 40px;
+    }
+
+    .btn-time{
+      
+    }
   }
 #availability.pt4
   .max-width-3.mx-auto.mt4
@@ -54,7 +64,7 @@
 
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .center#btns-days
+        .center#btns-days.nowrap
           %button.bg-white.btn-availability.btn-day{type: "button", style: "border-top-left-radius: 25px;border-bottom-left-radius: 25px;", data: {target: "chk-monday"}, class: "#{ @profile.availability[:monday] ? 'btn-availability-active': 'btn-availability-inactive'}"} M
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-tuesday"}, class: "#{ @profile.availability[:tuesday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Tu
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-wednesday"}, class: "#{ @profile.availability[:wednesday] ? 'btn-availability-active': 'btn-availability-inactive'}"} W
