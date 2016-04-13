@@ -44,15 +44,17 @@
 
   @media only screen and (max-width: 400px) {
     .btn-day {
-        width: 44px;
-        height: 40px;
+      width: 44px;
+      height: 40px;
     }
 
     .btn-time{
-      
+      width: 80px;
+      height: 40px;
+      font-size: 12px;
     }
   }
-#availability.pt4
+#availability.pt4.mx1
   .max-width-3.mx-auto.mt4
     .clearfix.mb2
       .col.col-12.center
@@ -64,7 +66,7 @@
 
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .center#btns-days.nowrap
+        .center#btns-days
           %button.bg-white.btn-availability.btn-day{type: "button", style: "border-top-left-radius: 25px;border-bottom-left-radius: 25px;", data: {target: "chk-monday"}, class: "#{ @profile.availability[:monday] ? 'btn-availability-active': 'btn-availability-inactive'}"} M
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-tuesday"}, class: "#{ @profile.availability[:tuesday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Tu
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-wednesday"}, class: "#{ @profile.availability[:wednesday] ? 'btn-availability-active': 'btn-availability-inactive'}"} W
@@ -90,9 +92,9 @@
             =a.input :morning, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-morning' }
             =a.input :afternoon, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-afternoon' }
             =a.input :evening, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-evening' }
-        .max-width-1.mx-auto
+        .max-width-1.mx-auto.mr1
           %h2.m0 Comments
-          =form.input_field :comments, style: 'width: 100%;border:2px solid lightgray'
+          =form.input_field :comments, style: 'width: 95%;border:2px solid lightgray'
         .mt2.px2
           =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
           =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
@@ -102,7 +104,7 @@
 
     var validateRequiredFields = function(){
       var timeSelected = $('#btns-times .btn-availability').hasClass('btn-availability-active');
-      var daySelected = $('#btns-times .btn-availability').hasClass('btn-availability-active')
+      var daySelected = $('#btns-days .btn-availability').hasClass('btn-availability-active')
       if ( timeSelected && daySelected ) {
         $("input[value='NEXT']").attr("disabled", false);
         $("input[value='NEXT']").addClass("btn-submit-active");

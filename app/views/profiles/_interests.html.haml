@@ -9,7 +9,7 @@
       =simple_form_for @profile, remote: true do |form|
         .max-width-2.mx-auto
           .flex.justify-center
-            .inline-block
+            .inline-block.ml1
               -5.times do |index|
                 =render "profiles/interest_checkbox", :index => index
             .inline-block.align-top.ml2
@@ -62,6 +62,5 @@
 
     //mobile
     $(window).scrollTop(0)
-
 
   });            
