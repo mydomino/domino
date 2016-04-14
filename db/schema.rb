@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414181857) do
+ActiveRecord::Schema.define(version: 20160414181041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,7 +220,6 @@ ActiveRecord::Schema.define(version: 20160414181857) do
     t.string   "zip_code"
     t.string   "housing"
     t.integer  "avg_electrical_bill", default: 0
-    t.integer  "availability_id"
     t.text     "comments"
     t.string   "partner_code"
     t.boolean  "onboard_complete",    default: false
@@ -229,7 +228,6 @@ ActiveRecord::Schema.define(version: 20160414181857) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "profiles", ["availability_id"], name: "index_profiles_on_availability_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "recommendations", force: :cascade do |t|

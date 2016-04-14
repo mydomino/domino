@@ -10,13 +10,13 @@ class UpdateZohoJob <  ActiveJob::Base
         :id => l.first.leadid,
         :first_name => lead.first_name,
         :last_name => lead.last_name,
-
         :street => "#{lead.address_line_1}, #{lead.address_line_2}",
         :city => lead.city,
         :state => lead.state,
         :zip_code => lead.zip_code,
-        :phone => lead.phone
-        # :email => lead.email
+        :phone => lead.phone,
+        :email => lead.email,
+        :test_onboard_complete => lead.onboard_complete
       )
 
       #update interests using xml, for only text fields can be updated w/ rubyzoho
@@ -26,9 +26,19 @@ class UpdateZohoJob <  ActiveJob::Base
         @interests << o.name 
       end
 
+      #update lead interests using uri, for interests are combo boxes in zoho; comboboxes not settable via ruby zoho
       uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?authtoken=43a02c5e40acfc842e2e8ed75424ecdf&scope=crmapi&id=#{l.first.leadid}&xmlData=<Leads><row no='1'><FL val='test_interests'>#{@interests.join(';')};</FL></row></Leads>"
       url = URI.parse(uri);
       Net::HTTP.post_form(url, {})
+      #set availability
+      uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?authtoken=43a02c5e40acfc842e2e8ed75424ecdf&scope=crmapi&id=#{l.first.leadid}&xmlData=<Leads><row no='1'><FL val='Preferred Contact Day(s)'>#{lead.availability.days_to_s}</FL></row></Leads>"
+      url = URI.parse(uri);
+      Net::HTTP.post_form(url, {})
+      #set availability time
+      uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?authtoken=43a02c5e40acfc842e2e8ed75424ecdf&scope=crmapi&id=#{l.first.leadid}&xmlData=<Leads><row no='1'><FL val='Preferred Contact Time'>#{lead.availability.times_to_s}</FL></row></Leads>"
+      url = URI.parse(uri);
+      Net::HTTP.post_form(url, {})
+      
     # rescue => e
     # end
     # zoho_lead = RubyZoho::Crm::Lead.find_by_email(lead.email) do |zoho_lead|

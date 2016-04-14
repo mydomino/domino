@@ -4,9 +4,6 @@
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
           Let's learn about your home
-    / -flash.each do |key, value|
-    /   .flash.center
-    /     =value
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
         .sm-col.sm-col-12.px2
@@ -14,33 +11,33 @@
             .sm-col.sm-col-6.px2
               %label.h4 ADDRESS LINE 1
               %br
-              =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
+              =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-40 required-field"
               %label.h4 ADDRESS LINE 2 (Optional)
               %br
-              =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-width-2 height-40"
+              =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-light-gray  border-width-2 height-40"
               .clearfix
                 .sm-col.sm-col-12.md-col-6.md-pr2
                   %label.h4 CITY
                   %br
-                  =form.input_field :city, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
+                  =form.input_field :city, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-40 required-field"
                 .sm-col.sm-col-6.md-col-3.sm-pr2
                   %label.h4 STATE
                   %br
-                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded border border-width-2 required-field"
+                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded border border-light-gray border-width-2 required-field"
                 .sm-col.sm-col-6.md-col-3
                   %label.h4 ZIP
                   %br
-                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "h3 bg-transparent rounded border border-width-2 height-40 required-field", maxlength: "5"
+                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-40 required-field", maxlength: "5"
               %label.h4 PHONE
               %br
-              =form.input_field :phone, class: "h3 bg-transparent rounded border border-width-2 height-40 required-field"
+              =form.input_field :phone, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-40 required-field"
 
             .sm-col.sm-col-6.sm-pl4
               .mb2.px2{style: 'height:64px;'}
                 %label.h4 HOUSING
                 %br
-                %button.btn-housing{type: "button", style: "font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-left-radius: 15px; border-bottom-left-radius: 15px;", data: {value: "rent"}, class: "bg-white #{@profile.housing == 'rent' ? 'btn-housing-active' : 'bg-white'}"} RENT
-                %button.btn-housing{type: "button", style: "margin-left:-6px;font-weight:bold; border: 2px solid black; width:75px; height: 30px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;", data: {value: "own"}, class: "bg-white #{@profile.housing == 'own' ? 'btn-housing-active' : 'bg-white'}"} OWN
+                %button.bg-white.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.p1{type: "button", style: "border-top-left-radius: 25px;border-bottom-left-radius: 25px;", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
+                %button.bg-white.mln10px.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.p1{type: "button", style: "border-top-right-radius: 25px; border-bottom-right-radius: 25px;", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
               .mt2.px2
                 %label.h4 AVG ELECTRIC BILL (Optional)
               .inline-block.pl2
@@ -104,9 +101,9 @@
     });
 
     $('.btn-housing').on('click', function(){
-      $('.btn-housing').not(this).removeClass('btn-housing-active');
-      $(this).toggleClass('btn-housing-active');
-      if( $('.btn-housing-active').size() > 0 ){
+      $('.btn-housing').not(this).removeClass('btn-onboard-active');
+      $(this).toggleClass('btn-onboard-active');
+      if( $('.btn-onboard-active').size() > 0 ){
         var val = $(this).data("value");
         $('#profile_housing').val(val);
         validateRequiredFields($requiredFields);

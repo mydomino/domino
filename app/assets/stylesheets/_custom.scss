@@ -73,7 +73,65 @@ input{
     border: 1px solid #DDDDDD;
   }
 }
+
 #profile-forms, .recommendation-form, .devise-form{
+  .btn-day{
+    border: 2px solid #c5c5c5;
+    width:55px;
+    height: 50px;
+  }
+  .btn-time{
+    border: 2px solid lightgray;
+    color:lightgray;
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .btn-availability{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+  }
+
+  .btn-availability-active{
+    background-color: #00ccff;
+    color: white;
+    border: 2px solid #00ccff!important;
+  }
+
+  .btn-availability-inactive{
+    background-color: white;
+    color: #666;
+  }
+
+  .mln10px{
+    margin-left:-10px;
+  }
+  
+  .pill-left {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+  }
+
+  .pill-right {
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .btn-day {
+      width: 44px;
+      height: 40px;
+    }
+
+    .btn-time{
+      width: 80px;
+      height: 40px;
+      font-size: 12px;
+    }
+  }
   input,textarea {
     width:100%;
     display:block;
@@ -113,13 +171,13 @@ input{
 
   select{
     -webkit-appearance: none;
-    border-color: black;
     width: 80px;
     height: 50px;
-    background-size: 50%;
+    background-size: 32%;
     background-repeat: no-repeat;
     background-position: 100% 50%;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAIVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABt0UjBAAAACnRSTlMANzl8fX5/gKusOR4mYAAAAIRJREFUeAHtzstJBmEABMHPh46af8Ae5yYsrg4/VCXQfR4DAAAAAAAAPH9e9/F0bpSvy17OrTLqV0b9yqhfGfUrm/71g9fzZzLqV0b9yqhfGfUro35l3P/h4O38k4z6lVG/MupXRv3KqF8Z9Svtv5+JtD+S9kfS/kjaH8lv+wAAAAAAAN/yDxxm6uMIkQAAAABJRU5ErkJggg==);
+    background-image: image-url('chevron-down.svg');
+    /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAIVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABt0UjBAAAACnRSTlMANzl8fX5/gKusOR4mYAAAAIRJREFUeAHtzstJBmEABMHPh46af8Ae5yYsrg4/VCXQfR4DAAAAAAAAPH9e9/F0bpSvy17OrTLqV0b9yqhfGfUrm/71g9fzZzLqV0b9yqhfGfUro35l3P/h4O38k4z6lVG/MupXRv3KqF8Z9Svtv5+JtD+S9kfS/kjaH8lv+wAAAAAAAN/yDxxm6uMIkQAAAABJRU5ErkJggg==);*/
   }
 }
 
@@ -136,13 +194,9 @@ input{
   border-radius: 0 0 20px 20px;
 }
 
-/*.border-recommendation {
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(0,0,0,0.125);
-}*/
 
-#dashboard{
+/***** dashboard custom css ************/
+#dashboard {
   hr {
       border: 0;
       border-bottom-style: solid;

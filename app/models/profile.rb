@@ -12,16 +12,13 @@ class Profile < ActiveRecord::Base
   has_one :availability, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :offerings, through: :interests
-
+  accepts_nested_attributes_for :offerings, :availability
+  
   # validates :first_name, :last_name, :email, presence: true
   # validates :email, uniqueness: true, email: true
 
-  # after_create :save_to_zoho
-  # after_update :update_zoho
-
-  accepts_nested_attributes_for :offerings, :availability
-
-  
+  after_create :save_to_zoho
+  after_update :update_zoho
 
   def save_to_zoho
     SaveToZohoJob.perform_now self

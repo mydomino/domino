@@ -14,7 +14,6 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :phone
       t.string :housing
       t.integer :avg_electrical_bill
-      t.references :availability, index: true, foreign_key: true
       t.string :comments
       t.string :partner_code
       t.boolean :onboard_complete
