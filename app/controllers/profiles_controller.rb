@@ -1,27 +1,33 @@
 class ProfilesController < ApplicationController
-  
+  # before_action :get_interest_form_resources, only: [:new, :create]
   FORMS = ["name_and_email", "interests", "living_situation", "availability", "checkout", "summary"]
   
   def create
     #todo case user has completed onboarding
     #case user has started onboarding but hasn't completed
     if @profile = Profile.find_by_email(params[:profile][:email])
-      flash[:message] = "Welcome back! Please complete your profile."
-      continue_onboard
+      if @profile.onboard_complete
+        render :js => "window.location = '/users/sign_in'"
+        # return
+      else
+        flash[:message] = "Welcome back! Please complete your profile."
+        continue_onboard
+      end
     else
       @profile = Profile.new(profile_params)
       @profile.onboard_complete = false;
-      @profile.onboard_step = 0;
+      @profile.onboard_step = 1;
       @profile.build_availability
       @profile.avg_electrical_bill = 0;
-      
-      if @profile.save
-        @profile.update(onboard_step: 1);
-        render_response
-      else
-        @response = {form: FORMS[@profile.onboard_step], method: :post}
-        render "profiles/update.js", content_type: "text/javascript"
-      end
+      @profile.save
+      # if @profile.save
+      #   @profile.update(onboard_step: 1);
+      # else
+        # @response = {form: FORMS[@profile.onboard_step], method: :post}
+        # render "profiles/update.js", content_type: "text/javascript"
+      # end
+      render_response
+
     end
     
     # @user = User.create(email: params[:profile][:email], password: "domino2016", password_confirmation: "domino2016", role: "lead")
@@ -34,7 +40,7 @@ class ProfilesController < ApplicationController
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
 
     if @profile.onboard_step == 5 
-      @profile.onboard_complete = true
+      @profile.update(onboard_complete: true)
       UserMailer.welcome_email(@profile.email).deliver_later
     end
     
@@ -65,6 +71,7 @@ class ProfilesController < ApplicationController
   end
 
   def render_response
+    # byebug
     if @profile.onboard_step == 1 
       @active_inputs = @profile.interests.map {|i| i.offering_id }
       @offerings = Offering.all.map {|o| o.name }
@@ -74,7 +81,12 @@ class ProfilesController < ApplicationController
   end
 
   def continue_onboard
-    @response = {form: FORMS[@profile.onboard_step], method: :put}
+    @profile.update(onboard_step: 1)
+    if @profile.onboard_step == 1 
+      @active_inputs = @profile.interests.map {|i| i.offering_id }
+      @offerings = Offering.all.map {|o| o.name }
+    end
+    @response = {form: FORMS[1], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
   end
   
