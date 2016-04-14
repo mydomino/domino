@@ -1,37 +1,20 @@
 class ProfilesController < ApplicationController
-  # before_action :get_interest_form_resources, only: [:new, :create]
   FORMS = ["name_and_email", "interests", "living_situation", "availability", "checkout", "summary"]
   
   def create
-    #todo case user has completed onboarding
-    #case user has started onboarding but hasn't completed
     if @profile = Profile.find_by_email(params[:profile][:email])
       if @profile.onboard_complete
         render :js => "window.location = '/users/sign_in'"
-        # return
       else
-        flash[:message] = "Welcome back! Please complete your profile."
+        flash.now[:message] = "Welcome back! Please complete your profile."
         continue_onboard
       end
     else
       @profile = Profile.new(profile_params)
-      @profile.onboard_complete = false;
-      @profile.onboard_step = 1;
       @profile.build_availability
-      @profile.avg_electrical_bill = 0;
       @profile.save
-      # if @profile.save
-      #   @profile.update(onboard_step: 1);
-      # else
-        # @response = {form: FORMS[@profile.onboard_step], method: :post}
-        # render "profiles/update.js", content_type: "text/javascript"
-      # end
       render_response
-
     end
-    
-    # @user = User.create(email: params[:profile][:email], password: "domino2016", password_confirmation: "domino2016", role: "lead")
-    #errors
   end
 
   def update
@@ -45,12 +28,6 @@ class ProfilesController < ApplicationController
     end
     
     @profile.update(profile_params)
-    #update user email also if changed
-    # if params[:profile][:email] != @profile.user
-
-    # end
-    # @context = context params[:form]
-    #todo render same for with errors in case update cannot be performed
     render_response
   end
 
@@ -65,29 +42,25 @@ class ProfilesController < ApplicationController
 
   private
 
+  def interest_form_resources
+    @active_inputs = @profile.interests.map {|i| i.offering_id }
+    @offerings = Offering.all.map {|o| o.name }
+  end
+
   def validate_partner_code(code)
     @partner_code = PartnerCode.find_by_code(code)
     @partner_code.nil? 
   end
 
   def render_response
-    # byebug
-    if @profile.onboard_step == 1 
-      @active_inputs = @profile.interests.map {|i| i.offering_id }
-      @offerings = Offering.all.map {|o| o.name }
-    end
+    interest_form_resources if @profile.onboard_step == 1 
     @response = {form: FORMS[@profile.onboard_step], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
   end
 
   def continue_onboard
     @profile.update(onboard_step: 1)
-    if @profile.onboard_step == 1 
-      @active_inputs = @profile.interests.map {|i| i.offering_id }
-      @offerings = Offering.all.map {|o| o.name }
-    end
-    @response = {form: FORMS[1], method: :put}
-    render "profiles/update.js", content_type: "text/javascript"
+    render_response
   end
   
   def profile_params
