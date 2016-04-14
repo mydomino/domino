@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20160414181041) do
     t.string   "zip_code"
     t.string   "housing"
     t.integer  "avg_electrical_bill", default: 0
+    t.integer  "availability_id"
     t.text     "comments"
     t.string   "partner_code"
     t.boolean  "onboard_complete",    default: false
@@ -228,6 +229,7 @@ ActiveRecord::Schema.define(version: 20160414181041) do
     t.datetime "updated_at",                          null: false
   end
 
+  add_index "profiles", ["availability_id"], name: "index_profiles_on_availability_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "recommendations", force: :cascade do |t|
@@ -281,5 +283,6 @@ ActiveRecord::Schema.define(version: 20160414181041) do
   add_foreign_key "dashboards", "users"
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
+  add_foreign_key "profiles", "availabilities"
   add_foreign_key "profiles", "users"
 end
