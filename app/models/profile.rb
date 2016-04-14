@@ -21,12 +21,12 @@ class Profile < ActiveRecord::Base
   after_update :update_zoho
 
   def save_to_zoho
-    SaveToZohoJob.perform_now self
+    SaveToZohoJob.perform_later self
   end
 
   def update_zoho
     begin
-      UpdateZohoJob.perform_now self
+      UpdateZohoJob.perform_later self
       # UpdateZohoJob.perform_now self
     rescue => each
       puts "UNABLE TO UPDATE RECORD!!!!!!!!!!!!!!"
