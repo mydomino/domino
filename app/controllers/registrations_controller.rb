@@ -1,21 +1,14 @@
 class RegistrationsController < Devise::RegistrationsController
   
   def new
+
+    #users may only register if they complete onboarding
+    redirect_to root_path if !@email = params[:email]
     #check if user already registered, if so redirect to login page
-    @email = params[:email]
-    if User.find_by_email(@email)
-      redirect_to new_user_session_path
-    else #check if user completed onboarding
-      if @profile = Profile.find_by_email(@email)
-        if @profile.onboard_complete
-          super
-        else
-          #continue onboarding
-        end
-      else
-        redirect_to '/'
-      end
-    end
+    redirect_to new_user_session_path if User.find_by_email(@email)
+    
+    @profile = Profile.find_by_email(@email)
+    @profile.onboard_complete ? super : (redirect_to root_path)
 
   end
 
