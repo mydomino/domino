@@ -36,8 +36,8 @@
               .mb2.px2{style: 'height:64px;'}
                 %label.h4 HOUSING
                 %br
-                %button.bg-white.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.p1{type: "button", style: "border-top-left-radius: 25px;border-bottom-left-radius: 25px;", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
-                %button.bg-white.mln10px.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.p1{type: "button", style: "border-top-right-radius: 25px; border-bottom-right-radius: 25px;", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
+                %button.bg-white.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-left.px2{type: "button", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
+                %button.bg-white.mln10px.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-right.px2{type: "button", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
               .mt2.px2
                 %label.h4 AVG ELECTRIC BILL (Optional)
               .inline-block.pl2
