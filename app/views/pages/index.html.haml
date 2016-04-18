@@ -2,6 +2,8 @@
   bg-transparent fixed white sm-col-12
 -content_for :link_color_class do
   white
+.alerts.absolute{style: "left: 0;right:0;margin-left:auto;margin-right:auto;width:256px"}
+  =flash_messages
 .bg-white
   #profile-forms{style: 'height:100%;min-height:530px;border-bottom: 2px solid lightgray;'}
     =render 'profiles/name_and_email'
@@ -142,6 +144,11 @@
 
 :javascript
   /* Replace 'APP_ID' with your app ID */
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.alerts').hide('slow');
+    }, 2000);
+  });
   window.intercomSettings = {
       app_id: 'fqxjzc3t'
       };
