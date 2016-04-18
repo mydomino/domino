@@ -19,6 +19,8 @@
         = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
       %h1.center.domino-gray Register Your Account
       =simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+        - flash.each do |name, msg|
+          = content_tag :div, msg.html_safe, :id => "flash_#{name}", style: 'text-align: center', class: 'domino-gray' if msg.is_a?(String)
         .form-inputs.max-width-1.mx-auto
           %label.domino-gray Email Address
           = f.input_field :email, readonly: true, value: "#{@email}", class: 'mb2 mt1', style: 'height: 40px;'

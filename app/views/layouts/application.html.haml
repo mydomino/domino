@@ -11,5 +11,13 @@
     = render 'layouts/partials/analytics'
   %body{class: action_name}
     = render 'layouts/partials/navbar'
+    .alerts.absolute{style: "left: 0;right:0;margin-left:auto;margin-right:auto;width:256px"}
+      =flash_messages
     = yield
     = render 'layouts/partials/footer_new'
+:javascript
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.alerts').hide('slow');
+    }, 2000);
+  });
