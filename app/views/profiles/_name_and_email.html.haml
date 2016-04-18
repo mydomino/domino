@@ -1,25 +1,25 @@
 #name-and-email.pt4
   .center.white
-    %h1.mb3{style: 'font-size:50px;font-weight:100;line-height:50px;'}
+    %h1.mb1{style: 'font-size:50px;font-weight:300;line-height:50px;'}
       Ditch the dirty.
       %br
       Switch to clean.
-    %p.white.mb1 Join the action path to your 100% clean energy lifestyle.
+    %h2.white.mb3 Join the action path to your 100% clean energy lifestyle.
   .clearfix.mx-auto.max-width-2.px2
     =simple_form_for @profile, remote: true, method: @response[:method] do |form|
       .clearfix
         .bg-white
         =render 'shared/error_messages', object: form.object
         .sm-col.sm-col-12.md-col-6.px2.py1
-          %label.white First Name
-          =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "Jon"
+          %label.white.hide First Name
+          =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
         .sm-col.sm-col-12.md-col-6.px2.py1
-          %label.white Last Name
-          =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Smith"
+          %label.white.hide Last Name
+          =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
       .clearfix
         .sm-col.sm-col-12.md-col-12.px2.mt1
-          %label.white Email Address
-          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "penguin@mydomino.com"
+          %label.white.hide Email Address
+          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
       .sm-col.sm-col-12.my3
         .center
           =form.submit "GET STARTED", class: "bg-blue", style: 'display:inline; border-radius:40px; border:none; width:250px; height:50px; color:white;'
@@ -30,5 +30,5 @@
 
     $('input').placeholder();
 
-    
+
   });
