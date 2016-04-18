@@ -15,16 +15,26 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     #bind profile to user
-    current_user.profile = Profile.find_by_email(current_user.email)
-    #create and bind dashboard to user
-    current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: current_user.email)
-    current_user.dashboard.products = Product.default
-    current_user.dashboard.tasks = Task.default
-    current_user.update(role: 'lead') #default role is lead 
+    if current_user
+      current_user.profile = Profile.find_by_email(current_user.email)
+      #create and bind dashboard to user
+      current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: current_user.email)
+      current_user.dashboard.products = Product.default
+      current_user.dashboard.tasks = Task.default
+      current_user.update(role: 'lead') #default role is lead 
+    #else
+      #redirect_to(action: :new) and return false
+    end
   end
 
   def after_sign_up_path_for(resource)
-    user_dashboard_path
+    # byebug
+    if current_user
+      user_dashboard_path
+    else
+      root_path
+      #new_user_registration_path
+    end
   end
   
   protected

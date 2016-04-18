@@ -14,8 +14,8 @@ class Profile < ActiveRecord::Base
   has_many :offerings, through: :interests
   accepts_nested_attributes_for :offerings, :availability
   
-  # validates :first_name, :last_name, :email, presence: true
-  # validates :email, uniqueness: true, email: true
+  validates :first_name, :last_name, :email, presence: true
+  validates :email, uniqueness: true, email: true
 
   after_create :save_to_zoho
   after_update :update_zoho

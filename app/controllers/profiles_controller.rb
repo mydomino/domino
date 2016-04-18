@@ -12,8 +12,12 @@ class ProfilesController < ApplicationController
     else
       @profile = Profile.new(profile_params)
       @profile.build_availability
-      @profile.save
-      render_response
+      if @profile.save #validations
+        render_response
+      else
+        @response = {form: FORMS[0], method: :post}
+        render "profiles/update.js", content_type: "text/javascript"
+      end
     end
   end
 
