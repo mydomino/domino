@@ -14,9 +14,7 @@
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-tuesday"}, class: "#{ @profile.availability[:tuesday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Tu
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-wednesday"}, class: "#{ @profile.availability[:wednesday] ? 'btn-availability-active': 'btn-availability-inactive'}"} W
           %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-thursday"}, class: "#{ @profile.availability[:thursday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Th
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-friday"}, class: "#{  @profile.availability[:friday] ? 'btn-availability-active': 'btn-availability-inactive'}"} F
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", data: {target: "chk-saturday"}, class: "#{ @profile.availability[:saturday] ? 'btn-availability-active': 'btn-availability-inactive' }"} Sa
-          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", style: "border-top-right-radius: 25px;border-bottom-right-radius: 25px;", data: {target: "chk-sunday"}, class: "#{ @profile.availability[:sunday] ? 'btn-availability-active': 'btn-availability-inactive'}" }Su
+          %button.bg-white.btn-availability.btn-day.mln10px{type: "button", style: "border-top-right-radius: 25px;border-bottom-right-radius: 25px;", data: {target: "chk-friday"}, class: "#{  @profile.availability[:friday] ? 'btn-availability-active': 'btn-availability-inactive'}"} F
         .m2.center#btns-times
           %button.bg-white.btn-availability.btn-time.pill-left{type: "button", data: {target: "chk-morning"}, class: "#{ @profile.availability[:morning] ? 'btn-availability-active': 'btn-availability-inactive' }"} Mornings
           %button.bg-white.btn-availability.btn-time.mln10px{type: "button", data: {target: "chk-afternoon"}, class: "#{ @profile.availability[:afternoon] ? 'btn-availability-active': 'btn-availability-inactive' }"} Afternoons
@@ -30,8 +28,6 @@
             =a.input :wednesday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-wednesday', class: 'chk-day' }
             =a.input :thursday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-thursday', class: 'chk-day' }
             =a.input :friday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-friday', class: 'chk-day' }
-            =a.input :saturday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-saturday', class: 'chk-day' }
-            =a.input :sunday, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-sunday', class: 'chk-day' }
             =a.input :morning, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-morning' }
             =a.input :afternoon, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-afternoon' }
             =a.input :evening, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-evening' }
