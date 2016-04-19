@@ -1,6 +1,6 @@
 #living-situation.pt4.pb1
   .max-width-3.mx-auto.mt4
-    .clearfix.mb2
+    .clearfix.mb4
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
           Let's learn about your home
@@ -48,7 +48,7 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing , class: 'required-field'}
               =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
-          .mt3.px2
+          .mt3.mb3.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "NEXT", disabled: true, class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 

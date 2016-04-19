@@ -2,7 +2,7 @@
 
 #availability.pt4.mx1
   .max-width-3.mx-auto.mt4
-    .clearfix.mb2
+    .clearfix.mb4
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
           What's the best time to reach you?
@@ -32,9 +32,9 @@
             =a.input :afternoon, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-afternoon' }
             =a.input :evening, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'chk-evening' }
         .max-width-1.mx-auto.mr1
-          %h2.m0 Comments
-          =form.input_field :comments, style: 'width: 95%;border:2px solid lightgray'
-        .mt2.px2
+          %h2.m0.mt2 Comments
+          =form.input_field :comments, class:'rounded', style: 'width: 95%;border:2px solid lightgray'
+        .mt3.mb3.px2
           =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
           =form.submit "NEXT", class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
