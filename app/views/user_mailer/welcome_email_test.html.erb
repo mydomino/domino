@@ -60,7 +60,7 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
             </tr>
             <tr>
               <td colspan='2' align='center' valign='middle' style='height: 300px; background-color: #00ccff; color: white; font-family: helvetica; font-size: 48px;text-align: center;'>
-                Hey Foobar,
+                Hey <%= "#{@profile.first_name.capitalize}" %>,
                 <br/>
                 Thanks for signing up
               </td>

@@ -5,6 +5,7 @@ class UserPreview < ActionMailer::Preview
 	end
 
   def welcome_test
-    UserMailer.welcome_email_test("foobar@mydomino.com")
+    @profile = Profile.new(first_name: 'Foo', last_name: 'Bar', email: "foobar@mydomino.com")
+    UserMailer.welcome_email_test(@profile.email)
   end
 end
