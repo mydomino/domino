@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-ui/slider
 //= require nprogress
 //= require nprogress-ajax
 //= require dynamic

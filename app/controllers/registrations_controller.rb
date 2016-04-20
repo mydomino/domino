@@ -54,9 +54,11 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     # byebug
     if current_user
-      current_user.profile = Profile.find_by_email(current_user.email)
+      @profile = Profile.find_by_email(current_user.email)
+      current_user.profile = @profile
 #     #create and bind dashboard to user
       current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: current_user.email)
+      @profile.update(dashboard_registered: true);
       current_user.dashboard.products = Product.default
       current_user.dashboard.tasks = Task.default
       current_user.update(role: 'lead') #default role is lead 
