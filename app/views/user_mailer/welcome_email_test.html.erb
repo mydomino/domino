@@ -55,7 +55,9 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
       <%= image_tag 'mydomino_logo_gray.png' %>
     </td>
     <td align="right">
-      <%= image_tag 'login_email_btn.png', width: '88px' %>
+      <%= link_to "http://localhost:3000/users/sign_up?email=#{@profile.email}", target: '_blank' do %>
+        <%= image_tag 'login_email_btn.png', width: '88px' %>
+      <% end %>
     </td>
   </tr>
   <tr align='center'>
@@ -86,7 +88,9 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
           </tr>
           <tr>
             <td align='center' style='padding: 0px 0px 32px 0px'>
-              <%= image_tag 'mydashboard_email_btn.png' %>
+              <%= link_to "http://localhost:3000/users/sign_up?email=#{@profile.email}", target: '_blank' do %>
+                <%= image_tag 'mydashboard_email_btn.png' %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -131,28 +135,28 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
           <td valign='top' style='padding: 16px 0px 0px 0px;'>
             <ul style='color: #666;list-style: none;font-family: Arial, Helvetica, sans-serif;padding-left: 0px;font-size: 14px;'>
               <li>NEWS</li>
-              <li style='margin-top: 4px;'>Clean Power</li>
-              <li style='margin-top: 4px;'>Heating &amp; Cooling</li>
-              <li style='margin-top: 4px;'>Transportation</li>
-              <li style='margin-top: 4px;'>Energy Freedom</li>
-              <li style='margin-top: 4px;'>Concierge Corner</li>
+              <li style='margin-top: 4px;'><a href="http://mydomino.com/blog/category/clean-power/" target='_blank' style='color: #666; text-decoration: none;'>Clean Power</a></li>
+              <li style='margin-top: 4px;'><a href="http://mydomino.com/blog/category/heating-and-cooling/" target='_blank' style='color: #666; text-decoration: none;'>Heating &amp; Cooling</a></li>
+              <li style='margin-top: 4px;'><a href="http://mydomino.com/blog/category/transportation/" target='_blank' style='color: #666; text-decoration: none;'>Transportation</a></li>
+              <li style='margin-top: 4px;'><a href="http://mydomino.com/blog/category/energy-freedom/" target='_blank' style='color: #666; text-decoration: none;'>Energy Freedom</a></li>
+              <li style='margin-top: 4px;'><a href="http://mydomino.com/blog/category/concierge-corner/" target='_blank' style='color: #666; text-decoration: none;'>Concierge Corner</a></li>
             </ul>
           </td>
           <td valign='top' style='padding: 16px 0px 0px 0px;'>
             <ul style='color: #666;list-style: none;font-family: Arial, Helvetica, sans-serif;font-size: 14px;'>
               <li>COMPANY</li>
-              <li style='margin-top: 4px;'>Home</li>
-              <li style='margin-top: 4px;'>Blog</li>
-              <li style='margin-top: 4px;'>Terms of Service</li>
-              <li style='margin-top: 4px;'>Privacy Policy</li>
+              <li style='margin-top: 4px;'><a href="http://www.mydomino.com" target='_blank' style='color: #666; text-decoration: none;'>Home</a></li>
+              <li style='margin-top: 4px;'><a href="http://www.mydomino.com/blog" target='_blank' style='color: #666; text-decoration: none;'>Blog</a></li>
+              <li style='margin-top: 4px;'><a href="http://www.mydomino.com/terms" target='_blank' style='color: #666; text-decoration: none;'>Terms of Service</a></li>
+              <li style='margin-top: 4px;'><a href="http://www.mydomino.com/privacy" target='_blank' style='color: #666; text-decoration: none;'>Privacy Policy</a></li>
             </ul>
           </td>
           <td valign='top' style='padding: 16px 0px 0px 0px;'>
             <ul style='color: #666;list-style: none;font-family: Arial, Helvetica, sans-serif;font-size: 14px;'>
               <li>ABOUT</li>
-              <li style='margin-top: 4px;'>Press</li>
-              <li style='margin-top: 4px;'>Careers</li>
-              <li style='margin-top: 4px;'>FAQ</li>
+              <li style='margin-top: 4px;'><a href="http://mydomino.strikingly.com/" target='_blank' style='color: #666; text-decoration: none;'>Press</a></li>
+              <li style='margin-top: 4px;'><a href="https://www.hellohired.com/mydomino" target='_blank' style='color: #666; text-decoration: none;'>Careers</a></li>
+              <li style='margin-top: 4px;'><a href="http://staging.mydomino.com/#" target='_blank' style='color: #666; text-decoration: none;'>FAQ</a></li>
             </ul>
           </td>
         </tr>
