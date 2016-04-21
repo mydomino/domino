@@ -26,7 +26,8 @@
 
 :javascript
   $(document).ready(function(){
-    $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+    $('.navbar-element').css('color', '#666666');
+    navbarScroll('#666666', '#00CCFF');
 
     $('.btn-interest').on('click', function(){
       if($(this).hasClass('active')){
