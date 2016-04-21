@@ -1,18 +1,18 @@
 :css
 #summary.pt4
-  .max-width-1.mx-auto.mt4.bg-white.rounded.p4
+  .max-width-1.mx-auto.my4.bg-white.rounded.p4
     %p.h1.blue.center.line-height-2
       = "Congrats #{@profile.first_name}!"
       You're on the path to a clean energy lifestyle
       %span.absolute.ml1
         =image_tag "smiley.png"
-    %h1.center
-      Scroll down to learn more
+    %h2.center
+      Learn more below
 
 :javascript
   $(document).ready(function(){
     $('#navbar, #navbar-brand, #link-login').css('color', 'white');
     //mobile
-    $('#profile-forms').css('background-color', '#aaa');
+    $('#profile-forms').css('background-color', '#c5c5c5');
     $(window).scrollTop(0)
   });
