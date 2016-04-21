@@ -15,8 +15,8 @@
             =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: 'white border p1 rounded text-decoration-none navbar-element'
           -else
             =link_to "LOG IN", new_user_session_path, class: 'white border p1 rounded text-decoration-none navbar-element', id: "link-login"
-        .right-align.right.mx2
-          %i.fa.fa-phone.fa-2.navbar-element
+        .right-align.right.mx2.navbar-element
+          %i.fa.fa-phone.fa-2
           800-979-2215
       .nav-bg.easeInOut.absolute.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
@@ -32,21 +32,11 @@
 
 :javascript
   $(document).ready(function(){
-
     $('nav .fa-bars').click(function(){
       $('nav').addClass('open');
     });
 
     $('nav .nav-bg .fa-times').click(function(){
       $('nav').removeClass('open');
-    });
-   
-    $(window).scroll(function() {
-      var scrollTop = $(this).scrollTop();
-      if ( scrollTop > 70) { 
-        $('#navbar').css({'background-color':'#00CCFF', 'box-shadow': '0 1px 1px 1px #f1f1f1'});
-      }else{
-        $('#navbar').css({'background-color':'transparent', 'box-shadow' : 'none'});
-      }
     });
   });

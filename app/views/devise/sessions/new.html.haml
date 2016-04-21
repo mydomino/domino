@@ -31,8 +31,7 @@
         = link_to "Get Started", root_path, class: 'text-decoration-none blue'
 :javascript
   $(document).ready(function(){
-    $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
-
+    navbarScroll('#666', '#00ccff');
     $('.btn-remember-me').on('click', function(){
       if($(this).hasClass('active')){
         $(this).css('background-color', 'white');

@@ -21,3 +21,4 @@
 //= require storefront
 //= require modal
 //= require jquery.placeholder.min.js
+//= require custom
