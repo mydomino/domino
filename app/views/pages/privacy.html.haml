@@ -1,5 +1,5 @@
 -content_for :navbar_class do
-  bg-transparent fixed sm-col-12
+  bg-transparent fixed charcoal sm-col-12
 .clearfix.max-width-4.mx-auto
   .col.col-12{style: 'margin-top: 100px;'}
     %h1.mb0 Privacy Policy
@@ -60,5 +60,8 @@
     %p We may from time to time make changes to this Policy.  When we do, we will post the revised Privacy Policy and update the last date of revision.  When the changes we make are significant, we may provide a more prominent notice, for example, by sending you an email or generating a pop-up when you access the Services for the first time after the changes are made.  Your continued use of our Services after the revised Policy has become effective indicates that you have read, understood and agreed to the current version of this Policy.
     %h2 Our Contact Information
     %p Please contact us with any questions or comments about this Policy, your personal information, our use and disclosure practices, or your consent choices by email at info@mydomino.com.
+
 :javascript
-  $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
+  $(document).ready(function(){
+    $('.navbar-element').css('color', '#666666');
+  });
