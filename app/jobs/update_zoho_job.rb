@@ -16,7 +16,7 @@ class UpdateZohoJob <  ActiveJob::Base
       :zip_code => lead.zip_code,
       :phone => lead.phone,
       :email => lead.email,
-      :monthly_electric_bill => lead.avg_electrical_bill,
+      :avg_electric_bill => lead.avg_electrical_bill,
       :onboard_complete => lead.onboard_complete
     )
 
