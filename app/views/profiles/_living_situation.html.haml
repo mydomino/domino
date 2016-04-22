@@ -3,7 +3,7 @@
     .clearfix.mb4
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
-          Let's learn about your home
+          Tell us some information about your home
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
         .sm-col.sm-col-12.px2
@@ -15,7 +15,7 @@
               %label.h4 ADDRESS LINE 2 (Optional)
               %br
               =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-light-gray  border-width-2 height-40"
-              .clearfix
+              .clearfix.mt2
                 .sm-col.sm-col-12.md-col-6.md-pr2
                   %label.h4 CITY
                   %br
@@ -33,7 +33,7 @@
               =form.input_field :phone, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-40 required-field"
 
             .sm-col.sm-col-6.sm-pl4
-              .mb2.px2{style: 'height:64px;'}
+              .sm-mt2.mb2.px2{style: 'height:64px;'}
                 %label.h4 HOUSING
                 %br
                 %button.bg-white.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-left.px2{type: "button", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
