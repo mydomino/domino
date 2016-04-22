@@ -3,9 +3,11 @@ class ProfilesController < ApplicationController
   
   def create
     if @profile = Profile.find_by_email(params[:profile][:email])
-      if @profile.onboard_complete
+      #todo edge case where users complete onboarding but haven't yet registered as user
+      if User.find_by_email(@profile.email)
         render :js => "window.location = '/users/sign_in'"
-      else
+      end
+      if !@profile.onboard_complete
         flash.now[:message] = "Welcome back! Please complete your profile."
         continue_onboard
       end
@@ -25,6 +27,14 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
+
+    if @profile.onboard_step == 4
+      if @profile.partner_code
+        @code_valid = PartnerCode.find_by_code(@profile.partner_code)
+      else
+        @code_valid = false
+      end
+    end  
 
     if @profile.onboard_step == 5 
       @profile.update(onboard_complete: true)
@@ -53,7 +63,7 @@ class ProfilesController < ApplicationController
 
   def validate_partner_code(code)
     @partner_code = PartnerCode.find_by_code(code)
-    @partner_code.nil? 
+    !@partner_code.nil? 
   end
 
   def render_response

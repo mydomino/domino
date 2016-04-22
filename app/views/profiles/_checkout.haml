@@ -18,7 +18,8 @@
         %h1.center.blue.m0{style: "font-size: 25px;"}
           Only
           %span{style:'font-size: 80px;position:relative;font-weight:200;'}
-            99
+            %span#fee 
+              = @code_valid ? 0 : 99
             %span{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
               $
           %span{style: 'margin-left:-22px;'}
