@@ -50,11 +50,11 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
           <tbody>
             <tr>
               <td>
-                <%= image_tag 'mydomino_logo_gray.png' %>
+                <%= image_tag 'mydomino_logo_gray.png', alt: 'MyDomino' %>
               </td>
               <td align="right">
                 <%= link_to "http://staging.mydomino.com/users/sign_up?email=#{@profile.email}", target: '_blank' do %>
-                  <%= image_tag 'login_email_btn.png', width: '88px' %>
+                  <%= image_tag 'login_email_btn.png', width: '88px', alt: 'login button' %>
                 <% end %>
               </td>
             </tr>
