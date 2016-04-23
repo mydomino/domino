@@ -2,12 +2,14 @@ class ProfilesController < ApplicationController
   FORMS = ["name_and_email", "interests", "living_situation", "availability", "checkout", "summary"]
   
   def create
+    #if legacy user visits old dashboard url redirect to info page
     if lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(lu.email)
       if !lu.dashboard_registered
         render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'"
       end
     end
+
     if @profile = Profile.find_by_email(params[:profile][:email])
       #todo edge case where users complete onboarding but haven't yet registered as user
       if User.find_by_email(@profile.email)
@@ -54,9 +56,10 @@ class ProfilesController < ApplicationController
 
   def apply_partner_code
     @profile = Profile.find(params[:id])
-    @code_valid = validate_partner_code(params[:profile][:partner_code])
+    @partner_code = params[:profile][:partner_code].upcase
+    @code_valid = !PartnerCode.find_by_code(@partner_code).nil?
     if @code_valid
-      @profile.update(profile_params)
+      @profile.update(partner_code: @partner_code)
       render 'profiles/apply_partner_code.js', content_type: "text/javascript"
     end
   end
@@ -72,11 +75,6 @@ class ProfilesController < ApplicationController
   def interest_form_resources
     @active_inputs = @profile.interests.map {|i| i.offering_id }
     @offerings = Offering.all.map {|o| o.name }
-  end
-
-  def validate_partner_code(code)
-    @partner_code = PartnerCode.find_by_code(code)
-    !@partner_code.nil? 
   end
 
   def render_response
