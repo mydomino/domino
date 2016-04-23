@@ -7,7 +7,7 @@ class RecommendationsController < ApplicationController
     @recommendation.update_attributes(done: true, updated_by: current_concierge_maybe)
     #This should go in a background job
     #Heap.event("Recommendation Completed", @recommendation.dashboard.lead_email, { recommendation_type: @recommendation.recommendable_type, recommendation_name: @recommendation.recommendable.name })
-    flash[:success] = 'You\'ve marked that recommendation as completed! Completed recommendations are shown at the bottom of this page. <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
+    # flash[:success] = 'You\'ve marked that recommendation as completed! Completed recommendations are shown at the bottom of this page. <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
     redirect_to @recommendation.dashboard
   end
 
