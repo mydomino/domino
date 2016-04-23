@@ -73,8 +73,7 @@ dbs.each do |db|
 end
 
 #test case
-db = Dashboard.create(lead_email: 'tttesting@testing.com', concierge_id: 1)
-lu = LegacyUser.create(email: 'tttesting@testing.com')
-p = Profile.create(first_name: 'm', last_name: 'd', email: 'tttesting@testing.com', onboard_complete: true)
+legacy_users.each do |legacy_user|
 #lastlt send emails to all dashboards already in existence
-UserMailer.legacy_user_registration_email(p.email).deliver_now
+  UserMailer.legacy_user_registration_email(legacy_user.email).deliver_later
+end

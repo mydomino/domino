@@ -27,6 +27,10 @@ class PagesController < ApplicationController
 
   def mydomino_updated
     @db = Dashboard.find_by_slug(params[:slug])
-    UserMailer.legacy_user_registration_email(@db.lead_email).deliver_later
+    if @db
+      UserMailer.legacy_user_registration_email(@db.lead_email).deliver_later
+    else
+      redirect_to root_path
+    end
   end
 end
