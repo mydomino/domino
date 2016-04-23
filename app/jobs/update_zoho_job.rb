@@ -4,7 +4,7 @@ class UpdateZohoJob <  ActiveJob::Base
   #TODO CHANGE LEAD TO PROFILE
   def perform(lead)
     l = RubyZoho::Crm::Lead.find_by_email(lead.email)
-    partner_code_name = PartnerCode.find_by_code(lead.partner_code)
+    partner_code = PartnerCode.find_by_code(lead.partner_code)
     RubyZoho::Crm::Lead.update(
       :id => l.first.leadid,
       :first_name => lead.first_name,
@@ -17,7 +17,7 @@ class UpdateZohoJob <  ActiveJob::Base
       :email => lead.email,
       :avg_electric_bill => lead.avg_electrical_bill,
       :partner_code => lead.partner_code,
-      :partner_code_name => partner_code_name ? partner_code_name : nil,
+      :partner_code_name => partner_code ? partner_code.partner_name : nil,
       :onboard_complete => lead.onboard_complete
     )
 
