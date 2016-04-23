@@ -2,6 +2,12 @@ class ProfilesController < ApplicationController
   FORMS = ["name_and_email", "interests", "living_situation", "availability", "checkout", "summary"]
   
   def create
+    if lu = LegacyUser.find_by_email(params[:profile][:email])
+      @db = Dashboard.find_by_lead_email(lu.email)
+      if !lu.dashboard_registered
+        render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'"
+      end
+    end
     if @profile = Profile.find_by_email(params[:profile][:email])
       #todo edge case where users complete onboarding but haven't yet registered as user
       if User.find_by_email(@profile.email)
