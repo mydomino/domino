@@ -22,8 +22,7 @@
     .clearfix.center
       .sm-col.sm-col-12
         %h1.charcoal
-          Hi,
-          = @dashboard.lead_name.titleize
+          = @dashboard.lead_name ? "Hi, #{@dashboard.lead_name.titleize}" : "Hello!"
     .clearfix.center.charcoal
       .sm-col.sm-col-12
         %p

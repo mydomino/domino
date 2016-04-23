@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
         continue_onboard
       end
     else
+      set_tracking_variables
       @profile = Profile.new(profile_params)
       @profile.build_availability
       if @profile.save #validations
@@ -56,6 +57,12 @@ class ProfilesController < ApplicationController
 
   private
 
+  def set_tracking_variables
+    session[:ip]          ||= request.remote_ip
+    session[:referer]     ||= request.referer
+    session[:browser]     ||= request.user_agent
+  end
+
   def interest_form_resources
     @active_inputs = @profile.interests.map {|i| i.offering_id }
     @offerings = Offering.all.map {|o| o.name }
@@ -94,6 +101,6 @@ class ProfilesController < ApplicationController
       {:availability_attributes => [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :morning, :afternoon, :evening] },
       :comments,
       :partner_code
-    )
+    ).merge(session_params)
   end
 end

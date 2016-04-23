@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def session_params
-    keys = %i(ip referer browser start_time campaign)
+    keys = %i(ip referer browser campaign)
     keys.each_with_object({}) do |str, hsh|
       hsh[str] = session[str]
     end

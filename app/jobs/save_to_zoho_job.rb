@@ -7,6 +7,10 @@ class SaveToZohoJob < ActiveJob::Base
       #last_name is a required field in zoho
       zoho_lead.last_name = lead.last_name
       zoho_lead.email = lead.email
+      zoho_lead.campaign = lead.campaign
+      zoho_lead.ip_address = lead.ip
+      zoho_lead.referrer = lead.referer
+      zoho_lead.browser = lead.browser
       # zoho_lead.phone = lead.phone
       # zoho_lead.street = lead.address
       # zoho_lead.city = lead.city

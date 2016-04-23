@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   #lead routes
   # resources :leads, only: [:create, :new, :index]
+  get '/dashboard/:slug' => 'pages#mydomino_updated'
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'

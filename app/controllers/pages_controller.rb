@@ -25,4 +25,8 @@ class PagesController < ApplicationController
     @lead = Lead.new
   end
 
+  def mydomino_updated
+    @db = Dashboard.find_by_slug(params[:slug])
+    UserMailer.legacy_user_registration_email(@db.lead_email).deliver_later
+  end
 end

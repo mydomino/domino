@@ -21,7 +21,12 @@ class Profile < ActiveRecord::Base
   after_update :update_zoho
 
   def save_to_zoho
-    SaveToZohoJob.perform_later self
+    if LegacyUser.find_by_email(self.email)
+      puts "DONT SAVE TO ZOHO!!!!!!!!!!"
+    else
+      SaveToZohoJob.perform_later self
+      puts "SAVE TO ZOHO!!!!!!"
+    end
   end
 
   def update_zoho
