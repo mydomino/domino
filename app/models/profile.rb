@@ -30,14 +30,7 @@ class Profile < ActiveRecord::Base
   end
 
   def update_zoho
-    begin
-      UpdateZohoJob.perform_later self
-      # UpdateZohoJob.perform_now self
-    rescue => each
-      puts "UNABLE TO UPDATE RECORD!!!!!!!!!!!!!!"
-    end
-
-    # UpdateZohoJob.perform_later self
+    UpdateZohoJob.perform_later self
   end
   # takes time for zoho record to propogate through api, needs further testing
   handle_asynchronously :update_zoho, :run_at => Proc.new { 3.minutes.from_now }
