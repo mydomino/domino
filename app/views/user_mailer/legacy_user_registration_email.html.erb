@@ -53,14 +53,14 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
                 <%= image_tag 'mydomino_logo_gray.png', alt: 'MyDomino' %>
               </td>
               <td align="right">
-                <%= link_to "http://mydomino.com/users/sign_up?email=#{@profile.email}", target: '_blank' do %>
+                <%= link_to "http://mydomino.com/users/sign_up?email=#{@email}", target: '_blank' do %>
                   <%= image_tag 'login_email_btn.png', width: '88px', alt: 'login button' %>
                 <% end %>
               </td>
             </tr>
             <tr>
               <td colspan='2' align='center' valign='middle' style='height: 300px; background-color: #00ccff; color: white; font-family: helvetica; font-size: 48px;text-align: center;'>
-                Hey There, <%# "#{@profile.first_name.capitalize}" %>
+                Hello,
                 <br/>
                 check out our improved site!
               </td>
@@ -81,19 +81,14 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
                     </tr>
                     <tr>
                       <td align='center' style='padding: 0px 0px 32px 0px'>
-                        <%= link_to "http://mydomino.com/users/sign_up?email=#{@profile.email}", target: '_blank' do %>
+                        <%= link_to "http://mydomino.com/users/sign_up?email=#{@email}", target: '_blank' do %>
                           <%= image_tag 'mydashboard_email_btn.png' %>
                         <% end %>
                       </td>
                     </tr>
                     <tr>
-                      <td align='center' style='font-family: Helvetica, Arial, sans-serif;font-size: 24px;color: #666666'>
-                        Our concierges are at your service
-                      </td>
-                    </tr>
-                    <tr>
-                      <td align='center' style='padding: 0px 0px 24px 0px; font-family: Helvetica, Arial, sans-serif;font-size: 16px;color: #666666'>
-                        One of our energy savings concierges
+                      <td align='center' style='padding: 0px 0px 32px 0px; font-family: Helvetica, Arial, sans-serif;font-size: 16px;color: #666666'>
+                        <span style='font-weight:bold;padding-bottom: 8px;'>Our concierges are at your service</span>
                         <br/>
                         Any questions? Contact your energy savings concierge.
                       </td>

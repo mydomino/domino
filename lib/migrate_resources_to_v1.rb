@@ -73,7 +73,7 @@ dbs.each do |db|
 end
 
 #test case
-legacy_users.each do |legacy_user|
-#lastlt send emails to all dashboards already in existence
-  UserMailer.legacy_user_registration_email(legacy_user.email).deliver_later
-end
+# legacy_users.each do |legacy_user|
+# #lastlt send emails to all dashboards already in existence
+#   UserMailer.legacy_user_registration_email(legacy_user.email).deliver_later
+# end

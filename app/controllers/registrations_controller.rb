@@ -8,8 +8,12 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path and return
     end
     
-    @profile = Profile.find_by_email(@email)
-    @profile.onboard_complete ? super : (redirect_to root_path)
+    if @profile = Profile.find_by_email(@email)
+      @profile.onboard_complete ? super : (redirect_to root_path and return)
+    end
+
+    #case where legacy users don't have an email
+    LegacyUser.find_by_email(@email) ? super : (redirect_to root_path and return)
   end
 
   def create
@@ -57,7 +61,7 @@ class RegistrationsController < Devise::RegistrationsController
     # byebug
     if current_user
       @profile = Profile.find_by_email(current_user.email)
-      current_user.profile = @profile
+      current_user.profile = @profile if !@profile.nil?
 #     #create and bind dashboard to user if not legacy user
       if !LegacyUser.find_by_email(current_user.email)
         current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: current_user.email)
@@ -69,7 +73,7 @@ class RegistrationsController < Devise::RegistrationsController
         current_user.dashboard = Dashboard.find_by_lead_email(current_user.email)
         lu = LegacyUser.find_by_email(current_user.email)
         lu.update(dashboard_registered: true)
-        @profile.update(dashboard_registered: true);
+        @profile.update(dashboard_registered: true) if !@profile.nil?
       end
       user_dashboard_path
     else
