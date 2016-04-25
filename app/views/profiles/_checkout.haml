@@ -65,6 +65,8 @@
             .col.col-12.sm-col.sm-col-6.xs-center
               =form.input_field :partner_code, class: 'blue', style: "text-transform: uppercase; padding-left: 8px; border: 2px solid #00CCFF;display:inline;height:34px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
               %button.inline{type: "button", id: 'btn-apply', style: 'padding:8px;border:2px solid #00CCFF;background-color: #00CCFF;border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;color:white;font-weight:100;'} APPLY
+            .col.col-12.center.px2
+              %p No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
           .mt2.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "SUBMIT", class: "bg-gray white right border-none inline-block btn-submit-active", style: "border-radius: 20px;width: 120px; height: 40px;"
