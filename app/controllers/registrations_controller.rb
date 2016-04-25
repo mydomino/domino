@@ -9,11 +9,15 @@ class RegistrationsController < Devise::RegistrationsController
     end
     
     if @profile = Profile.find_by_email(@email)
-      @profile.onboard_complete ? super : (redirect_to root_path and return)
+      @profile.onboard_complete ? (super and return) : (redirect_to root_path and return)
     end
 
-    #case where legacy users don't have an email
-    LegacyUser.find_by_email(@email) ? super : (redirect_to root_path and return)
+    #case where legacy users don't have a profile
+    if LegacyUser.find_by_email(@email)
+      super and return
+    else
+      redirect_to root_path and return
+    end
   end
 
   def create
