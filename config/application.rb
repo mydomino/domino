@@ -25,8 +25,8 @@ module Domino
     
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    #config.action_mailer.asset_host = 'http://staging.mydomino.com'
-    config.action_mailer.asset_host = 'http://localhost:3000'
+    config.action_mailer.asset_host = 'http://staging.mydomino.com'
+    #config.action_mailer.asset_host = 'http://localhost:3000'
     # config.action_mailer.asset_host = 'http://mydomino.com'
   end
 end
