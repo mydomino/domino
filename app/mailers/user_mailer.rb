@@ -9,4 +9,8 @@ class UserMailer < ActionMailer::Base
     @email = email
     mail(from: '"MyDomino Team" <team@mydomino.com>', to: @email, subject: 'Announcing a new look and login for MyDomino!')
   end
+
+  def email_template(email)
+    mail(from: '"MyDomino Team" <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' )
+  end
 end

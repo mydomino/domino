@@ -11,4 +11,7 @@ class UserPreview < ActionMailer::Preview
     UserMailer.legacy_user_registration_email(@lu.email)
   end
 
+  def email_template
+    UserMailer.email_template('foobar@mydomino.com')
+  end
 end

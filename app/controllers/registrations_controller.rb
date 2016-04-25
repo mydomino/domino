@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path and return
     end
     
+    #todo should return to complete onboarding
     if @profile = Profile.find_by_email(@email)
       @profile.onboard_complete ? (super and return) : (redirect_to root_path and return)
     end
