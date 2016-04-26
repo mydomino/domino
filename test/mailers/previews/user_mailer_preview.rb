@@ -5,7 +5,7 @@ class UserPreview < ActionMailer::Preview
 	end
 
   def legacy_user_registration
-
+    
     @lu = LegacyUser.create(email: "foobar@mydomino.com")
     @db = Dashboard.create(lead_email: "foobar@mydomino.com" )
     UserMailer.legacy_user_registration_email(@lu.email)
