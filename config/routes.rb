@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  
-  ActiveAdmin.routes(self)
-
   resources :profiles
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
 
