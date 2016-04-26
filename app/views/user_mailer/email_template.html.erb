@@ -49,10 +49,14 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
 <tbody>
   <tr>
     <td align='center'>
-      <%= image_tag 'mydomino_logo_blue.png', alt: 'MyDomino', style: 'padding: 32px 0px 32px 0px;' %>
+      <%= image_tag 'mydomino_logo_blue.png', alt: 'MyDomino', style: 'padding: 32px 0px 16px 0px;' %>
     </td>
   </tr>
 <tr>
+<tr>
+  <td valign="bottom" align="center" style="padding:0px 0px 16px 0px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%; line-height:15px;" class="center5"><font face="Arial, Helvetica, sans-serif" color="#999999" style="color:#999999; font-size:12px; font-family: Arial, Helvetica,sans-serif; line-height:15px;"><b><%= "#{Date::MONTHNAMES[Date.today.month].upcase} #{Date.today.day}, #{Date.today.year}" %></b></font>
+  </td>
+</tr>
 <td align="center">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background-color:#FFFFFF;" class="fulltable">
   <tbody>

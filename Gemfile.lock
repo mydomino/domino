@@ -178,6 +178,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailchimp-api (2.0.6)
+      excon (>= 0.16.0)
+      json (>= 1.7.7)
     memory_profiler (0.9.6)
     mime-types (2.99.1)
     mimemagic (0.3.1)
@@ -391,6 +394,7 @@ DEPENDENCIES
   jquery-ui-rails
   json
   kaminari
+  mailchimp-api
   normalize-rails
   nprogress-rails
   pg
