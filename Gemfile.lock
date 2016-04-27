@@ -181,6 +181,7 @@ GEM
     mailchimp-api (2.0.6)
       excon (>= 0.16.0)
       json (>= 1.7.7)
+    mailkick (0.1.4)
     memory_profiler (0.9.6)
     mime-types (2.99.1)
     mimemagic (0.3.1)
@@ -395,6 +396,7 @@ DEPENDENCIES
   json
   kaminari
   mailchimp-api
+  mailkick
   normalize-rails
   nprogress-rails
   pg

@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
     end
 
     if @profile = Profile.find_by_email(params[:profile][:email])
-      #todo edge case where users complete onboarding but haven't yet registered as user
       if User.find_by_email(@profile.email)
         render :js => "window.location = '/users/sign_in'"
       end
@@ -19,6 +18,7 @@ class ProfilesController < ApplicationController
         flash.now[:message] = "Welcome back! Please complete your profile."
         continue_onboard
       else
+        #todo edge case where users complete onboarding but haven't yet registered as user
         render "profiles/signup_needed.js", content_type: "text/javascript"
       end
     else
@@ -37,7 +37,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    # todo edge case where user goes back to name and email form and edits email address that is already in use
+    #todo edge case where user goes back to name and email form and edits email address that is already in use
 
     @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1

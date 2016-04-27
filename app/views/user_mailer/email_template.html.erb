@@ -148,7 +148,10 @@ img[class=mobile300] { width: 600px !important; height: auto !important; }
 
     <table bgcolor="#ffffff" align="left" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" width="33%" class="fulltable">
       <tbody><tr>
-        <td valign="middle" align="center" style="padding:20px 10px 20px 10px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%;" class="footerpadding"><a href="http://ebm.cheetahmail.com/r/webunsub?t=%%t%%&amp;n=3&amp;email=%%email%%" style="text-decoration:none; color:#404040;"><font face="Arial, Helvetica, sans-serif" color="#404040" style="color:#404040; font-size:12px; font-family: Arial, Helvetica,sans-serif; line-height:17px;"><b>UNSUBSCRIBE</b></font></a></td>
+        <td valign="middle" align="center" style="padding:20px 10px 20px 10px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%;" class="footerpadding">
+          <%= link_to "UNSUBSCRIBE", mailkick_unsubscribe_url, style: "color:#404040; font-size:12px; font-family: Arial, Helvetica,sans-serif; line-height:17px; text-decoration:none; font-weight: bold;" %>
+          
+        </td>
       </tr>
     </tbody></table>
 

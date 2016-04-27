@@ -37,6 +37,7 @@ gem 'rack-timeout'
 gem 'unicorn-worker-killer'
 gem 'retries'
 gem 'pundit'
+gem 'mailkick'
 
 gem 'unicorn'
 

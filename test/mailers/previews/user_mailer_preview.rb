@@ -12,6 +12,6 @@ class UserPreview < ActionMailer::Preview
   end
 
   def email_template
-    UserMailer.email_template('foobar@mydomino.com')
+    UserMailer.email_template('marcian@mydomino.com')
   end
 end
