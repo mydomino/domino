@@ -86,6 +86,14 @@
           console.log("success", json);
       });
     });
+
+    //submit buttons may not be pushed multiple times
+    $("form").submit(function() {
+      $(this).submit(function() {
+        return false;
+      });
+      return true;
+    });
      //mobile
     $(window).scrollTop(0)
   });

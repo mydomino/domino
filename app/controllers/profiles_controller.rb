@@ -37,6 +37,8 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
+    # todo edge case where user goes back to name and email form and edits email address that is already in use
+
     @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
 
