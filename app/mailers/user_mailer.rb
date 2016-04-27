@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def email_template(email)
-    user = User.find_by_email(email)
-    mail(from: '"MyDomino Team" <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' ) if !user.opted_out?
+    # user = User.find_by_email(email)
+    mail(from: '"MyDomino Team" <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' ) #if !user.opted_out?
   end
 end
