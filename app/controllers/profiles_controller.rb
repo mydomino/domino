@@ -18,6 +18,8 @@ class ProfilesController < ApplicationController
       if !@profile.onboard_complete
         flash.now[:message] = "Welcome back! Please complete your profile."
         continue_onboard
+      else
+        render "profiles/signup_needed.js", content_type: "text/javascript"
       end
     else
       set_tracking_variables
@@ -30,6 +32,7 @@ class ProfilesController < ApplicationController
         render "profiles/update.js", content_type: "text/javascript"
       end
     end
+
   end
 
   def update
