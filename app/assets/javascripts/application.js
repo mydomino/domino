@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
-//= require navbar
+//= require jquery-ui/slider
 //= require nprogress
 //= require nprogress-ajax
 //= require dynamic
@@ -21,3 +20,5 @@
 //= require formance
 //= require storefront
 //= require modal
+//= require jquery.placeholder.min.js
+//= require custom

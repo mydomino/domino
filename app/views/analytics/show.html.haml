@@ -1,49 +1,48 @@
-.container
-  .clearfix.mxn2
-    .col.col-12.sm-col.sm-col-4.py3.px2
-      .bg-white.p2.mt1.rounded
-        %h1.mt0 Stats
-        %ul
-          %li
-            Storefronts:
-            =@dashboard_count
-          %li
-            Recommendations Made:
-            =@recommendations_count
-          %li
-            Recommendations Completed:
-            =@recommendations_completed_count
+.clearfix.max-width-4.mx-auto
+  .col.col-12.sm-col.sm-col-4.py3.px2
+    .bg-white.p2.mt1.rounded
+      %h1.mt0 Stats
+      %ul
+        %li
+          Storefronts:
+          =@dashboard_count
+        %li
+          Recommendations Made:
+          =@recommendations_count
+        %li
+          Recommendations Completed:
+          =@recommendations_completed_count
 
-      .bg-white.p2.mt1.rounded
-        %h3.mt0 Dashboards by State
-        %table
-          %th State
-          %th Dashboards
-          -@dashboards_by_state.each_pair do |state, dashboards|
-            %tr
-              %td
-                =state
-              %td
-                =dashboards
-      .bg-white.p2.mt1.rounded
-        =link_to "Download Completed Recommendations", recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded'
-    .col.col-12.sm-col.sm-col-8.py3.px2
-      .p2.bg-white.rounded.mt1
-        %h1.inline-block.mt1 Recent Activity
-        .inline-block.clearfix.right.mt1
-          =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'border gray'}"
-          =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'border gray' }"
-        .clearfix
-          -@recent_events.reverse.each do |event|
-            .clearfix
-              .col.col-9.p2.border.rounded-left.mt1
-                =link_to event.dashboard.lead_name, dashboard_path(event.dashboard)
-                marked
-                =event.recommendable.name
-                done
-                -if(!event.updated_by.nil?)
-                  (marked by concierge)
-              .col.col-3.p2.bg-blue.white.border.rounded-right.mt1.right-align
-                %small
-                  =time_ago_in_words event.updated_at
-                  ago
+    .bg-white.p2.my1.rounded
+      %h3.mt0 Dashboards by State
+      %table.left-align.mx2
+        %th State
+        %th Dashboards
+        -@dashboards_by_state.each_pair do |state, dashboards|
+          %tr
+            %td
+              =state
+            %td
+              =dashboards
+    .bg-white.p2.mt1.rounded
+      =link_to "Download Completed Recommendations", recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded'
+  .col.col-12.sm-col.sm-col-8.py3.px2
+    .p2.bg-white.rounded.mt1
+      %h1.inline-block.mt1 Recent Activity
+      .inline-block.clearfix.right.mt1
+        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'border gray'}"
+        =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'border gray' }"
+      .clearfix
+        -@recent_events.reverse.each do |event|
+          .clearfix
+            .col.col-9.p2.border-light.rounded-left.mt1
+              =link_to event.dashboard.lead_name, dashboard_path(event.dashboard), class: 'blue text-decoration-none'
+              marked
+              =event.recommendable.name
+              done
+              -if(!event.updated_by.nil?)
+                (marked by concierge)
+            .col.col-3.p2.bg-blue.white.border-light.rounded-right.mt1.right-align
+              %small
+                =time_ago_in_words event.updated_at
+                ago

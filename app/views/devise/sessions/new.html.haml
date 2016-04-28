@@ -1,24 +1,52 @@
-.bg-blue
-  .container
-    .flex-auto.center
-      .clearfix
-        .col.sm-col-4
-          &nbsp;
-        .col.sm-col-4
-          .flex.flex-center.full-height
-            .flex-auto
-              %h2.text-center.uppercase.bold.white.caps Concierge
-              .bg-white.rounded.p3
-                =simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-                  .form-inputs
-                    = f.label :email, class: 'left block'
-                    = f.input_field :email, required: false, autofocus: true, class: 'col-12 field mb2'
-                    = f.label :password, class: 'left block'
-                    = f.input_field :password, required: false, class: 'col-12 field mb2'
-                    .left-align
-                      = f.input_field :remember_me, class:'h1', as: :boolean if devise_mapping.rememberable?
-                      = f.label :remember_me
-                  .form-actions
-                    = f.button :submit, "Sign In", class: "caps btn bg-blue col-12 white rounded py2 mt2"
-                .text-center.py2.left-align
-                  = render "devise/shared/links"
+-content_for :navbar_class do
+  bg-transparent fixed midgray sm-col-12
+#signin.devise-form.pt4
+  .max-width-3.mx-auto.my4
+    .bg-lightgray.rounded.p3.mt4.max-width-2.mx-auto
+      .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
+        = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
+      %h1.center.domino-gray Log In To Your Account
+      =simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+        =#render 'shared/error_messages', object: f.object
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}", style: 'text-align: center', class: 'domino-gray' if msg.is_a?(String)
+        .form-inputs.max-width-1.mx-auto
+          %label.domino-gray Email Address
+          = f.input_field :email, required: false, autofocus: true, class: 'mb2 mt1', style: 'height: 40px;'
+          %label.domino-gray Password
+          = f.input_field :password, required: false, class: 'mt1', style: 'height: 40px;'
+          .flex.items-center.my2
+            %button.btn-remember-me{ type: "button", data: {target: "user_remember_me"}, style: "width: 25px;height: 25px; border-radius: 3px; border: solid 1px #DDD; position:relative; background-color: white"}
+              %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display: none"}
+            %label.domino-gray.ml1{style: 'font-weight:100;'} Keep me logged in
+          .display-none
+            = f.input_field :remember_me, class:'h1', as: :boolean, label: false if devise_mapping.rememberable?
+          = f.button :submit, "LOG IN", class: "bg-blue white py2", style: 'border-radius:40px; border:none;height:50px; color:white;'
+          .mt2.center
+            - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+              = link_to "Forgot my password", new_password_path(resource_name), style: 'color: black;font-weight:100;', class: 'domino-gray'
+    %p.center.domino-gray
+      Dont have an account?
+      %span.blue
+        = link_to "Get Started", root_path, class: 'text-decoration-none blue'
+:javascript
+  $(document).ready(function(){
+    navbarScroll('#666', '#00ccff');
+    $('.btn-remember-me').on('click', function(){
+      if($(this).hasClass('active')){
+        $(this).css('background-color', 'white');
+        $(this).css('border-color', '#DDD');
+        $('i', this).css('display', 'none');
+        $(this).removeClass('active');
+      }else{
+        $(this).css('background-color', '#00CCFF');
+        $(this).css('border-color', '#00CCFF');
+        $('i', this).css('display', 'inline');
+        $(this).addClass('active');
+      }
+      var target = '#' + $(this).data('target');
+      $(target).prop('checked', function( i, val ) {
+        return !val;
+      });
+    });
+  });

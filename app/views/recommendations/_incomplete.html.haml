@@ -1,7 +1,7 @@
 .sm-col.sm-col-12.md-col-4.p2
-  .recommendation.border.p2.py3.relative.rounded-20
-    -if concierge_signed_in?
-      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute rounded right-10 top-10 bg-gray p1 white lh1' do
+  .recommendation.border-light.p2.py3.relative.rounded-20
+    -if current_user.role == 'concierge'
+      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute rounded bg-gray p1 white right-10 top-10 lh1' do
         .fa.fa-times
     =render recommendation.recommendable, recommendation: recommendation
 -if(recommendation.recommendable_type == 'Product')

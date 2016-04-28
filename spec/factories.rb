@@ -40,4 +40,8 @@ FactoryGirl.define do
     end_date (Date.today + 1)
   end
 
+  factory :offering do
+    name "Clean Power Options"
+  end
+
 end

@@ -1,4 +1,5 @@
 =simple_form_for(@dashboard, url: dashboard_bulk_update_path(@dashboard)) do |form|
-  =form.association :products, collection: @products, as: :check_boxes, label: "Products", include_hidden: false, wrapper: :inline_checkbox
-  =form.association :tasks, collection: @tasks, as: :check_boxes, label: "Tasks", checked_value: "true", include_hidden: false
-  =form.submit "Save", class: " btn bg-blue white rounded"
+  =form.association :products, collection: @products, as: :check_boxes, label: "Products", include_hidden: false, input_html: {class: 'my1 mx2'}, label_html: {class: 'bold h3'}
+  %hr.my2
+  =form.association :tasks, collection: @tasks, as: :check_boxes, label: "Tasks", include_hidden: false, input_html: {class: 'my1 mx2'}, label_html: {class: 'bold h3'}
+  =form.submit "Save", class: "max-width-1 btn-domino bg-blue white my2", style: 'width: 100px;'

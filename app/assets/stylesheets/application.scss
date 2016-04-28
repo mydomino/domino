@@ -16,9 +16,15 @@
  *= require nprogress
  */
 
-@import "basscss";
+@import "basscss/basscss";
 @import "colors";
+@import "custom";
 @import "buttons";
+@import 'responsive-spacing';
+@import 'responsive-type-scale';
+//@import "basscss7";
 @import "components";
 @import "fonts";
-@import "concierge_tools"
+@import "concierge_tools";
+@import "footer";
+@import "profile_forms";

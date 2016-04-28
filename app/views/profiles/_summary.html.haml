@@ -1,0 +1,18 @@
+:css
+#summary.pt4
+  .max-width-1.mx-auto.my4.bg-white.rounded.p4
+    %h1.blue.center.bold.line-height-2
+      = "Congrats #{@profile.first_name.capitalize}!"
+    %h2.black.center.line-height-2
+      You're on the path to a clean energy lifestyle 😁
+    %h2.center.gray.line-height-2
+      Learn more about us below
+
+:javascript
+  $(document).ready(function(){
+    navbarScroll('#fff', '#00ccff');
+    //mobile
+    $('#profile-forms').css('background-color', '#c5c5c5');
+    $(window).scrollTop(0)
+
+  });

@@ -1,7 +1,7 @@
-%nav.clearfix.bg-blue.white.fixed.top-0.col-12{style: "z-index: 1000"}
-  .container
+%nav.bg-blue.white.fixed.top-0.col-12{style: "z-index: 1000"}
+  .clearfix.max-width-4.mx-auto
     .sm-col.p2
-      = link_to "Concierge Menu", dashboards_path, class: "white"
+      = link_to "Concierge Menu", dashboards_path, class: "white text-decoration-none"
     .sm-col-right.p2
-      %a.white{data: {toggle: 'modal', target: "#new-recommendation"}}
+      %a.white.pointer{data: {toggle: 'modal', target: "#new-recommendation"}}
         Add Recommendation

@@ -53,7 +53,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
-
+  
   config.after(:each) do
     DatabaseCleaner.clean
   end
@@ -73,3 +73,4 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 end
+

@@ -1,5 +1,5 @@
 class RecommendationsController < ApplicationController
-  before_action :authenticate_concierge!, except: [:complete, :undo]
+  before_action :authenticate_user!, except: [:complete, :undo]
   layout 'concierge'
 
   def complete
@@ -7,7 +7,7 @@ class RecommendationsController < ApplicationController
     @recommendation.update_attributes(done: true, updated_by: current_concierge_maybe)
     #This should go in a background job
     #Heap.event("Recommendation Completed", @recommendation.dashboard.lead_email, { recommendation_type: @recommendation.recommendable_type, recommendation_name: @recommendation.recommendable.name })
-    flash[:success] = 'You\'ve marked that recommendation as completed! Completed recommendations are shown at the bottom of this page. <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
+    # flash[:success] = 'You\'ve marked that recommendation as completed! Completed recommendations are shown at the bottom of this page. <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
     redirect_to @recommendation.dashboard
   end
 
@@ -41,7 +41,8 @@ class RecommendationsController < ApplicationController
   # end
 
   def bulk_update
-    @dashboard = Dashboard.friendly.find(params[:dashboard_id])
+    # @dashboard = Dashboard.friendly.find(params[:dashboard_id])
+    @dashboard = Dashboard.find(params[:dashboard_id]);
     if(!params[:dashboard].nil?)
       new_product_recommendations = params[:dashboard][:product_ids]
       @dashboard.product_ids = params[:dashboard][:product_ids]
@@ -51,7 +52,7 @@ class RecommendationsController < ApplicationController
       @dashboard.product_ids = []
       @dashboard.task_ids = []
     end
-    redirect_to @dashboard
+    redirect_to dashboard_path(@dashboard)
   end
 
   def destroy
@@ -73,9 +74,9 @@ class RecommendationsController < ApplicationController
   private
 
   def current_concierge_maybe
-    if(!current_concierge.nil?)
-      return current_concierge.id
-    end
+    # if(!current_concierge.nil?)
+    #   return current_concierge.id
+    # end
     return ''
   end
 

@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Domino - Concierge
+    %title MyDomino
     = render 'layouts/partials/meta'
     = stylesheet_link_tag 'application', media: 'all'
     %link{rel:"stylesheet", href:"https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"}
@@ -11,6 +11,14 @@
     = render 'layouts/partials/analytics'
   %body.bg-heather
     = render 'layouts/partials/logo_only_navbar'
-    .container.bg-transparent
-      =flash_messages
+    .max-width-2.mx-auto.rounded
+      .alerts
+        =flash_messages
     = yield
+
+:javascript
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.alerts').hide('slow');
+    }, 2000);
+  });

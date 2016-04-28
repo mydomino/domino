@@ -1,9 +1,13 @@
-.container
-  .clearfix.bg-white.rounded-top.mt3.p2
+#actions.max-width-4.mx-auto.my4
+  .clearfix.bg-white.rounded-top.px2
     .col.col-12
-      %h1.mt0.inline-block Actions
+      %h1.mt0.inline-block.p2 Actions
   .clearfix.bg-white.px2
     -@default_tasks.each do |task|
-      =render 'index_task', task: task
+      .clearfix
+        .col.col-12
+          =render 'tasks/index_task', task: task
     -@non_default_tasks.each do |task|
-      =render 'index_task', task: task
+      .clearfix
+        .col.col-12
+          =render 'tasks/index_task', task: task

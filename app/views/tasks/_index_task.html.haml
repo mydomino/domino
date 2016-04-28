@@ -1,18 +1,19 @@
-.clearfix.flex.flex-center.border-hover.py2
-  .col.sm-col-2.center.px2
+.clearfix.rounded.flex.items-center.px2
+  .col.sm-col-2.center
     %h3
-      =link_to task_toggle_default_path(task.id), method: "POST" do
+      =link_to task_toggle_default_path(task.id), method: "POST", class: 'text-decoration-none blue' do
         -if (task.default)
           .fa.fa-check-square-o
         -else
           .fa.fa-square-o
         Default
   .col.sm-col-2
-    =image_tag task.icon, style: "max-height: 100px;"
+    =image_tag task.icon, width: "75px"
   .col.sm-col-5
-    %h3.mt0.uppercase.bold.text-center
+    %h3.bold.mb0
       =task.name
-    =task.description
-  .col.sm-col-3.hover-show.right-align.px2
-    =link_to "Edit", edit_task_path(task), class: 'bg-blue white btn rounded'
-    =link_to "Delete", task_path(task), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'btn bg-red white rounded'
+    %h3.mt0
+      =task.description
+  .col.sm-col-3.center.hover-show
+    =link_to "Edit", edit_task_path(task), class: 'white bg-blue text-decoration-none rounded block p2 btn'
+    =link_to "Delete", task_path(task), class: 'white bg-red text-decoration-none rounded block btn',  method: :delete, data: {confirm: 'Are you sure?'}

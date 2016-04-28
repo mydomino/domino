@@ -1,5 +1,5 @@
 class AnalyticsController < ApplicationController
-  before_action :authenticate_concierge!
+  # before_action :authenticate_concierge!
   layout 'concierge'
 
   def show
@@ -8,7 +8,7 @@ class AnalyticsController < ApplicationController
       @recent_events = Recommendation.done.includes(:recommendable, :dashboard).timestamped.order(:updated_at).last(50)
     else
       @filter = 'mine'
-      @recent_events = Recommendation.done.includes(:recommendable, :dashboard).timestamped.where(concierge_id: current_concierge.id).order(:updated_at).last(50)
+      @recent_events = Recommendation.done.includes(:recommendable, :dashboard).timestamped.where(concierge_id: current_user.id).order(:updated_at).last(50)
     end
     @dashboard_count = Dashboard.all.count
     @recommendations_count = Recommendation.all.count

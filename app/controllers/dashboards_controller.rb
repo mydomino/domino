@@ -1,28 +1,56 @@
 class DashboardsController < ApplicationController
+
   helper_method :sort_column, :sort_direction
-  before_action :authenticate_concierge!, except: :show
+  before_action :authenticate_user!
   layout 'concierge', except: :show
 
-  def new
-    @dashboard = Dashboard.new
-  end
+  def index
+    authorize Dashboard
+    @page = params.has_key?(:page) ? params[:page] : 1
+    @filter = params[:filter]
 
-  def create
-    @dashboard = Dashboard.create(dashboard_params)
-    @dashboard.concierge = current_concierge
-    @dashboard.products = Product.default
-    @dashboard.tasks = Task.default
-    if @dashboard.save
-      redirect_to @dashboard
+    if(@filter == 'all' || @filter == nil)
+      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).page @page
+      @filter = 'all'
     else
-      render :new
+      @dashboards = Dashboard.where(concierge_id: current_user.id).order(sort_column + " " + sort_direction).page @page
+    end
+
+    if(params.has_key? :search)
+      @search_term = params[:search]
+      @dashboards = @dashboards.fuzzy_search(@search_term).page @page
     end
   end
 
+  # def new
+  #   @dashboard = Dashboard.new
+  # end
+
+  # def create
+  #   @dashboard = Dashboard.create(dashboard_params)
+  #   # @dashboard.concierge = current_concierge
+  #   @dashboard.products = Product.default
+  #   @dashboard.tasks = Task.default
+  #   if @dashboard.save
+  #     redirect_to @dashboard
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def show
-    @dashboard = Dashboard.find_by_slug(params[:id].downcase)
-    if(@dashboard.nil?)
-      not_found
+    # @dashboard = Dashboard.find_by_slug(params[:id].downcase)
+    if !user_signed_in?
+      #set flash message to please sign in to access dashboard
+      redirect_to new_user_session_path
+      return
+    else
+      if params.has_key? :id
+        @dashboard = Dashboard.find(params[:id])
+      else
+        @dashboard = Dashboard.find_by_user_id(current_user.id)
+      end
+      authorize @dashboard   
     end
     @products = Product.all
     @tasks = Task.all
@@ -38,29 +66,13 @@ class DashboardsController < ApplicationController
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
-    respond_to do |format|
-      format.html {render :layout => 'dashboard'}
-    end
+    render :layout => 'dashboard'
   end
 
-  def index
-    @filter = params[:filter]
-
-    if(@filter == 'all')
-      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    else
-      @filter = 'mine'
-      @dashboards = Dashboard.where(concierge: current_concierge).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    end
-    #handle search
-    if(params[:search].present?)
-      @search_term = params[:search]
-      @dashboards = @dashboards.fuzzy_search(@search_term).paginate(:page => params[:page], :per_page => 50)
-    end
-  end
+ 
 
   def destroy
-    @dashboard = Dashboard.friendly.find(params[:id])
+    @dashboard = Dashboard.find(params[:id])
     @dashboard.destroy
 
     redirect_to dashboards_path

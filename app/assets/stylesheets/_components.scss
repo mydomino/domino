@@ -1,10 +1,10 @@
 .recommendation
 {
+  min-height: 310px;
   &:hover
   {
     border-color: $blue;
   }
-  min-height: 310px;
 }
 
 .index-product

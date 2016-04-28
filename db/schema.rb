@@ -11,16 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314175011) do
+ActiveRecord::Schema.define(version: 20160427203624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
 
-  create_table "clones", force: :cascade do |t|
-    t.string   "name"
+  create_table "availabilities", force: :cascade do |t|
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.boolean  "morning"
+    t.boolean  "afternoon"
+    t.boolean  "evening"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "profile_id"
   end
 
   create_table "concierges", force: :cascade do |t|
@@ -59,9 +69,10 @@ ActiveRecord::Schema.define(version: 20160314175011) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "lead_email"
+    t.integer  "user_id"
   end
 
-  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
+  add_index "dashboards", ["user_id"], name: "index_dashboards_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -79,6 +90,14 @@ ActiveRecord::Schema.define(version: 20160314175011) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "domino_products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price_cents"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "get_starteds", force: :cascade do |t|
     t.boolean  "solar"
     t.boolean  "energy_analysis"
@@ -87,6 +106,16 @@ ActiveRecord::Schema.define(version: 20160314175011) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
+
+  create_table "interests", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "offering_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "interests", ["offering_id"], name: "index_interests_on_offering_id", using: :btree
+  add_index "interests", ["profile_id"], name: "index_interests_on_profile_id", using: :btree
 
   create_table "leads", force: :cascade do |t|
     t.string   "first_name"
@@ -113,6 +142,40 @@ ActiveRecord::Schema.define(version: 20160314175011) do
     t.boolean  "subscribe_to_mailchimp"
   end
 
+  create_table "legacy_users", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "dashboard_registered", default: false
+  end
+
+  create_table "mailkick_opt_outs", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.boolean  "active",     default: true, null: false
+    t.string   "reason"
+    t.string   "list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
+  add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
+
+  create_table "offerings", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "partner_codes", force: :cascade do |t|
+    t.string   "code"
+    t.string   "partner_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "url"
     t.string   "product_id"
@@ -126,6 +189,36 @@ ActiveRecord::Schema.define(version: 20160314175011) do
     t.boolean  "default",     default: false
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "housing"
+    t.integer  "avg_electrical_bill",  default: 0
+    t.integer  "availability_id"
+    t.text     "comments"
+    t.string   "partner_code"
+    t.boolean  "onboard_complete",     default: false
+    t.integer  "onboard_step",         default: 1
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "dashboard_registered", default: false
+    t.string   "campaign"
+    t.string   "ip"
+    t.string   "referer"
+    t.string   "browser"
+  end
+
+  add_index "profiles", ["availability_id"], name: "index_profiles_on_availability_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
   create_table "recommendations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "concierge_id"
@@ -138,9 +231,6 @@ ActiveRecord::Schema.define(version: 20160314175011) do
     t.integer  "updated_by"
   end
 
-  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
-  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
-
   create_table "tasks", force: :cascade do |t|
     t.string   "icon"
     t.string   "name"
@@ -152,4 +242,31 @@ ActiveRecord::Schema.define(version: 20160314175011) do
     t.boolean  "default",     default: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "",     null: false
+    t.string   "encrypted_password",     default: "",     null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,      null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "role",                   default: "lead"
+    t.string   "first_name"
+    t.string   "last_name"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "availabilities", "profiles"
+  add_foreign_key "dashboards", "users"
+  add_foreign_key "interests", "offerings"
+  add_foreign_key "interests", "profiles"
+  add_foreign_key "profiles", "availabilities"
+  add_foreign_key "profiles", "users"
 end

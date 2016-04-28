@@ -1,0 +1,80 @@
+#footer
+  .max-width-4.mx-auto
+    .clearfix
+      #desktop-footer.xs-hide.sm-hide
+        .col.col-3.mt2.pl1
+          .white
+            = image_tag "mydomino_esc_horizontal", class: 'fit'
+          %p#footer-address.h5.mt1
+            327 19th Street
+            %br
+            Oakland, CA 94612
+            %br
+            hello@mydomino.com
+            %br
+            800-979-2215
+
+        .col.col-9.domino-gray
+          .mt2
+            .inline-block.m2.right
+              %h4{style: 'margin-bottom: -10px;'} GET SOCIAL
+              %ul.list-reset.h5
+                %li
+                  = link_to 'https://www.facebook.com/ourdominoeffect', target: '_blank' do
+                    %i.fa.fa-facebook{style: 'width: 13px;'}
+                    Facebook
+                %li
+                  = link_to "https://twitter.com/OurDominoEffect", target: '_blank' do
+                    %i.fa.fa-twitter
+                    Twitter
+            .inline-block.m2.right
+              %h4{style: 'margin-bottom: -10px;'} ABOUT US
+              %ul.list-reset.h5
+                %li
+                  =link_to "Press", "http://mydomino.strikingly.com", target: '_blank'
+                %li
+                  =link_to "Careers", "https://www.hellohired.com/mydomino", target: '_blank'
+            .inline-block.m2.right
+              %h4{style: 'margin-bottom: -10px;'} COMPANY
+              %ul.list-reset.h5
+                %li
+                  =link_to "Home", root_path
+                %li
+                  =link_to "News", "/blog"
+                %li
+                  =link_to "Terms of Service", terms_path
+                %li
+                  =link_to "Privacy Policy", privacy_path
+            .inline-block.m2.right
+              %h4{style: 'margin-bottom: -10px;'} LEARN MORE
+              %ul.list-reset.h5
+                %li
+                  =link_to "Clean Power", "/blog/category/clean-power/"
+                %li
+                  =link_to "Heating & Cooling", "/blog/category/heating-and-cooling/"
+                %li
+                  =link_to "Transportation", "/blog/category/transportation/"
+                %li
+                  =link_to "Energy Freedom", "/blog/category/energy-freedom/"
+                %li
+                  =link_to "Concierge Corner", "/blog/category/concierge-corner/"
+      #mobile-footer.md-hide.lg-hide.mx-auto
+        .col.col-12.my3.center
+          = image_tag "mydomino_esc_horizontal", height: "64px;"
+          %p#footer-address.h5.mt1
+            327 19th Street
+            %br
+            Oakland, CA 94612
+            %br
+            hello@mydomino.com
+            %br
+            800-979-2215
+          %ul.list-reset.h5
+            %li
+              = link_to 'https://www.facebook.com/ourdominoeffect', target: '_blank' do
+                %i.fa.fa-facebook{style: 'width: 13px;'}
+                Facebook
+            %li
+              = link_to "https://twitter.com/OurDominoEffect", target: '_blank' do
+                %i.fa.fa-twitter
+                Twitter

@@ -1,10 +1,11 @@
 =simple_form_for @product do |form|
-  =form.label :product_id
-  =form.text_field :product_id, disabled: true
-  =form.label :url
-  =form.text_field :url, disabled: true
-  =form.label :name
-  =form.text_field :name
-  =form.label :description
-  =form.text_area :description
-  =form.submit "Update Product", class: "btn btn-default"
+  =form.label :product_id, class: 'bold'
+  =form.text_field :product_id, disabled: true, class: 'mb2 height-40'
+  =form.label :url, class: 'bold'
+  =form.text_field :url, disabled: true, class: 'mb2 height-40'
+  =form.label :name, class: 'bold'
+  =form.text_field :name, class: 'mb2 height-40'
+  =form.label :description, class: 'bold'
+  =form.text_area :description, class: 'mb2 height-40'
+  .my2.block.right-align
+    =form.submit "Update Product", class: "btn-domino bg-blue white"

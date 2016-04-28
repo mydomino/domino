@@ -1,0 +1,327 @@
+$breakpoint-xs: '(max-width: 40em)' !default;
+
+/* Basscss Responsive Margin */
+
+@media #{$breakpoint-xs} {
+  .xs-center {
+    text-align: center;
+  }
+}
+
+body{
+  /*overflow-x:hidden;*/
+}
+.pointer:hover {
+  cursor: pointer
+}
+
+button{
+  outline: none;
+}
+
+#name-and-email {
+    background: image-url('bg_hero-1.jpg');
+    background-size:cover
+}
+
+#about-banner{
+  background: image-url('bg_about-1.jpg');
+  background-size:cover;
+}
+
+.bg-lightgray{
+  background-color: #F9F9F9;
+}
+
+.domino-gray{
+  color: #666666;
+}
+
+input{
+  padding-left: 10px;
+}
+
+#name-and-email {
+  input {
+    border: 2px solid white;
+  } 
+  ::placeholder{
+    color: #B6C7CB;
+    font-weight: 100;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+}
+
+/* for jquery placeholder */
+.placeholder {
+
+}
+
+.border-width-2 {
+  border-width: 2px;
+}
+
+.border-light {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0,0,0,0.125);
+}
+
+.devise-form, .recommendation-form{
+  input[type], textarea, select {
+    border: 1px solid #DDDDDD;
+  }
+}
+
+#profile-forms, .recommendation-form, .devise-form{
+  .btn-day{
+    border: 2px solid #c5c5c5;
+    width:55px;
+    height: 50px;
+  }
+  .btn-time{
+    border: 2px solid lightgray;
+    color:lightgray;
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .btn-availability{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+  }
+
+  .btn-availability-active{
+    background-color: #00ccff;
+    color: white;
+    border: 2px solid #00ccff!important;
+  }
+
+  .btn-availability-inactive{
+    background-color: white;
+    color: #666;
+  }
+
+  .mln10px{
+    margin-left:-10px;
+  }
+  
+  .pill-left {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+  }
+
+  .pill-right {
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .btn-day {
+      width: 44px;
+      height: 40px;
+    }
+
+    .btn-time{
+      width: 80px;
+      height: 40px;
+      font-size: 12px;
+    }
+  }
+  input,textarea {
+    width:100%;
+    display:block;
+  }
+  input[type=submit]{
+    display: inline;
+  }
+
+  input.error{
+    border-color: $light-red!important;
+  }
+
+  input, textarea, select {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 8px;
+    margin: 0px 1px 3px 0px;
+  }
+
+  input[type=submit] {
+    padding: 0!important;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #00ccff;
+    padding: 3px 0px 3px 8px;
+    margin: 0px 1px 3px 0px;
+    /*border: 1px solid rgba(81, 203, 238, 1);*/
+  }
+
+  .height-40{
+    height:40px;
+  }
+
+  select{
+    -webkit-appearance: none;
+    width: 80px;
+    height: 50px;
+    background-size: 32%;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-image: image-url('chevron-down.svg');
+    /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAIVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABt0UjBAAAACnRSTlMANzl8fX5/gKusOR4mYAAAAIRJREFUeAHtzstJBmEABMHPh46af8Ae5yYsrg4/VCXQfR4DAAAAAAAAPH9e9/F0bpSvy17OrTLqV0b9yqhfGfUrm/71g9fzZzLqV0b9yqhfGfUro35l3P/h4O38k4z6lVG/MupXRv3KqF8Z9Svtv5+JtD+S9kfS/kjaH8lv+wAAAAAAAN/yDxxm6uMIkQAAAABJRU5ErkJggg==);*/
+  }
+}
+
+/* styles for dashboard recommendations */
+.rounded-20 {
+  border-radius: 20px;
+}
+
+.rounded-20-top {
+  border-radius: 20px 20px 0 0;
+}
+
+.rounded-20-bottom {
+  border-radius: 0 0 20px 20px;
+}
+
+
+/***** dashboard custom css ************/
+#dashboard {
+  hr {
+      border: 0;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: rgba(0,0,0,0.125);
+  }
+
+
+  .border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,0.125);
+  }
+  .border-left {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: rgba(0,0,0,0.125);
+  }
+
+  .border-bottom {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0,0,0,0.125);
+  }
+
+  .border-right {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: rgba(0,0,0,0.125);
+  }
+  .caps {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
+  .white {
+    color: white;
+  }
+  p {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+#dashboards{
+
+  .table-light th, .table-light td {
+     border-bottom-width: 1px;
+     border-bottom-style: solid;
+     border-bottom-color: rgba(0,0,0,0.125);
+     padding: 4px;
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    max-width: 100%;
+    width: 100%;
+
+    tbody {
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+    }
+
+    tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+    }
+  }
+  .pagination a, .pagination span.current, .pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+}
+
+  .pagination {
+      border-left: 1px solid #ddd;
+    .first{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .page{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .next{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .last{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+  }
+}
+
+.flash-msg-box {position: absolute; top: 50px;}
+
+.btn-disabled {
+  cursor: not-allowed!important;
+}
+
+.right-10 {
+  right: 10px;
+}
+
+.top-10 {
+  top: 10px;
+}
+
+.lh1{
+  line-height: 1rem;
+}

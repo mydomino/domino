@@ -1,18 +1,13 @@
 =simple_form_for @task do |form|
-  .clearfix
-    =form.label :name, class: 'block'
-    =form.input_field :name, class: 'field col-12'
-  .clearfix
-    =form.label :description, class: 'block'
-    =form.input_field :description, class: 'field col-12'
-  .clearfix
-    =form.label :cta_link, class: 'block'
-    =form.input_field :cta_link, class: 'field col-12'
-  .clearfix
-    =form.label :cta_text, class: 'block'
-    =form.input_field :cta_link, class: 'field col-12'
-  .clearfix
+    =form.label :name, class: 'bold' 
+    =form.input_field :name, class: 'height-40'
+    =form.label :description, class: 'bold'
+    =form.input_field :description, class: 'height-40'
+    =form.label :cta_link, class: 'bold'
+    =form.input_field :cta_link, class: 'height-40'
+    =form.label :cta_text, class: 'bold'
+    =form.input_field :cta_link, class: 'height-40'
     =form.label :icon, class: 'block'
-    =form.select :icon, {collection: Task::ICON_OPTIONS}, {}, {class: 'field col-12'}
-  .clearfix
-    =form.submit local_assigns.fetch(:submit_text, "Add Action"), class: 'btn bg-blue white rounded h3 px3 py2 mt3'
+    =form.select :icon, {collection: Task::ICON_OPTIONS}, {}, {class: 'block', style: 'width: 128px;'}
+    .my2.block.right-align
+        =form.submit local_assigns.fetch(:submit_text, "Add Action"), class: "btn-domino bg-blue white"
