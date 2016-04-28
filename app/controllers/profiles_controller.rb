@@ -1,27 +1,25 @@
 class ProfilesController < ApplicationController
+  before_action :set_profile, only: [:update, :apply_partner_code]
   FORMS = ["name_and_email", "interests", "living_situation", "availability", "checkout", "summary"]
   
   def create
     #if legacy user visits old dashboard url redirect to info page
     if lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(lu.email)
-      if !lu.dashboard_registered
-        render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'"
-      end
+      render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'" if !lu.dashboard_registered
     end
 
     if @profile = Profile.find_by_email(params[:profile][:email])
-      if User.find_by_email(@profile.email)
-        render :js => "window.location = '/users/sign_in'"
-      end
+      #user has already registered
+      render :js => "window.location = '/users/sign_in'" if User.find_by_email(@profile.email)
       if !@profile.onboard_complete
         flash.now[:message] = "Welcome back! Please complete your profile."
         continue_onboard
       else
-        #todo edge case where users complete onboarding but haven't yet registered as user
+        #edge case where users complete onboarding but haven't yet registered as user
         render "profiles/signup_needed.js", content_type: "text/javascript"
       end
-    else
+    else #create new profile
       set_tracking_variables
       @profile = Profile.new(profile_params)
       @profile.build_availability
@@ -36,18 +34,11 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.find(params[:id])
-    #todo edge case where user goes back to name and email form and edits email address that is already in use
-
     @back = (params[:commit] == 'BACK') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
 
     if @profile.onboard_step == 4
-      if @profile.partner_code
-        @code_valid = PartnerCode.find_by_code(@profile.partner_code)
-      else
-        @code_valid = false
-      end
+      @code_valid = @profile.partner_code ? PartnerCode.find_by_code(@profile.partner_code) : false
     end  
 
     if @profile.onboard_step == 5 
@@ -60,7 +51,6 @@ class ProfilesController < ApplicationController
   end
 
   def apply_partner_code
-    @profile = Profile.find(params[:id])
     @partner_code = params[:profile][:partner_code].upcase
     @code_valid = !PartnerCode.find_by_code(@partner_code).nil?
     if @code_valid
@@ -70,6 +60,10 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
 
   def set_tracking_variables
     session[:ip]          ||= request.remote_ip

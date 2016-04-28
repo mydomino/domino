@@ -11,7 +11,7 @@ class SaveToZohoJob < ActiveJob::Base
       zoho_lead.ip_address = lead.ip
       zoho_lead.referrer = lead.referer
       zoho_lead.browser = lead.browser
-      zoho_lead.onboard_complete = lead.onboard_complete
+      zoho_lead.onboard_complete = "No"
     end
     zoho_lead.save
   end
