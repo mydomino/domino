@@ -73,7 +73,8 @@ class RegistrationsController < Devise::RegistrationsController
         current_user.dashboard.products = Product.default
         current_user.dashboard.tasks = Task.default
         # current_user.update(role: 'lead') #default role is lead 
-        @profile.update(dashboard_registered: true);
+        @profile.update(dashboard_registered: true)
+        DashboardRegisteredZohoJob.perform_later @profile
       else
         current_user.dashboard = Dashboard.find_by_lead_email(current_user.email)
         lu = LegacyUser.find_by_email(current_user.email)

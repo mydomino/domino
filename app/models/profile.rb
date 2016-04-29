@@ -10,9 +10,10 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user
   has_one :availability, dependent: :destroy
+  belongs_to :partner_code
   has_many :interests, dependent: :destroy
   has_many :offerings, through: :interests
-  accepts_nested_attributes_for :offerings, :availability
+  accepts_nested_attributes_for :offerings, :availability, :partner_code
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
