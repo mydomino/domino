@@ -40,6 +40,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Preferred Contact Day(s)'>#{lead.availability.days_to_s}</FL>"\
             "<FL val='Preferred Contact Time'>#{lead.availability.times_to_s}</FL>"\
             "<FL val='Appointment Comments'>#{lead.comments}</FL>"\
+            "<FL val='Dashboard Registration'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
             "</row></Leads>"
       url = URI.parse(uri);
       Net::HTTP.post_form(url, {})

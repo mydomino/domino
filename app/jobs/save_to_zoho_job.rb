@@ -31,7 +31,6 @@ class SaveToZohoJob < ActiveJob::Base
         "<FL val='Browser'>#{lead.browser}</FL>"\
         "<FL val='Onboard Complete'>No</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
-        "<FL val='Dashboard Registration'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "</row></Leads>"
 
     url = URI.parse(uri);
