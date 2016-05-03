@@ -1,5 +1,4 @@
 class DashboardsController < ApplicationController
-
   helper_method :sort_column, :sort_direction
   before_action :authenticate_user!
   layout 'concierge', except: :show

@@ -7,17 +7,23 @@ class ProfilesController < ApplicationController
     if lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(lu.email)
       render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'" if !lu.dashboard_registered
+      return
     end
 
     if @profile = Profile.find_by_email(params[:profile][:email])
       #user has already registered
-      render :js => "window.location = '/users/sign_in'" if User.find_by_email(@profile.email)
+      if User.find_by_email(@profile.email)
+        render :js => "window.location = '/users/sign_in'" 
+        return
+      end
+      #user has not completed onboarding
       if !@profile.onboard_complete
         flash.now[:message] = "Welcome back! Please complete your profile."
         continue_onboard
       else
         #edge case where users complete onboarding but haven't yet registered as user
         render "profiles/signup_needed.js", content_type: "text/javascript"
+        return
       end
     else #create new profile
       set_tracking_variables
@@ -28,6 +34,7 @@ class ProfilesController < ApplicationController
       else
         @response = {form: FORMS[0], method: :post}
         render "profiles/update.js", content_type: "text/javascript"
+        return
       end
     end
 
@@ -84,6 +91,7 @@ class ProfilesController < ApplicationController
     interest_form_resources if @profile.onboard_step == 1 
     @response = {form: FORMS[@profile.onboard_step], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
+    return
   end
 
   def continue_onboard
