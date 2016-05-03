@@ -46,35 +46,29 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    # byebug
     if current_user
-      @profile = Profile.find_by_email(current_user.email)
+
+      @email = current_user.email
+      @profile = Profile.find_by_email(@email)
+
       current_user.profile = @profile if !@profile.nil?
+      
 #     #create and bind dashboard to user if not legacy user
-      if !LegacyUser.find_by_email(current_user.email)
-        current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: current_user.email)
+      if !LegacyUser.find_by_email(@email)
+        current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: @email)
         current_user.dashboard.products = Product.default
         current_user.dashboard.tasks = Task.default
-        # current_user.update(role: 'lead') #default role is lead 
         @profile.update(dashboard_registered: true)
         DashboardRegisteredZohoJob.perform_later @profile
       else
-        current_user.dashboard = Dashboard.find_by_lead_email(current_user.email)
-        lu = LegacyUser.find_by_email(current_user.email)
+        current_user.dashboard = Dashboard.find_by_lead_email(@email)
+        lu = LegacyUser.find_by_email(@email)
         lu.update(dashboard_registered: true)
         @profile.update(dashboard_registered: true) if !@profile.nil?
       end
       user_dashboard_path
     else
       root_path
-      #new_user_registration_path
     end
   end
-  
-  protected
-
-  # def after_update_path_for(resource)
-  #   edit_concierge_path
-  # end
-
 end
