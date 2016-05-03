@@ -47,7 +47,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Phone'>#{lead.phone}</FL>"\
             "<FL val='Own or Rent?'>#{lead.housing}</FL>"\
             "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
-            "<FL val='Partner Code'>#{lead.partner_code.code}</FL>"\
+            "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
             "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
             "<FL val='Preferred Contact Day(s)'>#{lead.availability.days_to_s}</FL>"\
             "<FL val='Preferred Contact Time'>#{lead.availability.times_to_s}</FL>"\

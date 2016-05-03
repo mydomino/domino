@@ -36,7 +36,7 @@ class Profile < ActiveRecord::Base
     djs = Delayed::Job.where('handler LIKE ?', "%id: '#{self.id}'%:update_zoho%").order(created_at: :desc)
     if djs.count > 1
       last_update_job = djs.first
-      Delayed::Job.where('created_at < ?', last_update_job.created_at).destroy_all
+      djs.where('created_at < ?', last_update_job.created_at).destroy_all
     end
   end
   handle_asynchronously :delete_redundant_delayed_jobs
