@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/wait_for_ajax'
 
-RSpec.feature "User Onboarding", :type => :feature, js: true, focus: true do
+RSpec.feature "User Onboarding", :type => :feature, js: true do
 
   scenario "User steps through onboarding" do
     offering = FactoryGirl.create(:offering, name: "Clean Power Options")

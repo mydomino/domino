@@ -1,8 +1,9 @@
 class AnalyticsController < ApplicationController
-  # before_action :authenticate_concierge!
+  before_action :authenticate_user!
   layout 'concierge'
 
   def show
+    authorize :analytic, :show?
     @filter = params[:filter]
     if(@filter == 'all')
       @recent_events = Recommendation.done.includes(:recommendable, :dashboard).timestamped.order(:updated_at).last(50)
