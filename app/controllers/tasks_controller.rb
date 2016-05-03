@@ -16,6 +16,7 @@ class TasksController < ApplicationController
   end
 
   def index
+    authorize Task
     @default_tasks = Task.where(default: true)
     @non_default_tasks = Task.where(default: false)
   end
