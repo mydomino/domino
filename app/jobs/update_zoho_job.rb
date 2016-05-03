@@ -33,8 +33,8 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
             "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
             "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
-            "<FL val='Preferred Contact Day(s)'>#{lead.availability.days_to_s}</FL>"\
-            "<FL val='Preferred Contact Time'>#{lead.availability.times_to_s}</FL>"\
+            "<FL val='Preferred Contact Day(s)'>#{lead.availability.days_to_s if lead.availability}</FL>"\
+            "<FL val='Preferred Contact Time'>#{lead.availability.times_to_s if lead.availability}</FL>"\
             "<FL val='Appointment Comments'>#{lead.comments}</FL>"\
             "<FL val='Dashboard Registration'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
             "<FL val='Onboard Complete'>#{lead.onboard_complete ? 'Yes' : 'No'}</FL>"\
