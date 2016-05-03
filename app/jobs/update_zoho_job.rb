@@ -5,22 +5,6 @@ class UpdateZohoJob <  ActiveJob::Base
   def perform(lead)
     l = RubyZoho::Crm::Lead.find_by_email(lead.email)
     if !l.nil?
-      # partner_code = PartnerCode.find_by_code(lead.partner_code)
-      # RubyZoho::Crm::Lead.update(
-      #   :id => l.first.leadid,
-      #   :first_name => lead.first_name,
-      #   :last_name => lead.last_name,
-      #   :street => "#{lead.address_line_1} #{lead.address_line_2}",
-      #   :city => lead.city,
-      #   :state => lead.state,
-      #   :zip_code => lead.zip_code,
-      #   :phone => lead.phone,
-      #   :email => lead.email,
-      #   :avg_electric_bill => lead.avg_electrical_bill,
-      #   :partner_code => lead.partner_code,
-      #   :partner_code_name => partner_code ? partner_code.partner_name : nil,
-      #   :onboard_complete => lead.onboard_complete ? "Yes" : "No"
-      # )
 
       #update interests using xml, for only text fields can be updated w/ rubyzoho
       @interests = []
