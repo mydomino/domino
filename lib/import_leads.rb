@@ -47,7 +47,7 @@ leads.each do |row|
 
     url = URI.parse(uri);
     Net::HTTP.post_form(url, {})
-    sleep 2
+    sleep 1
 end
 
 Profile.set_callback(:create, :after, :save_to_zoho)
