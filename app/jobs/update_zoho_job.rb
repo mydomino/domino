@@ -36,7 +36,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Preferred Contact Day(s)'>#{lead.availability.days_to_s if lead.availability}</FL>"\
             "<FL val='Preferred Contact Time'>#{lead.availability.times_to_s if lead.availability}</FL>"\
             "<FL val='Appointment Comments'>#{lead.comments}</FL>"\
-            "<FL val='Dashboard Registration'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
+            "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
             "<FL val='Onboard Complete'>#{lead.onboard_complete ? 'Yes' : 'No'}</FL>"\
             "</row></Leads>"
       url = URI.parse(uri);
