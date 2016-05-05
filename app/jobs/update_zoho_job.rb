@@ -39,7 +39,8 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
             "<FL val='Onboard Complete'>#{lead.onboard_complete ? 'Yes' : 'No'}</FL>"\
             "</row></Leads>"
-      url = URI.parse(uri);
+      encoded_url = URI.encode(uri)
+      url = URI.parse(encoded_url);
       Net::HTTP.post_form(url, {})
     else
       raise Exception.new("Zoho lead not accessible via CRM API")
