@@ -1,8 +1,11 @@
 /* Logic goes here to display to the user whether the advocate code they entered was valid or note*/
 
 <% if @partner_code %>
-  alert('Partner Code Valid!' );
-  $('#fee').html('0')
+  // alert('Partner Code Valid!' );
+  $('#fee').html('0');
+  $("#profile_partner_code, #btn-apply").css('border', '2px solid #858585');
+  $('#btn-apply').html("<i class='fa fa-check fa-3 white'></i>").css('background-color', '#858585').prop("disabled",true);
+  $("#profile_partner_code").css('color', '#858585').prop("readonly", true);
 <% else %>
-  alert('Invalid Partner Code.');
+$('#btn-apply').after('<p class="m0 red" id=''>The code is invalid. Try again.</p>');
 <% end %>
