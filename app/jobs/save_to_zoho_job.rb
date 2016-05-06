@@ -27,7 +27,6 @@ class SaveToZohoJob < ActiveJob::Base
         "<FL val='Email'>#{lead.email}</FL>"\
         "<FL val='Campaign'>#{lead.campaign}</FL>"\
         "<FL val='Ip Address'>#{lead.ip}</FL>"\
-        "<FL val='Referrer'>#{lead.referer}</FL>"\
         "<FL val='Browser'>#{lead.browser}</FL>"\
         "<FL val='Onboard Complete'>No</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\

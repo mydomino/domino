@@ -22,7 +22,8 @@ class ProfilesController < ApplicationController
         continue_onboard
       else
         #edge case where users complete onboarding but haven't yet registered as user
-        render "profiles/signup_needed.js", content_type: "text/javascript"
+        #render "profiles/signup_needed.js", content_type: "text/javascript"
+        render_response
         return
       end
     else #create new profile
