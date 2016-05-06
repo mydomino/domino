@@ -33,7 +33,8 @@ class SaveToZohoJob < ActiveJob::Base
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "</row></Leads>"
 
-    url = URI.parse(uri);
-    Net::HTTP.post_form(url, {})
+  encoded_url = URI.encode(uri)
+  url = URI.parse(encoded_url)
+  Net::HTTP.post_form(url, {})
   end
 end
