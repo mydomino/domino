@@ -1,7 +1,7 @@
 require 'csv'
 
 Profile.skip_callback(:create, :after, :save_to_zoho)
-path = "#{File.expand_path(File.dirname(__FILE__))}/CatchingTheSun_ZohoImport_05042016.csv"
+path = "#{File.expand_path(File.dirname(__FILE__))}/JoshFox_ZohoImport_05062016.csv"
 puts path
 leads = CSV.read(path, headers:true)
 leads.each do |row|
@@ -9,9 +9,12 @@ leads.each do |row|
                             first_name: row["First Name"],
                             last_name: row["Last Name"],
                             email: row["Email"],
+                            phone: row["Phone"],
+                            address_line_1: row["Street"],
                             city: row["City"],
                             state: row["State"],
-                            partner_code_id: PartnerCode.find_by_partner_name("Catching the Sun").id,
+                            zip_code: row["Zip"],
+                            partner_code_id: PartnerCode.find_by_partner_name("Josh Fox").id,
                             onboard_complete: true,
                             onboard_step: 5
                           )
@@ -35,19 +38,23 @@ leads.each do |row|
         "<FL val='First Name'>#{lead.first_name}</FL>"\
         "<FL val='Last Name'>#{lead.last_name}</FL>"\
         "<FL val='Email'>#{lead.email}</FL>"\
-        "<FL val='Lead Source'>CatchingTheSun</FL>"\
+        "<FL val='Lead Source'>JoshFox</FL>"\
+        "<FL val='Street'>#{lead.address_line_1}</FL>"\
         "<FL val='City'>#{lead.city}</FL>"\
         "<FL val='State'>#{lead.state}</FL>"\
+        "<FL val='Zip Code'>#{lead.zip_code}</FL>"\
+        "<FL val='Phone'>#{lead.phone}</FL>"\
         "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
         "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
+        "<FL val='Description'>Foobar</FL>"\
         "</row></Leads>"
-
-    url = URI.parse(uri);
-    Net::HTTP.post_form(url, {})
-    sleep 1
+  encoded_url = URI.encode(uri)
+  url = URI.parse(encoded_url);
+  Net::HTTP.post_form(url, {})
+  sleep 1
 end
 
 Profile.set_callback(:create, :after, :save_to_zoho)
