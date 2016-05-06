@@ -49,7 +49,7 @@ leads.each do |row|
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
-        "<FL val='Description'>Foobar</FL>"\
+        "<FL val='Description'>Auto Onboard May 6th, 2016</FL>"\
         "</row></Leads>"
   encoded_url = URI.encode(uri)
   url = URI.parse(encoded_url);
