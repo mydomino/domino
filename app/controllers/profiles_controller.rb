@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     #if legacy user visits old dashboard url redirect to info page
     if lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(lu.email)
-      render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'" if !lu.dashboard_registered
+      !lu.dashboard_registered ? (render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'") : (render :js => "window.location = '/users/sign_in'")
       return
     end
 
