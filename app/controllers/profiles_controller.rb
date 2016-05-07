@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     if lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(lu.email)
       !lu.dashboard_registered ? (render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'") : (render :js => "window.location = '/users/sign_in'")
-      return
+      return false
     end
 
     if @profile = Profile.find_by_email(params[:profile][:email])
