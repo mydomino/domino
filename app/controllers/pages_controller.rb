@@ -28,10 +28,9 @@ class PagesController < ApplicationController
 
   end
 
-  def solar
-    @lead = Lead.new
+  def team
+    
   end
-
   # def mydomino_updated
   #   @db = Dashboard.find_by_slug(params[:slug])
   #   if @db
@@ -40,4 +39,5 @@ class PagesController < ApplicationController
   #     redirect_to root_path
   #   end
   # end
+
 end
