@@ -6,8 +6,7 @@
   =flash_messages
 .bg-white
   #profile-forms{style: 'height:100%;min-height:530px;border-bottom: 2px solid lightgray;'}
-    =render 'profiles/name_and_email'
-
+    =render @response[:form]
 .bg-white.max-width-4.mx-auto
   .clearfix.my4
     %h4.center{style: "margin-bottom:-20px;"} HOW TO

@@ -1,30 +1,34 @@
+-content_for :navbar_class do
+  bg-transparent fixed white sm-col-12
 #summary.pt4
   .max-width-3.mx-auto.mt4.px2
     %h1.charcoal.center.line-height-2
-      = "You're almost there, #{@profile.first_name.capitalize}!"
+      Trying to access your dashboard?
     %h2.charcoal.center.line-height-2
-      We sent you an email to claim your action dashboard 😁
-
+      An email has been sent to this
+      %br
+      dashboard's owner with instruction on
+      %br
+      how to access their dashboard.
     .center.mt4
       %p.mb0 Having trouble?
-      =link_to "Resend email", "#", class: 'underline charcoal', id: 'lnk-send-email'
+      =link_to "Resend email", "/", class: 'underline charcoal', id: 'lnk-send-email'
       %span.charcoal or 
       =link_to "Contact us", "mailto: hello@mydomino.com", class: 'underline charcoal'
 
 :javascript
   $(document).ready(function(){
+    $('.navbar-element').css('color', '#666666');
+    navbarScroll('#666666', '#00CCFF');
     $('#lnk-send-email').on('click', function(e){
       e.preventDefault();
       $.ajax({
         cache: 'false',
         type: "GET",
-        url: "/welcome-email/#{@profile.id}", 
+        url: "/legacy-user-registration-email/#{@lu.id}", 
         dataType: "script" // you want a difference between normal and ajax-calls, and json is standard
       }).success(function(json){
           console.log("success", json);
       });
     });
-    navbarScroll('#666', '#00ccff');
-    //mobile
-    $(window).scrollTop(0)
   });
