@@ -27,7 +27,8 @@ module Domino
     config.middleware.use Rack::Deflater
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.action_mailer.asset_host = 'https://staging.mydomino.com'
+    # config.action_mailer.asset_host = 'https://staging.mydomino.com'
+    config.action_mailer.asset_host = 'https://s3-us-west-2.amazonaws.com/mydomino'
     #config.action_mailer.asset_host = 'http://localhost:3000'
     # config.action_mailer.asset_host = 'http://mydomino.com'
   end
