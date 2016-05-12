@@ -1,4 +1,6 @@
 %nav.clearfix{class: yield(:navbar_class)}
   .max-width-4.mx-auto
-    .sm-col.p2
+    .sm-col.sm-col-12.p2
       = link_to embedded_svg('mydomino_logo.svg'), root_path, class: 'blue'
+      -if current_user.role == 'lead'
+        =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: 'blue border p1 rounded text-decoration-none navbar-element right'
