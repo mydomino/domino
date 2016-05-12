@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   root 'pages#index'
   get 'team' => 'pages#team'
-  get 'about' => 'pages#about'
+  # get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
   get 'privacy' => 'pages#privacy'
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
