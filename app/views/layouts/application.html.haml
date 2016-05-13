@@ -11,6 +11,9 @@
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
   %body{class: action_name}
-    = render 'layouts/partials/navbar'
-    = yield
-    = render 'layouts/partials/footer_new'
+    #wrapper
+      #header
+        = render 'layouts/partials/navbar'
+      #content
+        = yield
+      = render 'layouts/partials/footer_new'

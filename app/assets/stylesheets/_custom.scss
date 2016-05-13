@@ -44,7 +44,7 @@ input{
 #name-and-email {
   input {
     border: 2px solid white;
-  } 
+  }
   ::placeholder{
     color: #B6C7CB;
     font-weight: 100;
@@ -109,7 +109,7 @@ input{
   .mln10px{
     margin-left:-10px;
   }
-  
+
   .pill-left {
     border-top-left-radius: 2em;
     border-bottom-left-radius: 2em;
@@ -226,10 +226,6 @@ input{
     border-right-style: solid;
     border-right-width: 1px;
     border-right-color: rgba(0,0,0,0.125);
-  }
-  .caps {
-    text-transform: uppercase;
-    letter-spacing: .2em;
   }
   .white {
     color: white;

@@ -6,12 +6,17 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   
   root 'pages#index'
-  get 'about' => 'pages#about'
+  get 'team' => 'pages#team'
+  # get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
   get 'privacy' => 'pages#privacy'
+  get '/welcome-email/:profile_id' => 'profiles#welcome_email'
+  get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
+  # get '/dashboard/:slug' => 'pages#mydomino_updated'
+  # get '/dashboard/:slug' => 'pages#index', :defaults => { :context => 'lu' }
+  # get '/mydomino_updated/:slug' => 'pages#mydomino_updated'
+  get "/dashboard/:slug" => redirect{ |params, req| "/?#{req.params.to_query}" }
 
-  get '/dashboard/:slug' => 'pages#mydomino_updated'
-  get '/mydomino_updated/:slug' => 'pages#mydomino_updated'
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
