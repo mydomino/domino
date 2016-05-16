@@ -14,5 +14,4 @@ RSpec.feature "User Onboarding", :type => :feature, js: true do
     wait_for_ajax
     expect(page).to have_content("Clean Power Options")
   end
-
 end

@@ -10,9 +10,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'helpers/zoho_mock'
-require 'helpers/geocoder_mock'
 require 'helpers/amazon_mock'
-require 'helpers/heap_mock'
 require 'faker'
 include Warden::Test::Helpers
 RSpec.configure do |config|
