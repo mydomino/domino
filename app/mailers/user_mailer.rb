@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   def welcome_email(email)
     @profile = Profile.find_by_email(email)
-    mail(from: '"MyDomino Team" <team@mydomino.com>', to: email, subject: 'Welcome to MyDomino!')
+    mail(from: 'MyDomino Team <team@mydomino.com>', to: email, subject: 'Welcome to MyDomino!')
   end
 
   def legacy_user_registration_email(email)
