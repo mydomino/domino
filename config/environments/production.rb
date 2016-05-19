@@ -80,14 +80,25 @@ Rails.application.configure do
   # config.action_controller.asset_host = ENV['CDN_HOST']
 
   #Mandrill for Email
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587, # 25 default, ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => ENV["MANDRILL_USERNAME"],
-    :password  => ENV["MANDRILL_API_KEY"],
-    :authentication => 'login',
-    :domain => 'mydomino.com'
-  }
+  # config.action_mailer.smtp_settings = {
+  #   :address   => "smtp.mandrillapp.com",
+  #   :port      => 587, # 25 default, ports 587 and 2525 are also supported with STARTTLS
+  #   :enable_starttls_auto => true, # detects and uses STARTTLS
+  #   :user_name => ENV["MANDRILL_USERNAME"],
+  #   :password  => ENV["MANDRILL_API_KEY"],
+  #   :authentication => 'login',
+  #   :domain => 'mydomino.com'
+  # }
+
+  #sendgrid for email
+  ActionMailer::Base.smtp_settings = {
+  :user_name => 'apikey',
+  :password => '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',
+  :domain => 'mydomino.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
 
 end
