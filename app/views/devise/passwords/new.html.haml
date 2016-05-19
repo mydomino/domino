@@ -7,8 +7,7 @@
         = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
       %h1.center.domino-gray Reset Your Password
       =simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post } do |f|
-        - flash.each do |name, msg|
-          = content_tag :div, msg.html_safe, :id => "flash_#{name}", style: 'text-align: center', class: 'domino-gray' if msg.is_a?(String)
+        =render 'shared/error_messages', object: f.object, color: "#666"
         .form-inputs.max-width-1.mx-auto
           %label.domino-gray Email Address
           = f.input_field :email, required: true, autofocus: true, class: 'mb2 mt1', style: 'height: 40px;'

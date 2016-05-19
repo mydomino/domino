@@ -1,9 +1,9 @@
 -if object.errors.any?
   #error_explanation.mx-auto.center.rounded
     .alert.alert-error
-      %h3.m0.white
+      %h3.m0{style: "color: #{color}"}
         = "The form contains #{pluralize(object.errors.count, 'error')}."
     %ul.inline-block.m0.left-align.pl0
       -object.errors.full_messages.each do |msg|
-        %li.white 
+        %li{style: "color: #{color}"}
           =msg
