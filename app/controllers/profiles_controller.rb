@@ -33,6 +33,7 @@ class ProfilesController < ApplicationController
       @profile.build_availability
       if @profile.save #validations
         render_response
+        return false
       else
         @response = {form: FORMS[0], method: :post}
         render "profiles/update.js", content_type: "text/javascript"
