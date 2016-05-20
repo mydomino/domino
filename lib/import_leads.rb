@@ -1,7 +1,7 @@
 require 'csv'
 
 Profile.skip_callback(:create, :after, :save_to_zoho)
-path = "#{File.expand_path(File.dirname(__FILE__))}/JoshFox_ZohoImport_05062016.csv"
+path = "#{File.expand_path(File.dirname(__FILE__))}/JoshFox_ZohoImport_05202016.csv"
 puts path
 leads = CSV.read(path, headers:true)
 leads.each do |row|
@@ -24,7 +24,7 @@ leads.each do |row|
   when "Michaela Nye"
     @concierge = 'michaela@mydomino.com'
   else
-    @concierge = 'laura@mydomino.com'
+    @concierge = 'mel@mydomino.com'
   end
 
   p "processing zoho record for: #{lead.email}"
@@ -49,7 +49,7 @@ leads.each do |row|
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
-        "<FL val='Description'>Auto Onboard May 6th, 2016</FL>"\
+        "<FL val='Description'>Auto Onboard May 20th, 2016</FL>"\
         "</row></Leads>"
   encoded_url = URI.encode(uri)
   url = URI.parse(encoded_url);
