@@ -5,17 +5,23 @@ class UserMailer < ActionMailer::Base
   end
 
   def welcome_email_universal(email)
-    mail(from: '"MyDomino Team" <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' ) #if !user.opted_out?
+    @host = UserMailer.default_url_options[:host]
+    @profile = Profile.find_by_email(email)
+    mail(from: 'MyDomino Team <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' ) #if !user.opted_out?
   end
 
   def legacy_user_registration_email(email)
-    # @profile = Profile.find_by_email(email)
     @email = email
-    mail(from: '"MyDomino Team" <team@mydomino.com>', to: @email, subject: 'Announcing a new look and login for MyDomino!')
+    mail(from: 'MyDomino Team <team@mydomino.com>', to: @email, subject: 'Announcing a new look and login for MyDomino!')
+  end
+
+  def legacy_user_registration_email_universal(email)
+    @email = email
+    @host = UserMailer.default_url_options[:host]
+    mail(from: 'MyDomino Team <team@mydomino.com>', to: @email, subject: 'Announcing a new look and login for MyDomino!')
   end
 
   def email_template(email)
-    # user = User.find_by_email(email)
-    mail(from: '"MyDomino Team" <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' ) #if !user.opted_out?
+    mail(from: 'MyDomino Team <team@mydomino.com>', to: email, subject: 'This is the MyDomino email template' ) #if !user.opted_out?
   end
 end

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     if params[:slug]
       @email = Dashboard.find_by_slug(params[:slug]).lead_email
       @lu = LegacyUser.find_by_email(@email)
-      UserMailer.legacy_user_registration_email(@email).deliver_later
+      UserMailer.legacy_user_registration_email_universal(@email).deliver_later
       @response = {form: 'profiles/mydomino_updated'}
     else
       @profile = Profile.new

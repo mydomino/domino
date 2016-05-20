@@ -56,7 +56,7 @@ class ProfilesController < ApplicationController
     end
     if @profile.onboard_step == 5 
       @profile.update(onboard_complete: true)
-      UserMailer.welcome_email(@profile.email).deliver_later
+      UserMailer.welcome_email_universal(@profile.email).deliver_later
     end
     
     @profile.update(profile_params)

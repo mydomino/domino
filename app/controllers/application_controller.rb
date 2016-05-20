@@ -2,16 +2,19 @@ class ApplicationController < ActionController::Base
   include Pundit
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
-  before_action :start_timing, :capture_utm_campaign
+  before_action :start_timing, :capture_utm_campaign, :capture_mail_host
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
-
   private
 
+  def capture_mail_host
+    ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+  end
+  
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)

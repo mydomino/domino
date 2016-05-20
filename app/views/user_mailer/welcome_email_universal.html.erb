@@ -1,0 +1,199 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="WIDTH=device-WIDTH, initial-scale=1, maximumscale=1, minimumscale=1, user-scalable=no">
+<title>My Domino</title>
+<style type="text/css">
+.mobileKicker           { font-size:18px; !important;}
+.mobileDeck           { font-size:22px; !important;}
+.spacer8            { height:40px; !important;}
+table[class=outertable] { width: 600px !important; }
+table[class=fulltable] { max-width: 600px !important; }
+img[class=mobile300] { width: 600px !important; height: auto !important; }
+.mobileCenter         { width: 600px !important; align: center;}
+
+@media only screen and      ( max-width: 600px ) {
+  table[class=outertable] { width: 100% !important; }
+  img[class=mobile300] { width: 100% !important; height: auto !important; }
+}
+
+@media handheld, only screen and ( max-width: 480px ) {
+  table[class=outertable] { width:300px !important; }
+  *[class="fulltable"] { width:300px !important;}
+  .mobileCenter         { width:300px !important; align: center;}
+  img[class=mobile300] { width:300px !important; height: auto !important; }
+  .mobile300            { width:300px !important; height: auto !important; }
+
+  *[class="mobileKicker"] { font-size:16px !important;}
+  *[class="mobileTitle"] { font-size:24px !important;}
+  *[class="mobileDeck"] { font-size:16px !important;}
+
+  *[class="spacer5"] { line-height:5px !important;}
+  *[class="spacer8"] { height:8px !important}
+  *[class="spacer10"] { line-height:10px !important;}
+  *[class="center5"] { text-align:center !important;padding:0px 0px 5px 0px !important;}
+  *[class="logomobile"] { width:250px !important;height:auto !important;margin:auto !important;}
+  *[class="wspacer56"] { width:56px !important;}
+  *[class="wspacer55"] { width:55px !important;}
+  *[class="padding15"] { padding:15px 0px 15px 0px !important;}
+  *[class="footerpadding"] { padding:15px 0px 15px 0px !important;border-bottom:1px solid #c8c7c7 !important;}
+  *[class="ctalink"] { font-size:14px !important; padding:12px 0px 12px 0px !important; !important;}
+  *[class="socialrow"] { width:100% !important;}
+}
+</style>
+</head>
+<body style="-webkit-text-size-adjust:none;font-size:22px;">
+
+<!-- start outer table -->
+<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background-color:#FFFFFF;" class="outertable">
+  <tbody>
+    <tr>
+      <td align='center'>
+        <%= image_tag 'mydomino_logo_blue.png', alt: 'MyDomino', style: 'padding: 32px 0px 16px 0px;' %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom" align="center" style="padding:0px 0px 16px 0px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%; line-height:15px;" class="center5"><font face="Arial, Helvetica, sans-serif" color="#999999" style="color:#999999; font-size:12px; font-family: Arial, Helvetica,sans-serif; line-height:15px;"><b><%= "#{Date::MONTHNAMES[Date.today.month].upcase} #{Date.today.day}, #{Date.today.year}" %></b></font>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <!-- start inner-table-1 -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background-color:#FFFFFF;" class="fulltable">
+          <tbody>
+            <tr>
+              <td valign="bottom" align="center" style="-webkit-text-size-adjust:none; -ms-text-size-adjust:100%; ">
+                <%= image_tag 'hero_email.jpg', alt: 'MyDomino', width:"600", height:"auto", class:"mobile300" %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table style='width:100%;'>
+                  <tbody>
+                    <tr>
+                      <td class="mobileCenter" style="padding: 32px 0px 0px 0px; font-family:Arial, Helvetica, sans-serif; font-size:40px;">
+                        <font class="mobileTitle"><b>Hey Stephen,<br/>thanks for signing up!</b></font>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="mobileDeck" style='padding: 8px 0px 0px 0px;'>
+                        <font class="mobileDeck" face="Arial, Helvetica, sans-serif" style="font-family: Arial, Helvetica,sans-serif;font-size: 18px; ">
+                          One of our energy savings concierges will contact you shortly.
+                        </font>
+                      <!--[if gte mso 9]></TD></TR></TABLE><![endif]--></td>
+                    </tr>
+                    <tr>
+                      <td class="spacer10" style="line-height:15px; font-size:1px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td class="mobileDeck" style='padding: 8px 0px 0px 0px;'>
+                        <font class="mobileDeck" face="Arial, Helvetica, sans-serif" style="font-family: Arial, Helvetica,sans-serif;font-size: 24px; ">Congratulations on taking your first step on the action path to 100% clean energy! You can get started now with your clean energy dashboard.
+                        </font>
+                        <!--[if gte mso 9]></TD></TR></TABLE><![endif]-->
+                      </td>
+                    </tr>
+                <!--[if gte mso 9]></TD></TR></TABLE><![endif]-->
+                    <tr>
+                      <td class="spacer10" style="line-height:15px; font-size:1px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td class="spacer10" style="line-height:15px; font-size:1px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#27C4FF" valign="bottom" align="center" style="padding:16px 16px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%; line-height:18px;border-radius: 5px;-moz-border-radius: 5px;">
+                        <%= link_to "http://#{@host}/users/sign_up?email=#{@profile.email}", style: 
+                        'text-decoration:none', target: '_blank' do %>
+                          <div style='width:100%;height:100%'>
+                            <font color="#FFFFFF" style="text-decoration: none;color:#FFFFFF; font-size:16px; font-family: Arial, Helvetica,sans-serif; line-height:18px; letter-spacing:2px;">
+                              MY DASHBOARD
+                            </font>
+                          </div>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="spacer10" style="line-height:15px; font-size:1px;">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--end inner table -->
+      </td>
+    </tr>
+       <!-- All Newslettera Footer begin -->
+    <tr>
+      <td valign="top" align="left" style="font-size:1px; line-height:10px;"><img src="http://img2.timeinc.net/people/static/i/newsletters/spacer.gif" alt="" border="0" width="1" height="10" style="display:block;"></td>
+    </tr>
+    <tr>
+      <td class="spacer10" style="line-height:15px; font-size:1px;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#ffffff" style="border-top:1px solid #c8c7c7;"><!--[if gte mso 9]><TABLE bgcolor="#ffffff" ALIGN="left" WIDTH="600" BORDER="0" CELLSPACING="0" CELLPADDING="0" STYLE="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><TR><TD valign="top" align="left"><![endif]-->
+
+        <table bgcolor="#ffffff" align="left" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" width="50%" class="fulltable">
+          <tbody>
+            <tr>
+              <td valign="middle" align="center" style="padding:20px 10px 20px 10px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%;" class="footerpadding">
+              <%= link_to "TERMS & SERVICES", "http://mydomino.com/terms", target: "_blank", style: "color:#404040; font-size:12px; font-family: Arial, Helvetica,sans-serif; line-height:17px; text-decoration:none; font-weight: bold;" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table bgcolor="#ffffff" align="left" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" width="50%" class="fulltable">
+          <tbody>
+            <tr>
+              <td valign="middle" align="center" style="padding:20px 10px 20px 10px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%;" class="footerpadding">
+              <%= link_to "PRIVACY POLICY", "http://mydomino.com/privacy", target: "_blank", style: "color:#404040; font-size:12px; font-family: Arial, Helvetica,sans-serif; line-height:17px; text-decoration:none; font-weight: bold;" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="100%" style="border-top:1px solid #c8c7c7; padding:20px 0px 10px 0px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%; line-height:14px;">
+        <table align="center" width="90" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+          <tbody>
+            <tr>
+              <td valign="top" align="center" style="-webkit-text-size-adjust:none; -ms-text-size-adjust:100%;">
+                <a href="https://www.facebook.com/OurDominoEffect" target="_blank">
+                <%= image_tag 'fb-icon-email.jpg', alt: 'MyDomino', width:"42", height:"42", alt: "facebook", border:"0", style: "display:block"%>
+               </a>
+              </td>
+              <td valign="top" align="center" style="-webkit-text-size-adjust:none; -ms-text-size-adjust:100%;">
+                <a href="https://twitter.com/OurDominoEffect" target="_blank">
+                  <%= image_tag 'twitter-icon-email.jpg', alt: 'MyDomino', width:"42", height:"42", alt: "twitter", border:"0", style: "display:block"%>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" align="center" style="padding:20px 0px 20px 0px; -webkit-text-size-adjust:none; -ms-text-size-adjust:100%; line-height:14px;">
+        <font face="Arial, Helvetica, sans-serif" color="#999999" style="color:#999999; font-size:11px; font-family: Arial, Helvetica,sans-serif; line-height:14px;">
+          <b>MyDomino</b>
+          <br>
+          327 19th St.
+          <br>
+          Oakland, CA 94612
+          <br>
+          800-979-2215
+          <br>
+          <br>
+          Copyright © 2016 MyDomino Inc. All rights reserved. Reproduction in whole or in part without permission is prohibited.<br>
+        </font>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="left" style="font-size:1px; line-height:1px; class="><img src="http://img2.timeinc.net/people/static/i/newsletters/spacer.gif" alt="" border="0" width="1" height="18" style="display:block;" class="spacer10"></td>
+    </tr>
+    <!--  newsletter Footer end -->
+  </tbody>
+</table>
+<!-- end of outertable -->
+</body>
+</html>
