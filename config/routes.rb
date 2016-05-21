@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get 'privacy' => 'pages#privacy'
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
-  # get '/dashboard/:slug' => 'pages#mydomino_updated'
   # get '/dashboard/:slug' => 'pages#index', :defaults => { :context => 'lu' }
   # get '/mydomino_updated/:slug' => 'pages#mydomino_updated'
   get "/dashboard/:slug" => redirect{ |params, req| "/?#{req.params.to_query}" }
