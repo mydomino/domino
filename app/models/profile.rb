@@ -9,11 +9,10 @@ end
 class Profile < ActiveRecord::Base
 
   belongs_to :user
-  has_one :availability, dependent: :destroy
   belongs_to :partner_code
   has_many :interests, dependent: :destroy
   has_many :offerings, through: :interests
-  accepts_nested_attributes_for :offerings, :availability, :partner_code
+  accepts_nested_attributes_for :offerings, :partner_code
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
@@ -24,10 +23,8 @@ class Profile < ActiveRecord::Base
 
   def save_to_zoho
     if LegacyUser.find_by_email(self.email)
-      puts "DONT SAVE TO ZOHO!!!!!!!!!!"
     else
       SaveToZohoJob.perform_later self
-      puts "SAVE TO ZOHO!!!!!!"
     end
   end
 

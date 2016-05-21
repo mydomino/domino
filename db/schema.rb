@@ -11,27 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513235156) do
+ActiveRecord::Schema.define(version: 20160520235911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
-
-  create_table "availabilities", force: :cascade do |t|
-    t.boolean  "monday"
-    t.boolean  "tuesday"
-    t.boolean  "wednesday"
-    t.boolean  "thursday"
-    t.boolean  "friday"
-    t.boolean  "saturday"
-    t.boolean  "sunday"
-    t.boolean  "morning"
-    t.boolean  "afternoon"
-    t.boolean  "evening"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "profile_id"
-  end
 
   create_table "clones", force: :cascade do |t|
     t.string   "name"
@@ -164,7 +148,6 @@ ActiveRecord::Schema.define(version: 20160513235156) do
     t.string   "zip_code"
     t.string   "housing"
     t.integer  "avg_electrical_bill",  default: 0
-    t.text     "comments"
     t.boolean  "onboard_complete",     default: false
     t.integer  "onboard_step",         default: 1
     t.datetime "created_at",                           null: false
@@ -227,7 +210,6 @@ ActiveRecord::Schema.define(version: 20160513235156) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "availabilities", "profiles"
   add_foreign_key "dashboards", "users"
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
