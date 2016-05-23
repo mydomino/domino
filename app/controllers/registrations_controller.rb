@@ -53,7 +53,7 @@ class RegistrationsController < Devise::RegistrationsController
 
       current_user.profile = @profile if !@profile.nil?
       
-#     #create and bind dashboard to user if not legacy user
+      #create and bind dashboard to user if not legacy user
       if !LegacyUser.find_by_email(@email)
         current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: @email)
         current_user.dashboard.products = Product.default
@@ -71,4 +71,5 @@ class RegistrationsController < Devise::RegistrationsController
       root_path
     end
   end
+
 end

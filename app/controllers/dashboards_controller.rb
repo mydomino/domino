@@ -21,24 +21,8 @@ class DashboardsController < ApplicationController
     end
   end
 
-  # def new
-  #   @dashboard = Dashboard.new
-  # end
-
-  # def create
-  #   @dashboard = Dashboard.create(dashboard_params)
-  #   # @dashboard.concierge = current_concierge
-  #   @dashboard.products = Product.default
-  #   @dashboard.tasks = Task.default
-  #   if @dashboard.save
-  #     redirect_to @dashboard
-  #   else
-  #     render :new
-  #   end
-  # end
 
   def show
-    # @dashboard = Dashboard.find_by_slug(params[:id].downcase)
     if !user_signed_in?
       #set flash message to please sign in to access dashboard
       redirect_to new_user_session_path
@@ -67,8 +51,6 @@ class DashboardsController < ApplicationController
     end
     render :layout => 'dashboard'
   end
-
- 
 
   def destroy
     @dashboard = Dashboard.find(params[:id])

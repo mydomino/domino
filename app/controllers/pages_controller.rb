@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  # caches_action :index, :about, :terms, :privacy, :solar
   skip_after_action :verify_authorized
   def index
     if params[:slug]

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
-  before_action :start_timing, :capture_utm_campaign
+  before_action :capture_utm_campaign
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -29,10 +29,6 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def start_timing
-    session[:start_time]  ||= Time.now
-  end
-
   def capture_utm_campaign
     session[:campaign] = request['utm_campaign'] if !request['utm_campaign'].nil?
     session[:campaign] = 'adwords' if !request['gclid'].nil?
@@ -44,6 +40,5 @@ class ApplicationController < ActionController::Base
       hsh[str] = session[str]
     end
   end
-
 
 end

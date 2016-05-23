@@ -5,9 +5,6 @@ class RecommendationsController < ApplicationController
   def complete
     @recommendation = Recommendation.find(params[:recommendation_id])
     @recommendation.update_attributes(done: true, updated_by: current_concierge_maybe)
-    #This should go in a background job
-    #Heap.event("Recommendation Completed", @recommendation.dashboard.lead_email, { recommendation_type: @recommendation.recommendable_type, recommendation_name: @recommendation.recommendable.name })
-    # flash[:success] = 'You\'ve marked that recommendation as completed! Completed recommendations are shown at the bottom of this page. <a class="pull-right" data-method="delete" href="'<<recommendation_undo_complete_path(@recommendation)<<'">Undo</a>'.html_safe
     redirect_to @recommendation.dashboard
   end
 
@@ -16,11 +13,6 @@ class RecommendationsController < ApplicationController
     @recommendation.update_attributes(done: false)
     redirect_to @recommendation.dashboard
   end
-
-  # def new
-  #   @dashboard = Dashboard.friendly.find(params[:dashboard_id])
-  #   @recommendation = Recommendation.new
-  # end
 
   def create
     @dashboard = Dashboard.friendly.find(params[:dashboard_id])
@@ -34,14 +26,7 @@ class RecommendationsController < ApplicationController
     end
   end
 
-  # def update
-  #   @recommendation = Recommendation.find(params[:id])
-  #   @recommendation.update_attributes(update_recommendation_params)
-  #   redirect_to @recommendation.dashboard
-  # end
-
   def bulk_update
-    # @dashboard = Dashboard.friendly.find(params[:dashboard_id])
     @dashboard = Dashboard.find(params[:dashboard_id]);
     if(!params[:dashboard].nil?)
       new_product_recommendations = params[:dashboard][:product_ids]
@@ -74,18 +59,11 @@ class RecommendationsController < ApplicationController
   private
 
   def current_concierge_maybe
-    # if(!current_concierge.nil?)
-    #   return current_concierge.id
-    # end
     return ''
   end
 
   def create_recommendation_params
     params.require(:recommendation).permit(:global_recommendable).merge(dashboard_id: @dashboard.id)
   end
-
-  # def update_recommendation_params
-  #   params.require(:recommendation).permit(:comment)
-  # end
 
 end

@@ -6,7 +6,6 @@ class ProfilesController < ApplicationController
     #if legacy user visits old dashboard url redirect to info page
     if @lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(@lu.email)
-      # !lu.dashboard_registered ? (render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'") : (render :js => "window.location = '/users/sign_in'")
       !@lu.dashboard_registered ? (UserMailer.legacy_user_registration_email_universal(@lu.email).deliver_later; @response = {form: "profiles/mydomino_updated"}; render "profiles/update.js", content_type: "text/javascript") : (render :js => "window.location = '/users/sign_in'")
       return false
     end
@@ -23,11 +22,10 @@ class ProfilesController < ApplicationController
         continue_onboard
       else
         #edge case where users complete onboarding but haven't yet registered as user
-        #render "profiles/signup_needed.js", content_type: "text/javascript"
         render_response
         return
       end
-    else #create new profile
+    else
       set_tracking_variables
       @profile = Profile.new(profile_params)
       if @profile.save #validations
