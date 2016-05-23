@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     if @lu = LegacyUser.find_by_email(params[:profile][:email])
       @db = Dashboard.find_by_lead_email(@lu.email)
       # !lu.dashboard_registered ? (render :js => "window.location = \'/mydomino_updated/#{@db.slug}\'") : (render :js => "window.location = '/users/sign_in'")
-      !@lu.dashboard_registered ? (UserMailer.legacy_user_registration_email(@lu.email).deliver_later; @response = {form: "profiles/mydomino_updated"}; render "profiles/update.js", content_type: "text/javascript") : (render :js => "window.location = '/users/sign_in'")
+      !@lu.dashboard_registered ? (UserMailer.legacy_user_registration_email_universal(@lu.email).deliver_later; @response = {form: "profiles/mydomino_updated"}; render "profiles/update.js", content_type: "text/javascript") : (render :js => "window.location = '/users/sign_in'")
       return false
     end
 
@@ -74,13 +74,13 @@ class ProfilesController < ApplicationController
 
   def welcome_email
     @profile = Profile.find(params[:profile_id])
-    UserMailer.welcome_email(@profile.email).deliver_later
+    UserMailer.welcome_email_universal(@profile.email).deliver_later
     render "profiles/email_sent.js", content_type: 'text/javascript'
   end
 
   def lu_registration_email
     @lu = LegacyUser.find(params[:lu_id])
-    UserMailer.legacy_user_registration_email(@lu.email).deliver_later
+    UserMailer.legacy_user_registration_email_universal(@lu.email).deliver_later
     render "profiles/email_sent.js", content_type: 'text/javascript'
   end
 
