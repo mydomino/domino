@@ -26,8 +26,9 @@
 
 :javascript
   $(document).ready(function(){
-    //$('.navbar-element').css('color', 'white');
-    navbarScroll('#FFFFFF', '#00CCFF');
+    logoColors.startColors.text = '#fff'
+    logoColors.startColors.penguin = '#fff'
+    navbarScroll('#FFFFFF', '#666');
     //submit buttons may not be pushed multiple times
     $("form").submit(function() {
       $(this).submit(function() {
