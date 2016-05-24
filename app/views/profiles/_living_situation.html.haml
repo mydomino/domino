@@ -50,7 +50,7 @@
               =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
           .mt3.mb3.px2
             =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", disabled: true, class: "bg-gray white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+            =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 
 :javascript
@@ -73,43 +73,14 @@
       }
     });
 
-    $requiredFields = $('.required-field');
-    var requiredFieldsComplete = false;
-
-    var validateRequiredFields = function($fields){
-      $.each($fields,function(index, value){
-        if($(value).val() == ""){
-          requiredFieldsComplete = false;
-          $("input[value='NEXT']").attr("disabled", true);
-          $("input[value='NEXT']").removeClass("btn-submit-active");
-          return false;
-        }
-        if($('#profile_housing').val() != ""){
-          requiredFieldsComplete = true;
-          $("input[value='NEXT']").prop("disabled", false);
-          $("input[value='NEXT']").addClass("btn-submit-active");
-        }
-      });
-    }
-
-    //initial state
-    validateRequiredFields($requiredFields);
-
-    //state machine
-    $requiredFields.bind('input change', function(){
-      validateRequiredFields($requiredFields);
-    });
-
     $('.btn-housing').on('click', function(){
       $('.btn-housing').not(this).removeClass('btn-onboard-active');
       $(this).toggleClass('btn-onboard-active');
       if( $('.btn-onboard-active').size() > 0 ){
         var val = $(this).data("value");
         $('#profile_housing').val(val);
-        validateRequiredFields($requiredFields);
       }else{
         $('#profile_housing').val("");
-        validateRequiredFields($requiredFields);
       }
     });
 
