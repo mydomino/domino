@@ -1,0 +1,14 @@
+-if object.errors.any?
+  #error_explanation.mx-auto.center.rounded.absolute.p2.max-width-1{style: 'top: 0px;width:256px;background-color: rgba(255,255,255, 0.95);left: 0;right:0;'}
+    .fa.fa-times.right#close-modal{style: 'cursor: pointer;'}
+    .alert.alert-error
+      %h3.m0{style: "color: black"}
+        = "The form contains #{pluralize(object.errors.count, 'error')}."
+    %ul.inline-block.m0.left-align.pl0
+      -object.errors.full_messages.each do |msg|
+        %li{style: "color: #{color}"}
+          =msg
+:javascript
+  $('#close-modal').on('click', function(){
+    $('#error_explanation').remove();
+  });
