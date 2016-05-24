@@ -1,12 +1,11 @@
 #name-and-email
   .video-container
-    =# video_tag "mydominoSS2_v2-SD.mp4", :size => "320x240", :controls => true
-    =# vider_tag 'assets/mydominoSS2_v2-SD', position: '100% 100%'
-    %video{:autoplay => "", :loop => "", :preload => 'auto'}
-      %source{:src => "assets/out.mp4", :type => "video/mp4"}
-      %source{:src => "assets/mydominoSS2_v2-SD.webm", :type => "video/webm"}
-      Your browser does not support the video tag. I suggest you upgrade your browser.
-  .absolute{style: 'top:100px;left:0;right:0'}
+    .overlay
+    %video{:autoplay => "", :loop => "", :preload => 'none', :muted => ""}
+      %source{:src => "https://s3-us-west-2.amazonaws.com/mydomino/assets/out.mp4", :type => "video/mp4"}
+      -#%source{:src => "assets/mydominoSS2_v2-SD.webm", :type => "video/webm"}
+      Your browser does not support the video tag. Please update your browser.
+  #form-container.absolute{style: 'top:100px;left:0;right:0'}
     .center.white
       %h1.mb1{style: 'font-size:50px;font-weight:300;line-height:50px;'}
         Ditch the dirty.
