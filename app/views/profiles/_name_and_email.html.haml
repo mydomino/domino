@@ -16,7 +16,7 @@
       =simple_form_for @profile, remote: true, method: @response[:method] do |form|
         .clearfix
           .bg-white
-          =render 'shared/error_messages', object: form.object
+          =render 'shared/error_messages', object: form.object, color: "white"
           .sm-col.sm-col-12.md-col-6.px2.py1
             %label.white.hide First Name
             =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
