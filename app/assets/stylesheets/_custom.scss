@@ -21,6 +21,9 @@ button{
 @media screen and (max-width: 680px)
 {
     video { display : none; }
+    .overlay {
+      display: none;
+    }
 }
 #name-and-email {
     /*background: image-url('bg_hero-1.jpg');*/
