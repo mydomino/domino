@@ -4,6 +4,7 @@ class NotifierPreview < ActionMailer::Preview
   end
 
   def welcome_universal
+    Profile.create(first_name: "Foo", last_name: "Bar", email: 'foo@bar.com')
     UserMailer.welcome_email_universal('foo@bar.com')
   end
 
