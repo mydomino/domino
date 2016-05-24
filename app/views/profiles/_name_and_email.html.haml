@@ -18,18 +18,18 @@
             %label.white.hide First Name
             =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
             -if (@profile.errors[:first_name].size >= 1)
-              %p.red.m0 First Name can't be blank
+              %p.red.m0 'First Name' is blank
           .sm-col.sm-col-12.md-col-6.px2.py1
             %label.white.hide Last Name
             =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
             -if (@profile.errors[:last_name].size >= 1)
-              %p.red.m0 Last Name can't be blank
+              %p.red.m0 'Last Name' is blank
         .clearfix
           .sm-col.sm-col-12.md-col-12.px2.mt1
             %label.white.hide Email Address
             =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
             -if (@profile.errors[:email].size >= 1)
-              %p.red.m0 Email format is invalid
+              %p.red.m0 This email is invalid. Please try a valid email address.
 
         .sm-col.sm-col-12.my3
           .center
