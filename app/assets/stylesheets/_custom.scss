@@ -26,13 +26,13 @@ button{
     }
 }*/
 .mobile-form{
-  display:block;
+  /*display:block;*/
   width:100%;
-  height:656px;
+  height:100%;
   background-image: image-url('bg_hero-1.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  /*background-repeat: no-repeat;*/
+  /*background-position: 50% 50%;*/
 }
 #name-and-email {
   #form-container {
@@ -41,7 +41,7 @@ button{
   .video-container {
     display:block;
     width: 100%;
-    height: 656px;
+    height: 720px;
     /*background-image: image-url('bg_hero-1.jpg');*/
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
@@ -49,11 +49,11 @@ button{
     overflow: hidden;
     video {
       min-width:100%;
-      min-height:656px;
+      min-height:720px;
       overflow: hidden;
     }
     .overlay {
-      height: 656px;
+      height: 720px;
       width: 100%;
       position: absolute;
       top: 0px;

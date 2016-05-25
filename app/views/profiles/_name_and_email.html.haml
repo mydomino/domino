@@ -1,37 +1,36 @@
 -content_for :name_and_email do
-  #form-container.absolute{style: 'top:100px;left:0;right:0'}
-    .center.white
-      %h1.mb1{style: 'font-size:50px;font-weight:300;line-height:50px;'}
-        Ditch the dirty.
-        %br
-        Switch to clean.
-      %h2.white.mb2 Join the action path to your 100% clean energy lifestyle.
-    .clearfix.mx-auto.max-width-2.px2
-      =simple_form_for @profile, remote: true, method: @response[:method] do |form|
-        .clearfix
-          .sm-col.sm-col-12.md-col-6.px2.py1
-            %label.white.hide First Name
-            =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
-            -if (@profile.errors[:first_name].size >= 1)
-              %p.red.m0 'First Name' is blank
-          .sm-col.sm-col-12.md-col-6.px2.py1
-            %label.white.hide Last Name
-            =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
-            -if (@profile.errors[:last_name].size >= 1)
-              %p.red.m0 'Last Name' is blank
-        .clearfix
-          .sm-col.sm-col-12.md-col-12.px2.mt1
-            %label.white.hide Email Address
-            =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
-            -if (@profile.errors[:email].size >= 1)
-              %p.red.m0 This email is invalid. Please try a valid email address.
+  .center.white
+    %h1.mb1{style: 'font-size:50px;font-weight:300;line-height:50px;'}
+      Ditch the dirty.
+      %br
+      Switch to clean.
+    %h2.white.mb2 Join the action path to your 100% clean energy lifestyle.
+  .clearfix.mx-auto.max-width-2.px2
+    =simple_form_for @profile, remote: true, method: @response[:method] do |form|
+      .clearfix
+        .sm-col.sm-col-12.md-col-6.px2.py1
+          %label.white.hide First Name
+          =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
+          -if (@profile.errors[:first_name].size >= 1)
+            %p.red.m0 'First Name' is blank
+        .sm-col.sm-col-12.md-col-6.px2.py1
+          %label.white.hide Last Name
+          =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
+          -if (@profile.errors[:last_name].size >= 1)
+            %p.red.m0 'Last Name' is blank
+      .clearfix
+        .sm-col.sm-col-12.md-col-12.px2.mt1
+          %label.white.hide Email Address
+          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
+          -if (@profile.errors[:email].size >= 1)
+            %p.red.m0 This email is invalid. Please try a valid email address.
 
-        .sm-col.sm-col-12.my3
-          .center
-            =form.submit "GET STARTED", class: "bg-blue h3", style: 'display:inline; border-radius:40px; border:none; width:250px; height:50px; color:white;'
+      .sm-col.sm-col-12.my3
+        .center
+          =form.submit "GET STARTED", class: "bg-blue h3", style: 'display:inline; border-radius:40px; border:none; width:250px; height:50px; color:white;'
 
 -if @browser.device.mobile?
-  #name-and-email.mobile-form
+  #name-and-email.mobile-form.pt4
     =yield :name_and_email
 -else
   #name-and-email  
@@ -40,7 +39,8 @@
       %video{:autoplay => "", :loop => "", :preload => 'auto', :poster => 'assets/out.jpg', :muted => ""}
         %source{:src => "https://s3-us-west-2.amazonaws.com/mydomino/assets/out.mp4", :type => "video/mp4"}
         Your browser does not support the video tag. Please update your browser.
-      =yield :name_and_email
+      #form-container.absolute{style: 'top:100px;left:0;right:0'}
+        =yield :name_and_email
 
 :javascript
   $(document).ready(function(){
