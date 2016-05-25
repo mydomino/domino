@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
-  before_action :capture_utm_campaign
+  before_action :capture_utm_campaign, :get_user_agent
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   end
   
   private
+
+  def get_user_agent
+    @user_agent = request.env['HTTP_USER_AGENT']
+    @browser = Browser.new(@user_agent, accept_language: "en-us")
+  end
   
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."

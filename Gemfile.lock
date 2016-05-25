@@ -52,6 +52,7 @@ GEM
     benchmark-ips (2.5.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    browser (2.1.0)
     builder (3.2.2)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
@@ -368,6 +369,7 @@ DEPENDENCIES
   animate-rails
   autoprefixer-rails
   basscss-rails
+  browser
   bullet
   byebug
   capybara

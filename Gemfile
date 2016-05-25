@@ -38,6 +38,7 @@ gem 'rack-timeout'
 gem 'retries'
 gem 'pundit'
 gem 'mailkick'
+gem 'browser'
 
 gem 'unicorn'
 

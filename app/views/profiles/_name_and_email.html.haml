@@ -1,9 +1,4 @@
-#name-and-email
-  .video-container
-    .overlay
-    %video{:autoplay => "", :loop => "", :preload => 'auto', :poster => 'assets/out.jpg', :muted => ""}
-      %source{:src => "https://s3-us-west-2.amazonaws.com/mydomino/assets/out.mp4", :type => "video/mp4"}
-      Your browser does not support the video tag. Please update your browser.
+-content_for :name_and_email do
   #form-container.absolute{style: 'top:100px;left:0;right:0'}
     .center.white
       %h1.mb1{style: 'font-size:50px;font-weight:300;line-height:50px;'}
@@ -35,6 +30,18 @@
           .center
             =form.submit "GET STARTED", class: "bg-blue h3", style: 'display:inline; border-radius:40px; border:none; width:250px; height:50px; color:white;'
 
+-if @browser.device.mobile?
+  #name-and-email.mobile-form
+    =yield :name_and_email
+-else
+  #name-and-email  
+    .video-container
+      .overlay
+      %video{:autoplay => "", :loop => "", :preload => 'auto', :poster => 'assets/out.jpg', :muted => ""}
+        %source{:src => "https://s3-us-west-2.amazonaws.com/mydomino/assets/out.mp4", :type => "video/mp4"}
+        Your browser does not support the video tag. Please update your browser.
+      =yield :name_and_email
+
 :javascript
   $(document).ready(function(){
     logoColors.startColors.text = '#fff'
@@ -47,4 +54,4 @@
       });
       return true;
     });
-  });
+    });
