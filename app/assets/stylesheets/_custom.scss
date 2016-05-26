@@ -8,9 +8,6 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   }
 }
 
-body{
-  /*overflow-x:hidden;*/
-}
 .pointer:hover {
   cursor: pointer
 }
@@ -18,21 +15,26 @@ body{
 button{
   outline: none;
 }
-/*@media screen and (max-width: 680px)
-{
-    video { display : none; }
-    .overlay {
-      display: none;
-    }
-}*/
+
+/* style rules for onboarding module on homepage */
 .mobile-form{
-  /*display:block;*/
+  position:relative;
   width:100%;
   height:100%;
-  background-image: image-url('bg_hero-1.jpg');
+  background-image: image-url('mobile_onboarding_bg.jpg');
   background-size: cover;
-  /*background-repeat: no-repeat;*/
-  /*background-position: 50% 50%;*/
+  background-position: 50% 50%;
+  .overlay-mobile{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(#000000, #727272);
+    opacity: .6; 
+    z-index: 2;
+  }
 }
 #name-and-email {
   #form-container {
@@ -41,12 +43,7 @@ button{
   .video-container {
     display:block;
     width: 100%;
-    /*height: 100%;*/
     height: 720px;
-    /*background-image: image-url('bg_hero-1.jpg');*/
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: 50% 50%;*/
     overflow: hidden;
     video {
       width:100%;
@@ -56,21 +53,19 @@ button{
       overflow: hidden;
       object-fit: cover;
       position:absolute;
-      /*top: 0;*/
-    }
-    .overlay {
-      height: 720px;
-      /*height: 100%;*/
-      width: 100%;
-      position: absolute;
-      /*top: 0px;*/
-      /*left: 0px;*/
-      z-index: 2;
-      background-image: linear-gradient(#000000, #727272);
-      opacity: 0.6;
     }
   }
+  .overlay-nonmobile {
+    height: 720px;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    background-image: linear-gradient(#000000, #727272);
+    opacity: 0.6;
+  }
 }
+
+/* end style rules for homepage onboard module */
 
 #about-banner{
   background: image-url('bg_about-1.jpg');
@@ -99,11 +94,6 @@ input{
     font-size: 20px;
     margin-top: 20px;
   }
-}
-
-/* for jquery placeholder */
-.placeholder {
-
 }
 
 .border-width-2 {

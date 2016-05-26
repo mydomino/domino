@@ -31,11 +31,13 @@
 
 -if @browser.device.mobile?
   #name-and-email.mobile-form.pt4
-    =yield :name_and_email
+    .overlay-mobile
+    #form-container.relative
+      =yield :name_and_email
 -else
   #name-and-email  
     .video-container.relative
-      .overlay
+      .overlay-nonmobile
       %video{:autoplay => "", :loop => "", :preload => 'auto', :poster => 'assets/out.jpg', :muted => ""}
         %source{:src => "https://s3-us-west-2.amazonaws.com/mydomino/assets/out.mp4", :type => "video/mp4"}
         Your browser does not support the video tag. Please update your browser.
