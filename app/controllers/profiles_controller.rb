@@ -3,11 +3,14 @@ class ProfilesController < ApplicationController
   FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
   
   def create
-    #if legacy user visits old dashboard url redirect to info page
+    #if legacy user attempts to onboard, redirect to sign up or sign in
     if @lu = LegacyUser.find_by_email(params[:profile][:email])
-      @db = Dashboard.find_by_lead_email(@lu.email)
-      !@lu.dashboard_registered ? (UserMailer.legacy_user_registration_email_universal(@lu.email).deliver_later; @response = {form: "profiles/mydomino_updated"}; render "profiles/update.js", content_type: "text/javascript") : (render :js => "window.location = '/users/sign_in'")
-      return false
+      if !@lu.dashboard_registered
+        render :js => "window.location ='/users/sign_up?email=#{@lu.email}'"
+      else
+        render :js => "window.location = '/users/sign_in'"
+      end
+      return 
     end
 
     if @profile = Profile.find_by_email(params[:profile][:email])
@@ -37,7 +40,6 @@ class ProfilesController < ApplicationController
         return
       end
     end
-
   end
 
   def update

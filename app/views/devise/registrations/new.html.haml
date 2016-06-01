@@ -17,8 +17,12 @@
     .bg-lightgray.rounded.pt3.mt4.max-width-2.mx-auto
       .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
         = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
-      %h1.center.domino-gray.mb0 Thanks for signing up with MyDomino! 
-      %p.center.domino-gray.mt0 Please create a login for your account.
+      -if @legacy_user
+        %h1.center.domino-gray.mb0.line-height-1 At MyDomino, we’ve been busy improving your experience.
+        %p.center.domino-gray.mt2 Please create a login to access your action dashboard. 
+      -else
+        %h1.center.domino-gray.mb0.line-height-1 Thanks for signing up with MyDomino! 
+        %p.center.domino-gray.mt2 Please create a login for your account.
       =simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
         - flash.each do |name, msg|
           = content_tag :div, msg.html_safe, :id => "flash_#{name}", style: 'text-align: center', class: 'domino-gray' if msg.is_a?(String)
