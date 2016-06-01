@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
         render :js => "window.location ='/users/sign_up?email=#{@lu.email}'"
       else
         render :js => "window.location = '/users/sign_in'"
+        flash[:notice] = "You have already signed up."
       end
       return 
     end

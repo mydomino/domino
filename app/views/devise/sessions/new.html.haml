@@ -5,11 +5,10 @@
     .bg-lightgray.rounded.p3.mt4.max-width-2.mx-auto
       .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
         = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
-      %h1.center.domino-gray Log In To Your Account
+      %h1.center.domino-gray.my1 Log In To Your Account
       =simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-        =#render 'shared/error_messages', object: f.object
         - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_#{name}", style: 'text-align: center', class: 'domino-gray' if msg.is_a?(String)
+          = content_tag :div, msg, :id => "flash_#{name}", style: 'text-align: center', class: 'domino-gray mb1' if msg.is_a?(String)
         .form-inputs.max-width-1.mx-auto
           %label.domino-gray Email Address
           = f.input_field :email, required: false, autofocus: true, class: 'mb2 mt1', style: 'height: 40px;'
