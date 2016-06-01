@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'privacy' => 'pages#privacy'
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
-  get "/dashboard/:slug" => redirect{ |params, req| "/?#{req.params.to_query}" }
+  get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
+  # get "/dashboard/:slug" => redirect{ |params, req| "/?#{req.params.to_query}" }
 
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
