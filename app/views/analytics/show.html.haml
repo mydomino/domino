@@ -25,7 +25,9 @@
             %td
               =dashboards
     .bg-white.p2.mt1.rounded
-      =link_to "Download Completed Recommendations", recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded'
+      =link_to recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded' do
+        %i.fa.fa-download
+        Completed Recommendations
   .col.col-12.sm-col.sm-col-8.py3.px2
     .p2.bg-white.rounded.mt1
       %h1.inline-block.mt1 Recent Activity
