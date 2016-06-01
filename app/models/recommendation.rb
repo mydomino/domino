@@ -38,11 +38,10 @@ class Recommendation < ActiveRecord::Base
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << ["User Name", "User Email", "Recommendation Name", "Recommendation Type", "Date Marked Done", "Concierge", "Action Dashboard URL"]
-      done.includes(:dashboard, :recommendable, :concierge).where("dashboard_id IS NOT NULL AND recommendable_id IS NOT NULL AND concierge_id IS NOT NULL").each do |rec|
-        csv << [rec.dashboard.lead_name, rec.dashboard.lead_email, rec.recommendable.name, rec.recommendable_type, rec.updated_at, rec.concierge.email, "mydomino.com/dashboard/#{rec.dashboard.slug}"]
+      csv << ["User Name", "User Email", "Recommendation Name", "Recommendation Type", "Date Marked Done" , "Dashboard ID"]
+      done.includes(:dashboard, :recommendable).where("dashboard_id IS NOT NULL AND recommendable_id IS NOT NULL").each do |rec|
+        csv << [rec.dashboard.lead_name, rec.dashboard.lead_email, rec.recommendable.name, rec.recommendable_type, rec.updated_at, rec.concierge.email, "#{rec.dashboard.id}"]
       end
     end
   end
-
 end
