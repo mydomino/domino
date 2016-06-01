@@ -19,19 +19,21 @@ class ProfilesController < ApplicationController
       if User.find_by_email(@profile.email)
         render :js => "window.location = '/users/sign_in'" 
         return
-      end
-      #user has not completed onboarding
-      if !@profile.onboard_complete
-        flash.now[:message] = "Welcome back! Please complete your profile."
-        continue_onboard
       else
+      #user has not completed onboarding
+      # if !@profile.onboard_complete
+      #   flash.now[:message] = "Welcome back! Please complete your profile."
+      #   continue_onboard
+      # else
         #edge case where users complete onboarding but haven't yet registered as user
-        render_response
+        @response = {form: FORMS[4]}
+        render "profiles/update.js", content_type: "text/javascript"
         return
       end
     else
       set_tracking_variables
       @profile = Profile.new(profile_params)
+      @profile.onboard_complete = true #onboard complete if user submits name and email
       if @profile.save #validations
         render_response
         return false
@@ -55,7 +57,6 @@ class ProfilesController < ApplicationController
        apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     end
     if @profile.onboard_step == 4 
-      @profile.update(onboard_complete: true)
       UserMailer.welcome_email_universal(@profile.email).deliver_later
     end
     
@@ -109,10 +110,10 @@ class ProfilesController < ApplicationController
     return
   end
 
-  def continue_onboard
-    @profile.update(onboard_step: 1)
-    render_response
-  end
+  # def continue_onboard
+  #   @profile.update(onboard_step: 1)
+  #   render_response
+  # end
 
   def profile_params
     params.require(:profile).permit(
