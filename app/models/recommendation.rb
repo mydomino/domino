@@ -40,7 +40,7 @@ class Recommendation < ActiveRecord::Base
     CSV.generate do |csv|
       csv << ["User Name", "User Email", "Recommendation Name", "Recommendation Type", "Date Marked Done" , "Dashboard ID"]
       done.includes(:dashboard, :recommendable).where("dashboard_id IS NOT NULL AND recommendable_id IS NOT NULL").each do |rec|
-        csv << [rec.dashboard.lead_name, rec.dashboard.lead_email, rec.recommendable.name, rec.recommendable_type, rec.updated_at, rec.concierge.email, "#{rec.dashboard.id}"]
+        csv << [rec.dashboard.lead_name, rec.dashboard.lead_email, rec.recommendable.name, rec.recommendable_type, rec.updated_at, "#{rec.dashboard.id}"]
       end
     end
   end
