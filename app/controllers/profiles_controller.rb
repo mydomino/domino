@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
       if User.find_by_email(@profile.email)
         render :js => "window.location = '/users/sign_in'" 
         return
-      else
+      end
       #user has not completed onboarding
       if !@profile.onboard_complete
         flash.now[:message] = "Welcome back! Please complete your profile."
@@ -109,10 +109,10 @@ class ProfilesController < ApplicationController
     return
   end
 
-  # def continue_onboard
-  #   @profile.update(onboard_step: 1)
-  #   render_response
-  # end
+  def continue_onboard
+    @profile.update(onboard_step: 1)
+    render_response
+  end
 
   def profile_params
     params.require(:profile).permit(
