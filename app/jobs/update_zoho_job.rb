@@ -5,12 +5,15 @@ class UpdateZohoJob <  ActiveJob::Base
   def perform(lead)
     l = RubyZoho::Crm::Lead.find_by_email(lead.email)
     if !l.nil?
+
       #update interests using xml, for only text fields can be updated w/ rubyzoho
       @interests = []
       
       lead.offerings.each do |o|
         @interests << o.name 
       end
+
+
       #update lead interests using uri, for interests are combo boxes in zoho; comboboxes not settable via ruby zoho
       uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?"\
             "authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
@@ -30,6 +33,8 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
             "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
             "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
+            "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
+            "<FL val='Onboard Complete'>#{lead.onboard_complete ? 'Yes' : 'No'}</FL>"\
             "</row></Leads>"
       encoded_url = URI.encode(uri)
       url = URI.parse(encoded_url);
