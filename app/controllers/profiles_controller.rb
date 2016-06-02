@@ -21,13 +21,12 @@ class ProfilesController < ApplicationController
         return
       else
       #user has not completed onboarding
-      # if !@profile.onboard_complete
-      #   flash.now[:message] = "Welcome back! Please complete your profile."
-      #   continue_onboard
-      # else
+      if !@profile.onboard_complete
+        flash.now[:message] = "Welcome back! Please complete your profile."
+        continue_onboard
+      else
         #edge case where users complete onboarding but haven't yet registered as user
-        @response = {form: FORMS[4]}
-        render "profiles/update.js", content_type: "text/javascript"
+        render_response
         return
       end
     else
@@ -56,7 +55,7 @@ class ProfilesController < ApplicationController
        apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     end
     if @profile.onboard_step == 4
-      @profile.onboard_complete = true 
+      @profile.update(onboard_complete: true)
       UserMailer.welcome_email_universal(@profile.email).deliver_later
     end
     
