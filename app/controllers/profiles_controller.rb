@@ -33,7 +33,6 @@ class ProfilesController < ApplicationController
     else
       set_tracking_variables
       @profile = Profile.new(profile_params)
-      @profile.onboard_complete = true #onboard complete if user submits name and email
       if @profile.save #validations
         render_response
         return false
@@ -56,7 +55,8 @@ class ProfilesController < ApplicationController
     if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
        apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     end
-    if @profile.onboard_step == 4 
+    if @profile.onboard_step == 4
+      @profile.onboard_complete = true 
       UserMailer.welcome_email_universal(@profile.email).deliver_later
     end
     
