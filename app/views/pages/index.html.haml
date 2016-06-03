@@ -7,7 +7,22 @@
 
 #profile-forms
   =render @response[:form]
-  
+
+.clearfix.bg-white.mx-auto
+  .col.col-12.md-col-6.rounded.gray-80.p2{style: "background-color:#f3f3f3;height:512px;"}
+    %h1.mt0 Why MyDomino? 
+    %h3 
+      We want to help change energy sources from dirty fossil fuels to clean, renewable energy. We believe this will have a substantial, positive impact on climate for people now and in the future.
+    %h3.mb0
+      Check out how MyDomino can help you. 
+  .col.col-12.md-col-6#hp-video-placeholder.pointer{style: 'height: 512px;'}  
+    
+  -#%a{href:'#', id:'play-video', rel: 'nofollow'} 
+
+#video-modal.absolute{style: "position:absolute;bottom:0;left:0;right:0;display:none;z-index:99999;"}
+  %i#close-modal.fa.fa-2x.fa-times.absolute{style: 'right: 8px; top:8px; color: white;'}
+  %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
+
 .bg-white.max-width-4.mx-auto
   .clearfix.my4
     %h1.center.mb4 YOUR ACTION PATH
@@ -118,8 +133,7 @@
 
 .bg-white.clearfix.mx-auto.max-width-4.pt1{style: 'margin-bottom: -7px;'}
   =image_tag "team-photo2a.jpg", alt: "The Team", class: 'fit mt3'
-
-
+%script{src: "//f.vimeocdn.com/js/froogaloop2.min.js", type: 'text/javascript'}
 :javascript
   navbarScroll('#FF0000', '#666');
   /* Replace 'APP_ID' with your app ID */
@@ -127,10 +141,30 @@
     setTimeout(function(){
       $('.alerts').hide('slow');
     }, 2000);
+
+    //homepage video js
+    var iframe = $('iframe')[0];
+    var player = $f(iframe);
+    $('#hp-video-placeholder').on('click', function(){
+      $('#intercom-container').hide();
+      $('#video-modal').css({top: ($(window).scrollTop().toString() + "px"), bottom: ("-" + $(window).scrollTop().toString() + "px")});
+      $('#video-modal').fadeIn();
+      $('body').addClass('modal-open');
+      player.api('play');
+    });
+
+    $('#close-modal').on('click', function(){
+      $('#intercom-container').show();
+      $('#video-modal').fadeOut();
+      player.api('unload');
+      $('body').removeClass('modal-open');
+    });
   });
   window.intercomSettings = {
     app_id: 'fqxjzc3t'
   };
+  
   /* Replace 'APP_ID' with your app ID */
   (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.src='https://widget.intercom.io/widget/fqxjzc3t';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
 %script{:async => "true", :charset => "utf-8", :language => "javascript", :src => "//ethn.io/93293.js", :type => "text/javascript"}
+

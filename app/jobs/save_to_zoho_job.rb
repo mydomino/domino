@@ -20,6 +20,7 @@ class SaveToZohoJob < ActiveJob::Base
   uri = "https://crm.zoho.com/crm/private/xml/Leads/insertRecords?"\
         "newFormat=1"\
         "&authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
+        "&wfTrigger=true"\
         "&scope=crmapi"\
         "&xmlData=<Leads><row no='1'>"\
         "<FL val='First Name'>#{lead.first_name}</FL>"\

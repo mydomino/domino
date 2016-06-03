@@ -349,3 +349,15 @@ input{
 #about-header {
   background-image: image-url('about_header.jpg');
 }
+
+/*css for homepage video modal*/
+body.modal-open {
+  overflow: hidden;
+}
+
+#hp-video-placeholder{
+  background-image: image-url('homepage-video-placeholder.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
