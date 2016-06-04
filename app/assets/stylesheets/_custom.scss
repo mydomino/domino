@@ -351,8 +351,15 @@ input{
 }
 
 /*css for homepage video modal*/
-body.modal-open {
+/*body.modal-open {
   overflow: hidden;
+}*/
+
+body.lock-position {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
 }
 
 #hp-video-placeholder{
