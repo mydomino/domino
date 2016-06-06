@@ -147,25 +147,17 @@
     var iframe = $('iframe')[0];
     var player = $f(iframe);
     $('#hp-video-placeholder').on('click', function(){
-      $('#intercom-container').hide();
-      //$('#video-modal').css({top: ($(window).scrollTop().toString() + "px"), bottom: ("-" + $(window).scrollTop().toString() + "px")});
       $('#video-modal').fadeIn();
       $('body').addClass('lock-position');
       player.api('play');
     });
 
     $('#close-modal').on('click', function(){
-      $('#intercom-container').show();
       $('#video-modal').fadeOut();
       player.api('unload');
       $('body').removeClass('lock-position');
     });
   });
-  window.intercomSettings = {
-    app_id: 'fqxjzc3t'
-  };
   
-  /* Replace 'APP_ID' with your app ID */
-  (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.src='https://widget.intercom.io/widget/fqxjzc3t';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
 %script{:async => "true", :charset => "utf-8", :language => "javascript", :src => "//ethn.io/93293.js", :type => "text/javascript"}
 
