@@ -18,12 +18,10 @@
 
 @import "basscss/basscss";
 @import "base";
-@import "colors";
-@import "custom";
-@import "buttons";
+@import "components";
 @import 'responsive-spacing';
 @import 'responsive-type-scale';
-@import "components";
 @import "concierge_tools";
 @import "footer";
 @import "profile_forms";
+@import "custom";
