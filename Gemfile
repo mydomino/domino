@@ -39,8 +39,8 @@ gem 'retries'
 gem 'pundit'
 gem 'mailkick'
 gem 'browser'
-
-gem 'unicorn'
+gem 'puma'
+# gem 'unicorn'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

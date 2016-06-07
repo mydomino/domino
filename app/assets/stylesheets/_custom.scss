@@ -338,7 +338,7 @@ input{
   top: 10px;
 }
 
-.lh1{
+.lh1 {
   line-height: 1rem;
 }
 
@@ -348,6 +348,11 @@ input{
 
 #about-header {
   background-image: image-url('about_header.jpg');
+}
+
+#faq-header {
+  background-image: image-url('bg_faq.jpg');
+  height: 380px
 }
 
 /*css for homepage video modal*/
@@ -367,4 +372,16 @@ body.lock-position {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+}
+
+/* accordion element on FAQ page */
+.accordion-toggle{
+  cursor: pointer; 
+}
+.accordion-content {
+  display: none;
+}
+
+span.toggle {
+  width: 1em;
 }
