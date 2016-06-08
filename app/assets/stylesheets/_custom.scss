@@ -352,7 +352,10 @@ input{
 
 #faq-header {
   background-image: image-url('bg_faq.jpg');
-  height: 380px
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*css for homepage video modal*/
