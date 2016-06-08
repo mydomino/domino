@@ -14,25 +14,22 @@ class ProfilesController < ApplicationController
       return 
     end
 
+    #user has already onboarded, render success panel
     if @profile = Profile.find_by_email(params[:profile][:email])
-      #user has already registered
-      if User.find_by_email(@profile.email)
-        render :js => "window.location = '/users/sign_in'" 
-        return
-      end
-      #user has not completed onboarding
-      if !@profile.onboard_complete
-        flash.now[:message] = "Welcome back! Please complete your profile."
-        continue_onboard
-      else
-        #edge case where users complete onboarding but haven't yet registered as user
-        render_response
-        return
-      end
+      @response = {form: FORMS[4]}
+      render "profiles/update.js", content_type: "text/javascript"
+      return
+    end
+    #user has already registered
+    if User.find_by_email(params[:profile][:email])
+      render :js => "window.location = '/users/sign_in'" 
+      return
     else
       set_tracking_variables
       @profile = Profile.new(profile_params)
       if @profile.save #validations
+        @profile.update(onboard_complete: true)
+        UserMailer.welcome_email_universal(@profile.email).deliver_later(wait: 10.minutes)
         render_response
         return false
       else
@@ -54,11 +51,6 @@ class ProfilesController < ApplicationController
     if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
        apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     end
-    if @profile.onboard_step == 4
-      @profile.update(onboard_complete: true)
-      UserMailer.welcome_email_universal(@profile.email).deliver_later
-    end
-    
     @profile.update(profile_params)
     render_response
   end
@@ -66,7 +58,6 @@ class ProfilesController < ApplicationController
   def apply_partner_code(render_js=true)
     @partner_code_param = params[:profile][:partner_code].upcase
     @partner_code = PartnerCode.find_by_code(@partner_code_param)
-    # @code_valid = !PartnerCode.find_by_code(@partner_code).nil?
     if @partner_code
       @profile.update(partner_code_id: @partner_code.id)
       render 'profiles/apply_partner_code.js', content_type: "text/javascript" if render_js
@@ -107,11 +98,6 @@ class ProfilesController < ApplicationController
     @response = {form: FORMS[@profile.onboard_step], method: :put}
     render "profiles/update.js", content_type: "text/javascript"
     return
-  end
-
-  def continue_onboard
-    @profile.update(onboard_step: 1)
-    render_response
   end
 
   def profile_params
