@@ -350,12 +350,18 @@ input{
   background-image: image-url('about_header.jpg');
 }
 
-#faq-header {
-  background-image: image-url('bg_faq.jpg');
+
+.page-header-image {
   height: 380px;
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 90px;
+}
+#faq-header {
+  background-image: image-url('bg_faq.jpg');
 }
 
 /*css for homepage video modal*/
