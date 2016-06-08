@@ -28,28 +28,20 @@
                     %i.fa.fa-twitter
                     Twitter
             .inline-block.m2.right
-              %h4{style: 'margin-bottom: -10px;'} MORE
-              %ul.list-reset.h5
-                %li
-                  =link_to "FAQ", faq_path
-                %li
-                  =link_to "Press", "http://mydomino.strikingly.com", target: '_blank'
-                %li
-                  =link_to "Terms of Service", terms_path
-                %li
-                  =link_to "Privacy Policy", privacy_path
-
-            .inline-block.m2.right
               %h4{style: 'margin-bottom: -10px;'} COMPANY
               %ul.list-reset.h5
                 %li
                   =link_to "About Us", about_path
                 %li
                   =link_to "Our Team", team_path
-                %li  
-                  =link_to "News", "/blog"
                 %li
                   =link_to "Careers", "https://www.hellohired.com/mydomino", target: '_blank'
+                %li
+                  =link_to "Press", "http://mydomino.strikingly.com", target: '_blank'
+                %li
+                  =link_to "Terms of Service", terms_path
+                %li
+                  =link_to "Privacy Policy", privacy_path
             .inline-block.m2.right
               %h4{style: 'margin-bottom: -10px;'} LEARN MORE
               %ul.list-reset.h5
@@ -63,6 +55,10 @@
                   =link_to "Energy Freedom", "/blog/category/energy-freedom/"
                 %li
                   =link_to "Concierge Corner", "/blog/category/concierge-corner/"
+                %li
+                  =link_to "FAQ", faq_path
+                %li  
+                  =link_to "News", "/blog"
       #mobile-footer.md-hide.lg-hide.mx-auto
         .col.col-12.my3.center
           = image_tag "mydomino_esc_horizontal", height: "64px;"
