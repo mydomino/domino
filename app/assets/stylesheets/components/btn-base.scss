@@ -8,13 +8,14 @@ $button-font-weight: $bold-font-weight !default;
 $button-line-height: 1.125rem !default;
 $button-padding-y: .5rem !default;
 $button-padding-x: 1rem !default;
+$darken-1: rgba(0, 0, 0, .0625) !default;
 $darken-2: rgba(0, 0, 0, .125) !default;
 $darken-3: rgba(0, 0, 0, .25) !default;
 
-// Custom Media Query Variables
+$border-radius: 3px !default;
+$border-circle: 50%;
 
-
-/* Basscss Btn */
+/* Base Btn */
 
 .btn {
   font-family: $button-font-family;
@@ -47,4 +48,32 @@ $darken-3: rgba(0, 0, 0, .25) !default;
 ::-moz-focus-inner {
   border: 0;
   padding: 0;
+}
+
+/* Primary Button */
+
+
+/* Secondary Button */
+.btn-outline,
+.btn-outline:hover {
+  border-color: currentcolor;
+}
+
+.btn-outline {
+  border-radius: $border-radius;
+}
+
+.btn-outline:hover {
+  box-shadow: inset 0 0 0 20rem $darken-1;
+}
+
+.btn-outline:active {
+  box-shadow: inset 0 0 0 20rem $darken-2,
+    inset 0 3px 4px 0 $darken-3,
+    0 0 1px $darken-2;
+}
+
+.btn-outline:disabled,
+.btn-outline.is-disabled {
+  opacity: .5;
 }
