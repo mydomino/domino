@@ -5,8 +5,10 @@
 .alerts.absolute{style: "left: 0;right:0;margin-left:auto;margin-right:auto;width:256px;z-index: 10000;"}
   =flash_messages
 
-#profile-forms
+#profile-forms{style: 'min-height: 620px;border-bottom: 2px solid lightgray;'}
+
   =render @response[:form]
+
 
 .clearfix.bg-white.mx-auto
   .col.col-12.md-col-6.rounded.gray-80.p2.center{style: "background-color:#f3f3f3;height:420px;"}
