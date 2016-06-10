@@ -1,5 +1,3 @@
-
-
 .recommendation
 {
   min-height: 310px;
@@ -39,10 +37,12 @@
     border-color: rgba(0,0,0,.125);
   }
 }
+
 .hover-show
 {
   display: none;
 }
+
 div:hover
 {
   &>.hover-show
@@ -168,6 +168,7 @@ nav
     border-color: $blue;
   }
 }
+
 .overlay
 {
   position: relative;
@@ -182,6 +183,7 @@ nav
     background-color: rgba(0,0,0,.5);
   }
 }
+
 .overlay-3
 {
   position: relative;
@@ -196,11 +198,51 @@ nav
     background-color: rgba(0,0,0,.3);
   }
 }
+
 .ease-in-out {
   webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
+
 .ease-in-out-2 {
   webkit-transition: all 0.4s ease-in-out 4s;
   transition: all 0.4s ease-in-out 4s;
 }
+
+/***** BEGIN checkout onboarding form components *******/
+#checkout {
+  #checkout-price {
+    font-size: 80px;
+    font-weight: 200;
+
+    #checkout-dollar-sign {
+      font-size:18px;
+      left:-10px;
+      top:18px;
+    }
+  }
+
+  /*partner code input field*/
+  #profile_partner_code{
+    text-transform: uppercase; 
+    padding-left: 8px;
+    height:34px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    width:100px; 
+  }
+
+  #partner-code-label{
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  @media (max-width: 40em) {
+    #partner-code-label {
+      float: none;
+      margin-top: 0px;
+      margin-right: 0px;
+    }
+  }
+}
+/***** END checkout onboarding form components *******/

@@ -1,79 +1,66 @@
 :css
-  #partner-code-label{
-    margin-top: 10px;
-    margin-right: 10px;
-  }
 
-  @media (max-width: 40em) {
-    #partner-code-label {
-      float: none;
-      margin-top: 0px;
-      margin-right: 0px;
-    }
-  }
 #checkout.pt4
   .max-width-3.mx-auto.mt2
     .clearfix.mb2
-      .sm-col.sm-col-12.mx-auto
-        %h1.center.blue.m0{style: "font-size: 25px;"}
+      .sm-col.sm-col-12.mx-auto.center
+        %h2.center.blue.m0
           Only
-          %span{style:'font-size: 80px;position:relative;font-weight:200;'}
+          %span#checkout-price.relative
             %span#fee
               = @partner_code ? 0 : 99
-            %span{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
+            %span#checkout-dollar-sign.absolute
               $
-          %span{style: 'margin-left:-22px;'}
+          %span.mxn2
             \/year
-        /.wrap{style: 'float:left;position:relative;left:50%;'}
-        /.content{style: 'float:left;position:relative;left:-50%;'}
-        %ul.px4.list-reset.mt0.max-width-2.mx-auto{style:'color:#555555;'}
-          %li
+        %ul.px4.list-reset.mt0.max-width-2.mx-auto.inline-block.gray-80
+          %li.left-align
             %h4.my1
               %span
                 %i.fa.fa-check.fa-3.blue
               A live energy savings concierge at your service
-          %li
+          %li.left-align
             %h4.my1
               %span
                 %i.fa.fa-check.fa-3.blue
               Your personalized path to 100% clean energy and big savings
-          %li
+          %li.left-align
             %h4.my1
               %span
                 %i.fa.fa-check.fa-3.blue
               An easy to use, cool dashboard to track your progress
-          %li
+          %li.left-align
             %h4.my1
               %span
                 %i.fa.fa-check.fa-3.blue
               Access to our seriously cool research on products and vendors
-          %li
+          %li.left-align
             %h4.my1
               %span
                 %i.fa.fa-check.fa-3.blue
               Exclusive energy and environmental educational stuff
-          %li
+          %li.left-align
             %h4.my1
               %span
                 %i.fa.fa-check.fa-3.blue
               Privileged access to our product previews and events
 
-        =simple_form_for @profile, remote: true do |form|
-          .clearfix.mx-auto
-            .col.col-12.sm-col.sm-col-6.xs-center
-              %label.right#partner-code-label HAVE A PARTNER CODE?
-            .col.col-12.sm-col.sm-col-6.xs-center
-              =form.input_field :partner_code, readonly: (true if @partner_code), value: "#{@partner_code ? @partner_code.code : ''}", class: "#{@partner_code ? 'gray-60' : 'blue'}", style: "text-transform: uppercase; padding-left: 8px; #{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}display:inline;height:34px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;width:100px;"
-              %button.inline{type: "button", disabled: (true if @partner_code), id: 'btn-apply', class: "#{@partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding:9px 8px 7px 8px;#{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
-                -if @partner_code
-                  %i.fa.fa-check.fa-3
-                -else
-                  APPLY
-            .col.col-12.center.px2
-              %p No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
-          .mt2.px2
-            =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "SUBMIT", class: "bg-blue white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+      =simple_form_for @profile, remote: true do |form|
+        .clearfix.mx-auto
+          .col.col-12.sm-col.sm-col-6.xs-center
+            %label.right#partner-code-label HAVE A PARTNER CODE?
+          .col.col-12.sm-col.sm-col-6.xs-center
+            =@partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @partner_code} ) : (render 'profiles/partner_code_field', f: form)
+            %button.inline{type: "button", disabled: (true if @partner_code), id: 'btn-apply', class: "#{@partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
+              -if @partner_code
+                %i.fa.fa-check.fa-3
+              -else
+                APPLY
+          .col.col-12.center.px2
+            %p No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
+        .mt2.px2
+          =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
+          =form.submit "SUBMIT", class: "bg-blue white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
 
 :javascript
   $(document).ready(function(){
@@ -96,6 +83,6 @@
       });
       return true;
     });
-     //mobile
+    //mobile
     $(window).scrollTop(0)
   });
