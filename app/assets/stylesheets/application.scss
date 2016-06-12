@@ -16,12 +16,6 @@
  *= require nprogress
  */
 
-@import "basscss/basscss";
-@import "base";
-@import "components";
-@import 'responsive-spacing';
-@import 'responsive-type-scale';
-@import "concierge_tools";
-@import "footer";
-@import "profile_forms";
-@import "custom";
+@import 'components/components.scss';
+@import 'surfaces/surfaces.scss';
+@import 'utilities/utilities.scss';

@@ -7,7 +7,7 @@ $button-font-size: inherit !default;
 $button-font-weight: $bold-font-weight !default;
 $button-line-height: 1.125rem !default;
 $button-padding-y: .5rem !default;
-$button-padding-x: 1rem !default;
+$button-padding-x: 1.5rem !default;
 $darken-1: rgba(0, 0, 0, .0625) !default;
 $darken-2: rgba(0, 0, 0, .125) !default;
 $darken-3: rgba(0, 0, 0, .25) !default;
@@ -25,7 +25,6 @@ $border-circle: 50%;
   cursor: pointer;
   display: inline-block;
   line-height: $button-line-height;
-  padding: $button-padding-y $button-padding-x;
   margin: 0;
   height: auto;
   border: $border-width solid transparent;
@@ -35,6 +34,14 @@ $border-circle: 50%;
   background-color: transparent;
 }
 
+.btn-sm {
+  @extend .btn;
+  padding: $button-padding-y $button-padding-x;
+}
+.btn-md {
+  @extend .btn;
+  padding: $button-padding-y * 4 $button-padding-x * 2.67 ;
+}
 .btn:hover {
   text-decoration: none;
 }
