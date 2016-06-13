@@ -22,17 +22,17 @@
         .right-align.right.mx2.navbar-element
           %i.fa.fa-phone.fa-2
           800-979-2215
-      .nav-bg.easeInOut.absolute.col-12.top-0.left-0.right-0.white.flex.flex-center
+      .nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block
             .fa.fa-times.fixed.top-0.right-0.p3.pointer
           %ul.py4.center.list-reset{ style: "font-size: 3rem;" }
             %li
-              = link_to 'Login', new_user_session_path , class: "white py1 inline-block"
+              = link_to 'Login', new_user_session_path , class: "white py1 inline-block text-decoration-none"
             %li
-              = link_to 'Call Us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block"
+              = link_to 'Call Us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
             %li
-              = link_to 'Blog','http://mydomino.com/blog/', target: '_blank', class: "white py1 inline-block"
+              = link_to 'Blog','http://mydomino.com/blog/', target: '_blank', class: "white py1 inline-block text-decoration-none"
 
 :javascript
   $(document).ready(function(){
@@ -40,7 +40,7 @@
       $('nav').addClass('open');
     });
 
-    $('nav .nav-bg .fa-times').click(function(){
+    $('nav .nav-open .fa-times').click(function(){
       $('nav').removeClass('open');
     });
   });
