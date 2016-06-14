@@ -30,7 +30,7 @@
           =form.submit "GET STARTED", class: "bg-blue h3", style: 'display:inline; border-radius:40px; border:none; width:250px; height:50px; color:white;'
 
 -if @browser.device.mobile?
-  #name-and-email.mobile-form.pt4
+  #name-and-email.mobile-form.pt4{style: 'height: 556px;'}
     .overlay-mobile
     #form-container.relative
       =yield :name_and_email
