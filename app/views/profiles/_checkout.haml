@@ -49,7 +49,7 @@
         .clearfix.mx-auto
           .col.col-12.sm-col.sm-col-6.xs-center
             %label.right#partner-code-label HAVE A PARTNER CODE?
-          .col.col-12.sm-col.sm-col-6.xs-center
+          .col.col-12.sm-col.sm-col-6.xs-center.relative
             =@partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @partner_code} ) : (render 'profiles/partner_code_field', f: form)
             %button.inline{type: "button", disabled: (true if @partner_code), id: 'btn-apply', class: "#{@partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
               -if @partner_code
@@ -57,7 +57,7 @@
               -else
                 APPLY
           .col.col-12.center.px2
-            %p No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
+            %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
         .mt2.px2.relative{style: 'height: 85px;'}
           =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em; border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
           =form.submit "SUBMIT", class: "bg-blue white right border-none inline-block absolute", style: "bottom:2em; right:1rem;border-radius: 20px;width: 120px; height: 40px;"
