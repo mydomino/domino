@@ -11,7 +11,7 @@
             .sm-col.sm-col-6.px2
               %label.h4 ADDRESS LINE 1
               %br
-              =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32 required-field"
+              =form.input_field :address_line_1, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32"
               %label.h4 ADDRESS LINE 2 (Optional)
               %br
               =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-light-gray  border-width-2 height-32"
@@ -19,18 +19,18 @@
                 .sm-col.sm-col-12.md-col-6.md-pr2
                   %label.h4 CITY
                   %br
-                  =form.input_field :city, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32 required-field"
+                  =form.input_field :city, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32"
                 .sm-col.sm-col-6.md-col-3.sm-pr2
                   %label.h4 STATE
                   %br
-                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded border border-light-gray border-width-2 required-field"
+                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded border border-light-gray border-width-2"
                 .sm-col.sm-col-6.md-col-3
                   %label.h4 ZIP
                   %br
-                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32 required-field", maxlength: "5"
+                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32", maxlength: "5"
               %label.h4 PHONE
               %br
-              =form.input_field :phone, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32 required-field"
+              =form.input_field :phone, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32"
 
             .sm-col.sm-col-6.sm-pl4
               .sm-mt2.mb2.px2{style: 'height:64px;'}
@@ -41,13 +41,13 @@
               .mt2.px2
                 %label.h4 AVG ELECTRIC BILL (Optional)
               .inline-block.pl2
-                #slider{style: "width:200px;"}
+                #slider{style: "width:200px"}
               .inline-block
                 %h2.m0
                   &nbsp;$
                   %span#slider_val 0
-              =form.input :housing, :as => :hidden, :input_html => { :value => @profile.housing , class: 'required-field'}
-              =form.input :avg_electrical_bill, :as => :hidden, :input_html => { :value => @profile.avg_electrical_bill || "0" }
+              =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
+              =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
           .mt3.relative{style: 'height:98px;'}
             =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em;border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
             =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block absolute", style: "bottom: 2em; right: 0;border-radius: 20px;width: 120px; height: 40px;"
@@ -66,6 +66,9 @@
       value: #{@profile.avg_electrical_bill},
       create: function( event, ui ) {
         $('#slider_val').html(#{@profile.avg_electrical_bill});
+        $('#slider > span').css({backgroundColor: '#00CCFF', border: '1px solid #00CCFF', cursor: 'pointer', outline: '0'});
+        $('.ui-state-hover').css('background-color', '#00CCFF!important');
+
       },
       slide: function( event, ui ) {
         $('#slider_val').html(ui.value);
