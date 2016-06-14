@@ -1,16 +1,16 @@
-#interests.pt4{style: 'border-bottom: 2px solid lightgray;'}
+#interests.pt4
   .max-width-3.mx-auto.mt4
     -flash.each do |key, value|
       .flash.center.blue
         =value
-    .clearfix.mb4
+    .clearfix.mb2
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
           I am interested in learning more about the following...
       .mt1.col.col-12.h4.center.italic (Choose as many as you like)
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .max-width-2.mx-auto
+        .max-width-2.mx-auto.mt3
           .flex.justify-center
             .inline-block.ml1
               -5.times do |index|
@@ -20,9 +20,9 @@
                 =render "profiles/interest_checkbox", :index => index + 5
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
-          .mt2.mb3.px2
-            =form.submit "BACK", class: "bg-white black inline-block", style: "border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block", style: "border-radius: 20px;width: 120px; height: 40px;"
+        .px2.mt4.relative{style: 'height:89px;'}
+          =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em; border: 2px solid black; border-radius: 20px; width: 120px; height: 40px;"
+          =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block absolute", style: "bottom: 2em; right: 1rem;border-radius: 20px; width: 120px; height: 40px;"
 
 :javascript
   $(document).ready(function(){

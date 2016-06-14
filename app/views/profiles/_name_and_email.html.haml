@@ -10,18 +10,18 @@
       .clearfix
         .col.col-6.px2.py1
           %label.white.hide First Name
-          =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
+          =form.input_field :first_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
           -if (@profile.errors[:first_name].size >= 1)
             %p.red.m0 'First Name' is blank
         .col.col-6.px2.py1
           %label.white.hide Last Name
-          =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
+          =form.input_field :last_name, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
           -if (@profile.errors[:last_name].size >= 1)
             %p.red.m0 'Last Name' is blank
       .clearfix
         .col.col-12.px2.mt1
           %label.white.hide Email Address
-          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-40 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
+          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
           -if (@profile.errors[:email].size >= 1)
             %p.red.m0 This email is invalid. Please try a valid email address.
 
@@ -30,7 +30,7 @@
           =form.submit "GET STARTED", class: "bg-blue h3", style: 'display:inline; border-radius:40px; border:none; width:250px; height:50px; color:white;'
 
 -if @browser.device.mobile?
-  #name-and-email.mobile-form.pt4
+  #name-and-email.mobile-form.pt4{style: 'height: 556px;'}
     .overlay-mobile
     #form-container.relative
       =yield :name_and_email

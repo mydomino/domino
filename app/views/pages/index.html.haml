@@ -2,33 +2,34 @@
   bg-transparent fixed white sm-col-12
 -content_for :link_color_class do
   white
-.alerts.absolute{style: "left: 0;right:0;margin-left:auto;margin-right:auto;width:256px;z-index: 10000;"}
+.alerts.absolute.ml-auto.mr-auto.left-0.right-0.max-width-1.z4
   =flash_messages
 
 #profile-forms
   =render @response[:form]
 
+
 .clearfix.bg-white.mx-auto
-  .col.col-12.md-col-6.rounded.gray-80.p2.center{style: "background-color:#f3f3f3;height:420px;"}
+  .col.col-12.md-col-6.gray-80.p2.center.bg-gray-05.height-420
     .max-width-2.inline-block.pt4.left-align
       %h1.mt0 Why MyDomino? 
       %h3 
         We want to help change energy sources from dirty fossil fuels to clean, renewable energy. We believe this will have a substantial, positive impact on climate for people now and in the future.
       %h3.mb0
         Check out how MyDomino can help you. 
-  %a{href:'#'}
-    .col.col-12.md-col-6#hp-video-placeholder.pointer{style: 'height: 420px;'}  
+  %a
+    .col.col-12.md-col-6#hp-video-placeholder.pointer.height-420
     
-#video-modal.absolute{style: "position:absolute;top:0;bottom:0;left:0;right:0;display:none;z-index:99999;"}
-  %i#close-modal.pointer.fa.fa-2x.fa-times.absolute{style: 'right: 8px; top:8px; color: white;'}
+#video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
+  %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
 
-.bg-white.max-width-4.mx-auto.my4{style: "margin-top:8em;margin-bottom:8em"}
+#action-path.bg-white.max-width-4.mx-auto.my8
   .clearfix
     %h1.center.mb4 YOUR ACTION PATH
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
-      .wrapper{style: "height:100px;"}
+      .wrapper
         .blue
           =image_tag "windmill_solar_panel_icon.svg"
       %h2.m0 1. Switch from Dirty to Clean Electricity
@@ -38,8 +39,8 @@
           source to 100% clean power
 
     .sm-col.sm-col-4.center.mb3.sm-b0.px2.line-height-1
-      .wrapper{style: "height:100px;"}
-        =image_tag "lightbulb_outlet_icon.svg", style: 'margin-top: 10px;'
+      .wrapper
+        =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon'
       %h2.m0 2. Maximize Your Clean Electricity
       %p.h4.mt2
         Next, we'll make your clean
@@ -47,14 +48,14 @@
           electricity super-efficient
 
     .sm-col.sm-col-4.center.px2.line-height-1
-      .wrapper{style: "height:100px;"}
-        =image_tag "heatpump_car_icon.svg", style: 'margin-top: 27px;' 
+      .wrapper
+        =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon' 
       %h2.m0 3. Do Life on 100% Clean Energy
       %p.h4.mt2
         Track the progress of your path to a
         %br.sm-hide
           clean energy lifestyle
-}
+
 
 %div#about-banner.py4.px2
   .max-width-3.mx-auto
@@ -79,16 +80,17 @@
       class service is guaranteed for the entire life of any product or
       service purchased through MyDomino. Should any issue arise, we'll
       help resolve it to your 100% satisfaction. Guaranteed good energy.
+
 .bg-white
   .clearfix.max-width-3.mx-auto
     %h2.sm-h2.mb0.center.p2.my3.line-height-1
       A small investment with epic savings
-    .rounded.sm-mx0.sm-my2.md-m2.relative.center{style: "background-color:#f3f3f3;"}
+    .rounded.sm-mx0.sm-my2.md-m2.relative.center.bg-gray-05
       %h1.m0.blue.pt2{style: "font-size: 25px;"}
         Only
-        %span.relative{style:'font-size: 80px;font-weight:200;'}
+        %span.relative{style:'font-size: 80px; font-weight:200;'}
           99
-          %span.absolute{style: 'font-size:18px;position:absolute;left:-10px;top:18px;'}
+          %span.absolute{style: 'font-size:18px;left:-10px;top:18px;'}
             $
         %span{style: 'margin-left:-22px;'}
           \/year
@@ -130,14 +132,13 @@
       Meet our team of clean energy nerds
     %p.mt0.mb3.center
       Dedicated to helping you save money and make a positive impact on the environment.
-    =link_to "MEET THE TEAM", "/team" , class: "mx-auto center bg-blue h3 text-decoration-none py1 px1", style: 'display:block; border-radius:40px; border:none; width:250px; color:white;'
+    =link_to "MEET THE TEAM", "/team" , class: "mx-auto center bg-blue h3 text-decoration-none py1 px1 block border-none white", style: 'border-radius:40px; width:250px;'
 
 .bg-white.clearfix.mx-auto.max-width-4.pt1{style: 'margin-bottom: -7px;'}
   =image_tag "team-photo2a.jpg", alt: "The Team", class: 'fit mt3'
 %script{src: "//f.vimeocdn.com/js/froogaloop2.min.js", type: 'text/javascript'}
 :javascript
   navbarScroll('#FF0000', '#666');
-  /* Replace 'APP_ID' with your app ID */
   $(document).ready(function(){
     setTimeout(function(){
       $('.alerts').hide('slow');
