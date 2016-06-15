@@ -18,7 +18,7 @@ leads.each do |row|
                             onboard_complete: true
                             # onboard_step: 5
                           )
-  case row["Concierge"]
+  case row["Concierge Lead Owner"]
   when "Laura Osburn"
     @concierge = 'laura@mydomino.com'
   when "Michaela Nye"
