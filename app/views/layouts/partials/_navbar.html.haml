@@ -27,13 +27,17 @@
           %h1.inline-block
             .fa.fa-times.fixed.top-0.right-0.p3.pointer
           %ul.py4.center.list-reset{ style: "font-size: 3rem;" }
-            %li
-              = link_to 'Login', new_user_session_path , class: "white py1 inline-block text-decoration-none"
+            -if !user_signed_in?
+              %li
+                = link_to 'Login', new_user_session_path , class: "white py1 inline-block text-decoration-none"
+            -else
+              %li 
+                =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
+              %li
+                = link_to 'Logout', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
             %li
               = link_to 'Call Us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
-            %li
-              = link_to 'Blog','http://mydomino.com/blog/', target: '_blank', class: "white py1 inline-block text-decoration-none"
-
+            
 :javascript
   $(document).ready(function(){
     $('nav .fa-bars').click(function(){
