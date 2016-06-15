@@ -9,14 +9,11 @@ leads.each do |row|
                             first_name: row["First Name"],
                             last_name: row["Last Name"],
                             email: row["Email"],
-                            # phone: row["Phone"],
-                            # address_line_1: row["Street"],
                             city: row["City"],
                             state: row["State"],
                             zip_code: row["Zip"],
                             partner_code_id: PartnerCode.find_by_partner_name("Catching the Sun").id,
                             onboard_complete: true
-                            # onboard_step: 5
                           )
   case row["Concierge Lead Owner"]
   when "Laura Osburn"
@@ -39,11 +36,9 @@ leads.each do |row|
         "<FL val='Last Name'>#{lead.last_name}</FL>"\
         "<FL val='Email'>#{lead.email}</FL>"\
         "<FL val='Lead Source'>CatchingTheSun</FL>"\
-        # "<FL val='Street'>#{lead.address_line_1}</FL>"\
         "<FL val='City'>#{lead.city}</FL>"\
         "<FL val='State'>#{lead.state}</FL>"\
         "<FL val='Zip Code'>#{lead.zip_code}</FL>"\
-        # "<FL val='Phone'>#{lead.phone}</FL>"\
         "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
         "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
