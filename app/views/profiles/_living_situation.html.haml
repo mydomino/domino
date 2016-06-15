@@ -61,13 +61,14 @@
     $('#profile_phone').formance('format_phone_number');
 
     $( "#slider" ).slider({
+      range: "min",
       animate: "fast",
       max: 250,
       value: #{@profile.avg_electrical_bill},
       create: function( event, ui ) {
         $('#slider_val').html(#{@profile.avg_electrical_bill});
-        $('#slider > span').css({backgroundColor: '#00CCFF', border: '1px solid #00CCFF', cursor: 'pointer', outline: '0'});
-        $('.ui-state-hover').css('background-color', '#00CCFF!important');
+        $('#slider > span').css({cursor: 'pointer', outline: '0'});
+        //$('.ui-state-hover').css('background-color', '#00CCFF!important');
 
       },
       slide: function( event, ui ) {
