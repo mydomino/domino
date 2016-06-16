@@ -14,6 +14,7 @@ $gray-60:#858585;
 $gray-30:#C1C1C1;
 $gray-20:#D6D6D6;
 $gray-10:#EAEAEA;
+$gray-05:#F3F3F3;
 
 $black-10: rgba(0,0,0,.1);
 $black-20: rgba(0,0,0,.2);
@@ -48,6 +49,8 @@ $light-gray: #c5c5c5;
 
 .bg-gray {background-color: $gray;}
 .bg-gray-60 {background-color: $gray-60;}
+.bg-gray-10 {background-color: $gray-10;}
+.bg-gray-05 {background-color: $gray-05;}
 
 .gray {color: $gray;}
 

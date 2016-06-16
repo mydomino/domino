@@ -9,12 +9,14 @@
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
-  %body.bg-heather
+  %body
     = render 'layouts/partials/logo_only_navbar'
     .max-width-2.mx-auto.rounded
       .alerts
         =flash_messages
     = yield
+    = render 'layouts/partials/footer_new'
+    
 
 :javascript
   $(document).ready(function(){

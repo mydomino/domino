@@ -7,7 +7,7 @@
       %h1.m0.center.white{style: 'font-size: 56px;font-weight: 200;'} Frequently Asked Questions
 
   #accordion.max-width-4.mx-auto.mx2.px2.mt4
-    %h1.accordion-toggle.closed.line-height-1
+    %h1.accordion-toggle.closed.line-height-3
       %span.toggle.inline-block +
       How you can ditch &amp; switch with help from MyDomino
     .accordion-content.ml3.pl1
@@ -74,7 +74,7 @@
         %p.mb3.mt0 
           A for-profit company certified by the nonprofit B Lab to meet rigorous standards of social and environmental performance, accountability, and transparency. That means we’re a mission-driven company that focuses on people and planet, as well as profits. As B Lab says, “B Corp is to business what Fair Trade certification is to coffee or USDA Organic certification is to milk.”
 
-    %h1.accordion-toggle.closed.line-height-1
+    %h1.accordion-toggle.closed.line-height-3
       %span.toggle.inline-block +
       Solar power
     .accordion-content.ml3.pl1
@@ -165,7 +165,7 @@
       %p.mt0.mb3.pl2
         The latest LED bulbs rival the look, dimming ability, and light quality of old-style incandescents. A good-quality LED like the Cree will produce great lighting for your home. Some bulbs even let you control the color with your smartphone!
 
-    %h1.accordion-toggle.closed.line-height-1
+    %h1.accordion-toggle.closed.line-height-3
       %span.toggle.inline-block +
       Smart thermostats
     .accordion-content.ml3.pl1
@@ -193,7 +193,7 @@
       %p.mt0.mb3.pl2
         For heating, try 68&deg; - 70&deg; F when you’re home, 53&deg; F when you’re away, and 60&deg; F while you’re asleep. For cooling, turn down your AC when you go out, and set it to 78&deg; F or higher when you’re home.
 
-    %h1.accordion-toggle.closed.line-height-1
+    %h1.accordion-toggle.closed.line-height-3
       %span.toggle.inline-block +
       Electric cars and hybrids
     .accordion-content.ml3.pl1
@@ -256,6 +256,7 @@
         $('span.toggle', this).html("-");
         $('.accordion-toggle').addClass('closed');
         $(this).removeClass('closed');
+
       } else {
         $('span.toggle', this).html("+");
         $(this).addClass('closed');

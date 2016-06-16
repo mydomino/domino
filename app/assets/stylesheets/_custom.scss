@@ -8,6 +8,51 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   }
 }
 
+ /* BEGIN custom height utilities */
+.height-40 {
+  height: 40px;
+}
+
+.height-32 {
+  height: 32px;
+}
+
+.height-420 {
+  height: 420px;
+}
+/* END custom height utilities */
+
+/* BEGIN custom margin utilities */
+.mt8 {
+  margin-top: 8em;
+}
+
+.mb8 {
+  margin-bottom: 8em;
+}
+
+.my8 {
+  margin-top: 8em;
+  margin-bottom: 8em;
+}
+/* END custom margin utlities */
+
+/* BEGIN custom Action Path Module styles */
+#action-path {
+  .wrapper {
+    height:100px;
+  }
+  
+  #lightbulb-outlet-icon {
+    margin-top: 10px;
+  }
+
+  #heatpump-car-icon {
+    margin-top: 27px;
+  }
+}
+/* END custom Action Path Module styles */
+
 .pointer:hover {
   cursor: pointer
 }
@@ -37,9 +82,6 @@ button{
   }
 }
 #name-and-email {
-  #form-container {
-    z-index: 3
-  }
   .video-container {
     display:block;
     width: 100%;
@@ -56,7 +98,7 @@ button{
     }
   }
   .overlay-nonmobile {
-    height: 720px;
+    height: 620px;
     width: 100%;
     position: absolute;
     z-index: 2;
@@ -67,7 +109,16 @@ button{
 
 /* end style rules for homepage onboard module */
 
-#about-banner{
+#video-modal {
+  display: none;
+}
+
+#close-modal {
+  top: 8px;
+  right: 8px;
+}
+
+#about-banner {
   background: image-url('bg_about-1.jpg');
   background-size:cover;
 }
@@ -146,21 +197,22 @@ input{
       height: 40px;
     }
 
-    .btn-time{
+    .btn-time {
       width: 80px;
       height: 40px;
       font-size: 12px;
     }
   }
+
   input,textarea {
     width:100%;
-    display:block;
   }
-  input[type=submit]{
+
+  input[type=submit] {
     display: inline;
   }
 
-  input.error{
+  input.error {
     border-color: $light-red!important;
   }
 
@@ -185,14 +237,10 @@ input{
     /*border: 1px solid rgba(81, 203, 238, 1);*/
   }
 
-  .height-40{
-    height:32px;
-  }
-
   select{
     -webkit-appearance: none;
     width: 80px;
-    height: 50px;
+    height: 42px;
     background-size: 32%;
     background-repeat: no-repeat;
     background-position: 100% 50%;
@@ -360,14 +408,10 @@ input{
   justify-content: center;
   margin-top: 90px;
 }
+
 #faq-header {
   background-image: image-url('bg_faq.jpg');
 }
-
-/*css for homepage video modal*/
-/*body.modal-open {
-  overflow: hidden;
-}*/
 
 body.lock-position {
   height: 100%;
@@ -394,3 +438,20 @@ body.lock-position {
 span.toggle {
   width: 1em;
 }
+
+#profile-forms {
+  min-height: 620px; 
+  border-bottom: 2px solid lightgray;
+  .btn-submit-active {
+    background-color: $blue;
+  }
+
+  .btn-housing-active {
+    background-color: $blue;
+  }
+}
+
+#slider > div{
+  background: #00CCFF!important;
+}
+
