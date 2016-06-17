@@ -59,8 +59,40 @@
                   =link_to "FAQ", faq_path
                 %li  
                   =link_to "News", "/blog"
-      #mobile-footer.md-hide.lg-hide.mx-auto
+      #mobile-footer.md-hide.lg-hide.mx-auto.domino-gray
         .col.col-12.my3.center
+          %h3.mb0 LEARN MORE
+          %ul.list-reset.my0.h5
+            %li
+              =link_to "FAQ", faq_path
+
+          %h3.mb0 COMPANY
+          %ul.list-reset.my0.h5
+            %li
+              =link_to "About Us", about_path
+            %li
+              =link_to "Our Team", team_path
+            %li
+              =link_to "Careers", "https://www.hellohired.com/mydomino", target: '_blank'
+            %li
+              =link_to "Press", "http://mydomino.strikingly.com", target: '_blank'
+            %li
+              =link_to "Terms of Service", terms_path
+            %li
+              =link_to "Privacy Policy", privacy_path
+          
+          %h3.mb0 GET SOCIAL
+          %ul.list-reset.my0.h5
+            %li
+              = link_to 'https://www.facebook.com/ourdominoeffect', target: '_blank' do
+                %i.fa.fa-facebook{style: 'width: 13px;'}
+                Facebook
+            %li
+              = link_to "https://twitter.com/OurDominoEffect", target: '_blank' do
+                %i.fa.fa-twitter
+                Twitter
+
+        .col.col-12.mb3.center
           = image_tag "mydomino_esc_horizontal", height: "64px;"
           %p#footer-address.h5.mt1
             327 19th Street
@@ -70,12 +102,3 @@
             hello@mydomino.com
             %br
             800-979-2215
-          %ul.list-reset.h5
-            %li
-              = link_to 'https://www.facebook.com/ourdominoeffect', target: '_blank' do
-                %i.fa.fa-facebook{style: 'width: 13px;'}
-                Facebook
-            %li
-              = link_to "https://twitter.com/OurDominoEffect", target: '_blank' do
-                %i.fa.fa-twitter
-                Twitter
