@@ -147,6 +147,16 @@
     //homepage video js
     var iframe = $('iframe')[0];
     var player = $f(iframe);
+    // When the player is ready/loaded, add a finish event listener
+    player.addEvent('ready', function() {
+        player.addEvent('finish', onFinish);
+    });
+
+    function onFinish(id) {
+      $('#video-modal').fadeOut();
+      player.api('unload');
+      $('body').removeClass('lock-position');
+    }
     $('#hp-video-placeholder').on('click', function(){
       $('#video-modal').fadeIn();
       $('body').addClass('lock-position');
