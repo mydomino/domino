@@ -1,6 +1,4 @@
-class SessionsController < Devise::SessionsController
-  skip_before_action :verify_authenticity_token
-
+class PasswordsController < Devise::PasswordsController
   def create
     @email = params[:user][:email]
     #dashboard not reg'd
