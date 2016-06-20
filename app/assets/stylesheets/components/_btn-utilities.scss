@@ -1,7 +1,7 @@
 // Converted Variables
 
 $border-radius: 3px !default;
-$border-circle: 3rem;
+$border-circle: 3em;
 $darken-1: rgba(0, 0, 0, .0625) !default;
 $darken-2: rgba(0, 0, 0, .125) !default;
 $darken-3: rgba(0, 0, 0, .25) !default;
@@ -14,3 +14,7 @@ $darken-3: rgba(0, 0, 0, .25) !default;
 
 
 /* Btn Primary */
+
+.btn-primary {
+  border-radius: $border-circle;
+}

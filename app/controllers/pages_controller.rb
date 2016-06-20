@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_after_action :verify_authorized
+  layout 'example', only: :example
   def index
     @profile = Profile.new
     @response = {form: 'profiles/name_and_email', method: :post}
@@ -15,6 +16,9 @@ class PagesController < ApplicationController
   end
 
   def team
+  end
+
+  def example
   end
 
 end
