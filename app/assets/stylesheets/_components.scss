@@ -1,3 +1,147 @@
+/****
+
+component-based css should be avoided as it tends to encourage bloat.
+This file is trying to eventually create utlity classes that will build into components.
+
+More on this can be found here:
+http://www.jon.gold/2015/07/functional-css/
+
+****/
+
+/* Background Image */
+
+.page-header-image {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  margin-top: 100px
+}
+
+/* Colors
+  -removed cerulean because not in-use
+ */
+$white: #FFFFFF;
+$cloud: #F9F9F9;
+$heather: #F1F1F1;
+$charcoal: #666666;
+$black: #333333;
+$gray: #C5C5C5;
+$blue: #00CCFF;
+$navy: #105585;
+$cerulean:#00A3CC;
+
+//Updated Grays///
+$domino-gray:#666666;
+$gray-60:#858585;
+$gray-30:#C1C1C1;
+$gray-20:#D6D6D6;
+$gray-10:#EAEAEA;
+
+$black-10: rgba(0,0,0,.1);
+$black-20: rgba(0,0,0,.2);
+$black-30: rgba(0,0,0,.3);
+$red: #FF0000;
+$light-red: #D65A5A;
+$light-gray: #c5c5c5;
+
+.border-light-gray {border-color: $light-gray;}
+
+.border-solid{border-style: solid;}
+
+.light-gray {color: $light-gray;}
+
+.red {color: $red;}
+
+.bg-red {background-color: $red;}
+
+.black{color: $black;}
+
+.bg-white{background-color: $white;}
+
+.white {color: $white;}
+
+.bg-cloud {background-color: $cloud;}
+
+.bg-heather {background-color: $heather;}
+
+.hover-bg-heather:hover {background-color: $heather;}
+
+.cloud {color: $cloud;}
+
+.bg-gray {background-color: $gray;}
+.bg-gray-60 {background-color: $gray-60;}
+
+.gray {color: $gray;}
+
+.domino-gray { color: $domino-gray}
+.gray-60 { color: $gray-60}
+.gray-30 { color: $gray-30}
+.gray-20 { color: $gray-20}
+.gray-10 { color: $gray-10}
+
+.bg-blue {background-color: $blue;}
+
+.blue {color: $blue;}
+
+.border-navy{border-color: $navy}
+
+.bg-navy{background-color: $navy;}
+
+.navy{color: $navy;}
+
+
+.bg-charcoal {background-color: $charcoal;}
+
+.charcoal {color: $charcoal;}
+
+.border-charcoal {border-color:$charcoal;}
+
+.bg-transparent{background-color: transparent;}
+.bg-sky-gradient {background-image: linear-gradient(#42c9ff, #aae5fb);}
+.bg-sky-white-gradient {background-image: linear-gradient(#d5f7ff, #ffffff 30%);}
+
+
+/* Buttons */
+.btn
+{
+  .disabled
+  {
+    background-color: $gray;
+  }
+}
+
+.btn-domino {
+  /*max-width: 256px;*/
+  height:3em;
+  padding:1em;
+  line-height: 1em;
+  border-radius: 1.5em;
+  border: none;
+  text-decoration: none;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  line-height: 1rem;
+  padding: .5rem 1rem;
+  /*margin: 0;*/
+  height: auto;
+  /*border: 1px solid transparent;*/
+  vertical-align: middle;
+  -webkit-appearance: none;
+}
+
+.btn-onboard-active {
+  background-color: #00ccff;
+  color: white;
+  border: 2px solid #00ccff!important;
+}
+
+
+/* Dashboard Styling */
+
 .recommendation
 {
   min-height: 310px;
@@ -171,6 +315,34 @@ nav
     border-color: $blue;
   }
 }
+
+
+/* Border Styles */
+
+.border-hover
+{
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0,0,0,0);
+  &:hover
+  {
+    border-color: rgba(0,0,0,.125);
+  }
+}
+.hover-show
+{
+  display: none;
+}
+div:hover
+{
+  &>.hover-show
+  {
+    display: block;
+  }
+}
+
+
+/* Overlay */
 
 .overlay
 {
