@@ -17,20 +17,20 @@
  */
 
 @import "basscss/basscss";
-@import "colors";
-@import "custom";
-@import "buttons";
 @import 'responsive-spacing';
 @import 'responsive-type-scale';
 @import "components";
-@import "fonts";
 @import "concierge_tools";
 @import "footer";
-@import "components";
-
 
 @import 'components/components.scss';
 @import 'surfaces/surfaces.scss';
 @import 'utilities/utilities.scss';
+
+@import "components";
+@import "custom";
+@import "base"
+
+
 
 
