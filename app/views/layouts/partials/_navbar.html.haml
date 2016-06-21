@@ -11,17 +11,17 @@
         .fa.fa-bars.pointer.navbar-element
       .xs-hide.sm-hide.py3.px3.my1.sm-hide
         .right
+          .mx2.navbar-element.inline
+            %i.fa.fa-phone
+            %span.h3 800-979-2215
           -if user_signed_in?
             -if current_user.role == 'concierge'
               =link_to 'CONCIERGE TOOLS', dashboards_path, class: 'btn-navbar white border p1 rounded text-decoration-none navbar-element'
             -else
               =link_to 'DASHBOARD', user_dashboard_path, class: 'btn-navbar white border p1 rounded text-decoration-none navbar-element'
-            =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: "#{current_page?(root_path) ? 'btn-navbar white' : 'charcoal'} border p1 rounded text-decoration-none navbar-element"
+            =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border p1 rounded text-decoration-none navbar-element"
           -else
-            =link_to "LOG IN", new_user_session_path, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn btn-navbar border p1 rounded text-decoration-none navbar-element", id: "link-login"
-        .right-align.right.mx2.navbar-element
-          %i.fa.fa-phone
-          %span.h3 800-979-2215
+            =link_to "LOG IN", new_user_session_path, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border py1 px2 rounded text-decoration-none navbar-element", id: "link-login"
       #mobile-nav.nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block

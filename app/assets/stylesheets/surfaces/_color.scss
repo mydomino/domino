@@ -1,11 +1,13 @@
 // Neutral Color Variables
 $white: #FFFFFF;
 $black: #333333;
-$gray-80:#666666; /*changed from domino-gray*/
-$gray-60:#858585;
-$gray-30:#C1C1C1;
-$gray-20:#D6D6D6;
-$gray-10:#EAEAEA;
+$gray-90: #5C5C5C;
+$gray-80: #666666; /*changed from domino-gray*/
+$gray-60: #858585;
+$gray-30: #C1C1C1;
+$gray-20: #D6D6D6;
+$gray-10: #EAEAEA;
+$gray-05: #F3F3F3;
 
 // Brand Color Variables
 $blue: #00CCFF;
@@ -15,10 +17,13 @@ $navy: #105585;
 $red: #FF0000;
 $light-red: #D65A5A;
 
+// Text Colors
+.gray-90 { color: $gray-90; }
+.gray-80 { color: $gray-80; }
+
 // Background Colors
-
-.bg-blue {background-color:$blue;}
-
+.bg-blue {background-color:$blue; }
+.bg-gray-05 { background-color: $gray-05; }
 
 
 // Deprecated??
