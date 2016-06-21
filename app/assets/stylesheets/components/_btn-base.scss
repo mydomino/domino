@@ -4,10 +4,13 @@ $border-width: 1px !default;
 $bold-font-weight: bold !default;
 $button-font-family: inherit !default;
 $button-font-size: inherit !default;
-$button-font-weight: $bold-font-weight !default;
+$button-font-weight: inherit !default;
 $button-line-height: 1.125rem !default;
-$button-padding-y: .5rem !default;
-$button-padding-x: 1.5rem !default;
+$button-sm-text: 1rem;
+$button-md-text: 1.5rem;
+$button-lg-text: 2rem;
+$button-padding-y: .5rem !default; /* 8px */
+$button-padding-x: 1rem !default;/* 16px */
 $darken-1: rgba(0, 0, 0, .0625) !default;
 $darken-2: rgba(0, 0, 0, .125) !default;
 $darken-3: rgba(0, 0, 0, .25) !default;
@@ -19,15 +22,14 @@ $border-circle: 50%;
 
 .btn {
   font-family: $button-font-family;
-  font-size: $button-font-size;
   font-weight: $button-font-weight;
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
-  line-height: $button-line-height;
   margin: 0;
   height: auto;
   border: $border-width solid transparent;
+  border-radius: $border-circle;
   vertical-align: middle;
   -webkit-appearance: none;
   color: inherit;
@@ -35,12 +37,20 @@ $border-circle: 50%;
 }
 
 .btn-sm {
-  @extend .btn;
-  padding: $button-padding-y $button-padding-x;
+  padding: $button-padding-y $button-padding-x * 1.5;
+  font-size: $button-sm-text;
+  line-height: $button-sm-text;
 }
 .btn-md {
-  @extend .btn;
-  padding: $button-padding-y * 2 $button-padding-x * 1.3333 ;
+  padding: $button-padding-y $button-padding-x * 2;
+  font-size: $button-md-text;
+  line-height: $button-md-text;
+}
+/*width here might need to be larger */
+.btn-lg {
+  padding: $button-padding-y * 2 $button-padding-x * 3;
+  font-size: $button-lg-text;
+  line-height: $button-lg-text;
 }
 .btn:hover {
   text-decoration: none;
@@ -58,7 +68,10 @@ $border-circle: 50%;
 }
 
 /* Primary Button */
-
+.btn-primary {
+  background-color: $blue;
+  color: $white;
+}
 
 /* Secondary Button */
 .btn-outline,
@@ -84,4 +97,3 @@ $border-circle: 50%;
 .btn-outline.is-disabled {
   opacity: .5;
 }
-
