@@ -52,6 +52,7 @@ $border-circle: 50%;
   font-size: $button-lg-text;
   line-height: $button-lg-text;
 }
+
 .btn:hover {
   text-decoration: none;
 }
@@ -71,9 +72,16 @@ $border-circle: 50%;
 .btn-primary {
   background-color: $blue;
   color: $white;
+
 }
 
 /* Secondary Button */
+.btn-secondary {
+  background-color: $blue;
+  color: $gray-80;
+}
+
+/* Button Outline */
 .btn-outline,
 .btn-outline:hover {
   border-color: currentcolor;
