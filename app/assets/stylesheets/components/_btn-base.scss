@@ -1,5 +1,4 @@
 // Converted Variables
-
 $border-width: 1px !default;
 $bold-font-weight: bold !default;
 $button-font-family: inherit !default;
@@ -18,6 +17,9 @@ $darken-3: rgba(0, 0, 0, .25) !default;
 $border-radius: 3px !default;
 $border-circle: 32px;
 
+/* Transition timing function */
+$transition-fast-linear: all 0.1s linear; /* property missing in class name */
+
 /* Base Btn */
 
 .btn {
@@ -34,6 +36,7 @@ $border-circle: 32px;
   -webkit-appearance: none;
   color: inherit;
   background-color: transparent;
+  transition: $transition-fast-linear;
 }
 
 .btn-sm {
@@ -70,14 +73,20 @@ $border-circle: 32px;
 .btn-primary {
   background-color: $blue;
   color: $white;
-
+  &:hover {
+    background-color: #00A3CC;
+  }
 }
 
 /* Secondary Button */
 .btn-secondary {
-  background-color: $white;
   border-color: $gray-80;
   color: $gray-80;
+  &:hover {
+    background-color: $blue;
+    color: white;
+    border-color: transparent;
+  }
 }
 
 /* Inherited from Basscss****

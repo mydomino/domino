@@ -13,6 +13,7 @@ var navbarScroll = function(startColor, scrollColor){
   $('#logo-text > *').css('fill',logoColors.startColors.text)
   $('#logo-penguin > *').css('fill', logoColors.startColors.penguin);
   $('.navbar-element').css('color', startColor);
+  $('#link-login').css({'borderColor':'white'});
   $(window).scroll(function() {
       var scrollTop = $(this).scrollTop();
       if ( scrollTop > 35) {
