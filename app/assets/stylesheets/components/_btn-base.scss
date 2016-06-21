@@ -82,10 +82,11 @@ $transition-fast-linear: all 0.1s linear; /* property missing in class name */
 .btn-secondary {
   border-color: $gray-80;
   color: $gray-80;
+  -webkit-backface-visibility: hidden;
   &:hover {
-    background-color: $blue;
-    color: white;
-    border-color: transparent;
+    background-color: transparent;
+    color: $blue;
+    border-color: $blue;
   }
 }
 
