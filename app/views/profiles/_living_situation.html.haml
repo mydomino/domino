@@ -55,9 +55,9 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
               =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
-          .mt3.relative{style: 'height:98px;'}
-            =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em;border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block absolute", style: "bottom: 2em; right: 0;border-radius: 20px;width: 120px; height: 40px;"
+          .mt4.relative{style: 'height:72px;'}
+            =form.submit "BACK", class: "btn btn-md btn-secondary inline-block absolute", style: "bottom: 2em;"
+            =form.submit "NEXT", class: "btn btn-md btn-primary inline-block absolute", style: "bottom: 2em; right: 0;"
 
 
 :javascript
