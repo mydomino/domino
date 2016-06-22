@@ -16,18 +16,8 @@
  *= require nprogress
  */
 
-// @import "basscss/basscss";
-// @import 'responsive-spacing';
-// @import 'responsive-type-scale';
-// @import "components";
-// @import "concierge_tools";
-// @import "footer";
-@import "shame";
+@import 'shame';
 @import 'surfaces/surfaces';
 @import 'utilities/utilities';
 @import 'components/components';
-
-
-// @import "components";
-// @import "custom";
-@import "base"
+@import 'base';

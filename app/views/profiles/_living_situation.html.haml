@@ -43,8 +43,8 @@
               .sm-mt2.mb2.px2{style: 'height:64px;'}
                 %label.h4 HOUSING
                 %br
-                %button.bg-white.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-left.px2{type: "button", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
-                %button.bg-white.mln10px.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-right.px2{type: "button", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
+                %button.bg-white.btn-housing.border-light-gray.gray-80.border-width-2.border-solid.pill-left.px2{type: "button", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
+                %button.bg-white.mln10px.btn-housing.border-light-gray.gray-80.border-width-2.border-solid.pill-right.px2{type: "button", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
               .mt2.px2
                 %label.h4 AVG. ELECTRIC BILL
               .inline-block.pl2
@@ -69,12 +69,7 @@
       $('#profile_city').val($('#span-city').html());
       $('#profile_zip_code').val($('#span-zipcode').html());
       $('#profile_address_line_1').val($('#span-street_number').html() + " " + $('#span-route').html());
-      //$(this).val(r['address_components'][0]['short_name'] + ' ' + r['address_components'][1]['short_name']);
     });
-
-    function updateFields(r){
-
-    }
 
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
 
@@ -88,8 +83,6 @@
       create: function( event, ui ) {
         $('#slider_val').html(#{@profile.avg_electrical_bill});
         $('#slider > span').css({cursor: 'pointer', outline: '0'});
-        //$('.ui-state-hover').css('background-color', '#00CCFF!important');
-
       },
       slide: function( event, ui ) {
         $('#slider_val').html(ui.value);
