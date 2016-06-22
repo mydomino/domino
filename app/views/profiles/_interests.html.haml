@@ -21,8 +21,8 @@
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
         .px2.mt4.relative{style: 'height:89px;'}
-          =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em; border: 2px solid black; border-radius: 20px; width: 120px; height: 40px;"
-          =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block absolute", style: "bottom: 2em; right: 1rem;border-radius: 20px; width: 120px; height: 40px;"
+          =form.submit "BACK", class: "btn btn-md btn-secondary inline-block absolute", style: "bottom: 2em;"
+          =form.submit "NEXT", class: "btn btn-md btn-primary inline-block absolute", style: "bottom: 2em; right: 1rem;"
 
 :javascript
   $(document).ready(function(){

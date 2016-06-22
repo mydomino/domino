@@ -18,7 +18,7 @@ $border-radius: 3px !default;
 $border-circle: 32px;
 
 /* Transition timing function */
-$transition-fast-linear: all 0.1s linear; /* property missing in class name */
+$transition-fast-linear: background-color  0.1s linear; /* property missing in class name */
 
 /* Base Btn */
 
@@ -83,6 +83,17 @@ $transition-fast-linear: all 0.1s linear; /* property missing in class name */
   border-color: $gray-80;
   color: $gray-80;
   -webkit-backface-visibility: hidden;
+  &:hover {
+    background-color: transparent;
+    color: $blue;
+    border-color: $blue;
+  }
+}
+
+/* initial button state for homepage */
+.btn-white {
+  border-color: white;
+  color: white;
   &:hover {
     background-color: transparent;
     color: $blue;
