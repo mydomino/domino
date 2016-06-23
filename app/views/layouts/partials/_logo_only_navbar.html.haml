@@ -3,4 +3,4 @@
     .sm-col.sm-col-12.p2
       = link_to embedded_svg('mydomino_logo_universal.svg'), root_path
       -if current_user.role == 'lead'
-        =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: 'charcoal border p1 rounded text-decoration-none navbar-element right mt1'
+        =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: 'btn-navbar charcoal border p1 rounded text-decoration-none navbar-element right mt1'

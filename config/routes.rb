@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :profiles
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
 
-  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
   
   resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'

@@ -1,3 +1,12 @@
+.btn-navbar{
+  border-width: 2px!important;
+  font-size: 1.2em!important;
+  &:hover{
+    border-color: $blue;
+    color: $blue!important;
+  }
+}
+
 .btn
 {
   .disabled
@@ -7,7 +16,6 @@
 }
 
 .btn-domino {
-  /*max-width: 256px;*/
   height:3em;
   padding:1em;
   line-height: 1em;
@@ -22,9 +30,7 @@
   text-decoration: none;
   line-height: 1rem;
   padding: .5rem 1rem;
-  /*margin: 0;*/
   height: auto;
-  /*border: 1px solid transparent;*/
   vertical-align: middle;
   -webkit-appearance: none;
 }

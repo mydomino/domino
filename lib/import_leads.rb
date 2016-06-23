@@ -42,7 +42,7 @@ leads.each do |row|
         "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
         "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
-        "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
+        "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
         "<FL val='Description'>Auto Onboard June 15, 2016</FL>"\
         "</row></Leads>"

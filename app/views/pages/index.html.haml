@@ -137,6 +137,9 @@
 .bg-white.clearfix.mx-auto.max-width-4.pt1{style: 'margin-bottom: -7px;'}
   =image_tag "team-photo2a.jpg", alt: "The Team", class: 'fit mt3'
 %script{src: "//f.vimeocdn.com/js/froogaloop2.min.js", type: 'text/javascript'}
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAx3fHcF5OsnzG_Utpl1Zm9dtKCNWxBBpk&libraries=places"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"></script>
+
 :javascript
   navbarScroll('#FF0000', '#666');
   $(document).ready(function(){
@@ -147,6 +150,16 @@
     //homepage video js
     var iframe = $('iframe')[0];
     var player = $f(iframe);
+    // When the player is ready/loaded, add a finish event listener
+    player.addEvent('ready', function() {
+        player.addEvent('finish', onFinish);
+    });
+
+    function onFinish(id) {
+      $('#video-modal').fadeOut();
+      player.api('unload');
+      $('body').removeClass('lock-position');
+    }
     $('#hp-video-placeholder').on('click', function(){
       $('#video-modal').fadeIn();
       $('body').addClass('lock-position');

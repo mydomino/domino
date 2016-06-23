@@ -31,7 +31,7 @@ class SaveToZohoJob < ActiveJob::Base
         "<FL val='Browser'>#{lead.browser}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
-        "<FL val='Dashboard Registration URL'>http://mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
+        "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "</row></Leads>"
 
   encoded_url = URI.encode(uri)
