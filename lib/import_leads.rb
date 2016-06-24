@@ -56,4 +56,4 @@ leads.each do |row|
   sleep 1
 end
 
-Profile.set_callback(:create, :after, :save_to_zoho)
+# Profile.set_callback(:create, :after, :save_to_zoho)
