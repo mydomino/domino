@@ -1,7 +1,7 @@
 require 'csv'
 
 Profile.skip_callback(:create, :after, :save_to_zoho)
-path = "#{File.expand_path(File.dirname(__FILE__))}/CatchingTheSun_ZohoImport_06152016.csv"
+path = "#{File.expand_path(File.dirname(__FILE__))}/JoshFox_ZohoImport_06232016.csv"
 puts path
 leads = CSV.read(path, headers:true)
 leads.each do |row|
@@ -9,10 +9,12 @@ leads.each do |row|
                             first_name: row["First Name"],
                             last_name: row["Last Name"],
                             email: row["Email"],
+                            address_line_1: row["Street"],
                             city: row["City"],
                             state: row["State"],
-                            zip_code: row["Zip"],
-                            partner_code_id: PartnerCode.find_by_partner_name("Catching the Sun").id,
+                            zip_code: row["Zip Code"],
+                            phone: row["Phone"],
+                            partner_code_id: PartnerCode.find_by_partner_name("Josh Fox").id,
                             onboard_complete: true
                           )
   case row["Concierge Lead Owner"]
@@ -44,7 +46,7 @@ leads.each do |row|
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
-        "<FL val='Description'>Auto Onboard June 15, 2016</FL>"\
+        "<FL val='Description'>Auto Onboard June 23, 2016</FL>"\
         "</row></Leads>"
   encoded_url = URI.encode(uri)
   url = URI.parse(encoded_url);
