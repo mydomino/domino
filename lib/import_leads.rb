@@ -26,7 +26,7 @@ leads.each do |row|
     @concierge = 'mel@mydomino.com'
   end
 
-  p "processing zoho record for: #{lead.email}"
+  p "processing zoho record for: #{row['Email']}"
 
   uri = "https://crm.zoho.com/crm/private/xml/Leads/insertRecords?"\
         "newFormat=1"\
@@ -37,9 +37,9 @@ leads.each do |row|
         "<FL val='First Name'>#{row['First Name']}</FL>"\
         "<FL val='Last Name'>#{row['Last Name']}</FL>"\
         "<FL val='Email'>#{row['Email']}</FL>"\
-        "FL val='Phone'>#{row['Phone']}</FL>"\
+        "<FL val='Phone'>#{row['Phone']}</FL>"\
         "<FL val='Lead Source'>Josh Fox</FL>"\
-        "<FL val='Street'>#{row['street']}</FL>"\
+        "<FL val='Street'>#{row['Street']}</FL>"\
         "<FL val='City'>#{row['City']}</FL>"\
         "<FL val='State'>#{row['State']}</FL>"\
         "<FL val='Zip Code'>#{row['Zip Code']}</FL>"\
@@ -50,6 +50,7 @@ leads.each do |row|
         "<FL val='Onboard Complete'>Yes</FL>"\
         "<FL val='Description'>Auto Onboard June 24, 2016</FL>"\
         "</row></Leads>"
+  puts uri
   encoded_url = URI.encode(uri)
   url = URI.parse(encoded_url);
   Net::HTTP.post_form(url, {})
