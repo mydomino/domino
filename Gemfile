@@ -36,6 +36,7 @@ gem 'pundit'
 gem 'mailkick'
 gem 'browser'
 gem 'puma'
+gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
