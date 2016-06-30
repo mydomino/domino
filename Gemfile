@@ -80,3 +80,7 @@ group :production do
   gem 'rails_12factor'
   gem 'skylight'
 end
+
+group :development do
+  gem 'guard-livereload', '~> 2.5', require: false
+end
