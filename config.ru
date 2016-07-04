@@ -3,7 +3,8 @@
 require ::File.expand_path('../config/environment', __FILE__)
 
 use Rack::ReverseProxy do
-  reverse_proxy /^\/blog(\/.*)$/, 'http://mydomino.wpengine.com$1', :preserve_host => true
+  reverse_proxy_options preserve_host: true, timeout: 15
+  reverse_proxy /^\/blog(\/.*)$/, 'http://mydomino.wpengine.com$1'
 
   reverse_proxy /^\/wp-admin(\/.*)$/, 'http://mydomino.wpengine.com/wp-admin/$1', :preserve_host => true
 end
