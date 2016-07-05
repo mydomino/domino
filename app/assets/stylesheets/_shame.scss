@@ -10,13 +10,9 @@
 $light-gray: #c5c5c5;
 $light-red: #D65A5A;
 
-
-
 .light-gray { color: $light-gray; }
 
 .bg-transparent{background-color: transparent;}
-
-
 
 /* Dashboard Styling */
 .recommendation {
@@ -204,6 +200,10 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   #mobile-nav {
     ul { font-size: 3rem; }
   }
+}
+
+#navbar .fa-phone {
+  font-size: 1.2em;
 }
 /* END custom navbar styles */
 
@@ -404,6 +404,10 @@ input{
     border-color: rgba(0,0,0,0.125);
   }
 
+  .border-blue {
+    border-color: #00ccff;
+  }
+
   .border-left {
     border-left-style: solid;
     border-left-width: 1px;
@@ -575,9 +579,13 @@ span.toggle { width: 1em; }
 .btn-navbar{
   border-width: 2px!important;
   font-size: 1.2em!important;
+  &:hover{
+    border-color: #00ccff;
+    color: #00ccff!important;
+  }
 }
 
-.btn {
+.btn-shame {
   font-family: inherit;
   font-size: inherit;
   text-decoration: none;

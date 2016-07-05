@@ -15,8 +15,8 @@
             %p
               =task.description
             -if(task.cta_link.present?)
-              =link_to task.cta_text, task.cta_link, class: 'btn block center bg-navy white rounded mb1'
+              =link_to task.cta_text, task.cta_link, class: 'btn-shame block center bg-navy white rounded mb1'
             -if(!recommendation.done)
-              =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'center btn block bg-blue white rounded mt1', method: "POST"
+              =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'center btn-shame block bg-blue white rounded mt1', method: "POST"
             -else
-              =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'center btn block bg-blue white rounded', method: "DELETE"
+              =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'center btn-shame block bg-blue white rounded', method: "DELETE"

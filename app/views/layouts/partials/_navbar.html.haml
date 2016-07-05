@@ -13,7 +13,7 @@
         .right
           .mx2.navbar-element.inline.h4
             %i.fa.fa-phone
-            %span.h4 800-979-2215
+            %span.h3 800-979-2215
           -if user_signed_in?
             -if current_user.role == 'concierge'
               =link_to 'CONCIERGE TOOLS', dashboards_path, class: 'btn-navbar white border p1 rounded text-decoration-none navbar-element'
