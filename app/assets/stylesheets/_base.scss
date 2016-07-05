@@ -21,3 +21,41 @@ p {
 }
 
 svg {fill: currentColor;}
+
+/*
+  Box Sizing
+  Per the argument made by http://tachyons.io/docs/layout/box-sizing/
+  "Box sizing makes sure that when you declare a width,
+  that is the width of the element,
+  regardless of how much border or padding you add to the element."
+*/
+
+html,
+body,
+div,
+article,
+section,
+main,
+footer,
+header,
+form,
+fieldset,
+pre,
+code,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+textarea,
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+.border-box {
+  box-sizing: border-box;
+}
