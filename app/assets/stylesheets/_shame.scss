@@ -10,13 +10,9 @@
 $light-gray: #c5c5c5;
 $light-red: #D65A5A;
 
-
-
 .light-gray { color: $light-gray; }
 
 .bg-transparent{background-color: transparent;}
-
-
 
 /* Dashboard Styling */
 .recommendation {
@@ -109,6 +105,10 @@ nav {
 .hover-show { display: none; }
 div:hover {
   &>.hover-show { display: block; }
+}
+
+.bg-navy {
+  background-color: #105585;
 }
 
 /* Overlay */
@@ -204,6 +204,10 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   #mobile-nav {
     ul { font-size: 3rem; }
   }
+}
+
+#navbar .fa-phone {
+  font-size: 1.2em;
 }
 /* END custom navbar styles */
 
@@ -390,6 +394,10 @@ input{
 }
 
 /***** dashboard custom css ************/
+.border-blue {
+  border-color: #00ccff;
+}
+
 #dashboard {
   hr {
       border: 0;
@@ -403,6 +411,7 @@ input{
     border-width: 1px;
     border-color: rgba(0,0,0,0.125);
   }
+
 
   .border-left {
     border-left-style: solid;
@@ -469,7 +478,10 @@ input{
 }
 
   .pagination {
-      border-left: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
     .first{
         padding : 0;
         float: none;
@@ -575,9 +587,13 @@ span.toggle { width: 1em; }
 .btn-navbar{
   border-width: 2px!important;
   font-size: 1.2em!important;
+  &:hover{
+    border-color: #00ccff;
+    color: #00ccff!important;
+  }
 }
 
-.btn {
+.btn-shame {
   font-family: inherit;
   font-size: inherit;
   text-decoration: none;

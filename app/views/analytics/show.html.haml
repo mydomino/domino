@@ -25,15 +25,15 @@
             %td
               =dashboards
     .bg-white.p2.mt1.rounded
-      =link_to recommendations_path(format: 'csv'), class: 'btn bg-blue white rounded' do
+      =link_to recommendations_path(format: 'csv'), class: 'btn-shame bg-blue white rounded' do
         %i.fa.fa-download
         Completed Recommendations
   .col.col-12.sm-col.sm-col-8.py3.px2
     .p2.bg-white.rounded.mt1
       %h1.inline-block.mt1 Recent Activity
       .inline-block.clearfix.right.mt1
-        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'border gray'}"
-        =link_to 'Mine', {filter: "mine"}, class: "left btn caps  rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'border gray' }"
+        =link_to 'All', {filter: 'all'}, class: "left btn-shame rounded-left #{(@filter == 'all') ? 'border border-blue bg-blue white' : 'border gray-30'}"
+        =link_to 'Mine', {filter: "mine"}, class: "left btn-shame rounded-right #{(@filter == 'mine') ? 'border border-blue bg-blue white' : 'border gray-30' }"
       .clearfix
         -@recent_events.reverse.each do |event|
           .clearfix

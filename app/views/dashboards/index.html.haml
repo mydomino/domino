@@ -1,17 +1,17 @@
-#dashboards.container
+#dashboards
   .clearfix.bg-white.mt3.mb1.p2.max-width-4.mx-auto
     .col.col-12
       %h1.inline-block.m0 Dashboards
       .inline-block.right.mt2
-        =link_to 'All', {filter: 'all'}, class: "left btn caps rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray black'}"
-        =link_to 'Mine', {filter: "mine"}, class: "left btn caps rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray black' }"
+        =link_to 'All', {filter: 'all'}, class: "left btn-shame rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray-10 black'}"
+        =link_to 'Mine', {filter: "mine"}, class: "left btn-shame rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray-10 black' }"
       .p2.mr3.right{style: 'width:400px;'} 
         =form_tag dashboards_path, method: 'GET' do
           .inline-block
             =text_field_tag 'search', @search_term, style: 'height: 1.6em;'
           =hidden_field_tag 'filter', @filter
           =hidden_field_tag 'view', 'table'
-          =submit_tag 'Search', class: 'btn white pull-right bg-blue border', style: "margin-right: 64px; width: 128px;height:32px;border-radius:16px;"
+          =submit_tag 'Search', class: 'btn btn-sm btn-primary'
 
     .col.col-12
       .clearfix
@@ -27,7 +27,7 @@
             %th Actions Done
             %th Delete
           -@dashboards.each do |dashboard|
-            %tr.dashboard-record
+            %tr
               %td #{dashboard.created_at.strftime("%Y-%m-%d")}
               %td
                 =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none blue'

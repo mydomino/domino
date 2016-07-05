@@ -2,4 +2,5 @@
   =form.association :products, collection: @products, as: :check_boxes, label: "Products", include_hidden: false, input_html: {class: 'my1 mx2'}, label_html: {class: 'bold h3'}
   %hr.my2
   =form.association :tasks, collection: @tasks, as: :check_boxes, label: "Tasks", include_hidden: false, input_html: {class: 'my1 mx2'}, label_html: {class: 'bold h3'}
-  =form.submit "Save", class: "max-width-1 btn-domino bg-blue white my2", style: 'width: 100px;'
+  .mt2
+    =form.submit "SAVE", class: "btn btn-md btn-primary"
