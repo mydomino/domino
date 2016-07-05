@@ -21,8 +21,8 @@
               =link_to 'DASHBOARD', user_dashboard_path, class: 'btn-navbar white border p1 rounded text-decoration-none navbar-element'
             =link_to 'LOG OUT', destroy_user_session_path, method: :delete, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border p1 rounded text-decoration-none navbar-element"
           -else
-            /=link_to "LOG IN", new_user_session_path, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border py1 px2 rounded text-decoration-none navbar-element", id: "link-login"
-            =link_to "LOG IN", new_user_session_path, class: "btn btn-sm #{current_page?(root_path) ? 'btn-white' : 'btn-secondary'}", id: "link-login"
+            =link_to "LOG IN", new_user_session_path, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border py1 px2 rounded text-decoration-none navbar-element", id: "link-login"
+            /=link_to "LOG IN", new_user_session_path, class: "btn btn-sm #{current_page?(root_path) ? 'btn-white' : 'btn-secondary'}", id: "link-login"
       #mobile-nav.nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block

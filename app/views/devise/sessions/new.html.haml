@@ -20,7 +20,8 @@
             %label.gray-80.ml1{style: 'font-weight:100;'} Keep me logged in
           .display-none
             = f.input_field :remember_me, class:'h1', as: :boolean, label: false if devise_mapping.rememberable?
-          = f.button :submit, "LOG IN", class: "bg-blue white py2", style: 'border-radius:40px; border:none;height:50px; color:white;'
+          .center
+            = f.button :submit, "LOG IN", class: "btn btn-md btn-primary"
           .mt2.center
             - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
               = link_to "Forgot my password", new_password_path(resource_name), style: 'color: black;font-weight:100;', class: 'gray-80'

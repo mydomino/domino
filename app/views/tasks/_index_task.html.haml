@@ -1,4 +1,4 @@
-.clearfix.rounded.flex.items-center.px2
+.clearfix.flex.items-center.px2
   .col.sm-col-2.center
     %h3
       =link_to task_toggle_default_path(task.id), method: "POST", class: 'text-decoration-none blue' do
@@ -15,5 +15,5 @@
     %h3.mt0
       =task.description
   .col.sm-col-3.center.hover-show
-    =link_to "Edit", edit_task_path(task), class: 'white bg-blue text-decoration-none rounded block p2 btn'
-    =link_to "Delete", task_path(task), class: 'white bg-red text-decoration-none rounded block btn',  method: :delete, data: {confirm: 'Are you sure?'}
+    =link_to "Edit", edit_task_path(task), class: 'btn btn-sm btn-primary'
+    =link_to "Delete", task_path(task), class: 'btn btn-sm btn-secondary',  method: :delete, data: {confirm: 'Are you sure?'}
