@@ -59,8 +59,7 @@
           .col.col-12.center.px2
             %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
         .mt2.px2.relative{style: 'height: 85px;'}
-          =form.submit "BACK", class: "btn btn-md btn-secondary inline-block absolute", style: "bottom: 2em;"
-          =form.submit "NEXT", class: "btn btn-md btn-primary inline-block absolute", style: "bottom: 2em; right: 1rem;"
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
   $(document).ready(function(){

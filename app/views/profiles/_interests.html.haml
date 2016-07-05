@@ -21,8 +21,7 @@
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
         .px2.mt4.relative{style: 'height:89px;'}
-          =form.submit "BACK", class: "btn btn-md btn-secondary inline-block absolute", style: "bottom: 2em;"
-          =form.submit "NEXT", class: "btn btn-md btn-primary inline-block absolute", style: "bottom: 2em; right: 1rem;"
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
   $(document).ready(function(){
