@@ -82,6 +82,10 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
   }
 }
 
+.btn-group {
+  display: table;
+}
+
 /* Inherited from Basscss****
 
 Button Outline */
