@@ -8,11 +8,6 @@
 }
 
 $light-gray: #c5c5c5;
-$light-red: #D65A5A;
-
-.light-gray { color: $light-gray; }
-
-.bg-transparent{background-color: transparent;}
 
 /* Dashboard Styling */
 .recommendation {
@@ -344,7 +339,7 @@ input{
 
   input[type=submit] { display: inline; }
 
-  input.error { border-color: $light-red!important; }
+  input.error { border-color: #D65A5A!important; }
 
   input[type=text],
   input[type=email], 
@@ -579,8 +574,8 @@ span.toggle { width: 1em; }
 }
 
 .btn-onboard-active {
-  background-color: #00ccff;
-  color: white;
+  background-color: #00ccff!important;
+  color: white!important;
   border: 2px solid #00ccff!important;
 }
 
