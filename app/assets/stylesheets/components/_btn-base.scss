@@ -6,7 +6,7 @@ $button-font-size: inherit !default;
 $button-font-weight: inherit !default;
 $button-line-height: 1.125rem !default;
 $button-sm-text: 1rem;
-$button-md-text: 1.5rem;
+$button-md-text: 1.5rem;/* 24px */
 $button-lg-text: 2rem;
 $button-padding-y: .5rem !default; /* 8px */
 $button-padding-x: 1rem !default;/* 16px */
@@ -31,7 +31,7 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
   margin: 0;
   height: auto;
   border: $border-width solid transparent;
-  border-radius: $border-circle;
+  border-radius: $border-radius;
   vertical-align: middle;
   -webkit-appearance: none;
   color: inherit;
