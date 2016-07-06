@@ -7,8 +7,8 @@
           Tell us some information about your home
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .sm-col.sm-col-12.px2
-          .clearfix
+        .sm-col.sm-col-12
+          .clearfix.px2
             .sm-col.sm-col-6.px2.details
               %label.h4 ADDRESS LINE 1
               %br
@@ -55,9 +55,8 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
               =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
-          .mt4.relative{style: 'height:72px;'}
-            =form.submit "BACK", class: "btn btn-md btn-secondary inline-block absolute", style: "bottom: 2em;"
-            =form.submit "NEXT", class: "btn btn-md btn-primary inline-block absolute", style: "bottom: 2em; right: 0;"
+          .px2.mt4.relative{style: 'height:72px;'}
+            =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 
 :javascript
