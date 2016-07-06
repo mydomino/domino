@@ -82,10 +82,33 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
   }
 }
 
-.btn-group {
-  display: table;
+/* remove border radius from middle buttons in btn-group*/
+.btn-group>.btn:not(:first-child):not(:last-child) {
+    border-radius: 0;
 }
 
+.btn-group .btn+.btn {
+    margin-left: -1px;
+}
+
+.btn-group>.btn:hover {
+    z-index: 2;
+}
+
+.btn-group>.btn:first-child:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-group>.btn:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn-group>.btn {
+  position: relative;
+  float: left;
+}
 /* Inherited from Basscss****
 
 Button Outline */
