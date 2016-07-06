@@ -51,7 +51,7 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
 }
 /*width here might need to be larger */
 .btn-lg { /* 16px 48px */
-  padding: $button-padding-y * 1.25 $button-padding-x * 3;
+  padding: $button-padding-y * 1.25 $button-padding-x * 2.5;
   font-size: $button-lg-text;
   line-height: $button-lg-text;
 }
