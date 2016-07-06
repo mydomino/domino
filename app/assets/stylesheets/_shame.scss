@@ -1,44 +1,17 @@
 /* Begin components.scss */
-
 .page-header-image {
   background-size: cover;
   background-position: center;
   height: 300px;
-  margin-top: 100px
+  margin-top: 100px;
 }
 
-$light-gray: #c5c5c5;
 .bg-transparent{background-color: transparent;}
 /* Dashboard Styling */
 .recommendation {
   min-height: 310px;
   &:hover {
     border-color: #00CCFF;
-  }
-}
-
-.index-product {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(0,0,0,0);
-  .hover-show {
-    display: none;
-  } 
-  &:hover {
-    .hover-show {
-      display: block;
-    }
-    border-color: rgba(0,0,0,.125);
-  }
-}
-
-.hover-show {
-  display: none;
-}
-
-div:hover {
-  &>.hover-show {
-    display: block;
   }
 }
 
@@ -80,7 +53,6 @@ div:hover {
 nav {
   .nav-bg {
     height: 100%;
-    background: none;
     display: table;
     z-index: -1;
     .content { display: none; }
@@ -89,7 +61,8 @@ nav {
     height: 100%;
     z-index: 1000;
     .nav-bg {
-      background-color: #00ccff;z-index:1000;
+      background-color: #00ccff;
+      z-index:1000;
       position: fixed;
       .content { display: block; }
       .li a { background-color: #fff; }
@@ -98,6 +71,7 @@ nav {
 }
 
 .hover-show { display: none; }
+
 div:hover {
   &>.hover-show { display: block; }
 }
@@ -136,7 +110,6 @@ div:hover {
   /*partner code input field*/
   #profile_partner_code{
     text-transform: uppercase; 
-    padding-left: 8px;
     height:34px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
@@ -208,15 +181,14 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 /* BEGIN custom Action Path Module styles */
 #action-path {
-  .wrapper { height:100px; }
   
   #lightbulb-outlet-icon { margin-top: 10px; }
-
+  
   #heatpump-car-icon { margin-top: 27px; }
 }
 /* END custom Action Path Module styles */
 
-.pointer:hover {
+.pointer{
   cursor: pointer
 }
 
@@ -244,6 +216,7 @@ button{
     z-index: 2;
   }
 }
+
 #name-and-email {
   .video-container {
     display:block;
@@ -313,7 +286,7 @@ input{
   border-color: rgba(0,0,0,0.125);
 }
 
-.border-light-gray { border-color: $light-gray; }
+.border-light-gray { border-color: #c5c5c5; }
 .border-solid { border-style: solid; }
 
 .devise-form, .recommendation-form{
@@ -505,8 +478,6 @@ input{
   }
 }
 
-.flash-msg-box {position: absolute; top: 50px;}
-
 .right-10 { right: 10px; }
 
 .top-10 { top: 10px; }
@@ -519,19 +490,11 @@ input{
   background-image: image-url('about_header.jpg');
 }
 
-.page-header-image {
-  height: 380px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 101px;
-}
-
 #faq-header {
   background-image: image-url('bg_faq.jpg');
 }
+
+
 
 body.lock-position {
   height: 100%;
@@ -564,15 +527,6 @@ span.toggle { width: 1em; }
 #slider > div{ background: #00CCFF!important; }
 
 /* Buttons */
-.btn-domino {
-  height:3em;
-  padding:1em;
-  line-height: 1em;
-  border-radius: 1.5em;
-  border: none;
-  text-decoration: none;
-}
-
 .btn-onboard-active {
   background-color: #00ccff!important;
   color: white!important;

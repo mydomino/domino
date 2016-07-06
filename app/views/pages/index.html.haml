@@ -8,7 +8,6 @@
 #profile-forms
   =render @response[:form]
 
-
 .clearfix.bg-white.mx-auto
   .col.col-12.md-col-6.gray-90.p2.center.bg-gray-05.height-420
     .max-width-2.inline-block.pt4.left-align
@@ -29,9 +28,7 @@
     %h1.center.mb4 YOUR ACTION PATH
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
-      .wrapper
-        .blue
-          =image_tag "windmill_solar_panel_icon.svg"
+      =image_tag "windmill_solar_panel_icon.svg", class: 'mb2'
       %h2.m0 1. Switch from Dirty to Clean Electricity
       %p.h4.mt2
         We'll help you switch your electricity
@@ -39,8 +36,7 @@
           source to 100% clean power
 
     .sm-col.sm-col-4.center.mb3.sm-b0.px2.line-height-1
-      .wrapper
-        =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon'
+      =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon', class: 'mb2'
       %h2.m0 2. Maximize Your Clean Electricity
       %p.h4.mt2
         Next, we'll make your clean
@@ -48,8 +44,7 @@
           electricity super-efficient
 
     .sm-col.sm-col-4.center.px2.line-height-1
-      .wrapper
-        =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon' 
+      =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon', class: 'mb2' 
       %h2.m0 3. Do Life on 100% Clean Energy
       %p.h4.mt2
         Track the progress of your path to a
