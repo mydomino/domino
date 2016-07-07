@@ -41,7 +41,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @back = (params[:commit] == 'BACK') 
+    @back = (params[:commit] == 'Back') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
 
     if @profile.onboard_step == 3
