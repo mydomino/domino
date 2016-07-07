@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
 
     #user already registered
     if User.find_by_email(params[:profile][:email])
+      flash[:notice] = "You have already signed up."
       render :js => "window.location = '/users/sign_in'" 
       return
     #user has already onboarded but not registered, render success panel

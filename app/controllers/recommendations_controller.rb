@@ -5,13 +5,13 @@ class RecommendationsController < ApplicationController
   def complete
     @recommendation = Recommendation.find(params[:recommendation_id])
     @recommendation.update_attributes(done: true, updated_by: current_concierge_maybe)
-    redirect_to @recommendation.dashboard
+    redirect_to '/dashboard'
   end
 
   def undo
     @recommendation = Recommendation.find(params[:recommendation_id])
     @recommendation.update_attributes(done: false)
-    redirect_to @recommendation.dashboard
+    redirect_to '/dashboard'
   end
 
   def create
