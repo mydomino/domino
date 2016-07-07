@@ -5,7 +5,7 @@ $button-font-family: inherit !default;
 $button-font-size: inherit !default;
 $button-font-weight: inherit !default;
 $button-line-height: 1.125rem !default;
-$button-sm-text: 1rem; /* 16px */
+$button-sm-text: 1.125rem; /* 18px */
 $button-md-text: 1.25rem;/* 20px */
 $button-lg-text: 1.5rem;/* 24px */
 $button-padding-y: 1rem !default; /* 16px */
@@ -14,7 +14,7 @@ $darken-1: rgba(0, 0, 0, .0625) !default;
 $darken-2: rgba(0, 0, 0, .125) !default;
 $darken-3: rgba(0, 0, 0, .25) !default;
 
-$border-radius: 3px;
+$border-radius: 4px;
 $border-circle: 32px;
 
 /* Transition timing function */
@@ -40,12 +40,12 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
 }
 
 .btn-sm { /* 8px 16px */
-  padding: $button-padding-y * 0.5 $button-padding-x * 1;
+  padding: $button-padding-y *0.5 $button-padding-x  ;
   font-size: $button-sm-text;
   line-height: $button-sm-text;
 }
-.btn-md { /* 8px 32px */
-  padding: $button-padding-y * 0.5 $button-padding-x * 1.5;
+.btn-md { /* 16px 24px */
+  padding: $button-padding-y $button-padding-x * 1.5;
   font-size: $button-md-text;
   line-height: $button-md-text;
 }
