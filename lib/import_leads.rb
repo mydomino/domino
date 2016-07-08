@@ -43,6 +43,7 @@ leads.each do |row|
         "&scope=crmapi"\
         "&xmlData=<Leads><row no='1'>"\
         "<FL val='Lead Owner'>#{@concierge}</FL>"\
+        "<FL val='Lead Status'>Contacted</FL>"\
         "<FL val='First Name'>#{row['First Name']}</FL>"\
         "<FL val='Last Name'>#{row['Last Name']}</FL>"\
         "<FL val='Email'>#{row['Email Address']}</FL>"\
