@@ -20,7 +20,7 @@
                 =render "profiles/interest_checkbox", :index => index + 5
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
-        .px2.mt4.relative{style: 'height:89px;'}
+        .px2.mt4.relative{style: 'height:87px;'}
           =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript

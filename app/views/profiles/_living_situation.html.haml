@@ -12,32 +12,32 @@
             .sm-col.sm-col-6.px2.details
               %label.h4 ADDRESS LINE 1
               %br
-              =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+              =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded", placeholder: ""
               %span#span-street_number.display-none{data: {geo: 'street_number'}}
               %span#span-route.display-none{data: {geo: 'route'}}
 
               %label.h4 ADDRESS LINE 2
               %br
-              =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+              =form.input_field :address_line_2, class: "h3 bg-transparent rounded", placeholder: ""
               .clearfix.mt2
-                .sm-col.sm-col-12.md-col-6.md-pr2
+                .sm-col.sm-col-12.md-col-6.md-pr1
                   %label.h4 CITY
                   %br
-                  =form.input_field :city, class: "geocode h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+                  =form.input_field :city, class: "geocode h3 bg-transparent rounded", placeholder: ""
                   %span#span-city.display-none{data: {geo: 'locality'}}
-                .sm-col.sm-col-6.md-col-3.sm-pr2
+                .sm-col.sm-col-6.md-col-3.sm-pr2.md-pr1
                   %label.h4 STATE
                   %br
-                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded border border-light-gray border-width-2"
+                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded"
                   %span#span-state.display-none{data: {geo: 'administrative_area_level_1_short'}}
                 .sm-col.sm-col-6.md-col-3
                   %label.h4 ZIP
                   %br
-                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded border border-light-gray border-width-2 height-32", maxlength: "5", placeholder: ""
+                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded", maxlength: "5", placeholder: ""
                   %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
               %label.h4 PHONE
               %br
-              =form.input_field :phone, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+              =form.input_field :phone, class: "h3 bg-transparent rounded", placeholder: ""
 
             .sm-col.sm-col-6.sm-pl4
               .sm-mt2.mb2.px2{style: 'height:64px;'}
@@ -55,7 +55,7 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
               =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
-          .px2.mt4.relative{style: 'height:72px;'}
+          .px2.mt4.relative{style: 'height:64px;'}
             =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 
