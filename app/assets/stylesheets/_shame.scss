@@ -15,6 +15,20 @@
   }
 }
 
+#tbl-dashboards th .current{
+  padding-right: 25px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+#tbl-dashboards th .asc{
+  background-image: image-url('up_arrow.gif');
+}
+
+#tbl-dashboards th .desc{
+  background-image: image-url('down_arrow.gif');
+}
+
 .modal {
   display: none;
   overflow-x: hidden;
