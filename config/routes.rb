@@ -14,10 +14,10 @@ Rails.application.routes.draw do
 
 
 
-  # get '/blog/summer-driving-tips'
-  get "/blog" => redirect("http://mydomino.wpengine.com/")
-  get "/blog/:article" => redirect{ |params, req| "http://mydomino.wpengine.com/#{params[:article]}"}
-
+  get "/blog" => redirect("http://blog.mydomino.com/")
+  get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
+  get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+  
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
