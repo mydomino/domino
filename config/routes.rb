@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
 
 
+  # get '/blog/summer-driving-tips'
+  get "/blog" => redirect("http://mydomino.wpengine.com/")
+  get "/blog/:article" => redirect{ |params, req| "http://mydomino.wpengine.com/#{params[:article]}"}
+
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
@@ -42,6 +46,6 @@ Rails.application.routes.draw do
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
-  get '/blog' => redirect("/blog/")
+  # get '/blog' => redirect("/blog/")
 
 end
