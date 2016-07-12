@@ -1,0 +1,44 @@
+// Converted Variables
+
+$darken-1: rgba(0, 0, 0, .0625) !default;
+$darken-2: rgba(0, 0, 0, .125) !default;
+$darken-3: rgba(0, 0, 0, .25) !default;
+
+// Custom Media Query Variables
+
+
+/* Primary Button Color */
+.btn-primary {
+  background-color: $blue;
+  color: $white;
+  /*&:hover {
+    box-shadow: inset 0 0 0 20rem $darken-1;
+  }*/
+}
+/* Secondary Button Color */
+.btn-secondary {
+  border-color: $gray-80;
+  color: $gray-80;
+  -webkit-backface-visibility: hidden;
+  /*&:hover {
+    background-color: transparent;
+    color: $blue;
+    border-color: $blue;
+  }*/
+}
+
+/* Hover States */
+.btn-primary--hover:hover{
+  box-shadow: inset 0 0 0 20rem $darken-1;
+}
+
+.btn-secondary--hover:hover{
+  background-color: transparent;
+  color: $blue;
+  border-color: $blue;
+
+}
+.btn:disabled,
+.is-disabled {
+  opacity: .5;
+}

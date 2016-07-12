@@ -7,7 +7,7 @@
     {
       padding-top: 60px;
     }
-  .modal.fade#new-recommendation.max-width-4.mx-auto
+  .modal#new-recommendation.max-width-4.mx-auto
     .modal-dialog
       .modal-content
         .modal-header.relative
@@ -21,9 +21,9 @@
   .bg-white.rounded.mb2
     .clearfix.center
       .sm-col.sm-col-12
-        %h1.charcoal
+        %h1.gray-80
           = @dashboard.lead_name ? "Hi, #{@dashboard.lead_name.titleize}" : "Hello!"
-    .clearfix.center.charcoal
+    .clearfix.center.gray-80
       .sm-col.sm-col-12
         %p
           Our team of nerds loves to test and research green technologies.
@@ -32,16 +32,16 @@
   .bg-white.px2.mb4
     .clearfix.relative
       .col.col-12.md-col-8
-        %h1.ml2.charcoal Your Recommendations
+        %h1.ml2.gray-80 Your Recommendations
       .col.col-12.md-col-4.center
         .mt3
           .inline-block
             %small
-              =link_to 'All', {filter: nil}, class: "btn left rounded-left caps light #{@filter.nil? ? 'bg-blue white' : 'border gray'}"
+              =link_to 'ALL', {filter: nil}, class: "btn-shame left rounded-left caps #{@filter.nil? ? 'bg-blue white border border-blue' : 'border gray-30'}"
             %small
-              =link_to 'Products', {filter: "products"}, class: "light caps left btn border-left not-rounded #{(@filter == 'products') ? 'bg-blue white' : 'border gray' }"
+              =link_to 'PRODUCTS', {filter: "products"}, class: "caps left btn-shame border-left not-rounded #{(@filter == 'products') ? 'bg-blue border border-blue white' : 'border gray-30' }"
             %small
-              =link_to 'Actions', {filter: "actions"}, class: "caps light left btn border-left rounded-right #{(@filter == 'actions') ? 'bg-blue white' : 'border gray' }"
+              =link_to 'ACTIONS', {filter: "actions"}, class: "caps left btn-shame border-left rounded-right #{(@filter == 'actions') ? 'bg-blue border border-blue white' : 'border gray-30' }"
     -@incomplete_recommendations.each_slice(3) do |recommendations|
       .clearfix
         -recommendations.each do |recommendation|

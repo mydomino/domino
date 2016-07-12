@@ -1,0 +1,127 @@
+// Converted Variables
+$border-width: 1px !default;
+$bold-font-weight: bold !default;
+$button-font-family: inherit !default;
+$button-font-size: inherit !default;
+$button-font-weight: inherit !default;
+$button-line-height: 1.125rem !default;
+$button-sm-text: 1.125rem; /* 18px */
+$button-md-text: 1.25rem;/* 20px */
+$button-lg-text: 1.5rem;/* 24px */
+$button-padding-y: 1rem !default; /* 16px */
+$button-padding-x: 1rem !default;/* 16px */
+$darken-1: rgba(0, 0, 0, .0625) !default;
+$darken-2: rgba(0, 0, 0, .125) !default;
+$darken-3: rgba(0, 0, 0, .25) !default;
+
+$border-radius: 4px;
+$border-circle: 32px;
+
+/* Transition timing function */
+$transition-fast-linear: background-color  0.1s linear; /* property missing in class name */
+
+/* Base Btn */
+
+.btn {
+  font-family: $button-font-family;
+  font-weight: $button-font-weight;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  height: auto;
+  border: $border-width solid transparent;
+  border-radius: $border-radius;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  color: inherit;
+  background-color: transparent;
+  transition: $transition-fast-linear;
+}
+
+.btn-sm { /* 8px 16px */
+  padding: $button-padding-y *0.5 $button-padding-x  ;
+  font-size: $button-sm-text;
+  line-height: $button-sm-text;
+}
+.btn-md { /* 16px 24px */
+  padding: $button-padding-y $button-padding-x * 1.5;
+  font-size: $button-md-text;
+  line-height: $button-md-text;
+}
+/*width here might need to be larger */
+.btn-lg { /* 16px 48px */
+  padding: $button-padding-y * 1.25 $button-padding-x * 2.5;
+  font-size: $button-lg-text;
+  line-height: $button-lg-text;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+/* needs accessibility design consideration */
+.btn:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+
+
+/* initial button state for homepage */
+.btn-white {
+  border-color: white;
+  color: white;
+  &:hover {
+    background-color: transparent;
+    color: $blue;
+    border-color: $blue;
+  }
+}
+
+/* remove border radius from middle buttons in btn-group*/
+.btn-group.btn {
+    border-radius: 0;
+}
+
+.btn-group .btn+.btn {
+    margin-left: -1px;
+}
+
+.btn-group>.btn:hover {
+    z-index: 2;
+}
+
+.btn-group>.btn {
+  position: relative;
+  float: left;
+}
+/* Inherited from Basscss****
+
+Button Outline */
+.btn-outline,
+.btn-outline:hover {
+  border-color: currentcolor;
+}
+
+.btn-outline {
+  border-radius: $border-radius;
+}
+
+.btn-outline:hover {
+  box-shadow: inset 0 0 0 20rem $darken-1;
+}
+
+.btn-outline:active {
+  box-shadow: inset 0 0 0 20rem $darken-2,
+    inset 0 3px 4px 0 $darken-3,
+    0 0 1px $darken-2;
+}
+
+.btn-outline:disabled,
+.btn-outline.is-disabled {
+  opacity: .5;
+}

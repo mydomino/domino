@@ -7,44 +7,44 @@
           Tell us some information about your home
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .sm-col.sm-col-12.px2
-          .clearfix
+        .sm-col.sm-col-12
+          .clearfix.px2
             .sm-col.sm-col-6.px2.details
               %label.h4 ADDRESS LINE 1
               %br
-              =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+              =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded", placeholder: ""
               %span#span-street_number.display-none{data: {geo: 'street_number'}}
               %span#span-route.display-none{data: {geo: 'route'}}
 
               %label.h4 ADDRESS LINE 2
               %br
-              =form.input_field :address_line_2, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+              =form.input_field :address_line_2, class: "h3 bg-transparent rounded", placeholder: ""
               .clearfix.mt2
-                .sm-col.sm-col-12.md-col-6.md-pr2
+                .sm-col.sm-col-12.md-col-6.md-pr1
                   %label.h4 CITY
                   %br
-                  =form.input_field :city, class: "geocode h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+                  =form.input_field :city, class: "geocode h3 bg-transparent rounded", placeholder: ""
                   %span#span-city.display-none{data: {geo: 'locality'}}
-                .sm-col.sm-col-6.md-col-3.sm-pr2
+                .sm-col.sm-col-6.md-col-3.sm-pr2.md-pr1
                   %label.h4 STATE
                   %br
-                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded border border-light-gray border-width-2"
+                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded"
                   %span#span-state.display-none{data: {geo: 'administrative_area_level_1_short'}}
                 .sm-col.sm-col-6.md-col-3
                   %label.h4 ZIP
                   %br
-                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded border border-light-gray border-width-2 height-32", maxlength: "5", placeholder: ""
+                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded", maxlength: "5", placeholder: ""
                   %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
               %label.h4 PHONE
               %br
-              =form.input_field :phone, class: "h3 bg-transparent rounded border border-light-gray border-width-2 height-32", placeholder: ""
+              =form.input_field :phone, class: "h3 bg-transparent rounded", placeholder: ""
 
             .sm-col.sm-col-6.sm-pl4
               .sm-mt2.mb2.px2{style: 'height:64px;'}
                 %label.h4 HOUSING
                 %br
-                %button.bg-white.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-left.px2{type: "button", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
-                %button.bg-white.mln10px.btn-housing.border-light-gray.charcoal.border-width-2.border-solid.pill-right.px2{type: "button", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
+                %button.bg-white.btn-housing.border-light-gray.gray-80.border-width-2.border-solid.pill-left.px2{type: "button", data: {value: "rent"}, class: "#{ @profile.housing =='rent' ? 'btn-onboard-active': ''}"} RENT
+                %button.bg-white.mln10px.btn-housing.border-light-gray.gray-80.border-width-2.border-solid.pill-right.px2{type: "button", data: {value: "own"}, class: "#{ @profile.housing =='own' ? 'btn-onboard-active' : ''}" } OWN
               .mt2.px2
                 %label.h4 AVG. ELECTRIC BILL
               .inline-block.pl2
@@ -55,9 +55,8 @@
                   %span#slider_val 0
               =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
               =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
-          .mt3.relative{style: 'height:98px;'}
-            =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em;border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-            =form.submit "NEXT", class: "btn-submit-active white right border-none inline-block absolute", style: "bottom: 2em; right: 0;border-radius: 20px;width: 120px; height: 40px;"
+          .px2.mt4.relative{style: 'height:64px;'}
+            =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 
 :javascript
@@ -69,12 +68,7 @@
       $('#profile_city').val($('#span-city').html());
       $('#profile_zip_code').val($('#span-zipcode').html());
       $('#profile_address_line_1').val($('#span-street_number').html() + " " + $('#span-route').html());
-      //$(this).val(r['address_components'][0]['short_name'] + ' ' + r['address_components'][1]['short_name']);
     });
-
-    function updateFields(r){
-
-    }
 
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
 
@@ -88,8 +82,6 @@
       create: function( event, ui ) {
         $('#slider_val').html(#{@profile.avg_electrical_bill});
         $('#slider > span').css({cursor: 'pointer', outline: '0'});
-        //$('.ui-state-hover').css('background-color', '#00CCFF!important');
-
       },
       slide: function( event, ui ) {
         $('#slider_val').html(ui.value);

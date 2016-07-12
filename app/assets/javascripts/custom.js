@@ -19,12 +19,17 @@ var navbarScroll = function(startColor, scrollColor){
         $('#logo-text > *').css('fill',logoColors.scrollColors.text)
         $('#logo-penguin > *').css('fill', logoColors.scrollColors.penguin);
         $('#navbar').css({'background-color':'#FFFFFF', 'box-shadow': '0 1px 1px 1px #f1f1f1'});
-        $('.navbar-element').css('color', scrollColor)
+        $('.navbar-element').css('color', scrollColor);
+        // $('#link-login').addClass('btn-secondary');
+        // $('#link-login').removeClass('btn-white');
+
       }else{
         $('#logo-text > *').css('fill', logoColors.startColors.text);
         $('#logo-penguin > *').css('fill', logoColors.startColors.penguin);
         $('#navbar').css({'background-color':'transparent', 'box-shadow' : 'none'});
-        $('.navbar-element').css('color', startColor)
+        $('.navbar-element').css('color', startColor);
+        // $('#link-login').addClass('btn-white');
+        // $('#link-login').removeClass('btn-secondary');
       }
     });
 }

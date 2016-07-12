@@ -1,5 +1,5 @@
 -content_for :navbar_class do
-  bg-transparent fixed white sm-col-12
+  fixed white sm-col-12
 -content_for :link_color_class do
   white
 .alerts.absolute.ml-auto.mr-auto.left-0.right-0.max-width-1.z4
@@ -8,18 +8,17 @@
 #profile-forms
   =render @response[:form]
 
-
 .clearfix.bg-white.mx-auto
-  .col.col-12.md-col-6.gray-80.p2.center.bg-gray-05.height-420
+  .col.col-12.md-col-6.gray-90.p2.center.bg-gray-05.height-420
     .max-width-2.inline-block.pt4.left-align
-      %h1.mt0 Why MyDomino? 
-      %h3 
+      %h1.mt0 Why MyDomino?
+      %h3
         We want to help change energy sources from dirty fossil fuels to clean, renewable energy. We believe this will have a substantial, positive impact on climate for people now and in the future.
       %h3.mb0
-        Check out how MyDomino can help you. 
+        Check out how MyDomino can help you.
   %a
     .col.col-12.md-col-6#hp-video-placeholder.pointer.height-420
-    
+
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
   %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
@@ -29,9 +28,7 @@
     %h1.center.mb4 YOUR ACTION PATH
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
-      .wrapper
-        .blue
-          =image_tag "windmill_solar_panel_icon.svg"
+      =image_tag "windmill_solar_panel_icon.svg", class: 'mb2'
       %h2.m0 1. Switch from Dirty to Clean Electricity
       %p.h4.mt2
         We'll help you switch your electricity
@@ -39,8 +36,7 @@
           source to 100% clean power
 
     .sm-col.sm-col-4.center.mb3.sm-b0.px2.line-height-1
-      .wrapper
-        =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon'
+      =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon', class: 'mb2'
       %h2.m0 2. Maximize Your Clean Electricity
       %p.h4.mt2
         Next, we'll make your clean
@@ -48,8 +44,7 @@
           electricity super-efficient
 
     .sm-col.sm-col-4.center.px2.line-height-1
-      .wrapper
-        =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon' 
+      =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon', class: 'mb2'
       %h2.m0 3. Do Life on 100% Clean Energy
       %p.h4.mt2
         Track the progress of your path to a
@@ -65,7 +60,7 @@
       We're All About Good Energy
     %h2.center.white.mb0
       Good Energy to Power Your Life
-    .sm-col-11.mx-auto.sm-h3.p.center.white.mt0
+    .sm-col-11.mx-auto.h3.center.white.mt0
       We're all about helping you switch from expensive, dirty fuel to
       good clean energy to power your life. We'll cut through the
       confusion to make it easy and affordable. We're clean energy
@@ -74,7 +69,7 @@
       effect of innovation, hope, and opportunity for everyone.
     %h2.center.white.mt3.mb0
       Good Energy that's Guaranteed
-    .sm-col-11.mx-auto.sm-h3.p.center.white.mt0
+    .sm-col-11.mx-auto.h3.center.white.mt0
       We work with, and will only refer you to, companies and products
       with excellent credentials. Our non-commission concierges' first-
       class service is guaranteed for the entire life of any product or
@@ -127,12 +122,12 @@
             Privileged access to our product previews and events
 
 .bg-white.clearfix.mx-auto.m2.max-width-3
-  .col.col-12.px1
-    %h1.center.mt2.mb1.line-height-1
+  .col.col-12.px1.center
+    %h1.mt2.mb1.line-height-1
       Meet our team of clean energy nerds
-    %p.mt0.mb3.center
+    %p.mt0.mb3
       Dedicated to helping you save money and make a positive impact on the environment.
-    =link_to "MEET THE TEAM", "/team" , class: "mx-auto center bg-blue h3 text-decoration-none py1 px1 block border-none white", style: 'border-radius:40px; width:250px;'
+    =link_to "Meet the Team", "/team" , class: "btn btn-md btn-primary btn-primary--hover"
 
 .bg-white.clearfix.mx-auto.max-width-4.pt1{style: 'margin-bottom: -7px;'}
   =image_tag "team-photo2a.jpg", alt: "The Team", class: 'fit mt3'

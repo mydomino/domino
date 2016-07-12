@@ -13,7 +13,7 @@
               $
           %span.mxn2
             \/year
-        %ul.px4.list-reset.mt0.max-width-2.mx-auto.inline-block.gray-80
+        %ul.px1.list-reset.mt0.max-width-2.mx-auto.inline-block.gray-80
           %li.left-align
             %h4.my1
               %span
@@ -58,9 +58,8 @@
                 APPLY
           .col.col-12.center.px2
             %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
-        .mt2.px2.relative{style: 'height: 85px;'}
-          =form.submit "BACK", class: "bg-white black inline-block absolute", style: "bottom: 2em; border: 2px solid black; border-radius: 20px;width: 120px; height: 40px;"
-          =form.submit "SUBMIT", class: "bg-blue white right border-none inline-block absolute", style: "bottom:2em; right:1rem;border-radius: 20px;width: 120px; height: 40px;"
+        .mt2.px2.relative{style: 'height: 83px;'}
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
   $(document).ready(function(){
