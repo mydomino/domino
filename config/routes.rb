@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
 
+  get "/blog" => redirect("http://blog.mydomino.com/")
+  get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
+  get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+  
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
@@ -40,6 +44,6 @@ Rails.application.routes.draw do
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
-  get '/blog' => redirect("/blog/")
+  # get '/blog' => redirect("/blog/")
 
 end

@@ -14,15 +14,15 @@ class ProfilesController < ApplicationController
       return 
     end
 
-    #user has already onboarded, render success panel
-    if @profile = Profile.find_by_email(params[:profile][:email])
+    #user already registered
+    if User.find_by_email(params[:profile][:email])
+      flash[:notice] = "You have already signed up."
+      render :js => "window.location = '/users/sign_in'" 
+      return
+    #user has already onboarded but not registered, render success panel
+    elsif @profile = Profile.find_by_email(params[:profile][:email])
       @response = {form: FORMS[4]}
       render "profiles/update.js", content_type: "text/javascript"
-      return
-    end
-    #user has already registered
-    if User.find_by_email(params[:profile][:email])
-      render :js => "window.location = '/users/sign_in'" 
       return
     else
       set_tracking_variables
