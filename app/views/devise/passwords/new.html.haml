@@ -11,8 +11,8 @@
         .form-inputs.max-width-1.mx-auto
           %label.domino-gray Email Address
           = f.input_field :email, required: true, autofocus: true, class: 'mb2 mt1', style: 'height: 40px;'
-          .py3
-            = f.button :submit, "Send me reset password instructions", class: "bg-blue white", style: 'border-radius:40px; border:none;height:50px; color:white;'
+          .center.py3
+            = f.button :submit, "Send me reset password instructions", class: "btn btn-md btn-primary"
 :javascript
   $(document).ready(function(){
     navbarScroll('#666', '#666');
