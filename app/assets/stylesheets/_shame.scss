@@ -308,11 +308,11 @@ input{
   }
   select{
     -webkit-appearance: none;
-    width: 77px;
-    background-size: 32%;
-    background-repeat: no-repeat;
-    background-position: 100% 50%;
-    background-image: image-url('chevron-down.svg');
+    width: 100%;
+    // background-size: 32%;
+    // background-repeat: no-repeat;
+    // background-position: 100% 50%;
+    // background-image: image-url('chevron-down.svg');
   }
 }
 
