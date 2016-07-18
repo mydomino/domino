@@ -21,6 +21,14 @@ module ApplicationHelper
     flash_html.html_safe
   end
 
+  def onboard_flash
+    flash_html = ''
+    flash_html << content_tag(:div, flash[:notice], class: 'bg-blue white my3 py2') do
+      concat flash[:notice].html_safe
+    end
+    flash_html.html_safe
+  end
+
   def us_states
     [
       ['AK', 'AK'],

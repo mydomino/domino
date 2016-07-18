@@ -21,14 +21,14 @@ class ProfilesController < ApplicationController
       return
     #user has already onboarded but not registered, render success panel
     elsif @profile = Profile.find_by_email(params[:profile][:email])
-      @response = {form: FORMS[4]}
-      render "profiles/update.js", content_type: "text/javascript"
+      flash.now[:notice] = "Welcome back, #{@profile.first_name}! Here is where you left off."
+      render_response
+      # render "profiles/update.js", content_type: "text/javascript"
       return
     else
       set_tracking_variables
       @profile = Profile.new(profile_params)
       if @profile.save #validations
-        @profile.update(onboard_complete: true)
         UserMailer.welcome_email_universal(@profile.email).deliver_later(wait: 10.minutes)
         render_response
         return false
@@ -43,7 +43,6 @@ class ProfilesController < ApplicationController
   def update
     @back = (params[:commit] == 'Back') 
     @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
-
     if @profile.onboard_step == 3
       @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
     end
@@ -51,6 +50,7 @@ class ProfilesController < ApplicationController
     if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
        apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     end
+    @profile.update(onboard_complete: true) if @profile.onboard_step == 4
     @profile.update(profile_params)
     render_response
   end
