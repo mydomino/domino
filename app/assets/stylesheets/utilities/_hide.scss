@@ -30,3 +30,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 }
 
 .display-none { display: none !important }
+
+.hidden { visibility: hidden; }
+
+.visible { visibility: visible;}

@@ -303,7 +303,8 @@ input{
 
 #living-situation {
   input[type=text], input[type=email], input[type=zip], input[type=tel], select {
-    border: 2px solid #c5c5c5;
+    border: 1px solid #666;
+    // border: 1px solid #c5c5c5;
     height: 42px;
   }
   select{

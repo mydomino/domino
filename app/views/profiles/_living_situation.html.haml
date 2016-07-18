@@ -7,24 +7,28 @@
           Tell us about your home
     .clearfix.mx-auto.pt4
       =simple_form_for @profile, remote: true do |form|
-        .sm-col.sm-col-12.md-col-6.pr2.md-pr4.pl2
-          %label.h4 Phone
+        .sm-col.sm-col-12.md-col-6.pr2.md-pr4.pl2.pt1
+          %label.h4 
+            Phone
+          %i.fa.fa-question-circle-o.pointer
           %br
           =form.input_field :phone, class: "h3 bg-transparent rounded", placeholder: ""
-          .mt0.md-mt4.pl1
+          %p#phone-input-hint.mt0.display-none.gray-80
+            Your number makes it quicker for our concierge team to start helping you.
+          .mt0.md-mt2.pt1
             %label.h4 Average Electric Bill (Optional)
-            .clearfix
+            .clearfix.pl1
               .col.col-8.mt1
                 #slider
               .col.col-4.pl1
-                .inline-block
+                .inline-block.center
                   %h2.m0
                     &nbsp;$
                     %span#slider_val 0
               =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
         .sm-col.sm-col-12.md-col-6.pl2.sm-pl-0.pr2
-          .clearfix
-            .details
+          .clearfix.details
+            .pt1
               %label.h4 Street address (Optional)
               %br
               =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded", placeholder: ""
@@ -57,7 +61,7 @@
               =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
         .clearfix
           .col.col-12
-            .px2.mt4.relative{style: 'height:105px;'}
+            .px2.mt4.relative{style: 'height:97px;'}
               =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
@@ -74,7 +78,11 @@
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
 
     $('#profile_phone').formance('format_phone_number');
-
+    //toggle phone input hint
+    $('.fa-question-circle-o').on('click', function(){
+      $(this).toggleClass('blue');
+      $('#phone-input-hint').toggleClass('display-none');
+    });
     $( "#slider" ).slider({
       range: "min",
       animate: "fast",
@@ -90,6 +98,7 @@
       }
     });
 
+    //housing toggle button
     $('.btn-group .btn').on('click', function(){
       $('.btn-group .btn').not(this).removeClass('btn-secondary--active');
       $(this).toggleClass('btn-secondary--active');
