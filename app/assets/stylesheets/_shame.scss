@@ -303,16 +303,17 @@ input{
 
 #living-situation {
   input[type=text], input[type=email], input[type=zip], input[type=tel], select {
-    border: 2px solid #c5c5c5;
+    border: 1px solid #666;
+    // border: 1px solid #c5c5c5;
     height: 42px;
   }
   select{
     -webkit-appearance: none;
-    width: 77px;
-    background-size: 32%;
-    background-repeat: no-repeat;
-    background-position: 100% 50%;
-    background-image: image-url('chevron-down.svg');
+    width: 100%;
+    // background-size: 32%;
+    // background-repeat: no-repeat;
+    // background-position: 100% 50%;
+    // background-image: image-url('chevron-down.svg');
   }
 }
 

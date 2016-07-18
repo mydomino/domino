@@ -36,8 +36,13 @@ $darken-3: rgba(0, 0, 0, .25) !default;
   background-color: transparent;
   color: $blue;
   border-color: $blue;
-
 }
+
+.btn-secondary--active{ 
+  color: white;
+  background-color: $gray-80; 
+}
+
 .btn:disabled,
 .is-disabled {
   opacity: .5;
