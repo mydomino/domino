@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+:css
+  .invalid-field {
+    border-color:red!important;
+  }
+
+  .btn-secondary--invalid {
+    border-color: red;
+    color: red;
+  }
+
+>>>>>>> staging
 #living-situation.pt4
   .max-width-3.mx-auto.mt4
     .clearfix.mb2
@@ -11,7 +24,9 @@
             Phone
           %i.fa.fa-question-circle-o.pointer
           %br
-          =form.input_field :phone, class: "h3 bg-transparent rounded", placeholder: ""
+          =form.input_field :phone, class: "h3 bg-transparent rounded required-field", placeholder: "", data: {reg: '\\(\\d{3}\\)\\s\\d{3}\\-\\d{4}', target: '#phone-error-msg'}
+          #phone-error-msg.input-error-msg.display-none
+            Phone number is required.
           %p#phone-input-hint.mt0.display-none.gray-80
             Your number makes it quicker for our concierge team to start helping you.
           .mt0.md-mt2.pt1
@@ -34,30 +49,34 @@
               %span#span-street_number.display-none{data: {geo: 'street_number'}}
               %span#span-route.display-none{data: {geo: 'route'}}
             
-            .col.col-5.pt1
+            #city-state-zip.col.col-5.pt1{data: {target: '#city-error-msg'}}
               %label.h4 City
               %br
-              =form.input_field :city, class: "geocode h3 bg-transparent rounded", placeholder: ""
+              =form.input_field :city, class: "geocode h3 bg-transparent rounded required-field", placeholder: "",  data: {reg: '\\w', 'msg-group': '#city-state-zip', label: 'City'}
               %span#span-city.display-none{data: {geo: 'locality'}}
             .col.col-3.pt1
               .pl1
                 %label.h4 State
                 %br
-                =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded"
+                =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded required-field", data: {reg: '^\\w{2}', 'msg-group': '#city-state-zip', label: 'State'}
                 %span#span-state.display-none{data: {geo: 'administrative_area_level_1_short'}}
             .col.col-4.pt1
               .pl1
                 %label.h4 Zip
                 %br
-                =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded", maxlength: "5", placeholder: ""
+                =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded required-field", maxlength: "5", placeholder: "", data: {reg: '^\\d{5}', 'msg-group': '#city-state-zip', label: 'Zip'}
                 %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
+            #city-error-msg.input-error-msg.display-none
+              /City, State, &amp; Zip are required.
             .col.col-12.pt1
               %label.h4 Housing
               %br
               .btn-group
                 %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'rent'}", type: "button", data: {value: "rent"}} Rent
                 %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'own'}", type: "button", data: {value: "own"}} Own
-              =form.input :housing, :as => :hidden, input_html: { value: @profile.housing }
+              =form.input :housing, :as => :hidden, input_html: { data: {reg: '(own|rent)', target: '#housing-error-msg', 'error-target': '.btn-group > .btn-secondary'}, value: @profile.housing, class: 'required-field'}
+            #housing-error-msg.input-error-msg.display-none
+              Housing type is required.
         .clearfix
           .col.col-12
             .px2.mt4.relative{style: 'height:97px;'}
@@ -72,16 +91,19 @@
       $('#profile_city').val($('#span-city').html());
       $('#profile_zip_code').val($('#span-zipcode').html());
       $('#profile_address_line_1').val($('#span-street_number').html() + " " + $('#span-route').html());
+      $requiredFields.change();
     });
 
     $('#navbar, #navbar-brand, #link-login').css('color', '#666666');
 
-    $('#profile_phone').formance('format_phone_number');
+    $("#profile_phone").mask("(999) 999-9999");
+
     //toggle phone input hint
     $('.fa-question-circle-o').on('click', function(){
       $(this).toggleClass('blue');
       $('#phone-input-hint').toggleClass('display-none');
     });
+
     $( "#slider" ).slider({
       range: "min",
       animate: "fast",
@@ -103,14 +125,108 @@
       $(this).toggleClass('btn-secondary--active');
       if( $('.btn-secondary--active').size() > 0 ){
         var val = $(this).data("value");
-        $('#profile_housing').val(val);
+        $('#profile_housing').val(val).trigger('change');
       }else{
-        $('#profile_housing').val("");
+        $('#profile_housing').val("").trigger('change');
+      }
+    });
+
+    var $requiredFields = $('.required-field');
+    var invalidFields = [];
+
+    $('input[value="Next"]').on('click', function(e){
+      e.preventDefault();
+      if (validateRequiredFields($requiredFields)){ $("form").submit() }
+    });
+
+    function formatErrorMsg($group) {
+      console.log(invalidFields);
+      switch (invalidFields.length) {
+              case 1:
+                str = invalidFields[0] + ' is required.';
+                break;
+              case 2:
+                str = invalidFields[0] + ' and ' + invalidFields[1] + ' are required.';
+                break;
+              case 3:
+                str = invalidFields[0] + ', ' + invalidFields[1] + ', & ' + invalidFields[2] + ' are required.';
+                break;
+            }
+            $($group.data('target')).html(str);
+            $($group.data('target')).removeClass('display-none');
+    }
+
+    //requiredFieldsComplete = false;
+    var validateRequiredFields = function($fields){
+      invalidFields = [];
+      $.each($fields,function(index, value){
+        patt = new RegExp($(value).data('reg'));
+        if(patt.test($(value).val()) == false  ){
+          $(value).addClass('invalid-field');
+
+          if($(value).data('error-target')){
+            var target = $(value).data('error-target');
+            $(target).addClass('btn-secondary--invalid');
+          }
+
+          if($(value).data('msg-group')){
+            var $group = $($(value).data('msg-group'));
+            invalidFields.push($(value).data('label'));
+            formatErrorMsg($group);
+            
+          } else {
+            $($(value).data('target')).removeClass('display-none');
+          }
+        }
+      });
+      return $('.invalid-field').length == 0 ? true : false;
+    };
+
+    //state machine
+    $requiredFields.bind('input change propertychange', function(){
+      patt = new RegExp($(this).data('reg'));
+      console.log(patt);
+      if(patt.test($(this).val()) == true ){
+        $(this).removeClass('invalid-field');
+        if ($(this).data('msg-group')){
+          var $group = $($(this).data('msg-group'));
+          var msgGroup = $(this).data('msg-group');
+          var target = $(msgGroup).data('target');
+
+          var label = $(this).data('label');
+          var validIndex = invalidFields.indexOf(label);
+          if(validIndex != -1){
+            invalidFields.splice(validIndex, 1);
+            formatErrorMsg($group);
+          }
+
+          var $msgGroup = $('*[data-msg-group="' + msgGroup + '"]');
+          var numFields = $msgGroup.length;
+          var numValidFields = 0;
+
+          $.each($msgGroup,function(index, value){
+            patt = new RegExp($(value).data('reg'));
+            if(patt.test($(value).val()) == false){
+              return false;
+            } else {
+              numValidFields += 1;
+            }
+          });
+          if(numValidFields == numFields){
+            $(target).addClass('display-none');
+          }
+        } else {
+          if($(this).data('error-target')){
+            var target = $(this).data('error-target');
+            $(target).removeClass('btn-secondary--invalid');
+          }
+          $($(this).data('target')).addClass('display-none');
+        }
       }
     });
 
     //submit buttons may not be pushed multiple times
-    $("form").submit(function() {
+    $("form").submit(function(e) {
       $(this).submit(function() {
         return false;
       });
