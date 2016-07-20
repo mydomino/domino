@@ -17,8 +17,7 @@
 //= require nprogress-ajax
 //= require dynamic
 //= require signup
-//= require formance
+//= require jquery.mask.min.js
 //= require storefront
 //= require modal
-//= require jquery.placeholder.min.js
 //= require custom

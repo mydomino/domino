@@ -99,6 +99,16 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
   position: relative;
   float: left;
 }
+.btn-group>.btn:first-child:not(:last-child){
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-group>.btn:last-child:not(:first-child){
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 /* Inherited from Basscss****
 
 Button Outline */
