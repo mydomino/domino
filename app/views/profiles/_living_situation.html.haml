@@ -46,25 +46,25 @@
               %span#span-street_number.display-none{data: {geo: 'street_number'}}
               %span#span-route.display-none{data: {geo: 'route'}}
             
-            #city-state-zip.col.col-5.pt1{data: {'errors': 'false', target: '#city-error-msg'}}
+            #city-state-zip.col.col-5.pt1{data: {target: '#city-error-msg'}}
               %label.h4 City
               %br
-              =form.input_field :city, class: "geocode h3 bg-transparent rounded required-field", placeholder: "",  data: {reg: '\\w', 'msg-group': '#city-state-zip'}
+              =form.input_field :city, class: "geocode h3 bg-transparent rounded required-field", placeholder: "",  data: {reg: '\\w', 'msg-group': '#city-state-zip', label: 'City'}
               %span#span-city.display-none{data: {geo: 'locality'}}
             .col.col-3.pt1
               .pl1
                 %label.h4 State
                 %br
-                =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded required-field", data: {reg: '^\\w{2}', 'msg-group': '#city-state-zip'}
+                =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded required-field", data: {reg: '^\\w{2}', 'msg-group': '#city-state-zip', label: 'State'}
                 %span#span-state.display-none{data: {geo: 'administrative_area_level_1_short'}}
             .col.col-4.pt1
               .pl1
                 %label.h4 Zip
                 %br
-                =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded required-field", maxlength: "5", placeholder: "", data: {reg: '^\\d{5}', 'msg-group': '#city-state-zip'}
+                =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded required-field", maxlength: "5", placeholder: "", data: {reg: '^\\d{5}', 'msg-group': '#city-state-zip', label: 'Zip'}
                 %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
             #city-error-msg.input-error-msg.display-none
-              City, State, &amp; Zip are required.
+              /City, State, &amp; Zip are required.
             .col.col-12.pt1
               %label.h4 Housing
               %br
@@ -126,19 +126,36 @@
       }else{
         $('#profile_housing').val("").trigger('change');
       }
-
     });
 
     var $requiredFields = $('.required-field');
-    var $invalidFields = [];
+    var invalidFields = [];
 
     $('input[value="Next"]').on('click', function(e){
       e.preventDefault();
       if (validateRequiredFields($requiredFields)){ $("form").submit() }
     });
 
+    function formatErrorMsg($group) {
+      console.log(invalidFields);
+      switch (invalidFields.length) {
+              case 1:
+                str = invalidFields[0] + ' is required.';
+                break;
+              case 2:
+                str = invalidFields[0] + ' and ' + invalidFields[1] + ' are required.';
+                break;
+              case 3:
+                str = invalidFields[0] + ', ' + invalidFields[1] + ', & ' + invalidFields[2] + ' are required.';
+                break;
+            }
+            $($group.data('target')).html(str);
+            $($group.data('target')).removeClass('display-none');
+    }
+
     //requiredFieldsComplete = false;
     var validateRequiredFields = function($fields){
+      invalidFields = [];
       $.each($fields,function(index, value){
         patt = new RegExp($(value).data('reg'));
         if(patt.test($(value).val()) == false  ){
@@ -151,8 +168,9 @@
 
           if($(value).data('msg-group')){
             var $group = $($(value).data('msg-group'));
-            console.log($group);
-            $($group.data('target')).removeClass('display-none');
+            invalidFields.push($(value).data('label'));
+            formatErrorMsg($group);
+            
           } else {
             $($(value).data('target')).removeClass('display-none');
           }
@@ -168,8 +186,16 @@
       if(patt.test($(this).val()) == true ){
         $(this).removeClass('invalid-field');
         if ($(this).data('msg-group')){
+          var $group = $($(this).data('msg-group'));
           var msgGroup = $(this).data('msg-group');
           var target = $(msgGroup).data('target');
+
+          var label = $(this).data('label');
+          var validIndex = invalidFields.indexOf(label);
+          if(validIndex != -1){
+            invalidFields.splice(validIndex, 1);
+            formatErrorMsg($group);
+          }
 
           var $msgGroup = $('*[data-msg-group="' + msgGroup + '"]');
           var numFields = $msgGroup.length;
