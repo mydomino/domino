@@ -29,7 +29,7 @@ class SaveToZohoJob < ActiveJob::Base
         "<FL val='Campaign'>#{lead.campaign}</FL>"\
         "<FL val='Ip Address'>#{lead.ip}</FL>"\
         "<FL val='Browser'>#{lead.browser}</FL>"\
-        "<FL val='Onboard Complete'>Yes</FL>"\
+        "<FL val='Onboard Complete'>No</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
         "</row></Leads>"

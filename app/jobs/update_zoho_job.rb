@@ -32,6 +32,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
             "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
             "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
+            "<FL val='Onboard Complete'>#{lead.onboard_complete ? 'Yes' : 'No'}</FL>"\
             "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
             "</row></Leads>"
       encoded_url = URI.encode(uri)

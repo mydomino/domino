@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
 
   def index
+    #continue onboarding
     if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
       if @profile.onboard_step == 0
         Profile.skip_callback(:update, :after, :update_zoho)

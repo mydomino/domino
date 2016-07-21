@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
         render :js => "window.location = '/users/sign_in'"
         flash[:notice] = "You have already signed up."
       end
-      return 
+      return
     end
 
     #user already registered
@@ -19,16 +19,20 @@ class ProfilesController < ApplicationController
       flash[:notice] = "You have already signed up."
       render :js => "window.location = '/users/sign_in'" 
       return
-    #user has already onboarded but not registered, render success panel
     elsif @profile = Profile.find_by_email(params[:profile][:email])
-      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
-      render_response
+    #user has begun, but not completed onboarding
+      if !@profile.onboard_complete
+        flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
+        render_response
+      else
+        @profile.update(onboard_step: 4) if @profile.onboard_step < 4
+        render_response
+      end
       return
     else
       set_tracking_variables
       @profile = Profile.new(profile_params)
       if @profile.save #validations
-        UserMailer.welcome_email_universal(@profile.email).deliver_later(wait: 10.minutes)
         render_response
         return false
       else
@@ -49,7 +53,10 @@ class ProfilesController < ApplicationController
     if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
        apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     end
-    @profile.update(onboard_complete: true) if @profile.onboard_step == 4
+    if @profile.onboard_step == 3
+      UserMailer.welcome_email_universal(@profile.email).deliver_later
+      @profile.update(onboard_complete: true)
+    end 
     @profile.update(profile_params)
     render_response
   end
