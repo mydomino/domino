@@ -1,4 +1,4 @@
-%nav#navbar.col-12.z3{class: yield(:navbar_class)}
+%nav#navbar.col-12.z3.top-0{class: yield(:navbar_class)}
   .max-width-4.mx-auto
     .clearfix
       .col.col-4.p2
@@ -37,7 +37,7 @@
               %li
                 = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
             %li
-              = link_to 'Call us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"        
+              = link_to 'Call us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
 :javascript
   $(document).ready(function(){
     $('nav .fa-bars').click(function(){

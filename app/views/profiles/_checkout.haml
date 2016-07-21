@@ -1,7 +1,8 @@
-:css
-
-#checkout.pt4
-  .max-width-3.mx-auto.mt2
+.spacer{style: 'height: 100px;' }       
+-if flash[:notice]
+  =render 'profiles/flash_notice'
+#checkout.mt1
+  .max-width-3.mx-auto
     .clearfix
       .sm-col.sm-col-12.mx-auto.center
         %h2.center.blue.m0
@@ -13,7 +14,7 @@
               $
           %span.mxn2
             \/year
-        %ul.px1.list-reset.mt0.max-width-2.mx-auto.inline-block.gray-80
+        %ul.px1.list-reset.my0.max-width-2.mx-auto.inline-block.gray-80
           %li.left-align
             %h4.my1
               %span
@@ -58,11 +59,16 @@
                 APPLY
           .col.col-12.center.px2
             %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
-        .mt2.px2.relative{style: 'height: 83px;'}
+        .mt2.px2.relative{style: 'height: 71px;'}
           =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
   $(document).ready(function(){
+    logoColors.startColors.text = '#666'
+    logoColors.startColors.penguin = '#00ccff'
+    $('.navbar-element').css('color', '#666666');
+    navbarScroll('#666666', '#666');
+    
     $('#btn-apply').on('click', function(){
       var partnerCode = $('#profile_partner_code').val();
       $.ajax({

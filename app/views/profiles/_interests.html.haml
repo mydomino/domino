@@ -1,5 +1,8 @@
-#interests.pt4
-  .max-width-3.mx-auto.mt4
+.spacer{style: 'height: 100px;' }       
+-if flash[:notice]
+  =render 'profiles/flash_notice'
+#interests.mt1
+  .max-width-3.mx-auto
     .clearfix.mb2
       .col.col-12.center
         .max-width-1.mx-auto.h2.line-height-2
@@ -17,7 +20,7 @@
                 =render "profiles/interest_checkbox", :index => index + 5
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
-        .px2.mt4.relative{style: 'height:87px;'}
+        .px2.mt4.relative{style: 'height:107px;'}
           =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript

@@ -6,8 +6,14 @@ class PagesController < ApplicationController
 
   def index
     if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
+      if @profile.onboard_step == 0
+        Profile.skip_callback(:update, :after, :update_zoho)
+        @profile.update(onboard_step: 1)
+        Profile.set_callback(:update, :after, :update_zoho)
+      end
       interest_form_resources if (@profile.onboard_step == 1)
       get_partner_code if (@profile.onboard_step == 3)
+      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
       @response = {form: "profiles/#{FORMS[@profile.onboard_step]}", method: :put}
       return
     end

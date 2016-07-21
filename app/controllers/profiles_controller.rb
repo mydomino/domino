@@ -21,9 +21,8 @@ class ProfilesController < ApplicationController
       return
     #user has already onboarded but not registered, render success panel
     elsif @profile = Profile.find_by_email(params[:profile][:email])
-      flash.now[:notice] = "Welcome back, #{@profile.first_name}! Here is where you left off."
+      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
       render_response
-      # render "profiles/update.js", content_type: "text/javascript"
       return
     else
       set_tracking_variables

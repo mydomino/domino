@@ -1,0 +1,9 @@
+#flash-notice.h2.white.bg-blue.mb1
+  .max-width-4.mx-auto.py2.pl2.pr3
+    =flash[:notice]
+    %i#close-modal.pointer.fa.fa-times.right
+
+:javascript
+  $('#close-modal').on('click', function(){
+    $('#flash-notice').slideUp();
+  });
