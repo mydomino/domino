@@ -135,11 +135,11 @@ div:hover {
 
   /*partner code input field*/
   #profile_partner_code{
-    text-transform: uppercase; 
+    text-transform: uppercase;
     height:44px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    width:100px; 
+    width:100px;
   }
 
   #partner-code-label{
@@ -191,7 +191,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 /* BEGIN custom navbar styles */
 #navbar {
-  
+
   .fa-bars {
     font-size: 2rem;
     padding-top: 2.2rem;
@@ -208,9 +208,9 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 /* BEGIN custom Action Path Module styles */
 #action-path {
-  
+
   #lightbulb-outlet-icon { margin-top: 10px; }
-  
+
   #heatpump-car-icon { margin-top: 27px; }
 }
 /* END custom Action Path Module styles */
@@ -239,7 +239,7 @@ button{
     bottom: 0;
     left: 0;
     background-image: linear-gradient(#000000, #727272);
-    opacity: .6; 
+    opacity: .6;
     z-index: 2;
   }
 }
@@ -295,7 +295,7 @@ input{
 
 #name-and-email {
   input[type=text], input[type=email] {
-    border: 2px solid white;
+    border: 1px solid white;
     height: 42px;
   }
   ::placeholder{
@@ -359,10 +359,10 @@ input{
   input.error { border-color: #D65A5A!important; }
 
   input[type=text],
-  input[type=email], 
-  input[type=password], 
-  input[type=tel], 
-  textarea, 
+  input[type=email],
+  input[type=password],
+  input[type=tel],
+  textarea,
   select {
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -380,7 +380,7 @@ input{
     /*border: 1px solid rgba(81, 203, 238, 1);*/
   }
 
-  
+
 
 }
 
@@ -554,7 +554,7 @@ body.lock-position {
 span.toggle { width: 1em; }
 
 #profile-forms {
-  min-height: 620px; 
+  min-height: 620px;
   border-bottom: 2px solid lightgray;
 
   .btn-housing-active { background-color: #00CCFF; }
