@@ -13,14 +13,8 @@ class ProfilesController < ApplicationController
     
     #create new profile
     set_tracking_variables
-    @profile = Profile.new(profile_params)
-    render_response if @profile.save #validations, TODO: validate on client side
-    return if @profile.persisted?
-
-    #validation failed
-    @response = {form: FORMS[0], method: :post}
-    render "profiles/update.js", content_type: "text/javascript"
-    return
+    @profile = Profile.create(profile_params)
+    render_response and return
   end
 
   def update

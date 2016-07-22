@@ -70,7 +70,6 @@
                 =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded required-field", maxlength: "5", placeholder: "", data: {reg: '^\\d{5}', 'msg-group': '#city-state-zip', label: 'Zip'}
                 %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
             #city-error-msg.input-error-msg.display-none
-              /City, State, &amp; Zip are required.
             .col.col-12.pt1
               %label.h4 Housing
               %br

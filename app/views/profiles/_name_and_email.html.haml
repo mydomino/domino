@@ -1,33 +1,38 @@
 -content_for :name_and_email do
+  :css
+    .invalid-field {
+      border-color:red!important;
+    }
   .center.white
     .h0.mt3.mb1.light.line-height-1
       Ditch the dirty.
       %br
       Switch to clean.
     .h2.white.mb2 Join the action path to your 100% clean energy lifestyle.
+
   .clearfix.mx-auto.max-width-2.px2
     =simple_form_for @profile, remote: true, method: @response[:method] do |form|
       .clearfix
         .col.col-6.px2.py1
           %label.white.hide First Name
-          =form.input_field :first_name, class: "h3 bg-transparent white rounded height-32 #{'error' if (@profile.errors[:first_name].size >= 1)}", placeholder: "First Name"
-          -if (@profile.errors[:first_name].size >= 1)
-            %p.red.m0 'First Name' is blank
+          =form.input_field :first_name, class: "h3 bg-transparent white rounded height-32 required-field", placeholder: "First Name", data: {reg: '\\w', target: '#first-name-error-msg'}
+          #first-name-error-msg.display-none.red.m0 
+            'First Name' is blank
         .col.col-6.px2.py1
           %label.white.hide Last Name
-          =form.input_field :last_name, class: "h3 bg-transparent white rounded height-32  #{'error' if (@profile.errors[:last_name].size >= 1)}", placeholder: "Last Name"
-          -if (@profile.errors[:last_name].size >= 1)
-            %p.red.m0 'Last Name' is blank
+          =form.input_field :last_name, class: "h3 bg-transparent white rounded height-32 required-field", placeholder: "Last Name", data: {reg: '\\w', target: '#last-name-error-msg'}
+          #last-name-error-msg.display-none.red.m0
+            'Last Name' is blank
       .clearfix
         .col.col-12.px2.mt1
           %label.white.hide Email Address
-          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32 #{'error' if (@profile.errors[:email].size >= 1)}", placeholder: "Email Address"
-          -if (@profile.errors[:email].size >= 1)
-            %p.red.m0 This email is invalid. Please try a valid email address.
-
+          =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32 required-field", placeholder: "Email Address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
+          #email-error-msg.display-none.red.m0
+            This email is invalid. Please try a valid email address.
       .sm-col.sm-col-12.my3
         .center
           =form.submit "Get started", class: "btn btn-lg btn-primary btn-primary--hover"
+
 -if @browser.device.mobile?
   #name-and-email.mobile-form.pt4{style: 'height: 556px;'}
     .overlay-mobile
@@ -43,11 +48,40 @@
       #form-container.absolute.z2{style: 'top:100px;left:0;right:0'}
         =yield :name_and_email
 
+
 :javascript
   $(document).ready(function(){
-    logoColors.startColors.text = '#fff'
-    logoColors.startColors.penguin = '#fff'
+    logoColors.startColors.text = '#fff';
+    logoColors.startColors.penguin = '#fff';
     navbarScroll('#FFFFFF', '#666');
+
+    var $requiredFields = $('.required-field');
+
+    $('input[value="Get started"]').on('click', function(e){
+      e.preventDefault();
+      if (validateRequiredFields($requiredFields)){ 
+        $("form").submit();
+      }
+    });
+
+    var validateRequiredFields = function($fields){
+      $.each($fields,function(index, value){
+        patt = new RegExp($(value).data('reg'));
+        if(patt.test($(value).val()) == false  ){
+          $(value).addClass('invalid-field');
+          $($(value).data('target')).removeClass('display-none');
+        }
+      });
+      return $('.invalid-field').length == 0 ? true : false;
+    };
+
+    $requiredFields.bind('input change propertychange', function(){
+      patt = new RegExp($(this).data('reg'));
+      if(patt.test($(this).val()) == true ){
+        $(this).removeClass('invalid-field');
+        $($(this).data('target')).addClass('display-none');
+      }
+    });
     //submit buttons may not be pushed multiple times
     $("form").submit(function() {
       $(this).submit(function() {
