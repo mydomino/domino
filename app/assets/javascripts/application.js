@@ -18,6 +18,5 @@
 //= require dynamic
 //= require signup
 //= require jquery.mask.min.js
-//= require storefront
 //= require modal
 //= require custom
