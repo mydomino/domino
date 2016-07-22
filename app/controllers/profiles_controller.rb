@@ -44,19 +44,37 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @back = (params[:commit] == 'Back') 
-    @back ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
-    if @profile.onboard_step == 3
+    if @profile.onboard_complete
+      @profile.update_zoho
+    end
+ 
+    params[:commit] == 'Back' ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
+
+    case @profile.onboard_step
+    when 2, 4
+      apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
+    when 3
       @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
+      if !@profile.onboard_complete
+        UserMailer.welcome_email_universal(@profile.email).deliver_later
+        @profile.update(onboard_complete: true)
+        @profile.save_to_zoho
+      end
     end
 
-    if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
-       apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
-    end
-    if @profile.onboard_step == 3
-      UserMailer.welcome_email_universal(@profile.email).deliver_later
-      @profile.update(onboard_complete: true)
-    end 
+    # if @profile.onboard_step == 3
+      # a@partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
+    # end
+
+    # if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
+    #    apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
+    # end
+    # if @profile.onboard_step == 3
+    #   UserMailer.welcome_email_universal(@profile.email).deliver_later
+    #   @profile.update(onboard_complete: true)
+    #   @profile.save_to_zoho
+    # end
+
     @profile.update(profile_params)
     render_response
   end

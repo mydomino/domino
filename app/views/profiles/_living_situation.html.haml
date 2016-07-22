@@ -151,7 +151,9 @@
 
     $('input[value="Next"]').on('click', function(e){
       e.preventDefault();
-      if (validateRequiredFields($requiredFields)){ $("form").submit() }
+      if (validateRequiredFields($requiredFields)){ 
+        $("form").submit();
+      }
     });
 
     function formatErrorMsg($group) {
