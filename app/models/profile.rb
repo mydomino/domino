@@ -17,10 +17,6 @@ class Profile < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
 
-  #after_create :save_to_zoho
-  #after_update :delete_redundant_delayed_jobs, :update_zoho
-  # after_update :update_zoho
-
   def save_to_zoho
     if LegacyUser.find_by_email(self.email)
     else
@@ -28,7 +24,7 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  #method to minimize api calls to zoho
+  #method to minimize api calls to zoho on lead profile updates
   def delete_redundant_delayed_jobs
     djs = Delayed::Job.where('handler LIKE ?', "%job_class: UpdateZohoJob%gid%/Profile/#{self.id}%").order(created_at: :desc)
     if djs.count > 1
@@ -40,8 +36,7 @@ class Profile < ActiveRecord::Base
   def update_zoho
     #destroy other update operations on same zoho record to minimize zoho api calls
     delete_redundant_delayed_jobs
+    # takes time for zoho record to propogate through api, needs further testing
     UpdateZohoJob.set(wait: 3.minutes).perform_later self
   end
-  # takes time for zoho record to propogate through api, needs further testing
-  # handle_asynchronously :update_zoho, :run_at => Proc.new { 3.minutes.from_now }
 end

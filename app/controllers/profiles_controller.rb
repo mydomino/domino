@@ -3,44 +3,24 @@ class ProfilesController < ApplicationController
   FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
   
   def create
-    #if legacy user attempts to onboard, redirect to sign up or sign in
-    if @lu = LegacyUser.find_by_email(params[:profile][:email])
-      if !@lu.dashboard_registered
-        render :js => "window.location ='/users/sign_up?email=#{@lu.email}'"
-      else
-        render :js => "window.location = '/users/sign_in'"
-        flash[:notice] = "You have already signed up."
-      end
-      return
-    end
 
-    #user already registered
-    if User.find_by_email(params[:profile][:email])
-      flash[:notice] = "You have already signed up."
-      render :js => "window.location = '/users/sign_in'" 
-      return
-    elsif @profile = Profile.find_by_email(params[:profile][:email])
-    #user has begun, but not completed onboarding
-      if !@profile.onboard_complete
-        flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
-        render_response
-      else
-        @profile.update(onboard_step: 4) if @profile.onboard_step < 4
-        render_response
-      end
-      return
-    else
-      set_tracking_variables
-      @profile = Profile.new(profile_params)
-      if @profile.save #validations
-        render_response
-        return false
-      else
-        @response = {form: FORMS[0], method: :post}
-        render "profiles/update.js", content_type: "text/javascript"
-        return
-      end
-    end
+    #handle onboarding edge cases 
+    @email = params[:profile][:email]
+    return if legacy_user?
+    return if user_already_registered?
+    return if onboarding_incomplete?
+    return if onboarded_but_not_registered?
+    
+    #create new profile
+    set_tracking_variables
+    @profile = Profile.new(profile_params)
+    render_response if @profile.save #validations, TODO: validate on client side
+    return if @profile.persisted?
+
+    #validation failed
+    @response = {form: FORMS[0], method: :post}
+    render "profiles/update.js", content_type: "text/javascript"
+    return
   end
 
   def update
@@ -61,19 +41,6 @@ class ProfilesController < ApplicationController
         @profile.save_to_zoho
       end
     end
-
-    # if @profile.onboard_step == 3
-      # a@partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
-    # end
-
-    # if (@profile.onboard_step == 2 || @profile.onboard_step == 4)
-    #    apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
-    # end
-    # if @profile.onboard_step == 3
-    #   UserMailer.welcome_email_universal(@profile.email).deliver_later
-    #   @profile.update(onboard_complete: true)
-    #   @profile.save_to_zoho
-    # end
 
     @profile.update(profile_params)
     render_response
@@ -101,6 +68,47 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def legacy_user? 
+    if @lu = LegacyUser.find_by_email(@email)
+      if !@lu.dashboard_registered
+        render :js => "window.location ='/users/sign_up?email=#{@lu.email}'"
+      else
+        flash[:notice] = "You have already signed up."
+        render :js => "window.location = '/users/sign_in'"
+      end
+      return true
+    end
+    return false
+  end
+
+  def user_already_registered?
+    if User.find_by_email(@email)
+      flash[:notice] = "You have already signed up."
+      render :js => "window.location = '/users/sign_in'" 
+      return true
+    end
+    return false
+  end
+
+  def onboarding_incomplete?
+    #user has begun, but not completed onboarding
+    if (@profile = Profile.find_by_email(@email)) && !@profile.onboard_complete
+      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
+      render_response
+      return true
+    end
+    return false
+  end
+
+  def onboarded_but_not_registered?
+    if (@profile = Profile.find_by_email(@email)) && @profile.onboard_complete
+      @profile.update(onboard_step: 4) if @profile.onboard_step < 4
+      render_response
+      return true
+    end
+    return false
+  end
 
   def set_profile
     @profile = Profile.find(params[:id])

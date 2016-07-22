@@ -2,6 +2,12 @@ class SaveToZohoJob < ActiveJob::Base
   queue_as :default
 
   def perform(lead)
+    #save interests using xml, for only text fields can be updated w/ rubyzoho
+    @interests = []
+    
+    lead.offerings.each do |o|
+      @interests << o.name 
+    end
     uri = "https://crm.zoho.com/crm/private/xml/Leads/insertRecords?"\
           "newFormat=1"\
           "&authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
@@ -13,6 +19,7 @@ class SaveToZohoJob < ActiveJob::Base
           "<FL val='Email'>#{lead.email}</FL>"\
           "<FL val='Campaign'>#{lead.campaign}</FL>"\
           "<FL val='Browser'>#{lead.browser}</FL>"\
+          "<FL val='Interests'>#{@interests.join(';')};</FL>"\
           "<FL val='Street'>#{lead.address_line_1}</FL>"\
           "<FL val='City'>#{lead.city}</FL>"\
           "<FL val='State'>#{lead.state}</FL>"\
