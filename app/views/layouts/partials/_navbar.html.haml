@@ -30,7 +30,7 @@
           %ul.py4.center.list-reset
             -if !user_signed_in?
               %li
-                = link_to 'Login', new_user_session_path , class: "white py1 inline-block text-decoration-none"
+                = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
             -else
               %li 
                 =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
