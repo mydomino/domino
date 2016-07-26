@@ -16,6 +16,7 @@ class Profile < ActiveRecord::Base
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
+  before_save :downcase_email
 
   def save_to_zoho
     if LegacyUser.find_by_email(self.email)
@@ -38,5 +39,9 @@ class Profile < ActiveRecord::Base
     delete_redundant_delayed_jobs
     # takes time for zoho record to propogate through api, needs further testing
     UpdateZohoJob.set(wait: 3.minutes).perform_later self
+  end
+
+  def downcase_email
+    self.email.downcase!
   end
 end
