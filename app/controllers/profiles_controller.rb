@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   def create
 
     #handle onboarding edge cases 
-    @email = params[:profile][:email]
+    @email = params[:profile][:email].downcase
     return if legacy_user?
     return if user_already_registered?
     return if onboarding_incomplete?
