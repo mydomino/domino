@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :lead do
     first_name Faker::Name.first_name
