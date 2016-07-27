@@ -23,6 +23,7 @@
               =sortable "lead_name", "Name", filter: @filter
             %th 
               =sortable "lead_email", "Email", filter: @filter
+            %th Registered?
             %th Products Done
             %th Actions Done
             %th Delete
@@ -32,6 +33,7 @@
               %td
                 =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none blue'
               %td #{dashboard.lead_email}
+              %td #{dashboard.user_id ? 'Yes' : 'No'}
               %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
               %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
               %td
