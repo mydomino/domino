@@ -58,18 +58,21 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+end
+
 group :test do
   gem 'simplecov'
-  gem 'database_cleaner'
-  gem 'rspec-rails'
   gem 'rspec-activejob'
-  gem 'teaspoon-jasmine'
-  gem 'factory_girl_rails'
+  # gem 'teaspoon-jasmine'
   gem 'faker'
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
-  gem 'webmock'
+  # gem 'webmock'
 end
 
 group :production do

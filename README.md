@@ -45,3 +45,8 @@ Products
 Price Changes
 -------------
 Amazon prices change kind of a lot, so there is a button on the products index page to "Update Prices" which creates a UpdateAllAmazonPricesJob (this is also called once a day by the Heroku scheduler).
+
+Testing
+=======
+Selenium webdriver doesn't work with Firefox 47. Use Firefox 46 instead.
+
