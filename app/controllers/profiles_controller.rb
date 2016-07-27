@@ -32,8 +32,6 @@ class ProfilesController < ApplicationController
       if !@profile.onboard_complete
         #allocate default dashboard
         dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
-        dashboard.products = Product.default
-        dashboard.tasks = Task.default
         
         #send welcome email
         UserMailer.welcome_email_universal(@profile.email).deliver_later
