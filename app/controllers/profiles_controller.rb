@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
       Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
       @profile.save_to_zoho if params[:save_to_zoho]
       UserMailer.welcome_email_universal(@profile.email).deliver_later if params[:send_welcome_email]
+      flash[:notice] = 'Dashboard created successfully'
       redirect_to dashboards_path
       #flash message
       return
