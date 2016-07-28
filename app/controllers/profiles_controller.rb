@@ -1,9 +1,29 @@
 class ProfilesController < ApplicationController
+  layout 'concierge', only: :new
   before_action :set_profile, only: [:update, :apply_partner_code]
   FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
   
-  def create
+  def new
+    @profile = Profile.new
+  end
 
+  def concierge_create
+    @profile = Profile.new(profile_params)
+    @profile.onboard_complete = true
+    @profile.onboard_step = 4
+    if @profile.save
+      Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
+      @profile.save_to_zoho if params[:save_to_zoho]
+      UserMailer.welcome_email_universal(@profile.email).deliver_later if params[:send_welcome_email]
+      redirect_to dashboards_path
+      #flash message
+      return
+    else
+      render :new
+    end
+  end
+  
+  def create
     #handle onboarding edge cases 
     @email = (params[:profile][:email]).downcase
     return if legacy_user?

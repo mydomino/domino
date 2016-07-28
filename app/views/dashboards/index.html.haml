@@ -33,7 +33,12 @@
               %td
                 =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none blue'
               %td #{dashboard.lead_email}
-              %td #{dashboard.user_id ? 'Yes' : 'No'}
+              %td 
+                - if dashboard.user_id
+                  Yes
+                - else
+                  No
+                  %i.fa.fa-link.pointer{data: {'clipboard-text': "http://mydomino.com/users/sign_up?email=#{dashboard.lead_email}"}, title: 'Copy sign up link'}
               %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
               %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
               %td
@@ -41,3 +46,10 @@
   .clearfix.max-width-4.mx-auto.center
     .col.col-12
       = paginate @dashboards
+  
+:javascript
+  var clipboard = new Clipboard('.fa-link');
+
+  clipboard.on('success', function(e) {
+    alert('Sign up link copied to clipboard.')
+  });
