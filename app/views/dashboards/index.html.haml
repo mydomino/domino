@@ -50,11 +50,6 @@
     alert('Sign up link copied to clipboard.')
   });
 
-  $('.dashboard-record').on('click', function(){
-    href = $(this).find('.dashboard-link').attr('href');
-    window.location = href;
-  });
-
   $('.dashboard-record').hover(function () {
       $(this).find('.fa-times').removeClass('display-none');
       $(this).addClass('bg-gray-05');
