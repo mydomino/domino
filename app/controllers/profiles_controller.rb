@@ -159,14 +159,13 @@ class ProfilesController < ApplicationController
       :email, 
       {:offering_ids => []}, 
       :address_line_1, 
-      :address_line_2, 
       :city, 
       :state, 
       :zip_code, 
       :phone,
       :housing,
       :avg_electrical_bill,
-      :comments
+      :partner_code_id
     ).merge(session_params)
   end
 end
