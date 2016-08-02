@@ -2,6 +2,13 @@
   color: red;
 }
 
+.blog-card-image {
+  background-image: image-url('about_header');
+  background-size: cover;
+  background-color: #00ccff;
+  height: 256px;
+}
+
 /* Begin components.scss */
 .page-header-image {
   background-size: cover;

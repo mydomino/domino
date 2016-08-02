@@ -8,32 +8,15 @@
 #profile-forms
   =render @response[:form]
 
-.clearfix.bg-gray-10.gray-80.py2.h2.flex.flex-wrap.items-center.justify-center
-  =embedded_svg "news-icon.svg", class: 'mx2'
-  .mx2.center
-    Get the latest clean energy news and tips on our blog.
-  =link_to 'http://blog.mydomino.com', target: '_self' do
-    .btn.btn-sm.btn-secondary.btn-secondary--hover.mx2
-      Visit now
-
-.clearfix.bg-white.mx-auto
-  .col.col-12.md-col-6.gray-90.p2.center.bg-gray-05.height-420
-    .max-width-2.inline-block.pt4.left-align
-      %h1.mt0 Why MyDomino?
-      %h3
-        We want to help change energy sources from dirty fossil fuels to clean, renewable energy. We believe this will have a substantial, positive impact on climate for people now and in the future.
-      %h3.mb0
-        Check out how MyDomino can help you.
-  %a
-    .col.col-12.md-col-6#hp-video-placeholder.pointer.height-420
-
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
   %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
 
-#action-path.bg-white.max-width-4.mx-auto.my8
+#action-path.bg-white.max-width-4.mx-auto.my4
   .clearfix
-    %h1.center.mb4 YOUR ACTION PATH
+    .max-width-3.mx-auto
+      %h1.mb0.center Your clean energy action path starts here
+      %p.mt1.mb4.center.max-width-2.mx-auto We believe changing energy sources from dirty fossil fuels to clean renewable energy will have a substantial, positive impact
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
       =image_tag "windmill_solar_panel_icon.svg", class: 'mb2'
@@ -60,29 +43,43 @@
           clean energy lifestyle
 
 
-%div#about-banner.py4.px2
-  .max-width-3.mx-auto
-    .center.mt3
-      = image_tag "penguin-white.svg", width: '150px'
-    %h1.center.bold.white.mt0.mb3
-      We're All About Good Energy
-    %h2.center.white.mb0
-      Good Energy to Power Your Life
-    .sm-col-11.mx-auto.h3.center.white.mt0
-      We're all about helping you switch from expensive, dirty fuel to
-      good clean energy to power your life. We'll cut through the
-      confusion to make it easy and affordable. We're clean energy
-      nerds committed to helping you join the action path to a 100%
-      clean energy lifestyle, and dedicated to a clean energy domino
-      effect of innovation, hope, and opportunity for everyone.
-    %h2.center.white.mt3.mb0
-      Good Energy that's Guaranteed
-    .sm-col-11.mx-auto.h3.center.white.mt0
-      We work with, and will only refer you to, companies and products
-      with excellent credentials. Our non-commission concierges' first-
-      class service is guaranteed for the entire life of any product or
-      service purchased through MyDomino. Should any issue arise, we'll
-      help resolve it to your 100% satisfaction. Guaranteed good energy.
+.bg-gray-05
+  .clearfix.max-width-4.mx-auto
+    .h1.center Blog
+    .h2.center.gray-80 Learn about clean power options
+    .mxn1
+      .col.col-6.blog-card.bg-white
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+      .col.col-6.blog-card.bg-white
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+    .col.col-6.blog-card.bg-white.my2
+      .clearfix
+        .col.col-6.blog-card-image
+        .col.col-6.p2
+          .bold Solar 101 
+          To help you sort through this confustion, we've put together this guide
+          .gray-80.bold Read more...
+
+    .col.col-6.blog-card.bg-white.my2
+      .clearfix
+        .col.col-6.blog-card-image
+        .col.col-6.p2
+          .bold Solar 101 
+          To help you sort through this confustion, we've put together this guide
+          .gray-80.bold Read more...
+
 
 .bg-white
   .clearfix.max-width-3.mx-auto
@@ -163,7 +160,7 @@
       player.api('unload');
       $('body').removeClass('lock-position');
     }
-    $('#hp-video-placeholder').on('click', function(){
+    $('#hp-video-placeholder, .fa-play-circle').on('click', function(){
       $('#video-modal').fadeIn();
       $('body').addClass('lock-position');
       player.api('play');
