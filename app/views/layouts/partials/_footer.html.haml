@@ -1,0 +1,71 @@
+.bg-gray-05
+  .clearfix.max-width-4.mx-auto.py2
+    .col.col-3
+      %i.gray-80.fa.fa-2x.fa-facebook-square
+      %i.gray-80.fa.fa-2x.fa-twitter
+      %i.gray-80.fa.fa-2x.fa-instagram
+    .col.col-3
+      .bold
+        Who we are
+      MyDomino is a clean energy company focused on helping people to reduce their carbon footprint.
+    .col.col-3
+      .bold
+        Sign up for our newsletter
+        %input{type: 'email'}
+    .col.col-3
+      %i.fa.fa-phone 
+      800-979-2225
+      %br
+      %i.fa.fa-envelope 
+      hello@mydomino.com
+    
+  %hr.gray-80.max-width-4
+
+  .clearfix.max-width-4.mx-auto.py1
+    .col.col-3.pl1
+      .white
+        = image_tag "mydomino_esc_horizontal", class: 'fit', width: '250px'
+      %p.h5.mt1.gray-80
+        327 19th Street
+        %br
+        Oakland, CA 94612
+
+    .inline-block.right.mx1
+      %h4.gray-80.mb0 COMPANY
+      %ul.list-reset.h5.mt1
+        %li
+          =link_to "About Us", about_path, class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Our Team", team_path, class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Careers", "https://www.hellohired.com/mydomino", target: '_blank', class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Press", "http://mydomino.strikingly.com", target: '_blank', class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Terms of Service", terms_path, class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Privacy Policy", privacy_path, class: 'text-decoration-none gray-80'
+
+    .inline-block.right.mx1
+      %h4.gray-80.mb0 LEARN MORE
+      %ul.list-reset.h5.mt1
+        %li{style: 'color:red!important;'}
+          =link_to "Solar 101", "/blog/solar-101/", class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Heating & Cooling", "/blog/category/heating-and-cooling/", class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Transportation", "/blog/category/transportation/", class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Energy Freedom", "/blog/category/energy-freedom/", class: 'text-decoration-none gray-80'
+        %li
+          =link_to "Concierge Corner", "/blog/category/concierge-corner/", class: 'text-decoration-none gray-80'
+        %li
+          =link_to "FAQ", faq_path, class: 'text-decoration-none gray-80'
+        %li  
+          =link_to "Blog", "http://blog.mydomino.com", class: 'text-decoration-none gray-80'
+  
+  %hr.gray-80.max-width-4
+  .clearfix.max-width-4.mx-auto.gray-80.h5.py1
+    &copy;&nbsp;2016 MyDomino Inc.
+    = link_to 'Terms of Service', terms_path, class: 'text-decoration-none gray-80 mx1'
+    = link_to 'Privacy Policy', privacy_path, class: 'text-decoration-none gray-80 mx1'
