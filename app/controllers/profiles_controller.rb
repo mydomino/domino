@@ -20,7 +20,8 @@ class ProfilesController < ApplicationController
       #flash message
       return
     else
-      render :new
+      render action: 'new', layout: 'concierge'
+      return
     end
   end
   
