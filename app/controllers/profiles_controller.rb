@@ -17,7 +17,6 @@ class ProfilesController < ApplicationController
       UserMailer.welcome_email_universal(@profile.email).deliver_later if params[:send_welcome_email]
       flash[:notice] = 'Dashboard created successfully'
       redirect_to dashboards_path
-      #flash message
       return
     else
       render action: 'new', layout: 'concierge'
