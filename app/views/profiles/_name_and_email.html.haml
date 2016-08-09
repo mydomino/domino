@@ -61,23 +61,27 @@
         .max-width-4.mx-auto
           =simple_form_for @profile, remote: true, method: @response[:method] do |form|
             .clearfix
-              .col.col-3.px1.py1
-                %label.white.hide First Name
-                =form.input_field :first_name, class: "h3 bg-transparent white rounded height-32 required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
-                #first-name-error-msg.display-none.red.m0 
-                  'First name' is blank
-              .col.col-3.px1.py1
-                %label.white.hide Last Name
-                =form.input_field :last_name, class: "h3 bg-transparent white rounded height-32 required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
-                #last-name-error-msg.display-none.red.m0
-                  'Last name' is blank
-              .col.col-4.px2.py1
-                %label.white.hide Email Address
-                =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32 required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
-                #email-error-msg.display-none.red.m0
-                  This email is invalid. Please try a valid email address.
-              .col.col-2
-                =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover"
+              .sm-col.sm-col-12.md-col-6.py1
+                .clearfix
+                  .col.col-6
+                    %label.white.hide First Name
+                    =form.input_field :first_name, class: "h3 bg-transparent white rounded height-32 required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
+                    #first-name-error-msg.display-none.red.m0 
+                      'First name' is blank
+                  .col.col-6.pl1
+                    %label.white.hide Last Name
+                    =form.input_field :last_name, class: "h3 bg-transparent white rounded height-32 required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
+                    #last-name-error-msg.display-none.red.m0
+                      'Last name' is blank
+              .sm-col.sm-col-12.md-col-6.py1
+                .clearfix
+                  .col.col-6.md-pl1
+                    %label.white.hide Email Address
+                    =form.input_field :email, class: "h3 bg-transparent white rounded border border-width-2 border-white height-32 required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
+                    #email-error-msg.display-none.red.m0
+                      This email is invalid.
+                  .col.col-6.pl1
+                    =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover",style: "height:42px;line-height: 0.6rem;width:100%;"
       
 
 
