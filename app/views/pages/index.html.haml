@@ -14,6 +14,7 @@
   .grid-sizer, 
   .grid-item { width: 28rem; margin-bottom: 1rem;}
   .gutter-sizer { width: 1rem; }
+  
 #profile-forms
   =render @response[:form]
 
@@ -125,10 +126,18 @@
             = link_to 'Read more...', 'http://blog.mydomino.com/how-a-family-switched-to-clean-energy/', class: 'text-decoration-none gray-80 bold'
 
 
-.bg-white
-  .clearfix.max-width-4.mx-auto.py4
+.bg-white.py4
+  .clearfix.max-width-4.mx-auto.py4.center
     .h1.center.gray-30 Our community partners
-
+    .mt2
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+        = image_tag 'everybody-solar', width: '200px'
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+        = image_tag 'everybody-solar', width: '200px'
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+        = image_tag 'snow-leopard-conservancy', width: '200px'
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt0
+        = image_tag 'time-to-choose', width: '200px'
 
 
 %script{src: "//f.vimeocdn.com/js/froogaloop2.min.js", type: 'text/javascript'}
