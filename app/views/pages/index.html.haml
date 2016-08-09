@@ -4,7 +4,16 @@
   white
 /.alerts.absolute.ml-auto.mr-auto.left-0.right-0.max-width-1.z4
 =#flash_messages
-
+:css
+  .grid{ margin: 0 auto;}
+  .grid:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .grid-sizer, 
+  .grid-item { width: 28rem; margin-bottom: 1rem;}
+  .gutter-sizer { width: 1rem; }
 #profile-forms
   =render @response[:form]
 
@@ -43,42 +52,78 @@
           clean energy lifestyle
 
 
-.bg-gray-05
+.bg-gray-05.py4
   .clearfix.max-width-4.mx-auto
-    .h1.center Blog
+    .h0.center Blog
     .h2.center.gray-80 Learn about clean power options
 
-    .col.col-6.blog-card.bg-white
-      .clearfix
-        .col.col-6.blog-card-image
-        .col.col-6.p2
-          .bold Solar 101 
-          To help you sort through this confustion, we've put together this guide
-          .gray-80.bold Read more...
-          
-    .col.col-6.blog-card.bg-white
-      .clearfix
-        .col.col-6.blog-card-image
-        .col.col-6.p2
-          .bold Solar 101 
-          To help you sort through this confustion, we've put together this guide
-          .gray-80.bold Read more...
+    .grid.pt4.xs-hide
+      .grid-sizer
+      .gutter-sizer
+      .grid-item.blog-card.bg-white
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
 
-    .col.col-6.blog-card.bg-white.my2
-      .clearfix
-        .col.col-6.blog-card-image
-        .col.col-6.p2
-          .bold Solar 101 
-          To help you sort through this confustion, we've put together this guide
-          .gray-80.bold Read more...
+      .blog-card.bg-white.grid-item
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
 
-    .col.col-6.blog-card.bg-white.my2
-      .clearfix
-        .col.col-6.blog-card-image
-        .col.col-6.p2
-          .bold Solar 101 
-          To help you sort through this confustion, we've put together this guide
-          .gray-80.bold Read more...
+      .blog-card.bg-white.grid-item
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+      .blog-card.bg-white.grid-item
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+    #mobile-cards.sm-hide.md-hide.lg-hide.pt4
+      .blog-card.bg-white.m2
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+      .blog-card.bg-white.m2
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+      .blog-card.bg-white.m2
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
+
+      .blog-card.bg-white.m2
+        .clearfix
+          .col.col-6.blog-card-image
+          .col.col-6.p2
+            .bold Solar 101 
+            To help you sort through this confustion, we've put together this guide
+            .gray-80.bold Read more...
 
 
 .bg-white
@@ -94,6 +139,14 @@
 :javascript
   navbarScroll('#FF0000', '#666');
   $(document).ready(function(){
+    $('.grid').masonry({
+      columnWidth: '.grid-sizer',
+      itemSelector: '.grid-item',
+      //percentPosition: true,
+      gutter: '.gutter-sizer',
+      //columnWidth: 180,
+      isFitWidth: true
+    });
     setTimeout(function(){
       $('.alerts').hide('slow');
     }, 2000);
