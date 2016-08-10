@@ -33,7 +33,12 @@
 
     .sm-col.sm-col-12.md-col-6
       .clearfix
-        .col.col-6.right.px2
+        .col.col-4.right.px2
+          = image_tag "b-corp.png", style: 'max-width:64px;', class: 'right'
+          %br
+          = image_tag "bbb-logo.svg", width: '75%', style: 'max-width: 128px;', class: 'right'
+
+        .col.col-4.right.px2
           %h4.gray-80.my0 COMPANY
           %ul.list-reset.h5
             %li
@@ -44,12 +49,8 @@
               =link_to "Careers", "https://www.hellohired.com/mydomino", target: '_blank', class: 'text-decoration-none gray-80'
             %li
               =link_to "Press", "http://mydomino.strikingly.com", target: '_blank', class: 'text-decoration-none gray-80'
-            %li
-              =link_to "Terms of Service", terms_path, class: 'text-decoration-none gray-80'
-            %li
-              =link_to "Privacy Policy", privacy_path, class: 'text-decoration-none gray-80'
 
-        .col.col-6.right.px2
+        .col.col-4.right.px2
           %h4.gray-80.my0 LEARN MORE
           %ul.list-reset.h5
             %li{style: 'color:red!important;'}
