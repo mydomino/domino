@@ -1,6 +1,8 @@
-.input-error-msg {
-  color: red;
+#footer {
+  a:hover, #social-icons .fa:hover { color: #00ccff; }
 }
+
+.input-error-msg { color: red; }
 
 .blog-card-image {
   background-image: image-url('about_header');
@@ -9,21 +11,13 @@
   height: 256px;
 }
 
-#solar-blog-card-img{
-  background-image: image-url('solar-blog-card');
-}
+#solar-blog-card-img{ background-image: image-url('solar-blog-card'); }
 
-#expect-blog-card-img{
-  background-image: image-url('expect-blog-card');
-}
+#expect-blog-card-img{ background-image: image-url('expect-blog-card'); }
 
-#clean-energy-blog-card-img{
-  background-image: image-url('clean-energy-blog-card');
-}
+#clean-energy-blog-card-img{ background-image: image-url('clean-energy-blog-card'); }
 
-#family-blog-card-img{
-  background-image: image-url('family-blog-card');
-}
+#family-blog-card-img{ background-image: image-url('family-blog-card'); }
 
 /* Begin components.scss */
 .page-header-image {
