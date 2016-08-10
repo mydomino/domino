@@ -106,10 +106,11 @@
         Oakland, CA 94612       
   
   %hr.gray-80.max-width-4
-  .clearfix.center.gray-80.h5.py1
+  .clearfix.max-width-4.mx-auto.gray-80.h5.py1
     &copy;&nbsp;2016 MyDomino Inc.
     = link_to 'Terms of Service', terms_path, class: 'text-decoration-none gray-80 mx1'
     = link_to 'Privacy Policy', privacy_path, class: 'text-decoration-none gray-80 mx1'
+
 :javascript
   $('#newsletter-subscribe').on('click', function(e){
     e.preventDefault();

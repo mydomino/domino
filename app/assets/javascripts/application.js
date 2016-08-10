@@ -19,5 +19,4 @@
 //= require signup
 //= require jquery.mask.min.js
 //= require modal
-//= require masonry.pkgd.min.js
 //= require custom
