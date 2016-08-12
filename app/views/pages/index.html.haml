@@ -4,7 +4,24 @@
   white
 /.alerts.absolute.ml-auto.mr-auto.left-0.right-0.max-width-1.z4
 =#flash_messages
-  
+:css
+  .strikethrough {
+    position: relative;
+  }
+  .strikethrough:before {
+    position: absolute;
+    content: "";
+    left: -10px;
+    top: 50%;
+    right: -10px;
+    border-top: 4px solid orange;
+
+    -webkit-transform:rotate(-15deg);
+    -moz-transform:rotate(-15deg);
+    -ms-transform:rotate(-15deg);
+    -o-transform:rotate(-15deg);
+    transform:rotate(-15deg);
+  }
 #profile-forms
   =render @response[:form]
 
@@ -14,8 +31,8 @@
 
 #action-path.bg-white.max-width-4.mx-auto.my4
   .clearfix
-    .col.col-12
-      .h1.black.mb0.center Your clean energy action path starts here
+    .col.col-12.px2
+      .h1.black.mb0.line-height-2.center Your clean energy action path starts here
       .h4.gray-80.mt1.mb4.center.max-width-2.mx-auto.line-height-2 We believe changing energy sources from dirty fossil fuels to clean renewable energy will have a substantial, positive impact on the climate for people now and in the future.
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
@@ -52,7 +69,7 @@
             #solar-blog-card-img.col.col-6.blog-card-image
             .col.col-6.p2
               .h2.black.line-height-1 Solar 101 
-              %p.my2.line-height-2 Confused about solar? Learn everything you need to know to get clean energy from the sun!
+              %p.my3.line-height-2 Confused about solar? Learn everything you need to know to get clean energy from the sun!
               =link_to 'Read more...', "http://blog.mydomino.com/solar-101", class: 'text-decoration-none gray-80 bold'
 
       .sm-col.sm-col-12.md-col-6
@@ -61,7 +78,7 @@
             #cant-go-solar-blog-card-img.col.col-6.blog-card-image
             .col.col-6.p2
               .h2.black.line-height-2 Can't go solar?
-              %p.my2.line-height-2 Here’s what you can do instead! From clean wind power to community solar, there’s something for everyone.
+              %p.my3.line-height-2 Here’s what you can do instead! From clean wind power to community solar, there’s something for everyone.
               = link_to 'Read more...', 'http://blog.mydomino.com/cant-go-solar', class: 'text-decoration-none gray-80 bold'
 
       .sm-col.sm-col-12.md-col-6
@@ -86,17 +103,17 @@
           = link_to 'See more articles >', 'http://blog.mydomino.com', class: 'blue text-decoration-none'
 
 .bg-white
-  .clearfix.max-width-4.mx-auto.pt4
-    .h1.black.center.pb4 A membership with epic savings
+  .clearfix.max-width-4.mx-auto.pt4.px2
+    .h1.black.center.pb4.line-height-2 A membership with epic savings
 
-    .col.col-8
+    .col.col-12.sm-col.sm-col-12.md-col-8
       .h2.gray-80 MyDomino members enjoy
       %table
         %tr
           %td
-            %i.my2.fa.fa-2x.fa-comments.blue.pl2
+            %i.my3.fa.fa-2x.fa-comments.blue.pl2
           %td.mb2
-            .h3.my2.gray-80.pl2.line-height-1 Unlimited access to an energy savings concierge.
+            .h3.my3.gray-80.pl2.line-height-1 Unlimited access to an energy savings concierge.
         %tr
           %td
             %i.mb2.fa.fa-2x.fa-file-text-o.blue.pl2
@@ -113,15 +130,28 @@
           %td
             .h3.mb2.gray-80.pl2.line-height-1 Recommendations on clean energy products and services vetted by our team.
 
-    .col.col-4
+    .col.col-12.sm-col.sm-col-12.md-col-4.center
+      .clearfix
+        .col.col-12.sm-col-6.md-col-12.pt2.sm-pt2.md-pt0
+          = embedded_svg 'member-card.svg', class: 'center'
+        .col.col-12.sm-col-6.md-col-12.pt2.sm-pt2
+          .border.border-light-gray.center.rounded.mx-auto{style: 'width:240px;height:150px;'}
+            .h0.mb0.gray-80.mt1
+              %span.strikethrough $99
+              %span.h2 /year
+            .h2.my0.orange.line-height-1 First year free
+            .h3.my0.orange (until Oct 31, 2016)
+          .p.gray-30 *No credit card required
 
-    .col.col-12.center.py4
-      .btn.btn-lg.btn-primary.btn-primary--hover Become a member
+    .col.col-12.center.py2.sm-py4
+      #btn-become-a-member.btn.btn-lg.btn-primary.btn-primary--hover Become a member
 
     .col.col-12
       .max-width-3.mx-auto
         %hr
-        .h3.gray-80.p3.center "MyDomino concierge helpe guide me through my solar options, now I'm saving so much I'm tired of saving money."
+        .p3.center.line-height-2
+          .h3.gray-80 "MyDomino concierge helped guide me through my solar options, now I'm saving so much I'm tired of saving money."
+          .h4.gray-80.pt2 --Billy Joe, MyDomino member in San Francisco, CA
       %hr
 
 .bg-white.pb4
@@ -145,7 +175,7 @@
 :javascript
   navbarScroll('#FF0000', '#666');
   $(document).ready(function(){
-    
+
     setTimeout(function(){
       $('.alerts').hide('slow');
     }, 2000);
@@ -155,7 +185,7 @@
     var player = $f(iframe);
     // When the player is ready/loaded, add a finish event listener
     player.addEvent('ready', function() {
-        player.addEvent('finish', onFinish);
+      player.addEvent('finish', onFinish);
     });
 
     function onFinish(id) {
@@ -173,5 +203,14 @@
       $('#video-modal').fadeOut();
       player.api('unload');
       $('body').removeClass('lock-position');
+    });
+
+    $('#btn-become-a-member').on('click', function(){
+      $('html, body').animate({
+          scrollTop: 0
+        }, 
+        2000, 
+        function(){ $('#profile_first_name').focus(); }
+      );
     });
   });
