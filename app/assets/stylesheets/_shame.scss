@@ -1,3 +1,17 @@
+//strikethrough for price point on membership module
+.strikethrough {
+  position: relative;
+}
+.strikethrough:before {
+  position: absolute;
+  content: "";
+  left: -10px;
+  top: 50%;
+  right: -10px;
+  border-top: 4px solid orange;
+  transform: rotate(-15deg);
+}
+
 #footer {
   a:hover, #social-icons .fa:hover { color: #00ccff; }
 }

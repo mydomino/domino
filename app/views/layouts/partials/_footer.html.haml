@@ -18,11 +18,13 @@
         %input#newsletter-subscribe.btn.btn-sm.btn-primary.btn-primary--hover.mt1{type: 'submit', value: 'Sign up'}
 
     .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-80
-      %i.fa.fa-phone 
-      800-979-2225
+      = link_to 'tel:8009792225', class: 'text-decoration-none gray-80' do
+        %i.fa.fa-phone 
+        800-979-2225
       %br
-      %i.fa.fa-envelope 
-      hello@mydomino.com
+      = link_to 'mailto:hello@mydomino.com', class: 'text-decoration-none gray-80' do
+        %i.fa.fa-envelope 
+        hello@mydomino.com
     
   %hr.gray-80.max-width-4
 
