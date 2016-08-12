@@ -1,5 +1,6 @@
 #footer.bg-gray-05
   .clearfix.max-width-4.mx-auto.py2
+
     #social-icons.col.col-12.sm-col-6.md-col-3.p2
       = link_to 'https://www.facebook.com/ourdominoeffect', target:'_blank', class: 'text-decoration-none' do
         %i.pointer.gray-80.fa.fa-3x.fa-facebook-square.px1
@@ -7,9 +8,11 @@
         %i.pointer.gray-80.fa.fa-3x.fa-twitter.px1
       = link_to 'https://www.instagram.com/mydomino/', target:'_blank', class: 'text-decoration-none' do
         %i.pointer.gray-80.fa.fa-3x.fa-instagram.px1
+
     .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-80
       .bold Who we are
       MyDomino is a concierge service that's helping people like you switch to clean energy and save money.
+
     .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-80
       = form_tag "/newsletter-subscribe", remote: true, method: :get do
         .bold.mb1
@@ -29,6 +32,7 @@
   %hr.gray-80.max-width-4
 
   .clearfix.max-width-4.mx-auto.py1
+  
     .sm-col.sm-col-12.md-col-6.px2
       .white
         = image_tag "mydomino_esc_horizontal", class: 'fit', width: '250px'
@@ -73,7 +77,7 @@
               =link_to "Concierge Corner", "/blog/category/concierge-corner/", class: 'text-decoration-none gray-80 pointer'            
   
   %hr.gray-80.max-width-4
-  .clearfix.max-width-4.mx-auto.gray-80.h5.py1
+  .clearfix.max-width-4.mx-auto.gray-80.h5.py1.px2
     &copy;&nbsp;2016 MyDomino Inc.
     = link_to 'Terms of Service', terms_path, class: 'text-decoration-none gray-80 mx1 pointer'
     = link_to 'Privacy Policy', privacy_path, class: 'text-decoration-none gray-80 mx1 pointer'
