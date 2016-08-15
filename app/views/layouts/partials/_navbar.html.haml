@@ -1,28 +1,29 @@
-%nav#navbar.col-12.z3.top-0{class: yield(:navbar_class)}
+- homepage = current_page?(root_path)
+- nav_element_color = "#{homepage ? 'white' : 'gray-80'}"
+
+%nav#navbar.col-12.z3.top-0.absolute
   .max-width-4.mx-auto
     .clearfix
       .col.col-4.p2
-        -if controller_name == 'pages' && action_name == 'index'
-          = link_to embedded_svg('mydomino_logo.svg'), root_path, id: "navbar-brand"
-        -else
-          = link_to embedded_svg('mydomino_logo_universal.svg'), root_path, id: "navbar-brand"
+        = link_to root_path, id: "navbar-brand" do
+          = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo'
 
       .md-hide.lg-hide.px2.right
-        .fa.fa-bars.pointer.navbar-element
+        .fa.fa-bars.pointer.navbar-element{class: "#{nav_element_color}"}
       .xs-hide.sm-hide.py3.px3.my1.sm-hide
         .right
-          .mx2.navbar-element.inline.h4
+          .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
             %i.fa.fa-phone
             %span.h3 800-979-2215
           -if user_signed_in?
             -if current_user.role == 'concierge'
-              =link_to 'Concierge tools', dashboards_path, class: 'btn-navbar white border p1 rounded text-decoration-none navbar-element'
+              =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
             -else
-              =link_to 'Dashboard', user_dashboard_path, class: 'btn-navbar white border p1 rounded text-decoration-none navbar-element'
-            =link_to 'Log out', destroy_user_session_path, method: :delete, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border p1 rounded text-decoration-none navbar-element"
+              =link_to 'Dashboard', user_dashboard_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
+            =link_to 'Log out', destroy_user_session_path, method: :delete, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none"
           -else
-            =link_to "Log in", new_user_session_path, class: "#{current_page?(root_path) ? 'white' : 'charcoal'} btn-navbar border py1 px2 rounded text-decoration-none navbar-element", id: "link-login"
-            /=link_to "LOG IN", new_user_session_path, class: "btn btn-sm #{current_page?(root_path) ? 'btn-white' : 'btn-secondary'}", id: "link-login"
+            =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none", id: "link-login"
+            
       #mobile-nav.nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block

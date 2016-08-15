@@ -1,7 +1,8 @@
+.invalid-field { border-color:red!important; }
+
 //strikethrough for price point on membership module
-.strikethrough {
-  position: relative;
-}
+.strikethrough { position: relative; }
+
 .strikethrough:before {
   position: absolute;
   content: "";
@@ -52,13 +53,9 @@
   background-position: right center;
 }
 
-#tbl-dashboards th .asc{
-  background-image: image-url('up_arrow.gif');
-}
+#tbl-dashboards th .asc{ background-image: image-url('up_arrow.gif'); }
 
-#tbl-dashboards th .desc{
-  background-image: image-url('down_arrow.gif');
-}
+#tbl-dashboards th .desc{ background-image: image-url('down_arrow.gif'); }
 
 .modal {
   display: none;
@@ -121,9 +118,7 @@ div:hover {
   &>.hover-show { display: block; }
 }
 
-.bg-navy {
-  background-color: #105585;
-}
+.bg-navy { background-color: #105585; }
 
 /* Overlay */
 .overlay {
@@ -150,14 +145,6 @@ div:hover {
       left:-10px;
       top:18px;
     }
-  }
-
-  .bg-gray-60 {
-    background-color: #858585;
-  }
-
-  .gray-60 {
-    color: #858585;
   }
 
   /*partner code input field*/
@@ -196,25 +183,12 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   }
 }
 /* BEGIN custom height utilities */
-.height-40 {
-  height: 40px;
-}
+.height-40 { height: 40px; }
 
-.height-32 {
-  height: 32px;
-}
+.height-32 { height: 32px; }
 
-.height-420 {
-  height: 420px;
-}
+.height-420 { height: 420px; }
 /* END custom height utilities */
-
-/* BEGIN custom margin utilities */
-.my8 {
-  margin-top: 8em;
-  margin-bottom: 8em;
-}
-/* END custom margin utlities */
 
 /* BEGIN custom navbar styles */
 #navbar {
@@ -223,14 +197,13 @@ $breakpoint-xs: '(max-width: 40em)' !default;
     font-size: 2rem;
     padding-top: 2.2rem;
   }
+
   #mobile-nav {
     ul { font-size: 3rem; }
   }
 }
 
-#navbar .fa-phone {
-  font-size: 1.2em;
-}
+#navbar .fa-phone { font-size: 1.2em; }
 /* END custom navbar styles */
 
 /* BEGIN custom Action Path Module styles */
@@ -242,13 +215,9 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 }
 /* END custom Action Path Module styles */
 
-.pointer{
-  cursor: pointer
-}
+.pointer{ cursor: pointer }
 
-button{
-  outline: none;
-}
+button{ outline: none; }
 
 /* style rules for onboarding module on homepage */
 .mobile-form{
@@ -310,8 +279,7 @@ button{
   background-size:cover;
 }
 
-.bg-lightgray{ background-color: #F9F9F9;
-}
+.bg-lightgray{ background-color: #F9F9F9; }
 
 input{ padding-left: 10px; }
 
@@ -543,8 +511,6 @@ body.lock-position {
 }
 
 /* accordion element on FAQ page */
-.accordion-toggle{ cursor: pointer; }
-
 .accordion-content { display: none; }
 
 span.toggle { width: 1em; }

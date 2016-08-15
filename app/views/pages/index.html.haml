@@ -1,5 +1,5 @@
 -content_for :navbar_class do
-  fixed white sm-col-12
+  bg-transparent
 -content_for :link_color_class do
   white
 
@@ -165,9 +165,7 @@
 %script{src: "https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"}
 
 :javascript
-  navbarScroll('#FF0000', '#666');
   $(document).ready(function(){
-
     setTimeout(function(){
       $('.alerts').hide('slow');
     }, 2000);

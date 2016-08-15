@@ -64,11 +64,6 @@
 
 :javascript
   $(document).ready(function(){
-    logoColors.startColors.text = '#666'
-    logoColors.startColors.penguin = '#00ccff'
-    $('.navbar-element').css('color', '#666666');
-    navbarScroll('#666666', '#666');
-    
     $('#btn-apply').on('click', function(){
       var partnerCode = $('#profile_partner_code').val();
       $.ajax({
