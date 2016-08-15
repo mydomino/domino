@@ -31,7 +31,7 @@
             This email is invalid. Please try a valid email address.
       .sm-col.sm-col-12.my3
         .center
-          =form.submit "Get started", class: "btn btn-lg btn-primary btn-primary--hover"
+          =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-lg btn-primary btn-primary--hover"
 
 -if @browser.device.mobile?
   #name-and-email.mobile-form.pt4{style: 'height: 618px;'}
