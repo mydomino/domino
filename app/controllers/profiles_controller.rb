@@ -50,16 +50,14 @@ class ProfilesController < ApplicationController
       apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
     when 3
       @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
-      if !@profile.onboard_complete
-        #allocate default dashboard
-        dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
-        
-        #send welcome email
-        UserMailer.welcome_email_universal(@profile.email).deliver_later
+      #allocate default dashboard
+      dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
+      
+      #send welcome email
+      UserMailer.welcome_email_universal(@profile.email).deliver_later
 
-        @profile.update(onboard_complete: true)
-        @profile.save_to_zoho
-      end
+      @profile.update(onboard_complete: true)
+      @profile.save_to_zoho
     end
 
     @profile.update(profile_params)
