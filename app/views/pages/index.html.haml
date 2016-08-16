@@ -22,14 +22,14 @@
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
 
 #action-path.bg-white.max-width-4.mx-auto.my4
-  .clearfix
-    .col.col-12.px2
-      .h1.black.mb0.line-height-2.center Your clean energy action path starts here
-      .h4.gray-80.mt1.mb4.center.max-width-2.mx-auto.line-height-2 We believe changing energy sources from dirty fossil fuels to clean renewable energy will have a substantial, positive impact on the climate for people now and in the future.
+  .clearfix.py3
+    .col.col-12.px2.mb4
+      %h1.black.mb0.light.center Your clean energy action path starts here
+      %h4.gray-80.mt1.mb4.center.max-width-2.mx-auto.line-height-2 We believe changing energy sources from dirty fossil fuels to clean renewable energy will have a substantial, positive impact on the climate for people now and in the future.
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
       =image_tag "windmill_solar_panel_icon.svg", class: 'mb2'
-      %h2.m0 1. Switch from Dirty to Clean Electricity
+      %h2.light.m0 1. Switch from Dirty to Clean&nbsp;Electricity
       %p.gray-80.h4.mt2.line-height-2
         We'll help you switch your electricity
         %br.sm-hide
@@ -37,7 +37,7 @@
 
     .sm-col.sm-col-4.center.mb3.sm-b0.px2.line-height-1
       =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon', class: 'mb2'
-      %h2.m0 2. Maximize Your Clean Electricity
+      %h2.light.m0 2. Maximize Your Clean&nbsp;Electricity
       %p.gray-80.h4.mt2.line-height-2
         Next, we'll make your clean
         %br.sm-hide
@@ -45,40 +45,40 @@
 
     .sm-col.sm-col-4.center.px2.line-height-1
       =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon', class: 'mb2'
-      %h2.m0 3. Do Life on 100% Clean Energy
+      %h2.light.m0 3. Do Life on 100% Clean&nbsp;Energy
       %p.gray-80.h4.mt2.line-height-2
         Track the progress of your path to a
         %br.sm-hide
           clean energy lifestyle
 
 .bg-gray-05.py4.px2
-  .clearfix.max-width-4.mx-auto
+  .clearfix.mt3.max-width-4.mx-auto
     .h1.black.center.line-height-1 Learn about clean energy options
-    .clearfix.mxn3.mx-auto.pt4
+    .clearfix.mxn4.mx-auto.pt4
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
             #solar-blog-card-img.col.col-6.blog-card-image
-            .col.col-6.p2
-              .h2.black.line-height-1 Solar 101 
-              %p.my3.line-height-2 Confused about solar? Learn everything you need to know to get clean energy from the sun!
+            .col.col-6.px2
+              .h2.black.pt3.line-height-1 Solar 101
+              %p.my2.line-height-2 Confused about solar? Learn everything you need to know to get clean energy from the sun!
               =link_to 'Read more...', "http://blog.mydomino.com/solar-101", class: 'text-decoration-none gray-80 bold'
 
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
             #cant-go-solar-blog-card-img.col.col-6.blog-card-image
-            .col.col-6.p2
-              .h2.black.line-height-2 Can't go solar?
-              %p.my3.line-height-2 Here’s what you can do instead! From clean wind power to community solar, there’s something for everyone.
+            .col.col-6.px2
+              .h2.black.pt3.line-height-2 Can't go solar?
+              %p.my2.line-height-2 Here’s what you can do instead! From clean wind power to community solar, there’s something for everyone.
               = link_to 'Read more...', 'http://blog.mydomino.com/cant-go-solar', class: 'text-decoration-none gray-80 bold'
 
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
             #get-efficient-blog-card-img.col.col-6.blog-card-image
-            .col.col-6.p2
-              .h2.black.line-height-2 Get efficient! 
+            .col.col-6.px2
+              .h2.black.pt3.line-height-2 Get efficient!
               %p.my2.line-height-2 It’s easy to save with simple actions. Whether it’s LEDs, smart thermostats, or smart power strips, we’ve got you covered!
               = link_to 'Read more...', 'http://blog.mydomino.com/get-efficient', class: 'text-decoration-none gray-80 bold'
 
@@ -86,12 +86,12 @@
         .blog-card.bg-white.m2
           .clearfix
             #family-blog-card-img.col.col-6.blog-card-image
-            .col.col-6.p2
-              .h2.black.line-height-2 How Sue Got to 100%
-              %p.my2.line-height-2 Sue wanted to get her family onto clean energy. But where to start? See how MyDomino helped.
+            .col.col-6.px2
+              .h2.black.pt3.line-height-1 How Sue Got to 100%
+              %p.mt2.line-height-2 Sue wanted to get her family onto clean energy. But where to start? See how MyDomino helped.
               = link_to 'Read more...', 'http://blog.mydomino.com/how-a-family-switched-to-clean-energy/', class: 'text-decoration-none gray-80 bold'
       .col.col-12.center
-        %p
+        %h3
           = link_to 'See more articles >', 'http://blog.mydomino.com', class: 'blue text-decoration-none'
 
 .bg-white
@@ -99,28 +99,28 @@
     .h1.black.center.pb4.line-height-2 A membership with epic savings
 
     .col.col-12.sm-col.sm-col-12.md-col-8
-      .h2.gray-80 MyDomino members enjoy
-      %table
+      .h2.light.gray-80 MyDomino members enjoy
+      %table.col-9
         %tr
           %td
-            %i.mt3.mb2.fa.fa-2x.fa-comments.blue.pl2
+            %i.mt3.mb2.fa.fa-2x.fa-comments.blue
           %td
-            .h3.mt3.mb2.gray-80.pl2.line-height-1 Unlimited access to an energy savings concierge.
+            .h3.light.mt3.mb2.gray-80.pl2.line-height-1 Unlimited access to an energy savings concierge.
         %tr
           %td
-            %i.mb2.fa.fa-2x.fa-file-text-o.blue.pl2
+            %i.mb2.fa.fa-2x.fa-file-text-o.blue
           %td
-            .h3.mb2.gray-80.pl2.line-height-1 A personalized plan to 100% clean energy and big savings.
+            .h3.light.mb2.gray-80.pl2.line-height-1 A personalized plan to 100% clean energy and big savings.
         %tr
           %td
-            %i.mb2.fa.fa-2x.fa-dashboard.blue.pl2
+            %i.mb2.fa.fa-2x.fa-dashboard.blue
           %td
-            .h3.mb2.gray-80.pl2.line-height-1 An online dashboard to track your progress.
+            .h3.light.mb2.gray-80.pl2.line-height-1 An online dashboard to track your progress.
         %tr
           %td
-            %i.mb2.fa.fa-2x.fa-thumbs-o-up.blue.pl2
+            %i.mb2.fa.fa-2x.fa-thumbs-o-up.blue
           %td
-            .h3.mb2.gray-80.pl2.line-height-1 Recommendations on clean energy products and services vetted by our team.
+            .h3.light.mb2.gray-80.pl2.line-height-1 Recommendations on clean energy products and services vetted by our team.
 
     .col.col-12.sm-col.sm-col-12.md-col-4.center
       .clearfix
@@ -140,15 +140,15 @@
 
     .col.col-12
       .max-width-3.mx-auto
-        %hr
+        %hr.border-none.border-top--gray
         .p3.center.line-height-2
           .h3.gray-80 "MyDomino concierge helped guide me through my solar options, now I'm saving so much I'm tired of saving money."
           .h4.gray-80.pt2 --Billy Joe, MyDomino member in San Francisco, CA
-      %hr
+  %hr.border-none.border-top--gray
 
 .bg-white.pb4
   .clearfix.max-width-4.mx-auto.py4.center
-    .h1.black.center Our community partners
+    .h1.light.black.center Our community partners
     .mt2
       .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
         = image_tag 'everybody-solar', width: '200px'
@@ -198,8 +198,8 @@
     $('#btn-become-a-member').on('click', function(){
       $('html, body').animate({
           scrollTop: 0
-        }, 
-        1000, 
+        },
+        1000,
         function(){ $('#profile_first_name').focus(); }
       );
     });
