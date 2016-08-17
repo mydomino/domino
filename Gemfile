@@ -52,15 +52,15 @@ group :development do
   gem "bullet"
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rubocop', require: false
+  gem 'haml-lint', require: false
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
-end
-
-group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
@@ -82,6 +82,3 @@ group :production do
   gem 'skylight'
 end
 
-group :development do
-  gem 'guard-livereload', '~> 2.5', require: false
-end
