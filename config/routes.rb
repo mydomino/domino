@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :profiles
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
-
+  post '/profiles/concierge-create' => 'profiles#concierge_create', as: 'concierge_create_profile'
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
 
   resources :recommendations, only: [:destroy, :update, :index] do
@@ -45,7 +45,5 @@ Rails.application.routes.draw do
   resource :analytics, only: [:show]
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
-
-  # get '/blog' => redirect("/blog/")
 
 end
