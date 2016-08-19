@@ -1,5 +1,3 @@
--content_for :navbar_class do
-  fixed midgray sm-col-12
 #signup.devise-form.py4
   .max-width-3.mx-auto.mt4
     .bg-lightgray.rounded.pt3.mt4.max-width-2.mx-auto
@@ -17,7 +15,3 @@
           = f.input_field :password_confirmation, required: true,class: 'mb2 mt1', style: 'height: 40px;'
           .py3
             = f.button :submit, "Change my password", class: "bg-blue white", style: 'border-radius:40px; border:none;height:50px; color:white;'
-:javascript
-  $(document).ready(function(){
-    navbarScroll('#666', '#666');
-  });

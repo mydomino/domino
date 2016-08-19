@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get "/continue/:profile_id" => 'pages#index'
 
+  get "/newsletter-subscribe" => 'pages#newsletter_subscribe'
   get "/blog" => redirect("http://blog.mydomino.com/")
   get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
   get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}

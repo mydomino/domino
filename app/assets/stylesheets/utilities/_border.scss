@@ -48,3 +48,5 @@ $border-radius: 3px !default;
 .rounded-left   { border-radius: $border-radius 0 0 $border-radius }
 
 .not-rounded { border-radius: 0 }
+
+.border-top--gray {border-top:1px solid $gray-30}

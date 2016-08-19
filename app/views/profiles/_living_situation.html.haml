@@ -1,8 +1,4 @@
 :css
-  .invalid-field {
-    border-color:red!important;
-  }
-
   .btn-secondary--invalid {
     border-color: red;
     color: red;
@@ -95,11 +91,6 @@
       $('#profile_address_line_1').val($('#span-street_number').html() + " " + $('#span-route').html());
       $requiredFields.change();
     });
-
-    logoColors.startColors.text = '#666'
-    logoColors.startColors.penguin = '#00ccff'
-    $('.navbar-element').css('color', '#666666');
-    navbarScroll('#666666', '#666');
 
     $("#profile_phone").mask("(999) 999-9999");
 

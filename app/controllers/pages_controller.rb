@@ -40,6 +40,13 @@ class PagesController < ApplicationController
   def example
   end
 
+  def newsletter_subscribe
+    SubscribeToMailchimpJob.perform_later params[:email]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def interest_form_resources
