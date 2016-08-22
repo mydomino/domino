@@ -20,6 +20,7 @@ class PagesController < ApplicationController
     end
     @profile = Profile.new
     @response = {form: 'profiles/name_and_email', method: :post}
+    @rolling_date = "#{Time.now.strftime('%b')} #{Time.now.end_of_month.day}, #{Time.now.year}"
   end
 
   def about
