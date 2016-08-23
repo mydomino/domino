@@ -5,17 +5,12 @@
 
 #profile-forms
   =render @response[:form]
+  
 -if @browser.device.mobile?
-  .clearfix.bg-white.mx-auto
-    .col.col-12.md-col-6.gray-90.p2.center.bg-gray-05.height-420
-      .max-width-2.inline-block.pt4.left-align
-        %h1.mt0 Why MyDomino?
-        %h3
-          We want to help change energy sources from dirty fossil fuels to clean, renewable energy. We believe this will have a substantial, positive impact on climate for people now and in the future.
-        %h3.mb0
-          Check out how MyDomino can help you.
-    %a
-      .col.col-12.md-col-6#hp-video-placeholder.pointer.height-420
+  .clearfix.mx-auto
+    #hp-mobile-video-module.flex.flex-column.items-center.justify-center
+      %i.white.fa.fa-play-circle.fa-4x.relative
+      %p.mt0.white.relative Watch the video
 
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
   %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
@@ -24,7 +19,7 @@
 #action-path.bg-white.max-width-4.mx-auto.my4
   .clearfix.py3
     .col.col-12.px2.mb4
-      %h1.black.mb0.light.center Your clean energy action path starts here
+      %h1.black.mb0.light.center.line-height-1 Your clean energy action path starts here
       %h4.gray-80.mt1.mb4.center.max-width-2.mx-auto.line-height-2 We believe changing energy sources from dirty fossil fuels to clean renewable energy will have a substantial, positive impact on the climate for people now and in the future.
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
@@ -188,7 +183,7 @@
       player.api('unload');
       $('body').removeClass('lock-position');
     }
-    $('#hp-video-placeholder, .fa-play-circle').on('click', function(){
+    $('.fa-play-circle').on('click', function(){
       $('#video-modal').fadeIn();
       $('body').addClass('lock-position');
       player.api('play');

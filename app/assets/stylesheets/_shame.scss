@@ -503,11 +503,22 @@ body.lock-position {
   position: fixed;
 }
 
-#hp-video-placeholder{
+#hp-mobile-video-module{
+  position: relative;
+  height: 420px;
   background-image: image-url('homepage-video-placeholder.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+  }
 }
 
 /* accordion element on FAQ page */
