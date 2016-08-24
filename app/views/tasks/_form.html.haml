@@ -1,12 +1,12 @@
 =simple_form_for @task do |form|
     =form.label :name, class: 'bold' 
-    =form.input_field :name, class: 'height-40'
+    =form.input_field :name
     =form.label :description, class: 'bold'
-    =form.input_field :description, class: 'height-40'
+    =form.input_field :description
     =form.label :cta_link, class: 'bold'
-    =form.input_field :cta_link, class: 'height-40'
+    =form.input_field :cta_link
     =form.label :cta_text, class: 'bold'
-    =form.input_field :cta_link, class: 'height-40'
+    =form.input_field :cta_link
     =form.label :icon, class: 'block'
     =form.select :icon, {collection: Task::ICON_OPTIONS}, {}, {class: 'block', style: 'width: 128px;'}
     .my2.block.right-align

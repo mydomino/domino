@@ -28,7 +28,7 @@
         .content.flex-auto
           %h1.inline-block
             .fa.fa-times.fixed.top-0.right-0.p3.pointer
-          %ul.py4.center.list-reset
+          %ul.py4.center.list-reset.h0
             -if !user_signed_in?
               %li
                 = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"

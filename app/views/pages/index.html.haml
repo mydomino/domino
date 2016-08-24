@@ -1,7 +1,6 @@
 #profile-forms{class: "#{@browser.device.mobile? ? 'mobile' : 'non-mobile'}"}
   =render @response[:form]
 
-
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
   %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
@@ -43,7 +42,7 @@
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
-            #solar-blog-card-img.col.col-6.blog-card-image
+            #solar-blog-card-img.col.col-6.blog-card-image.bg-cover
             .col.col-6.px2
               .h2.black.mt3.line-height-1 Solar 101
               %p.my2.line-height-2 Confused about solar? Learn everything you need to know&hellip;
@@ -53,7 +52,7 @@
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
-            #cant-go-solar-blog-card-img.col.col-6.blog-card-image
+            #cant-go-solar-blog-card-img.col.col-6.blog-card-image.bg-cover
             .col.col-6.px2
               .h2.black.mt3.line-height-2 Can't go solar?
               %p.my2.line-height-2 Here’s what you can do instead! From clean wind power to&hellip;
@@ -63,7 +62,7 @@
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
-            #get-efficient-blog-card-img.col.col-6.blog-card-image
+            #get-efficient-blog-card-img.col.col-6.blog-card-image.bg-cover
             .col.col-6.px2
               .h2.black.pt3.line-height-2 Get efficient!
               %p.my2.line-height-2 It’s easy to save with simple actions. Whether it’s LEDs&hellip;
@@ -73,7 +72,7 @@
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
           .clearfix
-            #family-blog-card-img.col.col-6.blog-card-image
+            #family-blog-card-img.col.col-6.blog-card-image.bg-cover
             .col.col-6.px2
               .h2.black.pt3.line-height-1 How Sue Got to 100%
               %p.mt2.line-height-2 Sue wanted to get her family onto clean energy. But where to start?
