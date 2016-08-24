@@ -1,11 +1,6 @@
-#profile-forms
+#profile-forms{class: "#{@browser.device.mobile? ? 'mobile' : 'non-mobile'}"}
   =render @response[:form]
-  
--if @browser.device.mobile?
-  .clearfix.mx-auto
-    #hp-mobile-video-module.flex.flex-column.items-center.justify-center
-      %i.white.fa.fa-play-circle.fa-4x.relative
-      %p.mt0.white.relative Watch the video
+
 
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
   %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
@@ -43,7 +38,7 @@
 
 .bg-gray-05.py4.px2
   .clearfix.mt3.max-width-4.mx-auto
-    .h1.black.center.line-height-2 Learn about clean energy options
+    .h1.black.light.center.line-height-2 Learn about clean energy options
     .clearfix.mxn4.mx-auto.pt4
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
@@ -90,7 +85,7 @@
 
 .bg-white
   .clearfix.max-width-4.mx-auto.pt4.px2
-    .h1.black.center.pb4.line-height-2 A membership with epic savings
+    .h1.black.light.center.pb4.line-height-2 A membership with epic savings
 
     .col.col-12.md-col-8
       .h2.light.gray-80 MyDomino members enjoy
