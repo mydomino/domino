@@ -19,7 +19,7 @@ $(document).ready(function()
 function reveal_modal(target)
 {
   $(target).show().addClass("animated fadeIn");
-  $('body').append('<div class="modal-bg"></div>');
+  $('body').append('<div class="modal-bg fixed top-0 bottom-0 left-0 right-0"></div>');
   $('body').addClass('overflow-hidden');
 }
 

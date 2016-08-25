@@ -1,6 +1,7 @@
+/******** highlight input fields with errors in red ********/
 .invalid-field { border-color:red!important; }
 
-//strikethrough for price point on membership module
+/******** strikethrough css for price point on membership module ********/
 .strikethrough { position: relative; }
 
 .strikethrough:before {
@@ -17,14 +18,8 @@
   a:hover, #social-icons .fa:hover { color: #00ccff; }
 }
 
-.input-error-msg { color: red; }
-
-.blog-card-image {
-  background-image: image-url('about_header');
-  background-size: cover;
-  background-color: #00ccff;
-  height: 256px;
-}
+/********  blog cards on homepage css ********/
+.blog-card-image { height: 256px; }
 
 #solar-blog-card-img{ background-image: image-url('solar-house'); }
 
@@ -34,19 +29,31 @@
 
 #family-blog-card-img{ background-image: image-url('family-blog-card'); }
 
+/******** page header css for FAQ, About, and Team pages ********/
 .page-header-image {
-  background-size: cover;
   background-position: center;
   height: 300px;
   margin-top: 100px;
+  h1{
+    font-size: 56px;
+    font-weight: 200;
+  }
 }
 
-/* Dashboard Styling */
+#team-header { background-image: image-url('team-hero-img.jpg'); }
+
+#about-header { background-image: image-url('about_header.jpg'); }
+
+#faq-header { background-image: image-url('bg_faq.jpg'); }
+
+
+/******** Dashboard Styling ********/
 .recommendation {
   min-height: 310px;
   &:hover { border-color: #00CCFF; }
 }
 
+/******** Dashboards index view ********/
 #tbl-dashboards th .current{
   padding-right: 25px;
   background-repeat: no-repeat;
@@ -57,36 +64,22 @@
 
 #tbl-dashboards th .desc{ background-image: image-url('down_arrow.gif'); }
 
+/******** modal used for displaying Task/Product from dashboard ********/
 .modal {
   display: none;
   overflow-x: hidden;
   overflow-y: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   z-index: 1050;
   -webkit-overflow-scrolling: touch;
-  outline: 0;
   .modal-content {
     margin: 100px auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    background-color: white;
     padding: 40px;
     border-radius: 20px;
-  }
-  [data-dismiss=modal]:hover{
-    cursor: pointer;
   }
 }
 
 .modal-bg {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   z-index: 1040;
   background-color: #000;
   opacity: .5;
@@ -118,8 +111,6 @@ div:hover {
   &>.hover-show { display: block; }
 }
 
-.bg-navy { background-color: #105585; }
-
 /* Overlay */
 .overlay {
   position: relative;
@@ -150,10 +141,10 @@ div:hover {
   /*partner code input field*/
   #profile_partner_code{
     text-transform: uppercase;
-    height:44px;
+    height: 44px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    width:100px;
+    width: 100px;
   }
 
   #partner-code-label{
@@ -171,61 +162,33 @@ div:hover {
 }
 /***** END checkout onboarding form components *******/
 
-/* END components.scss */
-
-/* BEGIN custom.scss */
-
 $breakpoint-xs: '(max-width: 40em)' !default;
 /* Basscss Responsive Margin */
 @media #{$breakpoint-xs} {
-  .xs-center {
-    text-align: center;
-  }
+  .xs-center { text-align: center; }
 }
-/* BEGIN custom height utilities */
-.height-40 { height: 40px; }
-
-.height-32 { height: 32px; }
-
-.height-420 { height: 420px; }
-/* END custom height utilities */
 
 /* BEGIN custom navbar styles */
 #navbar {
-
-  .fa-bars {
-    font-size: 2rem;
-    padding-top: 2.2rem;
-  }
-
-  #mobile-nav {
-    ul { font-size: 3rem; }
-  }
+  .fa-bars { padding-top: 2.2rem; }
+  .fa-phone { font-size: 1.2em; }
 }
-
-#navbar .fa-phone { font-size: 1.2em; }
 /* END custom navbar styles */
 
 /* BEGIN custom Action Path Module styles */
 #action-path {
-
   #lightbulb-outlet-icon { margin-top: 10px; }
-
   #heatpump-car-icon { margin-top: 27px; }
 }
 /* END custom Action Path Module styles */
 
-.pointer{ cursor: pointer }
-
-button{ outline: none; }
+.pointer { cursor: pointer; }
 
 /* style rules for onboarding module on homepage */
 .mobile-form{
-  position:relative;
   width:100%;
   height:100%;
-  background-image: image-url('mobile_onboarding_bg.jpg');
-  background-size: cover;
+  background-image: image-url('homepage-video-placeholder.jpg');
   background-position: 50% 50%;
   .overlay-mobile{
     content: '';
@@ -242,10 +205,8 @@ button{ outline: none; }
 
 #name-and-email {
   .video-container {
-    display:block;
     width: 100%;
     height: 620px;
-    overflow: hidden;
     video {
       width:100%;
       min-width:100%;
@@ -259,45 +220,36 @@ button{ outline: none; }
   .overlay-nonmobile {
     height: 620px;
     width: 100%;
-    position: absolute;
     z-index: 2;
     background-image: linear-gradient(#000000, #727272);
     opacity: 0.6;
   }
-}
-
-/* end style rules for homepage onboard module */
-#video-modal { display: none; }
-
-#close-modal {
-  top: 8px;
-  right: 8px;
-}
-
-#about-banner {
-  background: image-url('bg_about-1.jpg');
-  background-size:cover;
-}
-
-.bg-lightgray{ background-color: #F9F9F9; }
-
-input{ padding-left: 10px; }
-
-#name-and-email {
   input[type=text], input[type=email] {
     border: 1px solid white;
     height: 42px;
   }
   ::placeholder{
-    color: #B6C7CB;
+    color: #858585;
     font-weight: 100;
     font-size: 16px;
     margin-top: 20px;
   }
 }
 
-#living-situation, #footer {
-  input[type=text], input[type=email], input[type=zip], input[type=tel], select {
+/* end style rules for homepage onboard module */
+#video-modal { display: none; }
+
+.bg-lightgray{ background-color: #F9F9F9; }
+
+input{ padding-left: 10px; }
+
+#living-situation, 
+#footer {
+  input[type=text], 
+  input[type=email], 
+  input[type=zip], 
+  input[type=tel], 
+  select {
     border: 1px solid #666;
     height: 42px;
   }
@@ -307,8 +259,6 @@ input{ padding-left: 10px; }
   }
 }
 
-.border-width-2 { border-width: 2px; }
-
 .border-light {
   border-style: solid;
   border-width: 1px;
@@ -316,13 +266,18 @@ input{ padding-left: 10px; }
 }
 
 .border-light-gray { border-color: #c5c5c5; }
-.border-solid { border-style: solid; }
 
-.devise-form, .recommendation-form{
-  input[type], textarea, select { border: 1px solid #DDDDDD; }
+.devise-form, 
+.recommendation-form{
+  input[type], 
+  textarea, 
+  select { border: 1px solid #DDDDDD; }
 }
 
-#profile-forms, .recommendation-form, .devise-form, #footer{
+#profile-forms, 
+.recommendation-form, 
+.devise-form, 
+#footer{
 
   input[type=text],
   input[type=email],
@@ -360,7 +315,6 @@ input{ padding-left: 10px; }
     margin: 0px 1px 3px 0px;
   }
 }
-
 
 /* styles for dashboard recommendations */
 .rounded-20 { border-radius: 20px; }
@@ -459,29 +413,29 @@ input{ padding-left: 10px; }
     text-align: center;
     margin-bottom: 20px;
     .first{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .prev {
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .page{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .next{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .last{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
   }
 }
@@ -490,12 +444,6 @@ input{ padding-left: 10px; }
 
 .top-10 { top: 10px; }
 
-#team-header { background-image: image-url('team-hero-img.jpg'); }
-
-#about-header { background-image: image-url('about_header.jpg'); }
-
-#faq-header { background-image: image-url('bg_faq.jpg'); }
-
 body.lock-position {
   height: 100%;
   overflow: hidden;
@@ -503,23 +451,13 @@ body.lock-position {
   position: fixed;
 }
 
-#hp-video-placeholder{
-  background-image: image-url('homepage-video-placeholder.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
 /* accordion element on FAQ page */
 .accordion-content { display: none; }
 
 span.toggle { width: 1em; }
 
-#profile-forms {
-  min-height: 620px;
-  border-bottom: 2px solid lightgray;
-  .btn-housing-active { background-color: #00CCFF; }
-}
+#profile-forms.non-mobile{ min-height: 620px; }
+#profile-forms { border-bottom: 2px solid lightgray; }
 
 #slider > div{ background: #00CCFF!important; }
 

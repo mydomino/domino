@@ -19,4 +19,4 @@
 //= require signup
 //= require jquery.mask.min.js
 //= require modal
-//= require custom
+//= require pages.index.js
