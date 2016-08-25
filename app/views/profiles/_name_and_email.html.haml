@@ -14,7 +14,7 @@
       .clearfix.py2
         .col.col-6
           =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
-          #first-name-error-msg.display-none.red.m0 
+          #first-name-error-msg.display-none.red.m0
             'First name' is blank
         .col.col-6.pl1
           =form.input_field :last_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
@@ -58,7 +58,7 @@
                 .clearfix
                   .col.col-6
                     =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
-                    #first-name-error-msg.display-none.red.m0 
+                    #first-name-error-msg.display-none.red.m0
                       'First name' is blank
                   .col.col-6.pl1
                     =form.input_field :last_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
@@ -80,7 +80,7 @@
 
     $('#btn-begin-onboard').on('click', function(e){
       e.preventDefault();
-      if (validateRequiredFields($requiredFields)){ 
+      if (validateRequiredFields($requiredFields)){
         $(".simple_form").submit();
       }
     });
@@ -103,7 +103,7 @@
         $($(this).data('target')).addClass('display-none');
       }
     });
-    
+
     //submit buttons may not be pushed multiple times
     $(".simple_form").submit(function() {
       $(this).submit(function() {
