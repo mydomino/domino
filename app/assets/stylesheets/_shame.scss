@@ -1,6 +1,7 @@
+/******** highlight input fields with errors in red ********/
 .invalid-field { border-color:red!important; }
 
-//strikethrough for price point on membership module
+/******** strikethrough css for price point on membership module ********/
 .strikethrough { position: relative; }
 
 .strikethrough:before {
@@ -17,8 +18,7 @@
   a:hover, #social-icons .fa:hover { color: #00ccff; }
 }
 
-.input-error-msg { color: red; }
-
+/********  blog cards on homepage css ********/
 .blog-card-image { height: 256px; }
 
 #solar-blog-card-img{ background-image: image-url('solar-house'); }
@@ -29,19 +29,31 @@
 
 #family-blog-card-img{ background-image: image-url('family-blog-card'); }
 
+/******** page header css for FAQ, About, and Team pages ********/
 .page-header-image {
-  background-size: cover;
   background-position: center;
   height: 300px;
   margin-top: 100px;
+  h1{
+    font-size: 56px;
+    font-weight: 200;
+  }
 }
 
-/* Dashboard Styling */
+#team-header { background-image: image-url('team-hero-img.jpg'); }
+
+#about-header { background-image: image-url('about_header.jpg'); }
+
+#faq-header { background-image: image-url('bg_faq.jpg'); }
+
+
+/******** Dashboard Styling ********/
 .recommendation {
   min-height: 310px;
   &:hover { border-color: #00CCFF; }
 }
 
+/******** Dashboards index view ********/
 #tbl-dashboards th .current{
   padding-right: 25px;
   background-repeat: no-repeat;
@@ -52,36 +64,22 @@
 
 #tbl-dashboards th .desc{ background-image: image-url('down_arrow.gif'); }
 
+/******** modal used for displaying Task/Product from dashboard ********/
 .modal {
   display: none;
   overflow-x: hidden;
   overflow-y: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   z-index: 1050;
   -webkit-overflow-scrolling: touch;
-  outline: 0;
   .modal-content {
     margin: 100px auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    background-color: white;
     padding: 40px;
     border-radius: 20px;
-  }
-  [data-dismiss=modal]:hover{
-    cursor: pointer;
   }
 }
 
 .modal-bg {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   z-index: 1040;
   background-color: #000;
   opacity: .5;
@@ -143,10 +141,10 @@ div:hover {
   /*partner code input field*/
   #profile_partner_code{
     text-transform: uppercase;
-    height:44px;
+    height: 44px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    width:100px;
+    width: 100px;
   }
 
   #partner-code-label{
@@ -172,10 +170,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 /* BEGIN custom navbar styles */
 #navbar {
-  .fa-bars {
-    font-size: 2rem;
-    padding-top: 2.2rem;
-  }
+  .fa-bars { padding-top: 2.2rem; }
   .fa-phone { font-size: 1.2em; }
 }
 /* END custom navbar styles */
@@ -188,8 +183,6 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 /* END custom Action Path Module styles */
 
 .pointer { cursor: pointer; }
-
-button { outline: none; }
 
 /* style rules for onboarding module on homepage */
 .mobile-form{
@@ -231,21 +224,6 @@ button { outline: none; }
     background-image: linear-gradient(#000000, #727272);
     opacity: 0.6;
   }
-}
-
-/* end style rules for homepage onboard module */
-#video-modal { display: none; }
-
-#close-modal {
-  top: 8px;
-  right: 8px;
-}
-
-.bg-lightgray{ background-color: #F9F9F9; }
-
-input{ padding-left: 10px; }
-
-#name-and-email {
   input[type=text], input[type=email] {
     border: 1px solid white;
     height: 42px;
@@ -258,8 +236,20 @@ input{ padding-left: 10px; }
   }
 }
 
-#living-situation, #footer {
-  input[type=text], input[type=email], input[type=zip], input[type=tel], select {
+/* end style rules for homepage onboard module */
+#video-modal { display: none; }
+
+.bg-lightgray{ background-color: #F9F9F9; }
+
+input{ padding-left: 10px; }
+
+#living-situation, 
+#footer {
+  input[type=text], 
+  input[type=email], 
+  input[type=zip], 
+  input[type=tel], 
+  select {
     border: 1px solid #666;
     height: 42px;
   }
@@ -277,8 +267,11 @@ input{ padding-left: 10px; }
 
 .border-light-gray { border-color: #c5c5c5; }
 
-.devise-form, .recommendation-form{
-  input[type], textarea, select { border: 1px solid #DDDDDD; }
+.devise-form, 
+.recommendation-form{
+  input[type], 
+  textarea, 
+  select { border: 1px solid #DDDDDD; }
 }
 
 #profile-forms, 
@@ -420,29 +413,29 @@ input{ padding-left: 10px; }
     text-align: center;
     margin-bottom: 20px;
     .first{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .prev {
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .page{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .next{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
     .last{
-        padding : 0;
-        float: none;
-        border: none;
+      padding : 0;
+      float: none;
+      border: none;
     }
   }
 }
@@ -450,12 +443,6 @@ input{ padding-left: 10px; }
 .right-10 { right: 10px; }
 
 .top-10 { top: 10px; }
-
-#team-header { background-image: image-url('team-hero-img.jpg'); }
-
-#about-header { background-image: image-url('about_header.jpg'); }
-
-#faq-header { background-image: image-url('bg_faq.jpg'); }
 
 body.lock-position {
   height: 100%;
