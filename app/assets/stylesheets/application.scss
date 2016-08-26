@@ -16,8 +16,35 @@
  *= require nprogress
  */
 
+// Variable config
+@import 'config';
+
+//Shame is a file that should eventually be omitted; quick-n-dirty solutions go here
 @import 'shame';
-@import 'surfaces/surfaces';
-@import 'components/components';
-@import 'utilities/utilities';
+
+//working on moving base to reset
 @import 'base';
+
+//mostly comprised of buttons atm, but im thinking to move off to single-utility for flatness
+@import 'components/components';
+
+// Set Default Values, still working out reset.scss
+//@import 'reset';
+
+// Layout
+@import 'flexbox';
+@import 'grid';
+@import 'layout';
+@import 'margin';
+@import 'padding';
+//@import 'align';
+@import 'position';
+@import 'hide';
+
+// Styling
+//@import 'hover';
+@import 'border';
+@import 'background';
+//@import 'opacity';
+@import 'color';
+@import 'typography';

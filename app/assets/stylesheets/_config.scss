@@ -1,5 +1,5 @@
 //Border
-$border-width: 2px;
+$border-width: 1px;
 $border-radius: 4px;
 $border-pill: 32px;
 
@@ -12,16 +12,20 @@ $breakpoint-lg: '(min-width: 64em)';
 // Loop Counts
 $margin-count: 8; //Generates margin classes 0.5rem increments
 $padding-count: 8; //Generates padding classes in 0.5rem increments
-$layout-count: 25; //Generates height/width classes in 0.5rem increments
+
+//inherited layout styles from spector that i don't understand
+//$layout-count: 25; //Generates height/width classes in 0.5rem increments
 
 //Type Scale
-$h1: 1.5rem;    // 32px
-$h2: 1.25rem;   // 24px
-$h3: 1.125rem;  // 20px
+$h0: 3rem;      // 48px
+$h1: 2rem;      // 32px
+$h2: 1.5rem;    // 24px
+$h3: 1.25rem;   // 20px
 $h4: 1rem;      // 16px
 $h5: 0.875rem;  // 14px
 $h6: 0.75rem;   // 12px
 
+//Line Height Variables
 $line-height-1:  1;
 $line-height-2:  1.25;
 $line-height-3:  1.5;
@@ -29,18 +33,19 @@ $line-height-4:  2;
 
 // UI Color Definitions
 $white: #FFFFFF;
-$black: #000000;
-$phantom-gray: #56718C;
-$wraith-gray: #BCD3DE;
-$ghost-gray: #E1ECF2;
-$shade-gray: #B7C3CE;
+$black: #333333;
+$gray-90: #5C5C5C;
+$gray-80: #666666; /*changed from domino-gray*/
+$gray-60: #858585;
+$gray-30: #C1C1C1;
+$gray-20: #D6D6D6;
+$gray-10: #EAEAEA;
+$gray-05: #F3F3F3;
 
 // UI Palette
-$ui-palette: (
-  primary: $black,
-  secondary: $phantom-gray,
-  tertiary: $wraith-gray,
-  placeholder: $ghost-gray,
-);
 
 // Brand Color Definitions
+$blue: #00CCFF;
+$navy: #105585;
+$red: #FF0000;
+$orange: #FD7E06;

@@ -1,22 +1,4 @@
-// Neutral Color Variables
-$white: #FFFFFF;
-$black: #333333;
-$gray-90: #5C5C5C;
-$gray-80: #666666; /*changed from domino-gray*/
-$gray-60: #858585;
-$gray-30: #C1C1C1;
-$gray-20: #D6D6D6;
-$gray-10: #EAEAEA;
-$gray-05: #F3F3F3;
 
-// Brand Color Variables
-$blue: #00CCFF;
-$navy: #105585;
-$red: #FF0000;
-$orange: orange;
-
-// Alert Color Variables
-$red: #FF0000;
 
 // Text Colors
 .white { color: $white; }
@@ -28,16 +10,4 @@ $red: #FF0000;
 
 .blue { color: $blue; }
 .red { color: $red; }
-.orange { color: $orange; }
-
-// Background Colors
-.bg-transparent{ background-color: transparent; }
-.bg-white { background-color: $white; }
-.bg-gray-05 { background-color: $gray-05; }
-.bg-gray-10 { background-color: $gray-10; }
-.bg-gray-20 { background-color: $gray-20; }
-.bg-gray-60 { background-color: $gray-60; }
-.bg-blue { background-color:$blue; }
-.bg-red {background-color: $red; }
-.bg-navy { background-color: $navy; }
-
+.orange{ color:$orange; }

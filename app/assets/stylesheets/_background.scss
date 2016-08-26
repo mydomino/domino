@@ -1,14 +1,19 @@
-/* Basscss Background Images */
+//Background Images
 .bg-cover   { background-size: cover }
-
 .bg-contain { background-size: contain }
-
 .bg-center  { background-position: center }
-
 .bg-top     { background-position: top }
-
 .bg-right   { background-position: right }
-
 .bg-bottom  { background-position: bottom }
-
 .bg-left    { background-position: left }
+
+//Background Colors
+.bg-transparent{ background-color: transparent; }
+.bg-white { background-color: $white; }
+.bg-gray-05 { background-color: $gray-05; }
+.bg-gray-10 { background-color: $gray-10; }
+.bg-gray-20 { background-color: $gray-20; }
+.bg-gray-60 { background-color: $gray-60; }
+.bg-blue { background-color:$blue; }
+.bg-red {background-color: $red; }
+.bg-navy { background-color: $navy; }
