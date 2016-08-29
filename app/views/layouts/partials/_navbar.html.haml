@@ -2,15 +2,15 @@
 - nav_element_color = "#{homepage ? 'white' : 'gray-80'}"
 
 %nav#navbar.col-12.z3.top-0.absolute
-  .max-width-4.mx-auto
+  .mx-auto
     .clearfix
       .col.col-4.p2
         = link_to root_path, id: "navbar-brand" do
           = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo'
 
-      .md-hide.lg-hide.px2.right
+      .md-hide.lg-hide.right.px2
         .fa.fa-bars.fa-2x.pointer.navbar-element{class: "#{nav_element_color}"}
-      .xs-hide.sm-hide.py3.px3.my1.sm-hide
+      .xs-hide.sm-hide.py3.px3.my1
         .right
           .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
             %i.fa.fa-phone
@@ -23,7 +23,7 @@
             =link_to 'Log out', destroy_user_session_path, method: :delete, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none"
           -else
             =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none", id: "link-login"
-            
+
       #mobile-nav.nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block
@@ -33,7 +33,7 @@
               %li
                 = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
             -else
-              %li 
+              %li
                 =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
               %li
                 = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
