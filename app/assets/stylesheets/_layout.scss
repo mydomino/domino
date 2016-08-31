@@ -34,10 +34,10 @@
 
 //Widths & Max-Widths
 @for $i from 1 through $layout-count {
-  .x#{$i} {width: #{$i * .5}rem;}
-    .max-width-x#{$i} {max-width: #{$i * .5}rem;}
-    .min-width-x#{$i} {min-width: #{$i * .5}rem;}
+  .x#{$i} {width: #{$i * 1}rem;}
+    .max-width-#{$i} {max-width: #{$i * 8}rem;}
+    .min-width-#{$i} {min-width: #{$i * 1}rem;}
   .y#{$i} {height: #{$i * .5}rem;}
-    .max-height-y#{$i} {max-height: #{$i * .5}rem;}
-    .min-height-y#{$i} {min-height: #{$i * .5}rem;}
+    .max-height-#{$i} {max-height: #{$i * .5}rem;}
+    .min-height-#{$i} {min-height: #{$i * .5}rem;}
 }
