@@ -1,12 +1,12 @@
 #signup.devise-form.py4
-  .max-width-3.mx-auto.mt4
-    .bg-lightgray.rounded.pt3.mt4.max-width-2.mx-auto
+  .max-width-6.mx-auto.mt4
+    .bg-lightgray.rounded.pt3.mt4.max-width-4.mx-auto
       .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
         = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
       %h1.center.domino-gray Reset Your Password
       =simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post } do |f|
         =render 'shared/error_messages', object: f.object, color: "#666"
-        .form-inputs.max-width-1.mx-auto
+        .form-inputs.max-width-3.mx-auto
           %label.domino-gray Email Address
           = f.input_field :email, required: true, autofocus: true, class: 'mb2 mt1', style: 'height: 40px;'
           .center.py3
