@@ -19,5 +19,10 @@ RSpec.describe Profile, :type => :model do
     expect(@profile).to_not be_valid
   end
 
+  it "is not valid without an email" do
+    @profile.email = nil
+    expect(@profile).to_not be_valid
+  end
+
 
 end
