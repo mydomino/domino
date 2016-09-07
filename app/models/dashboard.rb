@@ -15,4 +15,5 @@ class Dashboard < ActiveRecord::Base
     self.products = Product.default
     self.tasks = Task.default
   end
+
 end

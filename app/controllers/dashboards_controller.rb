@@ -51,6 +51,13 @@ class DashboardsController < ApplicationController
     render :layout => 'dashboard'
   end
 
+  def new
+    @dashboard = Dashboard.new
+  end
+
+  def create
+
+  end
   def destroy
     @dashboard = Dashboard.find(params[:id])
     if lu = LegacyUser.find_by_email(@dashboard.lead_email)

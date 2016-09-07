@@ -12,7 +12,7 @@ RSpec.feature "User Onboarding", :type => :feature, focus: true, js: true do
     fill_in 'profile_email', with: "foo@bar.com"
     click_on 'Get started'
     # wait_for_ajax
-    expect(true).to eq(true)
+    # expect(true).to eq(true)
     # expect(page).to have_content("Clean Power Options")
   end
 end

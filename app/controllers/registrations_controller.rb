@@ -56,11 +56,15 @@ class RegistrationsController < Devise::RegistrationsController
     @email = current_user.email
     @profile = Profile.find_by_email(@email)
 
+<<<<<<< HEAD
     current_user.profile = @profile if !@profile.nil?
     
     #create and bind dashboard to user if not legacy user
     if !LegacyUser.find_by_email(@email)
-      current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: @email)
+      #create and bind dashboard to user if not legacy user
+      #check if dashboard already provisioned, if not create one
+      dashboard = Dashboard.find_by_lead_email(@email)
+      current_user.dashboard = dashboard
       @profile.update(dashboard_registered: true)
       DashboardRegisteredZohoJob.perform_later @profile
     else
