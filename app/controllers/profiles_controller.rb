@@ -11,7 +11,11 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.onboard_complete = true
     @profile.onboard_step = 4
+
+    #don't send Stephen email when a user profile/dashboard is created 
+    Profile.skip_callback(:create, :after, :send_onboard_started_email)
     if @profile.save
+      Profile.set_callback(:create, :after, :send_onboard_started_email)
       Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
       @profile.save_to_zoho if params[:save_to_zoho]
       UserMailer.welcome_email_universal(@profile.email).deliver_later if params[:send_welcome_email]
@@ -19,6 +23,7 @@ class ProfilesController < ApplicationController
       redirect_to dashboards_path
       return
     else
+      Profile.set_callback(:create, :after, :send_onboard_started_email)
       render action: 'new', layout: 'concierge'
       return
     end
