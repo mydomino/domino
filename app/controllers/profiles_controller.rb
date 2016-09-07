@@ -18,9 +18,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @profile.onboard_complete
-      @profile.update_zoho
-    end
+    @profile.update_zoho if @profile.onboard_complete
  
     params[:commit] == 'Back' ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
 
