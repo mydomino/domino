@@ -8,6 +8,6 @@ class AnalyticsController < ApplicationController
     @dashboard_count = Dashboard.all.count
     @recommendations_count = Recommendation.all.count
     @recommendations_completed_count = Recommendation.done.count
-    @dashboards_by_state = Dashboard.joins('join leads on leads.email = dashboards.lead_email').where('leads.state IS NOT NULL').group("leads.state").order("COUNT(leads.state) DESC").count
+    @dashboards_by_state = Dashboard.joins('join profiles on profiles.email = dashboards.lead_email').where('profiles.state IS NOT NULL').group("profiles.state").order("COUNT(profiles.state) DESC").count
   end
 end
