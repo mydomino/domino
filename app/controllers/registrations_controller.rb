@@ -2,9 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   
   def new
     #redirect to root if no slug or email in params
-    if !(params[:slug] || params[:email])
-      redirect_to root_path and return
-    end
+    redirect_to root_path and return if !(params[:slug] || params[:email])
 
     if params[:slug]
       @legacy_user = true
