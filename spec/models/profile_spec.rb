@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Profile, :type => :model do
+  
   before(:each) do
     @profile = build(:profile)
   end
@@ -23,6 +24,5 @@ RSpec.describe Profile, :type => :model do
     @profile.email = nil
     expect(@profile).to_not be_valid
   end
-
 
 end
