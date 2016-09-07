@@ -15,7 +15,9 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :offerings, :partner_code
   
   validates :first_name, :last_name, :email, presence: true
+  validates :phone, :city, :state, :zip, :housing, presence: true
   validates :email, uniqueness: true, email: true
+
   before_save :downcase_email
   after_create :send_onboard_started_email
 

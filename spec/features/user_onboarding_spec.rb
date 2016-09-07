@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.feature "User Onboarding", :type => :feature, focus: true, js: true do
 
-  scenario "User steps through onboarding" do
+  skip scenario "User steps through onboarding" do
     # offering = FactoryGirl.create(:offering, name: "Clean Power Options")
     visit "/"
 
