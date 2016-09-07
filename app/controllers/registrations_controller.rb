@@ -5,13 +5,9 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to root_path and return if !(params[:slug] || params[:email])
 
     if params[:slug]
-      @legacy_user = true
+      # @legacy_user = true
       @dashboard = Dashboard.find_by_slug(params[:slug])
-      if @dashboard
-        @email = @dashboard.lead_email
-      else
-        redirect_to root_path and return
-      end
+      @dashboard ? @email = @dashboard.lead_email : (redirect_to root_path and return)         
     else
       @email = params[:email].downcase
       @legacy_user = true if LegacyUser.find_by_email(@email)
