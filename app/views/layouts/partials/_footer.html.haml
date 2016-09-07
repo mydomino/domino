@@ -1,0 +1,86 @@
+#footer.bg-gray-05
+  .clearfix.max-width-4.mx-auto.py2
+
+    #social-icons.col.col-12.sm-col-6.md-col-3.p2
+      = link_to 'https://www.facebook.com/ourdominoeffect', target:'_blank', class: 'text-decoration-none' do
+        %i.pointer.gray-80.fa.fa-2x.fa-facebook-square.px1
+      = link_to 'https://twitter.com/OurDominoEffect', target:'_blank', class: 'text-decoration-none' do
+        %i.pointer.gray-80.fa.fa-2x.fa-twitter.px1
+      = link_to 'https://www.instagram.com/mydomino/', target:'_blank', class: 'text-decoration-none' do
+        %i.pointer.gray-80.fa.fa-2x.fa-instagram.px1
+
+    .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-80
+      .bold Who we are
+      MyDomino is a concierge service that's helping people like you switch to clean energy and save money.
+
+    .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-80
+      = form_tag "/newsletter-subscribe", remote: true, method: :get do
+        .bold.mb1
+          Sign up for our newsletter
+        %input#newsletter-email.bg-transparent.rounded.mt1{style: 'height: 2em', type: 'email', name: 'email', required: true}
+        %input#newsletter-subscribe.btn.btn-sm.btn-primary.btn-primary--hover.mt1{type: 'submit', value: 'Sign up'}
+
+    .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-80
+      = link_to 'tel:8009792225', class: 'text-decoration-none gray-80' do
+        %i.fa.fa-phone
+        800-979-2225
+      %br
+      = link_to 'mailto:hello@mydomino.com', class: 'text-decoration-none gray-80' do
+        %i.fa.fa-envelope
+        hello@mydomino.com
+
+  %hr.gray-80.max-width-4
+
+  .clearfix.max-width-4.mx-auto.py1
+
+    .sm-col.sm-col-12.md-col-6.px2
+      .white
+        = image_tag "mydomino_esc_horizontal", class: 'fit', width: '250px'
+      %p.h5.mt1.gray-80
+        327 19th Street
+        %br
+        Oakland, CA 94612
+
+    .sm-col.sm-col-12.md-col-6
+      .clearfix
+        .col.col-4.right.px2
+          = image_tag "b-corp.png", style: 'max-width:64px;', class: 'right'
+          %br
+          = image_tag "bbb-logo.svg", width: '75%', style: 'max-width: 128px;', class: 'right'
+
+        .col.col-4.right.px2
+          %h4.gray-80.my0 COMPANY
+          %ul.mt0.list-reset.h5
+            %li
+              = link_to "Blog", "http://blog.mydomino.com" , class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "About Us", about_path, class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Our Team", team_path, class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Careers", "https://angel.co/mydomino/jobs", target: '_blank', class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Press", "http://mydomino.strikingly.com", target: '_blank', class: 'text-decoration-none gray-80 pointer'
+
+        .col.col-4.right.px2
+          %h4.gray-80.my0 LEARN MORE
+          %ul.mt0.list-reset.h5
+            %li
+              = link_to "Solar 101", "http://blog.mydomino.com/solar-101/", class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Can't Go Solar?", "http://blog.mydomino.com/cant-go-solar/", class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Get Efficient", "http://blog.mydomino.com/get-efficient/ ", class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Stay Warm, Be Cool", "http://blog.mydomino.com/stay-warm-cool/", class: 'text-decoration-none gray-80 pointer'
+            %li 
+              = link_to "Ride Electric", "http://blog.mydomino.com/ride-electric/", class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "FAQ", faq_path, class: 'text-decoration-none gray-80 pointer'
+
+  %hr.gray-80.max-width-4
+  .max-width-4.mx-auto.gray-80.h5.py1.px2
+    &copy;&nbsp;2016 MyDomino Inc.
+    = link_to 'Terms of Service', terms_path, class: 'text-decoration-none gray-80 mx1 pointer'
+    = link_to 'Privacy Policy', privacy_path, class: 'text-decoration-none gray-80 mx1 pointer'
+    CA&nbsp;CSLB&nbsp;1016806

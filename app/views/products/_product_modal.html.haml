@@ -1,10 +1,9 @@
-.clearfix.mx-auto.max-width-4.modal.fade{id: "product-#{product.id}"}
+.clearfix.mx-auto.max-width-4.modal.fixed.top-0.bottom-0.left-0.right-0.fade{id: "product-#{product.id}"}
   .modal-dialog
-    .modal-content
+    .modal-content.bg-white
       .modal-header.relative
-        .absolute.top-0.left-0.close.lh0{"data-dismiss" => "modal"}
-          %span{ style: 'font-size: 2rem;' }
-            .fa.fa-times.blue
+        .absolute.top-0.left-0.close.pointer{"data-dismiss" => "modal"}
+          .fa.fa-times.fa-2x.blue
       .modal-body
         .clearfix.max-width-4
           .sm-col.sm-col-12.md-col-6.center.py4

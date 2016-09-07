@@ -1,10 +1,7 @@
--content_for :navbar_class do
-  fixed gray-80 sm-col-12
-
 .clearfix.mx-auto.pb4
-  #team-header.page-header-image.flex.items-center
+  #team-header.page-header-image.bg-cover.flex.items-center
     .max-width-3.mx-auto
-      %h1.m0.center.white{style: 'font-size: 56px;font-weight: 200;'} TEAM
+      %h1.m0.center.white TEAM
       %h3.center.white.m0
         We're data crunchers, cyclists, nature-lovers, researchers --  and above all,
         clean energy nerds with a passion for the planet. We're here to help you ditch
@@ -76,14 +73,6 @@
       Laura has worked in energy efficiency since 2009 and is Building Performance Institute certified. She's done home performance testing on over 500 homes and has helped evaluate some of those homes for solar. One of her biggest passions is saving energy (and money) through efficiency, a love she discovered working in San Francisco Theatres as a Tech and Stage Manager -- where she needed to find ways to stay comfortable while on a budget!
 
   .sm-col.sm-col-12.md-col.md-col-3
-    = image_tag "team_portraits/Pam-Maners", width: 128, class: 'circle pointer'
-  .sm-col.sm-col-12.md-col.md-col-9.mb3
-    %h2.my0 Pam Maners
-    %h2.my0.gray-80{style: 'margin-top:-8px'} Office Manager
-    %p.my0
-      Pam has always had a passion for the outdoors and clean energy. She gardens using all-organic products, and is an avid cook and baker. At MyDomino she does a little bit of everything, from making sure the office is stocked with healthy drinks, to planning and organizing weekly team lunches, to making sure the bills are paid. She also has a viticulture degree and works part-time at a family-owned, eco-friendly, green winery in Napa. She loves to read, jog, and walk with the family Basset Hound Wyatt.
-
-  .sm-col.sm-col-12.md-col.md-col-3
     = image_tag "team_portraits/Mac-Farrell", width: 128, class: 'circle pointer'
   .sm-col.sm-col-12.md-col.md-col-9.mb3
     %h2.my0 Mac Farrell
@@ -108,22 +97,9 @@
       Maureen has a passion for causes that have a positive impact on people and the environment. At MyDomino, she focuses on building relationships with organizations that want to empower people to take meaningful actions for the environment with clean energy. Maureen enjoys being outdoors skiing, hiking, golfing, and biking.
 
   .sm-col.sm-col-12.md-col.md-col-3
-    = image_tag "team_portraits/Michaela-Nye.jpg", width: 128, class: 'circle pointer'
-  .sm-col.sm-col-12.md-col.md-col-9.mb3
-    %h2.my0 Michaela Nye
-    %h2.my0.gray-80{style: 'margin-top:-8px'} Energy Concierge Assistant
-    %p.my0
-      Michaela is fresh to the business world, which she comes to with a background in grassroots organizing and a passion for food and environmental advocacy. At MyDomino she helps customers find the best clean energy solutions for their lifestyle and budget. In her spare time, Michaela enjoys backpacking, cycling, and growing and cooking great food!
-
-  .sm-col.sm-col-12.md-col.md-col-3
     = image_tag "team_portraits/Hobbes", width: 128, class: 'circle pointer'
   .sm-col.sm-col-12.md-col.md-col-9.mb3
     %h2.my0 Hobbes
     %h2.my0.gray-80{style: 'margin-top:-8px'} Director of Napping and Chief Security Officer
     %p.my0
       Hobbes has always appreciated the natural world, and he's thrilled to be part of a company that's helping to protect it. Plus, he loves the back scratches and treats. Hobbes plays a key role at MyDomino. He greets our visitors, keeps us calm and happy, and never fails to entertain. In his spare time, Hobbes enjoys chasing squirrels, eating chicken, and of course, napping.
-
-:javascript
-  logoColors.startColors.text = '#666';
-  logoColors.startColors.penguin = '#00ccff';
-  navbarScroll('#666', '#666');

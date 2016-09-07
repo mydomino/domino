@@ -20,6 +20,7 @@ class PagesController < ApplicationController
     end
     @profile = Profile.new
     @response = {form: 'profiles/name_and_email', method: :post}
+    @rolling_date = "Until #{Time.now.strftime('%b')} #{Time.now.end_of_month.day}, #{Time.now.year}"
   end
 
   def about
@@ -38,6 +39,13 @@ class PagesController < ApplicationController
   end
   
   def example
+  end
+
+  def newsletter_subscribe
+    SubscribeToMailchimpJob.perform_later params[:email]
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

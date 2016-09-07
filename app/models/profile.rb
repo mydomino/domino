@@ -17,12 +17,17 @@ class Profile < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
   before_save :downcase_email
+  after_create :send_onboard_started_email
 
   def save_to_zoho
     if LegacyUser.find_by_email(self.email)
     else
       SaveToZohoJob.perform_later self
     end
+  end
+
+  def send_onboard_started_email
+    UserMailer.onboard_started(self).deliver_later
   end
 
   #method to minimize api calls to zoho on lead profile updates

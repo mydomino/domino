@@ -1,8 +1,4 @@
 :css
-  .invalid-field {
-    border-color:red!important;
-  }
-
   .btn-secondary--invalid {
     border-color: red;
     color: red;
@@ -25,7 +21,7 @@
           %i.fa.fa-question-circle-o.pointer
           %br
           =form.input_field :phone, class: "h3 bg-transparent rounded required-field", placeholder: "", data: {reg: '\\(\\d{3}\\)\\s\\d{3}\\-\\d{4}', target: '#phone-error-msg'}
-          #phone-error-msg.input-error-msg.display-none
+          #phone-error-msg.red.display-none
             Phone number is required. 
             %span#why-phone.gray-80.pointer
               Why?
@@ -69,7 +65,7 @@
                 %br
                 =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded required-field", maxlength: "5", placeholder: "", data: {reg: '^\\d{5}', 'msg-group': '#city-state-zip', label: 'Zip'}
                 %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
-            #city-error-msg.input-error-msg.display-none
+            #city-error-msg.red.display-none
             .col.col-12.pt1
               %label.h4 Housing
               %br
@@ -77,7 +73,7 @@
                 %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'rent'}", type: "button", data: {value: "rent"}} Rent
                 %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'own'}", type: "button", data: {value: "own"}} Own
               =form.input :housing, :as => :hidden, input_html: { data: {reg: '(own|rent)', target: '#housing-error-msg', 'error-target': '.btn-group > .btn-secondary'}, value: @profile.housing, class: 'required-field'}
-            #housing-error-msg.input-error-msg.display-none
+            #housing-error-msg.red.display-none
               Housing type is required.
         .clearfix
           .col.col-12
@@ -95,11 +91,6 @@
       $('#profile_address_line_1').val($('#span-street_number').html() + " " + $('#span-route').html());
       $requiredFields.change();
     });
-
-    logoColors.startColors.text = '#666'
-    logoColors.startColors.penguin = '#00ccff'
-    $('.navbar-element').css('color', '#666666');
-    navbarScroll('#666666', '#666');
 
     $("#profile_phone").mask("(999) 999-9999");
 
