@@ -55,12 +55,6 @@ class ProfilesController < ApplicationController
     render "profiles/email_sent.js", content_type: 'text/javascript'
   end
 
-  def lu_registration_email
-    @lu = LegacyUser.find(params[:lu_id])
-    UserMailer.legacy_user_registration_email_universal(@lu.email).deliver_later
-    render "profiles/email_sent.js", content_type: 'text/javascript'
-  end
-
   private
 
   def legacy_user? 
