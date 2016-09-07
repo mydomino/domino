@@ -15,9 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     #check if user already registered, if so redirect to login page
     #TODO should add flash message you already have an account
-    if User.find_by_email(@email)
-      redirect_to new_user_session_path and return
-    end
+    redirect_to new_user_session_path and return if User.find_by_email(@email)
     
     #todo should return to complete onboarding
     if @profile = Profile.find_by_email(@email)
