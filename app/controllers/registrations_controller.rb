@@ -53,28 +53,23 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    if current_user
+    @email = current_user.email
+    @profile = Profile.find_by_email(@email)
 
-      @email = current_user.email
-      @profile = Profile.find_by_email(@email)
-
-      current_user.profile = @profile if !@profile.nil?
-      
-      #create and bind dashboard to user if not legacy user
-      if !LegacyUser.find_by_email(@email)
-        current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: @email)
-        @profile.update(dashboard_registered: true)
-        DashboardRegisteredZohoJob.perform_later @profile
-      else
-        current_user.dashboard = Dashboard.find_by_lead_email(@email)
-        lu = LegacyUser.find_by_email(@email)
-        lu.update(dashboard_registered: true)
-        @profile.update(dashboard_registered: true) if !@profile.nil?
-      end
-      user_dashboard_path
+    current_user.profile = @profile if !@profile.nil?
+    
+    #create and bind dashboard to user if not legacy user
+    if !LegacyUser.find_by_email(@email)
+      current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: @email)
+      @profile.update(dashboard_registered: true)
+      DashboardRegisteredZohoJob.perform_later @profile
     else
-      root_path
+      current_user.dashboard = Dashboard.find_by_lead_email(@email)
+      lu = LegacyUser.find_by_email(@email)
+      lu.update(dashboard_registered: true)
+      @profile.update(dashboard_registered: true) if !@profile.nil?
     end
+    user_dashboard_path
   end
 
 end
