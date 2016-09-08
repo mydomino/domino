@@ -1,6 +1,6 @@
 .max-width-4.mx-auto.m2.p2.bg-white
   .clearfix
-    %h2.mb0 Create new dashboard
+    %h2.mb0 Create member
     %hr.mb2
     = simple_form_for @profile, url: concierge_create_profile_path do |f|
       %label.h4.semi-bold
@@ -70,7 +70,7 @@
       .mb1
         = check_box_tag 'save_to_zoho'
         %label.h4.semi-bold Save record to zoho
-      = f.submit value: 'Create dashboard', class: 'btn btn-sm btn-primary btn-primary--hover mt2'
+      = f.submit value: 'Create member', class: 'btn btn-sm btn-primary btn-primary--hover mt2'
 
 :javascript
   //housing toggle button
