@@ -10,7 +10,7 @@
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
-  %body{id: page_id, class: page_class}
+  %body{id: page_id, class: "#{page_class} concierge-tools"}
     .col.bg-gray-05.fixed.top-0.bottom-0{style: 'width: 80px;'}
       .clearfix.p1.center{style: 'margin-bottom: 10px'}
         =image_tag "penguin_vertical.png", class: 'fit'
@@ -54,17 +54,4 @@
         });
 
       :scss
-        .opt-concierge-tool {
-          transition: all 0.1s linear;
-        }
-        .opt-concierge-tool:hover {
-          background-color: #00ccff;
-          a { color: white }
-        }
-        [data-disclosure] [data-details] {
-          display: none;
-        }
-        body {
-          background-color: #F9F9F9;
-        }
-
+        
