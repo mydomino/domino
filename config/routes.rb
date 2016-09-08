@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :profiles
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
-  post '/profiles/concierge-create' => 'profiles#concierge_create', as: 'concierge_create_profile'
+  post '/profiles/create-completed-profile' => 'profiles#create_completed_profile', as: 'create_completed_profile'
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
 
   resources :recommendations, only: [:destroy, :update, :index] do

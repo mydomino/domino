@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
-  def concierge_create
+  def create_completed_profile
     @profile = Profile.new(profile_params)
     @profile.onboard_complete = true
     @profile.onboard_step = 4
@@ -16,7 +16,8 @@ class ProfilesController < ApplicationController
     Profile.skip_callback(:create, :after, :send_onboard_started_email)
     if @profile.save
       Profile.set_callback(:create, :after, :send_onboard_started_email)
-      Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
+      create_dashboard(@profile)
+      # Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
       @profile.save_to_zoho if params[:save_to_zoho]
       UserMailer.welcome_email_universal(@profile.email).deliver_later if params[:send_welcome_email]
       flash[:notice] = 'Dashboard created successfully'
@@ -54,8 +55,7 @@ class ProfilesController < ApplicationController
     when 3
       @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
       #allocate default dashboard
-      dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
-      
+      create_dashboard(@profile)
       #send welcome email
       UserMailer.welcome_email_universal(@profile.email).deliver_later
 
@@ -82,6 +82,10 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def create_dashboard(profile)
+    Dashboard.create(lead_name: "#{profile.first_name} #{profile.last_name}", lead_email: profile.email)
+  end
 
   def legacy_user? 
     if @lu = LegacyUser.find_by_email(@email)
