@@ -1,5 +1,18 @@
 module ApplicationHelper
 
+  #helper method for scoping page specific JS
+  def page_id
+    if id = content_for(:body_id) and id.present?
+      return id
+    else
+      base = controller.class.to_s.gsub("Controller", '').underscore.gsub("/", '_')
+      return "#{base}-#{controller.action_name}"
+    end
+  end
+  
+  def page_class
+    controller.class.to_s.gsub("Controller", '').underscore.gsub("/", '_')+" "+content_for(:page_class)
+  end
   def sortable(column, title = nil, filter: "mine")
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction} " : nil
