@@ -19,4 +19,5 @@
 //= require signup
 //= require jquery.mask.min.js
 //= require modal
-//= require pages.index.js
+//= require init
+//= require_tree .
