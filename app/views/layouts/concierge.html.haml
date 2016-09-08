@@ -10,7 +10,7 @@
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
-  %body
+  %body{id: page_id, class: page_class}
     .col.bg-gray-05.fixed.top-0.bottom-0{style: 'width: 80px;'}
       .clearfix.p1.center{style: 'margin-bottom: 10px'}
         =image_tag "penguin_vertical.png", class: 'fit'
@@ -46,17 +46,11 @@
         .alerts
           =flash_messages
       = yield
-      :javascript
-        $('document').ready(function()
-        {
-          $('[data-disclosure]').click(function(e)
-          {
-            $(e.currentTarget).children('[data-details]').toggle();
-          });
 
-          setTimeout(function(){
-            $('.alerts').hide('slow');
-          }, 2000);
+      :javascript
+        $('document').ready(function(){
+          MyDomino.conciergeToolsJS();
+          init();
         });
 
       :scss
