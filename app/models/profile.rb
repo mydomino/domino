@@ -21,10 +21,7 @@ class Profile < ActiveRecord::Base
   after_create :send_onboard_started_email
 
   def save_to_zoho
-    if LegacyUser.find_by_email(self.email)
-    else
-      SaveToZohoJob.perform_later self
-    end
+    SaveToZohoJob.perform_later self
   end
 
   def send_onboard_started_email
