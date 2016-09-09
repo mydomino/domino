@@ -23,3 +23,4 @@
 //= require mydomino
 //= require_tree ./pages
 //= require_tree ./dashboards
+//= require_tree ./profiles
