@@ -50,6 +50,8 @@ class DashboardsController < ApplicationController
 
   def destroy
     @dashboard = Dashboard.find(params[:id])
+    authorize @dashboard
+    
     if lu = LegacyUser.find_by_email(@dashboard.lead_email)
       lu.destroy
     end
