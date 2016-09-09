@@ -19,18 +19,13 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    if !user_signed_in?
-      #set flash message to please sign in to access dashboard
-      redirect_to new_user_session_path
-      return
+    if params.has_key? :id
+      @dashboard = Dashboard.find(params[:id])
     else
-      if params.has_key? :id
-        @dashboard = Dashboard.find(params[:id])
-      else
-        @dashboard = Dashboard.find_by_user_id(current_user.id)
-      end
-      authorize @dashboard   
+      @dashboard = Dashboard.find_by_user_id(current_user.id)
     end
+    authorize @dashboard   
+
     @products = Product.all
     @tasks = Task.all
     @filter = params[:filter]
@@ -45,6 +40,7 @@ class DashboardsController < ApplicationController
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
+
     render :layout => 'dashboard'
   end
 
@@ -64,7 +60,7 @@ class DashboardsController < ApplicationController
       end
       @dashboard.destroy
     end
-    
+
     redirect_to dashboards_path
     return
   end
