@@ -5,16 +5,11 @@ class DashboardsController < ApplicationController
 
   def index
     authorize Dashboard
+
     @page = params.has_key?(:page) ? params[:page] : 1
-    @filter = params[:filter]
 
-    if(@filter == 'all' || @filter == nil)
-      @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).page @page
-      @filter = 'all'
-    else
-      @dashboards = Dashboard.where(concierge_id: current_user.id).order(sort_column + " " + sort_direction).page @page
-    end
-
+    @dashboards = Dashboard.all.order(sort_column + " " + sort_direction).page @page
+    
     if(params.has_key? :search)
       @search_term = params[:search]
       @dashboards = @dashboards.fuzzy_search(@search_term).page @page
