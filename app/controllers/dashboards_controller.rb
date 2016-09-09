@@ -1,6 +1,8 @@
 class DashboardsController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :authenticate_user!
+  after_action :verify_authorized
+
   layout 'concierge', except: :show
 
   def index
@@ -44,10 +46,6 @@ class DashboardsController < ApplicationController
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
     render :layout => 'dashboard'
-  end
-
-  def new
-    @dashboard = Dashboard.new
   end
 
   def destroy
