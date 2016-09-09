@@ -1,0 +1,86 @@
+.max-width-4.mx-auto.m2.p2.bg-white
+  .clearfix
+    %h2.mb0 Create member
+    %hr.mb2
+    = simple_form_for @profile, url: create_completed_profile_path do |f|
+      %label.h4.semi-bold
+        First name
+      %br
+      = f.input :first_name, class: 'mb1', label: false
+      %br
+      %label.h4.semi-bold
+        Last name
+      %br
+      = f.input :last_name, class: 'mb1', label: false
+      %br
+      %label.h4.semi-bold
+        Email
+      %br
+      = f.input :email, class: 'mb1', label: false
+      %br
+      %label.h4.semi-bold
+        Interests
+      %br
+      = f.association :offerings, label: false, :as => :check_boxes, collection: Offering.all, boolean_style: :inline, input_html: {class: 'mr1'}
+      %br
+      %label.h4.semi-bold
+        Phone
+      %br
+      = f.input_field :phone, class: 'mb1'
+      %br
+      %label.h4.semi-bold
+        Average electrical bill
+      %br
+      = f.input_field :avg_electrical_bill, class: 'mb1'
+      %br
+      %label.h4.semi-bold
+        Street Address
+      %br
+      = f.input_field :address_line_1, label: "Street Address", class: 'mb1'
+      %br
+      %label.h4.semi-bold
+        City
+      %br
+      = f.input_field :city, class: 'mb1'
+      %br
+      %label.h4.semi-bold
+        State
+      = f.input_field :state, collection: us_states, class: 'mb1'
+      %br
+      %label.h4.semi-bold
+        Zip Code
+      %br
+      = f.input_field :zip_code, class: 'mb1'
+      %br
+      %label.h4.semi-bold Housing
+      %br
+      .btn-group.mb1
+        %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'rent'}", type: "button", data: {value: "rent"}} Rent
+        %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'own'}", type: "button", data: {value: "own"}} Own
+      = f.input :housing, :as => :hidden, input_html: { data: {reg: '(own|rent)', target: '#housing-error-msg', 'error-target': '.btn-group > .btn-secondary'}, value: @profile.housing, class: 'required-field'}
+      %br
+      %br
+      %label.h4.semi-bold Partner code
+      %br
+      = f.association :partner_code, as: :select, label: false, label_method: :code, value_method: :id, collection: PartnerCode.all
+      %br
+      .mb1
+        = check_box_tag 'send_welcome_email'
+        %label.h4.semi-bold Send welcome email
+      .mb1
+        = check_box_tag 'save_to_zoho'
+        %label.h4.semi-bold Save record to zoho
+      = f.submit value: 'Create member', class: 'btn btn-sm btn-primary btn-primary--hover mt2'
+
+:javascript
+  //housing toggle button
+  $('.btn-group .btn').on('click', function(){
+    $('.btn-group .btn').not(this).removeClass('btn-secondary--active');
+    $(this).toggleClass('btn-secondary--active');
+    if( $('.btn-secondary--active').size() > 0 ){
+      var val = $(this).data("value");
+      $('#profile_housing').val(val).trigger('change');
+    }else{
+      $('#profile_housing').val("").trigger('change');
+    }
+  });

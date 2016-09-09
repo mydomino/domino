@@ -21,4 +21,17 @@ FactoryGirl.define do
   factory :dashboard do
     user
   end
+
+  factory :profile do
+    first_name 'Foo'
+    last_name 'Bar'
+    email
+    phone '(123)123-1234'
+    city 'San Francisco'
+    state 'CA'
+    zip_code '94306'
+    housing 'Own'
+  end
+
 end
+

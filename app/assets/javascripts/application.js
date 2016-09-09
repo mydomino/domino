@@ -19,4 +19,7 @@
 //= require signup
 //= require jquery.mask.min.js
 //= require modal
-//= require pages.index.js
+//= require init
+//= require mydomino
+//= require_tree ./pages
+//= require_tree ./dashboards
