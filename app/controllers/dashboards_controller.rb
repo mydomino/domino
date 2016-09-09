@@ -51,21 +51,22 @@ class DashboardsController < ApplicationController
   def destroy
     @dashboard = Dashboard.find(params[:id])
     authorize @dashboard
-    
+
     if lu = LegacyUser.find_by_email(@dashboard.lead_email)
       lu.destroy
     end
 
     if @dashboard.user_id
       User.find_by_id(@dashboard.user_id).destroy
-      redirect_to dashboards_path and return
     else
       if profile = Profile.find_by_email(@dashboard.lead_email)
         profile.destroy
       end
       @dashboard.destroy
     end
-    redirect_to dashboards_path and return
+    
+    redirect_to dashboards_path
+    return
   end
 
   private
@@ -77,6 +78,7 @@ class DashboardsController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
   end
+
   def dashboard_params
     params.require(:dashboard).permit(:lead_name, :lead_email, :concierge_id)
   end
