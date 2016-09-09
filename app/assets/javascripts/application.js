@@ -15,7 +15,6 @@
 //= require jquery-ui/slider
 //= require nprogress
 //= require nprogress-ajax
-//= require signup
 //= require jquery.mask.min.js
 //= require modal
 //= require init
