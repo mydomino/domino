@@ -76,6 +76,7 @@ group :test do
   gem 'rack_session_access'
   # gem 'webmock'
   gem 'minitest-rails', "~> 2.0"
+  gem 'minitest-rails-capybara'
 end
 
 group :production do
