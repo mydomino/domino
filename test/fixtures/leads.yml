@@ -1,96 +1,185 @@
 ---
 Lead_1:
   id: 1
+  first_name: 
   last_name: WEBSITE FORM
   email: josh@mydomino.com
   phone: '6078575974'
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 67.169.58.9
+  source: 
   referer: http://www.mydomino.com/
   start_time: 2015-07-29 16:03:23.377000000 Z
   campaign: bff_header
   browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
     like Gecko) Chrome/44.0.2403.125 Safari/537.36
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 2
+  subscribe_to_mailchimp: 
 Lead_2:
   id: 2
+  first_name: 
   last_name: WEBSITE FORM
   email: arellanolyg@gmail.com
   phone: '8013496902'
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 166.137.8.118
+  source: 
   referer: http://www.mydomino.com/?utm_campaign=adwords&gclid=CI-yuaPDkscCFYZefgoduXMPtQ
   start_time: 2015-08-05 18:02:24.523000000 Z
   campaign: adwords
   browser: Mozilla/5.0 (iPad; CPU OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML,
     like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 6
+  subscribe_to_mailchimp: 
 Lead_3:
   id: 3
+  first_name: 
   last_name: WEBSITE FORM
   email: jayr2323@yahoo.com
   phone: '5302274804'
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 74.38.10.167
+  source: 
   referer: http://www.mydomino.com/?utm_campaign=adwords&gclid=CPP4jKnTlMcCFQxqfgodZQYBBg
   start_time: 2015-08-06 14:19:30.693000000 Z
   campaign: adwords
   browser: Mozilla/5.0 (iPad; CPU OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML,
     like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 1
+  subscribe_to_mailchimp: 
 Lead_4:
   id: 4
+  first_name: 
   last_name: WEBSITE FORM
   email: realtorgeorgeb@gmail.com
   phone: '2077680712'
   address: ''
+  city: 
+  state: 
+  zip_code: 
+  ip: 
+  source: 
+  referer: 
   start_time: 2015-08-06 17:42:20.835000000 Z
+  campaign: 
+  browser: 
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 10
+  subscribe_to_mailchimp: 
 Lead_5:
   id: 5
+  first_name: 
   last_name: WEBSITE FORM
   email: timswanson72@hotmail.com
   phone: '2094036248'
   address: ''
+  city: 
+  state: 
+  zip_code: 
+  ip: 
+  source: 
+  referer: 
   start_time: 2015-08-06 22:55:07.823000000 Z
   campaign: adwords
+  browser: 
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 10
+  subscribe_to_mailchimp: 
 Lead_6:
   id: 6
+  first_name: 
   last_name: WEBSITE FORM
   email: josh@mydomino.com
   phone: ''
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 67.169.58.9
+  source: 
   referer: http://www.mydomino.com/
   start_time: 2015-08-06 16:55:14.524000000 Z
+  campaign: 
   browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
     like Gecko) Chrome/44.0.2403.130 Safari/537.36
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 9
+  subscribe_to_mailchimp: 
 Lead_7:
   id: 7
+  first_name: 
   last_name: WEBSITE FORM
   email: ljune313@gmail.com
   phone: '5183202481'
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 184.74.28.2
+  source: 
   referer: http://www.mydomino.com/getstarted
   start_time: 2015-08-07 14:15:33.847000000 Z
+  campaign: 
   browser: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 2
+  subscribe_to_mailchimp: 
 Lead_8:
   id: 8
+  first_name: 
   last_name: WEBSITE FORM
   email: laura@mydomion.com
   phone: ''
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 67.169.58.9
+  source: 
   referer: http://www.mydomino.com/getstarted
   start_time: 2015-07-28 17:39:33.042000000 Z
   campaign: adwords
   browser: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
     Chrome/44.0.2403.107 Safari/537.36
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 10
+  subscribe_to_mailchimp: 
 Lead_9:
   id: 9
   first_name: ''
@@ -98,12 +187,22 @@ Lead_9:
   email: josh@mydomino.com
   phone: '6078575974'
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 67.169.58.9
+  source: 
   referer: http://mydomino.com/getstarted
   start_time: 2015-08-10 17:55:36.976000000 Z
+  campaign: 
   browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
     like Gecko) Chrome/44.0.2403.130 Safari/537.36
   saved_to_zoho: true
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 8
+  subscribe_to_mailchimp: 
 Lead_10:
   id: 10
   first_name: ''
@@ -111,209 +210,19 @@ Lead_10:
   email: leevandevort@yahoo.com
   phone: 310-254-8522
   address: ''
+  city: 
+  state: 
+  zip_code: 
   ip: 100.43.250.162
+  source: 
   referer: http://www.mydomino.com/?utm_campaign=adwords&gclid=COWOobzTn8cCFUhgfgodg0YP7g
   start_time: 2015-08-10 23:19:28.343000000 Z
   campaign: adwords
   browser: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130
     Safari/537.36
   saved_to_zoho: true
-Lead_11:
-  id: 11
-  first_name: ''
-  last_name: Not Given
-  email: leevandevort@yahoo.com
-  phone: 310-254-8522
-  address: ''
-  ip: 100.43.250.162
-  referer: http://www.mydomino.com/?utm_campaign=adwords&gclid=COWOobzTn8cCFUhgfgodg0YP7g
-  start_time: 2015-08-10 23:19:28.343000000 Z
-  campaign: adwords
-  browser: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130
-    Safari/537.36
-  saved_to_zoho: true
-Lead_12:
-  id: 12
-  first_name: ''
-  last_name: Not Given
-  email: jyng02@gmail.com
-  phone: ''
-  address: ''
-  ip: 73.223.240.11
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-12 03:12:59.021000000 Z
-  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
-    like Gecko) Chrome/44.0.2403.130 Safari/537.36
-  saved_to_zoho: true
-Lead_13:
-  id: 13
-  first_name: ''
-  last_name: Not Given
-  email: jred5562@mac.com
-  phone: '4152036454'
-  address: ''
-  ip: 50.168.51.219
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-13 16:48:14.077000000 Z
-  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.7.12 (KHTML,
-    like Gecko) Version/7.1.7 Safari/537.85.16
-  saved_to_zoho: true
-Lead_14:
-  id: 14
-  first_name: ''
-  last_name: Not Given
-  email: notsure@yahoo.com
-  phone: '4152036454'
-  address: ''
-  ip: 67.169.58.9
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-13 16:59:37.855000000 Z
-  browser: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
-    Chrome/44.0.2403.130 Safari/537.36
-  saved_to_zoho: true
-Lead_15:
-  id: 15
-  first_name: ''
-  last_name: Not Given
-  email: tmendizabal@hotmail.com
-  phone: ''
-  address: ''
-  ip: 190.238.27.182
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-15 14:10:20.909000000 Z
-  campaign: '100'
-  browser: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0
-  saved_to_zoho: true
-Lead_16:
-  id: 16
-  first_name: ''
-  last_name: Not Given
-  email: erinstep34@gmail.com
-  phone: '9253498429'
-  address: ''
-  ip: 108.251.1.236
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-15 14:12:38.537000000 Z
-  campaign: adwords
-  browser: Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML,
-    like Gecko) Version/8.0 Mobile/12F69 Safari/600.1.4
-  saved_to_zoho: true
-Lead_17:
-  id: 17
-  first_name: ''
-  last_name: Not Given
-  email: erinstep34@gmail.com
-  phone: '9253498429'
-  address: ''
-  ip: 108.251.1.236
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-15 14:12:38.537000000 Z
-  campaign: adwords
-  browser: Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML,
-    like Gecko) Version/8.0 Mobile/12F69 Safari/600.1.4
-  saved_to_zoho: true
-Lead_18:
-  id: 18
-  first_name: ''
-  last_name: Not Given
-  email: arazeg@yahoo.com
-  phone: 818  634
-  address: ''
-  ip: 104.34.68.197
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-16 03:01:45.010000000 Z
-  campaign: adwords
-  browser: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
-    Chrome/44.0.2403.155 Safari/537.36
-  saved_to_zoho: true
-Lead_19:
-  id: 19
-  first_name: ''
-  last_name: Not Given
-  email: arazeg@yahoo.com
-  phone: 818  634
-  address: ''
-  ip: 104.34.68.197
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-16 03:01:45.010000000 Z
-  campaign: adwords
-  browser: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
-    Chrome/44.0.2403.155 Safari/537.36
-  saved_to_zoho: true
-Lead_20:
-  id: 20
-  first_name: ''
-  last_name: Not Given
-  email: bobheere@yahoo.com
-  phone: ''
-  address: ''
-  ip: 99.123.174.47
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-16 13:30:21.128000000 Z
-  campaign: '100'
-  browser: Mozilla/5.0 (iPad; CPU OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML,
-    like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4
-  saved_to_zoho: true
-Lead_21:
-  id: 22
-  first_name: Josh
-  last_name: Morrow
-  email: josh@mydomino.com
-  phone: '6078575974'
-  address: ''
-  ip: 67.169.58.9
-  referer: http://mydomino.com/getstarted
-  start_time: 2015-08-15 06:53:23.603000000 Z
-  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
-    like Gecko) Chrome/44.0.2403.155 Safari/537.36
-Lead_22:
-  id: 23
-  first_name: Josh
-  last_name: Morrow
-  email: josh@mydomino.com
-  phone: '6078575974'
-  address: ''
-  ip: 67.169.58.9
-  referer: http://mydomino.com/getstarted
-  start_time: 2015-08-15 06:53:23.603000000 Z
-  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
-    like Gecko) Chrome/44.0.2403.155 Safari/537.36
-Lead_23:
-  id: 24
-  first_name: Kristen
-  last_name: Sunday
-  email: kristen@mydomino.com
-  phone: '7074842144'
-  address: ''
-  ip: 70.214.8.243
-  referer: http://www.mydomino.com/
-  start_time: 2015-07-19 00:54:00.025000000 Z
-  campaign: MarissaMuller
-  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML,
-    like Gecko) Chrome/43.0.2357.134 Safari/537.36
-Lead_24:
-  id: 25
-  first_name: Josh
-  last_name: Morrow
-  email: josh@mydomino.com
-  phone: '6078575974'
-  address: ''
-  ip: 67.169.58.9
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-17 20:43:17.170000000 Z
-  campaign: google
-  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML,
-    like Gecko) Chrome/44.0.2403.155 Safari/537.36
-Lead_25:
-  id: 26
-  first_name: Marissa
-  last_name: Muller
-  email: marissa.muller@gmail.com
-  phone: '4153287010'
-  address: ''
-  ip: 70.192.217.100
-  referer: http://www.mydomino.com/getstarted
-  start_time: 2015-08-19 02:43:05.828000000 Z
-  campaign: MarissaMuller
-  browser: Mozilla/5.0 (iPhone; CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/600.1.4
-    (KHTML, like Gecko) Version/8.0 Mobile/12H143 Safari/600.1.4
+  latitude: 
+  longitude: 
+  geocoded: 
+  get_started_id: 2
+  subscribe_to_mailchimp: 

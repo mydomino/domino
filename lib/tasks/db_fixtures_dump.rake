@@ -22,7 +22,7 @@ namespace :db do
       # add '/'' to end of dir if it does not exist
       dump_dir += '/' if ! "/\\".include?(dump_dir[dump_dir.size-1])
 
-      entry_size = ENV['ENTRY_SIZE'] || 20
+      entry_size = ENV['ENTRY_SIZE'] || 10
       puts "Found models: " + models.join(', ')
       puts "Dumping to: " + dump_dir
 
@@ -42,12 +42,13 @@ namespace :db do
         output = {}
         entries.each do |a|
           attrs = a.attributes
-          #puts "Model is: #{m}\n"
+          puts "Model is: #{m}\n"
           
           #attrs.delete_if{|k,v| v.nil?}
 
           # do not export created_at, updated_at and null value fields
-          attrs.delete_if{|k,v| v.nil? || (k == "created_at" || k == "updated_at")}
+          #attrs.delete_if{|k,v| v.nil? || (k == "created_at" || k == "updated_at")}
+          attrs.delete_if{|k,v| (k == "created_at" || k == "updated_at")}
 
           attrs= fix_referential_foerien_key(attrs, entry_size.to_i)
 
@@ -64,7 +65,7 @@ namespace :db do
 
     def fix_referential_foerien_key(atrs, entry_size)
 
-      #puts "Before replace, attrs is: #{atrs}\n"
+      puts "Before replace, attrs is: #{atrs}\n"
       #puts "Attrs class is #{atrs.class}\n"
 
       # loop through the keys and find its foreign key reference, 
@@ -73,15 +74,15 @@ namespace :db do
 
         # find foreign reference key
         if key.include?("_id") #and ! ["product_id"].include? key
-          puts "Found XXX_id key: #{key}, value: #{val}"
-          val = rand(1..entry_size) if val.is_a? Numeric and val > entry_size
+          #puts "Found XXX_id key: #{key}, value: #{val}"
+          val = rand(1..entry_size) if (val.is_a? Numeric and val > entry_size) or (val.nil?)
         end
 
         val
 
       end
 
-      #puts "After replace, attrs is: #{atrs}\n"
+      puts "After replace, attrs is: #{atrs}\n"
 
       return atrs
       

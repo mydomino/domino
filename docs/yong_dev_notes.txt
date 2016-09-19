@@ -81,8 +81,24 @@ ylee@ylee-home-ubuntu:/media/sf_pj-3/md/myd$ bundle exec rake db:fixtures:load R
 
 
 =======================================================================================
+To use a custom timeout for Rack-timeout, create an initializer file:
 
+# config/initializers/rack_timeout.rb
+Rack::Timeout.service_timeout = 5  # seconds
 =======================================================================================
+Referential Foreign key in models
+
+https://robots.thoughtbot.com/referential-integrity-with-foreign-keys
+
+class User < ActiveRecord::Base
+  has_many :posts
+  validates :name, presence: true
+end
+
+class Post < ActiveRecord::Base
+  belongs_to :user
+  validates :user, presence: true
+end
 
 =======================================================================================
 

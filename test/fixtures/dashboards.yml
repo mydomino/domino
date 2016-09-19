@@ -2,151 +2,80 @@
 Dashboard_1:
   id: 8
   lead_name: Elise Brewster
+  recommendation_explanation: 
   concierge_id: 1
   slug: elise-brewster
   lead_email: landsite@brewsterdesignarts.com
+  user_id: 6
 Dashboard_2:
   id: 19
   lead_name: Eric Anderson
+  recommendation_explanation: 
   concierge_id: 3
   slug: eric-anderson
   lead_email: eric@homeward.biz
+  user_id: 3
 Dashboard_3:
   id: 21
   lead_name: John Rodwick
+  recommendation_explanation: 
   concierge_id: 3
   slug: john-rodwick
   lead_email: johnrodwick@gmail.com
+  user_id: 8
 Dashboard_4:
   id: 22
   lead_name: Salvador Sanchez
+  recommendation_explanation: 
   concierge_id: 3
   slug: salvador-sanchez
   lead_email: sanchez7529@sbcglobal.ne
+  user_id: 10
 Dashboard_5:
   id: 23
   lead_name: Sue Parkinson
+  recommendation_explanation: 
   concierge_id: 1
   slug: sue-parkinson
   lead_email: suparkison@gmail.com
+  user_id: 1
 Dashboard_6:
   id: 25
   lead_name: Sidney Beaumont
+  recommendation_explanation: 
   concierge_id: 2
   slug: sidney-beaumont
   lead_email: sidneybeaumont@gmail.com
+  user_id: 5
 Dashboard_7:
   id: 27
   lead_name: Devin Wacaser
+  recommendation_explanation: 
   concierge_id: 1
   slug: devin-wacaser-1
   lead_email: dbwacaser@gmail.com
+  user_id: 1
 Dashboard_8:
   id: 29
   lead_name: 'Shirlene and Eric Hutchinson '
+  recommendation_explanation: 
   concierge_id: 2
   slug: shirlene-and-eric-hutchinson
   lead_email: erichutchinson@comcast.net
+  user_id: 9
 Dashboard_9:
   id: 30
   lead_name: Scott Hutchinson
+  recommendation_explanation: 
   concierge_id: 2
   slug: scott-hutchinson
   lead_email: scott.hutchinson@sbcglobal.net
+  user_id: 4
 Dashboard_10:
   id: 32
   lead_name: Sheila Joseph
+  recommendation_explanation: 
   concierge_id: 2
   slug: sheila-joseph
   lead_email: usangelicstar@yahoo.com
-Dashboard_11:
-  id: 34
-  lead_name: 'Alex Williams '
-  concierge_id: 2
-  slug: alex-williams
-  lead_email: bigafly2@aol.com
-Dashboard_12:
-  id: 35
-  lead_name: Lindsey June
-  concierge_id: 2
-  slug: lindsey-june
-  lead_email: ljune313@gmail.com
-Dashboard_13:
-  id: 36
-  lead_name: Clare Ellis
-  concierge_id: 3
-  slug: clare-ellis
-  lead_email: clareelliswebb@gmail.com
-Dashboard_14:
-  id: 37
-  lead_name: Cathy Goddard
-  concierge_id: 3
-  slug: cathy-goddard
-  lead_email: clmcerleang@optonline.net
-Dashboard_15:
-  id: 38
-  lead_name: Michelle Burke
-  concierge_id: 1
-  slug: michelle-burke
-  lead_email: michelleburke51@yahoo.com
-Dashboard_16:
-  id: 39
-  lead_name: Regina Cronin
-  concierge_id: 1
-  slug: regina-cronin
-  lead_email: regina.cronin@gmail.com
-Dashboard_17:
-  id: 40
-  lead_name: Kurt Heckmann
-  concierge_id: 3
-  slug: kurt-heckmann
-  lead_email: kkheckmann@sbcglobal.net
-Dashboard_18:
-  id: 41
-  lead_name: Zev Mellman
-  concierge_id: 3
-  slug: zev-mellman
-  lead_email: askdrz@me.com
-Dashboard_19:
-  id: 42
-  lead_name: Rosana Francescato
-  concierge_id: 3
-  slug: rosana-francescato
-  lead_email: rfrancescato@gmail.com
-  user_id: 21
-Dashboard_20:
-  id: 43
-  lead_name: Josh Fox
-  concierge_id: 1
-  slug: josh-fox
-  lead_email: joshfoxwow@gmail.com
-Dashboard_21:
-  id: 44
-  lead_name: 'Winnie Foster '
-  concierge_id: 3
-  slug: winnie-foster
-  lead_email: wfpster26@hotmail.com
-Dashboard_22:
-  id: 45
-  lead_name: Emily Kirsch
-  concierge_id: 1
-  slug: emily-kirsch
-  lead_email: kirsch.emily@gmail.com
-Dashboard_23:
-  id: 46
-  lead_name: Cameron Eidmann
-  concierge_id: 3
-  slug: cameron-eidmann
-  lead_email: cammycam99@netscape.net
-Dashboard_24:
-  id: 47
-  lead_name: Justin Brach
-  concierge_id: 3
-  slug: justin-brach
-  lead_email: jbrach@petersendean.com
-Dashboard_25:
-  id: 48
-  lead_name: Craig Lawrence
-  concierge_id: 1
-  slug: craig-lawrence
-  lead_email: craig@realizationventures.com
+  user_id: 3

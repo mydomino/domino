@@ -6,6 +6,8 @@ Task_1:
   description: Have solar panels installed on your home. A typical homeowner can save
     over 20% per month with solar. Your MyDomino energy savings concierge will answer
     all your solar questions and help you find the best system for your home.
+  cta_link: 
+  cta_text: 
   default: false
 Task_2:
   id: 2
@@ -50,6 +52,8 @@ Task_6:
   name: Hot Water Temp
   description: Reduce your hot water heater temperature to 120° F. You can save up
     to $100 each year, and also avoid scalding yourself.
+  cta_link: 
+  cta_text: 
   default: true
 Task_7:
   id: 8
@@ -89,21 +93,4 @@ Task_10:
     Arcadia Power. Your utility will not change but you will be buying clean energy!
   cta_link: http://www.arcadiapower.com/domino
   cta_text: Sign Me Up
-  default: true
-Task_11:
-  id: 12
-  icon: vehicle
-  name: 'Electric Vehicle  '
-  description: Purchase an Electric Vehicle and run on clean electricity with personal
-    solar or with another Clean Power option
-  cta_link: http://mydomino.com/blog/tag/electric-car/
-  cta_text: Some articles on our blog about EVs
-  default: false
-Task_12:
-  id: 13
-  icon: energy
-  name: MyDomino Action Box!
-  description: "Nest Learning Thermostat 3rd Gen,\r\nLED bulbs (6) 60 watt soft white,\r\nArcadia
-    Clean Power $40 coupon\r\n\r\n"
-  cta_link: ''
   default: true
