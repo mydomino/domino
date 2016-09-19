@@ -59,9 +59,26 @@ $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d myd
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d mydb latest.dump
 =======================================================================================
 
-=======================================================================================
+To dump the fixture data from your database
+
+bundle exec rake db:fixtures:dump
 
 =======================================================================================
+
+Set Rails_ENV in ~/.profile
+
+export RAILS_ENV='production'
+env | grep RAILS
+=======================================================================================
+
+Steps to setup automated test process for test database 
+
+ylee@ylee-home-ubuntu:/media/sf_pj-3/md/myd$ bundle exec rake util:reset_all_user_password
+
+ylee@ylee-home-ubuntu:/media/sf_pj-3/md/myd$ bundle exec rake db:fixtures:dump
+
+ylee@ylee-home-ubuntu:/media/sf_pj-3/md/myd$ bundle exec rake db:fixtures:load RAILS_ENV=test
+
 
 =======================================================================================
 

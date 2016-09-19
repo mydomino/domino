@@ -1,0 +1,101 @@
+---
+PartnerCode_1:
+  id: 1
+  code: '100'
+  partner_name: Solutions Project
+PartnerCode_2:
+  id: 2
+  code: EVERYBODY
+  partner_name: Everybody Solar
+PartnerCode_3:
+  id: 3
+  code: REVOLV
+  partner_name: Re-Volv
+PartnerCode_4:
+  id: 4
+  code: WCS
+  partner_name: Women in Cleantech and Sustainability
+PartnerCode_5:
+  id: 5
+  code: JOSHFOX
+  partner_name: Josh Fox
+PartnerCode_6:
+  id: 6
+  code: VOTESOLAR
+  partner_name: Vote Solar
+PartnerCode_7:
+  id: 7
+  code: CTS
+  partner_name: Catching the Sun
+PartnerCode_8:
+  id: 8
+  code: TOM
+  partner_name: Tom Dinwoodie
+PartnerCode_9:
+  id: 9
+  code: SNOWLEO
+  partner_name: Snow Leopard Conservancy
+PartnerCode_10:
+  id: 10
+  code: CHOOSE
+  partner_name: Time to Choose
+PartnerCode_11:
+  id: 11
+  code: FRIEND
+  partner_name: Team MyDomino
+PartnerCode_12:
+  id: 12
+  code: SAVVY
+  partner_name: Susannah Shmurek blog
+PartnerCode_13:
+  id: 13
+  code: PARTNER
+  partner_name: Potential Partner
+PartnerCode_14:
+  id: 14
+  code: BCBA
+  partner_name: Breathe California
+PartnerCode_15:
+  id: 15
+  code: RISINGSUN
+  partner_name: Rising Sun Energy Center
+PartnerCode_16:
+  id: 16
+  code: COMPASS
+  partner_name: Compass Green Project
+PartnerCode_17:
+  id: 17
+  code: CASBA
+  partner_name: California Straw Building Association
+PartnerCode_18:
+  id: 18
+  code: ABF
+  partner_name: Anza-Borrego Foundation
+PartnerCode_19:
+  id: 19
+  code: ALLIANCE
+  partner_name: Sierra Nevada Alliance
+PartnerCode_20:
+  id: 20
+  code: EOC
+  partner_name: Eyes on Conservation Podcast
+PartnerCode_21:
+  id: 21
+  code: ERI
+  partner_name: Earth Rights Institute
+PartnerCode_22:
+  id: 22
+  code: PSRENEW
+  partner_name: Pershing Square Review
+PartnerCode_23:
+  id: 24
+  code: WATCH
+  partner_name: Amazon Watch
+PartnerCode_24:
+  id: 25
+  code: PSRENEW2
+  partner_name: Pershing Square Review
+PartnerCode_25:
+  id: 26
+  code: PASCAL
+  partner_name: Stephanie Pascal, realtor

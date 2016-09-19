@@ -1,0 +1,405 @@
+---
+User_1:
+  id: 1
+  email: mel@mydomino.com
+  encrypted_password: "$2a$10$tRqyAAWtzgRnSq02mthVTOtaaN0/IwNghNTuyr.gSB8KIWFB3pzEe"
+  remember_created_at: 2016-06-28 20:56:35.469762000 Z
+  sign_in_count: 51
+  current_sign_in_at: 2016-08-22 21:55:09.812943000 Z
+  last_sign_in_at: 2016-08-16 21:50:31.401080000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  role: concierge
+User_2:
+  id: 2
+  email: laura@mydomino.com
+  encrypted_password: "$2a$10$gCTaucD1TNQBWLvfbpvRkOS5ooxnjpzapZFXXlRYaBmXIzznf3Kw6"
+  sign_in_count: 24
+  current_sign_in_at: 2016-09-13 22:39:55.344433000 Z
+  last_sign_in_at: 2016-08-31 19:06:15.444704000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  role: concierge
+User_3:
+  id: 9
+  email: torro16@gmail.com
+  encrypted_password: "$2a$10$ogOpxsE8X61Sajeb7KuoK.vI80vIz4MK7B93b.ulUdJsHKOE1kiCm"
+  sign_in_count: 3
+  current_sign_in_at: 2016-05-23 15:25:38.311574000 Z
+  last_sign_in_at: 2016-04-23 15:10:29.955674000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235940723
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235940723
+    mask_addr: 4294967295
+  role: lead
+User_4:
+  id: 10
+  email: ndalefan@aol.com
+  encrypted_password: "$2a$10$zqmbvY2Ve7x/TyMxmUprguAr.ZUD18q6PElcdWjpLt5IbvjqgPjfq"
+  remember_created_at: 2016-05-11 21:03:52.681978000 Z
+  sign_in_count: 2
+  current_sign_in_at: 2016-05-11 21:03:52.694218000 Z
+  last_sign_in_at: 2016-04-23 16:02:13.096687000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235934566
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235934566
+    mask_addr: 4294967295
+  role: lead
+User_5:
+  id: 11
+  email: bill@brandnavigation.com
+  encrypted_password: "$2a$10$rGWvx1J8Jzt34j57oDVeSO68rW0b.WvqBT7WAGiDG/gVt6EU4e2rG"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-23 17:14:17.456992000 Z
+  last_sign_in_at: 2016-04-23 17:14:17.456992000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1127304430
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1127304430
+    mask_addr: 4294967295
+  role: lead
+User_6:
+  id: 12
+  email: teddsdead@gmail.com
+  encrypted_password: "$2a$10$jzAT.R0uibm1HDXHMcHlIOxj8EXNPYrgnbwBMJ8Gk7wWdj1WUbj1a"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-23 19:14:20.238596000 Z
+  last_sign_in_at: 2016-04-23 19:14:20.238596000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1219060056
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1219060056
+    mask_addr: 4294967295
+  role: lead
+User_7:
+  id: 14
+  email: danjmeade3000@yahoo.com
+  encrypted_password: "$2a$10$uYRwyXLXdWP26NjqtGCOgeplEAUbDfRzGTCLhAl/tWDFKVCg0zyDu"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-24 03:22:09.925233000 Z
+  last_sign_in_at: 2016-04-24 03:22:09.925233000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235129195
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235129195
+    mask_addr: 4294967295
+  role: lead
+User_8:
+  id: 15
+  email: amidokder@mail.ru
+  encrypted_password: "$2a$10$kgVl.B3n9zRl4lPhtn7gzujdnsuEPGuEDDqGviIlpATFe/jfF.Jwy"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-24 18:27:31.441400000 Z
+  last_sign_in_at: 2016-04-24 18:27:31.441400000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1315945778
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1315945778
+    mask_addr: 4294967295
+  role: lead
+User_9:
+  id: 17
+  email: tamiabritom@icloud.com
+  encrypted_password: "$2a$10$6kd99j7gISCtKrLIMSHmp.sdhYlL4y9BixmIyJ.MlZitiXuhnyYI2"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-24 19:23:47.301210000 Z
+  last_sign_in_at: 2016-04-24 19:23:47.301210000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 3123629532
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 3123629532
+    mask_addr: 4294967295
+  role: lead
+User_10:
+  id: 18
+  email: lindsay.reichart@gmail.com
+  encrypted_password: "$2a$10$vEMr7AGsWR7NZyuTLuVOQ.YImbai8Nk21HcBq7EGxRRZakjg1ZqZG"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-25 14:39:00.273044000 Z
+  last_sign_in_at: 2016-04-25 14:39:00.273044000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2713297307
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2713297307
+    mask_addr: 4294967295
+  role: lead
+User_11:
+  id: 19
+  email: maureen.haskell@yahoo.com
+  encrypted_password: "$2a$10$ijUpX10Opdjf8WxWUAEh.uhCXdBA.LESJzEmTZJ7MbjdcdzwTI/Ce"
+  remember_created_at: 2016-04-25 16:56:06.866709000 Z
+  sign_in_count: 2
+  current_sign_in_at: 2016-04-25 16:56:06.873763000 Z
+  last_sign_in_at: 2016-04-25 16:49:16.261604000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  role: lead
+User_12:
+  id: 20
+  email: mac@mydomino.com
+  encrypted_password: "$2a$10$aeXwHAKP8n1hjlyCXTuc6OoVOmmfhrkFNV6o8.0hZ0QNGOYWm2qyG"
+  sign_in_count: 7
+  current_sign_in_at: 2016-07-05 22:54:49.089656000 Z
+  last_sign_in_at: 2016-07-05 22:43:02.038098000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  role: lead
+User_13:
+  id: 26
+  email: rfrancescato@gmail.com
+  encrypted_password: "$2a$10$NBo/esnircxpygoaUXuD6OKxeim7iNtCJwrW6RWSvxpZTQrdAFW8m"
+  remember_created_at: 2016-07-28 20:58:34.890605000 Z
+  sign_in_count: 8
+  current_sign_in_at: 2016-09-02 17:19:29.225886000 Z
+  last_sign_in_at: 2016-08-26 20:24:00.779201000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 838884124
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  role: lead
+User_14:
+  id: 28
+  email: concierge@mydomino.com
+  encrypted_password: "$2a$10$8DVY/7bPA940bkeHV9JOv.E6tG7K1kZjs31Il9fgQSDSTBQJd2L3a"
+  sign_in_count: 32
+  current_sign_in_at: 2016-09-07 20:23:34.699857000 Z
+  last_sign_in_at: 2016-09-02 09:57:47.548691000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 3263042266
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1045712982
+    mask_addr: 4294967295
+  role: concierge
+User_15:
+  id: 30
+  email: raj.yerrapothu@gmail.com
+  encrypted_password: "$2a$10$W9Or0NOWSs/JR6hqDv4Ap.f.HG5wq/Q1MsKFphUGhtRjuTXzzVLSW"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-26 20:18:00.700300000 Z
+  last_sign_in_at: 2016-04-26 20:18:00.700300000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2426462815
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2426462815
+    mask_addr: 4294967295
+  role: lead
+User_16:
+  id: 31
+  email: vickivictoria333@gmail.com
+  encrypted_password: "$2a$10$pwF3.HU/s5WG0dWbk0ZSNOUDvBvMJYW/lh4SjCV3ZD.R6rLT/Rwyq"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-27 19:01:05.542483000 Z
+  last_sign_in_at: 2016-04-27 19:01:05.542483000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 840992975
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 840992975
+    mask_addr: 4294967295
+  role: lead
+User_17:
+  id: 32
+  email: north.lennox@gmail.com
+  encrypted_password: "$2a$10$2wI8S4MfT0ZSgRkR3GwJVeSbKhq39rGZ69hAYn2VS9Ls2CGB14A.m"
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-28 16:08:10.323862000 Z
+  last_sign_in_at: 2016-04-28 16:08:10.323862000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1759153186
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1759153186
+    mask_addr: 4294967295
+  role: lead
+User_18:
+  id: 33
+  email: stephen@mydomino.com
+  encrypted_password: "$2a$10$fjbFnJi3Wcs.iFVeanwD2.5twkCtI9IzxPfiF/17SHK66WP3cgwqu"
+  sign_in_count: 5
+  current_sign_in_at: 2016-06-10 16:03:42.994431000 Z
+  last_sign_in_at: 2016-05-19 20:13:40.370465000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  role: lead
+User_19:
+  id: 34
+  email: gunsmoke50j@yahoo.com
+  encrypted_password: "$2a$10$fWdWqFPbiTMNcLrXnusV3.YT50E9/oUTKaDdioaURZQ.ImYTsYQGa"
+  sign_in_count: 6
+  current_sign_in_at: 2016-07-04 01:21:36.925430000 Z
+  last_sign_in_at: 2016-07-04 01:21:27.110805000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135916974
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135916974
+    mask_addr: 4294967295
+  role: lead
+User_20:
+  id: 35
+  email: brizone@gmail.com
+  encrypted_password: "$2a$10$z.bDwBDoFsGZk.lIXXqyeeMJzXBmWaOBkfaOkYBcYFf99AN8P45Vy"
+  sign_in_count: 2
+  current_sign_in_at: 2016-05-02 20:24:47.634395000 Z
+  last_sign_in_at: 2016-04-30 20:19:14.545536000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 209876400
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1205105445
+    mask_addr: 4294967295
+  role: lead
+User_21:
+  id: 36
+  email: indiana.austin@gmail.com
+  encrypted_password: "$2a$10$gysbfku3oP0IiCRVN8Wlz.8Lm.5gqOoDYXY1x7mJljRqK3v7KgvIW"
+  sign_in_count: 1
+  current_sign_in_at: 2016-05-02 20:46:27.298897000 Z
+  last_sign_in_at: 2016-05-02 20:46:27.298897000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1219698433
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1219698433
+    mask_addr: 4294967295
+  role: lead
+User_22:
+  id: 37
+  email: richard@richardblakeley.com
+  encrypted_password: "$2a$10$CC8HYTLJZ.9m739yqiZ8eOEsaxadGvZvnu3RQuhPa/UxnP9Ubyo8i"
+  sign_in_count: 7
+  current_sign_in_at: 2016-06-30 12:50:32.176767000 Z
+  last_sign_in_at: 2016-06-10 01:17:32.943267000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1364989626
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 3514463277
+    mask_addr: 4294967295
+  role: lead
+User_23:
+  id: 41
+  email: johnrschmidt@yahoo.com
+  encrypted_password: "$2a$10$XK1PMNQKGflI5EHI9WT3JOls8A40L.8Jsr0TOmD6GMn4vuOQGgQei"
+  sign_in_count: 1
+  current_sign_in_at: 2016-05-04 20:33:25.050124000 Z
+  last_sign_in_at: 2016-05-04 20:33:25.050124000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2917423792
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2917423792
+    mask_addr: 4294967295
+  role: lead
+User_24:
+  id: 42
+  email: dhanurg@gmail.com
+  encrypted_password: "$2a$10$Ner1ccjAhLtTb.WYfqncvejDLSqbbXWGL5Vvak4OSxDiA3beSOwSG"
+  sign_in_count: 1
+  current_sign_in_at: 2016-05-04 22:50:26.870451000 Z
+  last_sign_in_at: 2016-05-04 22:50:26.870451000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1246921795
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1246921795
+    mask_addr: 4294967295
+  role: lead
+User_25:
+  id: 44
+  email: jimmy@mydomino.com
+  encrypted_password: "$2a$10$mheRPUuIBZAnOb4JAPMGz.vJB81fFo7gYbBbH2.h8/SmjfeF/DvPu"
+  sign_in_count: 3
+  current_sign_in_at: 2016-05-09 20:33:44.440691000 Z
+  last_sign_in_at: 2016-05-05 18:39:43.589275000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1135163913
+    mask_addr: 4294967295
+  role: lead

@@ -1,0 +1,281 @@
+---
+Profile_1:
+  id: 1
+  first_name: unknown
+  last_name: unknown
+  email: mary.keli@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_2:
+  id: 2
+  first_name: unknown
+  last_name: unknown
+  email: haleyknapp88@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_3:
+  id: 3
+  first_name: unknown
+  last_name: unknown
+  email: jennifer@yahoo.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_4:
+  id: 4
+  first_name: unknown
+  last_name: unknown
+  email: sdarling@deefield.edu
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_5:
+  id: 5
+  first_name: M
+  last_name: S
+  email: sassygal95@gmail.com
+  phone: ''
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: '100'
+  ip: 71.239.161.15
+  referer: http://mydomino.com/get_started/3?utf8=%E2%9C%93&get_started%5Barea_code%5D=630&get_started%5Baverage_electric_bill%5D=&commit=Next
+  browser: Mozilla/5.0 (Linux; Android 6.0; VS985 4G Build/MRA58K) AppleWebKit/537.36
+    (KHTML, like Gecko) Chrome/48.0.2564.95 Mobile Safari/537.36
+Profile_6:
+  id: 6
+  first_name: unknown
+  last_name: unknown
+  email: kmcgee9458@aol.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_7:
+  id: 7
+  first_name: Rosanna
+  last_name: Albano
+  email: rosanna.albano@integramed.com
+  phone: 301-231-9193
+  city: Rockville
+  state: MD
+  zip_code: '20852'
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: SmallFootPrintFamily
+  ip: 74.96.190.162
+  referer: http://mydomino.com/energy-awareness?utm_source=blog&utm_medium=referral&utm_campaign=SmallFootPrintFamily
+  browser: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
+Profile_8:
+  id: 8
+  first_name: Julia
+  last_name: Prochnik (board member of WCS)
+  email: juliaprochnik@gmail.com
+  phone: ''
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: WCS
+  ip: 12.71.59.254
+  referer: http://mydomino.com/get_started/3?utf8=%E2%9C%93&get_started%5Barea_code%5D=415&get_started%5Baverage_electric_bill%5D=100&commit=Next
+  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:42.0) Gecko/20100101 Firefox/42.0
+Profile_9:
+  id: 9
+  first_name: Cari
+  last_name: Nelson
+  email: nelsonc@umich.edu
+  phone: ''
+  city: Thomasville
+  state: GA
+  zip_code: '31792'
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: bff_GreenPowerOptions
+  ip: 216.212.247.135
+  referer: http://mydomino.com/get_started/3?utf8=%E2%9C%93&get_started%5Barea_code%5D=31757&get_started%5Baverage_electric_bill%5D=200&commit=Next
+  browser: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/48.0.2564.116 Safari/537.36
+Profile_10:
+  id: 10
+  first_name: unknown
+  last_name: unknown
+  email: erikcbateman@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_11:
+  id: 11
+  first_name: unknown
+  last_name: unknown
+  email: landsite@brewsterdesignarts.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_12:
+  id: 12
+  first_name: unknown
+  last_name: unknown
+  email: suparkison@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_13:
+  id: 13
+  first_name: unknown
+  last_name: unknown
+  email: bajadona@yahoo.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_14:
+  id: 14
+  user_id: 21
+  first_name: Susannah
+  last_name: Shmurak
+  email: jsshmurak@gmail.com
+  phone: '5076638826'
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: true
+  campaign: SmallFootPrintFamily
+  ip: 96.42.107.150
+  referer: http://mydomino.com/energy-awareness?utm_source=blog&utm_medium=referral&utm_campaign=SmallFootPrintFamily
+  browser: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/46.0.2490.80 Safari/537.36
+Profile_15:
+  id: 15
+  first_name: unknown
+  last_name: unknown
+  email: armandoarevalo@comcast.net
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_16:
+  id: 16
+  first_name: unknown
+  last_name: unknown
+  email: bjernigan2@yahoo.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_17:
+  id: 17
+  first_name: unknown
+  last_name: unknown
+  email: justin9r@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_18:
+  id: 18
+  first_name: eric
+  last_name: anderson
+  email: eric@homeward.biz
+  phone: 360 7909399
+  address_line_1: ''
+  city: Puyallup
+  state: WA
+  zip_code: '98374'
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: bff_8_solar_truths
+  ip: 71.227.137.184
+  referer: http://mydomino.com/getstarted
+  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.59.10 (KHTML,
+    like Gecko) Version/5.1.9 Safari/534.59.8
+Profile_19:
+  id: 19
+  first_name: unknown
+  last_name: unknown
+  email: tad.timothy@nexusabs.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_20:
+  id: 20
+  first_name: unknown
+  last_name: unknown
+  email: johnrodwick@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_21:
+  id: 21
+  first_name: unknown
+  last_name: unknown
+  email: sanchez7529@sbcglobal.ne
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_22:
+  id: 22
+  first_name: unknown
+  last_name: unknown
+  email: montoya.estevan@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_23:
+  id: 23
+  first_name: unknown
+  last_name: unknown
+  email: brad_schroeder1@msn.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_24:
+  id: 24
+  first_name: unknown
+  last_name: unknown
+  email: clareelliswebb@gmail.com
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+Profile_25:
+  id: 25
+  first_name: Cathy
+  last_name: McErlean-Goddard
+  email: clmcerleang@optonline.net
+  phone: 845-507-2122
+  address_line_1: ''
+  city: Stony Point
+  state: NY
+  zip_code: '10980'
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: '100'
+  ip: 67.84.116.74
+  referer: http://mydomino.com/getstarted
+  browser: Mozilla/5.0 (iPad; CPU OS 8_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML,
+    like Gecko) Version/8.0 Mobile/12D508 Safari/600.1.4

@@ -1,0 +1,28 @@
+---
+Offering_1:
+  id: 1
+  name: Clean Power Options
+Offering_2:
+  id: 2
+  name: Rooftop Solar (PV)
+Offering_3:
+  id: 3
+  name: Smart Thermostats
+Offering_4:
+  id: 4
+  name: LED Light Bulbs
+Offering_5:
+  id: 5
+  name: Smart Power Strips
+Offering_6:
+  id: 6
+  name: Heat Pumps
+Offering_7:
+  id: 7
+  name: Electric Vehicles
+Offering_8:
+  id: 8
+  name: EV Chargers
+Offering_9:
+  id: 9
+  name: Electric Bikes

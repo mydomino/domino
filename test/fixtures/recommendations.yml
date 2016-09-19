@@ -1,0 +1,158 @@
+---
+Recommendation_1:
+  id: 34
+  dashboard_id: 8
+  done: false
+  recommendable_id: 5
+  recommendable_type: Product
+Recommendation_2:
+  id: 35
+  dashboard_id: 8
+  done: false
+  recommendable_id: 7
+  recommendable_type: Product
+Recommendation_3:
+  id: 43
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 1
+  recommendable_type: Task
+Recommendation_4:
+  id: 44
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 3
+  recommendable_type: Task
+Recommendation_5:
+  id: 45
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 5
+  recommendable_type: Task
+Recommendation_6:
+  id: 47
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 2
+  recommendable_type: Task
+Recommendation_7:
+  id: 48
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 4
+  recommendable_type: Task
+Recommendation_8:
+  id: 49
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 7
+  recommendable_type: Task
+Recommendation_9:
+  id: 50
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 9
+  recommendable_type: Task
+Recommendation_10:
+  id: 112
+  dashboard_id: 19
+  done: false
+  recommendable_id: 5
+  recommendable_type: Product
+Recommendation_11:
+  id: 113
+  dashboard_id: 19
+  done: false
+  recommendable_id: 1
+  recommendable_type: Task
+Recommendation_12:
+  id: 114
+  dashboard_id: 19
+  done: false
+  recommendable_id: 3
+  recommendable_type: Task
+Recommendation_13:
+  id: 115
+  dashboard_id: 19
+  done: false
+  recommendable_id: 4
+  recommendable_type: Task
+Recommendation_14:
+  id: 116
+  dashboard_id: 19
+  done: false
+  recommendable_id: 7
+  recommendable_type: Task
+Recommendation_15:
+  id: 117
+  dashboard_id: 19
+  done: false
+  recommendable_id: 9
+  recommendable_type: Task
+Recommendation_16:
+  id: 125
+  dashboard_id: 21
+  done: false
+  recommendable_id: 5
+  recommendable_type: Product
+Recommendation_17:
+  id: 127
+  dashboard_id: 21
+  done: false
+  recommendable_id: 7
+  recommendable_type: Product
+Recommendation_18:
+  id: 128
+  dashboard_id: 21
+  done: true
+  recommendable_id: 1
+  recommendable_type: Task
+Recommendation_19:
+  id: 129
+  dashboard_id: 21
+  done: false
+  recommendable_id: 3
+  recommendable_type: Task
+Recommendation_20:
+  id: 130
+  dashboard_id: 21
+  done: false
+  recommendable_id: 4
+  recommendable_type: Task
+Recommendation_21:
+  id: 131
+  dashboard_id: 21
+  done: false
+  recommendable_id: 5
+  recommendable_type: Task
+Recommendation_22:
+  id: 132
+  dashboard_id: 21
+  done: false
+  recommendable_id: 7
+  recommendable_type: Task
+Recommendation_23:
+  id: 133
+  dashboard_id: 21
+  done: false
+  recommendable_id: 9
+  recommendable_type: Task
+Recommendation_24:
+  id: 136
+  dashboard_id: 22
+  done: false
+  recommendable_id: 7
+  recommendable_type: Product
+Recommendation_25:
+  id: 137
+  dashboard_id: 22
+  done: false
+  recommendable_id: 1
+  recommendable_type: Task
