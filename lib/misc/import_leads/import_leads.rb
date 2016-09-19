@@ -37,7 +37,7 @@ leads.each do |row|
           housing: row["Own or Rent?"],  
           #omitting avg electrical bill b/c Rails uses integer, sheet is formatted with strings
           campaign: row["Campaign"],
-          partner_code_id: PartnerCode.find_by_partner_name("GREENLA").id,
+          partner_code_id: PartnerCode.find_by_code("GREENLA").id,
           onboard_complete: true
         )
 
