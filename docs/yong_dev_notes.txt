@@ -79,6 +79,11 @@ ylee@ylee-home-ubuntu:/media/sf_pj-3/md/myd$ bundle exec rake db:fixtures:dump
 
 ylee@ylee-home-ubuntu:/media/sf_pj-3/md/myd$ bundle exec rake db:fixtures:load RAILS_ENV=test
 
+We can now use the fixture data to load the test database for our test environment with this command:
+bundle exec rake db:fixtures:load RAILS_ENV=test
+
+Once you load the data, you can start up Rails with Rails s -e test, and log in with the user_email/password.
+The password for all users is Mydom!no1234. 
 
 =======================================================================================
 To use a custom timeout for Rack-timeout, create an initializer file:
