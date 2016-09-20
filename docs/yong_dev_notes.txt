@@ -107,6 +107,35 @@ end
 
 =======================================================================================
 
+http://stackoverflow.com/questions/2671454/heroku-how-to-see-all-the-logs
+https://devcenter.heroku.com/articles/log-drains#syslog-drains
+
+How can you check Heroku Error Logs?
+
+Simply use heroku logs to display the last 100 lines of your logs.
+
+Or to tail the logs in real-time: heroku logs -t
+
+Heroku only saves the last 1500 lines of logs, which you can access using heroku logs -n 1500. 
+If you want more logging, check out Heroku add-ons like Logentries or Papertrail.
+
+Or
+heroku logs -t --app <app_name> > any_file_name
+Or
+
+heroku logs -n 1500
+
+or, to tail the logs live
+
+heroku logs -t 
+
+If you need more than a few thousand lines you can Use heroku's Syslog Drains
+
+Alternatively (old method):
+
+$ heroku run rails c
+File.open('log/production.log', 'r').each_line { |line| puts line }
+
 =======================================================================================
 
 =======================================================================================
