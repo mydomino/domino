@@ -137,8 +137,35 @@ $ heroku run rails c
 File.open('log/production.log', 'r').each_line { |line| puts line }
 
 =======================================================================================
+Running Tests
+
+Ref: http://ruten.ca/2013/01/15/run-a-single-rails-or-ruby-test-from-the-command-line/
+
+
+To run all tests (models/controllers/integrations etc...)
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rake test
+
+To run models' tests
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rake test:models
+
+To run controllers' tests
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rake test:controllers
+
+To run test for a specific file
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rake test TEST=test/models/profile_test.rb
+
+To run a specific test case/method inside a specific file -- add the test method name with -n
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rake test TEST=test/models/profile_test.rb -n test_method_name
+
 
 =======================================================================================
+Generating models test file
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rails g minitest:model Dashboard -s 
+
+Generating controller test file
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rails g minitest:controller Recommendations  -s 
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rails g minitest:controller Registrations  -s 
+
 
 
 =======================================================================================

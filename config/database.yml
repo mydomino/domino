@@ -11,8 +11,8 @@ default: &default
 
 development:
   <<: *default
-  host: localhost
-  username: domino
+  #host: localhost
+  #username: domino
   database: domino-dev
 
 # Warning: The database defined as "test" will be erased and
