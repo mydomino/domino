@@ -77,6 +77,9 @@ group :test do
   # gem 'webmock'
   gem 'minitest-rails', "~> 2.0"
   gem 'minitest-rails-capybara'
+  gem 'minitest-reporters'
+  gem 'shoulda-context'
+  gem 'shoulda'
 end
 
 group :production do

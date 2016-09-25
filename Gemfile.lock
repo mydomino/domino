@@ -44,6 +44,7 @@ GEM
     airbrake-ruby (1.1.0)
     animate-rails (1.0.9)
       rails
+    ansi (1.5.0)
     arel (6.0.3)
     ast (2.3.0)
     autoprefixer-rails (6.3.3.1)
@@ -219,6 +220,11 @@ GEM
       minitest-capybara (~> 0.8)
       minitest-metadata (~> 0.6)
       minitest-rails (~> 2.1)
+    minitest-reporters (1.1.11)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -325,6 +331,12 @@ GEM
       rdoc (~> 4.0)
     sexp_processor (4.7.0)
     shellany (0.0.1)
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
+    shoulda-context (1.2.1)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -412,6 +424,7 @@ DEPENDENCIES
   mailkick
   minitest-rails (~> 2.0)
   minitest-rails-capybara
+  minitest-reporters
   newrelic_rpm
   normalize-rails
   nprogress-rails
@@ -428,6 +441,8 @@ DEPENDENCIES
   rubyzoho
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda
+  shoulda-context
   simple_form
   simplecov
   sitemap_generator
@@ -438,5 +453,8 @@ DEPENDENCIES
   vacuum
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.13.1
