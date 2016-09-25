@@ -80,6 +80,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'shoulda-context'
   gem 'shoulda'
+  gem 'shoulda-matchers'
 end
 
 group :production do

@@ -443,6 +443,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda
   shoulda-context
+  shoulda-matchers
   simple_form
   simplecov
   sitemap_generator

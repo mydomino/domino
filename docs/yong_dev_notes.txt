@@ -265,6 +265,10 @@ http://stackoverflow.com/questions/35516913/how-to-use-shoulda-matchers-with-min
 
 https://github.com/thoughtbot/shoulda-matchers
 
+
+Controller
+https://gist.github.com/jwo/7323240
+
 =======================================================================================
 
 
@@ -335,7 +339,8 @@ ylee@ylee-home-ubuntu:/media/sf_pj/md/domino$ rails g minitest:controller Regist
 
 
 =======================================================================================
-
+Column/Vertical selection with Keyboard in SublimeText 3
+http://stackoverflow.com/questions/25085479/column-vertical-selection-with-keyboard-in-sublimetext-3
 
 =======================================================================================
 
