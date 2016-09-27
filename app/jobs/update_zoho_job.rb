@@ -21,7 +21,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "&xmlData=<Leads><row no='1'>"\
             "<FL val='First Name'>#{lead.first_name}</FL>"\
             "<FL val='Last Name'>#{lead.last_name}</FL>"\
-            "<FL val='Email'>#{lead.email}</FL>"\
+            "<FL val='Email'><![CDATA[#{CGI.escape(lead.email)}]]></FL>"\
             "<FL val='Interests'>#{@interests.join(';')};</FL>"\
             "<FL val='Street'>#{lead.address_line_1}</FL>"\
             "<FL val='City'>#{lead.city}</FL>"\
@@ -32,11 +32,11 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
             "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
             "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
-            "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{lead.email}</FL>"\
+            "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(lead.email)}</FL>"\
             "</row></Leads>"
-      encoded_url = URI.encode(uri)
-      url = URI.parse(encoded_url);
-      Net::HTTP.post_form(url, {})
+            
+      encoded_uri = URI(uri)
+      res = Net::HTTP.post_form(encoded_uri, {})
     else
       raise Exception.new("Zoho lead not accessible via CRM API")
     end

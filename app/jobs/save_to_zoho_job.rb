@@ -16,11 +16,11 @@ class SaveToZohoJob < ActiveJob::Base
           "&xmlData=<Leads><row no='1'>"\
           "<FL val='First Name'>#{lead.first_name}</FL>"\
           "<FL val='Last Name'>#{lead.last_name}</FL>"\
-          '<FL val="Email"><![CDATA["' + "#{lead.email}" '"]]></FL>'\
+          "<FL val='Email'><![CDATA[#{CGI.escape(lead.email)}]]></FL>"\
           "<FL val='Campaign'>#{lead.campaign}</FL>"\
           "<FL val='Browser'>#{lead.browser}</FL>"\
           "<FL val='Interests'>#{@interests.join(';')};</FL>"\
-          "<FL val='Street'>#{lead.address_line_1}</FL>"\
+          "<FL val='Street'>123 plus+street</FL>"\
           "<FL val='City'>#{lead.city}</FL>"\
           "<FL val='State'>#{lead.state}</FL>"\
           "<FL val='Zip Code'>#{lead.zip_code}</FL>"\
@@ -32,8 +32,7 @@ class SaveToZohoJob < ActiveJob::Base
           "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(lead.email)}</FL>"\
           "</row></Leads>"
 
-    encoded_url = URI.encode(uri)
-    url = URI.parse(encoded_url)
-    Net::HTTP.post_form(url, {})
+    encoded_uri = URI(uri)
+    res = Net::HTTP.post_form(encoded_uri, {})
   end
 end
