@@ -352,15 +352,30 @@ rest-client ruby example
 https://www.google.com/search?client=safari&rls=en&q=rest-client+ruby+example&ie=UTF-8&oe=UTF-8
 
 =======================================================================================
+minitest build testing interface to outside service
 
+https://www.google.com/search?client=safari&rls=en&q=minitest+build+testing+interface+to+outside+service&ie=UTF-8&oe=UTF-8
+
+https://semaphoreci.com/community/tutorials/stubbing-external-services-in-rails
 
 =======================================================================================
 
+Heroku
+
+To reach Rails console
+
+heroku run rails console -a domino-production
 =======================================================================================
+how to review pull request on github
 
 
 =======================================================================================
+rest-client gem tutorial
 
+https://github.com/rest-client/rest-client
+http://www.rubydoc.info/gems/rest-client/1.6.7/frames
+http://wiki.servicenow.com/index.php?title=Table_API_Ruby_Examples#gsc.tab=0
+https://www.krautcomputing.com/blog/2015/06/21/how-to-use-basic-authentication-with-the-ruby-rest-client-gem/
 
 =======================================================================================
 
