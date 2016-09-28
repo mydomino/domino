@@ -1,3 +1,19 @@
+
+/******** concierge layout css ********/
+.concierge-tools{
+  background-color: #F9F9F9;
+  .opt-concierge-tool { transition: all 0.1s linear; }
+  .opt-concierge-tool:hover {
+    background-color: #00ccff;
+    a { color: white }
+  }
+
+  [data-disclosure] [data-details] {
+    display: none;
+  }
+}
+
+
 /******** highlight input fields with errors in red ********/
 .invalid-field { border-color:red!important; }
 
