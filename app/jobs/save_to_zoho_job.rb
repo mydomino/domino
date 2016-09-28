@@ -29,10 +29,11 @@ class SaveToZohoJob < ActiveJob::Base
           "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
           "<FL val='Onboard Complete'>Yes</FL>"\
           "<FL val='Dashboard Been Registered?'>No</FL>"\
-          "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(lead.email)}</FL>"\
+          "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(CGI.escape(lead.email))}</FL>"\
           "</row></Leads>"
 
     encoded_uri = URI(uri)
+    puts encoded_uri
     res = Net::HTTP.post_form(encoded_uri, {})
   end
 end
