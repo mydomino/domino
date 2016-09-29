@@ -352,9 +352,39 @@ rest-client ruby example
 https://www.google.com/search?client=safari&rls=en&q=rest-client+ruby+example&ie=UTF-8&oe=UTF-8
 
 =======================================================================================
+SMTP Relay send mail config
+http://www.bonusbits.com/wiki/HowTo:Configure_SendMail_to_Use_SMTP_Relay
 
+Relay host
+DS365-dirsync.domain
 
 =======================================================================================
+
+Sublime Text
+
+SublimeText 3: Where are the packages
+Try going to "Preferences -> Browse Packages". 
+
+
+How to set highlighting of do-end blocks in Sublime Text 3 for ruby?
+
+Recommended packages:
+
+* BracketHighlighter
+https://github.com/facelessuser/BracketHighlighter
+http://facelessuser.github.io/BracketHighlighter/
+
+* SideBarEnhancements
+https://github.com/titoBouzout/SideBarEnhancements
+
+* SublimeLinter 
+http://sublimelinter.readthedocs.io/en/latest/installation.html
+
+* SublimeLinter-ruby
+https://github.com/SublimeLinter/SublimeLinter-ruby
+http://sublimelinter.readthedocs.io/en/latest/troubleshooting.html#shell-startup-files
+
+
 
 =======================================================================================
 
