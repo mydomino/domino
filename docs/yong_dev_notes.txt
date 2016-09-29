@@ -378,7 +378,9 @@ http://wiki.servicenow.com/index.php?title=Table_API_Ruby_Examples#gsc.tab=0
 https://www.krautcomputing.com/blog/2015/06/21/how-to-use-basic-authentication-with-the-ruby-rest-client-gem/
 
 =======================================================================================
+Queuing in Ruby with Redis and Resque
 
+https://devcenter.heroku.com/articles/queuing-ruby-resque
 =======================================================================================
 
 
