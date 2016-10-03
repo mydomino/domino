@@ -34,7 +34,7 @@
                   Yes
                 - else
                   No
-                  %i.fa.fa-link.pointer{data: {'clipboard-text': "http://mydomino.com/users/sign_up?email=#{dashboard.lead_email}"}, title: 'Copy sign up link'}
+                  %i.fa.fa-link.pointer{data: {'clipboard-text': "http://mydomino.com/users/sign_up?email=#{CGI.escape(dashboard.lead_email)}"}, title: 'Copy sign up link'}
               %td.center #{dashboard.recommendations.products.done.count + dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.count}
               %td.center
                 =link_to dashboard_path(dashboard), method: :delete, data: {confirm: 'Are you sure?'} do
