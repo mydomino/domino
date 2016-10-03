@@ -2,18 +2,15 @@ class RegistrationsController < Devise::RegistrationsController
   
   def new
     #redirect to root if no slug or email in params
-    if !(params[:slug] || params[:email])
-      redirect_to root_path and return
-    end
+    redirect_to root_path and return if !(params[:slug] || params[:email])
 
     if params[:slug]
-      @legacy_user = true
       @dashboard = Dashboard.find_by_slug(params[:slug])
       if @dashboard
         @email = @dashboard.lead_email
-      else
+      else 
         redirect_to root_path and return
-      end
+      end         
     else
       @email = params[:email].downcase
       @legacy_user = true if LegacyUser.find_by_email(@email)
@@ -21,9 +18,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     #check if user already registered, if so redirect to login page
     #TODO should add flash message you already have an account
-    if User.find_by_email(@email)
-      redirect_to new_user_session_path and return
-    end
+    redirect_to new_user_session_path and return if User.find_by_email(@email)
     
     #todo should return to complete onboarding
     if @profile = Profile.find_by_email(@email)
@@ -61,30 +56,31 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    if current_user
+    @email = current_user.email
+    @profile = Profile.find_by_email(@email)
 
-      @email = current_user.email
-      @profile = Profile.find_by_email(@email)
-
-      current_user.profile = @profile if !@profile.nil?
-      
-      #create and bind dashboard to user if not legacy user
-      if !LegacyUser.find_by_email(@email)
-        current_user.dashboard = Dashboard.create(lead_name: "#{current_user.profile.first_name} #{current_user.profile.last_name}", lead_email: @email)
-        current_user.dashboard.products = Product.default
-        current_user.dashboard.tasks = Task.default
-        @profile.update(dashboard_registered: true)
-        DashboardRegisteredZohoJob.perform_later @profile
+    current_user.profile = @profile if !@profile.nil?
+    
+    #create and bind dashboard to user if not legacy user
+    if !LegacyUser.find_by_email(@email)
+      #assign provisioned dashboard to newly registered user
+      if dashboard = Dashboard.find_by_lead_email(@email)
+        current_user.dashboard = dashboard
       else
-        current_user.dashboard = Dashboard.find_by_lead_email(@email)
-        lu = LegacyUser.find_by_email(@email)
-        lu.update(dashboard_registered: true)
-        @profile.update(dashboard_registered: true) if !@profile.nil?
+        #if dashboard hasn't been allocated (i.e. imported lead) create one
+        current_user.dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
       end
-      user_dashboard_path
+
+      @profile.update(dashboard_registered: true)
+      DashboardRegisteredZohoJob.perform_later @profile
     else
-      root_path
+      #bind legacy user's dashboard to their newly created user account
+      current_user.dashboard = Dashboard.find_by_lead_email(@email)
+      lu = LegacyUser.find_by_email(@email)
+      lu.update(dashboard_registered: true)
+      @profile.update(dashboard_registered: true) if !@profile.nil?
     end
+    user_dashboard_path
   end
 
 end
