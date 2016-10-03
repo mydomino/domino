@@ -23,7 +23,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Last Name'>#{lead.last_name}</FL>"\
             "<FL val='Email'><![CDATA[#{CGI.escape(lead.email)}]]></FL>"\
             "<FL val='Interests'>#{@interests.join(';')};</FL>"\
-            "<FL val='Street'>#{lead.address_line_1}</FL>"\
+            "<FL val='Street'><![CDATA[#{CGI.escape(lead.address_line_1)}]]></FL>"\
             "<FL val='City'>#{lead.city}</FL>"\
             "<FL val='State'>#{lead.state}</FL>"\
             "<FL val='Zip Code'>#{lead.zip_code}</FL>"\
@@ -32,7 +32,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Avg Electric Bill'>#{lead.avg_electrical_bill}</FL>"\
             "<FL val='Partner Code'>#{lead.partner_code.code if lead.partner_code}</FL>"\
             "<FL val='Partner Code Name'>#{lead.partner_code.partner_name if lead.partner_code }</FL>"\
-            "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(lead.email)}</FL>"\
+            "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(CGI.escape(lead.email))}</FL>"\
             "</row></Leads>"
             
       encoded_uri = URI(uri)
