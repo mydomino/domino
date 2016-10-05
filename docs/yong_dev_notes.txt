@@ -437,6 +437,23 @@ Given an URL: http://www.example.com/?vote[item_id]=1&vote[user_id]=2
 
 then params[:vote] would be a hash, params[:vote][:item_id] would be "1" and params[:vote][:user_id] would be "2".
 =======================================================================================
+Heroku Usage
+
+loggin to heroku from Toolbelt/command line
+ylee@ylee-home-ubuntu:/media/sf_pj/md/heroku-1$ heroku login
+
+Add a SSH key
+ylee@ylee-home-ubuntu:/media/sf_pj/md/heroku-1$ heroku keys:add
+
+Create a heroku app
+ylee@ylee-home-ubuntu:/media/sf_pj/md/ruby-postgresql-heroku-1$ heroku create
+Creating app... done, ⬢ floating-everglades-64896
+https://floating-everglades-64896.herokuapp.com/ | https://git.heroku.com/floating-everglades-64896.git
+
+To deploy to Heroku
+ylee@ylee-home-ubuntu:/media/sf_pj/md/ruby-postgresql-heroku-1$ git push heroku master
+https://floating-everglades-64896.herokuapp.com/ deployed to Heroku
+
 
 =======================================================================================
 
