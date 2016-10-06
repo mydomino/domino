@@ -48,8 +48,10 @@
 
       =simple_form_for @profile, remote: true do |form|
         .clearfix.mx-auto
+
           .col.col-12.sm-col.sm-col-6.xs-center
             %label.right#partner-code-label HAVE A PARTNER CODE?
+
           .col.col-12.sm-col.sm-col-6.xs-center.relative
             =@partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @partner_code} ) : (render 'profiles/partner_code_field', f: form)
             %button.inline{type: "button", disabled: (true if @partner_code), id: 'btn-apply', class: "#{@partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
@@ -57,10 +59,15 @@
                 %i.fa.fa-check.fa-3
               -else
                 APPLY
+
           .col.col-12.center.px2
-            %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
-        .mt2.px2.relative{style: 'height: 71px;'}
-          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
+            %p.m0.mt3 
+              No Partner Code? No worries!
+              %br
+              Click Submit and talk to a concierge before you pay.
+
+        .mt2.px2.relative{style: 'height: 47px;'}
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
 
 :javascript
   $(document).ready(function(){
