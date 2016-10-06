@@ -58,9 +58,10 @@ class ProfilesController < ApplicationController
       create_dashboard(@profile)
       #send welcome email
       UserMailer.welcome_email_universal(@profile.email).deliver_later
-
-      @profile.update(onboard_complete: true)
-      @profile.save_to_zoho
+      if !@profile.onboard_complete
+        @profile.save_to_zoho
+        @profile.update(onboard_complete: true)
+      end
     end
 
     @profile.update(profile_params)
