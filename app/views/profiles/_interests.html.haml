@@ -21,7 +21,7 @@
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
         .px2.mt4.relative{style: 'height:107px;'}
-          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
+          =render :partial => "profiles/onboard_submit_btns", :locals => {:form  => form, :form_name => 'interests'}
 
 :javascript
   $(document).ready(function(){
