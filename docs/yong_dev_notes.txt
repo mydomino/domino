@@ -437,7 +437,9 @@ Given an URL: http://www.example.com/?vote[item_id]=1&vote[user_id]=2
 
 then params[:vote] would be a hash, params[:vote][:item_id] would be "1" and params[:vote][:user_id] would be "2".
 =======================================================================================
+Sending form Data via HTTP
 
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_and_retrieving_form_data
 =======================================================================================
 
 =======================================================================================
