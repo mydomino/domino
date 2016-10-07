@@ -437,9 +437,9 @@ Given an URL: http://www.example.com/?vote[item_id]=1&vote[user_id]=2
 
 then params[:vote] would be a hash, params[:vote][:item_id] would be "1" and params[:vote][:user_id] would be "2".
 =======================================================================================
-<<<<<<< .merge_file_a09928
-Sending form Data via HTTP
-=======
+
+
+
 Heroku Usage
 
 loggin to heroku from Toolbelt/command line
@@ -457,11 +457,11 @@ To deploy to Heroku
 ylee@ylee-home-ubuntu:/media/sf_pj/md/ruby-postgresql-heroku-1$ git push heroku master
 https://floating-everglades-64896.herokuapp.com/ deployed to Heroku
 
->>>>>>> .merge_file_a17496
+
+=======================================================================================
+Sending form Data via HTTP
 
 https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_and_retrieving_form_data
-=======================================================================================
-
 =======================================================================================
 
 =======================================================================================
