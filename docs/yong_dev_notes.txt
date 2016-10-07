@@ -355,6 +355,9 @@ https://www.twilio.com/blog/2015/10/4-ways-to-parse-a-json-api-with-ruby.html
 rest-client ruby example
 https://www.google.com/search?client=safari&rls=en&q=rest-client+ruby+example&ie=UTF-8&oe=UTF-8
 
+
+
+
 =======================================================================================
 minitest build testing interface to outside service
 
