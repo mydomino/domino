@@ -83,8 +83,11 @@
               .px2.mt4.relative{style: 'height:165px;'}
                 =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
 
+%script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDyxW8lze0iyV1G0oYYC_7SRLI4tsiGGBY&libraries=places"}
+%script{src: "https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"}
+
 :javascript
-  $( window ).on( 'load', function() {
+  $( window ).on('load', function() {
 
     $(".geocode").geocomplete({ details: ".details", detailsAttribute: "data-geo" });
 
