@@ -5,6 +5,7 @@ class Profile::StepsController < ApplicationController
 
   def show
     @profile = Profile.find(params[:profile_id])
+    # if @profile.onboard_step 
     @active_inputs = @profile.interests.map {|i| i.offering_id }
     @offerings = Offering.all.map {|o| o.name }
     render_wizard
@@ -18,12 +19,15 @@ class Profile::StepsController < ApplicationController
         redirect_to root_path(:profile_id => @profile.id)
         return
       else
-        puts "!!!!!!!!!!!!#{previous_step}"
         @profile.onboard_step -= 1
         jump_to(previous_step.to_sym)
       end
+    else
+      @profile.onboard_step += 1
+      if(!@profile.onboard_complete && step == 'living_situation')
+        @profile.onboard_complete = true
+      end
     end
-    @profile.onboard_step -= 1
     render_wizard @profile 
   end
 

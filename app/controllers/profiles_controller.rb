@@ -116,8 +116,8 @@ class ProfilesController < ApplicationController
   def onboarding_incomplete?
     #user has begun, but not completed onboarding
     if (@profile = Profile.find_by_email(@email)) && !@profile.onboard_complete
-      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
-      render_response
+      flash[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
+      redirect_to profile_step_path(@profile, Profile.form_steps[@profile.onboard_step])
       return true
     end
     return false
@@ -125,8 +125,7 @@ class ProfilesController < ApplicationController
 
   def onboarded_but_not_registered?
     if (@profile = Profile.find_by_email(@email)) && @profile.onboard_complete
-      @profile.update(onboard_step: 4) if @profile.onboard_step < 4
-      render_response
+      redirect_to profile_step_path(@profile, Profile.form_steps.last)
       return true
     end
     return false
