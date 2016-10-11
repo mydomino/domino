@@ -41,31 +41,34 @@ class ProfilesController < ApplicationController
     #create new profile
     set_tracking_variables
     @profile = Profile.create(profile_params)
-    render_response and return
+    # render_response and return
+    redirect_to profile_step_path(@profile, Profile.form_steps.first)
   end
 
   def update
-    @profile.update_zoho if @profile.onboard_complete
+    # @profile.update_zoho if @profile.onboard_complete
  
-    params[:commit] == 'Back' ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
+    # params[:commit] == 'Back' ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
 
-    case @profile.onboard_step
-    when 2, 4
-      apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
-    when 3
-      @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
-      #allocate default dashboard
-      create_dashboard(@profile)
-      #send welcome email
-      UserMailer.welcome_email_universal(@profile.email).deliver_later
-      if !@profile.onboard_complete
-        @profile.save_to_zoho
-        @profile.update(onboard_complete: true)
-      end
-    end
+    # case @profile.onboard_step
+    # when 2, 4
+    #   apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
+    # when 3
+    #   @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
+    #   #allocate default dashboard
+    #   create_dashboard(@profile)
+    #   #send welcome email
+    #   UserMailer.welcome_email_universal(@profile.email).deliver_later
+    #   if !@profile.onboard_complete
+    #     @profile.save_to_zoho
+    #     @profile.update(onboard_complete: true)
+    #   end
+    # end
 
     @profile.update(profile_params)
-    render_response
+    # render_response
+    redirect_to profile_step_path(@profile, Profile.form_steps.first)
+    
   end
 
   def apply_partner_code(render_js=true)

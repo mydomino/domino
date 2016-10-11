@@ -6,21 +6,27 @@ class PagesController < ApplicationController
 
   def index
     #continue onboarding
+    # if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
+    #   if @profile.onboard_step == 0
+    #     Profile.skip_callback(:update, :after, :update_zoho)
+    #     @profile.update(onboard_step: 1)
+    #     Profile.set_callback(:update, :after, :update_zoho)
+    #   end
+    #   interest_form_resources if (@profile.onboard_step == 1)
+    #   get_partner_code if (@profile.onboard_step == 3)
+    #   flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
+    #   @response = {form: "profiles/#{FORMS[@profile.onboard_step]}", method: :put}
+    #   return
+    # end
+
+    #user goes back from wizard form to homepage
     if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
-      if @profile.onboard_step == 0
-        Profile.skip_callback(:update, :after, :update_zoho)
-        @profile.update(onboard_step: 1)
-        Profile.set_callback(:update, :after, :update_zoho)
-      end
-      interest_form_resources if (@profile.onboard_step == 1)
-      get_partner_code if (@profile.onboard_step == 3)
-      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
-      @response = {form: "profiles/#{FORMS[@profile.onboard_step]}", method: :put}
-      return
+      @response = {form: 'profiles/name_and_email', method: :put}
+    else
+      @profile = Profile.new
+      @response = {form: 'profiles/name_and_email', method: :post}
+      @rolling_date = "Until #{Time.now.strftime('%b')} #{Time.now.end_of_month.day}, #{Time.now.year}"
     end
-    @profile = Profile.new
-    @response = {form: 'profiles/name_and_email', method: :post}
-    @rolling_date = "Until #{Time.now.strftime('%b')} #{Time.now.end_of_month.day}, #{Time.now.year}"
   end
 
   def about

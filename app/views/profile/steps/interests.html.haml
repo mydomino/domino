@@ -1,0 +1,59 @@
+.spacer{style: 'height: 100px;' }       
+-if flash[:notice]
+  =render 'profiles/flash_notice'
+#interests.mt1
+  .max-width-3.mx-auto
+    .clearfix.mb2
+      .col.col-12.center
+        .max-width-1.mx-auto.h2.line-height-2
+          I am interested in learning more about the following...
+      .mt1.col.col-12.h4.center.italic (Choose as many as you like)
+    .clearfix.mx-auto
+      =simple_form_for @profile, method: :put, url: wizard_path do |form|
+        .max-width-2.mx-auto.mt3
+          .flex.justify-center
+            .inline-block.ml1
+              -5.times do |index|
+                =render "profiles/interest_checkbox", :index => index
+            .inline-block.align-top.ml2
+              -4.times do |index|
+                =render "profiles/interest_checkbox", :index => index + 5
+          .display-none
+            =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
+        .px2.mt4.relative{style: 'height:107px;'}
+          =render :partial => "profiles/onboard_submit_btns", :locals => {:form  => form, :form_name => 'interests'}
+
+:javascript
+  $(document).ready(function(){
+    $('.btn-interest').on('click', function(){
+      if($(this).hasClass('active')){
+        $(this).css('background-color', 'white');
+        $(this).css('border-color', 'black');
+        $('i', this).css('display', 'none');
+        $(this).removeClass('active');
+      }else{
+        $(this).css('background-color', '#00CCFF');
+        $(this).css('border-color', '#00CCFF');
+        $('i', this).css('display', 'inline');
+        $(this).addClass('active');
+      }
+      var target = '#' + $(this).data('target');
+      $(target).prop('checked', function( i, val ) {
+        return !val;
+      });
+    });
+
+    //submit buttons may not be pushed multiple times
+    $("form").submit(function() {
+      $(this).submit(function() {
+        return false;
+      });
+      return true;
+    });
+
+    //mobile
+    $(window).scrollTop(0)
+
+  });
+
+

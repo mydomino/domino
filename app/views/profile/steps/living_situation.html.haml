@@ -1,0 +1,103 @@
+:css
+  .btn-secondary--invalid {
+    border-color: red;
+    color: red;
+  }
+
+.spacer{style: 'height: 100px;' } 
+
+-if flash[:notice]
+  =render 'profiles/flash_notice'
+
+#profile-forms  
+  #living-situation.mt1
+    .max-width-3.mx-auto
+      .clearfix.mb2
+        .col.col-12.center
+          .max-width-1.mx-auto.h2.line-height-2
+            Tell us about your home
+      .clearfix.mx-auto.pt2
+        =simple_form_for @profile, method: :put, url: wizard_path do |form|
+          .sm-col.sm-col-12.md-col-6.pr2.md-pr4.pl2.pt1
+            %label.h4
+              Phone
+            %i.fa.fa-question-circle-o.pointer
+            %br
+            =form.input_field :phone, class: "h3 bg-transparent rounded required-field", placeholder: "", data: {reg: '\\(\\d{3}\\)\\s\\d{3}\\-\\d{4}', target: '#phone-error-msg'}
+            #phone-error-msg.red.display-none
+              Phone number is required. 
+              %span#why-phone.gray-80.pointer
+                Why?
+
+            %p#phone-input-hint.mt0.display-none.gray-80
+              Your number makes it quicker for our concierge team to start helping you.
+            .mt0.md-mt2.pt1
+              %label.h4 Average Electric Bill (Optional)
+              .clearfix.pl1
+                .col.col-8.mt1
+                  #slider
+                .col.col-4.pl1
+                  .inline-block.center
+                    %h2.m0
+                      &nbsp;$
+                      %span#slider_val 0
+                =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
+          .sm-col.sm-col-12.md-col-6.pl2.sm-pl-0.pr2
+            .clearfix.details
+              .pt1
+                %label.h4 Street address (Optional)
+                %br
+                =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded", placeholder: ""
+                %span#span-street_number.display-none{data: {geo: 'street_number'}}
+                %span#span-route.display-none{data: {geo: 'route'}}
+              
+              #city-state-zip.col.col-5.pt1{data: {target: '#city-error-msg'}}
+                %label.h4 City
+                %br
+                =form.input_field :city, class: "geocode h3 bg-transparent rounded required-field", placeholder: "",  data: {reg: '\\w', 'msg-group': '#city-state-zip', label: 'City'}
+                %span#span-city.display-none{data: {geo: 'locality'}}
+              .col.col-3.pt1
+                .pl1
+                  %label.h4 State
+                  %br
+                  =form.input_field :state, collection: us_states, class: "h3 bg-transparent rounded required-field", data: {reg: '^\\w{2}', 'msg-group': '#city-state-zip', label: 'State'}
+                  %span#span-state.display-none{data: {geo: 'administrative_area_level_1_short'}}
+              .col.col-4.pt1
+                .pl1
+                  %label.h4 Zip
+                  %br
+                  =form.input_field :zip_code, type: "tel", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57', class: "geocode h3 bg-transparent rounded required-field", maxlength: "5", placeholder: "", data: {reg: '^\\d{5}', 'msg-group': '#city-state-zip', label: 'Zip'}
+                  %span#span-zipcode.display-none{data: {geo: 'postal_code'}}
+              #city-error-msg.red.display-none
+              .col.col-12.pt1
+                %label.h4 Housing
+                %br
+                .btn-group
+                  %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'rent'}", type: "button", data: {value: "rent"}} Rent
+                  %button.btn.btn-sm.btn-secondary{class: "#{'btn-secondary--active' if @profile.housing == 'own'}", type: "button", data: {value: "own"}} Own
+                =form.input :housing, :as => :hidden, input_html: { data: {reg: '(own|rent)', target: '#housing-error-msg', 'error-target': '.btn-group > .btn-secondary'}, value: @profile.housing, class: 'required-field'}
+              #housing-error-msg.red.display-none
+                Housing type is required.
+          .clearfix
+            .col.col-12
+              .px2.mt4.relative{style: 'height:165px;'}
+                =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
+
+:javascript
+  $( window ).on( 'load', function() {
+
+    $(".geocode").geocomplete({ details: ".details", detailsAttribute: "data-geo" });
+
+    $('.geocode').bind("geocode:result", function(e, r) {
+      $('#profile_state').val($('#span-state').html());
+      $('#profile_city').val($('#span-city').html());
+      $('#profile_zip_code').val($('#span-zipcode').html());
+      $('#profile_address_line_1').val($('#span-street_number').html() + " " + $('#span-route').html());
+      $requiredFields.change();
+    });
+
+    $("#profile_phone").mask("(999) 999-9999");
+
+    var $requiredFields = $('.required-field');
+    
+  });
