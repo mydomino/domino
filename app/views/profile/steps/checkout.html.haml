@@ -53,8 +53,8 @@
             %label.right#partner-code-label HAVE A PARTNER CODE?
 
           .col.col-12.sm-col.sm-col-6.xs-center.relative
-            =@partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @partner_code} ) : (render 'profiles/partner_code_field', f: form)
-            %button.inline{type: "button", disabled: (true if @partner_code), id: 'btn-apply', class: "#{@partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
+            =@profile.partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @profile.partner_code} ) : (render 'profiles/partner_code_field', f: form)
+            %button.inline{type: "button", disabled: (true if @profile.partner_code), id: 'btn-apply', class: "#{@profile.partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@profile.partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
               -if @partner_code
                 %i.fa.fa-check.fa-3
               -else

@@ -19,9 +19,11 @@ class Profile::StepsController < ApplicationController
         return
       else
         puts "!!!!!!!!!!!!#{previous_step}"
+        @profile.onboard_step -= 1
         jump_to(previous_step.to_sym)
       end
     end
+    @profile.onboard_step -= 1
     render_wizard @profile 
   end
 
@@ -36,7 +38,7 @@ class Profile::StepsController < ApplicationController
           :zip_code, :phone, :housing,
           :avg_electrical_bill]
       when "checkout"
-        [:special_instructions]
+        [:partner_code_id]
       end
 
     params.require(:profile).permit(permitted_attributes).merge(form_step: step)
