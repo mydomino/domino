@@ -1,0 +1,213 @@
+---
+Profile_1:
+  id: 1
+  user_id: 1
+  first_name: unknown
+  last_name: unknown
+  email: mary.keli@gmail.com
+  phone: 
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: 
+  ip: 
+  referer: 
+  browser: 
+  partner_code_id: 7
+Profile_2:
+  id: 2
+  user_id: 1
+  first_name: unknown
+  last_name: unknown
+  email: haleyknapp88@gmail.com
+  phone: 
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: 
+  ip: 
+  referer: 
+  browser: 
+  partner_code_id: 10
+Profile_3:
+  id: 3
+  user_id: 10
+  first_name: unknown
+  last_name: unknown
+  email: jennifer@yahoo.com
+  phone: 
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: 
+  ip: 
+  referer: 
+  browser: 
+  partner_code_id: 8
+Profile_4:
+  id: 4
+  user_id: 10
+  first_name: unknown
+  last_name: unknown
+  email: sdarling@deefield.edu
+  phone: 
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: 
+  ip: 
+  referer: 
+  browser: 
+  partner_code_id: 10
+Profile_5:
+  id: 5
+  user_id: 9
+  first_name: M
+  last_name: S
+  email: sassygal95@gmail.com
+  phone: ''
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: '100'
+  ip: 71.239.161.15
+  referer: http://mydomino.com/get_started/3?utf8=%E2%9C%93&get_started%5Barea_code%5D=630&get_started%5Baverage_electric_bill%5D=&commit=Next
+  browser: Mozilla/5.0 (Linux; Android 6.0; VS985 4G Build/MRA58K) AppleWebKit/537.36
+    (KHTML, like Gecko) Chrome/48.0.2564.95 Mobile Safari/537.36
+  partner_code_id: 5
+Profile_6:
+  id: 6
+  user_id: 9
+  first_name: unknown
+  last_name: unknown
+  email: kmcgee9458@aol.com
+  phone: 
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: 
+  ip: 
+  referer: 
+  browser: 
+  partner_code_id: 6
+Profile_7:
+  id: 7
+  user_id: 10
+  first_name: Rosanna
+  last_name: Albano
+  email: rosanna.albano@integramed.com
+  phone: 301-231-9193
+  address_line_1: 
+  city: Rockville
+  state: MD
+  zip_code: '20852'
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: SmallFootPrintFamily
+  ip: 74.96.190.162
+  referer: http://mydomino.com/energy-awareness?utm_source=blog&utm_medium=referral&utm_campaign=SmallFootPrintFamily
+  browser: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
+  partner_code_id: 3
+Profile_8:
+  id: 8
+  user_id: 6
+  first_name: Julia
+  last_name: Prochnik (board member of WCS)
+  email: juliaprochnik@gmail.com
+  phone: ''
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: WCS
+  ip: 12.71.59.254
+  referer: http://mydomino.com/get_started/3?utf8=%E2%9C%93&get_started%5Barea_code%5D=415&get_started%5Baverage_electric_bill%5D=100&commit=Next
+  browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:42.0) Gecko/20100101 Firefox/42.0
+  partner_code_id: 6
+Profile_9:
+  id: 9
+  user_id: 7
+  first_name: Cari
+  last_name: Nelson
+  email: nelsonc@umich.edu
+  phone: ''
+  address_line_1: 
+  city: Thomasville
+  state: GA
+  zip_code: '31792'
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: bff_GreenPowerOptions
+  ip: 216.212.247.135
+  referer: http://mydomino.com/get_started/3?utf8=%E2%9C%93&get_started%5Barea_code%5D=31757&get_started%5Baverage_electric_bill%5D=200&commit=Next
+  browser: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/48.0.2564.116 Safari/537.36
+  partner_code_id: 4
+Profile_10:
+  id: 10
+  user_id: 2
+  first_name: unknown
+  last_name: unknown
+  email: erikcbateman@gmail.com
+  phone: 
+  address_line_1: 
+  city: 
+  state: 
+  zip_code: 
+  housing: 
+  avg_electrical_bill: 0
+  onboard_complete: true
+  onboard_step: 1
+  dashboard_registered: false
+  campaign: 
+  ip: 
+  referer: 
+  browser: 
+  partner_code_id: 5

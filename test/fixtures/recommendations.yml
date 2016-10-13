@@ -1,0 +1,81 @@
+---
+Recommendation_1:
+  id: 34
+  concierge_id: 7
+  dashboard_id: 8
+  done: false
+  recommendable_id: 5
+  recommendable_type: Product
+  updated_by: 
+Recommendation_2:
+  id: 35
+  concierge_id: 2
+  dashboard_id: 8
+  done: false
+  recommendable_id: 7
+  recommendable_type: Product
+  updated_by: 
+Recommendation_3:
+  id: 43
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 1
+  recommendable_type: Task
+  updated_by: 
+Recommendation_4:
+  id: 44
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 3
+  recommendable_type: Task
+  updated_by: 
+Recommendation_5:
+  id: 45
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 5
+  recommendable_type: Task
+  updated_by: 
+Recommendation_6:
+  id: 47
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 2
+  recommendable_type: Task
+  updated_by: 
+Recommendation_7:
+  id: 48
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 4
+  recommendable_type: Task
+  updated_by: 
+Recommendation_8:
+  id: 49
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 7
+  recommendable_type: Task
+  updated_by: 
+Recommendation_9:
+  id: 50
+  concierge_id: 5
+  dashboard_id: 8
+  done: false
+  recommendable_id: 9
+  recommendable_type: Task
+  updated_by: 
+Recommendation_10:
+  id: 112
+  concierge_id: 5
+  dashboard_id: 3
+  done: false
+  recommendable_id: 5
+  recommendable_type: Product
+  updated_by: 

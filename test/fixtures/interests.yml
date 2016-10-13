@@ -1,0 +1,41 @@
+---
+Interest_1:
+  id: 7
+  profile_id: 5
+  offering_id: 2
+Interest_2:
+  id: 8
+  profile_id: 1
+  offering_id: 1
+Interest_3:
+  id: 9
+  profile_id: 5
+  offering_id: 2
+Interest_4:
+  id: 10
+  profile_id: 2
+  offering_id: 2
+Interest_5:
+  id: 11
+  profile_id: 4
+  offering_id: 7
+Interest_6:
+  id: 14
+  profile_id: 3
+  offering_id: 1
+Interest_7:
+  id: 15
+  profile_id: 3
+  offering_id: 4
+Interest_8:
+  id: 16
+  profile_id: 1
+  offering_id: 7
+Interest_9:
+  id: 17
+  profile_id: 8
+  offering_id: 9
+Interest_10:
+  id: 18
+  profile_id: 2
+  offering_id: 1

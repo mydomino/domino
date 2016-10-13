@@ -62,20 +62,26 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'database_cleaner'
+  # gem 'rspec-rails'
+  # gem 'factory_girl_rails'
+  # gem 'capybara'
+  # gem 'database_cleaner'
 end
 
 group :test do
   gem 'simplecov'
-  gem 'rspec-activejob'
+  # gem 'rspec-activejob'
   # gem 'teaspoon-jasmine'
   gem 'faker'
-  gem 'selenium-webdriver', '2.53.1'
+  # gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
   # gem 'webmock'
+  gem 'minitest-rails', "~> 2.0"
+  gem 'minitest-rails-capybara'
+  gem 'minitest-reporters'
+  gem 'shoulda-context'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 end
 
 group :production do
