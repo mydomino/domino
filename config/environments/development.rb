@@ -50,4 +50,7 @@ Rails.application.configure do
     Bullet.alert = true
   end
 
+  # white list ip running locally
+  config.web_console.whitelisted_ips = '10.1.10.0/24'
+
 end

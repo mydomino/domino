@@ -1,0 +1,41 @@
+---
+PartnerCode_1:
+  id: 1
+  code: '100'
+  partner_name: Solutions Project
+PartnerCode_2:
+  id: 2
+  code: EVERYBODY
+  partner_name: Everybody Solar
+PartnerCode_3:
+  id: 3
+  code: REVOLV
+  partner_name: Re-Volv
+PartnerCode_4:
+  id: 4
+  code: WCS
+  partner_name: Women in Cleantech and Sustainability
+PartnerCode_5:
+  id: 5
+  code: JOSHFOX
+  partner_name: Josh Fox
+PartnerCode_6:
+  id: 6
+  code: VOTESOLAR
+  partner_name: Vote Solar
+PartnerCode_7:
+  id: 7
+  code: CTS
+  partner_name: Catching the Sun
+PartnerCode_8:
+  id: 8
+  code: TOM
+  partner_name: Tom Dinwoodie
+PartnerCode_9:
+  id: 9
+  code: SNOWLEO
+  partner_name: Snow Leopard Conservancy
+PartnerCode_10:
+  id: 10
+  code: CHOOSE
+  partner_name: Time to Choose
