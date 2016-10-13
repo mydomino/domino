@@ -1,18 +1,27 @@
 class Profile::StepsController < ApplicationController
   include Wicked::Wizard
 
+  before_action :set_profile, only: [:show, :update]
+
   steps *Profile.form_steps
 
   def show
-    @profile = Profile.find(params[:profile_id])
-    # if @profile.onboard_step 
-    @active_inputs = @profile.interests.map {|i| i.offering_id }
-    @offerings = Offering.all.map {|o| o.name }
+    
+    if step == 'interests'
+      @active_inputs = @profile.interests.map {|i| i.offering_id }
+      @offerings = Offering.all.map {|o| o.name }
+    end
+
+    #Jump to summary view if user has onboarded, but tries again or attempts
+    #to visit an onboarding URL
+    if @profile.onboard_step ==  4 && step != "summary"
+      jump_to(wizard_steps.last.to_sym)
+    end
+
     render_wizard
   end
 
   def update
-    @profile = Profile.find(params[:profile_id])
     @profile.update(profile_params(step))
     if params[:commit] == 'Back'
       if step == 'interests'
@@ -32,6 +41,11 @@ class Profile::StepsController < ApplicationController
   end
 
   private
+
+  def set_profile
+    @profile = Profile.find(params[:profile_id])
+  end
+
 
   def profile_params(step)
     permitted_attributes = case step
