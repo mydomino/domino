@@ -1,8 +1,0 @@
-$('#profile-forms').html("<%= j(render @response[:form]) %>");
-if('<%= @response[:form] %>' != 'name_and_email' ){
-  $('#logo').attr("src","<%= image_path 'mydomino_logo_universal.svg' %>");
-  $('.navbar-element').removeClass('white').addClass('gray-80');
-} else {
-  $('#logo').attr("src","<%= image_path 'mydomino_logo.svg' %>");
-  $('.navbar-element').removeClass('gray-80').addClass('white');
-}
