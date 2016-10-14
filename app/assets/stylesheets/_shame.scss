@@ -1,3 +1,18 @@
+.mobile-onboard-submit-btns {
+  position: absolute;
+  bottom: 2em;
+  left: 1em;
+  right: 1em;
+}
+
+
+table#steps {
+  width: 100%;
+  td { width: 20%; }
+}
+
+.full-width { width: 100%; }
+
 .onboarding-form {
   margin-top: 100px;
 }
@@ -203,11 +218,15 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 .pointer { cursor: pointer; }
 
 /* style rules for onboarding module on homepage */
-.mobile-form{
-  width:100%;
-  height:100%;
+
+#name-and-email.mobile-form {
   background-image: image-url('homepage-video-placeholder.jpg');
   background-position: 50% 50%;
+}
+
+.mobile-form{
+  width:100%;
+  height:100vh;
   .overlay-mobile{
     content: '';
     position: absolute;
