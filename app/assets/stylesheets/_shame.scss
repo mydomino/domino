@@ -16,12 +16,6 @@ html, body {
   height: 434px;
 }
 
-.mobile-onboard-submit-btns {
-  position: absolute;
-  bottom: 2em;
-  left: 1em;
-  right: 1em;
-}
 /* end sticky footer css */
 
 /* css for progress bar */
@@ -37,6 +31,7 @@ table#steps {
 .onboarding-form {
   margin-top: 100px;
 }
+
 /******** concierge layout css ********/
 .concierge-tools{
   background-color: #F9F9F9;
@@ -50,7 +45,6 @@ table#steps {
     display: none;
   }
 }
-
 
 /******** highlight input fields with errors in red ********/
 .invalid-field { border-color:red!important; }
@@ -247,7 +241,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 .mobile-form{
   width:100%;
-  height:100vh;
+  min-height:100vh;
   .overlay-mobile{
     content: '';
     position: absolute;

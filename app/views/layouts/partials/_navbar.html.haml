@@ -6,7 +6,7 @@
     .clearfix
       .col.col-4.p2
         = link_to root_path, id: "navbar-brand" do
-          = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo'
+          = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
       .md-hide.lg-hide.px2.right
         .fa.fa-bars.fa-2x.pointer.navbar-element{class: "#{nav_element_color}"}

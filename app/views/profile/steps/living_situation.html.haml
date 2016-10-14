@@ -4,19 +4,22 @@
     color: red;
   }
 
-.spacer{style: 'height: 100px;' } 
-
 -if flash[:notice]
   =render 'profiles/flash_notice'
 
 #profile-forms  
-  #living-situation.mt1
-    .max-width-3.mx-auto
+  #living-situation{class: "#{@browser.device.mobile? ? 'mobile-form' : 'mb4'}"}
+    .spacer{style: 'height: 100px;' } 
+    = render :partial => 'profile/steps/steps_progress', :locals => {:step => 2}
+
+    .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-05'}"}
+
       .clearfix.mb2
         .col.col-12.center
-          .max-width-1.mx-auto.h2.line-height-2
-            Tell us about your home
-      .clearfix.mx-auto.pt2
+          .max-width-1.mx-auto.h2.line-height-2{class: "#{'py4' if !@browser.device.mobile?}"}
+            Tell us a bit about your home
+
+      .clearfix.mx-auto
         =simple_form_for @profile, method: :put, url: wizard_path do |form|
           .sm-col.sm-col-12.md-col-6.pr2.md-pr4.pl2.pt1
             %label.h4
@@ -42,6 +45,7 @@
                       &nbsp;$
                       %span#slider_val 0
                 =form.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
+
           .sm-col.sm-col-12.md-col-6.pl2.sm-pl-0.pr2
             .clearfix.details
               .pt1
@@ -80,8 +84,11 @@
                 Housing type is required.
           .clearfix
             .col.col-12
-              .px2.mt4.relative{style: 'height:165px;'}
-                =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
+              -if @browser.device.mobile? 
+                =render :partial => 'profile/steps/mobile_onboard_submit_btns',:locals => {:form  => form, :form_name => 'interests'}
+              -else
+                .px4.relative{style: 'height:90px;'}
+                  =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
 
 %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDyxW8lze0iyV1G0oYYC_7SRLI4tsiGGBY&libraries=places"}
 %script{src: "https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"}
