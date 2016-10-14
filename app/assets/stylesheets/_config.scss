@@ -14,8 +14,10 @@ $breakpoint-md-lg: '(min-width: 52em) and (max-width: 64em)' !default;
 
 
 // Loop Counts
-$margin-count: 8; //Generates margin classes 0.5rem increments
-$padding-count: 8; //Generates padding classes in 0.5rem increments
+//0.5rem = 4 point scale. Spacing is in multiples of 4.
+$margin-count: 9; //Generates margin classes 0.5rem increments
+
+$padding-count: 9; //Generates padding classes in 0.5rem increments
 
 //why 25??
 $layout-count: 25; //Generates height/width classes in 0.5rem increments
