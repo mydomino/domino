@@ -9,7 +9,7 @@
           Only
           %span#checkout-price.relative
             %span#fee
-              = @partner_code ? 0 : 99
+              = @profile.partner_code ? 0 : 99
             %span#checkout-dollar-sign.absolute
               $
           %span.mxn2

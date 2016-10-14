@@ -6,7 +6,6 @@ class Profile::StepsController < ApplicationController
   steps *Profile.form_steps
 
   def show
-    
     if step == 'interests'
       @active_inputs = @profile.interests.map {|i| i.offering_id }
       @offerings = Offering.all.map {|o| o.name }
@@ -36,6 +35,10 @@ class Profile::StepsController < ApplicationController
       if(!@profile.onboard_complete && step == 'living_situation')
         @profile.onboard_complete = true
       end
+
+      if step == 'checkout' || step == 'living_situation'
+        apply_partner_code(false)
+      end
     end
     render_wizard @profile 
   end
@@ -45,7 +48,6 @@ class Profile::StepsController < ApplicationController
   def set_profile
     @profile = Profile.find(params[:profile_id])
   end
-
 
   def profile_params(step)
     permitted_attributes = case step
@@ -60,6 +62,15 @@ class Profile::StepsController < ApplicationController
       end
 
     params.require(:profile).permit(permitted_attributes).merge(form_step: step)
+  end
+
+  def apply_partner_code(render_js=true)
+    @partner_code_param = params[:profile][:partner_code].upcase
+    @partner_code = PartnerCode.find_by_code(@partner_code_param)
+    if @partner_code
+      @profile.update(partner_code_id: @partner_code.id)
+      render 'profiles/apply_partner_code.js', content_type: "text/javascript" if render_js
+    end
   end
 
 end

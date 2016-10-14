@@ -73,7 +73,7 @@ group :test do
   # gem 'rspec-activejob'
   # gem 'teaspoon-jasmine'
   gem 'faker'
-  # gem 'selenium-webdriver', '2.53.1'
+  gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
   # gem 'webmock'
   gem 'minitest-rails', "~> 2.0"
