@@ -12,11 +12,14 @@
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
   %body{id: page_id, class: page_class}
-    #wrapper
+    .wrapper
       #header
         = render 'layouts/partials/navbar'
       #content
         = yield
+      .push
+
+    .footer
       = render 'layouts/partials/footer'
     :javascript
       init();
