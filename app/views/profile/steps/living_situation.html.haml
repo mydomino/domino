@@ -9,14 +9,14 @@
 
 #profile-forms  
   #living-situation{class: "#{@browser.device.mobile? ? 'mobile-form' : 'mb4'}"}
-    .spacer{style: 'height: 100px;' } 
+    .spacer 
     = render :partial => 'profile/steps/steps_progress', :locals => {:step => 2}
 
     .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-05'}"}
 
       .clearfix.mb2
         .col.col-12.center
-          .max-width-1.mx-auto.h2.line-height-2{class: "#{'py4' if !@browser.device.mobile?}"}
+          .h1.mx-auto.line-height-2{class: "#{'py4' if !@browser.device.mobile?}"}
             Tell us a bit about your home
 
       .clearfix.mx-auto

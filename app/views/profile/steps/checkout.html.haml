@@ -1,73 +1,44 @@
-.spacer{style: 'height: 100px;' }       
+.spacer       
 -if flash[:notice]
   =render 'profiles/flash_notice'
-#checkout.mt1
-  .max-width-3.mx-auto
+#checkout{class: "#{@browser.device.mobile? ? 'mobile-form' : 'mb4'}"}
+  .spacer
+    = render :partial => 'profile/steps/steps_progress', :locals => {:step => 3}
+  .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-05'}"}
     .clearfix
-      .sm-col.sm-col-12.mx-auto.center
-        %h2.center.blue.m0
-          Only
-          %span#checkout-price.relative
-            %span#fee
-              = @profile.partner_code ? 0 : 99
-            %span#checkout-dollar-sign.absolute
-              $
-          %span.mxn2
-            \/year
-        %ul.px1.list-reset.my0.max-width-2.mx-auto.inline-block.gray-80
-          %li.left-align
-            %h4.my1
-              %span
-                %i.fa.fa-check.fa-3.blue
-              A live energy savings concierge at your service
-          %li.left-align
-            %h4.my1
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Your personalized path to 100% clean energy and big savings
-          %li.left-align
-            %h4.my1
-              %span
-                %i.fa.fa-check.fa-3.blue
-              An easy to use, cool dashboard to track your progress
-          %li.left-align
-            %h4.my1
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Access to our seriously cool research on products and vendors
-          %li.left-align
-            %h4.my1
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Exclusive energy and environmental educational stuff
-          %li.left-align
-            %h4.my1
-              %span
-                %i.fa.fa-check.fa-3.blue
-              Privileged access to our product previews and events
+      .col.col-12.center.pt4
+        .h1.line-height-2
+          Your MyDomino Membership
+        .h4.gray-80.my0 If you have a partner code, enter it for a discount
 
-      =simple_form_for @profile, method: :put, url: wizard_path do |form|
-        .clearfix.mx-auto
+    =simple_form_for @profile, method: :put, url: wizard_path do |form|
+      .clearfix.mx-auto.center
+        .col.col-12.relative.my3
+          =@profile.partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @profile.partner_code} ) : (render 'profiles/partner_code_field', f: form)
+          %button.inline{type: "button", disabled: (true if @profile.partner_code), id: 'btn-apply', class: "#{@profile.partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@profile.partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
+            -if @profile.partner_code
+              %i.fa.fa-check.fa-3
+            -else
+              APPLY
 
-          .col.col-12.sm-col.sm-col-6.xs-center
-            %label.right#partner-code-label HAVE A PARTNER CODE?
+      .clearfix
+        .col.col-12.mx-auto.center
+          %ul.px1.list-reset.my0.max-width-2.mx-auto.inline-block.gray-80
+            %li#li1.left-align
+              %h4.my1
+                Unlimited access to an energy savings concierge
+            %li#li2.left-align
+              %h4.my1
+                A personalized path to 100% clean energy and big savings
+            %li#li3.left-align
+              %h4.my1
+                An online dashboard to track your progress
+            %li#li4.left-align.my1
+              %h4.my1
+                Recommendations on clean energy products and services vetted by our team
 
-          .col.col-12.sm-col.sm-col-6.xs-center.relative
-            =@profile.partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @profile.partner_code} ) : (render 'profiles/partner_code_field', f: form)
-            %button.inline{type: "button", disabled: (true if @profile.partner_code), id: 'btn-apply', class: "#{@profile.partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@profile.partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
-              -if @partner_code
-                %i.fa.fa-check.fa-3
-              -else
-                APPLY
-
-          .col.col-12.center.px2
-            %p.m0.mt3 
-              No Partner Code? No worries!
-              %br
-              Click Submit and talk to a concierge before you pay.
-
-        .mt2.px2.relative{style: 'height: 47px;'}
-          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
+      .px4.relative.mt2{style: 'height: 47px;'}
+        =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
 
 :javascript
   $(document).ready(function(){

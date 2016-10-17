@@ -2,13 +2,16 @@
   %table#steps
     %tbody
       %tr
-        %td{class: "#{'blue' if step == 1}"}
-          Your interests
+        %td{class: "#{step == 1 ? 'fill-blue blue' : 'gray-30'}"}
+          = embedded_svg "i-interest.svg", class: 'mx-auto block onboarding-icon'
+          1. Your interests
         %td
           %hr
-        %td{class: "#{'blue' if step == 2}"}
-          Your house
+        %td{class: "#{step == 2 ? 'fill-blue blue' : 'gray-30'}"}
+          = embedded_svg "i-housing.svg", class: 'mx-auto block onboarding-icon'
+          2. Your house
         %td
           %hr
-        %td
-          Your membership
+        %td{class: "#{step == 3 ? 'fill-blue blue' : 'gray-30'}"}
+          = embedded_svg "i-membership.svg", class: 'mx-auto block onboarding-icon'
+          3. Your membership

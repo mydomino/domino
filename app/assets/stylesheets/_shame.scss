@@ -1,3 +1,33 @@
+.spacer { height: 100px; }
+
+/*membership benefit li icons*/
+#li1 {
+   list-style-image: image-url('i-message.svg');
+}
+
+#li2 {
+   list-style-image: image-url('i-document.svg');
+}
+
+#li3 {
+   list-style-image: image-url('i-dashboard.svg');
+}
+
+#li4 {
+   list-style-image: image-url('i-like.svg');
+}
+
+/*end membership benefit li icons*/
+
+
+/*onboarding icons*/
+.fill-blue path { fill: #00ccff; }
+
+.onboarding-icon {
+  height: 2rem;
+  width: 2rem;
+}
+/*end onboarding icons*/
 
 /* sticky footer css*/
 html, body {
@@ -192,7 +222,7 @@ div:hover {
     height: 44px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    width: 100px;
+    // width: 100px;
   }
 
   #partner-code-label{
