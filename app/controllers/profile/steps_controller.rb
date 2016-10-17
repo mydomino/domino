@@ -36,7 +36,7 @@ class Profile::StepsController < ApplicationController
         @profile.onboard_complete = true
       end
 
-      if step == 'checkout' || step == 'living_situation'
+      if params[:profile][:partner_code]
         apply_partner_code(false)
       end
     end
