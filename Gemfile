@@ -39,6 +39,8 @@ gem 'browser'
 gem 'puma'
 gem 'newrelic_rpm'
 gem 'wicked'
+gem 'turbolinks', '~> 5.0.0'
+gem 'turboboost'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

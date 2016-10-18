@@ -15,6 +15,8 @@
 //= require jquery-ui/slider
 //= require nprogress
 //= require nprogress-ajax
+//= require turbolinks
+//= require turboboost/turboboost
 //= require jquery.mask.min.js
 //= require modal
 //= require init

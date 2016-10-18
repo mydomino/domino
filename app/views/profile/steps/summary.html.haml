@@ -15,7 +15,7 @@
     =link_to "Contact us", "mailto: hello@mydomino.com", class: 'underline gray-80'
 
 :javascript
-  $(document).ready(function(){
+  $(document).on("turbolinks:load", function(){
     $('#lnk-send-email').on('click', function(e){
       e.preventDefault();
       $.ajax({
