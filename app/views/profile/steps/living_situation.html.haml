@@ -3,7 +3,7 @@
     border-color: red;
     color: red;
   }
-  
+
 #profile-forms  
   #living-situation{class: "#{@browser.device.mobile? ? 'mobile-form' : 'mb4'}"}
     .spacer 
@@ -138,6 +138,7 @@
 
     //housing toggle button
     $('.btn-group .btn').on('click', function(){
+      console.log('click deteceted');
       $('.btn-group .btn').not(this).removeClass('btn-secondary--active');
       $(this).toggleClass('btn-secondary--active');
       if( $('.btn-secondary--active').size() > 0 ){

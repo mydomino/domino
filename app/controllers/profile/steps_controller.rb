@@ -72,5 +72,4 @@ class Profile::StepsController < ApplicationController
       render 'profiles/apply_partner_code.js', content_type: "text/javascript" if render_js
     end
   end
-
 end

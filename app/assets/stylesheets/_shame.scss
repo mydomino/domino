@@ -1,32 +1,54 @@
+/* interest form checkbox css*/
+
+.btn-interest {
+  width: 25px;
+  height: 25px; 
+  border-radius: 3px; 
+  border: solid 2px #666; 
+  position:relative; 
+  background-color: white;
+  & > i {
+    display: none;
+  }
+}
+
+.btn-interest-active {
+  background-color: #00CCFF;
+  border-color: #00CCFF;
+  & > i {
+    display: inline;
+  }
+}
+
+/* end interest form checkbox css */
+
+/* used to move content below navbar */
 .spacer { height: 100px; }
 
 /*membership benefit li icons*/
-#li1 {
-   list-style-image: image-url('i-message.svg');
-}
+#li1 { list-style-image: image-url('i-message.svg'); }
 
-#li2 {
-   list-style-image: image-url('i-document.svg');
-}
+#li2 { list-style-image: image-url('i-document.svg'); }
 
-#li3 {
-   list-style-image: image-url('i-dashboard.svg');
-}
+#li3 { list-style-image: image-url('i-dashboard.svg'); }
 
-#li4 {
-   list-style-image: image-url('i-like.svg');
-}
+#li4 { list-style-image: image-url('i-like.svg'); }
 
 /*end membership benefit li icons*/
-
 
 /*onboarding icons*/
 .fill-blue path { fill: #00ccff; }
 
-.onboarding-icon {
+.onboarding-icon-2 {
   height: 2rem;
   width: 2rem;
 }
+
+.onboarding-icon-3 {
+  height: 3rem;
+  width: 3rem;
+}
+
 /*end onboarding icons*/
 
 /* sticky footer css*/
@@ -539,7 +561,6 @@ body.lock-position {
 span.toggle { width: 1em; }
 
 #profile-forms.non-mobile{ min-height: 620px; }
-#profile-forms { border-bottom: 2px solid lightgray; }
 
 #slider > div{ background: #00CCFF!important; }
 
