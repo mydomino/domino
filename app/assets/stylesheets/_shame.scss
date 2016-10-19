@@ -1,5 +1,10 @@
-/* interest form checkbox css*/
+/* invalid state for housing toggle button on living situation form */
+.btn-secondary--invalid {
+  border-color: red!important;
+  color: red!important;
+}
 
+/* interest form checkbox css*/
 .btn-interest {
   width: 25px;
   height: 25px; 
@@ -19,7 +24,6 @@
     display: inline;
   }
 }
-
 /* end interest form checkbox css */
 
 /* used to move content below navbar */
