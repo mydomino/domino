@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'pages#privacy'
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
-  get '/welcome-email/:profile_id' => 'profiles#welcome_email'
+  get '/resend-welcome-email/:id' => 'profiles#resend_welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
 

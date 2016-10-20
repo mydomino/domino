@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:update, :apply_partner_code, :welcome_email]
+  before_action :set_profile, only: [:update, :apply_partner_code, :resend_welcome_email]
   layout 'concierge', only: :new
   FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
   
@@ -80,9 +80,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def welcome_email
+  def resend_welcome_email
     UserMailer.welcome_email_universal(@profile.email).deliver_later
-    render "profiles/email_sent.js", content_type: 'text/javascript'
   end
 
   private

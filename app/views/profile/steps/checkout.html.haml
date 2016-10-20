@@ -1,5 +1,3 @@
-.spacer   
-
 #checkout{class: "#{@browser.device.mobile? ? 'mobile-form' : 'mb4'}"}
   .spacer
   -if flash[:notice]
@@ -12,7 +10,7 @@
           Your MyDomino Membership
         .h4.gray-80.my0 If you have a partner code, enter it for a discount
 
-    =simple_form_for @profile, method: :put, url: wizard_path do |form|
+    =simple_form_for @profile, turboboost: true, method: :put, url: wizard_path do |form|
       .clearfix.mx-auto.center
         .col.col-12.relative.my3
           =@profile.partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @profile.partner_code} ) : (render 'profiles/partner_code_field', f: form)
@@ -38,30 +36,12 @@
               %h4.my1
                 Recommendations on clean energy products and services vetted by our team
 
-      .px4.relative.mt2{style: 'height: 47px;'}
+      .px4.relative.mt2{style: 'height: 85px;'}
         =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
 
 :javascript
-  $(document).on("turbolinks:load", function(){
-    $('#btn-apply').on('click', function(){
-      var partnerCode = $('#profile_partner_code').val();
-      $.ajax({
-        type: "POST",
-        url: '/profiles/#{@profile.id}/apply-partner-code', //sumbits it to the given url of the form
-        data: { '_method':'PUT', 'profile': {'partner_code': partnerCode }},
-        dataType: "script" // you want a difference between normal and ajax-calls, and json is standard
-      }).success(function(json){
-          console.log("success", json);
-      });
-    });
-
-    //submit buttons may not be pushed multiple times
-    $("form").submit(function() {
-      $(this).submit(function() {
-        return false;
-      });
-      return true;
-    });
-    //mobile
-    $(window).scrollTop(0)
-  });
+  var args = {
+    checkout: {
+      profileId: #{@profile.id}
+    }
+  }
