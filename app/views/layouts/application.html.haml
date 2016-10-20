@@ -26,4 +26,5 @@
     .footer
       = render 'layouts/partials/footer'
     :javascript
-      init();
+      var args = args || 0;
+      init(args);

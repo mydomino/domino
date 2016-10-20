@@ -87,6 +87,8 @@
                   =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
 
 :javascript
-  $(document).on("turbolinks:load", function() {
-    MyDomino.onboardingFormsJS.livingSituation(#{@profile.avg_electrical_bill});
-  });
+  var args = {
+    livingSituation: {
+      avgElectricalBill: #{@profile.avg_electrical_bill}
+    }
+  }
