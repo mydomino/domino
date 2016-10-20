@@ -22,6 +22,11 @@ class Profile::StepsController < ApplicationController
 
   def update
     @profile.update(profile_params(step))
+    
+    if @profile.onboard_complete
+      @profile.update_zoho
+    end
+
     if params[:commit] == 'Back'
       if step == 'interests'
         redirect_to root_path(:profile_id => @profile.id)
@@ -34,12 +39,14 @@ class Profile::StepsController < ApplicationController
       @profile.onboard_step += 1
       if(!@profile.onboard_complete && step == 'living_situation')
         @profile.onboard_complete = true
+        @profile.save_to_zoho
       end
 
       if params[:profile][:partner_code]
         apply_partner_code(false)
       end
     end
+    
     render_wizard @profile 
   end
 
