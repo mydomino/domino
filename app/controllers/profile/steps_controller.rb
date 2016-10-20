@@ -39,6 +39,7 @@ class Profile::StepsController < ApplicationController
       @profile.onboard_step += 1
       if(!@profile.onboard_complete && step == 'living_situation')
         @profile.onboard_complete = true
+        Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
         @profile.save_to_zoho
       end
 
@@ -46,7 +47,7 @@ class Profile::StepsController < ApplicationController
         apply_partner_code(false)
       end
     end
-    
+
     render_wizard @profile 
   end
 
