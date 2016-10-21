@@ -29,20 +29,10 @@
 /* used to move content below navbar */
 .spacer { height: 100px; }
 
-/*membership benefit li icons*/
-#li1 { list-style-image: image-url('i-message.svg'); }
-
-#li2 { list-style-image: image-url('i-document.svg'); }
-
-#li3 { list-style-image: image-url('i-dashboard.svg'); }
-
-#li4 { list-style-image: image-url('i-like.svg'); }
-
-/*end membership benefit li icons*/
-
 /*onboarding icons*/
 .fill-blue path { fill: #00ccff; }
-
+.fill-blue rect { stroke: #00ccff; }
+ 
 .onboarding-icon-2 {
   height: 2rem;
   width: 2rem;
