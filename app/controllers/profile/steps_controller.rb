@@ -1,4 +1,4 @@
-class Profile::StepsController < ApplicationController
+ class Profile::StepsController < ApplicationController
   include Wicked::Wizard
 
   before_action :set_profile, only: [:show, :update]

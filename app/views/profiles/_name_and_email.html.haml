@@ -10,7 +10,7 @@
       %p.mt0.white.relative Watch the video
 
   .clearfix.mx-auto.max-width-2.px2
-    =simple_form_for @profile, method: @response[:method] do |form|
+    =simple_form_for @profile, turboboost: true, method: @response[:method] do |form|
       .clearfix.py2
         .col.col-6
           =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}

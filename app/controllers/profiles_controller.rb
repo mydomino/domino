@@ -117,27 +117,11 @@ class ProfilesController < ApplicationController
     session[:browser]     ||= request.user_agent
   end
 
-  def render_response
-    interest_form_resources if @profile.onboard_step == 1 
-    @response = {form: FORMS[@profile.onboard_step], method: :put}
-    render "profiles/update.js", content_type: "text/javascript"
-    return
-  end
-
   def profile_params
     params.require(:profile).permit(
       :first_name, 
       :last_name, 
-      :email, 
-      {:offering_ids => []}, 
-      :address_line_1, 
-      :city, 
-      :state, 
-      :zip_code, 
-      :phone,
-      :housing,
-      :avg_electrical_bill,
-      :partner_code_id
+      :email
     ).merge(session_params)
   end
 end
