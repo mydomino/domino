@@ -117,11 +117,6 @@ class ProfilesController < ApplicationController
     session[:browser]     ||= request.user_agent
   end
 
-  def interest_form_resources
-    @active_inputs = @profile.interests.map {|i| i.offering_id }
-    @offerings = Offering.all.map {|o| o.name }
-  end
-
   def render_response
     interest_form_resources if @profile.onboard_step == 1 
     @response = {form: FORMS[@profile.onboard_step], method: :put}
