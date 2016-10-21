@@ -24,29 +24,28 @@
               APPLY
 
       .clearfix
-        .col.col-12.mx-auto.center
-          %table.max-width-2.mx-auto.gray-80.line-height-2
-            %tbody
-              %tr
-                %td.pr1.pb2
-                  =image_tag 'i-message.svg', width: '24px';
-                %td.left-align.pb2
-                  Unlimited access to an energy savings concierge
-              %tr
-                %td.pr1.pb2
-                  =image_tag 'i-document.svg', width: '16px';
-                %td.left-align.pb2
-                  A personalized path to 100% clean energy and big savings
-              %tr
-                %td.pr1.pb2
-                  =image_tag 'i-dashboard.svg', width: '24px';
-                %td.left-align.pb2
-                  An online dashboard to track your progress
-              %tr
-                %td.pr1
-                  =image_tag 'i-like.svg', width: '24px';
-                %td.left-align
-                  Recommendations on clean energy products and services vetted by our team
+        .col.col-12
+          .center
+            -if !@browser.device.mobile?
+              =image_tag "member-card.svg", width: '200px'
+            %h2.gray-80 Membership benefits
+          %ul.pl0.max-width-2.mx-auto.line-height-1
+            %li.flex.content-center
+              =image_tag 'i-message.svg', width: '24px';
+              %h4.ml1.my2.gray-80 
+                Unlimited access to an energy savings concierge
+            %li.flex.content-center
+              =image_tag 'i-document.svg', width: '24px';
+              %h4.ml1.my2.gray-80 
+                A personalized path to 100% clean energy and big savings
+            %li.flex.content-center
+              =image_tag 'i-dashboard.svg', width: '24px';
+              %h4.ml1.my2.gray-80 
+                An online dashboard to track your progress
+            %li.flex.content-center
+              =image_tag 'i-like.svg', width: '24px';
+              %h4.ml1.my2.gray-80
+                Recommendations on clean energy products and services vetted by our team
 
       .px4.relative.mt2{style: 'height: 74px;'}
         =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
