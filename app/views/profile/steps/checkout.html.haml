@@ -31,26 +31,22 @@
             %h2.gray-80 Membership benefits
           %ul.pl0.max-width-2.mx-auto.line-height-1
             %li.flex.content-center
-              =image_tag 'i-message.svg', width: '24px';
+              =image_tag 'i-message.svg', width: '24px', style: 'min-width:24px;'
               %h4.ml1.my2.gray-80 
                 Unlimited access to an energy savings concierge
             %li.flex.content-center
-              =image_tag 'i-document.svg', width: '24px';
+              =image_tag 'i-document.svg', width: '24px', style: 'min-width:24px;'
               %h4.ml1.my2.gray-80 
                 A personalized path to 100% clean energy and big savings
             %li.flex.content-center
-              =image_tag 'i-dashboard.svg', width: '24px';
+              =image_tag 'i-dashboard.svg', width: '24px', style: 'min-width:24px;'
               %h4.ml1.my2.gray-80 
                 An online dashboard to track your progress
             %li.flex.content-center
-              =image_tag 'i-like.svg', width: '24px';
+              =image_tag 'i-like.svg', width: '24px', style: 'min-width:24px;'
               %h4.ml1.my2.gray-80
                 Recommendations on clean energy products and services vetted by our team
-      -if @browser.device.mobile? 
-        =render :partial => 'profile/steps/mobile_onboard_submit_btns',:locals => {:form  => form, :form_name => 'checkout'}
-      -else
-        .px4.relative.mt2{style: 'height: 74px;'}
-          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
+      =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'checkout', :vertical_offset => '74px'}
 
 :javascript
   var args = {

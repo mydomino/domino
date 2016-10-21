@@ -78,13 +78,10 @@
                 =form.input :housing, :as => :hidden, input_html: { data: {reg: '(own|rent)', target: '#housing-error-msg', 'error-target': '.btn-group > .btn-secondary'}, value: @profile.housing, class: 'required-field'}
               #housing-error-msg.red.display-none
                 Housing type is required.
+
           .clearfix
             .col.col-12
-              -if @browser.device.mobile? 
-                =render :partial => 'profile/steps/mobile_onboard_submit_btns',:locals => {:form  => form, :form_name => 'interests'}
-              -else
-                .px4.relative{style: 'height:90px;'}
-                  =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
+              =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'living_situation', :vertical_offset => '90px'}
 
 :javascript
   var args = {

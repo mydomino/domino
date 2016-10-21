@@ -26,10 +26,4 @@
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
 
-        -if @browser.device.mobile? 
-          =render :partial => 'profile/steps/mobile_onboard_submit_btns',:locals => {:form  => form, :form_name => 'interests'}
-        -else
-          .px4.relative{style: 'height:107px;'}
-            =render :partial => "profiles/onboard_submit_btns", :locals => {:form  => form, :form_name => 'interests'}
-
-
+        =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'interests', :vertical_offset => '107px'}
