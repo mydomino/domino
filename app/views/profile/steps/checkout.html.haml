@@ -4,7 +4,7 @@
   -if flash[:notice]
     =render 'profiles/flash_notice'
 
-  = render :partial => 'profile/steps/steps_progress', :locals => {:step => 3}
+  = render :partial => 'steps_progress', :locals => {:step => 3}
 
   .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-05'}"}
     .clearfix.mb2
