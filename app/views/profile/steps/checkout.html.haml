@@ -46,9 +46,11 @@
               =image_tag 'i-like.svg', width: '24px';
               %h4.ml1.my2.gray-80
                 Recommendations on clean energy products and services vetted by our team
-
-      .px4.relative.mt2{style: 'height: 74px;'}
-        =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
+      -if @browser.device.mobile? 
+        =render :partial => 'profile/steps/mobile_onboard_submit_btns',:locals => {:form  => form, :form_name => 'checkout'}
+      -else
+        .px4.relative.mt2{style: 'height: 74px;'}
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
 
 :javascript
   var args = {
