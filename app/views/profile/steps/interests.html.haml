@@ -19,10 +19,10 @@
           .flex.justify-center
             .inline-block.ml1
               -5.times do |index|
-                =render "profiles/interest_checkbox", :index => index
+                =render "interest_checkbox", :index => index
             .inline-block.align-top.ml2
               -4.times do |index|
-                =render "profiles/interest_checkbox", :index => index + 5
+                =render "interest_checkbox", :index => index + 5
           .display-none
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
 
