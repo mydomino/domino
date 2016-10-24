@@ -20,9 +20,19 @@ require 'csv'
 # Profile.skip_callback(:create, :after, :save_to_zoho)
 Profile.skip_callback(:create, :after, :send_onboard_started_email)
 
-path = "#{File.expand_path(File.dirname(__FILE__))}/import_files/LAGreenFestival_ZohoImport_09192016.csv"
-puts path
-leads = CSV.read(path, headers:true)
+puts "\nFile import name is #{ARGV.first}"
+
+path = "#{File.expand_path(File.dirname(__FILE__))}/import_files/#{ARGV.first}"
+puts "\nFile import path is: #{path}"
+
+# catch CSV exception error
+begin
+  leads = CSV.read(path, headers:true)
+rescue Exception => e  
+  puts "\nError! #{e.message}."
+  exit
+end
+
 leads.each do |row|
 
   lead = Profile.create(
@@ -81,7 +91,9 @@ leads.each do |row|
         "</row></Leads>"
 
   encoded_url = URI.encode(uri)
+  
   url = URI.parse(encoded_url);
+  #puts "\nsending URL is #{url}"
   Net::HTTP.post_form(url, {})
   sleep (1.0/2.0)
 end
