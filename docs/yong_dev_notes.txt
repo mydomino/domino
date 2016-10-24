@@ -466,8 +466,26 @@ Sending form Data via HTTP
 
 https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_and_retrieving_form_data
 =======================================================================================
+Start delay jobs worker
+rake jobs:work
+
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino/lib/misc/import_leads$ rake -T jobs
+
+
+ylee@ylee-home-ubuntu:/media/sf_pj/md/domino/lib/misc/import_leads$ rails runner /media/sf_pj/md/domino/lib/misc/import_leads/import_leads.rb aa
 
 =======================================================================================
+
+CSV import process
+
+1. Export Postgresql database
+
+2. Import Postgresl database 
+
+3. Or do the above two steps using Heroku. This will pull the database and create a local 
+database
+
+postgres@ylee-home-ubuntu:/media/sf_pj/md/domino/db/database_dump$ heroku pg:pull DATABASE domino-dev2  --app domino-production
 
 =======================================================================================
 
