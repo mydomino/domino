@@ -487,6 +487,10 @@ database
 
 postgres@ylee-home-ubuntu:/media/sf_pj/md/domino/db/database_dump$ heroku pg:pull DATABASE domino-dev2  --app domino-production
 
+4. Run the cmmand:
+heroku rails runner 'lib/misc/import_leads/import_leads.rb Bakersfield_ZohoImport_10242016.csv' -a domino-production | tee a.log
+
+
 =======================================================================================
 
 =======================================================================================

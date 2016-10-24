@@ -22,7 +22,8 @@ Profile.skip_callback(:create, :after, :send_onboard_started_email)
 
 puts "\nFile import name is #{ARGV.first}"
 
-path = "#{File.expand_path(File.dirname(__FILE__))}/import_files/#{ARGV.first}"
+#path = "#{File.expand_path(File.dirname(__FILE__))}/import_files/#{ARGV.first}"
+path = "#{File.expand_path(File.dirname(__FILE__))}/import_files/Bakersfield_ZohoImport_10242016-tmp.csv"
 puts "\nFile import path is: #{path}"
 
 # catch CSV exception error
