@@ -36,7 +36,7 @@ end
 
 leads.each do |row|
 
-  lead = Profile.create(
+  lead = Profile.new(
           first_name: row["First Name"],
           last_name: row["Last Name"],
           email: row["Email"],
@@ -48,12 +48,12 @@ leads.each do |row|
           housing: row["Own or Rent?"],  
           #omitting avg electrical bill b/c Rails uses integer, sheet is formatted with strings
           campaign: row["Campaign"],
-          partner_code_id: PartnerCode.find_by_code("BIONEERS").id,
+          partner_code_id: PartnerCode.find_by_code(row['Partner Code']).id,
           onboard_complete: true,
           onboard_step: 4
         )
 
-  Dashboard.create(lead_name: "#{lead.first_name} #{lead.last_name}", lead_email: lead.email)
+  # Dashboard.create(lead_name: "#{lead.first_name} #{lead.last_name}", lead_email: lead.email)
 
 
   case row["Concierge Lead Owner"]
@@ -78,16 +78,17 @@ leads.each do |row|
         "<FL val='Last Name'>#{row['Last Name']}</FL>"\
         "<FL val='Email'><![CDATA[#{CGI.escape(lead.email)}]]></FL>"\
         "<FL val='Phone'>#{row['Phone']}</FL>"\
-        "<FL val='Lead Source'>Green Festival Expo LA</FL>"\
+        "<FL val='Lead Source'>#{row['Concierge Lead Source']}</FL>"\
         "<FL val='Street'><![CDATA[#{CGI.escape(row['Street']) if !row['Street'].nil?}]]></FL>"\
         "<FL val='City'>#{row['City']}</FL>"\
         "<FL val='State'>#{row['State']}</FL>"\
         "<FL val='Zip Code'>#{row['Zip Code']}</FL>"\
         "<FL val='Own or Rent?'>#{row['Own or Rent?']}</FL>"\
+        "<FL val='Avg Electric Bill'>#{row['Avg Electric Bill']}</FL>"\
         "<FL val='Referred By'>#{row['Referred By']}</FL>"\
         "<FL val='Campaign'>#{row['Campaign']}</FL>"\
-        "<FL val='Partner Code'>BIONEERS</FL>"\
-        "<FL val='Partner Code Name'>Bioneers</FL>"\
+        "<FL val='Partner Code'>#{lead.partner_code.code}</FL>"\
+        "<FL val='Partner Code Name'>#{lead.partner_code.partner_name}</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(CGI.escape(lead.email))}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
