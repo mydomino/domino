@@ -79,7 +79,7 @@ leads.each do |row|
         "<FL val='Email'><![CDATA[#{CGI.escape(lead.email)}]]></FL>"\
         "<FL val='Phone'>#{row['Phone']}</FL>"\
         "<FL val='Lead Source'>Green Festival Expo LA</FL>"\
-        "<FL val='Street'><![CDATA[#{row['Street']}]]></FL>"\
+        "<FL val='Street'><![CDATA[#{CGI.escape(row['Street'])}]]></FL>"\
         "<FL val='City'>#{row['City']}</FL>"\
         "<FL val='State'>#{row['State']}</FL>"\
         "<FL val='Zip Code'>#{row['Zip Code']}</FL>"\
