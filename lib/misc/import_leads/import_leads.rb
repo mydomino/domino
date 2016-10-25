@@ -49,8 +49,12 @@ leads.each do |row|
           #omitting avg electrical bill b/c Rails uses integer, sheet is formatted with strings
           campaign: row["Campaign"],
           partner_code_id: PartnerCode.find_by_code("GREENLA").id,
-          onboard_complete: true
+          onboard_complete: true,
+          onboard_step: 4
         )
+
+  Dashboard.create(lead_name: "#{lead.first_name} #{lead.last_name}", lead_email: lead.email)
+
 
   case row["Concierge Lead Owner"]
   when "Laura"
@@ -70,13 +74,12 @@ leads.each do |row|
         "&xmlData=<Leads><row no='1'>"\
         "<FL val='Lead Owner'>#{@concierge}</FL>"\
         "<FL val='Lead Source'>#{row['Concierge Lead Source']}</FL>"\
-        "<FL val='Lead Status'>Contacted</FL>"\
         "<FL val='First Name'>#{row['First Name']}</FL>"\
         "<FL val='Last Name'>#{row['Last Name']}</FL>"\
-        "<FL val='Email'>#{row['Email']}</FL>"\
+        "<FL val='Email'><![CDATA[#{CGI.escape(lead.email)}]]></FL>"\
         "<FL val='Phone'>#{row['Phone']}</FL>"\
         "<FL val='Lead Source'>Green Festival Expo LA</FL>"\
-        "<FL val='Street'>#{row['Street']}</FL>"\
+        "<FL val='Street'><![CDATA[#{row['Street']}]]></FL>"\
         "<FL val='City'>#{row['City']}</FL>"\
         "<FL val='State'>#{row['State']}</FL>"\
         "<FL val='Zip Code'>#{row['Zip Code']}</FL>"\
@@ -86,16 +89,13 @@ leads.each do |row|
         "<FL val='Partner Code'>GREENLA</FL>"\
         "<FL val='Partner Code Name'>Green Festival Expo LA</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
-        "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{row['Email']}</FL>"\
+        "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(CGI.escape(lead.email))}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
         "<FL val='Description'>Auto Onboard September 19, 2016</FL>"\
         "</row></Leads>"
 
-  encoded_url = URI.encode(uri)
-  
-  url = URI.parse(encoded_url);
-  #puts "\nsending URL is #{url}"
-  Net::HTTP.post_form(url, {})
+  encoded_uri = URI(uri)
+  res = Net::HTTP.post_form(encoded_uri, {})
   sleep (1.0/2.0)
 end
 
