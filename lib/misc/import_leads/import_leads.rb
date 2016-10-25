@@ -48,7 +48,7 @@ leads.each do |row|
           housing: row["Own or Rent?"],  
           #omitting avg electrical bill b/c Rails uses integer, sheet is formatted with strings
           campaign: row["Campaign"],
-          partner_code_id: PartnerCode.find_by_code("GREENLA").id,
+          partner_code_id: PartnerCode.find_by_code("BIONEERS").id,
           onboard_complete: true,
           onboard_step: 4
         )
@@ -86,12 +86,12 @@ leads.each do |row|
         "<FL val='Own or Rent?'>#{row['Own or Rent?']}</FL>"\
         "<FL val='Referred By'>#{row['Referred By']}</FL>"\
         "<FL val='Campaign'>#{row['Campaign']}</FL>"\
-        "<FL val='Partner Code'>GREENLA</FL>"\
-        "<FL val='Partner Code Name'>Green Festival Expo LA</FL>"\
+        "<FL val='Partner Code'>BIONEERS</FL>"\
+        "<FL val='Partner Code Name'>Bioneers</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
         "<FL val='Dashboard Registration URL'>mydomino.com/users/sign_up?email=#{CGI.escape(CGI.escape(lead.email))}</FL>"\
         "<FL val='Onboard Complete'>Yes</FL>"\
-        "<FL val='Description'>Auto Onboard September 19, 2016</FL>"\
+        "<FL val='Description'>#{Time.new.strftime('Auto onboard %m/%d/%Y')}</FL>"\
         "</row></Leads>"
 
   encoded_uri = URI(uri)
