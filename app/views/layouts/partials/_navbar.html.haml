@@ -1,17 +1,18 @@
 - homepage = current_page?(root_path)
 - nav_element_color = "#{homepage ? 'white' : 'gray-80'}"
 
-%nav#navbar.col-12.z3.top-0.absolute
+%nav#navbar.col-12.fixed.bg-white
   .max-width-4.mx-auto
     .clearfix
-      .col.col-4.p2
+      .col.col-4.pl2.py1
         = link_to root_path, id: "navbar-brand" do
           = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo'
-
-      .md-hide.lg-hide.px2.right
-        .fa.fa-bars.fa-2x.pointer.navbar-element{class: "#{nav_element_color}"}
-      .xs-hide.sm-hide.py3.px3.my1
-        .right
+      .col.right.mr1
+        //mobile hamburger menu
+        .md-hide.lg-hide.pr2
+          .fa.fa-bars.fa-2x.pointer.navbar-element.pt3{class: "#{nav_element_color}"}
+        //desktop buttons
+        .xs-hide.sm-hide.pt2.pt3
           .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
             %i.fa.fa-phone
             %span.h3 800-979-2215

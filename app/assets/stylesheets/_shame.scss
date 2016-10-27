@@ -113,8 +113,6 @@
   -webkit-appearance: none;
 }
 
-.bg-lightgray{ background-color: #F9F9F9; }
-
 /* END OF CLEAING SECTION */
 /*******************************/
 
@@ -240,7 +238,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 }
 
 /* BEGIN custom navbar styles */
-#navbar {
+/*#navbar {
   .fa-bars { padding-top: 2.2rem; }
   .fa-phone { font-size: 1.2em; }
 }
@@ -310,6 +308,8 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 /* end style rules for homepage onboard module */
 #video-modal { display: none; }
+
+
 
 input{ padding-left: 10px; }
 
