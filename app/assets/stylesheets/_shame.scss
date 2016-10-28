@@ -76,21 +76,17 @@
 /*******************************/
 
 /******** page header css for FAQ, About, and Team pages ********/
-.page-header-image {
+.page-header {
+  margin-top:85px;
   padding-top: 160px;
   padding-bottom: 160px;
-  /*h1{
-    font-size: 56px;
-    font-weight: 200;
-  }
-  */
 }
+//what's the reason why these are IDs?
+#page-header--team { background-image: image-url('team-hero-img.jpg'); }
 
-#team-header { background-image: image-url('team-hero-img.jpg'); }
+#page-header--about{ background-image: image-url('about_header.jpg'); }
 
-#about-header { background-image: image-url('about_header.jpg'); }
-
-#faq-header { background-image: image-url('bg_faq.jpg'); }
+#page-header--faq { background-image: image-url('bg_faq.jpg'); }
 
 /* Buttons */
 .btn-navbar{

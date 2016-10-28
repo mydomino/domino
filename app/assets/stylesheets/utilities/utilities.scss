@@ -7,6 +7,7 @@ $space-2: 1rem !default;
 $space-3: 2rem !default;
 $space-4: 4rem !default;
 
+@import './_box-shadow.scss';
 @import './_background.scss';
 @import './_border.scss';
 @import './_grid.scss';
