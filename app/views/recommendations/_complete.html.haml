@@ -4,7 +4,7 @@
       .fa.fa-check
   .recommendation.rounded-20-bottom.px2.py3.relative.border-left.border-right.border-bottom
     -if current_user.role == 'concierge'
-      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'absolute right-10 top-10 bg-gray-20 px1 white rounded' do
+      =link_to recommendation_path(recommendation), method: 'DELETE', data: {confirm: 'Are you sure?'}, style:'right:10px,top:10px' class: 'absolute bg-gray-20 px1 white rounded' do
         .fa.fa-times
     =render recommendation.recommendable, recommendation: recommendation
 -if(recommendation.recommendable_type == 'Product')

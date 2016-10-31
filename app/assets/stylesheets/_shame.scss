@@ -1,3 +1,4 @@
+//Radio & Checkboxes
 
 /* Hover state for radio button */
 /* Uncomment if you need it, but be aware of the sticky iOS states.
@@ -58,8 +59,11 @@
 }
 
 #footer {
-  a:hover, #social-icons .fa:hover { color: #00ccff; }
+  a:hover, #social-icons .fa:hover {
+     color: #00ccff; //can we use the variable $blue here?
+     }
 }
+
 /******** page header css for FAQ, About, and Team pages ********/
 .page-header-image {
   margin-top:85px;
@@ -85,9 +89,6 @@
 
 #image--family{ background-image: image-url('family-blog-card'); }
 
-/* CLEANING */
-/*******************************/
-
 
 /* Buttons signed-in */
 .btn-navbar{
@@ -109,9 +110,6 @@
   vertical-align: middle;
   -webkit-appearance: none;
 }
-
-/* END OF CLEAING SECTION */
-/*******************************/
 
 /******** Dashboard Styling ********/
 .recommendation {
@@ -170,7 +168,7 @@ nav {
     }
   }
 }
-
+// can we use the display classes for these instead of new classes?
 .hover-show { display: none; }
 
 div:hover {
@@ -297,7 +295,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 
 /* end style rules for homepage onboard module */
-#video-modal { display: none; }
+
 
 
 
@@ -333,11 +331,11 @@ input{ padding-left: 10px; }
   textarea,
   select { border: 1px solid #DDDDDD; }
 }
-
+/*Input elements styling*/
 #profile-forms,
 .recommendation-form,
 .devise-form,
-#footer{
+#footer {
 
   input[type=text],
   input[type=email],
@@ -498,19 +496,21 @@ input{ padding-left: 10px; }
     }
   }
 }
+//Unused or repetitive styles
 
-// .right-10 { right: 10px; } unused
+//#video-modal { display: none; } repetitive
 
-//.top-10 { top: 10px; } unused
+// .right-10 { right: 10px; } change to inline because its unique
 
-body.lock-position {
+//.top-10 { top: 10px; } change to inline because its unique
+
+/*body.lock-position {
   height: 100%;
   overflow: hidden;
   width: 100%;
   position: fixed;
 }
-
-
+unused */
 
 /* accordion element on FAQ page */
 
