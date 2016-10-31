@@ -1,5 +1,5 @@
 .clearfix.mx-auto.pb4
-  .bg-bottom.bg-cover.flex.items-center.page-header#page-header--faq
+  .bg-bottom.bg-cover.flex.items-center.page-header-image#image--concierge
     .max-width-3.mx-auto
       %h1.m0.center.white Frequently Asked Questions
 
@@ -7,7 +7,7 @@
     %h1.accordion-toggle.pointer.closed.line-height-3
       %span.toggle.inline-block +
       How you can ditch &amp; switch with help from MyDomino
-    .accordion-content.ml3.pl1
+    .ml3.pl1{style:"display:none"}
       %p.bold.my0
         What is MyDomino?
       .pl2
@@ -74,7 +74,7 @@
     %h1.accordion-toggle.pointer.closed.line-height-3
       %span.toggle.inline-block +
       Solar power
-    .accordion-content.ml3.pl1
+    .display-none.ml3.pl1
       %p.bold.my0
         Isn’t solar expensive?
       .pl2
@@ -139,7 +139,7 @@
     %h1.accordion-toggle.pointer.closed
       %span.toggle.inline-block +
       LED bulbs
-    .accordion-content.ml3.pl1
+    .display-none.ml3.pl1
       %p.bold.my0
         What are LED bulbs?
       .pl2
@@ -165,7 +165,7 @@
     %h1.accordion-toggle.pointer.closed.line-height-3
       %span.toggle.inline-block +
       Smart thermostats
-    .accordion-content.ml3.pl1
+    .display-none.ml3.pl1
       %p.bold.my0 What is a smart thermostat?
       .pl2
         %p.mt0
@@ -193,7 +193,7 @@
     %h1.accordion-toggle.pointer.closed.line-height-3
       %span.toggle.inline-block +
       Electric cars and hybrids
-    .accordion-content.ml3.pl1
+    .display-none.ml3.pl1
       %p.bold.my0 Are electric cars and hybrids expensive?
       .pl2
         %p.mt0

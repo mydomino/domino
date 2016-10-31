@@ -29,7 +29,7 @@ $breakpoint-lg: '(min-width: 64em)' !default;
   .lg-hide { display: none !important }
 }
 
-.display-none { display: none !important }
+.display-none { display: none; }
 
 .hidden { visibility: hidden; }
 

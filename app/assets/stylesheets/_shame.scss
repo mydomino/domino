@@ -60,35 +60,36 @@
 #footer {
   a:hover, #social-icons .fa:hover { color: #00ccff; }
 }
-
-/********  blog cards on homepage css ********/
-.blog-card-image { height: 256px; }
-
-#solar-blog-card-img{ background-image: image-url('solar-house'); }
-
-#cant-go-solar-blog-card-img{ background-image: image-url('wind-turbines'); }
-
-#get-efficient-blog-card-img{ background-image: image-url('led-bulbs'); }
-
-#family-blog-card-img{ background-image: image-url('family-blog-card'); }
-
-/* CLEANING */
-/*******************************/
-
 /******** page header css for FAQ, About, and Team pages ********/
-.page-header {
+.page-header-image {
   margin-top:85px;
   padding-top: 160px;
   padding-bottom: 160px;
 }
+/**** Page-header image modifers ***/
 //what's the reason why these are IDs?
-#page-header--team { background-image: image-url('team-hero-img.jpg'); }
+#image--team { background-image: image-url('team-hero-img.jpg'); }
 
-#page-header--about{ background-image: image-url('about_header.jpg'); }
+#image--dominoes{ background-image: image-url('about_header.jpg'); }
 
-#page-header--faq { background-image: image-url('bg_faq.jpg'); }
+#image--concierge { background-image: image-url('bg_faq.jpg'); }
 
-/* Buttons */
+/********  blog cards on homepage css ********/
+.blog-card-image { height: 256px; }
+
+#image--solar{ background-image: image-url('solar-house'); }
+
+#image--turbines{ background-image: image-url('wind-turbines'); }
+
+#image--bulbs{ background-image: image-url('led-bulbs'); }
+
+#image--family{ background-image: image-url('family-blog-card'); }
+
+/* CLEANING */
+/*******************************/
+
+
+/* Buttons signed-in */
 .btn-navbar{
   border-width: 2px!important;
   font-size: 1.2em!important;
@@ -97,7 +98,7 @@
     color: #00ccff!important;
   }
 }
-
+/*Button for views/show*/
 .btn-shame {
   font-family: inherit;
   font-size: inherit;
@@ -375,14 +376,13 @@ input{ padding-left: 10px; }
   }
 }
 
-/* styles for dashboard recommendations */
+/* styles for dashboard */
 .rounded-20 { border-radius: 20px; }
 
 .rounded-20-top { border-radius: 20px 20px 0 0; }
 
 .rounded-20-bottom { border-radius: 0 0 20px 20px; }
 
-/***** dashboard custom css ************/
 .border-blue { border-color: #00ccff; }
 
 #dashboard {
@@ -499,9 +499,9 @@ input{ padding-left: 10px; }
   }
 }
 
-.right-10 { right: 10px; }
+// .right-10 { right: 10px; } unused
 
-.top-10 { top: 10px; }
+//.top-10 { top: 10px; } unused
 
 body.lock-position {
   height: 100%;
@@ -510,15 +510,19 @@ body.lock-position {
   position: fixed;
 }
 
-/* accordion element on FAQ page */
-.accordion-content { display: none; }
 
-span.toggle { width: 1em; }
+
+/* accordion element on FAQ page */
+
+//.accordion-content { display: none; } repeat of .display-none
+
+span.toggle { width: 1em; } //is this css class for js? if so, how does it work?
 
 #profile-forms.non-mobile{ min-height: 620px; }
 #profile-forms { border-bottom: 2px solid lightgray; }
 
-#slider > div{ background: #00CCFF!important; }
+//background color overwrite for slider gem
+.ui-widget-header { background: #00CCFF; }
 
 
 /* END custom.scss */
