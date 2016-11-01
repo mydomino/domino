@@ -1,0 +1,191 @@
+---
+User_1:
+  id: 1
+  email: mel@mydomino.com
+  encrypted_password: "$2a$04$eexPP/8DioaoTCLQK9IUZuJerU7lUH1Z5N1txFqA5PvR3EaL7C0rG"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 2016-06-28 20:56:35.469762000 Z
+  sign_in_count: 51
+  current_sign_in_at: 2016-08-22 21:55:09.812943000 Z
+  last_sign_in_at: 2016-08-16 21:50:31.401080000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  role: concierge
+User_2:
+  id: 2
+  email: laura@mydomino.com
+  encrypted_password: "$2a$04$7.E8UwqPmukh1bZ5Uw3g5.V0810ovN6qyiyiYaWGzyKPz.itE2gkq"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 24
+  current_sign_in_at: 2016-09-13 22:39:55.344433000 Z
+  last_sign_in_at: 2016-08-31 19:06:15.444704000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1237175842
+    mask_addr: 4294967295
+  role: concierge
+User_3:
+  id: 9
+  email: torro16@gmail.com
+  encrypted_password: "$2a$04$eK4CoqYDt6XGFMWBuUx6BeHeN/a0o9paMTgFhtduXWERsZi4loB16"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 3
+  current_sign_in_at: 2016-05-23 15:25:38.311574000 Z
+  last_sign_in_at: 2016-04-23 15:10:29.955674000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235940723
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235940723
+    mask_addr: 4294967295
+  role: lead
+User_4:
+  id: 10
+  email: ndalefan@aol.com
+  encrypted_password: "$2a$04$kTCmwxPVGvFH5/CkJ17CGOVp3b8.rzRYEFjkJvwmATIswTBzH4kqi"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 2016-05-11 21:03:52.681978000 Z
+  sign_in_count: 2
+  current_sign_in_at: 2016-05-11 21:03:52.694218000 Z
+  last_sign_in_at: 2016-04-23 16:02:13.096687000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235934566
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235934566
+    mask_addr: 4294967295
+  role: lead
+User_5:
+  id: 11
+  email: bill@brandnavigation.com
+  encrypted_password: "$2a$04$0HeKlxFN8.NDNi/4ysjLJ.WC8V7tXBM0vSgltVEUecN8YLo5xwYrW"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-23 17:14:17.456992000 Z
+  last_sign_in_at: 2016-04-23 17:14:17.456992000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1127304430
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1127304430
+    mask_addr: 4294967295
+  role: lead
+User_6:
+  id: 12
+  email: teddsdead@gmail.com
+  encrypted_password: "$2a$04$vo1.L5epeKkC4J9JLpQNdepPcdNZqh2CXXM7U221zn1DSBRKHUgGm"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-23 19:14:20.238596000 Z
+  last_sign_in_at: 2016-04-23 19:14:20.238596000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1219060056
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1219060056
+    mask_addr: 4294967295
+  role: lead
+User_7:
+  id: 14
+  email: danjmeade3000@yahoo.com
+  encrypted_password: "$2a$04$ipcdXtxbFpTkHsxAZrYmxu2E56QlXhjQCKoEUq9QCKwtRoJnIrWRq"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-24 03:22:09.925233000 Z
+  last_sign_in_at: 2016-04-24 03:22:09.925233000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235129195
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1235129195
+    mask_addr: 4294967295
+  role: lead
+User_8:
+  id: 15
+  email: amidokder@mail.ru
+  encrypted_password: "$2a$04$VSiblp7wlizc9lTA1dVgR.q45GO/xZzrcyyKOhk8zkICarLGCLr5u"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-24 18:27:31.441400000 Z
+  last_sign_in_at: 2016-04-24 18:27:31.441400000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1315945778
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 1315945778
+    mask_addr: 4294967295
+  role: lead
+User_9:
+  id: 17
+  email: tamiabritom@icloud.com
+  encrypted_password: "$2a$04$UVhNAJOb09qDgJbDPq3QgOCLgk5ZBaaPlfn8cJ73ZJjkudCuJe8Gy"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-24 19:23:47.301210000 Z
+  last_sign_in_at: 2016-04-24 19:23:47.301210000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 3123629532
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 3123629532
+    mask_addr: 4294967295
+  role: lead
+User_10:
+  id: 18
+  email: lindsay.reichart@gmail.com
+  encrypted_password: "$2a$04$LCEkm.DVTsjggwpweZ1MeupvcG.1Yad/tCuN2nzzlRAXjAGbiHtMW"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: 1
+  current_sign_in_at: 2016-04-25 14:39:00.273044000 Z
+  last_sign_in_at: 2016-04-25 14:39:00.273044000 Z
+  current_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2713297307
+    mask_addr: 4294967295
+  last_sign_in_ip: !ruby/object:IPAddr
+    family: 2
+    addr: 2713297307
+    mask_addr: 4294967295
+  role: lead

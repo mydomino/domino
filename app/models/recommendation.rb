@@ -2,7 +2,7 @@ class Recommendation < ActiveRecord::Base
   
   belongs_to :dashboard
   belongs_to :recommendable, polymorphic: true
-  belongs_to :concierge
+  #belongs_to :concierge
 
   validates :recommendable_id, uniqueness: {scope: [:dashboard_id, :recommendable_type] }
   validates :dashboard_id, presence: true

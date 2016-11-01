@@ -15,8 +15,10 @@
 //= require jquery-ui/slider
 //= require nprogress
 //= require nprogress-ajax
-//= require dynamic
-//= require signup
 //= require jquery.mask.min.js
 //= require modal
-//= require pages.index.js
+//= require init
+//= require mydomino
+//= require_tree ./pages
+//= require_tree ./dashboards
+//= require_tree ./profiles

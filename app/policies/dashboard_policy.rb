@@ -4,7 +4,10 @@ class DashboardPolicy < ApplicationPolicy
   end
 
   def show?
-    # user.admin? or not record.published?
     (record.user_id == user.id) || (user.role == 'concierge')
+  end
+
+  def destroy?
+    user.role == 'concierge'
   end
 end

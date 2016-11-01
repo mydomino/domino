@@ -13,7 +13,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .DS_Store
-.ruby-version
+#.ruby-version
 Guardfile
 coverage
 **.swp
@@ -47,3 +47,4 @@ bower.json
 
 # Ignore application configuration
 /config/application.yml
+yong/

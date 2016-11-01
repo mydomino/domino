@@ -2,9 +2,6 @@
   .clearfix.bg-white.mt3.mb1.p2.max-width-4.mx-auto
     .col.col-12
       %h1.inline-block.m0 Dashboards
-      .inline-block.right.mt2
-        =link_to 'All', {filter: 'all'}, class: "left btn-shame rounded-left #{(@filter == 'all') ? 'bg-blue white' : 'bg-gray-10 black'}"
-        =link_to 'Mine', {filter: "mine"}, class: "left btn-shame rounded-right #{(@filter == 'mine') ? 'bg-blue white' : 'bg-gray-10 black' }"
       .p2.mr3.right{style: 'width:400px;'} 
         =form_tag dashboards_path, method: 'GET' do
           .inline-block
@@ -23,19 +20,26 @@
               =sortable "lead_name", "Name", filter: @filter
             %th 
               =sortable "lead_email", "Email", filter: @filter
-            %th Products Done
-            %th Actions Done
+            %th Registered?
+            %th Recommendations Done
             %th Delete
           -@dashboards.each do |dashboard|
-            %tr
+            %tr.dashboard-record.pointer
               %td #{dashboard.created_at.strftime("%Y-%m-%d")}
               %td
-                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none blue'
+                =link_to dashboard.lead_name, dashboard_path(dashboard), target: 'blank', class: 'text-decoration-none blue dashboard-link'
               %td #{dashboard.lead_email}
-              %td #{dashboard.recommendations.products.done.count}/#{dashboard.recommendations.products.count} products
-              %td #{dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.tasks.count} actions
-              %td
-                =link_to "Delete", dashboard_path(dashboard), method: 'DELETE', data: {confirm: 'Are you sure?'}, class: 'text-decoration-none red' 
+              %td 
+                - if dashboard.user_id
+                  Yes
+                - else
+                  No
+                  %i.fa.fa-link.pointer{data: {'clipboard-text': "http://mydomino.com/users/sign_up?email=#{CGI.escape(dashboard.lead_email)}"}, title: 'Copy sign up link'}
+              %td.center #{dashboard.recommendations.products.done.count + dashboard.recommendations.tasks.done.count}/#{dashboard.recommendations.count}
+              %td.center
+                =link_to dashboard_path(dashboard), method: :delete, data: {confirm: 'Are you sure?'} do
+                  .fa.fa-times.red.display-none
   .clearfix.max-width-4.mx-auto.center
     .col.col-12
       = paginate @dashboards
+  
