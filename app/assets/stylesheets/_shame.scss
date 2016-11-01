@@ -7,6 +7,10 @@
   background-color: #ccc;
 }
 */
+// i know this is targeting js, but can we use display class instead of custom css?
+[data-disclosure] [data-details] {
+  display: none;
+ }
 
 /* Focus */
 .control input:focus ~ .control-indicator {
