@@ -1,5 +1,8 @@
-$('#newsletter-email').val('');
-$('#newsletter-email').after('<p class=\"blue my0\" id=\"msg-subscription\">Thanks for signing up!</p>'); 
+<% if @message == "Thanks for signing up!" %>
+  $('#newsletter-email').val('');
+<% end %>
+
+$('#newsletter-email').after("<p class='" + "<%= @message == 'Thanks for signing up!' ? 'blue' : 'red' %> " + "my0' id='msg-subscription'>" + "<%= @message %>" + "</p>"); 
 setTimeout(function(){
   $('#msg-subscription').slideUp();
 }, 4000);

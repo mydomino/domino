@@ -48,7 +48,13 @@ class PagesController < ApplicationController
   end
 
   def newsletter_subscribe
-    SubscribeToMailchimpJob.perform_later params[:email]
+    unless params[:email] =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+      @message = "Invalid email format."
+    else
+      SubscribeToMailchimpJob.perform_later params[:email]
+      @message = "Thanks for signing up!"
+    end
+
     respond_to do |format|
       format.js
     end
