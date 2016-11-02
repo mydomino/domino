@@ -1,61 +1,52 @@
+//Fonts
+$body: 'proxima-nova','SF UI Text', 'San Francisco', -apple-system, BlinkMacSystemFont, sans-serif;
 
-//Font inherit
-.font-family-inherit { font-family: inherit }
-.font-size-inherit { font-size: inherit }
+.font-body {
+  font-family: $body;
+}
+.h0 { font-size: $h0;}
+.h1 { font-size: $h1; }
+.h2 { font-size: $h2; }
+.h3 { font-size: $h3; }
+.h4 { font-size: $h4; }
+.h5 { font-size: $h5; }
+.h6 { font-size: $h6; }
 
-// Custom Media Query Variables, responsive font-sizing would go here
+.font-family-inherit { font-family: inherit; }
+.font-size-inherit { font-size: inherit; }
+.text-decoration-none { text-decoration: none; }
 
-//Type Scale
-.h0 { font-size: $h0 }
-.h1 { font-size: $h1 }
-.h2 { font-size: $h2 }
-.h3 { font-size: $h3 }
-.h4 { font-size: $h4 }
-.h5 { font-size: $h5 }
-.h6 { font-size: $h6 }
+.bold { font-weight: 700; }
+.medium { font-weight: 500; }
+.regular { font-weight: 400; }
+.light {font-weight: 100;}
+.italic { font-style: italic; }
+.caps { text-transform: uppercase; }
 
-//Flash of unstyled text solution
-.wf-loading { visibility:hidden; }
+.left-align { text-align: left; }
+.center { text-align: center; }
+.right-align { text-align: right; }
+.justify { text-align: justify; }
 
-// Line heights
-.line-height-1 { line-height: $line-height-1 }
-.line-height-2 { line-height: $line-height-2 }
-.line-height-3 { line-height: $line-height-3 }
-.line-height-4 { line-height: $line-height-4 }
+.nowrap { white-space: nowrap; }
+.break-word { word-wrap: break-word; }
 
+.line-height-1 { line-height: $line-height-1; }
+.line-height-2 { line-height: $line-height-2; }
+.line-height-3 { line-height: $line-height-3; }
+.line-height-4 { line-height: $line-height-4; }
 
-//Font Weights
-.bold    { font-weight: 700 }
-.regular { font-weight: normal }
-.light { font-weight: 100 }
+.list-style-none { list-style: none; }
+.underline { text-decoration: underline; }
 
-//Font Styles
-.italic  { font-style: italic }
-.caps { text-transform: uppercase;}
-
-//Font Alignments
-.left-align   { text-align: left }
-.center       { text-align: center }
-.right-align  { text-align: right }
-.justify      { text-align: justify }
-
-//Wrapping
-.nowrap { white-space: nowrap }
-.break-word { word-wrap: break-word }
-
-
-//List styles
-.list-style-none { list-style: none }
-.list-reset {list-style: none; padding-left: 0;}
-
-//Text decoration
-.underline { text-decoration: underline }
-.text-decoration-none { text-decoration: none }
-
-//Truncate
 .truncate {
-  max-width:100%;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
 }
