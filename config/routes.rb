@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'pages#privacy'
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
+  get 'partners' => 'pages#partners'
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   get "/blog" => redirect("http://blog.mydomino.com/")
   get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
   get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
-  
+
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
