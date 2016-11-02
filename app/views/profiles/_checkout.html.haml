@@ -1,8 +1,8 @@
-.spacer{style: 'height: 100px;' }       
+.spacer{style: 'height: 100px;' }
 -if flash[:notice]
   =render 'profiles/flash_notice'
 #checkout.mt1
-  .max-width-3.mx-auto
+  .max-width-6.mx-auto
     .clearfix
       .sm-col.sm-col-12.mx-auto.center
         %h2.center.blue.m0
@@ -14,7 +14,7 @@
               $
           %span.mxn2
             \/year
-        %ul.px1.list-reset.my0.max-width-2.mx-auto.inline-block.gray-80
+        %ul.px1.list-reset.my0.max-width-4.mx-auto.inline-block.gray-80
           %li.left-align
             %h4.my1
               %span
@@ -61,13 +61,9 @@
                 APPLY
 
           .col.col-12.center.px2
-            %p.m0.mt3 
-              No Partner Code? No worries!
-              %br
-              Click Submit and talk to a concierge before you pay.
-
-        .mt2.px2.relative{style: 'height: 47px;'}
-          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form, :form_name => 'checkout'}
+            %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
+        .mt2.px2.relative{style: 'height: 97px;'}
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
   $(document).ready(function(){

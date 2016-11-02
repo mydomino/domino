@@ -2,15 +2,15 @@
 -if flash[:notice]
   =render 'profiles/flash_notice'
 #interests.mt1
-  .max-width-3.mx-auto
+  .max-width-6.mx-auto
     .clearfix.mb2
       .col.col-12.center
-        .max-width-1.mx-auto.h2.line-height-2
+        .max-width-3.mx-auto.h2.line-height-2
           I am interested in learning more about the following...
       .mt1.col.col-12.h4.center.italic (Choose as many as you like)
     .clearfix.mx-auto
       =simple_form_for @profile, remote: true do |form|
-        .max-width-2.mx-auto.mt3
+        .max-width-4.mx-auto.mt3
           .flex.justify-center
             .inline-block.ml1
               -5.times do |index|

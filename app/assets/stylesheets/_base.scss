@@ -1,61 +1,45 @@
-/***
 
-Anything that is defined by HTML itself goes here.
+//Fonts
+$body: 'proxima-nova','SF UI Text', 'San Francisco', -apple-system, BlinkMacSystemFont, sans-serif;
 
-****/
+.font-body {
+  font-family: $body;
+}
 
-body {
-  font-family: 'proxima-nova',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+* {
+  border: 0;
+  box-sizing: border-box;
+  font-family: $body;
+  font-weight: 100;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  text-decoration: none;
   text-rendering: optimizeLegibility;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // list-style: none;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal; /*change to medium, but needs typekit support*/
-}
-
-p {
-  color:#333;
-}
-
-svg {fill: currentColor;}
-
-/*
-  Box Sizing
-  Per the argument made by http://tachyons.io/docs/layout/box-sizing/
-  "Box sizing makes sure that when you declare a width,
-  that is the width of the element,
-  regardless of how much border or padding you add to the element."
-*/
 
 html,
-body,
-div,
-article,
-section,
-main,
-footer,
-header,
-form,
-fieldset,
-pre,
-code,
-p,
-ul,
-ol,
-li,
-dl,
-dt,
-dd,
-textarea,
-input[type="email"],
-input[type="number"],
-input[type="password"],
-input[type="tel"],
-input[type="text"],
-input[type="url"],
-.border-box {
-  box-sizing: border-box;
+body {
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+textarea {
+  resize: none;
+}
+
+::selection {
+  background: $blue;
+  color: $white;
+}
+
+input,
+textarea {
+  box-shadow: inset 0 1px 1px rgba($black, .1);
 }

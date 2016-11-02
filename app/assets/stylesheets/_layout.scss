@@ -1,0 +1,43 @@
+
+//Layout
+.inline { display: inline }
+.block { display: block }
+.inline-block { display: inline-block }
+.table { display: table }
+.table-cell { display: table-cell }
+
+//Clearfix
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table
+}
+
+.clearfix:after { clear: both }
+
+.left  { float: left }
+
+.right { float: right }
+
+//Overflow
+.overflow-hidden { overflow: hidden }
+.overflow-scroll { overflow: scroll }
+.overflow-auto { overflow: auto }
+
+//Fill
+.fit { max-width: 100% }
+.fill-x { width: 100% }
+.fill-y { height: 100% }
+.fill { width: 100%; height: 100%; }
+.fill-viewport { width: 100vw; height: 100vh; }
+
+//Widths & Max-Widths
+@for $i from 1 through $layout-count {
+  .x#{$i} {width: #{$i * 1}rem;}
+    .max-width-#{$i} {max-width: #{$i * 8}rem;}
+    .min-width-#{$i} {min-width: #{$i * 1}rem;}
+  .y#{$i} {height: #{$i * .5}rem;}
+    .max-height-#{$i} {max-height: #{$i * .5}rem;}
+    .min-height-#{$i} {min-height: #{$i * .5}rem;}
+}

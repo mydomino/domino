@@ -21,3 +21,22 @@
 <button class= "btn btn-sm btn-secondary rounded-right btn-secondary--hover"> Button 3</button>
 </div>
 </div>
+
+.col.col-12.mt3
+  %label.control.checkbox
+    %input{ :type=>"checkbox" }
+    %span.control-indicator
+    A Checkbox
+  %label.control.checkbox
+    %input{ :type=>"checkbox" }
+    %span.control-indicator
+    A Checkbox
+.col.col-12.mt3
+  %label.control.radio
+    =radio_button_tag 'radio', 'radio',:id => "radio1"
+    %span.control-indicator
+    Radio 1
+  %label.control.radio
+    =radio_button_tag 'radio', 'radio',:id => "radio2"
+    %span.control-indicator
+    Radio 2

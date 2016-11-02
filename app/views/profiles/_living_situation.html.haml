@@ -4,14 +4,14 @@
     color: red;
   }
 
-.spacer{style: 'height: 100px;' }       
+.spacer{style: 'height: 100px;' }
 -if flash[:notice]
   =render 'profiles/flash_notice'
 #living-situation.mt1
-  .max-width-3.mx-auto
+  .max-width-6.mx-auto
     .clearfix.mb2
       .col.col-12.center
-        .max-width-1.mx-auto.h2.line-height-2
+        .max-width-3.mx-auto.h2.line-height-2
           Tell us about your home
     .clearfix.mx-auto.pt2
       =simple_form_for @profile, remote: true do |form|
@@ -22,7 +22,7 @@
           %br
           =form.input_field :phone, class: "h3 bg-transparent rounded required-field", placeholder: "", data: {reg: '\\(\\d{3}\\)\\s\\d{3}\\-\\d{4}', target: '#phone-error-msg'}
           #phone-error-msg.red.display-none
-            Phone number is required. 
+            Phone number is required.
             %span#why-phone.gray-80.pointer
               Why?
 
@@ -47,7 +47,7 @@
               =form.input_field :address_line_1, class: "geocode h3 bg-transparent rounded", placeholder: ""
               %span#span-street_number.display-none{data: {geo: 'street_number'}}
               %span#span-route.display-none{data: {geo: 'route'}}
-            
+
             #city-state-zip.col.col-5.pt1{data: {target: '#city-error-msg'}}
               %label.h4 City
               %br
@@ -77,8 +77,8 @@
               Housing type is required.
         .clearfix
           .col.col-12
-            .px2.mt4.relative{style: 'height:165px;'}
-              =render :partial => "profiles/onboard_submit_btns", :locals=>{:form => form, :form_name => "living_situation"}
+            .px2.mt4.relative{style: 'height:168px;'}
+              =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
 
 :javascript
   $( document ).ready( function() {
@@ -141,7 +141,7 @@
 
     $('input[value="Next"]').on('click', function(e){
       e.preventDefault();
-      if (validateRequiredFields($requiredFields)){ 
+      if (validateRequiredFields($requiredFields)){
         $("form").submit();
       }
     });
@@ -180,7 +180,7 @@
             var $group = $($(value).data('msg-group'));
             invalidFields.push($(value).data('label'));
             formatErrorMsg($group);
-            
+
           } else {
             $($(value).data('target')).removeClass('display-none');
           }

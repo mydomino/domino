@@ -2,13 +2,13 @@
 - nav_element_color = "#{homepage ? 'white' : 'gray-80'}"
 
 %nav#navbar.col-12.z3.top-0.absolute
-  .max-width-4.mx-auto
+  .mx-auto
     .clearfix
       .col.col-4.p2
         = link_to root_path, id: "navbar-brand" do
           = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo'
 
-      .md-hide.lg-hide.px2.right
+      .md-hide.lg-hide.right.px2
         .fa.fa-bars.fa-2x.pointer.navbar-element{class: "#{nav_element_color}"}
       .xs-hide.sm-hide.py3.px3.my1
         .right
