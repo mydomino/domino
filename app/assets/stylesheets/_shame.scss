@@ -55,7 +55,7 @@
 .strikethrough:before {
   position: absolute;
   content: "";
-  left: -10px;
+  left:-10px;
   top: 50%;
   right: -10px;
   border-top: 4px solid orange;
@@ -64,7 +64,7 @@
 
 #footer {
   a:hover, #social-icons .fa:hover {
-     color: #00ccff; //can we use the variable $blue here?
+     color: #00ccff; //how might we use the $blue variable here?
      }
 }
 
