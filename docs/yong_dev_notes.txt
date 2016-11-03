@@ -539,19 +539,220 @@ $ git fetch pb
 git remote show origin
 
 =======================================================================================
+GS: what is oauth
+
+https://en.wikipedia.org/wiki/OAuth
+
+GS: how does oauth work with facebook
+
+
+========================================================================================
+
+wordpress_external_authentication
+
+
+========================================================================================
+GS: wordpress external authentication REST API
+https://make.wordpress.org/core/2016/05/16/rest-api-authentication-broker/
+
+
+==============================================
+Bring/access WP content via REST API
+https://github.com/dphiffer/wp-json-api
+
+
+
+========================================================================================
+
+GS: How to transfer wordpress to rails
+https://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/
+
+
+
+========================================================================================
+
+GS:Wordpress inside a Ruby on Rails app
+https://medium.com/@parterburn/wordpress-inside-a-ruby-on-rails-app-c324fbf39ad8?swoff=true#.weqande2t
+
+
+
+========================================================================================
+GS:Build a Custom API to Connect WordPress With Ruby on Rails
+
+https://code.tutsplus.com/tutorials/build-a-custom-api-to-connect-wordpress-with-ruby-on-rails--cms-21189
+
+
+
+========================================================================================
+
+
+GS:how to provide a rails authentication API
+https://thesocietea.org/2015/04/building-a-json-api-with-rails-part-3-authentication-strategies/
+Token Based Authentication in Rails - Code School Blog
+
+
+========================================================================================
+
+GS:rails generate api key
+https://mikecoutermarsh.com/rails-grape-api-key-authentication/
+
+https://blog.joshsoftware.com/2014/05/08/implementing-rails-apis-like-a-professional/
+
+
+========================================================================================
+GS:rails http token authentication
+http://tutorials.pluralsight.com/ruby-ruby-on-rails/token-based-authentication-with-ruby-on-rails-5-api
+
+https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
+
+
+========================================================================================
+GS:Passing Arguments to a Rails Rake Task
+http://cobwwweb.com/4-ways-to-pass-arguments-to-a-rake-task
+
+http://davidlesches.com/blog/passing-arguments-to-a-rails-rake-task
+
+
+
+
+========================================================================================
+
+https://developer.github.com/guides/basics-of-authentication/
+
+
+
+========================================================================================
+GS: will my connection be persistent after redirect from one server to another external server
+https://serversforhackers.com/so-you-got-yourself-a-loadbalancer
+
+
+
+========================================================================================
+AWS SDK for Ruby
+https://github.com/aws
+https://github.com/aws/aws-sdk-ruby
+
+
+
+========================================================================================
+
+Wicked Wizard
+http://schneems.com/post/18437886598/wizard-ify-your-rails-controllers-with-wicked/
+
+
+
+========================================================================================
 
 =======================================================================================
 
+Backup Heroku Postgres databse
+
+https://devcenter.heroku.com/articles/heroku-postgres-backups
 =======================================================================================
 
-=======================================================================================
+wordpress external authentication REST API
+WP REST API: Introducing the Authentication Broker
+
+https://www.sitepoint.com/wp-api-and-oauth-using-wordpress-without-wordpress/
+
+https://www.sitepoint.com/wordpress-json-rest-api/
+
+https://github.com/dphiffer/wp-json-api
+
+
+===================================
+WP REST API tutorial  -- Yong reading !!
+https://code.tutsplus.com/tutorials/introducing-the-wp-rest-api--cms-24533
+
+GS: why use wp rest api (WP)
+http://v2.wp-api.org
+https://wordpress.org/plugins/json-rest-api/
+https://www.sitepoint.com/wp-api/
+
+https://tutsplus.com/authors/bilal-shahid
+
+
+==============================================================================
+
+
+How to transfer wordpress to rails
+https://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/
+
+
+
+==============================================================================
+
+Wordpress inside a Ruby on Rails app
+https://medium.com/@parterburn/wordpress-inside-a-ruby-on-rails-app-c324fbf39ad8?swoff=true#.weqande2t
+
+
+
+==============================================================================
+Build a Custom API to Connect WordPress With Ruby on Rails
+
+https://code.tutsplus.com/tutorials/build-a-custom-api-to-connect-wordpress-with-ruby-on-rails--cms-21189
+
+
+
+
+==============================================================================
+
+how to provide a rails authentication API
+https://thesocietea.org/2015/04/building-a-json-api-with-rails-part-3-authentication-strategies/
+Token Based Authentication in Rails - Code School Blog
+
+
+
+==============================================================================
+rails generate api key
+https://mikecoutermarsh.com/rails-grape-api-key-authentication/
+
+https://blog.joshsoftware.com/2014/05/08/implementing-rails-apis-like-a-professional/
+
+
+==============================================================================
+rails http token authentication
+http://tutorials.pluralsight.com/ruby-ruby-on-rails/token-based-authentication-with-ruby-on-rails-5-api
+
+https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
+===============================================================================
+Passing Arguments to a Rails Rake Task
+http://cobwwweb.com/4-ways-to-pass-arguments-to-a-rake-task
+
+http://davidlesches.com/blog/passing-arguments-to-a-rails-rake-task
+
+
+
+
+https://developer.github.com/guides/basics-of-authentication/
+
+
+WordPress External DB authentication
+https://wordpress.org/plugins/external-db-auth-reloaded/
+
 
 =======================================================================================
+GS: rails octopress integration
+http://www.nickhammond.com/setting-octopress-jekyll-blog-rails-application/
+
+http://stackoverflow.com/questions/17465429/combine-octopress-and-a-rails-4-0-application
+
+Using Jekyll and Rails
+http://www.homemarks.com/blog/2014-04-19-jekyll-style-blogging-on-rails
 
 =======================================================================================
+octopress vs jekyll
+https://jason.pureconcepts.net/2015/02/migrating-from-octopress-to-jekyll/
 
 =======================================================================================
+rails jekyll blog
 
+https://exceptiontrap.com/blog/4-create-a-simple-jekyll-like-blog-in-your-rails-4-app
+https://www.sitepoint.com/jekyll-rails/
+
+=======================================================================================
+Modern Ruby tools
+https://www.sitepoint.com/tools-for-a-modern-ruby-development-setup/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=ruby
 =======================================================================================
 
 
