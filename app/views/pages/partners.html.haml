@@ -1,10 +1,25 @@
-.clearfix.mx-auto.pb4
+.clearfix.pb4
   .page-header-image.flex.items-center.bg-gray-05
-    .max-width-3.mx-auto
+    .mx-auto
       .h1.light.center Our Partners
   %section.my4
     .h2.light.center Non-Profits
-    .flex.flex-column.flex-wrap.sm-row.max-width-3.mx-auto.mt2
-      =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
-      =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
-      =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
+    .mt2.flex.flex-wrap.sm-row.max-width-4.mx-auto
+
+      -# =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
+      -# =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
+      -# =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
+      -# =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
+      -# =link_to 'ASDF', "http://blog.mydomino.com/solar-101", target: '_blank', class: 'flex-auto center bg-gray-05 text-decoration-none m1', style:""
+      .mx-auto.md-mr-auto.bg-gray-05.p3.mb2
+        =link_to"http://blog.mydomino.com/solar-101", target: '_blank', class: 'col-4', style:"" do
+          = image_tag '100-org'
+      .mx-auto.md-mr-auto.sm-ml-auto.bg-gray-05.p3.mb2
+        =link_to "http://blog.mydomino.com/solar-101", target: '_blank', class: 'col-4', style:"" do
+          = image_tag 'ACE'
+      .mx-auto.md-ml-auto.bg-gray-05.p3.mb2
+        =link_to"http://blog.mydomino.com/solar-101", target: '_blank', class: 'col-4', style:"" do
+          = image_tag 'Anza'
+      .mx-auto.md-ml-auto.bg-gray-05.p3.mb2
+        =link_to "http://blog.mydomino.com/solar-101", target: '_blank', class: 'col-4', style:"" do
+          = image_tag 'snow-leopard-conservancy'
