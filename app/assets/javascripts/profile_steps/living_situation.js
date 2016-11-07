@@ -1,7 +1,7 @@
 window.MyDomino = window.MyDomino || {};
 window.MyDomino.pages = window.MyDomino.pages || {};
 
-window.MyDomino.pages["profile_steps-living_situation"] = function(args){ 
+window.MyDomino.pages["profile_steps-your_house"] = function(args){ 
   /* BEGIN form element JS */
   /* Geocoding */
 

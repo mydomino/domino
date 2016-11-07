@@ -37,7 +37,7 @@
       end
     else
       @profile.onboard_step += 1
-      if(!@profile.onboard_complete && step == 'living_situation')
+      if(!@profile.onboard_complete && step == 'your_house')
         @profile.onboard_complete = true
         Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
         @profile.save_to_zoho
@@ -61,7 +61,7 @@
     permitted_attributes = case step
       when "interests"
         [{:offering_ids => []}]
-      when "living_situation"
+      when "your_house"
         [ :address_line_1, :city, :state, 
           :zip_code, :phone, :housing,
           :avg_electrical_bill]

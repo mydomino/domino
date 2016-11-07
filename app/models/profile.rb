@@ -28,7 +28,7 @@ class Profile < ActiveRecord::Base
   # end
 
   cattr_accessor :form_steps do
-    %w(interests living_situation checkout summary)
+    %w(interests your_house checkout summary)
   end
 
   attr_accessor :form_step

@@ -2,8 +2,6 @@ class PagesController < ApplicationController
   skip_after_action :verify_authorized
   layout 'example', only: :example
 
-  FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
-
   def index
     #continue onboarding
     # if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
