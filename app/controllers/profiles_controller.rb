@@ -73,7 +73,7 @@ class ProfilesController < ApplicationController
         render :js => "window.location ='/users/sign_up?email=#{@lu.email}'"
       else
         flash[:notice] = "You have already signed up."
-        render :js => "window.location = '/users/sign_in'"
+        redirect_to new_user_session_path
       end
       return true
     end
@@ -83,7 +83,7 @@ class ProfilesController < ApplicationController
   def user_already_registered?
     if User.find_by_email(@email)
       flash[:notice] = "You have already signed up."
-      render :js => "window.location = '/users/sign_in'" 
+      redirect_to new_user_session_path
       return true
     end
     return false
