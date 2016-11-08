@@ -38,6 +38,9 @@ gem 'mailkick'
 gem 'browser'
 gem 'puma'
 gem 'newrelic_rpm'
+gem 'wicked'
+gem 'turbolinks', '~> 5.0.0'
+gem 'turboboost'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -72,7 +75,7 @@ group :test do
   # gem 'rspec-activejob'
   # gem 'teaspoon-jasmine'
   gem 'faker'
-  # gem 'selenium-webdriver', '2.53.1'
+  gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
   # gem 'webmock'
   gem 'minitest-rails', "~> 2.0"

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'pages#privacy'
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
-  get '/welcome-email/:profile_id' => 'profiles#welcome_email'
+  get '/resend-welcome-email/:id' => 'profiles#resend_welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
 
@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
   end
 
-  resources :profiles
+  # resources :profiles
+  resources :profiles, only: [:new, :update, :create, :show, :index] do
+    resources :steps, only: [:show, :update], controller: 'profile/steps'
+  end
+  
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
   post '/profiles/create-completed-profile' => 'profiles#create_completed_profile', as: 'create_completed_profile'
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }

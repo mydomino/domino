@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:update, :apply_partner_code, :welcome_email]
+  before_action :set_profile, only: [:update, :apply_partner_code, :resend_welcome_email]
   layout 'concierge', only: :new
-  FORMS = ["name_and_email", "interests", "living_situation", "checkout", "summary"]
   
   def new
     @profile = Profile.new
@@ -17,7 +16,6 @@ class ProfilesController < ApplicationController
     if @profile.save
       Profile.set_callback(:create, :after, :send_onboard_started_email)
       create_dashboard(@profile)
-      # Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
       @profile.save_to_zoho if params[:save_to_zoho]
       UserMailer.welcome_email_universal(@profile.email).deliver_later if params[:send_welcome_email]
       flash[:notice] = 'Dashboard created successfully'
@@ -41,31 +39,13 @@ class ProfilesController < ApplicationController
     #create new profile
     set_tracking_variables
     @profile = Profile.create(profile_params)
-    render_response and return
+    # render_response and return
+    redirect_to profile_step_path(@profile, Profile.form_steps.first)
   end
 
   def update
-    @profile.update_zoho if @profile.onboard_complete
- 
-    params[:commit] == 'Back' ? @profile.onboard_step -= 1 : @profile.onboard_step += 1
-
-    case @profile.onboard_step
-    when 2, 4
-      apply_partner_code(false) if params[:profile] && params[:profile][:partner_code]
-    when 3
-      @partner_code = PartnerCode.find_by_id(@profile.partner_code_id)
-      #allocate default dashboard
-      create_dashboard(@profile)
-      #send welcome email
-      UserMailer.welcome_email_universal(@profile.email).deliver_later
-      if !@profile.onboard_complete
-        @profile.save_to_zoho
-        @profile.update(onboard_complete: true)
-      end
-    end
-
     @profile.update(profile_params)
-    render_response
+    redirect_to profile_step_path(@profile, Profile.form_steps.first)
   end
 
   def apply_partner_code(render_js=true)
@@ -77,9 +57,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def welcome_email
+  def resend_welcome_email
     UserMailer.welcome_email_universal(@profile.email).deliver_later
-    render "profiles/email_sent.js", content_type: 'text/javascript'
   end
 
   private
@@ -113,8 +92,8 @@ class ProfilesController < ApplicationController
   def onboarding_incomplete?
     #user has begun, but not completed onboarding
     if (@profile = Profile.find_by_email(@email)) && !@profile.onboard_complete
-      flash.now[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
-      render_response
+      flash[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
+      redirect_to profile_step_path(@profile, Profile.form_steps[@profile.onboard_step])
       return true
     end
     return false
@@ -122,8 +101,7 @@ class ProfilesController < ApplicationController
 
   def onboarded_but_not_registered?
     if (@profile = Profile.find_by_email(@email)) && @profile.onboard_complete
-      @profile.update(onboard_step: 4) if @profile.onboard_step < 4
-      render_response
+      redirect_to profile_step_path(@profile, Profile.form_steps.last)
       return true
     end
     return false
@@ -139,32 +117,11 @@ class ProfilesController < ApplicationController
     session[:browser]     ||= request.user_agent
   end
 
-  def interest_form_resources
-    @active_inputs = @profile.interests.map {|i| i.offering_id }
-    @offerings = Offering.all.map {|o| o.name }
-  end
-
-  def render_response
-    interest_form_resources if @profile.onboard_step == 1 
-    @response = {form: FORMS[@profile.onboard_step], method: :put}
-    render "profiles/update.js", content_type: "text/javascript"
-    return
-  end
-
   def profile_params
     params.require(:profile).permit(
       :first_name, 
       :last_name, 
-      :email, 
-      {:offering_ids => []}, 
-      :address_line_1, 
-      :city, 
-      :state, 
-      :zip_code, 
-      :phone,
-      :housing,
-      :avg_electrical_bill,
-      :partner_code_id
+      :email
     ).merge(session_params)
   end
 end
