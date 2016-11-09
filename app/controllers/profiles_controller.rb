@@ -93,7 +93,7 @@ class ProfilesController < ApplicationController
     #user has begun, but not completed onboarding
     if (@profile = Profile.find_by_email(@email)) && !@profile.onboard_complete
       flash[:notice] = "Welcome back, #{@profile.first_name.capitalize}! Here is where you left off."
-      redirect_to profile_step_path(@profile, Profile.form_steps[@profile.onboard_step])
+      redirect_to profile_step_path(@profile, Profile.form_steps[@profile.onboard_step-1])
       return true
     end
     return false
