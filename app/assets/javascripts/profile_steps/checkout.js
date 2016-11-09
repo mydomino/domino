@@ -16,5 +16,8 @@ window.MyDomino.pages["profile_steps-checkout"] = function(args){
 
     singleSubmit();
     //mobile
-    $(window).scrollTop(0)
+    $(window).scrollTop(0);
+
+    //ga event
+    ga('send', "event", "#{category}", "#{action}", "#{label}", "#{count}");
 };
