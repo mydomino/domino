@@ -1,0 +1,17 @@
+
+
+<% @posts.each do |i| %>
+
+  <div class="img">
+    <!-- %= link_to image_tag('http://mydomino.dreamhosters.com/wp-content/uploads/2016/10/green-tea-coalition.png'), post_path(i['id'], post_content: i['content']['rendered']), method: :post % -->
+    <%= link_to image_tag('http://mydomino.dreamhosters.com/wp-content/uploads/2016/10/green-tea-coalition.png'), post_path(i['id']), method: :get %>
+    
+    <!-- div class="desc"><%= i['excerpt']['rendered'] %></div -->
+    <div class="desc"><%= raw i['title']['rendered'] %></div>
+    
+  </div>
+
+
+<% end %>
+
+<br class="clear">

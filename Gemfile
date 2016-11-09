@@ -41,6 +41,9 @@ gem 'newrelic_rpm'
 gem 'wicked'
 gem 'turbolinks', '~> 5.0.0'
 gem 'turboboost'
+# for REST API manipulation
+gem 'crack', '~> 0.4.3'
+gem 'httparty', '~> 0.14.0'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

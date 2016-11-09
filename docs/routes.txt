@@ -6,7 +6,7 @@
                      privacy GET      /privacy(.:format)                                     pages#privacy
                          faq GET      /faq(.:format)                                         pages#faq
                      example GET      /example(.:format)                                     pages#example
-                             GET      /welcome-email/:profile_id(.:format)                   profiles#welcome_email
+                             GET      /resend-welcome-email/:id(.:format)                    profiles#resend_welcome_email
                              GET      /legacy-user-registration-email/:lu_id(.:format)       profiles#lu_registration_email
                              GET      /dashboard/:slug(.:format)                             redirect(301)
                              GET      /continue/:profile_id(.:format)                        pages#index
@@ -24,14 +24,15 @@
                              PATCH    /dashboards/:id(.:format)                              dashboards#update
                              PUT      /dashboards/:id(.:format)                              dashboards#update
                              DELETE   /dashboards/:id(.:format)                              dashboards#destroy
+                profile_step GET      /profiles/:profile_id/steps/:id(.:format)              profile/steps#show
+                             PATCH    /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
+                             PUT      /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
                     profiles GET      /profiles(.:format)                                    profiles#index
                              POST     /profiles(.:format)                                    profiles#create
                  new_profile GET      /profiles/new(.:format)                                profiles#new
-                edit_profile GET      /profiles/:id/edit(.:format)                           profiles#edit
                      profile GET      /profiles/:id(.:format)                                profiles#show
                              PATCH    /profiles/:id(.:format)                                profiles#update
                              PUT      /profiles/:id(.:format)                                profiles#update
-                             DELETE   /profiles/:id(.:format)                                profiles#destroy
                              PUT      /profiles/:id/apply-partner-code(.:format)             profiles#apply_partner_code
     create_completed_profile POST     /profiles/create-completed-profile(.:format)           profiles#create_completed_profile
             new_user_session GET      /users/sign_in(.:format)                               sessions#new
@@ -76,6 +77,14 @@ recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.
                              DELETE   /tasks/:id(.:format)                                   tasks#destroy
                    analytics GET      /analytics(.:format)                                   analytics#show
                  delayed_job GET|POST /delayed_job(.:format)                                 DelayedJobWeb
+                        post POST     /posts/:id(.:format)                                   posts#show
+                       posts GET      /posts(.:format)                                       posts#index
+                             POST     /posts(.:format)                                       posts#create
+                    new_post GET      /posts/new(.:format)                                   posts#new
+                   edit_post GET      /posts/:id/edit(.:format)                              posts#edit
+                             PATCH    /posts/:id(.:format)                                   posts#update
+                             PUT      /posts/:id(.:format)                                   posts#update
+                             DELETE   /posts/:id(.:format)                                   posts#destroy
                     mailkick          /mailkick                                              Mailkick::Engine
 
 Routes for Mailkick::Engine:

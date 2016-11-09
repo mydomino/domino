@@ -31,5 +31,8 @@ module Domino
     config.action_mailer.asset_host = 'https://s3-us-west-2.amazonaws.com/mydomino'
     #config.action_mailer.asset_host = 'http://localhost:3000'
     # config.action_mailer.asset_host = 'http://mydomino.com'
+
+    # add the path for auto loading custom classes/libraries
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
