@@ -3,6 +3,7 @@ require 'dh_htp_wp_rest_api'   #find this in lib folder
 class PostsController < ApplicationController
   #before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_dream_host_instance
+  before_filter :verify_post_access
 
   HOST_IP = 'mydomino.dreamhosters.com'
 
@@ -93,5 +94,17 @@ class PostsController < ApplicationController
 
     def set_dream_host_instance
       @dh = DHHtp.new(HOST_IP)
+    end
+
+    def verify_post_access
+
+      post_id = params[:id]
+      Rails.logger.debug "In verify_post_access(). Post id is #{post_id}\n"
+
+      if !post_id.nil? && post_id.to_i.even?
+        # paywall is up!!
+        redirect_to root_url, alert: 'You need to sign up to be a member to read this post.'
+        
+      end
     end
 end

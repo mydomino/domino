@@ -77,14 +77,14 @@ recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.
                              DELETE   /tasks/:id(.:format)                                   tasks#destroy
                    analytics GET      /analytics(.:format)                                   analytics#show
                  delayed_job GET|POST /delayed_job(.:format)                                 DelayedJobWeb
-                        post POST     /posts/:id(.:format)                                   posts#show
-                       posts GET      /posts(.:format)                                       posts#index
-                             POST     /posts(.:format)                                       posts#create
-                    new_post GET      /posts/new(.:format)                                   posts#new
-                   edit_post GET      /posts/:id/edit(.:format)                              posts#edit
-                             PATCH    /posts/:id(.:format)                                   posts#update
-                             PUT      /posts/:id(.:format)                                   posts#update
-                             DELETE   /posts/:id(.:format)                                   posts#destroy
+                       posts GET      /blog2(.:format)                                       posts#index
+                             POST     /blog2(.:format)                                       posts#create
+                    new_post GET      /blog2/new(.:format)                                   posts#new
+                   edit_post GET      /blog2/:id/edit(.:format)                              posts#edit
+                        post GET      /blog2/:id(.:format)                                   posts#show
+                             PATCH    /blog2/:id(.:format)                                   posts#update
+                             PUT      /blog2/:id(.:format)                                   posts#update
+                             DELETE   /blog2/:id(.:format)                                   posts#destroy
                     mailkick          /mailkick                                              Mailkick::Engine
 
 Routes for Mailkick::Engine:

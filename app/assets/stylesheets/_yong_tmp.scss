@@ -1,7 +1,18 @@
 div.img {
+
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+div.img_float {
     margin: 5px;
     border: 2px solid #ccc;
-    border-radius: 10px;
+    border-radius: 5px;
     float: left;
     width: 280px;
 }
