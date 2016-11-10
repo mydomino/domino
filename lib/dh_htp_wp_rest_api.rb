@@ -87,7 +87,12 @@ class DHHtp
       Rails.logger.info "\n\n======================================"
       Rails.logger.info "POST title: #{i['title']['rendered']}"
       Rails.logger.info "POST ID: #{i['id']}"
-      Rails.logger.info "POST date: #{i['date']}"
+
+      # format date 
+      date = DateTime.parse(i['date'])
+      formatted_date = date.strftime('%a %b %d %H:%M:%S %Z %Y')
+      
+      Rails.logger.info "POST date: #{formatted_date}"
       Rails.logger.info "POST slug: #{i['slug']}"
       Rails.logger.info "POST type: #{i['type']}"
       Rails.logger.info "POST link: #{i['link']}"
