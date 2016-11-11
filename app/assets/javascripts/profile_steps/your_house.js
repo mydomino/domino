@@ -2,6 +2,8 @@ window.MyDomino = window.MyDomino || {};
 window.MyDomino.pages = window.MyDomino.pages || {};
 
 window.MyDomino.pages["profile_steps-your_house"] = function(args){ 
+  ga('send', 'event', 'Onboarding', 'Your house', 'Your house form', 0);
+
   /* BEGIN form element JS */
   /* Geocoding */
 

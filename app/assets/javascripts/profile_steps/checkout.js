@@ -2,6 +2,8 @@ window.MyDomino = window.MyDomino || {};
 window.MyDomino.pages = window.MyDomino.pages || {};
 
 window.MyDomino.pages["profile_steps-checkout"] = function(args){
+    ga('send', 'event', 'Onboarding', 'Lead created', 'Lead created', 0);
+    ga('send', 'event', 'Onboarding', 'Membership', 'Membership form', 0);
     $('#btn-apply').on('click', function(){
       var partnerCode = $('#profile_partner_code').val();
       $.ajax({
