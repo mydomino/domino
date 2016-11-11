@@ -41,6 +41,7 @@ gem 'newrelic_rpm'
 gem 'wicked'
 gem 'turbolinks', '~> 5.0.0'
 gem 'turboboost'
+gem 'jquery-slick-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
