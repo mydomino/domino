@@ -39,6 +39,9 @@ window.MyDomino.pages["pages-index"] = function(){
     centerMode: true,
     centerPadding: '20%',
     slidesToShow: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
     responsive: [
       {
         breakpoint: 768,
@@ -59,5 +62,18 @@ window.MyDomino.pages["pages-index"] = function(){
         }
       }
     ]
+  });
+
+  $('.slick-slide').on('click', function(){
+    //get index of current slide and clicked slide
+    var currIndex = $('.slick-current').data('slick-index');
+    var clickIndex = $(this).data('slick-index');
+    if(clickIndex != currIndex){
+      if(clickIndex > currIndex){
+        $('.slick').slick('slickNext');
+      }else{
+        $('.slick').slick('slickPrev');
+      }
+    }
   });
 };
