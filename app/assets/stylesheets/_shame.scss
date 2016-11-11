@@ -1,5 +1,8 @@
 .slick-slide {
+  cursor: pointer;
   height: 100%;
+  outline: none;
+  box-shadow: 0 0 20px #ccc;
 }
 
 #btn-begin-onboard {
