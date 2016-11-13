@@ -7,7 +7,7 @@
     <%= link_to image_tag(i['md_thumbnail']), post_path(i['id']), method: :get %>
     <div class="desc"><%= raw i['title']['rendered'] %></div>
     <div class="exrp"><%= i['excerpt']['rendered'].html_safe %></div>
-    <div class="exrp"><%= format_post_date(i['date']) %></div>
+    <div class="exrp">By <%= i['author_meta']['display_name'] %>,&nbsp;&nbsp;&nbsp; <%= format_post_date(i['date']) %></div>
     
   </div>
 

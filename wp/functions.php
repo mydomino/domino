@@ -87,7 +87,7 @@ function my_post_image_html( $html, $post_id, $post_image_id ) {
 	return $html;
 }
 
-// Yong - Add feature image URl to the post 
+// Yong - Add feature image URl to the post return data
 
 add_action( 'rest_api_init', 'md_insert_thumbnail_url' );
 function md_insert_thumbnail_url() {
@@ -110,4 +110,40 @@ function md_get_thumbnail_url($post){
         return false;   
     }
 }
+
+
+
+// Yong - Add author last and first name to the post return data
+
+add_action('rest_api_init', 'md_register_author_meta_rest_field');
+function md_get_author_meta($object, $field_name, $request) {
+
+    $user_data = get_userdata($object['author']); // get user data from author ID.
+
+    $array_data = (array)($user_data->data); // object to array conversion.
+
+    $array_data['first_name'] = get_user_meta($object['author'], 'first_name', true);
+    $array_data['last_name']  = get_user_meta($object['author'], 'last_name', true);
+
+    // prevent user enumeration.
+    unset($array_data['user_login']);
+    unset($array_data['user_pass']);
+    unset($array_data['user_activation_key']);
+
+    return array_filter($array_data);
+
+}
+
+function md_register_author_meta_rest_field() {
+
+    register_rest_field('post', 'author_meta', [
+        'get_callback'    => 'md_get_author_meta',
+        'update_callback' => 'null',
+        'schema'          => 'null',
+    ]);
+
+}
+
 ?>
+
+

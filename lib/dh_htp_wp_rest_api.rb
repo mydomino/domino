@@ -87,11 +87,13 @@ class DHHtp
       Rails.logger.info "\n\n\n======================================"
       Rails.logger.info "POST title: #{i['title']['rendered']}\n"
       Rails.logger.info "POST ID: #{i['id']}\n"
+      Rails.logger.info "Author Name: #{i['author_meta']['display_name']}\n"
 
 
       # format date 
       date = DateTime.parse(i['date'])
-      formatted_date = date.strftime('%a %b %d %H:%M:%S %Z %Y')
+      formatted_date = date.strftime('%b %d, %Y')
+      
       
       Rails.logger.info "POST date: #{formatted_date}\n"
       Rails.logger.info "POST slug: #{i['slug']}\n"

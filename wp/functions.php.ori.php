@@ -1,3 +1,4 @@
+
 <?php
 /**
  * The template includes necessary functions for theme.
@@ -82,9 +83,32 @@ add_filter( 'post_thumbnail_html', 'my_post_image_html', 10, 3 );
 
 function my_post_image_html( $html, $post_id, $post_image_id ) {
 
-	$html = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a>';
+  $html = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a>';
 
-	return $html;
+  return $html;
 }
 
+// Yong - Add feature image URl to the post 
+
+add_action( 'rest_api_init', 'md_insert_thumbnail_url' );
+function md_insert_thumbnail_url() {
+    register_rest_field( 'post',
+        'md_thumbnail',
+        array(
+            'get_callback'    => 'md_get_thumbnail_url',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+function md_get_thumbnail_url($post){
+    if(has_post_thumbnail($post['id'])){
+        $imgArray = wp_get_attachment_image_src( get_post_thumbnail_id( $post['id'] ), 'full' );
+        $imgURL = $imgArray[0];
+        return $imgURL;
+    }else{
+        return false;   
+    }
+}
 ?>

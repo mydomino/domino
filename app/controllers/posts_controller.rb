@@ -46,6 +46,7 @@ class PostsController < ApplicationController
     @title = post['title']['rendered']
     @excerpt = post['excerpt']['rendered']
     @post_date = post['date']
+    @author = post['author_meta']['display_name']
 
 
     respond_to do |format|
