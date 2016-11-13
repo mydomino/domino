@@ -3,7 +3,7 @@ require 'dh_htp_wp_rest_api'   #find this in lib folder
 class PostsController < ApplicationController
   #before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_dream_host_instance
-  before_filter :verify_post_access
+  #before_filter :verify_post_access
 
   HOST_IP = 'mydomino.dreamhosters.com'
 
@@ -13,12 +13,12 @@ class PostsController < ApplicationController
     begin
 
       #query_param = {filter: {orderby: 'rand', posts_per_page: 8}}
-      query_param = {filter: {posts_per_page: 6}}
+      query_param = {page: 1, per_page: 20}
       
       response = @dh.get_posts(query_param)
   
       #Rails.logger.info "\nResponse is: #{response}\n"
-      #dh.display_posts(response)
+      @dh.display_posts(response)
 
       # convert JSON string to hash
       @posts = JSON.parse(response.body)
@@ -43,7 +43,21 @@ class PostsController < ApplicationController
     # convert JSON string to hash
     post = JSON.parse(response.body)
     @post_content = post['content']['rendered']
+    @title = post['title']['rendered']
+    @excerpt = post['excerpt']['rendered']
+    @post_date = post['date']
 
+
+    respond_to do |format|
+
+      if verify_post_access
+        # user sign in and is authorize to see the post
+        format.html { render template: "posts/show" }
+      else
+        format.html { render template: "posts/show-restrict" }
+      end
+        
+    end
   end
 
   # GET /posts/new
@@ -101,10 +115,12 @@ class PostsController < ApplicationController
       post_id = params[:id]
       Rails.logger.debug "In verify_post_access(). Post id is #{post_id}\n"
 
-      if !post_id.nil? && post_id.to_i.even?
-        # paywall is up!!
-        redirect_to root_url, alert: 'You need to sign up to be a member to read this post.'
-        
-      end
+      return user_signed_in?
+
+     #if !post_id.nil? && post_id.to_i.even?
+     #  # paywall is up!!
+     #  redirect_to root_url, alert: 'You need to sign up to be a member to read this post.'
+     #  
+     #end
     end
 end

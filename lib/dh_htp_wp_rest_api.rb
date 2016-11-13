@@ -2,7 +2,7 @@ require 'httparty'
 require 'json'
 require 'crack'
 require 'date'
-
+require 'nokogiri'
 
 class DHHtp
 	include HTTParty
@@ -77,27 +77,37 @@ class DHHtp
 
   def display_posts(response)
 
-     # convert JSON string to hash
+    # convert JSON string to hash
     posts = JSON.parse(response.body)
 
     Rails.logger.info "Total #{posts.size} posts:"
 
     posts.each do |i|
 
-      Rails.logger.info "\n\n======================================"
-      Rails.logger.info "POST title: #{i['title']['rendered']}"
-      Rails.logger.info "POST ID: #{i['id']}"
+      Rails.logger.info "\n\n\n======================================"
+      Rails.logger.info "POST title: #{i['title']['rendered']}\n"
+      Rails.logger.info "POST ID: #{i['id']}\n"
+
 
       # format date 
       date = DateTime.parse(i['date'])
       formatted_date = date.strftime('%a %b %d %H:%M:%S %Z %Y')
       
-      Rails.logger.info "POST date: #{formatted_date}"
-      Rails.logger.info "POST slug: #{i['slug']}"
-      Rails.logger.info "POST type: #{i['type']}"
-      Rails.logger.info "POST link: #{i['link']}"
-      Rails.logger.info "POST excerpt: #{i['excerpt']['rendered']}"    
-      Rails.logger.info "POST content: #{i['content']['rendered']}"
+      Rails.logger.info "POST date: #{formatted_date}\n"
+      Rails.logger.info "POST slug: #{i['slug']}\n"
+      Rails.logger.info "POST type: #{i['type']}\n"
+      Rails.logger.info "POST link: #{i['link']}\n"
+      Rails.logger.info "POST feature image URL: #{i['md_thumbnail']}\n"
+      Rails.logger.info "POST excerpt: #{i['excerpt']['rendered']}\n"    
+      Rails.logger.info "POST content: #{i['content']['rendered']}\n"
+
+      #get the post image from its content
+      html_doc = Nokogiri::HTML(i['content']['rendered'])
+      #image_urls = html_doc.search('//img/@src').to_a
+      image_urls = html_doc.xpath("//img/@src").collect {|item| item.value.strip}
+
+
+      Rails.logger.info "Content Image URLs: #{image_urls.inspect}\n"
       
     end
 

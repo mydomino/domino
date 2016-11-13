@@ -448,6 +448,7 @@ DEPENDENCIES
   minitest-rails-capybara
   minitest-reporters
   newrelic_rpm
+  nokogiri (~> 1.6, >= 1.6.8)
   normalize-rails
   nprogress-rails
   pg
