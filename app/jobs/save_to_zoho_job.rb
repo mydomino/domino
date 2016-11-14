@@ -20,7 +20,7 @@ class SaveToZohoJob < ActiveJob::Base
           "<FL val='Campaign'>#{lead.campaign}</FL>"\
           "<FL val='Browser'>#{lead.browser}</FL>"\
           "<FL val='Interests'>#{@interests.join(';')};</FL>"\
-          "<FL val='Street'><![CDATA[#{CGI.escape(lead.address_line_1)}]]></FL>"\
+          "<FL val='Street'><![CDATA[#{CGI.escape(lead.address_line_1) if !lead.address_line_1.nil?}]]></FL>"\
           "<FL val='City'>#{lead.city}</FL>"\
           "<FL val='State'>#{lead.state}</FL>"\
           "<FL val='Zip Code'>#{lead.zip_code}</FL>"\
