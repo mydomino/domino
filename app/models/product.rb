@@ -13,11 +13,16 @@ class Product < ActiveRecord::Base
   def update_amazon_price
     #retries in case of 503 due to server overloading
     response = with_retries(:max_tries => 5, :max_sleep_seconds => 2.0 ){ query_amazon_api product_id }
-    # response = query_amazon_api product_id
+
+    #amazon api allows only 1 api request/sec
+    sleep 1
     parsed_response = Nokogiri::XML(response.body)
-    # self.price = parsed_response.at_css("Price FormattedPrice").content
-    # Using ternary operation in case product doesn't have a price listing in expected place
-    self.price = !parsed_response.at_css('Price FormattedPrice').nil? ? parsed_response.at_css('Price FormattedPrice').text : parsed_response.at_css('FormattedPrice').text
+    begin
+      self.price = !parsed_response.at_css('Price FormattedPrice').nil? ? parsed_response.at_css('Price FormattedPrice').text : parsed_response.at_css('FormattedPrice').text
+    rescue Exception
+      #todo 
+      #if this exception is encountered, the product is currently unavailable
+    end
     self.save
   end
 
@@ -35,11 +40,13 @@ class Product < ActiveRecord::Base
 
   def query_amazon_api id
     request = Vacuum.new
+    request.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+    request.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
     request.associate_tag = 'domino09d-20'
     response = request.item_lookup(
       query: {
         'ItemId' => id,
-        'ResponseGroup' => 'Images,Offers,Small'
+        'ResponseGroup' => 'Large,Offers'
       }
     )
     return response
