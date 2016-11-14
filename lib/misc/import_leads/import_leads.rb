@@ -68,7 +68,7 @@ leads.each_with_index do |row, index|
           onboard_step: 4
         )
 
-  if lead.valid?
+  # if lead.valid?
     #if valid push profile instance into profiles array
     #meta data is used for info that is not required on Profile record,
     #but is required in the Zoho Lead Record
@@ -79,11 +79,11 @@ leads.each_with_index do |row, index|
                     referred_by: row['Referred By']
                   }
                 }
-  else
-    puts "Aborting import; Profile record invalid at row #{index}"
-    puts "Error: #{lead.errors.full_messages}"
-    exit
-  end
+  # else
+  #   puts "Aborting import; Profile record invalid at row #{index}"
+  #   puts "Error: #{lead.errors.full_messages}"
+  #   exit
+  # end
 end
 
 #Profile records have been validated, 
@@ -92,10 +92,11 @@ end
 puts "Profile records have passed validation."
 puts "Saving Profile records. Creating Dashboards. Pushing Records to zoho...."
 
-profiles.each do |p| 
-  p[:profile].save
-  Dashboard.create(lead_name: "#{p[:profile].first_name} #{p[:profile].last_name}", lead_email: p[:profile].email)
-
+profiles.each do |p|
+  if p[:profile].valid?
+    p[:profile].save
+    Dashboard.create(lead_name: "#{p[:profile].first_name} #{p[:profile].last_name}", lead_email: p[:profile].email)
+  end
   #Zoho InsertRecord
   puts "Processing zoho record for: #{p[:profile].email}"
 
