@@ -12,7 +12,7 @@ def assign_concierge(lead_owner)
   end
 end
 
-#headers for Fresno import 11.07.2016:
+#headers for SF Green Festival import 11.14.2016:
 
 # Column                    Profile Record        Zoho InsertRecord
 # Concierge Lead Owner      n/a                   yes
