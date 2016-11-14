@@ -118,7 +118,7 @@ profiles.each do |p|
         "<FL val='Own or Rent?'>#{p[:profile].housing}</FL>"\
         "<FL val='Avg Electric Bill'>#{p[:meta_data][:avg_electric_bill]}</FL>"\
         "<FL val='Referred By'>#{p[:meta_data][:referred_by]}</FL>"\
-        "<FL val='Campaign'>Fresno Fall Home Improvement</FL>"\
+        "<FL val='Campaign'>#{p[:profile].campaign}</FL>"\
         "<FL val='Partner Code'>#{p[:profile].partner_code.code}</FL>"\
         "<FL val='Partner Code Name'>#{p[:profile].partner_code.partner_name}</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
