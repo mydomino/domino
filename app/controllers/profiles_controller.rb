@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:update, :apply_partner_code, :resend_welcome_email]
+  before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
   layout 'concierge', only: :new
   
   def new
@@ -39,6 +39,8 @@ class ProfilesController < ApplicationController
     #create new profile
     set_tracking_variables
     @profile = Profile.create(profile_params)
+    session[:profile] = {id: @profile.id}
+
     # render_response and return
     redirect_to profile_step_path(@profile, Profile.form_steps.first)
   end

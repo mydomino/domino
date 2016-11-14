@@ -12,7 +12,7 @@ window.MyDomino.pages["profile_steps-checkout"] = function(args){
         data: { '_method':'PUT', 'profile': {'partner_code': partnerCode }},
         dataType: "script" // you want a difference between normal and ajax-calls, and json is standard
       }).success(function(json){
-          console.log("success", json);
+          // console.log("success", json);
       });
     });
 

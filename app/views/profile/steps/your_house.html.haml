@@ -82,8 +82,4 @@
               =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'living_situation', :vertical_offset => '90px'}
 
 :javascript
-  var args = {
-    livingSituation: {
-      avgElectricalBill: #{@profile.avg_electrical_bill}
-    }
-  }
+    var args = {yourHouse: {avgElectricalBill: #{@profile.avg_electrical_bill}}};
