@@ -1,5 +1,5 @@
 .clearfix.pb4
-  .page-header-image.flex.items-center.bg-blue
+  .page-header-image.bg-cover.bg-center.flex.items-center{style: "background-image:url('assets/hands-together')"}
     .mx-auto
       .h0.light.center.white Our Partners
       .h3.center.white.max-width-2.mt2.line-height-2 We are proud to be providing our clean energy advisory services to these organizations.
@@ -58,5 +58,18 @@
           = image_tag 'partner_logos/Anza'
 
       //WIP no logos
-      .mx-auto.center.self-center{style:'width:192px;height:192px'}
-        =link_to 'Vote Solar', "http://blog.mydomino.com/solar-101", target: '_blank', class:'h3 bold center gray-80 align-middle text-decoration-none'
+    .flex.flex-wrap.sm-row.flex-column.max-width-4.mx-auto
+      .mx-auto.center{style:"width:192px;height:192px"}
+        =link_to 'Vote Solar', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold gray-80 text-decoration-none' , style:"margin:50% auto"
+      .mx-auto.center{style:'width:192px;height:192px'}
+        =link_to 'Re-Volv', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold gray-80 text-decoration-none' , style:"margin:50% auto"
+      .mx-auto.center{style:'width:192px;height:192px'}
+        =link_to 'Amazon Watch', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold align-middle gray-80 text-decoration-none' , style:"margin:50% auto"
+      .mx-auto.center{style:'width:192px;height:192px'}
+        =link_to 'Pershing Square Renew', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold center gray-80 text-decoration-none' , style:"margin:50% auto"
+      .mx-auto.center{style:'width:192px;height:192px'}
+        =link_to 'Channel Islands Restoration', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold center gray-80 text-decoration-none' , style:"margin:50% auto"
+      .mx-auto.lg-mx2.center{style:'width:192px;height:192px'}
+        =link_to 'Algalita Marine Research & Education', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold center gray-80 text-decoration-none px1' , style:"margin:50% auto"
+      .mx-auto.lg-mx2.center{style:'width:192px;height:192px'}
+        =link_to 'Do Good Bus', "http://blog.mydomino.com/solar-101", target: '_blank', class:'block h4 bold center gray-80 text-decoration-none' , style:"margin:50% auto"
