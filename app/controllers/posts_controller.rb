@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_dream_host_instance
   #before_filter :verify_post_access
 
-  HOST_IP = 'mydomino.dreamhosters.com'
+  #HOST_IP = 'mydomino.dreamhosters.com'
 
   # GET /posts
   def index
@@ -13,15 +13,17 @@ class PostsController < ApplicationController
     begin
 
       #query_param = {filter: {orderby: 'rand', posts_per_page: 8}}
-      query_param = {page: 1, per_page: 20}
+      query_param = {page: 1, per_page: 8}
       
       response = @dh.get_posts(query_param)
   
       #Rails.logger.info "\nResponse is: #{response}\n"
-      @dh.display_posts(response)
+      #@dh.display_posts(response)
 
       # convert JSON string to hash
       @posts = JSON.parse(response.body)
+
+      @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
       
   
     rescue => e
@@ -108,7 +110,7 @@ class PostsController < ApplicationController
     end
 
     def set_dream_host_instance
-      @dh = DHHtp.new(HOST_IP)
+      @dh = DHHtp.new(DHHtp::HOST_IP)
     end
 
     def verify_post_access

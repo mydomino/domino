@@ -8,6 +8,7 @@ class DHHtp
 	include HTTParty
 
 	#debug_output STDOUT
+  HOST_IP = 'mydomino.dreamhosters.com'
 
 
 	def initialize(host_ip)
@@ -114,6 +115,24 @@ class DHHtp
     end
 
   end
+
+  
+  def get_pagination_params(resp_headers)
+
+
+      # retrieve the params from response headers
+      #resp_headers = response.headers
+      a = resp_headers['x-wp-total']
+      b = resp_headers['x-wp-totalpages']
+
+      # return the first element in the array for the params
+      puts "Total posts: #{a}"
+      puts "Total pages: #{b}"
+
+      return ([a, b])
+      
+  end
+
 
 
 
