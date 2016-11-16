@@ -102,7 +102,7 @@ profiles.each do |p|
 
   uri = "https://crm.zoho.com/crm/private/xml/Leads/insertRecords?"\
         "newFormat=1"\
-        "&authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
+        "&authtoken=#{ENV['ZOHO_AUTH_TOKEN']}"\
         "&scope=crmapi"\
         "&xmlData=<Leads><row no='1'>"\
         "<FL val='Lead Owner'>#{p[:meta_data][:concierge]}</FL>"\
