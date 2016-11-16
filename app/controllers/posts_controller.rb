@@ -1,4 +1,5 @@
 require 'dh_htp_wp_rest_api'   #find this in lib folder
+require 'wp_relation' 
 
 class PostsController < ApplicationController
   #before_action :set_post, only: [:show, :edit, :update, :destroy]
@@ -13,7 +14,7 @@ class PostsController < ApplicationController
     begin
 
       #query_param = {filter: {orderby: 'rand', posts_per_page: 8}}
-      query_param = {page: 1, per_page: 8}
+      query_param = {page: params[:page] || 1, per_page: params[:per_page] || 8}
       
       response = @dh.get_posts(query_param)
   
@@ -24,6 +25,9 @@ class PostsController < ApplicationController
       @posts = JSON.parse(response.body)
 
       @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
+
+
+      #@posts = WPRelation.new(params[:page] || 1, params[:per_page] || 8)
       
   
     rescue => e

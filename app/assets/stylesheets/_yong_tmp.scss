@@ -1,4 +1,4 @@
-div.img {
+div.img_not_use {
 
     border: 0px solid #ccc;
     border-radius: 5px;
@@ -9,16 +9,21 @@ div.img {
     margin-bottom: 30px;
 }
 
-div.img_float {
+div.img {
     margin: 5px;
-    border: 2px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 5px;
     float: left;
     width: 280px;
+    height: 550px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 div.img:hover {
-    border: 2px solid #777;
+    border: 1px solid #777;
 }
 
 div.img img {
@@ -33,9 +38,19 @@ div.desc {
 }
 
 div.exrp {
-	  @extend div.desc;
+	@extend div.desc;
     font-style: italic;
 }
+
+
+div.srch {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+
 
 
 .clear {
