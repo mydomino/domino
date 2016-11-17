@@ -11,10 +11,13 @@ class PostsController < ApplicationController
   # GET /posts
   def index
 
+    @total_posts, @total_pages = 0
+    @posts = []
+
     begin
 
       #query_param = {filter: {orderby: 'rand', posts_per_page: 8}}
-      query_param = {page: params[:page] || 1, per_page: params[:per_page] || 8}
+      query_param = {page: params[:page] || 1, per_page: params[:per_page] || 10}
       
       response = @dh.get_posts(query_param)
   

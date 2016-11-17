@@ -30,7 +30,7 @@ gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
-gem 'rack-timeout'
+#gem 'rack-timeout'
 # gem "rack-timeout-puma"
 gem 'retries'
 gem 'pundit'
