@@ -76,7 +76,7 @@
               = link_to 'Read more', 'http://blog.mydomino.com/how-a-family-switched-to-clean-energy/', class: 'text-decoration-none gray-80 bold'
       .col.col-12.center
         %h3
-          = link_to 'See more articles >', 'http://blog.mydomino.com', class: 'blue text-decoration-none'
+          = link_to 'See more articles >', 'http://blog.mydomino.com', class: 'h2 blue text-decoration-none'
 
 .bg-white
   .clearfix.max-width-4.mx-auto.pt4.px2
@@ -131,18 +131,19 @@
 
 .bg-white.pb3
   .clearfix.max-width-4.mx-auto.py4.center
-    .h1.light.black.center.line-height-2 Our community partners
+    .h1.light.black.center.line-height-2 Our partners
     .mt2
       .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
         = link_to "http://www.everybodysolar.org/", target: '_blank' do
-          = image_tag 'everybody-solar', width: '200px'
+          = image_tag 'partner_logos/everybody-solar'
       .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
         = link_to "http://www.howtoletgomovie.com/", target: '_blank' do
-          = image_tag 'how-to-let-go', width: '200px'
+          = image_tag 'partner_logos/how-to-let-go'
       .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
-        = link_to "http://snowleopardconservancy.org/", target: "_blank" do
-          = image_tag 'snow-leopard-conservancy', width: '200px'
+        = link_to "http://thesolutionsproject.org", target: "_blank" do
+          = image_tag 'partner_logos/the-solutions-project'
       .sm-col.sm-col-6.md-col-3.mt4.sm-mt0
         = link_to "http://www.timetochoose.com/", target: "_blank" do
-          = image_tag 'time-to-choose', width: '200px'
-
+          = image_tag 'time-to-choose', class:"pt4"
+    .col.col-12.center.mt4.sm-mt3
+      =link_to "See more partners >", partners_path, class: " h2 blue text-decoration-none"
