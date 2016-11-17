@@ -15,10 +15,14 @@
 //= require jquery-ui/slider
 //= require nprogress
 //= require nprogress-ajax
+//= require turbolinks
+//= require turboboost/turboboost
 //= require jquery.mask.min.js
 //= require modal
+//= require clipboard
 //= require init
 //= require mydomino
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles
+//= require_tree ./profile_steps

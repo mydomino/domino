@@ -10,7 +10,7 @@ class SaveToZohoJob < ActiveJob::Base
     end
     uri = "https://crm.zoho.com/crm/private/xml/Leads/insertRecords?"\
           "newFormat=1"\
-          "&authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
+          "&authtoken=#{ENV['ZOHO_AUTH_TOKEN']}"\
           "&wfTrigger=true"\
           "&scope=crmapi"\
           "&xmlData=<Leads><row no='1'>"\
@@ -20,7 +20,7 @@ class SaveToZohoJob < ActiveJob::Base
           "<FL val='Campaign'>#{lead.campaign}</FL>"\
           "<FL val='Browser'>#{lead.browser}</FL>"\
           "<FL val='Interests'>#{@interests.join(';')};</FL>"\
-          "<FL val='Street'><![CDATA[#{CGI.escape(lead.address_line_1)}]]></FL>"\
+          "<FL val='Street'><![CDATA[#{CGI.escape(lead.address_line_1) if !lead.address_line_1.nil?}]]></FL>"\
           "<FL val='City'>#{lead.city}</FL>"\
           "<FL val='State'>#{lead.state}</FL>"\
           "<FL val='Zip Code'>#{lead.zip_code}</FL>"\

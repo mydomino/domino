@@ -7,17 +7,25 @@
     %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"}
     = javascript_include_tag 'application'
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/placeholders/4.0.1/placeholders.min.js"
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDyxW8lze0iyV1G0oYYC_7SRLI4tsiGGBY&libraries=places"
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"
+    = javascript_include_tag "//f.vimeocdn.com/js/froogaloop2.min.js"
 
     = csrf_meta_tags
     %link{rel: "canonical", href: "https://mydomino.com"}
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
+
   %body{id: page_id, class: page_class}
-    #wrapper
+    .wrapper
       #header
         = render 'layouts/partials/navbar'
       #content
         = yield
+      .push
+
+    .footer
       = render 'layouts/partials/footer'
     :javascript
-      init();
+      var args = (typeof args === 'undefined') ? 0 : args;
+      init(args);

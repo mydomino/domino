@@ -10,7 +10,7 @@
       %p.mt0.white.relative Watch the video
 
   .clearfix.mx-auto.max-width-2.px2
-    =simple_form_for @profile, remote: true, method: @response[:method] do |form|
+    =simple_form_for @profile, turboboost: true, method: @response[:method] do |form|
       .clearfix.py2
         .col.col-6
           =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
@@ -25,7 +25,7 @@
           #email-error-msg.display-none.red.m0
             This email is invalid.
         .col.col-6.pl1.mt1
-          =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-md btn-primary btn-primary--hover",style: "height:42px;line-height: 0.6rem;width:100%;"
+          =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-md btn-primary btn-primary--hover"
 
 -if @browser.device.mobile?
   #name-and-email.mobile-form.pt4.relative.bg-cover
@@ -52,7 +52,7 @@
 
       .absolute.bottom-0.left-0.right-0.clearfix.mx-auto.px2.z2.py1{style: 'background-color: rgba(0,0,0,0.3)'}
         .max-width-4.mx-auto
-          =simple_form_for @profile, remote: true, method: @response[:method] do |form|
+          =simple_form_for @profile, method: @response[:method] do |form|
             .clearfix
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
@@ -109,6 +109,7 @@
       $(this).submit(function() {
         return false;
       });
+      ga('send', 'event', 'Onboarding', 'Get started', 'Onboarding started', 0);
       return true;
     });
   });

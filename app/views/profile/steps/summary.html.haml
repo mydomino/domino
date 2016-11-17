@@ -1,0 +1,14 @@
+#summary{class: "#{'mobile-form' if @browser.device.mobile?}" }
+  .max-width-3.mx-auto.p4.rounded.bg-gray-05.center
+    %h1.gray-80.line-height-2
+      = "Thanks for signing up, #{@profile.first_name.capitalize}!"
+    %h4.gray-60.line-height-2
+      One of our energy savings concierges will contact you shortly.
+    =link_to root_path do
+      .btn.btn-sm.btn-secondary.btn-secondary--hover Return to homepage
+  
+  .center.my4
+    %p.mb0 Having trouble?
+    =link_to "Resend email", "/resend-welcome-email/#{@profile.id}", class: 'underline gray-80', id: 'lnk-send-email'
+    %span.gray-80 or 
+    =link_to "Contact us", "mailto: hello@mydomino.com", class: 'underline gray-80'

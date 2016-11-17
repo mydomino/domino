@@ -1,12 +1,12 @@
 - homepage = current_page?(root_path)
 - nav_element_color = "#{homepage ? 'white' : 'gray-80'}"
 
-%nav#navbar.col-12.z3.top-0.absolute
+%nav#navbar.col-12.z3.top-0{class: "#{'absolute' if homepage}"}
   .max-width-4.mx-auto
     .clearfix
       .col.col-4.p2
         = link_to root_path, id: "navbar-brand" do
-          = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo'
+          = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
       .md-hide.lg-hide.px2.right
         .fa.fa-bars.fa-2x.pointer.navbar-element{class: "#{nav_element_color}"}
@@ -39,6 +39,7 @@
                 = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
             %li
               = link_to 'Call us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
+
 :javascript
   $(document).ready(function(){
     $('nav .fa-bars').click(function(){
