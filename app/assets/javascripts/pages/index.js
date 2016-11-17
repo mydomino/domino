@@ -43,5 +43,13 @@ window.MyDomino.pages["pages-index"] = function(){
     autoplay: true,
     autoplaySpeed: 4000,
     focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          centerPadding: '5%'
+        }
+      }
+    ]
   });
 };
