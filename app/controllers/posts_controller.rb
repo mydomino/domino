@@ -41,33 +41,42 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+
+    @post_content, @title, @excerpt, @post_date, @author = ""
  
-    post_id = params[:id]
-    Rails.logger.debug "Post id is #{post_id}\n"
+    begin
 
-    #@post_content = params[:post_content]
-    query_param = {}
-    response = @dh.get_post_by_id(post_id, query_param)
-
-    # convert JSON string to hash
-    post = JSON.parse(response.body)
-    @post_content = post['content']['rendered']
-    @title = post['title']['rendered']
-    @excerpt = post['excerpt']['rendered']
-    @post_date = post['date']
-    @author = post['author_meta']['display_name']
-
-
-    respond_to do |format|
-
-      if verify_post_access
-        # user sign in and is authorize to see the post
-        format.html { render template: "posts/show" }
-      else
-        format.html { render template: "posts/show-restrict" }
+      post_id = params[:id]
+      #Rails.logger.debug "Post id is #{post_id}\n"
+  
+      #@post_content = params[:post_content]
+      query_param = {}
+      response = @dh.get_post_by_id(post_id, query_param)
+  
+      # convert JSON string to hash
+      post = JSON.parse(response.body)
+      @post_content = post['content']['rendered']
+      @title = post['title']['rendered']
+      @excerpt = post['excerpt']['rendered']
+      @post_date = post['date']
+      @author = post['author_meta']['display_name']
+  
+  
+      respond_to do |format|
+  
+        if verify_post_access
+          # user sign in and is authorize to see the post
+          format.html { render template: "posts/show" }
+        else
+          format.html { render template: "posts/show-restrict" }
+        end
+          
       end
-        
+
+    rescue => e
+      Rails.logger.info "\nError! #{e}\n"        
     end
+
   end
 
   # GET /posts/new

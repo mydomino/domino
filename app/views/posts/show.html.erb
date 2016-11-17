@@ -2,7 +2,7 @@
 <div class="justify">
   
   <%= render "post_intro" %>
-  <div class="exrp"><%= @post_content.html_safe %></div>  
+  <div class="exrp"><%= @post_content.try(:html_safe) %></div>  
   
 </div>
 
