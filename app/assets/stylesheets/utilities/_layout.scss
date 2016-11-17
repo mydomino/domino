@@ -51,11 +51,11 @@ $width-4: 64rem !default;
 // Width
 @for $i from 1 through $layout-count {
   .x#{$i} {width: #{$i * 1}rem;} //16-400
-    .max-width-#{$i} {max-width: #{$i * 8}rem;} //128-1600
-    .min-width-#{$i} {min-width: #{$i * 1}rem;}
+    .max-x#{$i} {max-width: #{$i * 8}rem;} //128-1600
+    .min-x{$i} {min-width: #{$i * 1}rem;}
   .y#{$i} {height: #{$i * .5}rem;}//128-1600
-    .max-height-#{$i} {max-height: #{$i * .5}rem;}
-    .min-height-#{$i} {min-height: #{$i * .5}rem;}
+    .max-y#{$i} {max-height: #{$i * .5}rem;}
+    .min-y#{$i} {min-height: #{$i * .5}rem;}
 }
 
 .max-width-1 { max-width: $width-1 }
