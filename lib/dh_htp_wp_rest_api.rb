@@ -10,6 +10,9 @@ class DHHtp
 	#debug_output STDOUT
   HOST_IP = 'mydomino.dreamhosters.com'
 
+  # Note: this value is from dreamhosts WP database for category. This value need to be updated if the WP databse is changed.
+  MEMBER_ONLY_CATEGORY = 699   
+
 
 	def initialize(host_ip)
 		@host_ip = host_ip
@@ -132,6 +135,40 @@ class DHHtp
       return ([a, b])
       
   end
+
+
+
+  def get_categoriess(query_options)
+
+    puts "Getting categories from Dreamhost with WP REST API V2...\n"
+
+    # set the base URL 
+    self.class.base_uri(@host_ip)
+
+    paswd = ENV['egauge_password']
+    puts "paswd is: #{paswd}"
+
+    # set digest authentication
+    self.class.digest_auth('owner', paswd)
+
+    #url = "http://#{@host_ip}/cgi-bin/egauge?tot&inst&teamstat&v1"
+    
+    puts "\nQuery options is: #{query_options}"
+
+    
+    response = self.class.get("/wp-json/wp/v2/categories", query: query_options)
+    #response = self.class.get(url)
+    puts "\nParams sent to URL is: #{response.request.last_uri.to_s}"
+
+    if response.success?
+      response
+    else
+      raise response.response
+    end
+  
+  end
+
+
 
 
 

@@ -1,3 +1,4 @@
+<div class="desc"><h1><%= image_tag(@feature_img) %></h1></div>
 <div class="desc"><h1><%= @title.try(:html_safe) %></h1></div>
 <div class="exrp"><h2><%= @excerpt.try(:html_safe) %></h2></div>
 <% if @author != nil %>

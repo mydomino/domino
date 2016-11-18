@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   #post '/posts/:id', to: 'posts#show', as: 'post'
-  resources :posts, :path => 'blog2'
+  #resources :posts, :path => 'blog2'
+  resources :posts
+  
 
 end

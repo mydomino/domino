@@ -9,6 +9,8 @@ class PostsController < ApplicationController
   #HOST_IP = 'mydomino.dreamhosters.com'
 
   # GET /posts
+  
+
   def index
 
     @total_posts, @total_pages = 0
@@ -48,6 +50,9 @@ class PostsController < ApplicationController
 
       post_id = params[:id]
       #Rails.logger.debug "Post id is #{post_id}\n"
+
+      #categories = params[:cat]
+      #Rails.logger.debug "categories param is #{categories.inspect}\n"
   
       #@post_content = params[:post_content]
       query_param = {}
@@ -60,11 +65,17 @@ class PostsController < ApplicationController
       @excerpt = post['excerpt']['rendered']
       @post_date = post['date']
       @author = post['author_meta']['display_name']
+      @categories = post['categories']
+
+      Rails.logger.debug "categories id are #{@categories.inspect}\n"
+
+      # determine whether the post has a feature image. If not, use the default image
+      @feature_img = post['md_thumbnail'] =~ /^http/ ? post['md_thumbnail'] : 'default_feature_img.jpg'
   
   
       respond_to do |format|
   
-        if verify_post_access
+        if verify_post_access(@categories)
           # user sign in and is authorize to see the post
           format.html { render template: "posts/show" }
         else
@@ -129,17 +140,26 @@ class PostsController < ApplicationController
       @dh = DHHtp.new(DHHtp::HOST_IP)
     end
 
-    def verify_post_access
+    # user can access the post only if he/she had signed in
+    def verify_post_access(cat)
 
       post_id = params[:id]
       Rails.logger.debug "In verify_post_access(). Post id is #{post_id}\n"
 
-      return user_signed_in?
+      if article_for_member_only?(cat)
 
-     #if !post_id.nil? && post_id.to_i.even?
-     #  # paywall is up!!
-     #  redirect_to root_url, alert: 'You need to sign up to be a member to read this post.'
-     #  
-     #end
+        return user_signed_in?
+      else
+        # the article is not for member only, so let them see it
+        return true
+      end
+
     end
+
+    def article_for_member_only?(category)
+
+      return category.include?(DHHtp::MEMBER_ONLY_CATEGORY)
+      
+    end
+
 end
