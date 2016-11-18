@@ -83,9 +83,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    concurrent-ruby (1.0.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    concurrent-ruby (1.0.1)
     daemons (1.2.3)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
@@ -264,6 +264,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.4.2)
     rack_session_access (0.1.1)
       builder (>= 2.0.0)
       rack (>= 1.0.0)
@@ -458,6 +459,7 @@ DEPENDENCIES
   puma
   pundit
   rack-mini-profiler
+  rack-timeout
   rack_session_access
   rails (= 4.2.5.1)
   rails_12factor
@@ -482,9 +484,6 @@ DEPENDENCIES
   vacuum
   web-console (~> 2.0)
   wicked
-
-RUBY VERSION
-   ruby 2.3.0p0
 
 BUNDLED WITH
    1.13.1
