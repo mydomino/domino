@@ -41,8 +41,11 @@ class PagesController < ApplicationController
 
   def faq
   end
-  
+
   def example
+  end
+
+  def partners
   end
 
   def newsletter_subscribe

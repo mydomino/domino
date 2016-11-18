@@ -15,7 +15,7 @@ class UpdateZohoJob <  ActiveJob::Base
       
       #update lead interests using uri, for interests are combo boxes in zoho; comboboxes not settable via ruby zoho
       uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?"\
-            "authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
+            "authtoken=#{ENV['ZOHO_AUTH_TOKEN']}"\
             "&scope=crmapi"\
             "&id=#{l.first.leadid}"\
             "&xmlData=<Leads><row no='1'>"\

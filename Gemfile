@@ -21,7 +21,6 @@ gem 'airbrake'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
-# gem 'rack-reverse-proxy', require: 'rack/reverse_proxy'
 gem 'nprogress-rails'
 gem 'vacuum'
 gem 'simple_form'
@@ -30,8 +29,7 @@ gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
-#gem 'rack-timeout'
-# gem "rack-timeout-puma"
+gem 'rack-timeout'
 gem 'retries'
 gem 'pundit'
 gem 'mailkick'
@@ -45,6 +43,7 @@ gem 'turboboost'
 gem 'crack', '~> 0.4.3'
 gem 'httparty', '~> 0.14.0'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'clipboard-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -68,26 +67,20 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
-  # gem 'rspec-rails'
-  # gem 'factory_girl_rails'
-  # gem 'capybara'
-  # gem 'database_cleaner'
 end
 
 group :test do
   gem 'simplecov'
-  # gem 'rspec-activejob'
-  # gem 'teaspoon-jasmine'
   gem 'faker'
   gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
-  # gem 'webmock'
   gem 'minitest-rails', "~> 2.0"
   gem 'minitest-rails-capybara'
   gem 'minitest-reporters'
   gem 'shoulda-context'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 
 group :production do

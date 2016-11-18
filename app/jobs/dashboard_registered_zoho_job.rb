@@ -6,7 +6,7 @@ class DashboardRegisteredZohoJob <  ActiveJob::Base
     l = RubyZoho::Crm::Lead.find_by_email(profile.email)
     if !l.nil?
       uri = "https://crm.zoho.com/crm/private/xml/Leads/updateRecords?"\
-            "authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
+            "authtoken=#{ENV['ZOHO_AUTH_TOKEN']}"\
             "&scope=crmapi"\
             "&id=#{l.first.leadid}"\
             "&xmlData=<Leads><row no='1'>"\
