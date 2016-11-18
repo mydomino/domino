@@ -6,9 +6,22 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  # Let views access current_user
+  helper_method :article_for_member_only?
+
+
+
+  def article_for_member_only?(category)
+
+    return category.include?(DHHtp::MEMBER_ONLY_CATEGORY)
+    
+  end
+
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
+
   
   private
 

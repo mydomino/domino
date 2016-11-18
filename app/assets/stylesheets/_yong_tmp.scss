@@ -50,6 +50,11 @@ div.srch {
     font-style: italic;
 }
 
+div.pc {
+    @extend div.exrp;
+    color:  #0066ff;
+}
+
 
 
 

@@ -156,10 +156,6 @@ class PostsController < ApplicationController
 
     end
 
-    def article_for_member_only?(category)
-
-      return category.include?(DHHtp::MEMBER_ONLY_CATEGORY)
-      
-    end
+    
 
 end

@@ -23,6 +23,11 @@
     
     <!-- %= link_to image_tag(feature_img), post_path(i['id']), method: :get % -->
     <%= link_to image_tag(feature_img), post_path(i['id'], cat: i['categories']), method: :get %>
+
+    <!-- display member only content lock -->
+    <% if article_for_member_only?(i['categories'])%>
+      <div class="pc">premium content</div>
+    <% end %>
     <div class="desc"><%= raw i['title']['rendered'] %></div>
     <div class="exrp"><%= i['excerpt']['rendered'].html_safe %></div>
     <div class="exrp">By <%= i['author_meta']['display_name'] %>,&nbsp;&nbsp;&nbsp; <%= format_post_date(i['date']) %></div>
