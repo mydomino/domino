@@ -1,7 +1,13 @@
-.slick-slide {
-  min-height: 16rem;
-  outline: none;
-  box-shadow: 0 0 40px #B4F7F7;
+.slick-track{
+  display: flex;
+
+  .slick-slide{
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      outline: none;
+      box-shadow: 0 0 40px #B4F7F7;
+  }
 }
 
 #btn-begin-onboard {
