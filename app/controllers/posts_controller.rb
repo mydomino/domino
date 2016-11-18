@@ -125,6 +125,20 @@ class PostsController < ApplicationController
     #redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
 
+
+  def get_post_by_slug
+
+    slug = params[:article]
+    
+    
+  end
+
+
+
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
