@@ -2,6 +2,8 @@ window.MyDomino = window.MyDomino || {};
 window.MyDomino.pages = window.MyDomino.pages || {};
 
 window.MyDomino.pages["profile_steps-checkout"] = function(args){
+    ga('send', 'event', 'Onboarding', 'Lead created', 'Lead created', 0);
+    ga('send', 'event', 'Onboarding', 'Membership', 'Membership form', 0);
     $('#btn-apply').on('click', function(){
       var partnerCode = $('#profile_partner_code').val();
       $.ajax({
@@ -10,11 +12,14 @@ window.MyDomino.pages["profile_steps-checkout"] = function(args){
         data: { '_method':'PUT', 'profile': {'partner_code': partnerCode }},
         dataType: "script" // you want a difference between normal and ajax-calls, and json is standard
       }).success(function(json){
-          console.log("success", json);
+          // console.log("success", json);
       });
     });
 
     singleSubmit();
     //mobile
-    $(window).scrollTop(0)
+    $(window).scrollTop(0);
+
+    //ga event
+    ga('send', "event", "#{category}", "#{action}", "#{label}", "#{count}");
 };

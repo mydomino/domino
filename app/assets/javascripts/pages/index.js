@@ -1,7 +1,7 @@
 window.MyDomino = window.MyDomino || {};
 window.MyDomino.pages = window.MyDomino.pages || {};
 
-window.MyDomino.pages["pages-index"] = function(){    
+window.MyDomino.pages["pages-index"] = function(){
   var iframe = $('iframe')[0];
   var player = $f(iframe);
   // When the player is ready/loaded, add a finish event listener
