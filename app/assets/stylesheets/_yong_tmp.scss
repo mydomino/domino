@@ -22,6 +22,10 @@ div.img {
     margin-bottom: 20px;
 }
 
+img {
+    max-width: 100%;
+}
+
 div.img:hover {
     border: 1px solid #777;
 }
@@ -33,8 +37,7 @@ div.img img {
 }
 
 div.desc {
-    /*padding: 2px;*/
-    text-align: center;
+    font-size: 18px;
 }
 
 div.exrp {

@@ -1,9 +1,7 @@
 
-<div class="justify">
-  
+<div class="justify max-width-3 mx-auto px2">
   <%= render "post_intro" %>
-  <div class="exrp"><%= @post_content.try(:html_safe) %></div>  
-  
+  <div class="desc"><%= @post_content.try(:html_safe) %></div>  
 </div>
 
 <div class="">
