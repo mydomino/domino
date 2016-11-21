@@ -1,4 +1,3 @@
-require 'dh_htp_wp_rest_api'   #find this in lib folder
 require 'wp_relation' 
 
 class PostsController < ApplicationController
@@ -8,37 +7,18 @@ class PostsController < ApplicationController
 
   #HOST_IP = 'mydomino.dreamhosters.com'
 
-  # GET /posts
-  
-
   def index
-
-    @total_posts, @total_pages = 0
-    @posts = []
-
     begin
-
-      #query_param = {filter: {orderby: 'rand', posts_per_page: 8}}
-      query_param = {page: params[:page] || 1, per_page: params[:per_page] || 10}
+      query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
       
-      response = @dh.get_posts(query_param)
-  
-      #Rails.logger.info "\nResponse is: #{response}\n"
-      #@dh.display_posts(response)
+      response = @dh.get_posts(query_params)
 
-      # convert JSON string to hash
       @posts = JSON.parse(response.body)
-
       @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
-
-
-      #@posts = WPRelation.new(params[:page] || 1, params[:per_page] || 8)
-      
-  
+      @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
     rescue => e
       Rails.logger.info "\nError! #{e}\n"        
     end
-
   end
 
   # GET /posts/1

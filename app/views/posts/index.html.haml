@@ -1,14 +1,5 @@
 .max-width-4.mx-auto
   .p2
-    = form_tag({controller: "posts", action: "index"}, method: "get", class: "") do
-      = label_tag(:page, "Go To Page:")
-      = select_tag :page, options_for_select([['1', 1], ['2', 2],  ['3', 3],  ['4', 4],  ['5', 5],  ['6', 6],  ['7', 7],  ['8', 8],  ['9', 9],  ['10', 10]], :selected => params[:page])
-      = label_tag(:per_page, "Posts Per Page:")
-      = select_tag :per_page, options_for_select([['10', 10], ['20', 20],  ['35', 35],  ['50', 50], ['100', 100]], :selected => params[:per_page])
-      = submit_tag("Search")
-    - if @posts.size <= 0
-      %h3
-        Sorry. No post is found based on your selection. Total posts found #{@total_posts}.
     - @posts.each do |i|
       #post.clearfix.my4
         .col.col-12.sm-col.sm-col-4
@@ -21,3 +12,5 @@
           %h2.mt0= link_to (raw i['title']['rendered']), post_path(i['id'], cat: i['categories']), class: 'text-decoration-none gray-60'
           %h3.gray-60= i['excerpt']['rendered'].html_safe
           %p.gray-60 By #{i['author_meta']['display_name']}, #{format_post_date(i['date'])}
+  .center
+    = paginate @paginatable_array

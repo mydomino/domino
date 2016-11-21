@@ -419,7 +419,50 @@ input{ padding-left: 10px; }
     margin: 0px 1px 3px 0px;
   }
 }
+/* kaminari pagination styles */
+.pagination a, 
+.pagination span.current, 
+.pagination span.gap {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-left-width: 0;
+}
 
+.pagination {
+  border-left: 1px solid #ddd;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 20px;
+  .first{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .prev {
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .page{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .next{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .last{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+}
 /* styles for dashboard recommendations */
 .rounded-20 { border-radius: 20px; }
 
@@ -496,50 +539,6 @@ input{ padding-left: 10px; }
       display: table-row;
       vertical-align: inherit;
       border-color: inherit;
-    }
-  }
-
-  .pagination a, 
-  .pagination span.current, 
-  .pagination span.gap {
-    float: left;
-    padding: 0 14px;
-    line-height: 38px;
-    text-decoration: none;
-    background-color: white;
-    border: 1px solid #DDD;
-    border-left-width: 0;
-  }
-
-  .pagination {
-    border-left: 1px solid #ddd;
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 20px;
-    .first{
-      padding : 0;
-      float: none;
-      border: none;
-    }
-    .prev {
-      padding : 0;
-      float: none;
-      border: none;
-    }
-    .page{
-      padding : 0;
-      float: none;
-      border: none;
-    }
-    .next{
-      padding : 0;
-      float: none;
-      border: none;
-    }
-    .last{
-      padding : 0;
-      float: none;
-      border: none;
     }
   }
 }
