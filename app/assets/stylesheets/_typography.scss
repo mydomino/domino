@@ -14,6 +14,19 @@
 
 .h6 { font-size: $h6 }
 
+@if (variable-exists(breakpoints)){
+  @each $bp-name, $bp-value in $breakpoints{
+    @media (min-width: $bp-value) {
+      .#{$bp-name}-h0 { font-size: $h0 }
+      .#{$bp-name}-h1 { font-size: $h1 }
+      .#{$bp-name}-h2 { font-size: $h2 }
+      .#{$bp-name}-h3 { font-size: $h3 }
+      .#{$bp-name}-h4 { font-size: $h4 }
+      .#{$bp-name}-h5 { font-size: $h5 }
+      .#{$bp-name}-h6 { font-size: $h6 }
+    }
+  }
+}
 /*FUOT*/
 
 .wf-loading { visibility:hidden; }

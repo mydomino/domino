@@ -1,4 +1,13 @@
-// Converted Variables
+// Breakpoints
+$breakpoints: (
+  xs: 32em,
+  sm: 40em,
+  md: 52em,
+  lg: 64em,
+  );
+
+
+// Typography
 $h0: 3rem !default; // 48px
 $h1: 2rem !default; // 32px
 $h2: 1.5rem !default; // 24px
