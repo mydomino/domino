@@ -2,6 +2,8 @@ window.MyDomino = window.MyDomino || {};
 window.MyDomino.pages = window.MyDomino.pages || {};
 
 window.MyDomino.pages["profile_steps-your_house"] = function(args){ 
+  ga('send', 'event', 'Onboarding', 'Your house', 'Your house form', 0);
+
   /* BEGIN form element JS */
   /* Geocoding */
 
@@ -28,7 +30,7 @@ window.MyDomino.pages["profile_steps-your_house"] = function(args){
     range: "min",
     animate: "fast",
     max: 250,
-    value: args.livingSituation.avgElectricalBill,
+    value: args.yourHouse.avgElectricalBill,
     create: function( event, ui ) {
       $('#slider > span').css({cursor: 'pointer', outline: '0'});
     },

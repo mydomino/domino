@@ -19,6 +19,7 @@
 //= require turboboost/turboboost
 //= require jquery.mask.min.js
 //= require modal
+//= require clipboard
 //= require jquery.slick
 //= require init
 //= require mydomino

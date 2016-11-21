@@ -43,10 +43,13 @@
 
     .sm-col.sm-col-12.md-col-6
       .clearfix
-        .col.col-4.right.px2
-          = image_tag "b-corp.png", style: 'max-width:64px;', class: 'right'
-          %br
-          = image_tag "bbb-logo.svg", width: '75%', style: 'max-width: 128px;', class: 'right'
+        .col.col-4.right.px2.flex.flex-wrap.justify-around
+          .flex.items-center
+            =link_to "https://www.bcorporation.net/community/mydomino", target: '_blank' do
+              = image_tag "b-corp.png", style: 'max-width: 64px;', class: 'mb1'
+          .flex.items-center
+            =link_to "https://www.bbb.org/greater-san-francisco/business-reviews/fuel-economizers/mydomino-inc-in-oakland-ca-537274", target: '_blank' do
+              = image_tag "bbb-logo.svg", width: '75%', style: 'max-width: 128px; min-width: 100px'
 
         .col.col-4.right.px2
           %h4.gray-80.my0 COMPANY
@@ -55,6 +58,8 @@
               = link_to "Blog", "http://blog.mydomino.com" , class: 'text-decoration-none gray-80 pointer'
             %li
               = link_to "About Us", about_path, class: 'text-decoration-none gray-80 pointer'
+            %li
+              = link_to "Partners", partners_path, class: 'text-decoration-none gray-80 pointer'
             %li
               = link_to "Our Team", team_path, class: 'text-decoration-none gray-80 pointer'
             %li

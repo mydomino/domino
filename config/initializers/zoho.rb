@@ -1,7 +1,7 @@
 require 'ruby_zoho'
 
 RubyZoho.configure do |config|
-  config.api_key = ENV["zoho_key"]
+  config.api_key = ENV['ZOHO_AUTH_TOKEN']
   config.crm_modules = ['Leads']
   config.cache_fields = true
   # config.crm_modules = ['Accounts', 'Contacts', 'Leads', 'Potentials'] # Defaults to free edition if not set

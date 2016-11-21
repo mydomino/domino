@@ -39,7 +39,7 @@
                 =link_to "+ Action", new_task_path, class: "blue caps p3 inline-block"
               .col-right.py1.mr2
                 .relative.inline-block{data: {disclosure: ''}}
-                  = gravatar_image_tag(current_user.email, gravatar: { size: 65, default: "http://mydomino.com/assets/default_avatar.png" }, class: 'circle pointer')
+                  = gravatar_image_tag(current_user.email, gravatar: { size: 65, default: "https://mydomino.com/assets/default_avatar.png" }, class: 'circle pointer', secure: true)
                   .nowrap.bg-white.border.rounded.absolute.right-0{data: {details: ''}}
                     =link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'btn block'
       .max-width-2.mx-auto.rounded

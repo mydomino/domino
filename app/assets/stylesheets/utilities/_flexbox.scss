@@ -58,3 +58,21 @@
 @custom-media --breakpoint-sm (min-width: 40em);
 @custom-media --breakpoint-md (min-width: 52em);
 @custom-media --breakpoint-lg (min-width: 64em);
+
+@media #{$breakpoint-sm} {
+  .sm-flex { display: flex; }
+  .sm-row { flex-direction: row; }
+  .sm-column {flex-direction: column; }
+}
+
+@media #{$breakpoint-md} {
+  .md-flex { display: flex; }
+  .md-row { flex-direction: row; }
+  .md-column { flex-direction: column; }
+}
+
+@media #{$breakpoint-lg} {
+  .lg-flex { display: flex; }
+  .lg-row { flex-direction: row; }
+  .lg-column { flex-direction: column; }
+}

@@ -12,7 +12,7 @@ def assign_concierge(lead_owner)
   end
 end
 
-#headers for Fresno import 11.07.2016:
+#headers for SF Green Festival import 11.14.2016:
 
 # Column                    Profile Record        Zoho InsertRecord
 # Concierge Lead Owner      n/a                   yes
@@ -68,7 +68,7 @@ leads.each_with_index do |row, index|
           onboard_step: 4
         )
 
-  if lead.valid?
+  # if lead.valid?
     #if valid push profile instance into profiles array
     #meta data is used for info that is not required on Profile record,
     #but is required in the Zoho Lead Record
@@ -79,11 +79,11 @@ leads.each_with_index do |row, index|
                     referred_by: row['Referred By']
                   }
                 }
-  else
-    puts "Aborting import; Profile record invalid at row #{index}"
-    puts "Error: #{lead.errors.full_messages}"
-    exit
-  end
+  # else
+  #   puts "Aborting import; Profile record invalid at row #{index}"
+  #   puts "Error: #{lead.errors.full_messages}"
+  #   exit
+  # end
 end
 
 #Profile records have been validated, 
@@ -92,16 +92,17 @@ end
 puts "Profile records have passed validation."
 puts "Saving Profile records. Creating Dashboards. Pushing Records to zoho...."
 
-profiles.each do |p| 
-  p[:profile].save
-  Dashboard.create(lead_name: "#{p[:profile].first_name} #{p[:profile].last_name}", lead_email: p[:profile].email)
-
+profiles.each do |p|
+  if p[:profile].valid?
+    p[:profile].save
+    Dashboard.create(lead_name: "#{p[:profile].first_name} #{p[:profile].last_name}", lead_email: p[:profile].email)
+  end
   #Zoho InsertRecord
   puts "Processing zoho record for: #{p[:profile].email}"
 
   uri = "https://crm.zoho.com/crm/private/xml/Leads/insertRecords?"\
         "newFormat=1"\
-        "&authtoken=43a02c5e40acfc842e2e8ed75424ecdf"\
+        "&authtoken=#{ENV['ZOHO_AUTH_TOKEN']}"\
         "&scope=crmapi"\
         "&xmlData=<Leads><row no='1'>"\
         "<FL val='Lead Owner'>#{p[:meta_data][:concierge]}</FL>"\
@@ -117,7 +118,7 @@ profiles.each do |p|
         "<FL val='Own or Rent?'>#{p[:profile].housing}</FL>"\
         "<FL val='Avg Electric Bill'>#{p[:meta_data][:avg_electric_bill]}</FL>"\
         "<FL val='Referred By'>#{p[:meta_data][:referred_by]}</FL>"\
-        "<FL val='Campaign'>Fresno Fall Home Improvement</FL>"\
+        "<FL val='Campaign'>#{p[:profile].campaign}</FL>"\
         "<FL val='Partner Code'>#{p[:profile].partner_code.code}</FL>"\
         "<FL val='Partner Code Name'>#{p[:profile].partner_code.partner_name}</FL>"\
         "<FL val='Dashboard Been Registered?'>No</FL>"\
