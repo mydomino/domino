@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
-    <title>user</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M26,28 C26,25.1572636 23.2579879,22.7357504 19.4186379,21.8171923 C21.6192919,20.550912 23.1052632,18.1437587 23.1052632,15.3825503 C23.1052632,11.3052804 19.8652186,8 15.8684211,8 C11.8716235,8 8.63157895,11.3052804 8.63157895,15.3825503 C8.63157895,18.1769936 10.1535368,20.6088073 12.397977,21.8624192 C8.65499628,22.8133226 6,25.2027333 6,28" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="20" fill="white">
-            <use xlink:href="#path-1"></use>
-        </mask>
-    </defs>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Export" transform="translate(-64.000000, 0.000000)">
-            <g id="Group-2" transform="translate(64.000000, 0.000000)">
-                <path d="M30,16 C30,8.2680135 23.7319865,2 16,2 C8.2680135,2 2,8.2680135 2,16 C2,23.7319865 8.2680135,30 16,30 C23.7319865,30 30,23.7319865 30,16 Z M0,16 C0,7.163444 7.163444,0 16,0 C24.836556,0 32,7.163444 32,16 C32,24.836556 24.836556,32 16,32 C7.163444,32 0,24.836556 0,16 Z" id="Mask" fill="#000000"></path>
-                <use id="Combined-Shape" stroke="#000000" mask="url(#mask-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"></use>
-            </g>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32" version="1.1">
+  <title>
+    user
+  </title>
+  <desc>
+    Created with Sketch.
+  </desc>
+  <defs>
+    <path d="M26 28C26 25.16 23.26 22.74 19.42 21.82 21.62 20.55 23.11 18.14 23.11 15.38 23.11 11.31 19.87 8 15.87 8 11.87 8 8.63 11.31 8.63 15.38 8.63 18.18 10.15 20.61 12.4 21.86 8.65 22.81 6 25.2 6 28" id="path-1"/>
+    <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="20" fill="white">
+      <use xlink:href="#path-1"/>
+    </mask>
+  </defs>
+  <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Export" transform="translate(-64.000000, 0.000000)">
+      <g id="Group-2" transform="translate(64.000000, 0.000000)">
+        <path d="M30 16C30 8.27 23.73 2 16 2 8.27 2 2 8.27 2 16 2 23.73 8.27 30 16 30 23.73 30 30 23.73 30 16ZM0 16C0 7.16 7.16 0 16 0 24.84 0 32 7.16 32 16 32 24.84 24.84 32 16 32 7.16 32 0 24.84 0 16Z" id="Mask" fill="#000000"/>
+        <use id="Combined-Shape" stroke="#000000" mask="url(#mask-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"/>
+      </g>
     </g>
+  </g>
 </svg>
