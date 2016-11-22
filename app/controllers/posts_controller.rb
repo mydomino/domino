@@ -6,12 +6,8 @@ class PostsController < ApplicationController
   before_action :set_dream_host_instance
   #before_filter :verify_post_access
 
-  #HOST_IP = 'mydomino.dreamhosters.com'
 
   def index
-
-    @total_posts, @total_pages = 0
-    @posts = []
 
     begin
       query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
