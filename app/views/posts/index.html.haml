@@ -3,9 +3,8 @@
     - @posts.each do |i|
       #post.clearfix.my4
         .col.col-12.sm-col.sm-col-4
-          - thumbnail = i['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['maverick-medium-alt']['source_url']
+          - thumbnail = extract_post_thumbnail_src(i)
           = link_to image_tag(thumbnail), post_path(i['id'], cat: i['categories'])
-
         .col.col-12.sm-col.sm-col-8.px2
           - if article_for_member_only?(i['categories'])
             .blue premium content
