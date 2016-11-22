@@ -105,6 +105,45 @@ class PostsController < ApplicationController
     
   end
 
+  def get_posts_by_category
+
+    begin
+
+      category = params[:category]
+      Rails.logger.debug "Post category is #{category}\n"
+
+      query_param = {filter: {category_name: category}}
+    
+      response = @dh.get_post_by_slug(query_param)
+
+      #Rails.logger.debug "\n\n\nDisplaying post(s) ....\n"
+      #@dh.display_posts(response.body)
+  
+      process_post(response.body)
+
+    rescue => e
+      Rails.logger.info "\nError! #{e}\n"        
+    end
+
+    begin
+      query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
+
+      category = params[:category]
+      Rails.logger.debug "Post category is #{category}\n"
+
+      query_param = {filter: {category_name: category}}
+    
+      response = @dh.get_post_by_slug(query_param)
+
+      @posts = JSON.parse(response.body)
+      @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
+      @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
+    rescue => e
+      Rails.logger.info "\nError! #{e}\n"        
+    end
+    
+  end
+
 
 
 
