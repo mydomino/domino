@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
     begin
       query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
-      
+
       response = @dh.get_posts(query_params)
 
       @posts = JSON.parse(response.body)
@@ -34,10 +34,10 @@ class PostsController < ApplicationController
 
       #categories = params[:cat]
       #Rails.logger.debug "categories param is #{categories.inspect}\n"
-  
+
       query_param = {}
       response = @dh.get_post_by_id(post_id, query_param)
-  
+
       process_post(response.body)
 
     rescue => e
@@ -159,11 +159,12 @@ class PostsController < ApplicationController
         Rails.logger.debug "\nUsing first element in the post array. "
       end
 
-
       @post_content = post['content']['rendered']
       
       @title = post['title']['rendered']
-    
+
+      @subtitle = !post['wps_subtitle'].empty? ? post['wps_subtitle'] : post['td_post_theme_settings']['td_subtitle']
+
       @excerpt = post['excerpt']['rendered']
      
       @post_date = post['date']
