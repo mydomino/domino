@@ -6,7 +6,7 @@
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
 
 .bg-gray-05.py2.center
-  %h3.gray-80.inline Get MyDomino as an employee benefit for your business.
+  %h3.gray-80.inline Get MyDomino as an employee benefit for your workplace.
   =link_to 'Learn more >', "http://business.mydomino.com", class: 'h3 blue text-decoration-none'
 
 #action-path.bg-white.max-width-4.mx-auto.my2
@@ -124,6 +124,9 @@
 
     .col.col-12.center.pt2.pb3.sm-py3
       #btn-become-a-member.btn.btn-md.btn-primary.btn-primary--hover Become a member
+      .mt2
+        %p.gray-30.inline Already a member? 
+        =link_to "Log in", new_user_session_path, class: "inline blue text-decoration-none"
 
     .col.col-12
       .max-width-3.mx-auto
