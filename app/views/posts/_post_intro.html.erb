@@ -1,8 +1,9 @@
 <div>
-  <p class="gray-60 mb0"><%= format_post_date(@post_date) if @post_date != nil %></p>
-  <h1 class="black mt0 mb1"><%= @title.try(:html_safe) %></h1>
+  <p class="h5 gray-60 mb0"><%= format_post_date(@post_date) if @post_date != nil %></p>
+  <h1 class="black my0"><%= @title.try(:html_safe) %></h1>
+  <h2 class="gray-60 mt0 "><%= @subtitle.try(:html_safe) %></h2>
   <% if @author != nil %>
-    <h3 class="gray-80 my1">By <%= @author %></h3>
+    <h3 class="gray-60 my1">By <%= @author %></h3>
   <% end %>
   <%= image_tag(@feature_img) %>
 </div>
