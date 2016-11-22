@@ -1,9 +1,7 @@
 
-<div class="justify max-width-3 mx-auto px2">
+<div class="justify max-width-3 mx-auto px3 mb4">
   <%= render "post_intro" %>
-  <div class="desc"><%= @post_content.try(:html_safe) %></div>  
-</div>
-
-<div class="">
-  <!-- %= button_to "Back", posts_path, {method: :get} % -->
+  <div class="desc">
+  	<%= @post_content.try(:html_safe) %>
+  </div>
 </div>

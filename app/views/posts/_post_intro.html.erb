@@ -1,5 +1,8 @@
-<div class="desc"><h1><%= @title.try(:html_safe) %></h1></div>
-<% if @author != nil %>
-  <div class="exrp"><h3>By <%= @author %>,&nbsp;&nbsp;&nbsp; <%= format_post_date(@post_date) if @post_date != nil %></h3></div>  
-<% end %>
-<div class="desc"><h1><%= image_tag(@feature_img) %></h1></div>
+<div>
+  <p class="gray-60 mb0"><%= format_post_date(@post_date) if @post_date != nil %></p>
+  <h1 class="black mt0 mb1"><%= @title.try(:html_safe) %></h1>
+  <% if @author != nil %>
+    <h3 class="gray-80 my1">By <%= @author %></h3>
+  <% end %>
+  <%= image_tag(@feature_img) %>
+</div>

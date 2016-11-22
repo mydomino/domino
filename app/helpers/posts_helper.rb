@@ -6,7 +6,7 @@ module PostsHelper
 
 		# format date 
     date = DateTime.parse(date_str)
-    formatted_date = date.strftime('%b %d, %Y')
+    formatted_date = date.strftime('%B %-d, %Y')
 
     return formatted_date
 
