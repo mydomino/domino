@@ -1,4 +1,5 @@
-require 'wp_relation' 
+#require 'wp_relation' 
+require 'dh_htp_wp_rest_api'
 
 class PostsController < ApplicationController
   #before_action :set_post, only: [:show, :edit, :update, :destroy]
@@ -8,6 +9,10 @@ class PostsController < ApplicationController
   #HOST_IP = 'mydomino.dreamhosters.com'
 
   def index
+
+    @total_posts, @total_pages = 0
+    @posts = []
+
     begin
       query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
       
@@ -24,7 +29,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
 
-    @post_content, @title, @excerpt, @post_date, @author = ""
+    #@post_content, @title, @excerpt, @post_date, @author = ""
  
     begin
 
@@ -34,35 +39,10 @@ class PostsController < ApplicationController
       #categories = params[:cat]
       #Rails.logger.debug "categories param is #{categories.inspect}\n"
   
-      #@post_content = params[:post_content]
       query_param = {}
       response = @dh.get_post_by_id(post_id, query_param)
   
-      # convert JSON string to hash
-      post = JSON.parse(response.body)
-      @post_content = post['content']['rendered']
-      @title = post['title']['rendered']
-      @excerpt = post['excerpt']['rendered']
-      @post_date = post['date']
-      @author = post['author_meta']['display_name']
-      @categories = post['categories']
-
-      Rails.logger.debug "categories id are #{@categories.inspect}\n"
-
-      # determine whether the post has a feature image. If not, use the default image
-      @feature_img = post['md_thumbnail'] =~ /^http/ ? post['md_thumbnail'] : 'default_feature_img.jpg'
-  
-  
-      respond_to do |format|
-  
-        if verify_post_access(@categories)
-          # user sign in and is authorize to see the post
-          format.html { render template: "posts/show" }
-        else
-          format.html { render template: "posts/show-restrict" }
-        end
-          
-      end
+      process_post(response.body)
 
     rescue => e
       Rails.logger.info "\nError! #{e}\n"        
@@ -108,7 +88,23 @@ class PostsController < ApplicationController
 
   def get_post_by_slug
 
-    slug = params[:article]
+    begin
+
+      slug = params[:article]
+      Rails.logger.debug "Post slug is #{slug}\n"
+
+      query_param = {filter: {name: slug}}
+    
+      response = @dh.get_post_by_slug(query_param)
+
+      #Rails.logger.debug "\n\n\nDisplaying post(s) ....\n"
+      #@dh.display_posts(response.body)
+  
+      process_post(response.body)
+
+    rescue => e
+      Rails.logger.info "\nError! #{e}\n"        
+    end
     
     
   end
@@ -148,6 +144,54 @@ class PostsController < ApplicationController
         return true
       end
 
+    end
+
+
+    def process_post(response)
+
+      # convert JSON string to hash
+      post = JSON.parse(response)
+
+      #Rails.logger.debug "Post is: #{post.inspect}\n\n"
+
+      # determine if post is an array post or a single post
+      if ( post.is_a?(Array))
+
+        # retrieve the first post from the array
+        post = post[0]
+
+        Rails.logger.debug "\nUsing first element in the post array. "
+      end
+
+
+      @post_content = post['content']['rendered']
+      
+      @title = post['title']['rendered']
+    
+      @excerpt = post['excerpt']['rendered']
+     
+      @post_date = post['date']
+     
+      @author = post['author_meta']['display_name']
+      
+      @categories = post['categories']
+      Rails.logger.debug "categories id are #{@categories.inspect}\n"
+
+      # determine whether the post has a feature image. If not, use the default image
+      @feature_img = post['md_thumbnail'] =~ /^http/ ? post['md_thumbnail'] : 'default_feature_img.jpg'
+  
+  
+      respond_to do |format|
+  
+        if verify_post_access(@categories)
+          # user sign in and is authorize to see the post
+          format.html { render template: "posts/show" }
+        else
+          format.html { render template: "posts/show-restrict" }
+        end
+          
+      end
+      
     end
 
     

@@ -29,7 +29,6 @@ gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
-gem 'rack-timeout'
 gem 'retries'
 gem 'pundit'
 gem 'mailkick'
@@ -86,5 +85,9 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'skylight'
+end
+
+group :production, :test do
+  gem 'rack-timeout'
 end
 

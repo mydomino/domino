@@ -80,7 +80,7 @@ class DHHtp
   def display_posts(response)
 
     # convert JSON string to hash
-    posts = JSON.parse(response.body)
+    posts = JSON.parse(response)
 
     Rails.logger.info "Total #{posts.size} posts:"
 
@@ -165,6 +165,26 @@ class DHHtp
     end
   
   end
+
+
+
+  def get_post_by_slug(query_options)
+
+    puts "\nQuery options is: #{query_options}"
+
+    # the slug is provided in the query option
+    response = self.class.get("/wp-json/wp/v2/posts", query: query_options)
+    #response = self.class.get(url)
+    puts "\nParams sent to URL is: #{response.request.last_uri.to_s}"
+
+    if response.success?
+      response
+    else
+      raise response.response
+    end
+    
+  end
+
 
 
 

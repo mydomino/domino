@@ -16,9 +16,13 @@ Rails.application.routes.draw do
   get "/continue/:profile_id" => 'pages#index'
 
   get "/newsletter-subscribe" => 'pages#newsletter_subscribe'
-  get "/blog" => redirect("http://blog.mydomino.com/")
-  get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
-  get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+  #get "/blog" => redirect("http://blog.mydomino.com/")
+  #get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
+  #get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+  
+  get "/articles/:id", to: 'posts#show', constraints: {id: /[0-9]+/}
+  get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
+  #get "/posts/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
 
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
@@ -53,8 +57,8 @@ Rails.application.routes.draw do
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   #post '/posts/:id', to: 'posts#show', as: 'post'
-  #resources :posts, :path => 'blog2'
-  resources :posts
+  resources :posts, :path => 'articles'
+  #resources :posts
   
 
 end

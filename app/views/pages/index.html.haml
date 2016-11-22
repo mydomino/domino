@@ -50,7 +50,7 @@
             .col.col-6.px2
               .h2.black.mt3.line-height-1 Solar 101
               %h5.sm-h4.my2.line-height-2 Confused about solar? Here’s everything you need to know.
-              =link_to 'Read more', "http://blog.mydomino.com/solar-101", class: 'text-decoration-none gray-80 bold'
+              =link_to 'Read more', post_slug_url('solar-101'), class: 'text-decoration-none gray-80 bold'
 
       .col-12.sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
@@ -59,7 +59,7 @@
             .col.col-6.px2
               .h2.black.mt3.line-height-2 Can't go solar?
               %h5.sm-h4.my2.line-height-2 No problem! Anyone with an electric bill can use clean wind power.
-              = link_to 'Read more', 'http://blog.mydomino.com/cant-go-solar', class: 'text-decoration-none gray-80 bold'
+              = link_to 'Read more', post_slug_url('cant-go-solar'), class: 'text-decoration-none gray-80 bold'
 
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
@@ -68,7 +68,7 @@
             .col.col-6.px2
               .h2.black.pt3.line-height-2 Get efficient!
               %h5.sm-h4.my2.line-height-2 It’s easy to save with LEDs, smart thermostats, and more.
-              = link_to 'Read more', 'http://blog.mydomino.com/get-efficient', class: 'text-decoration-none gray-80 bold'
+              = link_to 'Read more', post_slug_url('get-efficient'), class: 'text-decoration-none gray-80 bold'
 
       .sm-col.sm-col-12.md-col-6
         .blog-card.bg-white.m2
@@ -77,10 +77,10 @@
             .col.col-6.px2
               .h2.black.pt3.line-height-1 How Sue Got to 100%
               %h5.sm-h4.mt2.line-height-2 Sue wanted to get her family onto clean energy. But where to start?
-              = link_to 'Read more', 'http://blog.mydomino.com/how-a-family-switched-to-clean-energy/', class: 'text-decoration-none gray-80 bold'
+              = link_to 'Read more', post_slug_url('how-a-family-switched-to-clean-energy'), class: 'text-decoration-none gray-80 bold'
       .col.col-12.center
         %h3
-          = link_to 'See more articles >', 'http://blog.mydomino.com', class: 'h2 blue text-decoration-none'
+          = link_to 'See more articles >', {controller: 'posts', action: 'index'}, class: 'h2 blue text-decoration-none'
 
 .bg-white
   .clearfix.max-width-4.mx-auto.pt4.px2

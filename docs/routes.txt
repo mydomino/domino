@@ -6,14 +6,14 @@
                      privacy GET      /privacy(.:format)                                     pages#privacy
                          faq GET      /faq(.:format)                                         pages#faq
                      example GET      /example(.:format)                                     pages#example
-                             GET      /resend-welcome-email/:id(.:format)                    profiles#resend_welcome_email
+                    partners GET      /partners(.:format)                                    pages#partners
+                             GET      /welcome-email/:profile_id(.:format)                   profiles#welcome_email
                              GET      /legacy-user-registration-email/:lu_id(.:format)       profiles#lu_registration_email
                              GET      /dashboard/:slug(.:format)                             redirect(301)
                              GET      /continue/:profile_id(.:format)                        pages#index
         newsletter_subscribe GET      /newsletter-subscribe(.:format)                        pages#newsletter_subscribe
-                        blog GET      /blog(.:format)                                        redirect(301, http://blog.mydomino.com/)
-                             GET      /blog/:article(.:format)                               redirect(301)
-                             GET      /blog/category/:category(.:format)                     redirect(301)
+                             GET      /articles/:id(.:format)                                posts#show {:id=>/[0-9]+/}
+                   post_slug GET      /articles/:article(.:format)                           posts#get_post_by_slug
               user_dashboard GET      /dashboard(.:format)                                   dashboards#show
        dashboard_bulk_update PATCH    /dashboards/:dashboard_id/bulk_update(.:format)        recommendations#bulk_update
                   dashboards GET      /dashboards(.:format)                                  dashboards#index
@@ -77,14 +77,14 @@ recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.
                              DELETE   /tasks/:id(.:format)                                   tasks#destroy
                    analytics GET      /analytics(.:format)                                   analytics#show
                  delayed_job GET|POST /delayed_job(.:format)                                 DelayedJobWeb
-                       posts GET      /posts(.:format)                                       posts#index
-                             POST     /posts(.:format)                                       posts#create
-                    new_post GET      /posts/new(.:format)                                   posts#new
-                   edit_post GET      /posts/:id/edit(.:format)                              posts#edit
-                        post GET      /posts/:id(.:format)                                   posts#show
-                             PATCH    /posts/:id(.:format)                                   posts#update
-                             PUT      /posts/:id(.:format)                                   posts#update
-                             DELETE   /posts/:id(.:format)                                   posts#destroy
+                       posts GET      /articles(.:format)                                    posts#index
+                             POST     /articles(.:format)                                    posts#create
+                    new_post GET      /articles/new(.:format)                                posts#new
+                   edit_post GET      /articles/:id/edit(.:format)                           posts#edit
+                        post GET      /articles/:id(.:format)                                posts#show
+                             PATCH    /articles/:id(.:format)                                posts#update
+                             PUT      /articles/:id(.:format)                                posts#update
+                             DELETE   /articles/:id(.:format)                                posts#destroy
                     mailkick          /mailkick                                              Mailkick::Engine
 
 Routes for Mailkick::Engine:
