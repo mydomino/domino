@@ -6,16 +6,12 @@ class PostsController < ApplicationController
   before_action :set_dream_host_instance
   #before_filter :verify_post_access
 
-  #HOST_IP = 'mydomino.dreamhosters.com'
 
   def index
 
-    @total_posts, @total_pages = 0
-    @posts = []
-
     begin
       query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
-      
+
       response = @dh.get_posts(query_params)
 
       @posts = JSON.parse(response.body)
@@ -38,10 +34,10 @@ class PostsController < ApplicationController
 
       #categories = params[:cat]
       #Rails.logger.debug "categories param is #{categories.inspect}\n"
-  
+
       query_param = {}
       response = @dh.get_post_by_id(post_id, query_param)
-  
+
       process_post(response.body)
 
     rescue => e
@@ -109,6 +105,45 @@ class PostsController < ApplicationController
     
   end
 
+  def get_posts_by_category
+
+    begin
+
+      category = params[:category]
+      Rails.logger.debug "Post category is #{category}\n"
+
+      query_param = {filter: {category_name: category}}
+    
+      response = @dh.get_post_by_slug(query_param)
+
+      #Rails.logger.debug "\n\n\nDisplaying post(s) ....\n"
+      #@dh.display_posts(response.body)
+  
+      process_post(response.body)
+
+    rescue => e
+      Rails.logger.info "\nError! #{e}\n"        
+    end
+
+    begin
+      query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
+
+      category = params[:category]
+      Rails.logger.debug "Post category is #{category}\n"
+
+      query_param = {filter: {category_name: category}}
+    
+      response = @dh.get_post_by_slug(query_param)
+
+      @posts = JSON.parse(response.body)
+      @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
+      @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
+    rescue => e
+      Rails.logger.info "\nError! #{e}\n"        
+    end
+    
+  end
+
 
 
 
@@ -163,11 +198,12 @@ class PostsController < ApplicationController
         Rails.logger.debug "\nUsing first element in the post array. "
       end
 
-
       @post_content = post['content']['rendered']
       
       @title = post['title']['rendered']
-    
+
+      @subtitle = !post['wps_subtitle'].empty? ? post['wps_subtitle'] : post['td_post_theme_settings']['td_subtitle']
+
       @excerpt = post['excerpt']['rendered']
      
       @post_date = post['date']

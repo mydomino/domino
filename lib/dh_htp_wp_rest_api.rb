@@ -39,15 +39,17 @@ class DHHtp
 	  #paswd = ENV['egauge_password']
     #Rails.logger.info "paswd is: #{paswd}"
 
-    # set digest authentication
+    # set digest authentication - Please do not remove this line. Need it for WP authentication later ! 
 	  #self.class.digest_auth('owner', paswd)
 
-	  #url = "http://#{@host_ip}/cgi-bin/egauge?tot&inst&teamstat&v1"
+	
     Rails.logger.info "\nQuery options is: #{query_options}"
 
     response = self.class.get("/wp-json/wp/v2/posts?_embed", query: query_options)
-    #response = self.class.get(url)
     Rails.logger.info "\nParams sent to URL is: #{response.request.last_uri.to_s}"
+
+    Rails.logger.debug "\nPretty print the output\n"
+    Rails.logger.debug JSON.pretty_generate(JSON.parse(response.body))
 
 	  if response.success?
       response

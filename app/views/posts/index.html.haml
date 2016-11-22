@@ -1,15 +1,19 @@
 .max-width-4.mx-auto
   .p2
-    - @posts.each do |i|
-      #post.clearfix.my4
-        .col.col-12.sm-col.sm-col-4
-          - thumbnail = extract_post_thumbnail_src(i)
-          = link_to image_tag(thumbnail), post_path(i['id'], cat: i['categories'])
-        .col.col-12.sm-col.sm-col-8.px2
-          - if article_for_member_only?(i['categories'])
-            .blue premium content
-          %h2.mt0= link_to (raw i['title']['rendered']), post_path(i['id'], cat: i['categories']), class: 'text-decoration-none gray-60'
-          %h3.gray-60= i['excerpt']['rendered'].html_safe
-          %p.gray-60 By #{i['author_meta']['display_name']}, #{format_post_date(i['date'])}
+    - if @posts != nil
+      - @posts.each do |i|
+        #post.clearfix.my4
+          .col.col-12.sm-col.sm-col-4
+            - thumbnail = i['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['maverick-medium-alt']['source_url']
+            = link_to image_tag(thumbnail), post_path(i['id'], cat: i['categories'])
+          .col.col-12.sm-col.sm-col-8.px2
+            - if article_for_member_only?(i['categories'])
+              .blue premium content
+            %h2.mt0
+              = link_to (raw i['title']['rendered']), post_path(i['id'], cat: i['categories']), class: 'text-decoration-none gray-60'
+            %h3.gray-60
+              = i['excerpt']['rendered'].html_safe
+            %p.gray-60 By #{i['author_meta']['display_name']}, #{format_post_date(i['date'])}
   .center
-    = paginate @paginatable_array
+    - if !@paginatable_array.nil?
+      = paginate @paginatable_array
