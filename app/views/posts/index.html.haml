@@ -1,4 +1,4 @@
-.max-width-4.mx-auto.relative
+.max-width-4.mx-auto
   .clearfix
     .col.col-12.sm-col.sm-col-8
       - if @posts != nil
@@ -15,53 +15,9 @@
               %h3.gray-60
                 = post['excerpt']['rendered'].html_safe
               %p.gray-60 By #{post['author_meta']['display_name']}, #{format_post_date(post['date'])}
-    .col.col-12.md-col.md-col-4.mt4#sb-anchor-rail
+    .col.col-12.md-col.md-col-4.mt4
       #subscribe-box-wrapper
-        = render "subscribe_box", :inherit_width => false
-.center#sb-lower-bounds
+        = render "subscribe_box"
+.center
   - if !@paginatable_array.nil?
     = paginate @paginatable_array
-
-:javascript
-  $(document).ready(function(){
-
-    /*
-    (function(){
-      var rail = $('#sb-anchor-rail');
-
-      return function(){alert('tst');}
-    })();
-    */
-
-    $(window).on("resize scroll", function(){
-      //distance scrolled from top
-      var scrollTop     = $(window).scrollTop();
-      
-      //box fixation point distance from top
-      var elementOffset = $('#sb-anchor-rail').offset().top;
-      //var boundOffset = $('#sb-lower-bounds').offset().top;
-      
-      //console.log(boundOffset);
-      
-      //when scroll reaches box fixation point, 
-      //update css to fix the box to top of window
-      var distance = (elementOffset - scrollTop);
-
-      //when width < md breakpoint (832) px, fixed box is set to relative position
-      var xWidth = $(window).width();
-
-      //ensure box width remains the same as the anchor rail
-      var railWidth = $('#sb-anchor-rail').width();
-      if (xWidth > 832) {
-        // console.log(distance);
-        if(distance < 0) {
-          $('#subscribe-box-wrapper').css({'position': 'fixed', 'top': 0, 'width': railWidth.toString() + 'px'});
-        }
-        if(distance >= 0){
-          $('#subscribe-box-wrapper').css({'position': 'relative', 'width': railWidth.toString() + 'px'});
-        }
-      } else {
-        $('#subscribe-box-wrapper').css({'position': 'relative', 'width': '100%'})
-      }
-    });
-  });
