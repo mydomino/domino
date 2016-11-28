@@ -426,12 +426,13 @@ input{ padding-left: 10px; }
   line-height: 38px;
   text-decoration: none;
   background-color: white;
-  border: 1px solid #DDD;
+  border: 1px solid #666;
   border-left-width: 0;
+  color: #333;
 }
 
 .pagination {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #666;
   display: inline-block;
   text-align: center;
   margin-bottom: 20px;
