@@ -1,15 +1,15 @@
 .max-width-4.mx-auto
   .clearfix
-    .col.col-12.sm-col.sm-col-8
+    .col.col-12.md-col.md-col-8
       - if @posts != nil
         - @posts.each_with_index do |post, index|
           #post.clearfix.my4
-            .col.col-12.md-col.md-col-6
+            .col.col-12.md-col.md-col-6.px2
               - thumbnail = extract_post_thumbnail_src(post)
               = link_to image_tag(thumbnail), post_path(post['id'], cat: post['categories'])
             .col.col-12.md-col.md-col-6.px2
               - if article_for_member_only?(post['categories'])
-                .blue premium content
+                .blue.light Premium content
               %h2.mt0
                 = link_to (raw post['title']['rendered']), post_path(post['id'], cat: post['categories']), class: 'text-decoration-none black light'
               %h4.light

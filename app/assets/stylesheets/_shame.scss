@@ -260,7 +260,8 @@ div:hover {
 /***** END checkout onboarding form components *******/
 
 $breakpoint-xs: '(max-width: 40em)' !default;
-/* Basscss Responsive Margin */
+
+// $breakpoint-md: '(max-width: 40em)';
 @media #{$breakpoint-xs} {
   .xs-center { text-align: center; }
 }
