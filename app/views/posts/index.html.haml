@@ -15,9 +15,8 @@
               %h4.light
                 = post['excerpt']['rendered'].html_safe
               %h5.light.black #{format_post_date(post['date'])}
-    .col.col-12.md-col.md-col-4.mt4
-      #subscribe-box-wrapper
-        = render "subscribe_box"
+    .col.col-12.md-col.md-col-4.mt4.p2
+      = render "subscribe_box"
 .center
   - if !@paginatable_array.nil?
     = paginate @paginatable_array
