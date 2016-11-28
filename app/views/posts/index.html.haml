@@ -1,3 +1,15 @@
+%div
+  %ul
+    %li
+      = link_to "HOME", posts_path()
+    %li
+      = link_to "CLEAN POWER", posts_path(cat: "clean-power")
+    %li
+      = link_to "TRANSPORTATION", posts_path(cat: "Transportation")
+    %li
+      = link_to "HEATING & COOLING", posts_path(cat: "heating-and-cooling")
+    %li
+      = link_to "ENERGY FREEDOM", posts_path(cat: "energy-freedom")
 .max-width-4.mx-auto
   .clearfix
     .col.col-12.md-col.md-col-8

@@ -12,6 +12,15 @@ class PostsController < ApplicationController
     begin
       query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
 
+      Rails.logger.debug "In index action, category param is #{params[:cat]}\n"
+
+      #add a category if it is specified in the query
+      if !params[:cat].nil?
+
+        filt = {category_name: params[:cat]}
+        query_params[:filter] = filt
+      end
+
       response = @dh.get_posts(query_params)
 
       @posts = JSON.parse(response.body)
