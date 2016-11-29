@@ -1,17 +1,18 @@
-%div
-  %ul
-    %li
-      = link_to "HOME", posts_path()
-    %li
-      = link_to "CLEAN POWER", posts_path(cat: "clean-power")
-    %li
-      = link_to "TRANSPORTATION", posts_path(cat: "Transportation")
-    %li
-      = link_to "HEATING & COOLING", posts_path(cat: "heating-and-cooling")
-    %li
-      = link_to "ENERGY FREEDOM", posts_path(cat: "energy-freedom")
+
 .max-width-4.mx-auto
   .clearfix
+    .col.col-12
+      %ul.pl2
+        %li.inline.h3.light
+          = link_to "All", posts_path(), class: 'text-decoration-none gray-80 '
+        %li.inline.h3.light.pl2
+          = link_to "Clean power", posts_path(cat: "clean-power"), class: 'text-decoration-none gray-80'
+        %li.inline.h3.light.pl2
+          = link_to "Transportation", posts_path(cat: "Transportation"), class: 'text-decoration-none gray-80'
+        %li.inline.h3.light.pl2
+          = link_to "Heating & cooling", posts_path(cat: "heating-and-cooling"), class: 'text-decoration-none gray-80'
+        %li.inline.h3.light.pl2
+          = link_to "Energy freedom", posts_path(cat: "energy-freedom"), class: 'text-decoration-none gray-80'
     .col.col-12.md-col.md-col-8
       - if @posts != nil
         - @posts.each_with_index do |post, index|
