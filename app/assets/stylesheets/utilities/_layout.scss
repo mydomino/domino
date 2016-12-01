@@ -1,5 +1,5 @@
 // Converted Variables
-
+$width-half: 12rem !default;
 $width-1: 24rem !default;
 $width-2: 32rem !default;
 $width-3: 48rem !default;
@@ -39,6 +39,8 @@ $width-4: 64rem !default;
 .right { float: right }
 
 .fit { max-width: 100% }
+
+.max-width-half { max-width: $width-half }
 
 .max-width-1 { max-width: $width-1 }
 
