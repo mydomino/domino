@@ -9,7 +9,8 @@
           = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
       .md-hide.lg-hide.px2.right
-        .fa.fa-bars.fa-2x.pointer.navbar-element{class: "#{nav_element_color}"}
+        #js-hamburger
+          =embedded_svg 'i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py3 pl3"
       .xs-hide.sm-hide.py3.px3.my1
         .right
           .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
@@ -27,7 +28,8 @@
       #mobile-nav.nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block
-            .fa.fa-times.fixed.top-0.right-0.p3.pointer
+            #js-hamburger-close
+              =embedded_svg 'i-close.svg', class:"#{nav_element_color} pointer fixed top-0 right-0 py3 pl3 pr2"
           %ul.py4.center.list-reset.h0
             -if !user_signed_in?
               %li
@@ -42,11 +44,11 @@
 
 :javascript
   $(document).ready(function(){
-    $('nav .fa-bars').click(function(){
+    $('#js-hamburger').click(function(){
       $('nav').addClass('open');
     });
 
-    $('nav .nav-bg .fa-times').click(function(){
+    $('#js-hamburger-close').click(function(){
       $('nav').removeClass('open');
     });
   });
