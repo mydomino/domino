@@ -22,7 +22,13 @@ Rails.application.routes.draw do
   
   get "/articles/:id", to: 'posts#show', constraints: {id: /[0-9]+/}
   get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
-  #get "/posts/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+
+  # for backward supports of old URLs
+  get "/blog", to: 'posts#index'
+  get "/blog/:article", to: 'posts#get_post_by_slug'
+  get "/blog/category/:cat", to: 'posts#index'
+  get "/category/:cat", to: 'posts#index'
+
 
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
