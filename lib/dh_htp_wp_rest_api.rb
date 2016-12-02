@@ -45,12 +45,12 @@ class DHHtp
 	
     Rails.logger.info "\nQuery options is: #{query_options}"
 
-    response = self.class.get("/wp-json/wp/v2/posts?fields=id,title,excerpt,md_thumbnail,categories,date", query: query_options)
+    response = self.class.get("/wp-json/wp/v2/posts?fields=id,slug,title,excerpt,md_thumbnail,categories,date", query: query_options)
 
     Rails.logger.info "\nParams sent to URL is: #{response.request.last_uri.to_s}"
 
-    Rails.logger.debug "\nPretty print the output\n"
-    Rails.logger.debug JSON.pretty_generate(JSON.parse(response.body))
+    #Rails.logger.debug "\nPretty print the output\n"
+    #Rails.logger.debug JSON.pretty_generate(JSON.parse(response.body))
 
 	  if response.success?
       response
@@ -92,7 +92,7 @@ class DHHtp
       Rails.logger.info "\n\n\n======================================"
       Rails.logger.info "POST title: #{i['title']['rendered']}\n"
       Rails.logger.info "POST ID: #{i['id']}\n"
-      Rails.logger.info "Author Name: #{i['author_meta']['display_name']}\n"
+      #Rails.logger.info "Author Name: #{i['author_meta']['display_name']}\n"
 
 
       # format date 
@@ -102,19 +102,19 @@ class DHHtp
       
       Rails.logger.info "POST date: #{formatted_date}\n"
       Rails.logger.info "POST slug: #{i['slug']}\n"
-      Rails.logger.info "POST type: #{i['type']}\n"
-      Rails.logger.info "POST link: #{i['link']}\n"
+      #Rails.logger.info "POST type: #{i['type']}\n"
+      #Rails.logger.info "POST link: #{i['link']}\n"
       Rails.logger.info "POST feature image URL: #{i['md_thumbnail']}\n"
       Rails.logger.info "POST excerpt: #{i['excerpt']['rendered']}\n"    
-      Rails.logger.info "POST content: #{i['content']['rendered']}\n"
+      #Rails.logger.info "POST content: #{i['content']['rendered']}\n"
 
       #get the post image from its content
-      html_doc = Nokogiri::HTML(i['content']['rendered'])
-      #image_urls = html_doc.search('//img/@src').to_a
-      image_urls = html_doc.xpath("//img/@src").collect {|item| item.value.strip}
+      #html_doc = Nokogiri::HTML(i['content']['rendered'])
+      ##image_urls = html_doc.search('//img/@src').to_a
+      #image_urls = html_doc.xpath("//img/@src").collect {|item| item.value.strip}
 
 
-      Rails.logger.info "Content Image URLs: #{image_urls.inspect}\n"
+      #Rails.logger.info "Content Image URLs: #{image_urls.inspect}\n"
       
     end
 

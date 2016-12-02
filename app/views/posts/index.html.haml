@@ -18,12 +18,12 @@
           #post.clearfix.my4
             .col.col-12.md-col.md-col-6.px2
               / -# thumbnail = extract_post_thumbnail_src(post)
-              = link_to image_tag(post['md_thumbnail'], class: "fit"), post_path(post['id'], cat: post['categories'])
+              = link_to image_tag(post['md_thumbnail'], class: "fit"), post_slug_path(article: post['slug'])
             .col.col-12.md-col.md-col-6.px2
               - if article_for_member_only?(post['categories'])
-                .blue.light Premium content
+                .blue.light Premium Content
               %h2.mt0
-                = link_to (raw post['title']['rendered']), post_path(post['id'], cat: post['categories']), class: 'text-decoration-none black light'
+                = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none black light'
               %h4.light
                 = post['excerpt']['rendered'].html_safe
               %h5.light.black #{format_post_date(post['date'])}
