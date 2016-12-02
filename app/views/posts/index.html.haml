@@ -12,23 +12,35 @@
           = link_to "Heating & cooling", posts_path(cat: "heating-and-cooling"), class: 'text-decoration-none gray-80'
         %li.inline.h3.light.pl2
           = link_to "Energy freedom", posts_path(cat: "energy-freedom"), class: 'text-decoration-none gray-80'
-    .col.col-12.md-col.md-col-8
-      - if @posts != nil
-        - @posts.each_with_index do |post, index|
-          #post.clearfix.my4
-            .col.col-12.md-col.md-col-6.px2
-              / -# thumbnail = extract_post_thumbnail_src(post)
-              = link_to image_tag(post['md_thumbnail'], class: "fit"), post_slug_path(article: post['slug'])
-            .col.col-12.md-col.md-col-6.px2
-              - if article_for_member_only?(post['categories'])
-                .blue.light Premium Content
-              %h2.mt0
-                = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none black light'
-              %h4.light
-                = post['excerpt']['rendered'].html_safe
-              %h5.light.black #{format_post_date(post['date'])}
-    .col.col-12.md-col.md-col-4.mt4.p2
+
+    .col.col-12.md-col.md-col-8.px2
+      .clearfix
+        - if @posts != nil
+          - @posts.each_with_index do |post, index|
+            .post.inline-block.mb2
+              - if index == 0
+                .col.col-12
+                  = link_to image_tag(post['better_featured_image']['media_details']['sizes']['first-post']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
+                  .blue.light Premium Content
+                  %h2.mt0
+                    = link_to (raw post['title']['rendered']), post_path(post['id'], cat: post['categories']), class: 'text-decoration-none black light'
+                  %h4.light
+                    = post['excerpt']['rendered'].html_safe
+                  %h5.light.black #{format_post_date(post['date'])}
+              - else
+                .col.col-12.md-col.md-col-6.center
+                  = link_to image_tag(post['better_featured_image']['media_details']['sizes']['maverick-medium-alt']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
+                .col.col-12.md-col.md-col-6.px2
+                  - if article_for_member_only?(post['categories'])
+                    .blue.light Premium content
+                  %h2.mt0
+                    = link_to (raw post['title']['rendered']), post_path(post['id'], cat: post['categories']), class: 'text-decoration-none black light'
+                  %h4.light
+                    = post['excerpt']['rendered'].html_safe
+                  %h5.light.black #{format_post_date(post['date'])}
+
+    .col.col-12.md-col.md-col-4.p2.sm-py0
       = render "subscribe_box"
-.center
+.center.mt2
   - if !@paginatable_array.nil?
     = paginate @paginatable_array
