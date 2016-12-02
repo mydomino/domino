@@ -45,7 +45,7 @@ class DHHtp
 	
     Rails.logger.info "\nQuery options is: #{query_options}"
 
-    response = self.class.get("/wp-json/wp/v2/posts?fields=id,title,excerpt,md_thumbnail,categories,date", query: query_options)
+    response = self.class.get("/wp-json/wp/v2/posts?fields=id,title,excerpt,md_thumbnail,categories,date,better_featured_image", query: query_options)
 
     Rails.logger.info "\nParams sent to URL is: #{response.request.last_uri.to_s}"
 
