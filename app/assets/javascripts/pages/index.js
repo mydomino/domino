@@ -34,4 +34,22 @@ window.MyDomino.pages["pages-index"] = function(){
       function(){ $('#profile_first_name').focus(); }
     );
   });
+
+  $('.slick').slick({
+    centerMode: true,
+    centerPadding: '20%',
+    slidesToShow: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          centerPadding: '8%'
+        }
+      }
+    ]
+  });
 };

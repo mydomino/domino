@@ -40,6 +40,7 @@ gem 'wicked'
 gem 'turbolinks', '~> 5.0.0'
 gem 'turboboost'
 gem 'clipboard-rails'
+gem 'jquery-slick-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -83,4 +84,3 @@ group :production do
   gem 'rails_12factor'
   gem 'skylight'
 end
-

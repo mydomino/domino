@@ -1,0 +1,88 @@
+
+/* Basscss Type Scale */
+.h0 { font-size: $h0 }
+
+.h1 { font-size: $h1 }
+
+.h2 { font-size: $h2 }
+
+.h3 { font-size: $h3 }
+
+.h4 { font-size: $h4 }
+
+.h5 { font-size: $h5 }
+
+.h6 { font-size: $h6 }
+
+@if (variable-exists(breakpoints)){
+  @each $bp-name, $bp-value in $breakpoints{
+    @media (min-width: $bp-value) {
+      .#{$bp-name}-h0 { font-size: $h0 }
+      .#{$bp-name}-h1 { font-size: $h1 }
+      .#{$bp-name}-h2 { font-size: $h2 }
+      .#{$bp-name}-h3 { font-size: $h3 }
+      .#{$bp-name}-h4 { font-size: $h4 }
+      .#{$bp-name}-h5 { font-size: $h5 }
+      .#{$bp-name}-h6 { font-size: $h6 }
+    }
+  }
+}
+/*FUOT*/
+
+.wf-loading { visibility:hidden; }
+
+
+/* Basscss Typography */
+
+.font-family-inherit { font-family: inherit }
+
+.font-size-inherit { font-size: inherit }
+
+.text-decoration-none { text-decoration: none }
+
+.bold    { font-weight: 700}
+
+.medium { font-weight: 500 }
+
+.regular { font-weight: 400 }
+
+.light { font-weight: 300 }
+
+.italic  { font-style: italic }
+
+.caps    { text-transform: uppercase; letter-spacing: $caps-letter-spacing; }
+
+.left-align   { text-align: left }
+
+.center       { text-align: center }
+
+.right-align  { text-align: right }
+
+.justify      { text-align: justify }
+
+.nowrap { white-space: nowrap }
+
+.break-word { word-wrap: break-word }
+
+.line-height-1 { line-height: $line-height-1 }
+
+.line-height-2 { line-height: $line-height-2 }
+
+.line-height-3 { line-height: $line-height-3 }
+
+.line-height-4 { line-height: $line-height-4 }
+
+.list-style-none { list-style: none }
+
+.underline { text-decoration: underline }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}
