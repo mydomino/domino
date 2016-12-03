@@ -18,7 +18,7 @@
         - if @posts != nil
           - @posts.each_with_index do |post, index|
             .post.inline-block.mb2
-              - if index == 0
+              - if index == 0 && !@browser.device.mobile?
                 .col.col-12
                   = link_to image_tag(post['better_featured_image']['media_details']['sizes']['first-post']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
                   - if article_for_member_only?(post['categories'])
