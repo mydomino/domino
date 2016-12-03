@@ -25,11 +25,16 @@
           -else
             =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none", id: "link-login"
 
+
       #mobile-nav.nav-bg.easeInOut.col-12.top-0.left-0.right-0.white.flex.flex-center
         .content.flex-auto
           %h1.inline-block
             #js-hamburger-close
               =embedded_svg 'i-close.svg', class:"#{nav_element_color} pointer fixed top-0 right-0 py3 pl3 pr2"
+          
+          .h0.p2.center
+            = yield :posts_menu
+
           %ul.py4.center.list-reset.h0
             -if !user_signed_in?
               %li
@@ -41,6 +46,8 @@
                 = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
             %li
               = link_to 'Call us', 'tel:+8009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
+      .col.col12.h3.sm-hide.xs-hide
+        = yield :posts_menu
 
 :javascript
   $(document).ready(function(){
