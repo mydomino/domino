@@ -14,7 +14,7 @@
                   - if article_for_member_only?(post['categories'])
                     .blue.light Premium Content
                   %h2.mt0
-                    = link_to (raw post['title']['rendered']), post_path(post['id'], cat: post['categories']), class: 'text-decoration-none black light'
+                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none black light'
                   %h4.light
                     = post['excerpt']['rendered'].html_safe
                   %h5.light.black #{format_post_date(post['date'])}
@@ -25,7 +25,7 @@
                   - if article_for_member_only?(post['categories'])
                     .blue.light Premium Content
                   %h2.mt0
-                    = link_to (raw post['title']['rendered']), post_path(post['id'], cat: post['categories']), class: 'text-decoration-none black light'
+                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none black light'
                   %h4.light
                     = post['excerpt']['rendered'].html_safe
                   %h5.light.black #{format_post_date(post['date'])}
