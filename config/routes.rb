@@ -24,9 +24,18 @@ Rails.application.routes.draw do
   get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
 
   # for backward supports of old URLs
-  get "/blog", to: 'posts#index'
-  get "/blog/:article", to: 'posts#get_post_by_slug'
-  get "/blog/category/:cat", to: 'posts#index'
+  #get "/blog", to: 'posts#index'
+  get "/blog", to: redirect('/articles')
+
+  # take care of get post by article slug
+  #get "/blog/:article", to: 'posts#get_post_by_slug'
+  get "/blog/:article",  to: redirect('/articles/%{article}')
+
+  # take care of get posts by category
+  #get "/blog/category/:cat", to: 'posts#index'
+  get "/blog/category/:cat", to: redirect('/category/%{cat}')
+
+
   get "/category/:cat", to: 'posts#index'
 
 

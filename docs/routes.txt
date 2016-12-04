@@ -14,6 +14,10 @@
         newsletter_subscribe GET      /newsletter-subscribe(.:format)                        pages#newsletter_subscribe
                              GET      /articles/:id(.:format)                                posts#show {:id=>/[0-9]+/}
                    post_slug GET      /articles/:article(.:format)                           posts#get_post_by_slug
+                        blog GET      /blog(.:format)                                        redirect(301, /articles)
+                             GET      /blog/:article(.:format)                               redirect(301, /articles/%{article})
+                             GET      /blog/category/:cat(.:format)                          redirect(301, /category/%{cat})
+                             GET      /category/:cat(.:format)                               posts#index
               user_dashboard GET      /dashboard(.:format)                                   dashboards#show
        dashboard_bulk_update PATCH    /dashboards/:dashboard_id/bulk_update(.:format)        recommendations#bulk_update
                   dashboards GET      /dashboards(.:format)                                  dashboards#index
