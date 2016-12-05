@@ -1,9 +1,9 @@
-<div>
-  <p class="h5 gray-60 mb0"><%= format_post_date(@post_date) if @post_date != nil %></p>
+<header class="post-header">
   <h1 class="black my0"><%= @title.try(:html_safe) %></h1>
-  <h2 class="gray-60 mt0 "><%= @subtitle.try(:html_safe) %></h2>
+  <h2 class="gray-80 mt0 mb1"><%= @subtitle.try(:html_safe) %></h2>
   <% if @author != nil %>
-    <h3 class="gray-60 my1">By <%= @author %></h3>
+    <h4 class="gray-80 my0">By <%= @author %></h3>
   <% end %>
+  <p class="h5 gray-80 mt0"><%= format_post_date(@post_date) if @post_date != nil %></p>
   <%= image_tag(@feature_img, class: "fit") %>
-</div>
+</header>
