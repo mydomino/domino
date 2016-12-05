@@ -20,29 +20,32 @@ class DHHtp
 		# set the base URL 
     self.class.base_uri(@host_ip)
 
+    user_name = ENV['WP_user_name']
     paswd = ENV['WP_password']
-    Rails.logger.info "paswd is: #{paswd}"
+    puts "WP_user_name is: #{user_name}. paswd is: #{paswd}"
 
     # set digest authentication
-    self.class.digest_auth('owner', paswd)
+    #self.class.digest_auth('owner', paswd)
+
+    # set up to use basic authentication
+    @options = {
+      basic_auth: { 
+        username: user_name, 
+        password: paswd
+      }
+    }
+
 	end
 
 
 
 	def get_posts(query_options)
 
-	  Rails.logger.info "Getting Posts from Dreamhost with WP REST API V2...\n"
+	  Rails.logger.debug "Getting Posts from Dreamhost with WP REST API V2...\n"
 
-	  # set the base URL 
-	  #self.class.base_uri(@host_ip)
+	  # merge the query options with default options
+    query_options = @options.merge(query_options)
 
-	  #paswd = ENV['egauge_password']
-    #Rails.logger.info "paswd is: #{paswd}"
-
-    # set digest authentication - Please do not remove this line. Need it for WP authentication later ! 
-	  #self.class.digest_auth('owner', paswd)
-
-	
     Rails.logger.info "\nQuery options is: #{query_options}"
 
     response = self.class.get("/wp-json/wp/v2/posts?fields=id,slug,title,excerpt,md_thumbnail,categories,date,better_featured_image", query: query_options)
@@ -63,7 +66,10 @@ class DHHtp
 
   def get_post_by_id(id, query_options)
 
-    Rails.logger.info "Getting Posts from Dreamhost with WP REST API V2...\n"
+    #Rails.logger.info "Getting Posts from Dreamhost with WP REST API V2...\n"
+
+    # merge the query options with default options
+    query_options = @options.merge(query_options)
     Rails.logger.info "\nQuery options is: #{query_options}"
 
     
@@ -154,6 +160,9 @@ class DHHtp
 
     #url = "http://#{@host_ip}/cgi-bin/egauge?tot&inst&teamstat&v1"
     
+    # merge the query options with default options
+    query_options = @options.merge(query_options)
+
     puts "\nQuery options is: #{query_options}"
 
     
@@ -172,6 +181,9 @@ class DHHtp
 
 
   def get_post_by_slug(query_options)
+
+    # merge the query options with default options
+    query_options = @options.merge(query_options)
 
     puts "\nQuery options is: #{query_options}"
 
