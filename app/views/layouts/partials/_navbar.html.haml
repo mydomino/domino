@@ -4,7 +4,7 @@
 %nav#navbar.col-12.z3.top-0{class: "#{'absolute' if homepage}"}
   .max-width-4.mx-auto
     .clearfix
-      .col.col-4.p2
+      .col.col-4.mt2.ml2
         = link_to root_path, id: "navbar-brand" do
           = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
@@ -35,7 +35,7 @@
           .h1.p2.center
             = yield :posts_menu
 
-          %ul.pt4.center.list-reset
+          %ul.mt2.center.list-reset
             -if !user_signed_in?
               %li.h1
                 = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
