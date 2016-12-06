@@ -9,29 +9,29 @@ class PostsController < ApplicationController
 
   def index
 
-    begin
-      query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
+    query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
 
-      Rails.logger.debug "In index action, category param is #{params[:cat]}\n"
+    Rails.logger.debug "In index action, category param is #{params[:cat]}\n"
 
-      #add a category if it is specified in the query
-      if !params[:cat].nil?
+    #add a category if it is specified in the query
+    if !params[:cat].nil?
+      filt = {category_name: params[:cat]}
+      query_params[:filter] = filt
+    end
 
-        filt = {category_name: params[:cat]}
-        query_params[:filter] = filt
-      end
+    response = @dh.get_posts(query_params)
 
-      response = @dh.get_posts(query_params)
-
-      # for troubleshooting. Display its content
-      # @dh.display_posts(response.body)
-
+    # Error handling for Dreamhost response
+    case response.code
+    when 200
       @posts = JSON.parse(response.body)
       @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
       @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
-    rescue => e
-      Rails.logger.info "\nError! #{e}\n"        
+    else
+      raise Exceptions::DreamhostError.new('Not Found')
     end
+    # for troubleshooting. Display its content
+    # @dh.display_posts(response.body)
   end
 
   # GET /posts/1

@@ -3,13 +3,12 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
   before_action :capture_utm_campaign, :get_user_agent
+  around_action :handle_exceptions
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Let views access current_user
   helper_method :article_for_member_only?
-
-
 
   def article_for_member_only?(category)
 
@@ -78,4 +77,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+
+  def handle_exceptions
+    begin
+      yield
+    rescue ActionController::RoutingError => e
+      redirect_to '/404'
+    rescue Exceptions::DreamhostError
+      redirect_to '/500'
+    end
+  end
 end

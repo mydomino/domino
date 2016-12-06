@@ -34,5 +34,8 @@ module Domino
 
     # add the path for auto loading custom classes/libraries
     config.autoload_paths << Rails.root.join('lib')
+
+    # Use routes for error handling
+    config.exceptions_app = self.routes
   end
 end
