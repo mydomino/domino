@@ -16,11 +16,9 @@ class ApplicationController < ActionController::Base
     
   end
 
-
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
-
   
   private
 
@@ -82,10 +80,12 @@ class ApplicationController < ActionController::Base
   def handle_exceptions
     begin
       yield
-    rescue ActionController::RoutingError => e
-      redirect_to '/404'
-    rescue Exceptions::DreamhostError
-      redirect_to '/500'
+
+    #Rescue StandardError
+    rescue => e
+      Rails.logger.error "Error: #{e.message}"
+      Rails.logger.error  "#{e.backtrace.join("\n")}"
+      redirect_to '/error'
     end
   end
 end
