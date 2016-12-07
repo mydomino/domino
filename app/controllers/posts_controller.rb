@@ -138,7 +138,6 @@ class PostsController < ApplicationController
 
 
     respond_to do |format|
-
       # init paywall url
       session[:paywall_url] = nil
 
@@ -146,14 +145,8 @@ class PostsController < ApplicationController
         # user sign in and is authorize to see the post
         format.html { render template: "posts/show" }
       else
-        # Copied from pages_controller
-        # user goes back from wizard form to blog page
-        if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
-          @response = {form: 'profiles/name_and_email', method: :put}
-        else
-          @profile = Profile.new
-          @response = {form: 'profiles/name_and_email', method: :post}
-        end
+        @profile = Profile.new
+        @response = {form: 'profiles/name_and_email', method: :post}
 
         Rails.logger.debug "request.fullpath is #{request.fullpath.inspect}\n"
 

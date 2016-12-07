@@ -34,4 +34,7 @@ window.MyDomino.pages["pages-index"] = function(){
       function(){ $('#profile_first_name').focus(); }
     );
   });
+
+  // Name and email form validation
+  nameAndEmailFormValidate();
 };
