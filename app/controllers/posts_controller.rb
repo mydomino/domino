@@ -136,22 +136,13 @@ class PostsController < ApplicationController
     # determine whether the post has a feature image. If not, use the default image
     @feature_img = post['md_thumbnail'] =~ /^http/ ? post['md_thumbnail'] : 'default_feature_img.jpg'
 
-
     respond_to do |format|
-      # init paywall url
-      session[:paywall_url] = nil
-
       if verify_post_access(@categories)
         # user sign in and is authorize to see the post
         format.html { render template: "posts/show" }
       else
         @profile = Profile.new
         @response = {form: 'profiles/name_and_email', method: :post}
-
-        Rails.logger.debug "request.fullpath is #{request.fullpath.inspect}\n"
-
-        # store the paywall url so user can be redirected back to this URL after signing in
-        session[:paywall_url] = request.fullpath
 
         format.html { render template: "posts/show-restrict" }
       end

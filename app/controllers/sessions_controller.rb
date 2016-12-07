@@ -1,5 +1,12 @@
 class SessionsController < Devise::SessionsController
 
+  def new
+    # Store path of referer in session var
+    # For redirection back to article views
+    session[:referer] = URI(request.referer).path
+    super
+  end
+
   def create
     @email = params[:user][:email]
     #if legacy user attempts to login, but has not registered a password
@@ -10,5 +17,4 @@ class SessionsController < Devise::SessionsController
     end
     super
   end
-
 end

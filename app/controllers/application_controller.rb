@@ -32,27 +32,15 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
-  def after_sign_in_path_for resource
+  def after_sign_in_path_for(resource)
 
-    #Rails.logger.debug "A. request.referer is #{request.referer.inspect}\n\n"
-    #Rails.logger.debug "A. session[:paywall_url] is #{session[:paywall_url].inspect}\n\n"
-
-    # If user was trying to read member only article, then redirect user to last read paywall 
-    # URL after signing in.
-    if session[:paywall_url] != nil
-      #Rails.logger.debug "session[:paywall_url] is #{session[:paywall_url].inspect}\n\n"
-      
-      redirect_url = session[:paywall_url]
-
-      # Now the user had signed in, let's reset the session paywall_url so it is only good for current action
-      session[:paywall_url] = nil
-
-      redirect_url
+    # If user logs in via article views, redirect to whichever article view they left off at
+    if session[:referer].include?('/articles')
+      session[:referer]
     elsif resource.role == 'concierge'
       #Rails.logger.debug "dashboards_path is #{dashboards_path.inspect}\n\n"
       dashboards_path
     else
-
       #Rails.logger.debug "user_dashboard_path is #{user_dashboard_path.inspect}\n\n"
       user_dashboard_path
     end
@@ -74,8 +62,6 @@ class ApplicationController < ActionController::Base
       hsh[str] = session[str]
     end
   end
-
-  private
 
   def handle_exceptions
     begin
