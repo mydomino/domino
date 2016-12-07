@@ -1,9 +1,9 @@
 -# Size of subscribe box will conform to parent div
 -# Using % so padding is proportional when box width is small
-.border.border-gray-30.flex.items-center.justify-center.center{ style: 'padding: 5% 5%; height: inherit;' }
+.border.border-gray-30.p1.sm-py3.flex.items-center.justify-center.center{ style: 'height: inherit;' }
   = form_tag "/newsletter-subscribe", style: 'width: inherit;', remote: true, method: :get do
     -# sm-m0 to remove extra top and x spacing on larger size when box margins are bigger
-    %h1.mx1.mb0.mt2.sm-m0 Subscribe to our newsletter
+    %h1.light.mx1.mb0.mt2.sm-m0 Subscribe to our newsletter
     %p.h4 Get the latest on clean energy living,<br>plus tips for ditching dirty fuels.
     %input#newsletter-email.border.border-gray-30.rounded.my1{ style: 'height: 2.5em; width: 85%', type: 'email', name: 'email', placeholder: "Your email address", required: true }
     -# sm-mb0 to remove extra bottom margins on larger sizes where box margins are bigger
