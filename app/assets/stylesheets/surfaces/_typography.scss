@@ -81,7 +81,10 @@ $bold-font-weight: bold !default;
   li { margin-bottom: 1em }
   a { 
     color: $blue;
-    text-decoration: none; 
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 }
 
