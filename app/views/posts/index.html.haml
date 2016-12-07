@@ -13,22 +13,22 @@
                   = link_to image_tag(post['better_featured_image']['media_details']['sizes']['first-post']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
                   - if article_for_member_only?(post['categories'])
                     .blue.light Premium Content
-                  %h2.mt0
-                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none black light'
-                  %h4.light
-                    = post['excerpt']['rendered'].html_safe
-                  %h5.light.black #{format_post_date(post['date'])}
+                  %h2.my1
+                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-80 text-blue--hover'
+                  %p.light.mt0.mb1
+                    = strip_tags post['excerpt']['rendered'].html_safe
+                  %p.h5.mt0.light.black #{format_post_date(post['date'])}
               - else
                 .col.col-12.md-col.md-col-6.center
                   = link_to image_tag(post['better_featured_image']['media_details']['sizes']['maverick-medium-alt']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
                 .col.col-12.md-col.md-col-6.p0.sm-pl2
                   - if article_for_member_only?(post['categories'])
                     .blue.light Premium Content
-                  %h2.mt0
-                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none black light'
-                  %h4.light
-                    = post['excerpt']['rendered'].html_safe
-                  %h5.light.black #{format_post_date(post['date'])}
+                  %h2.mt0.mb1
+                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-80 text-blue--hover'
+                  %p.light.mt0.mb1
+                    = strip_tags post['excerpt']['rendered'].html_safe
+                  %p.h5.mt0.light.black #{format_post_date(post['date'])}
 
     .col.col-12.md-col.md-col-4.p2.sm-py0
       = render "subscribe_box"
