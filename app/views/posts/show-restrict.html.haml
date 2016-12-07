@@ -42,3 +42,8 @@
                       This email is invalid.
                   .m1.center
                     =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-sm btn-primary btn-primary--hover max-width-half",style: "height:42px;width:100%;"
+
+:javascript
+  $(document).ready(function(){
+    nameAndEmailFormValidate();
+  });
