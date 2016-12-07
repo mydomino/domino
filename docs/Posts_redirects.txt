@@ -25,4 +25,9 @@ Posts Forwarding to https://mydomino.com/
   https://mydomino.com/blog/category/energy-freedom
 
   
-*
+
+  Examples:
+
+  https://domino-staging.herokuapp.com/articles/what-kind-of-heat-pump-should-you-get
+
+  link: mydomino.com/blog/what-the-heck-is-a-heat-pump/  => https://blog.mydomino.com/what-the-heck-is-a-heat-pump/
