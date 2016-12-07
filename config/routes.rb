@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # exceptions and errors handling for application
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/error", :to => "errors#error", :via => :all 
+
   root 'pages#index'
 
   get 'team' => 'pages#team'

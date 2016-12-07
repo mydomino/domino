@@ -13,7 +13,6 @@ class DHHtp
   # Note: this value is from dreamhosts WP database for category. This value need to be updated if the WP databse is changed.
   MEMBER_ONLY_CATEGORY = 699   
 
-
 	def initialize(host_ip)
 		@host_ip = host_ip
 
@@ -37,8 +36,6 @@ class DHHtp
 
 	end
 
-
-
 	def get_posts(query_options)
 
 	  Rails.logger.debug "Getting Posts from Dreamhost with WP REST API V2...\n"
@@ -49,18 +46,18 @@ class DHHtp
     Rails.logger.info "\nQuery options is: #{query_options}"
 
     response = self.class.get("/wp-json/wp/v2/posts?fields=id,slug,title,excerpt,md_thumbnail,categories,date,better_featured_image", query: query_options)
-
     Rails.logger.info "\nParams sent to URL is: #{response.request.last_uri.to_s}"
 
     #Rails.logger.debug "\nPretty print the output\n"
     #Rails.logger.debug JSON.pretty_generate(JSON.parse(response.body))
-
-	  if response.success?
-      response
-    else
-      raise response.response
-    end
-  
+    
+    # Error response is now handled at the controller level
+    # if response.success?
+    #    response
+    #  else
+    #    raise response.response
+    #  end
+    response
   end
 
 
@@ -125,10 +122,8 @@ class DHHtp
     end
 
   end
-
   
   def get_pagination_params(resp_headers)
-
 
       # retrieve the params from response headers
       #resp_headers = response.headers
@@ -142,8 +137,6 @@ class DHHtp
       return ([a, b])
       
   end
-
-
 
   def get_categoriess(query_options)
 
@@ -178,8 +171,6 @@ class DHHtp
   
   end
 
-
-
   def get_post_by_slug(query_options)
 
     # merge the query options with default options
@@ -199,11 +190,4 @@ class DHHtp
     end
     
   end
-
-
-
-
-
-
-
 end
