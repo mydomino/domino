@@ -53,9 +53,11 @@
   $(document).ready(function(){
     $('#js-hamburger').click(function(){
       $('nav').addClass('open');
+      $('body').addClass('lock-position');
     });
 
     $('#js-hamburger-close').click(function(){
       $('nav').removeClass('open');
+      $('body').removeClass('lock-position');
     });
   });
