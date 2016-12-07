@@ -18,6 +18,8 @@ class PostsController < ApplicationController
       query_params[:filter] = filt
     end
 
+    response = @dh.get_posts(query_params)
+
     @posts = JSON.parse(response.body)
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
@@ -43,6 +45,7 @@ class PostsController < ApplicationController
     query_param = {filter: {name: slug}}
 
     response = @dh.get_post_by_slug(query_param)
+
 
     process_post(response.body)
   end
@@ -74,7 +77,7 @@ class PostsController < ApplicationController
   end
 
   private
-  
+
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     #@post = Post.find(params[:id])
