@@ -415,7 +415,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
-  airbrake
+  airbrake (~> 5.6)
   animate-rails
   autoprefixer-rails
   basscss-rails
