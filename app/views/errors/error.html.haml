@@ -1,2 +1,9 @@
-.max-width-4.mx-auto
-  %h1 An error has occurred
+.max-width-4.mx-auto.bg-gray-05.my4
+  .max-width-2.mx-auto.p4.line-height-2.gray-60
+    %h1.mt0 An error has occurred
+    %h2.line-height-2
+      Something went wrong on our end. Sorry about that. We're working on fixing it.
+    
+    = link_to root_path do 
+      .btn.btn-md.btn-primary.btn-primary--hover
+        Back to home
