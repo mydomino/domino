@@ -24,8 +24,6 @@ class PostsController < ApplicationController
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
     
-    # for troubleshooting. Display its content
-    # @dh.display_posts(response.body)
   end
 
   # GET /posts/1
