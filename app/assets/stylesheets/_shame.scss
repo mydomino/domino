@@ -418,21 +418,20 @@ input{ padding-left: 10px; }
   }
 }
 /* kaminari pagination styles */
-.pagination a, 
-.pagination span.current, 
+.pagination a,
+.pagination span.current,
 .pagination span.gap {
   float: left;
   padding: 0 14px;
   line-height: 38px;
   text-decoration: none;
   background-color: white;
-  border: 1px solid #666;
+  border: 1px solid #C1C1C1;
   border-left-width: 0;
-  color: #333;
 }
 
 .pagination {
-  border-left: 1px solid #666;
+  border-left: 1px solid #C1C1C1;
   display: inline-block;
   text-align: center;
   margin-bottom: 20px;
@@ -461,7 +460,19 @@ input{ padding-left: 10px; }
     float: none;
     border: none;
   }
+  span.current {
+    color: #333;
+    background-color: #D6D6D6;
+  }
+  a {
+    color: #666;
+  }
+  a:hover {
+    background-color: #00CCFF;
+    color: white;
+  }
 }
+
 /* styles for dashboard recommendations */
 .rounded-20 { border-radius: 20px; }
 
