@@ -13,8 +13,7 @@
         // Paywall div
         .mx-auto.my4.border.border-gray-10
           .px2.py1.bg-white
-            %h3.center.m0.gray-60.bold.inline.mx-auto Members only article
-            #{ link_to "Log in", new_user_session_path, class: "blue right inline" }
+            %h3.m0.gray-60.bold Members-only article
           .p2.sm-px4.sm-py3.bg-gray-05
             %h1.center.mt0 Become a MyDomino member
             .mx-auto.max-width-1
@@ -23,9 +22,9 @@
                 %li A personalized path to 100% clean energy and big savings.
                 %li An online dashboard to track your progress.
                 %li Recommendations on clean energy products and services vetted by our team.
-
+              %p.m0.gray-30.center No credit card required.
               // Mostly copied from profile/_name_and_email.html.haml
-              #profile-forms.my3.max-width-1
+              #profile-forms.mt2.mb3.max-width-1
                 =simple_form_for @profile, method: @response[:method] do |form|
                   .flex
                     .mr1
@@ -42,6 +41,8 @@
                       This email is invalid.
                   .m1.center
                     =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-sm btn-primary btn-primary--hover max-width-half",style: "height:42px;width:100%;"
+                  %p.mb0.center Already a member? #{ link_to "Log in", new_user_session_path, class: "blue" }
+
 
 :javascript
   $(document).ready(function(){
