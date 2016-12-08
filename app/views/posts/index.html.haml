@@ -10,7 +10,8 @@
             .post.inline-block.mb2
               - if index == 0 && !@browser.device.mobile?
                 .col.col-12
-                  = link_to image_tag(post['better_featured_image']['media_details']['sizes']['first-post']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
+                  = link_to post_slug_path(article: post['slug']) do
+                    = image_tag extract_post_thumbnail_src(post, 'first-post'), class: "fit"
                   %h2.my1
                     = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-80 text-blue--hover'
                     - if article_for_member_only?(post['categories'])
@@ -20,7 +21,8 @@
                   %p.h5.mt0.light.black #{format_post_date(post['date'])}
               - else
                 .col.col-12.md-col.md-col-6.center
-                  = link_to image_tag(post['better_featured_image']['media_details']['sizes']['maverick-medium-alt']['source_url'], class: "fit"), post_slug_path(article: post['slug'])
+                  = link_to post_slug_path(article: post['slug']) do
+                    = image_tag extract_post_thumbnail_src(post, 'maverick-medium-alt'), class: "fit"
                 .col.col-12.md-col.md-col-6.p0.sm-pl2
                   %h2.mt0.mb1
                     = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-80 text-blue--hover'

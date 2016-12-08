@@ -12,9 +12,9 @@ module PostsHelper
 
 	end
 
-  def extract_post_thumbnail_src(post_json_data)
-    (post_json_data['_embedded']['wp:featuredmedia'][0]['media_details']['sizes'].has_key? 'maverick-medium-alt')\
-    ? post_json_data['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['maverick-medium-alt']['source_url']\
+  def extract_post_thumbnail_src(post_json_data, size)
+    (post_json_data['better_featured_image']['media_details']['sizes'].has_key? size)\
+    ? post_json_data['better_featured_image']['media_details']['sizes'][size]['source_url']\
     : post_json_data['md_thumbnail']
   end
 end
