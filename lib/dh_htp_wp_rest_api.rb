@@ -8,7 +8,8 @@ class DHHtp
 	include HTTParty
 
 	#debug_output STDOUT
-  HOST_IP = 'https://mydomino.dreamhosters.com'
+  HOST_IP = 'https://blog.mydomino.com'
+  # HOST_IP = 'https://mydomino.dreamhosters.com'
 
   # Note: this value is from dreamhosts WP database for category. This value need to be updated if the WP databse is changed.
   MEMBER_ONLY_CATEGORY = 699   
