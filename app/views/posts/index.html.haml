@@ -5,6 +5,10 @@
   .clearfix
     .col.col-12.md-col.md-col-8.px2
       .clearfix
+        - if params[:cat]
+          %h1.mt0.gray-30.light.border-bottom.mb3
+            = PostsHelper::CATEGORY_SLUG_TO_TITLE[params[:cat]]
+
         - if @posts != nil
           - @posts.each_with_index do |post, index|
             .post.inline-block.mb2
