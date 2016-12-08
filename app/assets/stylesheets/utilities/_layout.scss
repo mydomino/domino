@@ -71,7 +71,19 @@ $width-4: 64rem !default;
   margin: 0 auto 1.5em;
 }
 
-.post-content img { max-width: 100% }
+/* Make article images fit within blog width */
+
+.wp-caption {
+  max-width: 100%;
+}
+
+.post-content, post-header {
+  img {
+      height: auto;
+      max-width: 100%;
+      vertical-align: middle;
+  }
+}
 
 /* Makes Youtube Videos Responsive */
 
