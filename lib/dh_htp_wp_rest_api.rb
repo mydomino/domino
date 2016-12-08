@@ -12,7 +12,10 @@ class DHHtp
   # HOST_IP = 'https://mydomino.dreamhosters.com'
 
   # Note: this value is from dreamhosts WP database for category. This value need to be updated if the WP databse is changed.
-  MEMBER_ONLY_CATEGORY = 699   
+  # MEMBER_ONLY_CATEGORY = 699
+  #wp engine db
+  MEMBER_ONLY_CATEGORY = 743   
+
 
 	def initialize(host_ip)
 		@host_ip = host_ip
