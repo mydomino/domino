@@ -3,9 +3,9 @@ require 'date'
 module PostsHelper
 
   CATEGORY_SLUG_TO_TITLE = {  'clean-power': 'Clean power', 
-                              'Transportation': 'Getting around', 
+                              'getting-around': 'Getting around', 
                               'heating-and-cooling': 'Heating & cooling', 
-                              'energy-freedom': 'Energy efficiency'
+                              'energy-efficiency': 'Energy efficiency'
                               }.stringify_keys
 
 	def format_post_date(date_str)
