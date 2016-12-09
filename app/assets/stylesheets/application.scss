@@ -15,9 +15,15 @@
  *= require jquery-ui/slider
  *= require nprogress
  */
+// Variables
+@import 'config';
 
+// Reset
+@import 'base';
+
+@import 'slick';
+@import 'slick-theme';
 @import 'shame';
 @import 'surfaces/surfaces';
 @import 'components/components';
 @import 'utilities/utilities';
-@import 'base';

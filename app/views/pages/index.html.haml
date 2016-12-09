@@ -6,7 +6,7 @@
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
 
 .bg-gray-05.py2.center
-  %h3.gray-80.inline Get MyDomino as an employee benefit for your business.
+  %h3.gray-80.inline Get MyDomino as an employee benefit for your workplace.
   =link_to 'Learn more >', "http://business.mydomino.com", class: 'h3 blue text-decoration-none'
 
 #action-path.bg-white.max-width-4.mx-auto.my2
@@ -82,7 +82,7 @@
         %h3
           = link_to 'See more articles >', {controller: 'posts', action: 'index'}, class: 'h2 blue text-decoration-none'
 
-.bg-white
+.bg-white.z4
   .clearfix.max-width-4.mx-auto.pt4.px2
     .h1.black.light.center.pb4.line-height-2 A membership with epic savings
 
@@ -124,29 +124,65 @@
 
     .col.col-12.center.pt2.pb3.sm-py3
       #btn-become-a-member.btn.btn-md.btn-primary.btn-primary--hover Become a member
+      .mt2
+        %p.gray-30.inline Already a member? 
+        =link_to "Log in", new_user_session_path, class: "inline blue text-decoration-none"
 
-    .col.col-12
-      .max-width-3.mx-auto
-        %hr.border-none.border-top--gray
-        .p3.center.line-height-2
-          .h3.gray-80 “The MyDomino concierge service is exactly what I needed. I wanted to go solar, but I wasn't sure if it made sense. My concierge, Amy, made it easy.”
-          .h4.gray-80.pt2 --Julie C., MyDomino member in Sebastopol, CA
-  %hr.border-none.border-top--gray
+  //testimonial carousel
+  %section
+    .slick.gray-80
+      .px1.sm-px2.py2.my3.mx2.center.rounded
+        %h4.py1.px4.lg-mt1.lg-mb2.line-height-3.italic.mx-auto
+          “The MyDomino concierge service is exactly what I needed! I wanted to go solar, but I wasn't sure if it made sense. My concierge, Amy, made it easy.”
+        =image_tag "i-user", class:"mx-auto lg-mt1", alt:"user"
+        %h4.mb0.mt1.line-height-1 Julie C.
+        %h4.my0.line-height-1 Sebastopol, CA
+      .px1.sm-px2.py2.my3.mx2.center.rounded
+        %h4.py1.px4.lg-mt1.lg-mb2.line-height-3.italic.mx-auto
+          “MyDomino was a lifesaver! Thanks to our concierge's help finding us the perfect financing option, we can feel good knowing we're powering our home with clean energy.”
+        =image_tag "i-user", class:"mx-auto lg-mt1", alt:"user"
+        %h4.mb0.mt1.line-height-1 Phyllis H.
+        %h4.my0.line-height-1 San Carlos, CA
+      .px1.sm-px2.py2.my3.mx2.center.rounded
+        %h4.py1.px4.lg-mt1.lg-mb2.line-height-3.italic.mx-auto
+          “With MyDomino, I didn't have to think too hard about all my options. With very little effort on my part, I'll be saving hundreds a month and using clean energy."
+        =image_tag "i-user", class:"mx-auto lg-mt1", alt:"user"
+        %h4.mb0.mt1.line-height-1 David H.
+        %h4.my0.line-height-1 San Jose, CA
+      .px1.sm-px2.py2.my3.mx2.center.rounded
+        %h4.py1.px4.lg-mt1.lg-mb2.line-height-3.italic.mx-auto
+          “After researching solar options on the internet, I became more confused. Fortunately, I came across MyDomino. Now my electric bills are dramatically reduced!"
+        =image_tag "i-user", class:"mx-auto lg-mt1", alt:"user"
+        %h4.mb0.mt1.line-height-1 Mike W.
+        %h4.my0.line-height-1 Fresno, CA
+      .px1.sm-px2.py2.my3.mx2.center.rounded
+        %h4.py1.px4.lg-mt1.lg-mb3.line-height-3.italic.mx-auto
+          “I’ve been thinking about switching to clean energy for years, but actually doing it was daunting. Thank goodness for MyDomino!"
+        =image_tag "i-user", class:"mx-auto lg-mt1"
+        %h4.mb0.mt1.line-height-1 Susan P.
+        %h4.my0.line-height-1 Weston, CT
+      .px1.sm-px2.py2.my3.mx2.center.rounded
+        %h4.py1.px4.lg-mt1.lg-mb2.line-height-3.italic.mx-auto
+          “What an amazing resource for anyone interested in reducing their carbon footprint! I was really impressed. I highly recommend MyDomino.”
+        =image_tag "i-user", class:"mx-auto lg-mt1", alt:"user"
+        %h4.mb0.mt1.line-height-1 Chris K.
+        %h4.my0.line-height-1 Palm Bay, FL
 
-.bg-white.pb3
+
+.border-top--gray
   .clearfix.max-width-4.mx-auto.py4.center
     .h1.light.black.center.line-height-2 Our partners
     .mt2
-      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+      .sm-col.sm-col-6.md-col-3.sm-mt3
         = link_to "http://www.everybodysolar.org/", target: '_blank' do
           = image_tag 'partner_logos/everybody-solar'
-      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+      .sm-col.sm-col-6.md-col-3.sm-mt3
         = link_to "http://www.howtoletgomovie.com/", target: '_blank' do
           = image_tag 'partner_logos/how-to-let-go'
-      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+      .sm-col.sm-col-6.md-col-3.sm-mt3
         = link_to "http://thesolutionsproject.org", target: "_blank" do
           = image_tag 'partner_logos/the-solutions-project'
-      .sm-col.sm-col-6.md-col-3.mt4.sm-mt0
+      .sm-col.sm-col-6.md-col-3.sm-mt1
         = link_to "http://www.timetochoose.com/", target: "_blank" do
           = image_tag 'time-to-choose', class:"pt4"
     .col.col-12.center.mt4.sm-mt3

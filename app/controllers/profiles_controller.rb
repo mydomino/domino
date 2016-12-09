@@ -123,7 +123,16 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(
       :first_name, 
       :last_name, 
-      :email
+      :email,
+      :phone,
+      :address_line_1,
+      :city,
+      :state,
+      :zip_code,
+      {:offering_ids => []},
+      :housing,
+      :avg_electrical_bill,
+      :partner_code_id
     ).merge(session_params)
   end
 end

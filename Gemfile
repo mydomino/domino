@@ -43,6 +43,7 @@ gem 'crack', '~> 0.4.3'
 gem 'httparty', '~> 0.14.0'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'clipboard-rails'
+gem 'jquery-slick-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -90,4 +91,3 @@ end
 group :production, :test do
   gem 'rack-timeout'
 end
-
