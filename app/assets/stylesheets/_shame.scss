@@ -269,7 +269,6 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 /* BEGIN custom navbar styles */
 #navbar {
   .fa-bars { padding-top: 1.4rem; }
-  .fa-phone { font-size: 1.2em; }
 }
 /* END custom navbar styles */
 
@@ -574,8 +573,7 @@ span.toggle { width: 1em; }
 #slider > div{ background: #00CCFF!important; }
 
 /* Buttons */
-.btn-navbar{
-  border-width: 2px!important;
+.navbar-element {
   font-size: 1.2em!important;
   &:hover{
     border-color: #00ccff;
