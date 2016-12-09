@@ -136,6 +136,9 @@ class PostsController < ApplicationController
     # determine whether the post has a feature image. If not, use the default image
     @feature_img = post['md_thumbnail'] =~ /^http/ ? post['md_thumbnail'] : 'default_feature_img.jpg'
 
+    @article_slug = post['slug']
+    @post_id = post['id']
+
     respond_to do |format|
       if verify_post_access(@categories)
         # user sign in and is authorize to see the post
