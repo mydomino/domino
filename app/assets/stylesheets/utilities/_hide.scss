@@ -34,3 +34,11 @@ $breakpoint-lg: '(min-width: 64em)' !default;
 .hidden { visibility: hidden; }
 
 .visible { visibility: visible;}
+
+
+/* post/show_restrict view */
+
+@media (min-width: 40em) {
+  #mobile-blur { display: none }
+  #desktop-blur { display: inline }
+}

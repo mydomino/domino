@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  # exceptions and errors handling for application
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/error", :to => "errors#error", :via => :all 
+
   root 'pages#index'
 
   get 'team' => 'pages#team'
@@ -16,9 +21,28 @@ Rails.application.routes.draw do
   get "/continue/:profile_id" => 'pages#index'
 
   get "/newsletter-subscribe" => 'pages#newsletter_subscribe'
-  get "/blog" => redirect("http://blog.mydomino.com/")
-  get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
-  get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+  #get "/blog" => redirect("http://blog.mydomino.com/")
+  #get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
+  #get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}
+  
+  get "/articles/:id", to: 'posts#show', constraints: {id: /[0-9]+/}
+  get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
+
+  # for backward supports of old URLs
+  #get "/blog", to: 'posts#index'
+  get "/blog", to: redirect('/articles')
+
+  # take care of get post by article slug
+  #get "/blog/:article", to: 'posts#get_post_by_slug'
+  get "/blog/:article",  to: redirect('/articles/%{article}')
+
+  # take care of get posts by category
+  #get "/blog/category/:cat", to: 'posts#index'
+  get "/blog/category/:cat", to: redirect('/category/%{cat}')
+
+
+  get "/category/:cat", to: 'posts#index'
+
 
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
@@ -51,5 +75,10 @@ Rails.application.routes.draw do
   resource :analytics, only: [:show]
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
+  #post '/posts/:id', to: 'posts#show', as: 'post'
+  resources :posts, :path => 'articles'
+  #resources :posts
+  
 
 end

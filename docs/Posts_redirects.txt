@@ -1,0 +1,33 @@
+
+
+Posts Forwarding to https://mydomino.com/
+
+* http://blog.mydomino.com/ => https://mydomino.com/articles
+
+
+* http://mydomino.dreamhosters.com/article_slug =>  https://mydomino.com/articles/article_slug
+(ex. http://mydomino.dreamhosters.com/cant-go-solar/ => https://mydomino.com/articles/cant-go-solar)
+
+
+* http://mydomino.com/blog/article_slug =>  https://mydomino.com/articles/article_slug
+
+
+* https://blog.mydomino.com/article_slug/ =>  https://mydomino.com/articles/article_slug
+
+
+* https://blog.mydomino.com/category/transportation/ => https://mydomino.com/category/transportation
+
+
+* http://mydomino.com/blog/category/transportation  => https://mydomino.com/category/transportation
+  
+  https://mydomino.com/blog/category/heating-and-cooling
+  https://mydomino.com/blog/category/clean-power
+  https://mydomino.com/blog/category/energy-freedom
+
+  
+
+  Examples:
+
+  https://domino-staging.herokuapp.com/articles/what-kind-of-heat-pump-should-you-get
+
+  link: mydomino.com/blog/what-the-heck-is-a-heat-pump/  => https://blog.mydomino.com/what-the-heck-is-a-heat-pump/

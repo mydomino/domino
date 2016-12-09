@@ -12,7 +12,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -50,7 +50,7 @@ Rails.application.configure do
     Bullet.alert = true
   end
 
-  # white list ip running locally
-  config.web_console.whitelisted_ips = '10.1.10.0/24'
+  # completely disable web_console whiny_requests for display with ips
+  config.web_console.whiny_requests = false
 
 end

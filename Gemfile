@@ -17,7 +17,7 @@ gem 'json'
 gem 'rubyzoho'
 gem 'actionpack-action_caching'
 gem 'sitemap_generator'
-gem 'airbrake'
+gem 'airbrake', '~> 5.6'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
@@ -29,7 +29,6 @@ gem 'gravatar_image_tag'
 gem 'kaminari'
 gem 'textacular'
 gem 'mailchimp-api', require: 'mailchimp'
-gem 'rack-timeout'
 gem 'retries'
 gem 'pundit'
 gem 'mailkick'
@@ -39,6 +38,10 @@ gem 'newrelic_rpm'
 gem 'wicked'
 gem 'turbolinks', '~> 5.0.0'
 gem 'turboboost'
+# for REST API manipulation
+gem 'crack', '~> 0.4.3'
+gem 'httparty', '~> 0.14.0'
+gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'clipboard-rails'
 gem 'jquery-slick-rails'
 
@@ -83,4 +86,8 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'skylight'
+end
+
+group :production, :test do
+  gem 'rack-timeout'
 end

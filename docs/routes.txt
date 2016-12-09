@@ -6,14 +6,18 @@
                      privacy GET      /privacy(.:format)                                     pages#privacy
                          faq GET      /faq(.:format)                                         pages#faq
                      example GET      /example(.:format)                                     pages#example
+                    partners GET      /partners(.:format)                                    pages#partners
                              GET      /welcome-email/:profile_id(.:format)                   profiles#welcome_email
                              GET      /legacy-user-registration-email/:lu_id(.:format)       profiles#lu_registration_email
                              GET      /dashboard/:slug(.:format)                             redirect(301)
                              GET      /continue/:profile_id(.:format)                        pages#index
         newsletter_subscribe GET      /newsletter-subscribe(.:format)                        pages#newsletter_subscribe
-                        blog GET      /blog(.:format)                                        redirect(301, http://blog.mydomino.com/)
-                             GET      /blog/:article(.:format)                               redirect(301)
-                             GET      /blog/category/:category(.:format)                     redirect(301)
+                             GET      /articles/:id(.:format)                                posts#show {:id=>/[0-9]+/}
+                   post_slug GET      /articles/:article(.:format)                           posts#get_post_by_slug
+                        blog GET      /blog(.:format)                                        redirect(301, /articles)
+                             GET      /blog/:article(.:format)                               redirect(301, /articles/%{article})
+                             GET      /blog/category/:cat(.:format)                          redirect(301, /category/%{cat})
+                             GET      /category/:cat(.:format)                               posts#index
               user_dashboard GET      /dashboard(.:format)                                   dashboards#show
        dashboard_bulk_update PATCH    /dashboards/:dashboard_id/bulk_update(.:format)        recommendations#bulk_update
                   dashboards GET      /dashboards(.:format)                                  dashboards#index
@@ -24,14 +28,15 @@
                              PATCH    /dashboards/:id(.:format)                              dashboards#update
                              PUT      /dashboards/:id(.:format)                              dashboards#update
                              DELETE   /dashboards/:id(.:format)                              dashboards#destroy
+                profile_step GET      /profiles/:profile_id/steps/:id(.:format)              profile/steps#show
+                             PATCH    /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
+                             PUT      /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
                     profiles GET      /profiles(.:format)                                    profiles#index
                              POST     /profiles(.:format)                                    profiles#create
                  new_profile GET      /profiles/new(.:format)                                profiles#new
-                edit_profile GET      /profiles/:id/edit(.:format)                           profiles#edit
                      profile GET      /profiles/:id(.:format)                                profiles#show
                              PATCH    /profiles/:id(.:format)                                profiles#update
                              PUT      /profiles/:id(.:format)                                profiles#update
-                             DELETE   /profiles/:id(.:format)                                profiles#destroy
                              PUT      /profiles/:id/apply-partner-code(.:format)             profiles#apply_partner_code
     create_completed_profile POST     /profiles/create-completed-profile(.:format)           profiles#create_completed_profile
             new_user_session GET      /users/sign_in(.:format)                               sessions#new
@@ -76,6 +81,14 @@ recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.
                              DELETE   /tasks/:id(.:format)                                   tasks#destroy
                    analytics GET      /analytics(.:format)                                   analytics#show
                  delayed_job GET|POST /delayed_job(.:format)                                 DelayedJobWeb
+                       posts GET      /articles(.:format)                                    posts#index
+                             POST     /articles(.:format)                                    posts#create
+                    new_post GET      /articles/new(.:format)                                posts#new
+                   edit_post GET      /articles/:id/edit(.:format)                           posts#edit
+                        post GET      /articles/:id(.:format)                                posts#show
+                             PATCH    /articles/:id(.:format)                                posts#update
+                             PUT      /articles/:id(.:format)                                posts#update
+                             DELETE   /articles/:id(.:format)                                posts#destroy
                     mailkick          /mailkick                                              Mailkick::Engine
 
 Routes for Mailkick::Engine:

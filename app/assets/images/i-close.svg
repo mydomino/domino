@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>i-close</title>
+<g id="Canvas" transform="translate(-98 -7)">
+<mask id="mask0_alpha" mask-type="alpha">
+<path d="M -94 -121L 393 -121L 393 420L -94 420L -94 -121Z" fill="#FFFFFF"/>
+</mask>
+<g id="Master" style="mix-blend-mode:normal;" mask="url(#mask0_alpha)">
+<g id="Union" style="mix-blend-mode:normal;">
+<use xlink:href="#i-close" transform="translate(102 11.0001)" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="i-close" d="M 1.41176 0L 0 1.40968L 10.6055 11.9995L 0 22.5903L 1.4117 24.0001L 12.0173 13.4092L 22.5882 23.9645L 24 22.5549L 13.429 11.9995L 23.9989 1.44419L 22.5872 0.0344515L 12.0172 10.5898L 1.41176 0Z"/>
+</defs>
+</svg>

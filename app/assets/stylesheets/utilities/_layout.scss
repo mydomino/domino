@@ -1,5 +1,5 @@
 // Converted Variables
-
+$width-half: 12rem !default;
 $width-1: 24rem !default;
 $width-2: 32rem !default;
 $width-3: 48rem !default;
@@ -40,6 +40,8 @@ $width-4: 64rem !default;
 
 .fit { max-width: 100% }
 
+.max-width-half { max-width: $width-half }
+
 .fill-x { width: 100% }
 
 .fill-y { height: 100% }
@@ -67,3 +69,53 @@ $width-4: 64rem !default;
 .max-width-4 { max-width: $width-4 }
 
 .border-box { box-sizing: border-box }
+
+
+// CSS classes from WordPress
+
+.alignleft {
+  float: left;
+  margin: 0.375em 1.5em 1.5em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0.375em 0 1.5em 1.5em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 1.5em;
+}
+
+/* Make article images fit within blog width */
+
+.wp-caption {
+  max-width: 100%;
+}
+
+.post-content, post-header {
+  img {
+      height: auto;
+      max-width: 100%;
+      vertical-align: middle;
+  }
+}
+
+/* Makes Youtube Videos Responsive */
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed, .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

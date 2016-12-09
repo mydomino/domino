@@ -35,6 +35,9 @@ window.MyDomino.pages["pages-index"] = function(){
     );
   });
 
+  // Name and email form validation
+  nameAndEmailFormValidate();
+
   $('.slick').slick({
     centerMode: true,
     centerPadding: '20%',
