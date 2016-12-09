@@ -30,12 +30,119 @@ require get_template_directory() . '/framework/includes/widgets/WP_Custom_Ads_Wi
 //get subtitles from old Newspaper theme
 function get_newspaper_subtitle($post) {
     $meta_data = get_post_meta($post->ID, 'td_post_theme_settings', true);
-    if (is_array($meta_data) && array_key_exists('td_subtitle', $meta_data)){
+    if (array_key_exists('td_subtitle', $meta_data)){
       return $meta_data['td_subtitle'];
     } else {
       return false;
     }
 }
+
+/******* Begin custom functions for WP REST API *******/
+
+add_action( 'rest_api_init', 'slug_register_subtitle' );
+function slug_register_subtitle() {
+    register_rest_field( 'post',
+        'wps_subtitle',
+        array(
+            'get_callback'    => 'slug_get_subtitle',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+/**
+ * Get the value of the "wps_subtitle" field
+ *
+ * @param array $object Details of current post.
+ * @param string $field_name Name of field.
+ * @param WP_REST_Request $request Current request
+ *
+ * @return mixed
+ */
+function slug_get_subtitle( $object, $field_name, $request ) {
+    return get_post_meta( $object[ 'id' ], $field_name, true );
+}
+
+add_action( 'rest_api_init', 'slug_register_td_post_theme_settings' );
+function slug_register_td_post_theme_settings() {
+    register_rest_field( 'post',
+        'td_post_theme_settings',
+        array(
+            'get_callback'    => 'slug_get_td_post_theme_settings',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+/**
+ * Get the value of the "td_post_theme_settings" field
+ *
+ * @param array $object Details of current post.
+ * @param string $field_name Name of field.
+ * @param WP_REST_Request $request Current request
+ *
+ * @return mixed
+ */
+function slug_get_td_post_theme_settings( $object, $field_name, $request ) {
+    return get_post_meta( $object[ 'id' ], $field_name, true );
+}
+
+
+add_action('rest_api_init', 'md_register_author_meta_rest_field');
+function md_get_author_meta($object, $field_name, $request) {
+
+    $user_data = get_userdata($object['author']); // get user data from author ID.
+
+    $array_data = (array)($user_data->data); // object to array conversion.
+
+    $array_data['first_name'] = get_user_meta($object['author'], 'first_name', true);
+    $array_data['last_name']  = get_user_meta($object['author'], 'last_name', true);
+
+    // prevent user enumeration.
+    unset($array_data['user_login']);
+    unset($array_data['user_pass']);
+    unset($array_data['user_activation_key']);
+
+    return array_filter($array_data);
+
+}
+
+function md_register_author_meta_rest_field() {
+
+    register_rest_field('post', 'author_meta', [
+        'get_callback'    => 'md_get_author_meta',
+        'update_callback' => 'null',
+        'schema'          => 'null',
+    ]);
+
+}
+
+add_action( 'rest_api_init', 'md_insert_thumbnail_url' );
+function md_insert_thumbnail_url() {
+    register_rest_field( 'post',
+        'md_thumbnail',
+        array(
+            'get_callback'    => 'md_get_thumbnail_url',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+function md_get_thumbnail_url($post){
+    if(has_post_thumbnail($post['id'])){
+        $imgArray = wp_get_attachment_image_src( get_post_thumbnail_id( $post['id'] ), 'maverick-big' );
+        $imgURL = $imgArray[0];
+        return $imgURL;
+    }else{
+        return false;   
+    }
+}
+
+/******* END custom functions for WP REST API *******/
+
 // After Theme Setup.
 // ----------------------------------------------------------------------------------------------------
 if( !function_exists('maverick_after_setup')) {
@@ -82,68 +189,9 @@ add_filter( 'post_thumbnail_html', 'my_post_image_html', 10, 3 );
 
 function my_post_image_html( $html, $post_id, $post_image_id ) {
 
-	$html = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a>';
+    $html = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a>';
 
-	return $html;
-}
-
-// Yong - Add feature image URl to the post return data
-
-add_action( 'rest_api_init', 'md_insert_thumbnail_url' );
-function md_insert_thumbnail_url() {
-    register_rest_field( 'post',
-        'md_thumbnail',
-        array(
-            'get_callback'    => 'md_get_thumbnail_url',
-            'update_callback' => null,
-            'schema'          => null,
-        )
-    );
-}
-
-function md_get_thumbnail_url($post){
-    if(has_post_thumbnail($post['id'])){
-        $imgArray = wp_get_attachment_image_src( get_post_thumbnail_id( $post['id'] ), 'full' );
-        $imgURL = $imgArray[0];
-        return $imgURL;
-    }else{
-        return false;   
-    }
-}
-
-
-
-// Yong - Add author last and first name to the post return data
-
-add_action('rest_api_init', 'md_register_author_meta_rest_field');
-function md_get_author_meta($object, $field_name, $request) {
-
-    $user_data = get_userdata($object['author']); // get user data from author ID.
-
-    $array_data = (array)($user_data->data); // object to array conversion.
-
-    $array_data['first_name'] = get_user_meta($object['author'], 'first_name', true);
-    $array_data['last_name']  = get_user_meta($object['author'], 'last_name', true);
-
-    // prevent user enumeration.
-    unset($array_data['user_login']);
-    unset($array_data['user_pass']);
-    unset($array_data['user_activation_key']);
-
-    return array_filter($array_data);
-
-}
-
-function md_register_author_meta_rest_field() {
-
-    register_rest_field('post', 'author_meta', [
-        'get_callback'    => 'md_get_author_meta',
-        'update_callback' => 'null',
-        'schema'          => 'null',
-    ]);
-
+    return $html;
 }
 
 ?>
-
-
