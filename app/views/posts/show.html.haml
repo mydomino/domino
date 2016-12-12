@@ -1,3 +1,6 @@
+- content_for :title do
+  = "#{CGI.unescapeHTML(@title)} - MyDomino"
+
 - content_for :post_og_meta do
   = render "post_og_meta"
 
