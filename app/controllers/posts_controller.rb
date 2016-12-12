@@ -139,6 +139,14 @@ class PostsController < ApplicationController
     @article_slug = post['slug']
     @post_id = post['id']
 
+    # Set open graph meta variables for sharing articles on facebook
+    @post_og_meta = {
+      url: "https://www.mydomino.com/articles/#{@article_slug}",
+      title: @title,
+      description: @excerpt,
+      image: @feature_img
+    }
+
     respond_to do |format|
       if verify_post_access(@categories)
         # user sign in and is authorize to see the post
