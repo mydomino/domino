@@ -141,7 +141,7 @@ class PostsController < ApplicationController
 
     # Set open graph meta variables for sharing articles on facebook
     @post_og_meta = {
-      url: "https://staging.mydomino.com/articles/#{@article_slug}",
+      url: "https://www.mydomino.com/articles/#{@article_slug}",
       title: @title,
       description: @excerpt,
       image: @feature_img

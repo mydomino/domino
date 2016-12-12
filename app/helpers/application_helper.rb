@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  # canonical url for posts, used for open graph
+  def canonical_url
+    if controller_name == "posts" && action_name == "get_post_by_slug"
+      request.original_url
+    else
+      "https://www.mydomino.com"
+    end
+  end
   #helper method for scoping page specific JS
   def page_id
     if id = content_for(:body_id) and id.present?
