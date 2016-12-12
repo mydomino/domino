@@ -1,5 +1,5 @@
 %meta{property: "og:url", content: "#{@post_og_meta[:url]}"}
 %meta{property: "og:type", content: "article"}
-%meta{property: "og:title", content: "#{@post_og_meta[:title]}"}
+%meta{property: "og:title", content: "#{CGI.unescapeHTML(@post_og_meta[:title])}"}
 %meta{property: "og:description", content: "#{ActionView::Base.full_sanitizer.sanitize(@post_og_meta[:description])}"}
 %meta{property: "og:image", content: "#{@post_og_meta[:image]}"}
