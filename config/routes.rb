@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
+  get 'profile' => 'profiles#show'
   get 'team' => 'pages#team'
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'

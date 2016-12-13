@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
 
     # If user logs in via article views, redirect to whichever article view they left off at
-    if session[:referer].include?('/articles')
+    if session[:referer] && session[:referer].include?('/articles')
       session[:referer]
     elsif resource.role == 'concierge'
       #Rails.logger.debug "dashboards_path is #{dashboards_path.inspect}\n\n"

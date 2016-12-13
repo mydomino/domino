@@ -1,0 +1,58 @@
+.bg-gray-05.p2
+  .max-width-4.mx-auto
+    %h1 Your profile
+    .clearfix.bg-white.p2.rounded.mb4
+      = simple_form_for current_user.profile do |f|
+        .col.col-12.sm-col.sm-col-6.px2
+          %h4.mb0.gray-60 First name
+          = f.input_field :first_name
+        .col.col-12.sm-col.sm-col-6.px2
+          %h4.mb0.gray-60 Last name
+          = f.input_field :last_name
+
+        .col.col-12.pt2.px2
+          .btn.btn-sm.btn-primary.btn-primary--hover
+            Change password
+        
+        .col.col-12.px2
+          %h4.mb0.gray-60 Home address
+          =f.input_field :address_line_1
+        
+        .col.col-12.sm-col.sm-col-4.px2
+          %h4.mb0.gray-60 City
+          =f.input_field :city
+        
+        .col.col-12.sm-col.sm-col-4.px2
+          %h4.mb0.gray-60 State
+          =f.input_field :state, collection: us_states
+
+        .col.col-12.sm-col.sm-col-4.px2
+          %h4.mb0.gray-60 Zip Code
+          =f.input_field :zip_code
+
+        .col.col-12.sm-col.sm-col-4.p2
+          = radio_button_tag(:housing, "own")
+          = label_tag(:own_housing, "Own")
+          = radio_button_tag(:housing, "rent") 
+          = label_tag(:rent_housing, "Rent")
+          
+        .col.col-12.sm-col.sm-col-8.p2
+          #slider
+
+        .col.col-12.p2
+          =f.submit class: 'btn btn-sm btn-primary btn-primary--hover'
+
+:javascript
+  $( "#slider" ).slider({
+    range: "min",
+    animate: "fast",
+    max: 250,
+    value: 0,
+    create: function( event, ui ) {
+      $('#slider > span').css({cursor: 'pointer', outline: '0'});
+    },
+    slide: function( event, ui ) {
+      $('#slider_val').html(0);
+      $('#profile_avg_electrical_bill').val(ui.value);
+    }
+  });

@@ -358,6 +358,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 input{ padding-left: 10px; }
 
+.edit_profile,
 #living-situation,
 #footer {
   input[type=text],
@@ -389,6 +390,7 @@ input{ padding-left: 10px; }
   select { border: 1px solid #DDDDDD; }
 }
 
+.edit_profile,
 #profile-forms,
 .recommendation-form,
 .devise-form,

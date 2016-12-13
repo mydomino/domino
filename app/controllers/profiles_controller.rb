@@ -1,7 +1,15 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
+  before_action :authenticate_user!, only: [:show]
+  
   layout 'concierge', only: :new
   
+  def show
+  end
+
+  def edit
+  end
+
   def new
     @profile = Profile.new
   end
