@@ -1,5 +1,5 @@
-.bg-gray-05.p2
-  .max-width-4.mx-auto
+.bg-gray-05
+  .max-width-4.mx-auto.p2
     %h1 Your profile
 
     .clearfix.bg-white.p2.rounded.mb4
@@ -84,7 +84,6 @@
         }
       });
     }); 
-    var parsleyInput = $('input').parsley();
     $submit = $('input[type=submit]');
     
     // Fields to bind input change listener
@@ -148,7 +147,6 @@
     $submit.on('click', function(event){
       event.preventDefault();
       parsleyForm.validate();
-      
     });
   }());
 
