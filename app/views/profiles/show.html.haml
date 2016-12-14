@@ -1,54 +1,64 @@
 .bg-gray-05.p2
   .max-width-4.mx-auto
     %h1 Your profile
+
     .clearfix.bg-white.p2.rounded.mb4
       = simple_form_for @profile, url: profile_path(@profile) do |f|
-        .col.col-12.sm-col.sm-col-6.px2
-          %h4.mb0.gray-60 First name
-          = f.input_field :first_name
-        .col.col-12.sm-col.sm-col-6.px2
-          %h4.mb0.gray-60 Last name
-          = f.input_field :last_name
+        .clearfix
+          .col.col-12.sm-col.sm-col-6.px2
+            %h4.mb0.gray-60 First name
+            = f.input_field :first_name, data: {"parsley-required": "true"}
+            
+          .col.col-12.sm-col.sm-col-6.px2
+            %h4.mb0.gray-60 Last name
+            = f.input_field :last_name, data: {"parsley-required": "true"}
 
-        .col.col-12.pt2.px2
-          .btn.btn-sm.btn-primary.btn-primary--hover
-            Change password
-      
-        .col.col-12.px2
-          %h4.mb0.gray-60 Home address
-          =f.input_field :address_line_1
+          .col.col-12.sm-col.sm-col-6.px2
+            %h4.mb0.gray-60 Phone
+            = f.input_field :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}
+
+          .col.col-12.pt2.px2
+            .btn.btn-sm.btn-primary.btn-primary--hover
+              Change password
         
-        .col.col-12.sm-col.sm-col-4.px2
-          %h4.mb0.gray-60 City
-          =f.input_field :city
+        .clearfix
+          .col.col-12.px2
+            %h4.mb0.gray-60 Home address
+            =f.input_field :address_line_1
         
-        .col.col-12.sm-col.sm-col-4.px2
-          %h4.mb0.gray-60 State
-          =f.input_field :state, collection: us_states
-
-        .col.col-12.sm-col.sm-col-4.px2
-          %h4.mb0.gray-60 Zip Code
-          =f.input_field :zip_code
-
-        .col.col-12.sm-col.sm-col-4.p2
-          %h4.mb0.gray-60 Housing
-          = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
-          = label_tag('profile[housing]', "Own")
-          &nbsp;
-          = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
-          = label_tag('profile[housing]', "Rent")
+        .clearfix
+          .col.col-12.sm-col.sm-col-4.px2
+            %h4.mb0.gray-60 City
+            =f.input_field :city, data: {"parsley-required": "true"}
           
-        .col.col-12.sm-col.sm-col-8.p2
-          %h4.mb0.gray-60 Average electric bill
-          .clearfix.pl1
-            .col.col-8.mt1
-              #slider{target: '#profile_avg_electrical_bill'}
-            .col.col-4.pl1
-              .inline-block.center
-                %h2.m0
-                  &nbsp;$
-                  %span#slider_val= @profile.avg_electrical_bill
-          =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
+          .col.col-12.sm-col.sm-col-4.px2
+            %h4.mb0.gray-60 State
+            =f.input_field :state, collection: us_states, include_blank: "Select state...", data: {"parsley-required": "true"}
+
+          .col.col-12.sm-col.sm-col-4.px2
+            %h4.mb0.gray-60 Zip Code
+            =f.input_field :zip_code, data: {"parsley-required": "true"}
+          
+        .clearfix.px2
+          .col.col-12.sm-col.sm-col-4.px2
+            %h4.mb0.gray-60 Housing
+            = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
+            = label_tag('profile[housing]', "Own")
+            &nbsp;
+            = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
+            = label_tag('profile[housing]', "Rent")
+            
+          .col.col-12.sm-col.sm-col-8.px2
+            %h4.mb0.gray-60 Average electric bill
+            .clearfix.pl1
+              .col.col-8.mt1
+                #slider{target: '#profile_avg_electrical_bill'}
+              .col.col-4.pl1
+                .inline-block.center
+                  %h2.m0
+                    &nbsp;$
+                    %span#slider_val= @profile.avg_electrical_bill
+            =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
 
         .col.col-12.p2
           =f.submit class: 'btn btn-sm btn-primary', disabled: true
@@ -56,13 +66,32 @@
 :javascript
 
   (function(){
+    // Parsley for client side form validation
+    var parsleyForm = $('form').parsley();
+
+    //mask phone and zip code input
+    $('#profile_zip_code').mask('00000');
+    $('#profile_phone').mask('(000) 000-0000');
     
+    parsleyForm.on('form:success', function(){
+      $.ajax({
+        type: "POST",
+        url: $('form').attr('action'),
+        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: { _method:'PATCH',  updatedFields},
+        dataType: 'script',
+        success: function(msg) {
+        }
+      });
+    }); 
+    var parsleyInput = $('input').parsley();
     $submit = $('input[type=submit]');
     
     // Fields to bind input change listener
     var profileFields = {
       first_name: $('#profile_first_name'),
       last_name: $('#profile_last_name'),
+      phone: $('#profile_phone'),
       address: $('#profile_address_line_1'),
       city: $('#profile_city'),
       state: $('#profile_state'),
@@ -118,16 +147,8 @@
 
     $submit.on('click', function(event){
       event.preventDefault();
-      $.ajax({
-        type: "POST",
-        url: $('form').attr('action'),
-        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: { _method:'PATCH',  updatedFields},
-        dataType: 'script',
-        success: function(msg) {
-          
-        }
-      });
+      parsleyForm.validate();
+      
     });
   }());
 
