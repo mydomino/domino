@@ -61,7 +61,6 @@ class ProfilesController < ApplicationController
   def update
     if request.xhr?
       profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
-      byebug
       @profile.update(profile_params)
       respond_to do |format|
         format.js # actually means: if the client ask for js -> return file.js

@@ -44,6 +44,7 @@ gem 'httparty', '~> 0.14.0'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'clipboard-rails'
 gem 'jquery-slick-rails'
+gem 'parsley-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
