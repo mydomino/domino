@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  get 'profile' => 'profiles#show'
+  get 'profile' => 'profiles#show', as: 'member_profile'
+  # patch 'profile/:id' => 'profiles#update'
+
   get 'team' => 'pages#team'
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'

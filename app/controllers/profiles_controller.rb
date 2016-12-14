@@ -5,10 +5,15 @@ class ProfilesController < ApplicationController
   layout 'concierge', only: :new
   
   def show
+    @profile = current_user.profile
   end
 
   def edit
   end
+
+  # def update
+
+  # end
 
   def new
     @profile = Profile.new
@@ -54,8 +59,17 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile.update(profile_params)
-    redirect_to profile_step_path(@profile, Profile.form_steps.first)
+    if request.xhr?
+      profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
+      byebug
+      @profile.update(profile_params)
+      respond_to do |format|
+        format.js # actually means: if the client ask for js -> return file.js
+      end
+    else
+      @profile.update(profile_params)
+      redirect_to profile_step_path(@profile, Profile.form_steps.first)
+    end
   end
 
   def apply_partner_code(render_js=true)

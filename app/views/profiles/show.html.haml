@@ -2,7 +2,7 @@
   .max-width-4.mx-auto
     %h1 Your profile
     .clearfix.bg-white.p2.rounded.mb4
-      = simple_form_for current_user.profile do |f|
+      = simple_form_for @profile, url: profile_path(@profile) do |f|
         .col.col-12.sm-col.sm-col-6.px2
           %h4.mb0.gray-60 First name
           = f.input_field :first_name
@@ -13,7 +13,7 @@
         .col.col-12.pt2.px2
           .btn.btn-sm.btn-primary.btn-primary--hover
             Change password
-        
+      
         .col.col-12.px2
           %h4.mb0.gray-60 Home address
           =f.input_field :address_line_1
@@ -31,28 +31,104 @@
           =f.input_field :zip_code
 
         .col.col-12.sm-col.sm-col-4.p2
-          = radio_button_tag(:housing, "own")
-          = label_tag(:own_housing, "Own")
-          = radio_button_tag(:housing, "rent") 
-          = label_tag(:rent_housing, "Rent")
+          %h4.mb0.gray-60 Housing
+          = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
+          = label_tag('profile[housing]', "Own")
+          &nbsp;
+          = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
+          = label_tag('profile[housing]', "Rent")
           
         .col.col-12.sm-col.sm-col-8.p2
-          #slider
+          %h4.mb0.gray-60 Average electric bill
+          .clearfix.pl1
+            .col.col-8.mt1
+              #slider{target: '#profile_avg_electrical_bill'}
+            .col.col-4.pl1
+              .inline-block.center
+                %h2.m0
+                  &nbsp;$
+                  %span#slider_val= @profile.avg_electrical_bill
+          =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
 
         .col.col-12.p2
-          =f.submit class: 'btn btn-sm btn-primary btn-primary--hover'
+          =f.submit class: 'btn btn-sm btn-primary', disabled: true
 
 :javascript
-  $( "#slider" ).slider({
-    range: "min",
-    animate: "fast",
-    max: 250,
-    value: 0,
-    create: function( event, ui ) {
-      $('#slider > span').css({cursor: 'pointer', outline: '0'});
-    },
-    slide: function( event, ui ) {
-      $('#slider_val').html(0);
-      $('#profile_avg_electrical_bill').val(ui.value);
+
+  (function(){
+    
+    $submit = $('input[type=submit]');
+    
+    // Fields to bind input change listener
+    var profileFields = {
+      first_name: $('#profile_first_name'),
+      last_name: $('#profile_last_name'),
+      address: $('#profile_address_line_1'),
+      city: $('#profile_city'),
+      state: $('#profile_state'),
+      zip_code: $('#profile_zip_code')
+    };
+
+    //payload with updated info to send to server
+    updatedFields = {};
+
+    var enableSubmit = function(){
+      $submit.prop("disabled", false);
     }
-  });
+
+    var setUpdatedField = function($field){
+      field_name = $field.attr('name');
+      field_value = $field.val();
+      updatedFields[field_name] = field_value;
+    }
+
+    // jQuery UI Slider for average electrical bill
+    $( "#slider" ).slider({
+      range: "min",
+      animate: "fast",
+      max: 250,
+      value: #{@profile.avg_electrical_bill},
+      create: function( event, ui ) {
+        $('#slider > span').css({cursor: 'pointer', outline: '0'});
+      },
+      slide: function( event, ui ) {
+        $('#slider_val').html(ui.value);
+        $('#profile_avg_electrical_bill').val(ui.value);
+        setUpdatedField($($(event.target).attr('target')));
+        enableSubmit();
+      }
+    });
+    
+    // Bind input event handler
+    for (key_name in profileFields){
+      profileFields[key_name].on('input', function(event){
+        setUpdatedField($(this));
+        //validate fields
+        //if valid enable submit
+        //if not render error messages
+        enableSubmit();
+      });
+    }
+
+    // Event handler for radio buttons
+    $('input[type=radio]').change(function() {
+      setUpdatedField($(this));
+      enableSubmit();
+    });
+
+    $submit.on('click', function(event){
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: $('form').attr('action'),
+        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: { _method:'PATCH',  updatedFields},
+        dataType: 'script',
+        success: function(msg) {
+          
+        }
+      });
+    });
+  }());
+
+
