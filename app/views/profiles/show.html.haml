@@ -17,9 +17,20 @@
             %h4.mb0.gray-60 Phone
             = f.input_field :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}
 
+          / Inline styles used below for jQuery show and hide animations to work
           .col.col-12.pt2.px2
-            .btn.btn-sm.btn-primary.btn-primary--hover
+            #change-password-fields{style: 'display: none;'} 
+              %h4.mb0.gray-60 Current password
+              = password_field_tag :current_password
+              %h4.mb0.gray-60 New password
+              = password_field_tag :new_password
+              %h4.mb0.gray-60 Confirm new password
+              = password_field_tag :new_password_confirmation
+
+            #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2
               Change password
+            #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mt2{style: 'display: none'}
+              Cancel
         
         .clearfix
           .col.col-12.px2
@@ -68,7 +79,10 @@
   (function(){
     // Parsley for client side form validation
     var parsleyForm = $('form').parsley();
-
+    $submit = $('input[type=submit]');
+    $btnChangePassword = $('#btn-change-password');
+    $changePasswordFields = $('#change-password-fields');
+    $btnCancelChangePassword = $('#btn-cancel-change-password');
     //mask phone and zip code input
     $('#profile_zip_code').mask('00000');
     $('#profile_phone').mask('(000) 000-0000');
@@ -84,7 +98,6 @@
         }
       });
     }); 
-    $submit = $('input[type=submit]');
     
     // Fields to bind input change listener
     var profileFields = {
@@ -131,9 +144,6 @@
     for (key_name in profileFields){
       profileFields[key_name].on('input', function(event){
         setUpdatedField($(this));
-        //validate fields
-        //if valid enable submit
-        //if not render error messages
         enableSubmit();
       });
     }
@@ -147,6 +157,20 @@
     $submit.on('click', function(event){
       event.preventDefault();
       parsleyForm.validate();
+    });
+
+    // Change password event handling
+    $btnChangePassword.on('click', function(){
+      $changePasswordFields.show('slow');
+      $btnCancelChangePassword.show('slow');
+    });
+
+    $btnCancelChangePassword.on('click', function(){
+      $changePasswordFields.hide('slow', function(){
+        // clear password input fields on cancel
+        $changePasswordFields.find('input[type=password]').val("");
+      });
+      $btnCancelChangePassword.hide('slow');
     });
   }());
 
