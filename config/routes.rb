@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   get 'profile' => 'profiles#show', as: 'member_profile'
+  get 'profile/verify-current-password' => 'profiles#verify_current_password'
   # patch 'profile/:id' => 'profiles#update'
 
   get 'team' => 'pages#team'

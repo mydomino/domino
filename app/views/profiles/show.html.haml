@@ -23,11 +23,11 @@
               %h4.mb0.gray-60 Current password
               = password_field_tag :current_password
               %h4.mb0.gray-60 New password
-              = password_field_tag :new_password
+              = password_field_tag :new_password, nil, data: { "parsley-equalto": "#new_password_confirmation" }
               %h4.mb0.gray-60 Confirm new password
-              = password_field_tag :new_password_confirmation
+              = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password" }
 
-            #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2
+            #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2{data: {state:'change'}}
               Change password
             #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mt2{style: 'display: none'}
               Cancel
@@ -79,6 +79,9 @@
   (function(){
     // Parsley for client side form validation
     var parsleyForm = $('form').parsley();
+    var parsleyNewPasswordConfirmationField = $('#new_password_confirmation').parsley();
+    var parsleyNewPasswordField = $('#new_password').parsley();
+    
     $submit = $('input[type=submit]');
     $btnChangePassword = $('#btn-change-password');
     $changePasswordFields = $('#change-password-fields');
@@ -159,11 +162,34 @@
       parsleyForm.validate();
     });
 
-    // Change password event handling
-    $btnChangePassword.on('click', function(){
+    var changePassword = function(){
       $changePasswordFields.show('slow');
       $btnCancelChangePassword.show('slow');
-    });
+      $btnChangePassword.html('Save changes').unbind('click');
+      $btnChangePassword.bind('click', submitChangedPassword);
+    };
+    
+    var verifyCurrentPassword = function(){
+      var curr_pw = $('#current_password').val();
+      $.ajax({
+        type: "GET",
+        url: '/profile/verify-current-password',
+        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: {curr_pw},
+        dataType: 'script',
+        success: function(msg) {
+        }
+      });
+    }
+
+    var submitChangedPassword = function(){
+      verifyCurrentPassword();
+      parsleyNewPasswordField.validate();
+      parsleyNewPasswordConfirmationField.validate(); 
+    };
+
+    // Change password event handling
+    $btnChangePassword.on('click', changePassword);
 
     $btnCancelChangePassword.on('click', function(){
       $changePasswordFields.hide('slow', function(){
@@ -171,6 +197,10 @@
         $changePasswordFields.find('input[type=password]').val("");
       });
       $btnCancelChangePassword.hide('slow');
+      $btnChangePassword
+        .html('Change password')
+        .unbind('click', submitChangedPassword)
+        .bind('click', changePassword);
     });
   }());
 

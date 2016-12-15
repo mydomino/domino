@@ -8,6 +8,15 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
   end
 
+  def verify_current_password
+    valid = current_user.valid_password? params[:curr_pw]
+    if valid
+      render :js => "alert('correct current password')"
+    else
+      render :js => "alert('incorrect current password')"
+    end
+  end
+
   def edit
   end
 
