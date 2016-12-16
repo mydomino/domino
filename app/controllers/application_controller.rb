@@ -64,15 +64,15 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_exceptions
-    begin
+  #   begin
       yield
 
-    #Rescue StandardError
-    rescue => e
-      Airbrake.notify(e)
-      Rails.logger.error "Error: #{e.message}"
-      Rails.logger.error  "#{e.backtrace.join("\n")}"
-      redirect_to '/error'
-    end
+  #   #Rescue StandardError
+  #   rescue => e
+  #     Airbrake.notify(e)
+  #     Rails.logger.error "Error: #{e.message}"
+  #     Rails.logger.error  "#{e.backtrace.join("\n")}"
+  #     redirect_to '/error'
+  #   end
   end
 end

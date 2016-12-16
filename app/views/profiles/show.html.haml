@@ -1,8 +1,31 @@
-.bg-gray-05
+#member-profile.bg-gray-05
   .max-width-4.mx-auto.p2
     %h1 Your profile
 
     .clearfix.bg-white.p2.rounded.mb4
+      .col.col-12.px2
+        %h2 Login
+        %h4.mb0.gray-60 Email address
+        %p= @profile.email
+        = form_tag "#", class: 'edit_password', style: 'display:none;' do
+          / Inline styles used below for jQuery show and hide animations to work
+          .col.col-12
+            %h4.mb0.gray-60 Current password
+            <input type='password' id='current-password' data-parsley-required="true" parsley-current-password>
+            /= password_field_tag :current_password, nil, data: {"parsley-required": "true", "parsley-group": "change-password"}, 
+            %h4.mb0.gray-60 New password
+            = password_field_tag :new_password, nil, data: { "parsley-required": "true",  }
+            %h4.mb0.gray-60 Confirm new password
+            = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password' }
+
+        #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2{data: {state:'change'}}
+          Change password
+        #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mt2{style: 'display: none'}
+          Cancel
+
+
+    .clearfix.bg-white.p2.rounded.mb4.px2
+      %h2.px2 Personal
       = simple_form_for @profile, url: profile_path(@profile) do |f|
         .clearfix
           .col.col-12.sm-col.sm-col-6.px2
@@ -13,26 +36,12 @@
             %h4.mb0.gray-60 Last name
             = f.input_field :last_name, data: {"parsley-required": "true"}
 
-          .col.col-12.sm-col.sm-col-6.px2
+          .col.col-12.px2
             %h4.mb0.gray-60 Phone
             = f.input_field :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}
-
-          / Inline styles used below for jQuery show and hide animations to work
-          .col.col-12.pt2.px2
-            #change-password-fields{style: 'display: none;'} 
-              %h4.mb0.gray-60 Current password
-              = password_field_tag :current_password
-              %h4.mb0.gray-60 New password
-              = password_field_tag :new_password, nil, data: { "parsley-equalto": "#new_password_confirmation" }
-              %h4.mb0.gray-60 Confirm new password
-              = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password" }
-
-            #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2{data: {state:'change'}}
-              Change password
-            #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mt2{style: 'display: none'}
-              Cancel
         
         .clearfix
+          %h2.px2 Home
           .col.col-12.px2
             %h4.mb0.gray-60 Home address
             =f.input_field :address_line_1
@@ -77,20 +86,45 @@
 :javascript
 
   (function(){
-    // Parsley for client side form validation
-    var parsleyForm = $('form').parsley();
-    var parsleyNewPasswordConfirmationField = $('#new_password_confirmation').parsley();
-    var parsleyNewPasswordField = $('#new_password').parsley();
+    // Module variable declarations
+    var 
+        $pwForm,
+        $profileForm,
+        $pPwForm,
+        $pProfileForm,
+        // $pCurrPw,
+        // $pNewPw,
+        // $pNewPwConfirm,
+        $pwSubmit,
+        $profileSubmit,
+        $btnChangePw,
+        $btnCancelChangePw;
+
+    $pCurrPw = $('#current_password').parsley();
     
-    $submit = $('input[type=submit]');
-    $btnChangePassword = $('#btn-change-password');
-    $changePasswordFields = $('#change-password-fields');
-    $btnCancelChangePassword = $('#btn-cancel-change-password');
+    // jQueryfied Forms
+    var $pwForm = $('.edit_password');
+    var $profileForm = $('.edit_profile');
+
+    // Parsleyfied forms
+    var $pPwForm = $('.edit_password').parsley();
+    var $pProfileForm = $('.edit_profile').parsley();
+
+    // Parsley password fields
+    // var $pCurrPw = $('#current_password').parsley();
+    // var $pNewPwConfirmField = $('#new_password_confirmation').parsley();
+    // var $pNewPwField = $('#new_password').parsley();
+    
+    $btnChangePw = $('#btn-change-password');
+    $btnCancelChangePw = $('#btn-cancel-change-password');
+
+    $profileSubmit = $profileForm.find('input[type=submit]');
+
     //mask phone and zip code input
     $('#profile_zip_code').mask('00000');
     $('#profile_phone').mask('(000) 000-0000');
     
-    parsleyForm.on('form:success', function(){
+    $profileForm.on('form:success', function(){
       $.ajax({
         type: "POST",
         url: $('form').attr('action'),
@@ -117,7 +151,7 @@
     updatedFields = {};
 
     var enableSubmit = function(){
-      $submit.prop("disabled", false);
+      $profileSubmit.prop("disabled", false);
     }
 
     var setUpdatedField = function($field){
@@ -157,47 +191,79 @@
       enableSubmit();
     });
 
-    $submit.on('click', function(event){
+    $profileSubmit.on('click', function(event){
       event.preventDefault();
-      parsleyForm.validate();
+      $pForm.validate();
     });
 
     var changePassword = function(){
-      $changePasswordFields.show('slow');
-      $btnCancelChangePassword.show('slow');
-      $btnChangePassword.html('Save changes').unbind('click');
-      $btnChangePassword.bind('click', submitChangedPassword);
+      $pwForm.show('slow');
+      $btnCancelChangePw.show('slow');
+      $btnChangePw.html('Save changes').unbind('click');
+      $btnChangePw.bind('click', submitChangedPassword);
     };
-    
-    var verifyCurrentPassword = function(){
-      var curr_pw = $('#current_password').val();
+
+    var submitChangedPassword = function(){
+      $pPwForm.validate();
+    };
+
+    $pPwForm.on('form:success', function(){
+      $current_password = $('#current_password').val();
+      alert($current_password);
       $.ajax({
         type: "GET",
         url: '/profile/verify-current-password',
         //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: {curr_pw},
-        dataType: 'script',
-        success: function(msg) {
+        data: {$current_password},
+        dataType: 'json',
+        success: function(data, status, jqxhr) {
+          if(status == 'success'){
+            alert('success');
+          }else{
+            $pCurrPw.trigger('field:error');
+          }
         }
       });
-    }
+    });
 
-    var submitChangedPassword = function(){
-      verifyCurrentPassword();
-      parsleyNewPasswordField.validate();
-      parsleyNewPasswordConfirmationField.validate(); 
-    };
+    /*$pCurrPw.on('field:success', function(){
+      $pNewPwField.validate();
+      $pNewPwConfirmField.validate(); 
+    });*/
+    
+
+    /*$pNewPwConfirmField.on('field:success', function(){
+      $pNewPwField.validate();
+      var updated_password = $('#new_password_confirmation').val();
+      $.ajax({
+        type: "POST",
+        url: '/profile/update-password',
+        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: { _method:'PATCH',  updated_password},
+        dataType: 'json',
+        success: function(data, status, jqxhr) {
+          if(status == 'success'){
+            
+          }
+        }
+      });
+    });*/
 
     // Change password event handling
-    $btnChangePassword.on('click', changePassword);
+    $btnChangePw.on('click', changePassword);
 
-    $btnCancelChangePassword.on('click', function(){
-      $changePasswordFields.hide('slow', function(){
+    $btnCancelChangePw.on('click', function(){
+      $pwForm.hide('slow', function(){
+
         // clear password input fields on cancel
-        $changePasswordFields.find('input[type=password]').val("");
+        $pwForm.find('input[type=password]').val("");
+
+        // Reset parsley styles
+        $pPwForm.reset();
       });
-      $btnCancelChangePassword.hide('slow');
-      $btnChangePassword
+
+      $btnCancelChangePw.hide('slow');
+      $btnChangePw
         .html('Change password')
         .unbind('click', submitChangedPassword)
         .bind('click', changePassword);

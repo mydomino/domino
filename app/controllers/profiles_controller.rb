@@ -9,20 +9,44 @@ class ProfilesController < ApplicationController
   end
 
   def verify_current_password
-    valid = current_user.valid_password? params[:curr_pw]
+    valid = current_user.valid_password? params[:current_password]
     if valid
-      render :js => "alert('correct current password')"
+      render json: {
+        error: "Current password field valid",
+        status: 200
+      }, status: 200
     else
-      render :js => "alert('incorrect current password')"
+      render json: {
+        error: "Current password field invalid",
+        status: 400
+      }, status: 400
+    end
+  end
+
+  def update_password
+    @user = current_user
+    if (
+        @user.update(
+          password: params[:updated_password],
+          password_confirmation: params[:updated_password]
+        )
+    )
+      # keep user logged in
+      sign_in(@user, :bypass => true)
+      render json: {
+        error: "Password updated successfully",
+        status: 200
+      }, status: 200
+    else
+      render json: {
+        error: "Unable to update password.",
+        status: 400
+      }, status: 400
     end
   end
 
   def edit
   end
-
-  # def update
-
-  # end
 
   def new
     @profile = Profile.new
