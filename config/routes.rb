@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  get 'profile' => 'profiles#show', as: 'member_profile'
-  get 'profile/verify-current-password' => 'profiles#verify_current_password'
+  get '/profile/verify-current-password' => 'profiles#verify_current_password'
   patch '/profile/update-password' => 'profiles#update_password'
-  # patch 'profile/:id' => 'profiles#update'
+  get 'profile' => 'profiles#show', as: 'member_profile'
 
   get 'team' => 'pages#team'
   get 'about' => 'pages#about'
@@ -84,6 +83,4 @@ Rails.application.routes.draw do
   #post '/posts/:id', to: 'posts#show', as: 'post'
   resources :posts, :path => 'articles'
   #resources :posts
-  
-
 end

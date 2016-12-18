@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
     valid = current_user.valid_password? params[:current_password]
     if valid
       render json: {
-        error: "Current password field valid",
+        message: "Current password field valid",
         status: 200
       }, status: 200
     else
@@ -34,12 +34,12 @@ class ProfilesController < ApplicationController
       # keep user logged in
       sign_in(@user, :bypass => true)
       render json: {
-        error: "Password updated successfully",
+        message: "Password updated successfully",
         status: 200
       }, status: 200
     else
       render json: {
-        error: "Unable to update password.",
+        message: "Unable to update password.",
         status: 400
       }, status: 400
     end
@@ -94,9 +94,16 @@ class ProfilesController < ApplicationController
   def update
     if request.xhr?
       profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
-      @profile.update(profile_params)
-      respond_to do |format|
-        format.js # actually means: if the client ask for js -> return file.js
+      if @profile.update(profile_params)
+        render json: {
+          message: "Profile updated successfully",
+          status: 200
+        }, status: 200
+      else
+        render json: {
+          message: "Unable to update profile.",
+          status: 400
+        }, status: 400
       end
     else
       @profile.update(profile_params)

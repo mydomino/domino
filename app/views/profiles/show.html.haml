@@ -7,22 +7,20 @@
         %h2 Login
         %h4.mb0.gray-60 Email address
         %p= @profile.email
-        = form_tag "#", class: 'edit_password', style: 'display:none;' do
+        = form_tag "#", method: 'post', class: 'edit_password', style: 'display:none;' do
           / Inline styles used below for jQuery show and hide animations to work
           .col.col-12
             %h4.mb0.gray-60 Current password
-            <input type='password' id='current-password' data-parsley-required="true" parsley-current-password>
-            /= password_field_tag :current_password, nil, data: {"parsley-required": "true", "parsley-group": "change-password"}, 
+            = password_field_tag :current_password, nil, data: {"parsley-required": "true", "parsley-excluded": "true"} 
             %h4.mb0.gray-60 New password
             = password_field_tag :new_password, nil, data: { "parsley-required": "true",  }
             %h4.mb0.gray-60 Confirm new password
             = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password' }
 
-        #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2{data: {state:'change'}}
+        #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2
           Change password
         #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mt2{style: 'display: none'}
           Cancel
-
 
     .clearfix.bg-white.p2.rounded.mb4.px2
       %h2.px2 Personal
@@ -86,79 +84,53 @@
 :javascript
 
   (function(){
-    // Module variable declarations
+    /*------------- BEGIN Module variable declarations and initializations-----------*/
     var 
+        currentPasswordValid,
+        updatedFields,
+        showPasswordForm,
+        hidePasswordForm,
+        submitChangedPassword,
         $pwForm,
         $profileForm,
+        $currPw,
+        $pCurrPw,
         $pPwForm,
         $pProfileForm,
-        // $pCurrPw,
-        // $pNewPw,
-        // $pNewPwConfirm,
         $pwSubmit,
-        $profileSubmit,
+        $btnProfileSubmit,
         $btnChangePw,
         $btnCancelChangePw;
 
-    $pCurrPw = $('#current_password').parsley();
+    // Variable initializations
+    currentPasswordValid = false;
+    updatedFields = {}; // Payload with updated info to send to server
     
-    // jQueryfied Forms
-    var $pwForm = $('.edit_password');
-    var $profileForm = $('.edit_profile');
+    
+    // jQuerified elements
+    $pwForm = $('.edit_password');
+    $currPw = $('#current_password');
+    $btnChangePw = $('#btn-change-password');
+    $btnCancelChangePw = $('#btn-cancel-change-password');
+
+    $profileForm = $('.edit_profile');
+    $btnProfileSubmit = $profileForm.find('input[type=submit]');
+
+    // Parsleyfied current password field
+    $pCurrPw = $('#current_password').parsley();
 
     // Parsleyfied forms
     var $pPwForm = $('.edit_password').parsley();
     var $pProfileForm = $('.edit_profile').parsley();
 
-    // Parsley password fields
-    // var $pCurrPw = $('#current_password').parsley();
-    // var $pNewPwConfirmField = $('#new_password_confirmation').parsley();
-    // var $pNewPwField = $('#new_password').parsley();
+    /*------------- END Module variable declarations and definitions-----------*/
     
-    $btnChangePw = $('#btn-change-password');
-    $btnCancelChangePw = $('#btn-cancel-change-password');
+    /*------------- BEGIN Module configurations--------------------------------*/
 
-    $profileSubmit = $profileForm.find('input[type=submit]');
-
-    //mask phone and zip code input
+    /*------------- BEGIN UI configurations -----------------------------------*/
+    // Mask phone and zip code input
     $('#profile_zip_code').mask('00000');
     $('#profile_phone').mask('(000) 000-0000');
-    
-    $profileForm.on('form:success', function(){
-      $.ajax({
-        type: "POST",
-        url: $('form').attr('action'),
-        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: { _method:'PATCH',  updatedFields},
-        dataType: 'script',
-        success: function(msg) {
-        }
-      });
-    }); 
-    
-    // Fields to bind input change listener
-    var profileFields = {
-      first_name: $('#profile_first_name'),
-      last_name: $('#profile_last_name'),
-      phone: $('#profile_phone'),
-      address: $('#profile_address_line_1'),
-      city: $('#profile_city'),
-      state: $('#profile_state'),
-      zip_code: $('#profile_zip_code')
-    };
-
-    //payload with updated info to send to server
-    updatedFields = {};
-
-    var enableSubmit = function(){
-      $profileSubmit.prop("disabled", false);
-    }
-
-    var setUpdatedField = function($field){
-      field_name = $field.attr('name');
-      field_value = $field.val();
-      updatedFields[field_name] = field_value;
-    }
 
     // jQuery UI Slider for average electrical bill
     $( "#slider" ).slider({
@@ -176,8 +148,21 @@
         enableSubmit();
       }
     });
-    
-    // Bind input event handler
+    /*------------- END UI configurations -----------------------------------*/
+
+    /*------------- BEGIN Profile form configurations -----------------------------------*/
+    // Fields to bind input change handler
+    var profileFields = {
+      first_name: $('#profile_first_name'),
+      last_name: $('#profile_last_name'),
+      phone: $('#profile_phone'),
+      address: $('#profile_address_line_1'),
+      city: $('#profile_city'),
+      state: $('#profile_state'),
+      zip_code: $('#profile_zip_code')
+    };
+
+    // Bind input event handler to profile fields
     for (key_name in profileFields){
       profileFields[key_name].on('input', function(event){
         setUpdatedField($(this));
@@ -185,89 +170,111 @@
       });
     }
 
-    // Event handler for radio buttons
+    // Event handler for housing radio buttons
     $('input[type=radio]').change(function() {
       setUpdatedField($(this));
       enableSubmit();
     });
 
-    $profileSubmit.on('click', function(event){
+    // /enableSubmit/ enable submission of profile info if a field is changed
+    var enableSubmit = function(){
+      $btnProfileSubmit.prop("disabled", false);
+    }
+
+    // /setUpdatedField/ On a profile field change, update updatedFields
+    var setUpdatedField = function($field){
+      field_name = $field.attr('name');
+      field_value = $field.val();
+      updatedFields[field_name] = field_value;
+    }
+
+    // Validate profile info fields on submit
+    $btnProfileSubmit.on('click', function(event){
       event.preventDefault();
-      $pForm.validate();
+      $pProfileForm.validate();
     });
 
-    var changePassword = function(){
-      $pwForm.show('slow');
-      $btnCancelChangePw.show('slow');
-      $btnChangePw.html('Save changes').unbind('click');
-      $btnChangePw.bind('click', submitChangedPassword);
-    };
-
-    var submitChangedPassword = function(){
-      $pPwForm.validate();
-    };
-
-    $pPwForm.on('form:success', function(){
-      $current_password = $('#current_password').val();
-      alert($current_password);
-      $.ajax({
-        type: "GET",
-        url: '/profile/verify-current-password',
-        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: {$current_password},
-        dataType: 'json',
-        success: function(data, status, jqxhr) {
-          if(status == 'success'){
-            alert('success');
-          }else{
-            $pCurrPw.trigger('field:error');
-          }
-        }
-      });
-    });
-
-    /*$pCurrPw.on('field:success', function(){
-      $pNewPwField.validate();
-      $pNewPwConfirmField.validate(); 
-    });*/
-    
-
-    /*$pNewPwConfirmField.on('field:success', function(){
-      $pNewPwField.validate();
-      var updated_password = $('#new_password_confirmation').val();
+    // On profile form success, send updatedFields payload to server
+    $pProfileForm.on('form:success', function(){
       $.ajax({
         type: "POST",
-        url: '/profile/update-password',
-        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: { _method:'PATCH',  updated_password},
+        url: $profileForm.attr('action'),
+        data: { _method:'PATCH',  updatedFields},
         dataType: 'json',
-        success: function(data, status, jqxhr) {
-          if(status == 'success'){
-            
-          }
+        success: function(msg) {
+          $pProfileForm.reset();
+          $btnProfileSubmit.attr('disabled', true);
         }
       });
-    });*/
+    }); 
+    /*------------- END Profile form configurations -----------------------------------*/
 
-    // Change password event handling
-    $btnChangePw.on('click', changePassword);
+    /*------------- BEGIN Password form configurations -----------------------------------*/
+    // /showPasswordForm/ animate revealing of the password form elements
+    showPasswordForm = function(){
+      $pwForm.show('slow', function(){
+        $btnChangePw.bind('click', submitChangedPassword);
+      });
+      $btnCancelChangePw.show('slow');
+      $btnChangePw.html('Save changes').unbind('click');
+    };
 
-    $btnCancelChangePw.on('click', function(){
+
+    // /hidePasswordForm/ animate hiding of the password form elements and reset form elements
+    hidePasswordForm = function(){
       $pwForm.hide('slow', function(){
-
         // clear password input fields on cancel
         $pwForm.find('input[type=password]').val("");
 
         // Reset parsley styles
         $pPwForm.reset();
+        $pCurrPw.reset();
       });
-
       $btnCancelChangePw.hide('slow');
       $btnChangePw
         .html('Change password')
         .unbind('click', submitChangedPassword)
-        .bind('click', changePassword);
-    });
+        .bind('click', showPasswordForm);
+    }
+
+    submitChangedPassword = function(){
+      $pPwForm.validate();
+      
+      $.ajax({
+        url: "profile/verify-current-password",
+        data: {'current_password': $('#current_password').val()},
+        dataType: 'json',
+        async: false,
+        type: 'GET',
+        success: function(data){
+          response = true;
+          currentPasswordValid = true;
+          $pCurrPw.removeError('current_password_error', {updateClass: true});
+          if($pPwForm.isValid()){
+            var updated_password = $('#new_password_confirmation').val();
+            $.ajax({
+              type: "POST",
+              url: '/profile/update-password',
+              data: { _method:'PATCH',  updated_password},
+              dataType: 'json',
+              success: function(data, status, jqxhr) {
+                hidePasswordForm();
+              }
+            });
+          };
+        },
+        error: function(data){
+          currentPasswordValid = false;
+          if(!$currPw.hasClass('parsley-error')){
+            $pCurrPw.addError('current_password_error', {message: 'Current password is incorrect.' , assert: false, updateClass: true});
+          }
+        }
+      });
+    };
+
+    // Change password event handling
+    $btnChangePw.on('click', showPasswordForm);
+    $btnCancelChangePw.on('click', hidePasswordForm);
+    /*------------- END Password form configurations -----------------------------------*/
+    /*------------- END Module configurations-------------------------------------------*/
   }());
-
-
