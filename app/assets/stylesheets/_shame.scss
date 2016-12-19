@@ -44,11 +44,12 @@
 }
 /* end interest form checkbox css */
 
-/*onboarding icons*/
+/*svg icons*/
 .fill-blue path { fill: #00ccff; }
 .fill-blue rect { stroke: #00ccff; }
-.fill-gray {fill:#c5c5c5}
-.stroke-gray {stroke:#c5c5c5}
+.fill-gray { fill:#c5c5c5; }
+.stroke-gray { stroke:#c5c5c5; }
+.fill-black path { fill: #333 }
 
 .onboarding-icon-2 {
   height: 2rem;
@@ -384,12 +385,15 @@ input{ padding-left: 10px; }
 
 .border-light-gray { border-color: #c5c5c5; }
 
+#member-profile,
 .devise-form,
 .recommendation-form{
   input[type],
   textarea,
   select { border: 1px solid #DDDDDD; }
 }
+
+#member-profile select { background: white; }
 
 #member-profile,
 #profile-forms,
@@ -406,6 +410,9 @@ input{ padding-left: 10px; }
   input[type=submit] { display: inline; }
 
   input.error { border-color: #D65A5A!important; }
+
+  // For parsley error messages
+  .invalid-message { color: #D65A5A; }
 
   input[type=text],
   input[type=email],
