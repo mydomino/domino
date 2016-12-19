@@ -1,24 +1,25 @@
 #member-profile.bg-gray-05
   .max-width-3.mx-auto.p2
     .flex.items-center
-      = embedded_svg 'i-user.svg'
+      .fill-black
+        = embedded_svg 'i-user.svg'
       %h1.ml2 Profile
 
     .clearfix.bg-white.px3.py2.rounded.mb2
       .col.col-12
         %h2.my0 Login
-        %h4.mb0.gray-60 Email address
-        %p= @profile.email
+        %h6.mb0.gray-60 Email address
+        %h3= @profile.email
         = form_tag "#", method: 'post', class: 'edit_password', style: 'display:none;' do
           / Inline styles used below for jQuery show and hide animations to work
           .col.col-12
-            %h4.inline.mb0.gray-60 Current password
+            %h6.inline.mb0.gray-60 Current password
             #curr-password-error.inline
             = password_field_tag :current_password, nil, data: {"parsley-required": "true", "parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"} 
-            %h4.inline.mb0.gray-60 New password
+            %h6.inline.mb0.gray-60 New password
             #new-password-error.inline
             = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container":"#new-password-error"  }
-            %h4.inline.mb0.gray-60 Confirm new password
+            %h6.inline.mb0.gray-60 Confirm new password
             #confirm-new-password-error.inline
             = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }
 
@@ -33,46 +34,47 @@
         .clearfix.bg-white.rounded.px3.py2.mb2
           %h2.my0 Personal
           .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 First name
+            %h6.mb0.gray-60 First name
             = f.input_field :first_name, data: {"parsley-required": "true"}
             
           .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 Last name
+            %h6.mb0.gray-60 Last name
             = f.input_field :last_name, data: {"parsley-required": "true"}
 
           .col.col-12.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 Phone
+            %h6.mb0.gray-60 Phone
             = f.input_field :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}
 
         .clearfix.bg-white.rounded.py2.px3
           %h2.my0 Home
           .col.col-12.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 Home address
+            %h6.mb0.gray-60 Home address
             =f.input_field :address_line_1
           
           .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 City
+            %h6.mb0.gray-60 City
             =f.input_field :city, data: {"parsley-required": "true"}
           
           .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 State
+            %h6.mb0.gray-60 State
             =f.input_field :state, collection: us_states, include_blank: "Select state...", data: {"parsley-required": "true"}
 
           .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-            %h4.mb0.gray-60 Zip Code
+            %h6.mb0.gray-60 Zip Code
             =f.input_field :zip_code, data: {"parsley-required": "true"}
           
           .clearfix
             .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-              %h4.mb0.gray-60 Housing
-              = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
-              = label_tag('profile[housing]', "Own")
-              &nbsp;
-              = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
-              = label_tag('profile[housing]', "Rent")
+              %h6.mb0.gray-60 Housing
+              #housing-radio-buttons.relative
+                = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
+                = label_tag('profile[housing]', "Own")
+                &nbsp;
+                = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
+                = label_tag('profile[housing]', "Rent")
               
             .col.col-12.sm-col.sm-col-8.px2.sm-pl0.sm-pr2
-              %h4.mb0.gray-60 Average electric bill
+              %h6.mb0.gray-60 Average electric bill
               .clearfix.pl1
                 .col.col-8.mt1
                   #slider{target: '#profile_avg_electrical_bill'}
