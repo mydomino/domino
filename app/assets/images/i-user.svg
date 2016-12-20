@@ -1,22 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32" version="1.1">
+<svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
   <title>
-    user
+    i-user
   </title>
-  <desc>
-    Created with Sketch.
-  </desc>
-  <defs>
-    <path d="M26 28C26 25.16 23.26 22.74 19.42 21.82 21.62 20.55 23.11 18.14 23.11 15.38 23.11 11.31 19.87 8 15.87 8 11.87 8 8.63 11.31 8.63 15.38 8.63 18.18 10.15 20.61 12.4 21.86 8.65 22.81 6 25.2 6 28" id="path-1"/>
-    <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="20" fill="white">
-      <use xlink:href="#path-1"/>
-    </mask>
-  </defs>
-  <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <g id="Export" transform="translate(-64.000000, 0.000000)">
-      <g id="Group-2" transform="translate(64.000000, 0.000000)">
-        <path d="M30 16C30 8.27 23.73 2 16 2 8.27 2 2 8.27 2 16 2 23.73 8.27 30 16 30 23.73 30 30 23.73 30 16ZM0 16C0 7.16 7.16 0 16 0 24.84 0 32 7.16 32 16 32 24.84 24.84 32 16 32 7.16 32 0 24.84 0 16Z" id="Mask" fill="#c5c5c5"/>
-        <use id="Combined-Shape" stroke="#c5c5c5" mask="url(#mask-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"/>
-      </g>
-    </g>
+  <g style="mix-blend-mode:normal" figma:type="vector">
+    <use xlink:href="#a" style="mix-blend-mode:normal"/>
+    <use xlink:href="#b" style="mix-blend-mode:normal"/>
   </g>
+  <defs>
+    <path id="a" fill-rule="evenodd" d="M0 11C0 4.925 4.925 0 11 0s11 4.925 11 11-4.925 11-11 11S0 17.075 0 11zm11-9c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z"/>
+    <path id="b" fill-rule="evenodd" d="M5.58 11.43C5.58 8.45 7.95 6 10.92 6c2.97 0 5.343 2.45 5.343 5.43 0 1.332-.473 2.554-1.26 3.5C16.707 15.764 18 17.174 18 19c0 .552-.448 1-1 1s-1-.448-1-1c0-1.003-1.043-2.226-3.18-2.737-.4-.095-.7-.424-.758-.83-.06-.405.135-.805.49-1.01 1.017-.585 1.71-1.702 1.71-2.993 0-1.913-1.514-3.43-3.34-3.43C9.094 8 7.58 9.517 7.58 11.43c0 1.306.71 2.435 1.745 3.014.358.2.557.597.504 1.003-.055.406-.35.74-.747.84C7.003 16.815 6 18.013 6 19c0 .552-.448 1-1 1s-1-.448-1-1c0-1.787 1.24-3.176 2.885-4.014-.815-.954-1.306-2.2-1.306-3.556z"/>
+  </defs>
 </svg>
