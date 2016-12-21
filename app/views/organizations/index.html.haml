@@ -1,0 +1,33 @@
+%h1 Listing organizations
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Phone
+      %th Fax
+      %th Company url
+      %th Sign up code
+      %th Join date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @organizations.each do |organization|
+      %tr
+        %td= organization.name
+        %td= organization.email
+        %td= organization.phone
+        %td= organization.fax
+        %td= organization.company_url
+        %td= organization.sign_up_code
+        %td= organization.join_date
+        %td= link_to 'Show', organization
+        %td= link_to 'Edit', edit_organization_path(organization)
+        %td= link_to 'Destroy', organization, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Organization', new_organization_path

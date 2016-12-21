@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @organization.name
+%p
+  %b Email:
+  = @organization.email
+%p
+  %b Phone:
+  = @organization.phone
+%p
+  %b Fax:
+  = @organization.fax
+%p
+  %b Company url:
+  = @organization.company_url
+%p
+  %b Sign up code:
+  = @organization.sign_up_code
+%p
+  %b Join date:
+  = @organization.join_date
+
+= link_to 'Edit', edit_organization_path(@organization)
+\|
+= link_to 'Back', organizations_path

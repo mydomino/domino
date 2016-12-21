@@ -45,6 +45,7 @@ gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'clipboard-rails'
 gem 'jquery-slick-rails'
 gem 'parsley-rails'
+gem 'annotate', '~> 2.7', '>= 2.7.1'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

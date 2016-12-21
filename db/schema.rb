@@ -11,17 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729181311) do
+ActiveRecord::Schema.define(version: 20161221064332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
-
-  create_table "clones", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "dashboards", force: :cascade do |t|
     t.string   "lead_name"
@@ -34,7 +28,6 @@ ActiveRecord::Schema.define(version: 20160729181311) do
     t.integer  "user_id"
   end
 
-  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
   add_index "dashboards", ["user_id"], name: "index_dashboards_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -52,6 +45,14 @@ ActiveRecord::Schema.define(version: 20160729181311) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "domino_products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price_cents"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "interests", force: :cascade do |t|
     t.integer  "profile_id"
@@ -115,6 +116,18 @@ ActiveRecord::Schema.define(version: 20160729181311) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "company_url"
+    t.string   "sign_up_code"
+    t.datetime "join_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "partner_codes", force: :cascade do |t|
     t.string   "code"
     t.string   "partner_name"
@@ -173,8 +186,16 @@ ActiveRecord::Schema.define(version: 20160729181311) do
     t.integer  "updated_by"
   end
 
-  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
-  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "expire_date"
+    t.integer  "max_member_count"
+    t.integer  "organization_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "subscriptions", ["organization_id"], name: "index_subscriptions_on_organization_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "icon"
@@ -186,6 +207,15 @@ ActiveRecord::Schema.define(version: 20160729181311) do
     t.string   "cta_text"
     t.boolean  "default",     default: false
   end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "teams", ["organization_id"], name: "index_teams_on_organization_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",     null: false
@@ -201,9 +231,11 @@ ActiveRecord::Schema.define(version: 20160729181311) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "role",                   default: "lead"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "dashboards", "users"
@@ -211,4 +243,7 @@ ActiveRecord::Schema.define(version: 20160729181311) do
   add_foreign_key "interests", "profiles"
   add_foreign_key "profiles", "partner_codes"
   add_foreign_key "profiles", "users"
+  add_foreign_key "subscriptions", "organizations"
+  add_foreign_key "teams", "organizations"
+  add_foreign_key "users", "organizations"
 end

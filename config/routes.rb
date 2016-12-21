@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :teams
+  resources :subscriptions
+  resources :organizations
   # exceptions and errors handling for application
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
   patch '/profile/update-password' => 'profiles#update_password'
   get 'profile' => 'profiles#show', as: 'member_profile'
 
-  get 'team' => 'pages#team'
+  get 'domino-team' => 'pages#team'
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
   get 'privacy' => 'pages#privacy'

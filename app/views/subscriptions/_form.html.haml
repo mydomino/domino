@@ -1,0 +1,16 @@
+= simple_form_for(@subscription) do |f|
+  = f.error_notification
+
+  .form-inputs
+
+    = f.input :start_date
+
+    = f.input :expire_date
+
+    = f.input :max_member_count
+
+    = f.association :organization
+
+
+  .form-actions
+    = f.button :submit

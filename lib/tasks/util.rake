@@ -40,4 +40,37 @@ namespace :util do
 
   end
 
+  desc "Sungevity onboarding manual steps"
+  task sungevity: :environment do 
+
+
+    # create an organization
+
+    # perform case insensitive search
+    orgs = Organization.arel_table
+    organization = Organization.where(orgs[:name].matches('sunGeviTy')).first  
+    #organization = Organization.find_by!("name like ?", "%Sungevity%")
+
+    # create an org. admin user
+    user = User.new({email: 'test@example.com', password: 'password', password_confirmation: 'password', role: 'org_admin'})
+    user.save!
+
+
+    # Add user to organization
+    organization.users << user
+    organization.save!
+
+    # Show the result in reverse manner
+    org = user.organization
+
+    puts "Orginization is #{org.name} \n"
+
+
+
+
+    
+  end
+
+
+  
 end

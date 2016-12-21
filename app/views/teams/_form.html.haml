@@ -1,0 +1,12 @@
+= simple_form_for(@team) do |f|
+  = f.error_notification
+
+  .form-inputs
+
+    = f.input :name
+
+    = f.association :organization
+
+
+  .form-actions
+    = f.button :submit
