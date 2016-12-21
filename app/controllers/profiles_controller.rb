@@ -25,24 +25,18 @@ class ProfilesController < ApplicationController
 
   def update_password
     @user = current_user
-    if (
-        @user.update(
-          password: params[:updated_password],
-          password_confirmation: params[:updated_password]
-        )
+    @user.update(
+      password: params[:updated_password],
+      password_confirmation: params[:updated_password]
     )
-      # keep user logged in
-      sign_in(@user, :bypass => true)
-      render json: {
-        message: "Password updated successfully",
-        status: 200
-      }, status: 200
-    else
-      render json: {
-        message: "Unable to update password.",
-        status: 400
-      }, status: 400
-    end
+  
+    # keep user logged in
+    sign_in(@user, :bypass => true)
+    
+    render json: {
+      message: "Password updated successfully",
+      status: 200
+    }, status: 200
   end
 
   def edit

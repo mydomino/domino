@@ -10,36 +10,43 @@
         %h2.my0 Login
         %h6.mb0.gray-60 Email address
         %h3= @profile.email
-        = form_tag "#", method: 'post', class: 'edit_password', style: 'display:none;' do
-          / Inline styles used below for jQuery show and hide animations to work
-          .col.col-12
-            %h6.inline.mb0.gray-60 Current password
-            #curr-password-error.inline
-            = password_field_tag :current_password, nil, data: {"parsley-required": "true", "parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}
-            %h6.inline.mb0.gray-60 New password
-            #new-password-error.inline
-            = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container":"#new-password-error"  }
-            %h6.inline.mb0.gray-60 Confirm new password
-            #confirm-new-password-error.inline
-            = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }
-
-        #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mt2
-          Change password
-        #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mt2{style: 'display: none'}
-          Cancel
-
+        .inline-block
+          = form_tag "#", method: 'post', class: 'edit_password', style: 'display:none;' do
+            / Inline styles used below for jQuery show and hide animations to work
+            .col.col-12
+              %h6.inline.mb0.gray-60 Current password
+              #curr-password-error.inline
+              = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}
+              %h6.inline.mb0.gray-60 New password
+              #new-password-error.inline
+              = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }
+              %h6.inline.mb0.gray-60 Confirm new password
+              #confirm-new-password-error.inline
+              = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }
+        
+        .flex.items-center.mt2
+          #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mr1
+            Change password
+          #msg-password-update.flex.items-baseline.green{style: 'display: none;'}
+            .m0
+              Saved&nbsp;
+            %span.block
+              = embedded_svg 'i-success-16px.svg', class: 'block'
+          #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1{style: 'display: none;'}
+            Cancel
 
     .clearfix
+
       = simple_form_for @profile, url: profile_path(@profile) do |f|
         .clearfix.bg-white.rounded.px3.py2.mb2
           %h2.my0 Personal
           .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
             %h6.mb0.gray-60 First name
-            = f.input_field :first_name, data: {"parsley-required": "true"}
+            = f.input_field :first_name, required: false
 
           .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
             %h6.mb0.gray-60 Last name
-            = f.input_field :last_name, data: {"parsley-required": "true"}
+            = f.input_field :last_name, required: false
 
           .col.col-12.px2.sm-pl0.sm-pr2
             %h6.mb0.gray-60 Phone
@@ -53,7 +60,7 @@
 
           .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
             %h6.mb0.gray-60 City
-            =f.input_field :city, data: {"parsley-required": "true"}
+            =f.input_field :city
 
           .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
             %h6.mb0.gray-60 State
@@ -61,7 +68,7 @@
 
           .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
             %h6.mb0.gray-60 Zip Code
-            =f.input_field :zip_code, data: {"parsley-required": "true"}
+            =f.input_field :zip_code, data: {"parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}
 
           .clearfix
             .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
@@ -86,7 +93,14 @@
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
 
           .col.col-12.p2.sm-px0.sm-py2
-            =f.submit class: 'btn btn-sm btn-primary', disabled: true
+            .flex.items-center
+              =f.submit class: 'btn btn-sm btn-primary', disabled: true
+              / inline style so jquery show() works.
+              #msg-profile-update.flex.items-center.green{style: 'display: none'}
+                .pl1.m0
+                  Saved&nbsp;
+                %span.block
+                  = embedded_svg 'i-success-16px.svg', class: 'block'
 
 :javascript
 
@@ -106,6 +120,8 @@
         $pProfileForm,
         $pwSubmit,
         $btnProfileSubmit,
+        $msgProfileUpdate,
+        $msgPasswordUpdate,
         $btnChangePw,
         $btnCancelChangePw;
 
@@ -122,8 +138,9 @@
 
     $profileForm = $('.edit_profile');
     $btnProfileSubmit = $profileForm.find('input[type=submit]');
-
-    // Parsleyfied current password field
+    $msgProfileUpdate = $profileForm.find('#msg-profile-update');
+    $msgPasswordUpdate = $('#msg-password-update');
+    // Parsleyfied password fields
     $pCurrPw = $('#current_password').parsley();
 
     // Parsleyfied forms
@@ -140,6 +157,8 @@
                             errorTemplate: '<span></span>',
                             successClass: null
                         });
+
+
 
     /*------------- END Module variable declarations and definitions-----------*/
 
@@ -222,12 +241,26 @@
         success: function(msg) {
           $pProfileForm.reset();
           $btnProfileSubmit.attr('disabled', true);
+          $msgProfileUpdate.show('slow');
+          setTimeout(function(){ $msgProfileUpdate.hide('slow'); }, 5000);
+
         }
       });
     });
     /*------------- END Profile form configurations -----------------------------------*/
 
     /*------------- BEGIN Password form configurations -----------------------------------*/
+    // Custom Parsley validator: new password cannot be the same as current
+    window.Parsley.addValidator('notequalto', {
+      requirementType: 'string',
+      validateString: function(val, elem) {
+        return val !== $(elem).val();
+      }, 
+      messages: {
+        en: 'New password cannot be same as current'
+      }
+    });
+
     // /showPasswordForm/ animate revealing of the password form elements
     showPasswordForm = function(){
       $pwForm.show('slow', function(){
@@ -275,8 +308,10 @@
               url: '/profile/update-password',
               data: { _method:'PATCH',  updated_password},
               dataType: 'json',
-              success: function(data, status, jqxhr) {
+              success: function() {
                 hidePasswordForm();
+                $msgPasswordUpdate.show('slow');
+                setTimeout(function(){ $msgPasswordUpdate.hide('slow'); }, 5000);
               }
             });
           };

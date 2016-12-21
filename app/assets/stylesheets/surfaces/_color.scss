@@ -8,6 +8,7 @@ $gray-30: #C1C1C1;
 $gray-20: #D6D6D6;
 $gray-10: #EAEAEA;
 $gray-05: #F3F3F3;
+$green: #00FF00;
 
 // Brand Color Variables
 $blue: #00CCFF;
@@ -29,7 +30,7 @@ $red: #FF0000;
 .blue { color: $blue; }
 .red { color: $red; }
 .orange { color: $orange; }
-
+.green { color: $green; }
 // Background Colors
 .bg-transparent{ background-color: transparent; }
 .bg-white { background-color: $white; }
