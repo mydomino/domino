@@ -51,6 +51,6 @@ Rails.application.configure do
   end
 
   # completely disable web_console whiny_requests for display with ips
-  config.web_console.whiny_requests = false
+  #config.web_console.whiny_requests = false
 
 end

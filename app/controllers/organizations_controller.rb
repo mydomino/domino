@@ -4,11 +4,12 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   def index
     @organizations = Organization.all
+    raise "eror"
   end
 
   # GET /organizations/1
   def show
-    @orgamization = Organization.find_by_id(params[:id])
+    #@orgamization = Organization.find_by_id(params[:id])
 
   end
 
@@ -50,7 +51,7 @@ class OrganizationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      @organization = Organization.find(params[:id])
+      @organization = Organization.find_by!(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

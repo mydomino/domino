@@ -23,9 +23,11 @@
                                 PATCH    /organizations/:id(.:format)                           organizations#update
                                 PUT      /organizations/:id(.:format)                           organizations#update
                                 DELETE   /organizations/:id(.:format)                           organizations#destroy
+               user_error_error GET      /errors/:id/user_error(.:format)                       errors#user_error
+              user_error_errors GET      /errors/user_error(.:format)                           errors#user_error
                                          /404(.:format)                                         errors#not_found
                                          /500(.:format)                                         errors#internal_server_error
-                          error          /error(.:format)                                       errors#error
+                       apperror          /apperror(.:format)                                    errors#application_error
                            root GET      /                                                      pages#index
 profile_verify_current_password GET      /profile/verify-current-password(.:format)             profiles#verify_current_password
         profile_update_password PATCH    /profile/update-password(.:format)                     profiles#update_password
