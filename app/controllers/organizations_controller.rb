@@ -4,7 +4,6 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   def index
     @organizations = Organization.all
-    raise "eror"
   end
 
   # GET /organizations/1
