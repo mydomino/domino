@@ -2,11 +2,11 @@
   display: flex;
 
   .slick-slide{
-      display: flex;
-      flex-direction: column;
-      height: auto;
-      outline: none;
-      background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    outline: none;
+    background-color: #f1f1f1;
   }
 }
 
@@ -197,26 +197,6 @@ table#steps {
   opacity: .5;
 }
 
-nav {
-  .nav-bg {
-    height: 100%;
-    display: table;
-    z-index: -1;
-    .content { display: none; }
-  }
-  &.open {
-    height: 100%;
-    z-index: 1000;
-    .nav-bg {
-      background-color: #00ccff;
-      z-index:1000;
-      position: fixed;
-      .content { display: block; }
-      .li a { background-color: #fff; }
-    }
-  }
-}
-
 .hover-show { display: none; }
 
 div:hover {
@@ -284,6 +264,31 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 /* BEGIN custom navbar styles */
 #navbar {
   .fa-bars { padding-top: 1.4rem; }
+  span.inline-block.h5:hover { color: #00ccff;}
+}
+
+#nav-overlay {
+  height: 100%;
+  width: 0;
+  position: fixed; 
+  z-index: 0; 
+  right: 0;
+  top: 0;
+  background-color: #00ccff;
+  overflow-x: hidden;
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  &.open {
+    width: 100%;
+  }
+}
+
+/* Position the content inside the overlay */
+#nav-overlay-content {
+  position: relative;
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  white-space: nowrap;
+  overflow: hidden;
 }
 /* END custom navbar styles */
 
