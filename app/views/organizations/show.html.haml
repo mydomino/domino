@@ -1,27 +1,45 @@
-%p#notice= notice
+/%p#notice= notice
 
-%p
-  %b Name:
-  = @organization.name
-%p
-  %b Email:
-  = @organization.email
-%p
-  %b Phone:
-  = @organization.phone
-%p
-  %b Fax:
-  = @organization.fax
-%p
-  %b Company url:
-  = @organization.company_url
-%p
-  %b Sign up code:
-  = @organization.sign_up_code
-%p
-  %b Join date:
-  = @organization.join_date
+#member-profile.bg-gray-05
+  .max-width-4.mx-auto.p2
+    .flex.items-center
+      .fill-black
+        = embedded_svg 'i-user.svg'
+      %h1.ml2 Admin
 
-= link_to 'Edit', edit_organization_path(@organization)
-\|
-= link_to 'Back', organizations_path
+    .clearfix
+      .max-width-1.bg-white.rounded.mb3.flex.content-center
+        / HACK: Need to company logo dynamically 
+        =image_tag "partner_logos/SungevityLogo_400x400.jpeg", size: "64x64", class: "m2"
+        %div.my2
+          %h2.m0= @organization.name
+          / HACK: Need to get # members from DB
+          %h4.m0.gray-60 Total members: 423
+
+    .clearfix
+      .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
+        .bg-white.rounded.p3.mb2
+          %h2.my0 Add multiple employees
+          %h4.mb0 1. Get the CSV template
+          %p.mt0.gray-60 Download the sample spreadsheet. The first 3 columns: first name, last name, email address are mandatory.
+          %button.btn.btn-outline.gray-60.px2 Download template
+          %h4.mb0 2. Upload your updated CSV
+          %p.mt0.gray-60 After you've added new employees to your CSV file, upload it to add the employees to your account.
+          %button.rounded.btn.btn-primary.px2 Upload CSV...
+
+      .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
+        .bg-white.rounded.p3.mb2
+          %h2.my0 Add an employee
+          /= simple_form, url: profile_path(@profile) do |f|
+          %form
+            .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
+              %label.h6.mb0.gray-60 First name
+              = text_field_tag :first_name, nil, data: {"parsley-required": "true"}, class: 'rounded'
+            .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
+              %label.h6.mb0.gray-60 Last name
+              = text_field_tag :last_name, nil, data: {"parsley-required": "true"}, class: 'rounded'
+            .col.col-12.px2.sm-pl0.sm-pr2
+              %label.h6.mb0.gray-60 Email address
+              = text_field_tag :address_line_1, nil, class: 'rounded'
+            .px2.sm-px0
+              %button.btn.btn-sm.btn-primary.mt2 Submit

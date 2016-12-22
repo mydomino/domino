@@ -8,6 +8,8 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1
   def show
+    @orgamization = Organization.find_by_id(params[:id])
+
   end
 
   # GET /organizations/new
