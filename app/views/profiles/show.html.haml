@@ -88,7 +88,7 @@
         .clearfix
           .col.col-12.mt2.px0.sm-px0.sm-py2
             .flex.items-center
-              =f.submit class: 'btn btn-sm btn-primary', disabled: true
+              =f.submit class: 'btn btn-sm btn-primary btn-primary--hover'
               / inline style so jquery show() works.
               #msg-profile-update.flex.items-center.green{style: 'display: none'}
                 .pl1.m0
@@ -176,7 +176,7 @@
         $('#slider_val').html(ui.value);
         $('#profile_avg_electrical_bill').val(ui.value);
         setUpdatedField($($(event.target).attr('target')));
-        enableSubmit();
+        // enableSubmit();
       }
     });
     /*------------- END UI configurations -----------------------------------*/
@@ -197,20 +197,20 @@
     for (key_name in profileFields){
       profileFields[key_name].on('input', function(event){
         setUpdatedField($(this));
-        enableSubmit();
+        // enableSubmit();
       });
     }
 
     // Event handler for housing radio buttons
     $('input[type=radio]').change(function() {
       setUpdatedField($(this));
-      enableSubmit();
+      // enableSubmit();
     });
 
     // /enableSubmit/ enable submission of profile info if a field is changed
-    var enableSubmit = function(){
-      $btnProfileSubmit.prop("disabled", false);
-    }
+    // var enableSubmit = function(){
+      // $btnProfileSubmit.prop("disabled", false);
+    // }
 
     // /setUpdatedField/ On a profile field change, update updatedFields
     var setUpdatedField = function($field){
@@ -222,7 +222,9 @@
     // Validate profile info fields on submit
     $btnProfileSubmit.on('click', function(event){
       event.preventDefault();
-      $pProfileForm.validate();
+      if(Object.keys(updatedFields).length > 0){
+        $pProfileForm.validate();
+      }
     });
 
     // On profile form success, send updatedFields payload to server
@@ -234,7 +236,7 @@
         dataType: 'json',
         success: function(msg) {
           $pProfileForm.reset();
-          $btnProfileSubmit.attr('disabled', true);
+          // $btnProfileSubmit.attr('disabled', true);
           $msgProfileUpdate.show('slow');
           setTimeout(function(){ $msgProfileUpdate.hide('slow'); }, 5000);
 
