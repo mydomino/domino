@@ -86,9 +86,10 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    # Updates via member profile info page
     if request.xhr?
-      profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
-      if @profile.update(profile_params)
+      xhr_profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
+      if @profile.update(xhr_profile_params)
         render json: {
           message: "Profile updated successfully",
           status: 200
@@ -99,6 +100,7 @@ class ProfilesController < ApplicationController
           status: 400
         }, status: 400
       end
+    # Updates via onboarding
     else
       @profile.update(profile_params)
       redirect_to profile_step_path(@profile, Profile.form_steps.first)
