@@ -6,26 +6,26 @@
       %h1.ml2 Profile
 
     .clearfix.bg-white.px3.py2.rounded.mb2
-      .col.col-12
-        %h2.my0 Login
-        %h6.mb0.gray-60 Email address
-        %h3= @profile.email
+      .col.col-12.sm-col.col-10
+        .h2.mb2 Login
+        .h6.mb0.gray-60 Email address
+        .h3.my0= @profile.email
         .inline-block
           = form_tag "#", method: 'post', class: 'edit_password', style: 'display:none;' do
             / Inline styles used below for jQuery show and hide animations to work
-            .col.col-12
-              %h6.inline.mb0.gray-60 Current password
+            .col.col-12.px0.sm-pl0.sm-pr2.mt2
+              %label.h6.inline.mb0.gray-60{for: "current_password"} Current password
               #curr-password-error.inline
-              = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}
-              %h6.inline.mb0.gray-60 New password
+              = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "rounded"
+              %label.h6.inline.mb0.gray-60.mt3{for: "new_password"} New password
               #new-password-error.inline
-              = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }
-              %h6.inline.mb0.gray-60 Confirm new password
-              #confirm-new-password-error.inline
-              = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }
+              = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }, class: "rounded"
+              %label.h6.inline.mb0.gray-60.mt3{for: "new_password_confirmation"} Confirm new password
+              #confirm-new-password-error.inline{for: "new_password_confirmation"}
+              = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
         
-        .flex.items-center.mt2
-          #btn-change-password.btn.btn-sm.btn-primary.btn-primary--hover.mr1
+        .flex.items-center
+          #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1
             Change password
           #msg-password-update.flex.items-baseline.green{style: 'display: none;'}
             .m0
@@ -40,39 +40,32 @@
       = simple_form_for @profile, url: profile_path(@profile) do |f|
         .clearfix.bg-white.rounded.px3.py2.mb2
           %h2.my0 Personal
-          .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 First name
-            = f.input_field :first_name, required: false
+          .col.col-12.sm-col.sm-col-5.px0.sm-pl0.sm-pr2
+            = f.input :first_name, required: false, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
 
-          .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 Last name
-            = f.input_field :last_name, required: false
+          .col.col-12.sm-col.sm-col-5.sm-pl0.sm-pr2.mt1.sm-mt0
+            = f.input :last_name, required: false, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
 
-          .col.col-12.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 Phone
-            = f.input_field :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}
+          .col.col-12.sm-col.sm-col-10.sm-pl0.sm-pr2.mt1
+            = f.input :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
 
         .clearfix.bg-white.rounded.py2.px3
           %h2.my0 Home
-          .col.col-12.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 Home address
-            =f.input_field :address_line_1
+          .col.col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2
+            =f.input :address_line_1, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
 
-          .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 City
-            =f.input_field :city
+          .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2
+            =f.input :city, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
 
-          .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 State
-            =f.input_field :state, collection: us_states, include_blank: "Select state...", data: {"parsley-required": "true"}
+          .col.col-12.sm-col.sm-col-2.px0.sm-pl0.sm-pr2.mt1.sm-mt0
+            =f.input :state, collection: us_states, include_blank: "Select state...", data: {"parsley-required": "true"}, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
 
-          .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-            %h6.mb0.gray-60 Zip Code
-            =f.input_field :zip_code, data: {"parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}
+          .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1.sm-mt0
+            =f.input :zip_code, data: {"parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
 
           .clearfix
-            .col.col-12.sm-col.sm-col-4.px2.sm-pl0.sm-pr2
-              %h6.mb0.gray-60 Housing
+            .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1
+              %label.h6.mb0.gray-60 Housing
               #housing-radio-buttons.relative
                 = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
                 = label_tag('profile[housing]', "Own")
@@ -80,8 +73,8 @@
                 = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
                 = label_tag('profile[housing]', "Rent")
 
-            .col.col-12.sm-col.sm-col-8.px2.sm-pl0.sm-pr2
-              %h6.mb0.gray-60 Average electric bill
+            .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr2.mt1
+              %label.h6.mb0.gray-60{for: 'avg_electrical_bill'} Average electric bill
               .clearfix.pl1
                 .col.col-8.mt1
                   #slider{target: '#profile_avg_electrical_bill'}
@@ -91,8 +84,9 @@
                       &nbsp;$
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
-
-          .col.col-12.p2.sm-px0.sm-py2
+        
+        .clearfix
+          .col.col-12.mt2.px0.sm-px0.sm-py2
             .flex.items-center
               =f.submit class: 'btn btn-sm btn-primary', disabled: true
               / inline style so jquery show() works.
