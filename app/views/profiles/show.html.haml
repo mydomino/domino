@@ -1,67 +1,70 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+
 #member-profile.bg-gray-05
   .max-width-3.mx-auto.p2
+
     .flex.items-center
       .fill-black
         = embedded_svg 'i-user.svg'
       %h1.ml2 Profile
 
-    .clearfix.bg-white.px3.py2.rounded.mb2
-      .col.col-12.sm-col.col-10
-        .h2.mb2 Login
-        .h6.mb0.gray-60 Email address
-        .h3.my0= @profile.email
-        .inline-block
-          = form_tag "#", method: 'post', class: 'edit_password', style: 'display:none;' do
-            / Inline styles used below for jQuery show and hide animations to work
-            .col.col-12.px0.sm-pl0.sm-pr2.mt2
-              %label.h6.inline.mb0.gray-60{for: "current_password"} Current password
-              #curr-password-error.inline
-              = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "rounded"
-              %label.h6.inline.mb0.gray-60.mt3{for: "new_password"} New password
-              #new-password-error.inline
-              = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }, class: "rounded"
-              %label.h6.inline.mb0.gray-60.mt3{for: "new_password_confirmation"} Confirm new password
-              #confirm-new-password-error.inline{for: "new_password_confirmation"}
-              = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
-        
-        .flex.items-center
-          #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1
-            Change password
-          #msg-password-update.flex.items-baseline.green{style: 'display: none;'}
-            .m0
-              Saved&nbsp;
-            %span.block
-              = embedded_svg 'i-success-16px.svg', class: 'block'
-          #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1{style: 'display: none;'}
-            Cancel
-
+    / Begin Login info section
+    .bg-white.px3.pt2.pb3.rounded.mb2
+      .h2.mb3 Login
+      .h6.mb0.gray-60 Email address
+      .h3.my0= @profile.email
+      = form_tag "#", method: 'post', class: 'edit_password clearfix', style: 'display: none;' do
+        / Inline styles used below for jQuery show and hide animations to work
+        .col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2.mt2
+          %label.h6.inline.mb0.gray-60{for: "current_password"} Current password
+          #curr-password-error.inline
+          = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "rounded"
+          %label.h6.inline.mb0.gray-60.mt3{for: "new_password"} New password
+          #new-password-error.inline
+          = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }, class: "rounded"
+          %label.h6.inline.mb0.gray-60.mt3{for: "new_password_confirmation"} Confirm new password
+          #confirm-new-password-error.inline{for: "new_password_confirmation"}
+          = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
+      
+      .flex.items-center.mt2
+        #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1
+          Change password
+        #msg-password-update.green.flex.items-center{style: 'display:none;'}
+          .mt0
+            Saved&nbsp;
+          %span.block
+            = embedded_svg 'i-success-16px.svg', class: 'block'
+        #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1{style: 'display: none;'}
+          Cancel
+      / End Login Section
+    
     .clearfix
-
       = simple_form_for @profile, url: profile_path(@profile) do |f|
-        .clearfix.bg-white.rounded.px3.py2.mb2
-          %h2.my0 Personal
+        .clearfix.bg-white.rounded.px3.pt2.pb3.mb2
+          .h2.mb3 Personal
           .col.col-12.sm-col.sm-col-5.px0.sm-pl0.sm-pr2
-            = f.input :first_name, required: false, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
+            = f.input :first_name, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-5.sm-pl0.sm-pr2.mt1.sm-mt0
-            = f.input :last_name, required: false, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
+            = f.input :last_name, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-10.sm-pl0.sm-pr2.mt1
-            = f.input :phone, data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
+            = f.input :phone, input_html: {class: "rounded", data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}}, label_html: {class: 'h6 mb0 gray-60'}
 
-        .clearfix.bg-white.rounded.py2.px3
-          %h2.my0 Home
+        .clearfix.bg-white.rounded.px3.pt2.pb3
+          .h2.mb3 Home
           .col.col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2
-            =f.input :address_line_1, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
+            =f.input :address_line_1, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2
-            =f.input :city, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
+            =f.input :city, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-2.px0.sm-pl0.sm-pr2.mt1.sm-mt0
-            =f.input :state, collection: us_states, include_blank: "Select state...", data: {"parsley-required": "true"}, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
+            =f.input :state, collection: us_states, include_blank: "Select state...", input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1.sm-mt0
-            =f.input :zip_code, data: {"parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}, class: "rounded", label_html: {class: 'h6 mb0 gray-60'}
+            =f.input :zip_code, input_html: {class: "rounded", data: {"parsley-required": "true", "parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}}, label_html: {class: 'h6 mb0 gray-60'}
 
           .clearfix
             .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1
@@ -88,7 +91,7 @@
         .clearfix
           .col.col-12.mt2.px0.sm-px0.sm-py2
             .flex.items-center
-              =f.submit class: 'btn btn-sm btn-primary btn-primary--hover'
+              =f.submit 'Save changes', class: 'btn btn-md btn-primary btn-primary--hover'
               / inline style so jquery show() works.
               #msg-profile-update.flex.items-center.green{style: 'display: none'}
                 .pl1.m0
@@ -239,7 +242,6 @@
           // $btnProfileSubmit.attr('disabled', true);
           $msgProfileUpdate.show('slow');
           setTimeout(function(){ $msgProfileUpdate.hide('slow'); }, 5000);
-
         }
       });
     });
@@ -260,12 +262,15 @@
     // /showPasswordForm/ animate revealing of the password form elements
     showPasswordForm = function(){
       $pwForm.show('slow', function(){
+        $btnChangePw
+          .addClass('btn-primary btn-primary--hover')
+          .removeClass('btn-secondary btn-secondary--hover');
+
         $btnChangePw.bind('click', submitChangedPassword);
       });
       $btnCancelChangePw.show('slow');
-      $btnChangePw.html('Save changes').unbind('click');
+      $btnChangePw.unbind('click');
     };
-
 
     // /hidePasswordForm/ animate hiding of the password form elements and reset form elements
     hidePasswordForm = function(){
@@ -276,10 +281,12 @@
         // Reset parsley styles
         $pPwForm.reset();
         $pCurrPw.reset();
+        $btnChangePw
+          .removeClass('btn-primary btn-primary--hover')
+          .addClass('btn-secondary btn-secondary--hover');
       });
       $btnCancelChangePw.hide('slow');
       $btnChangePw
-        .html('Change password')
         .unbind('click', submitChangedPassword)
         .bind('click', showPasswordForm);
     }
@@ -314,7 +321,7 @@
         },
         error: function(data){
           currentPasswordValid = false;
-          if(!$currPw.hasClass('parsley-error')){
+          if(!$currPw.hasClass('error')){
             $pCurrPw.addError('current_password_error', {message: 'Current password is incorrect.' , assert: false, updateClass: true});
           }
         }

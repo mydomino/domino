@@ -1,3 +1,6 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+
 #profile-forms{class: "#{@browser.device.mobile? ? 'mobile' : 'non-mobile'}"}
   =render @response[:form]
 
