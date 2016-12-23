@@ -64,15 +64,31 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_exceptions
-  #   begin
-      yield
+     begin
+       yield
 
-  #   #Rescue StandardError
-  #   rescue => e
-  #     Airbrake.notify(e)
-  #     Rails.logger.error "Error: #{e.message}"
-  #     Rails.logger.error  "#{e.backtrace.join("\n")}"
-  #     redirect_to '/error'
-  #   end
+     rescue ActiveRecord::RecordNotFound => e
+       log_error(e)
+       redirect_to controller: 'errors', action: 'user_error', err_mesg: e.message
+
+     rescue => e
+       log_error(e)
+
+       # this also works.... but it relies on the match statement in routes.rb
+       redirect_to "/apperror?err_mesg=#{e.message}"
+     
+     end
+  end
+
+
+  def log_error(e)
+
+    # only send Airbrake notification when not in development  
+    Airbrake.notify(e) if !Rails.env.development?
+
+    Rails.logger.error "Error occured! Exception error is #{e.inspect}. Error: #{e.message}"
+    # do not need to log trace error
+    #Rails.logger.error  "#{e.backtrace.join("\n")}"
+    
   end
 end
