@@ -13,16 +13,16 @@
             =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
           -else
             = link_to "/membership", class: 'text-decoration-none' do
-              %span.inline-block.h5{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
-                = embedded_svg "i-membership-nav.svg", class: 'block mx-auto'
+              %span#i-membership-nav.inline-block.h5{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
+                = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
                 Membership
             = link_to "/profile", class: 'text-decoration-none mx2' do
-              %span.inline-block.h5{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
-                = embedded_svg "i-user-22px.svg", class: 'block mx-auto'
+              %span#i-user-nav.inline-block.h5{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
+                = embedded_svg "icons/i-user.svg", class: 'block mx-auto'
                 Profile
           = link_to destroy_user_session_path, method: :delete, class: 'text-decoration-none' do
-            %span.inline-block.h5{class: "#{nav_element_color}"}
-              = embedded_svg "i-logout-20px-22px.svg", class: 'block mx-auto'
+            %span#i-logout-nav.inline-block.h5{class: "#{nav_element_color}"}
+              = embedded_svg "icons/i-logout.svg", class: 'block mx-auto'
               Logout
         -else
           .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
@@ -33,7 +33,7 @@
 
     .md-hide.lg-hide.px2.right
       %span#open-nav
-        =embedded_svg 'i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
+        =embedded_svg 'icons/i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
     
   .max-width-4.mx-auto.clearfix
     .col.col-12.h3.sm-hide.xs-hide

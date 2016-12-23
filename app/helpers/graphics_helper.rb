@@ -9,6 +9,12 @@ module GraphicsHelper
     if options[:style].present?
       svg['style'] = options[:style]
     end
+    if options[:id].present?
+      svg['id'] = options[:id]
+    end
+    if options[:alt].present?
+      svg['alt'] = options[:alt]
+    end
     doc.to_html.html_safe
   end
 end

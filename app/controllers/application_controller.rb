@@ -48,6 +48,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
+    # Flash notice workaround so stale notice won't potentially 
+    # appear in devise login/sign up forms
+    flash[:notice] = nil
+    
     root_path
   end
 

@@ -8,6 +8,7 @@ module ApplicationHelper
       "https://www.mydomino.com"
     end
   end
+  
   #helper method for scoping page specific JS
   def page_id
     if id = content_for(:body_id) and id.present?
