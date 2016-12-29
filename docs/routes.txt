@@ -1,127 +1,129 @@
-                         Prefix Verb     URI Pattern                                            Controller#Action
-                          teams GET      /teams(.:format)                                       teams#index
-                                POST     /teams(.:format)                                       teams#create
-                       new_team GET      /teams/new(.:format)                                   teams#new
-                      edit_team GET      /teams/:id/edit(.:format)                              teams#edit
-                           team GET      /teams/:id(.:format)                                   teams#show
-                                PATCH    /teams/:id(.:format)                                   teams#update
-                                PUT      /teams/:id(.:format)                                   teams#update
-                                DELETE   /teams/:id(.:format)                                   teams#destroy
-                  subscriptions GET      /subscriptions(.:format)                               subscriptions#index
-                                POST     /subscriptions(.:format)                               subscriptions#create
-               new_subscription GET      /subscriptions/new(.:format)                           subscriptions#new
-              edit_subscription GET      /subscriptions/:id/edit(.:format)                      subscriptions#edit
-                   subscription GET      /subscriptions/:id(.:format)                           subscriptions#show
-                                PATCH    /subscriptions/:id(.:format)                           subscriptions#update
-                                PUT      /subscriptions/:id(.:format)                           subscriptions#update
-                                DELETE   /subscriptions/:id(.:format)                           subscriptions#destroy
-                  organizations GET      /organizations(.:format)                               organizations#index
-                                POST     /organizations(.:format)                               organizations#create
-               new_organization GET      /organizations/new(.:format)                           organizations#new
-              edit_organization GET      /organizations/:id/edit(.:format)                      organizations#edit
-                   organization GET      /organizations/:id(.:format)                           organizations#show
-                                PATCH    /organizations/:id(.:format)                           organizations#update
-                                PUT      /organizations/:id(.:format)                           organizations#update
-                                DELETE   /organizations/:id(.:format)                           organizations#destroy
-               user_error_error GET      /errors/:id/user_error(.:format)                       errors#user_error
-              user_error_errors GET      /errors/user_error(.:format)                           errors#user_error
-                                         /404(.:format)                                         errors#not_found
-                                         /500(.:format)                                         errors#internal_server_error
-                       apperror          /apperror(.:format)                                    errors#application_error
-                           root GET      /                                                      pages#index
-profile_verify_current_password GET      /profile/verify-current-password(.:format)             profiles#verify_current_password
-        profile_update_password PATCH    /profile/update-password(.:format)                     profiles#update_password
-                 member_profile GET      /profile(.:format)                                     profiles#show
-                    domino_team GET      /domino-team(.:format)                                 pages#team
-                          about GET      /about(.:format)                                       pages#about
-                          terms GET      /terms(.:format)                                       pages#terms
-                        privacy GET      /privacy(.:format)                                     pages#privacy
-                            faq GET      /faq(.:format)                                         pages#faq
-                        example GET      /example(.:format)                                     pages#example
-                       partners GET      /partners(.:format)                                    pages#partners
-                                GET      /welcome-email/:profile_id(.:format)                   profiles#welcome_email
-                                GET      /legacy-user-registration-email/:lu_id(.:format)       profiles#lu_registration_email
-                                GET      /dashboard/:slug(.:format)                             redirect(301)
-                                GET      /continue/:profile_id(.:format)                        pages#index
-           newsletter_subscribe GET      /newsletter-subscribe(.:format)                        pages#newsletter_subscribe
-                                GET      /articles/:id(.:format)                                posts#show {:id=>/[0-9]+/}
-                      post_slug GET      /articles/:article(.:format)                           posts#get_post_by_slug
-                           blog GET      /blog(.:format)                                        redirect(301, /articles)
-                                GET      /blog/:article(.:format)                               redirect(301, /articles/%{article})
-                                GET      /blog/category/:cat(.:format)                          redirect(301, /category/%{cat})
-                                GET      /category/:cat(.:format)                               posts#index
-                 user_dashboard GET      /dashboard(.:format)                                   dashboards#show
-          dashboard_bulk_update PATCH    /dashboards/:dashboard_id/bulk_update(.:format)        recommendations#bulk_update
-                     dashboards GET      /dashboards(.:format)                                  dashboards#index
-                                POST     /dashboards(.:format)                                  dashboards#create
-                  new_dashboard GET      /dashboards/new(.:format)                              dashboards#new
-                 edit_dashboard GET      /dashboards/:id/edit(.:format)                         dashboards#edit
-                      dashboard GET      /dashboards/:id(.:format)                              dashboards#show
-                                PATCH    /dashboards/:id(.:format)                              dashboards#update
-                                PUT      /dashboards/:id(.:format)                              dashboards#update
-                                DELETE   /dashboards/:id(.:format)                              dashboards#destroy
-                   profile_step GET      /profiles/:profile_id/steps/:id(.:format)              profile/steps#show
-                                PATCH    /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
-                                PUT      /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
-                       profiles GET      /profiles(.:format)                                    profiles#index
-                                POST     /profiles(.:format)                                    profiles#create
-                    new_profile GET      /profiles/new(.:format)                                profiles#new
-                        profile GET      /profiles/:id(.:format)                                profiles#show
-                                PATCH    /profiles/:id(.:format)                                profiles#update
-                                PUT      /profiles/:id(.:format)                                profiles#update
-                                PUT      /profiles/:id/apply-partner-code(.:format)             profiles#apply_partner_code
-       create_completed_profile POST     /profiles/create-completed-profile(.:format)           profiles#create_completed_profile
-               new_user_session GET      /users/sign_in(.:format)                               sessions#new
-                   user_session POST     /users/sign_in(.:format)                               sessions#create
-           destroy_user_session DELETE   /users/sign_out(.:format)                              sessions#destroy
-                  user_password POST     /users/password(.:format)                              passwords#create
-              new_user_password GET      /users/password/new(.:format)                          passwords#new
-             edit_user_password GET      /users/password/edit(.:format)                         passwords#edit
-                                PATCH    /users/password(.:format)                              passwords#update
-                                PUT      /users/password(.:format)                              passwords#update
-       cancel_user_registration GET      /users/cancel(.:format)                                registrations#cancel
-              user_registration POST     /users(.:format)                                       registrations#create
-          new_user_registration GET      /users/sign_up(.:format)                               registrations#new
-         edit_user_registration GET      /users/edit(.:format)                                  registrations#edit
-                                PATCH    /users(.:format)                                       registrations#update
-                                PUT      /users(.:format)                                       registrations#update
-                                DELETE   /users(.:format)                                       registrations#destroy
-        recommendation_complete POST     /recommendations/:recommendation_id/complete(.:format) recommendations#complete
-   recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.:format)     recommendations#undo
-                recommendations GET      /recommendations(.:format)                             recommendations#index
-                 recommendation PATCH    /recommendations/:id(.:format)                         recommendations#update
-                                PUT      /recommendations/:id(.:format)                         recommendations#update
-                                DELETE   /recommendations/:id(.:format)                         recommendations#destroy
-         product_toggle_default POST     /products/:product_id/toggle_default(.:format)         products#toggle_default
-                       products GET      /products(.:format)                                    products#index
-                                POST     /products(.:format)                                    products#create
-                    new_product GET      /products/new(.:format)                                products#new
-                   edit_product GET      /products/:id/edit(.:format)                           products#edit
-                        product GET      /products/:id(.:format)                                products#show
-                                PATCH    /products/:id(.:format)                                products#update
-                                PUT      /products/:id(.:format)                                products#update
-                                DELETE   /products/:id(.:format)                                products#destroy
-          update_product_prices POST     /products/update-prices(.:format)                      products#update_all_amazon_prices
-            task_toggle_default POST     /tasks/:task_id/toggle_default(.:format)               tasks#toggle_default
-                          tasks GET      /tasks(.:format)                                       tasks#index
-                                POST     /tasks(.:format)                                       tasks#create
-                       new_task GET      /tasks/new(.:format)                                   tasks#new
-                      edit_task GET      /tasks/:id/edit(.:format)                              tasks#edit
-                           task GET      /tasks/:id(.:format)                                   tasks#show
-                                PATCH    /tasks/:id(.:format)                                   tasks#update
-                                PUT      /tasks/:id(.:format)                                   tasks#update
-                                DELETE   /tasks/:id(.:format)                                   tasks#destroy
-                      analytics GET      /analytics(.:format)                                   analytics#show
-                    delayed_job GET|POST /delayed_job(.:format)                                 DelayedJobWeb
-                          posts GET      /articles(.:format)                                    posts#index
-                                POST     /articles(.:format)                                    posts#create
-                       new_post GET      /articles/new(.:format)                                posts#new
-                      edit_post GET      /articles/:id/edit(.:format)                           posts#edit
-                           post GET      /articles/:id(.:format)                                posts#show
-                                PATCH    /articles/:id(.:format)                                posts#update
-                                PUT      /articles/:id(.:format)                                posts#update
-                                DELETE   /articles/:id(.:format)                                posts#destroy
-                       mailkick          /mailkick                                              Mailkick::Engine
+                                  Prefix Verb     URI Pattern                                            Controller#Action
+                                   teams GET      /teams(.:format)                                       teams#index
+                                         POST     /teams(.:format)                                       teams#create
+                                new_team GET      /teams/new(.:format)                                   teams#new
+                               edit_team GET      /teams/:id/edit(.:format)                              teams#edit
+                                    team GET      /teams/:id(.:format)                                   teams#show
+                                         PATCH    /teams/:id(.:format)                                   teams#update
+                                         PUT      /teams/:id(.:format)                                   teams#update
+                                         DELETE   /teams/:id(.:format)                                   teams#destroy
+                           subscriptions GET      /subscriptions(.:format)                               subscriptions#index
+                                         POST     /subscriptions(.:format)                               subscriptions#create
+                        new_subscription GET      /subscriptions/new(.:format)                           subscriptions#new
+                       edit_subscription GET      /subscriptions/:id/edit(.:format)                      subscriptions#edit
+                            subscription GET      /subscriptions/:id(.:format)                           subscriptions#show
+                                         PATCH    /subscriptions/:id(.:format)                           subscriptions#update
+                                         PUT      /subscriptions/:id(.:format)                           subscriptions#update
+                                         DELETE   /subscriptions/:id(.:format)                           subscriptions#destroy
+ email_members_upload_file_organizations POST     /organizations/email_members_upload_file(.:format)     organizations#email_members_upload_file
+import_members_upload_file_organizations POST     /organizations/import_members_upload_file(.:format)    organizations#import_members_upload_file
+                           organizations GET      /organizations(.:format)                               organizations#index
+                                         POST     /organizations(.:format)                               organizations#create
+                        new_organization GET      /organizations/new(.:format)                           organizations#new
+                       edit_organization GET      /organizations/:id/edit(.:format)                      organizations#edit
+                            organization GET      /organizations/:id(.:format)                           organizations#show
+                                         PATCH    /organizations/:id(.:format)                           organizations#update
+                                         PUT      /organizations/:id(.:format)                           organizations#update
+                                         DELETE   /organizations/:id(.:format)                           organizations#destroy
+                        user_error_error GET      /errors/:id/user_error(.:format)                       errors#user_error
+                       user_error_errors GET      /errors/user_error(.:format)                           errors#user_error
+                                                  /404(.:format)                                         errors#not_found
+                                                  /500(.:format)                                         errors#internal_server_error
+                                apperror          /apperror(.:format)                                    errors#application_error
+                                    root GET      /                                                      pages#index
+         profile_verify_current_password GET      /profile/verify-current-password(.:format)             profiles#verify_current_password
+                 profile_update_password PATCH    /profile/update-password(.:format)                     profiles#update_password
+                          member_profile GET      /profile(.:format)                                     profiles#show
+                             domino_team GET      /domino-team(.:format)                                 pages#team
+                                   about GET      /about(.:format)                                       pages#about
+                                   terms GET      /terms(.:format)                                       pages#terms
+                                 privacy GET      /privacy(.:format)                                     pages#privacy
+                                     faq GET      /faq(.:format)                                         pages#faq
+                                 example GET      /example(.:format)                                     pages#example
+                                partners GET      /partners(.:format)                                    pages#partners
+                                         GET      /welcome-email/:profile_id(.:format)                   profiles#welcome_email
+                                         GET      /legacy-user-registration-email/:lu_id(.:format)       profiles#lu_registration_email
+                                         GET      /dashboard/:slug(.:format)                             redirect(301)
+                                         GET      /continue/:profile_id(.:format)                        pages#index
+                    newsletter_subscribe GET      /newsletter-subscribe(.:format)                        pages#newsletter_subscribe
+                                         GET      /articles/:id(.:format)                                posts#show {:id=>/[0-9]+/}
+                               post_slug GET      /articles/:article(.:format)                           posts#get_post_by_slug
+                                    blog GET      /blog(.:format)                                        redirect(301, /articles)
+                                         GET      /blog/:article(.:format)                               redirect(301, /articles/%{article})
+                                         GET      /blog/category/:cat(.:format)                          redirect(301, /category/%{cat})
+                                         GET      /category/:cat(.:format)                               posts#index
+                          user_dashboard GET      /dashboard(.:format)                                   dashboards#show
+                   dashboard_bulk_update PATCH    /dashboards/:dashboard_id/bulk_update(.:format)        recommendations#bulk_update
+                              dashboards GET      /dashboards(.:format)                                  dashboards#index
+                                         POST     /dashboards(.:format)                                  dashboards#create
+                           new_dashboard GET      /dashboards/new(.:format)                              dashboards#new
+                          edit_dashboard GET      /dashboards/:id/edit(.:format)                         dashboards#edit
+                               dashboard GET      /dashboards/:id(.:format)                              dashboards#show
+                                         PATCH    /dashboards/:id(.:format)                              dashboards#update
+                                         PUT      /dashboards/:id(.:format)                              dashboards#update
+                                         DELETE   /dashboards/:id(.:format)                              dashboards#destroy
+                            profile_step GET      /profiles/:profile_id/steps/:id(.:format)              profile/steps#show
+                                         PATCH    /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
+                                         PUT      /profiles/:profile_id/steps/:id(.:format)              profile/steps#update
+                                profiles GET      /profiles(.:format)                                    profiles#index
+                                         POST     /profiles(.:format)                                    profiles#create
+                             new_profile GET      /profiles/new(.:format)                                profiles#new
+                                 profile GET      /profiles/:id(.:format)                                profiles#show
+                                         PATCH    /profiles/:id(.:format)                                profiles#update
+                                         PUT      /profiles/:id(.:format)                                profiles#update
+                                         PUT      /profiles/:id/apply-partner-code(.:format)             profiles#apply_partner_code
+                create_completed_profile POST     /profiles/create-completed-profile(.:format)           profiles#create_completed_profile
+                        new_user_session GET      /users/sign_in(.:format)                               sessions#new
+                            user_session POST     /users/sign_in(.:format)                               sessions#create
+                    destroy_user_session DELETE   /users/sign_out(.:format)                              sessions#destroy
+                           user_password POST     /users/password(.:format)                              passwords#create
+                       new_user_password GET      /users/password/new(.:format)                          passwords#new
+                      edit_user_password GET      /users/password/edit(.:format)                         passwords#edit
+                                         PATCH    /users/password(.:format)                              passwords#update
+                                         PUT      /users/password(.:format)                              passwords#update
+                cancel_user_registration GET      /users/cancel(.:format)                                registrations#cancel
+                       user_registration POST     /users(.:format)                                       registrations#create
+                   new_user_registration GET      /users/sign_up(.:format)                               registrations#new
+                  edit_user_registration GET      /users/edit(.:format)                                  registrations#edit
+                                         PATCH    /users(.:format)                                       registrations#update
+                                         PUT      /users(.:format)                                       registrations#update
+                                         DELETE   /users(.:format)                                       registrations#destroy
+                 recommendation_complete POST     /recommendations/:recommendation_id/complete(.:format) recommendations#complete
+            recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.:format)     recommendations#undo
+                         recommendations GET      /recommendations(.:format)                             recommendations#index
+                          recommendation PATCH    /recommendations/:id(.:format)                         recommendations#update
+                                         PUT      /recommendations/:id(.:format)                         recommendations#update
+                                         DELETE   /recommendations/:id(.:format)                         recommendations#destroy
+                  product_toggle_default POST     /products/:product_id/toggle_default(.:format)         products#toggle_default
+                                products GET      /products(.:format)                                    products#index
+                                         POST     /products(.:format)                                    products#create
+                             new_product GET      /products/new(.:format)                                products#new
+                            edit_product GET      /products/:id/edit(.:format)                           products#edit
+                                 product GET      /products/:id(.:format)                                products#show
+                                         PATCH    /products/:id(.:format)                                products#update
+                                         PUT      /products/:id(.:format)                                products#update
+                                         DELETE   /products/:id(.:format)                                products#destroy
+                   update_product_prices POST     /products/update-prices(.:format)                      products#update_all_amazon_prices
+                     task_toggle_default POST     /tasks/:task_id/toggle_default(.:format)               tasks#toggle_default
+                                   tasks GET      /tasks(.:format)                                       tasks#index
+                                         POST     /tasks(.:format)                                       tasks#create
+                                new_task GET      /tasks/new(.:format)                                   tasks#new
+                               edit_task GET      /tasks/:id/edit(.:format)                              tasks#edit
+                                    task GET      /tasks/:id(.:format)                                   tasks#show
+                                         PATCH    /tasks/:id(.:format)                                   tasks#update
+                                         PUT      /tasks/:id(.:format)                                   tasks#update
+                                         DELETE   /tasks/:id(.:format)                                   tasks#destroy
+                               analytics GET      /analytics(.:format)                                   analytics#show
+                             delayed_job GET|POST /delayed_job(.:format)                                 DelayedJobWeb
+                                   posts GET      /articles(.:format)                                    posts#index
+                                         POST     /articles(.:format)                                    posts#create
+                                new_post GET      /articles/new(.:format)                                posts#new
+                               edit_post GET      /articles/:id/edit(.:format)                           posts#edit
+                                    post GET      /articles/:id(.:format)                                posts#show
+                                         PATCH    /articles/:id(.:format)                                posts#update
+                                         PUT      /articles/:id(.:format)                                posts#update
+                                         DELETE   /articles/:id(.:format)                                posts#destroy
+                                mailkick          /mailkick                                              Mailkick::Engine
 
 Routes for Mailkick::Engine:
 unsubscribe_subscription GET  /subscriptions/:id/unsubscribe(.:format) mailkick/subscriptions#unsubscribe

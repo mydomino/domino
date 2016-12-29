@@ -2,7 +2,14 @@ Rails.application.routes.draw do
 
   resources :teams
   resources :subscriptions
-  resources :organizations
+
+
+  resources :organizations do 
+    collection do 
+      post 'email_members_upload_file'
+      post 'import_members_upload_file'
+    end
+  end
 
 
   # use routes error to handle both member and collection routes when exception is thrown

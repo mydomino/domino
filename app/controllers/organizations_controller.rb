@@ -8,8 +8,6 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1
   def show
-    #@orgamization = Organization.find_by_id(params[:id])
-
   end
 
   # GET /organizations/new
@@ -45,6 +43,19 @@ class OrganizationsController < ApplicationController
   def destroy
     @organization.destroy
     redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
+  end
+
+  def email_members_upload_file
+
+    Rails.logger.debug "Action email_members_upload_file is called."
+
+    # email the uploaded CSV file to mydomino
+    UserMailer.email_csv_file(current_user, params[:file]).deliver_now
+    
+  end
+
+  def import_members_upload_file
+    
   end
 
   private

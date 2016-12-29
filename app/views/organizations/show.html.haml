@@ -26,12 +26,10 @@
           %h4.mb0 2. Upload your updated CSV
           %p.mt0.gray-60 After you've added new employees to your CSV file, upload it to add the employees to your account.
           /%button.rounded.btn.btn-primary.px2 
-          = form_tag '/upload', multipart: true do
+          = form_tag email_members_upload_file_organizations_path, multipart: true do
             /%label{:for => "file"} Upload CSV...
             = file_field_tag "file", accept: 'text/csv', class: 'upload'
-            %br
-            %br
-            = button_tag "Upload CSV", class: 'rounded btn btn-primary px2'
+            = button_tag "Upload CSV", class: 'rounded btn btn-primary px2 mt2'
 
       .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
         .bg-white.rounded.p3.mb2
