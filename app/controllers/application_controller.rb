@@ -79,7 +79,12 @@ class ApplicationController < ActionController::Base
        log_error(e)
 
        # this also works.... but it relies on the match statement in routes.rb
-       redirect_to "/apperror?err_mesg=#{e.message}"
+       # if it is not in development, then do not send exception error 
+       if Rails.env.development? 
+         redirect_to "/apperror?err_mesg=#{e.message}" 
+       else 
+         redirect_to "/apperror"
+       end
      
      end
   end

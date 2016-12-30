@@ -5,10 +5,13 @@ Rails.application.routes.draw do
 
 
   resources :organizations do 
-    collection do 
+    member do 
       post 'email_members_upload_file'
       post 'import_members_upload_file'
+      get  'test'
+      get  'download_csv_template'
     end
+
   end
 
 

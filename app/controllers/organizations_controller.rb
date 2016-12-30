@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization, only: [:show, :edit, :update, :destroy, :email_members_upload_file, 
+    :import_members_upload_file, :test, :download_csv_template]
 
   # GET /organizations
   def index
@@ -49,6 +50,11 @@ class OrganizationsController < ApplicationController
 
     Rails.logger.debug "Action email_members_upload_file is called."
 
+    # check to make sure the CSV file was selected
+    if params[:file].nil?
+      redirect_to @organization, alert: 'Error! Please select a CSV file for upload.' and return
+    end
+
     # email the uploaded CSV file to mydomino
     UserMailer.email_csv_file(current_user, params[:file]).deliver_now
     
@@ -56,6 +62,15 @@ class OrganizationsController < ApplicationController
 
   def import_members_upload_file
     
+  end
+
+  def test
+  end
+
+  def download_csv_template
+
+    send_data generate_csv_template, filename: "#{@organization.name}_#{Date.today}.csv"
+
   end
 
   private
@@ -68,4 +83,13 @@ class OrganizationsController < ApplicationController
     def organization_params
       params.require(:organization).permit(:name, :email, :phone, :fax, :company_url, :sign_up_code, :join_date)
     end
+
+    def generate_csv_template
+
+      CSV.generate do |csv|
+        # Add new headers
+        csv << ['First_name', 'Last_name', 'Email']
+      end
+    end
+
 end

@@ -13,23 +13,26 @@
         =image_tag "partner_logos/SungevityLogo_400x400.jpeg", size: "64x64", class: "m2"
         %div.my2
           %h2.m0= @organization.name
-          / HACK: Need to get # members from DB
-          %h4.m0.gray-60 Total enrolled members: 423
+          %h4.m0.gray-60 Current enrolled members: #{@organization.users.size}
 
+    
     .clearfix
       .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
         .bg-white.rounded.p3.mb2
           %h2.my0 Add multiple employees
           %h4.mb0 1. Get the CSV template
           %p.mt0.gray-60 Download the sample spreadsheet. The first 3 columns: first name, last name, email address are mandatory.
-          %button.btn.btn-outline.gray-60.px2 Download template
+          = form_tag download_csv_template_organization_path(@organization), method: :get do
+            = button_tag "Download template", class: 'btn btn-outline gray-60 px2'
+         
           %h4.mb0 2. Upload your updated CSV
           %p.mt0.gray-60 After you've added new employees to your CSV file, upload it to add the employees to your account.
-          /%button.rounded.btn.btn-primary.px2 
-          = form_tag email_members_upload_file_organizations_path, multipart: true do
-            /%label{:for => "file"} Upload CSV...
+          = form_tag email_members_upload_file_organization_path(@organization), multipart: true do
             = file_field_tag "file", accept: 'text/csv', class: 'upload'
             = button_tag "Upload CSV", class: 'rounded btn btn-primary px2 mt2'
+          .container
+            - flash.each do |key, value|
+              %div{:class => "alert alert-#{key}"}= value
 
       .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
         .bg-white.rounded.p3.mb2

@@ -3,6 +3,10 @@
     %h1.mt0 Opps. An error has occurred...
     %h2.line-height-2
       We are sorry for the inconvenience. There were errors while processing your request.  We're notified and will be working on fixing it.
+      .mt3
+        - if Rails.env.development?
+          The error message is : 
+          = @err_mesg
     
     = link_to root_path do 
       .btn.btn-md.btn-primary.btn-primary--hover
