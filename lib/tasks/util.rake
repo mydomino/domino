@@ -16,7 +16,8 @@ namespace :util do
   	  exit 1
   	end
 
-    User.all.each do | ele |
+    #User.all.each do | ele |
+    User.find_each do | ele |
 
       begin
 
@@ -65,10 +66,15 @@ namespace :util do
 
     puts "Orginization is #{org.name} \n"
 
+  end
 
-
-
+  desc "Update products with Amazon price"
+  task update_products_with_amazon: :environment do 
     
+    Product.find_each do |product|
+      product.update_amazon_price
+    end
+
   end
 
 
