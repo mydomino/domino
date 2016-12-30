@@ -46,6 +46,7 @@ gem 'clipboard-rails'
 gem 'jquery-slick-rails'
 gem 'parsley-rails'
 gem 'annotate', '~> 2.7', '>= 2.7.1'
+gem 'faker'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -70,7 +71,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
-  gem 'faker'
+  
 end
 
 group :test do
