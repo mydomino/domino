@@ -63,17 +63,18 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
+
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
+  gem 'faker'
 end
 
 group :test do
   gem 'simplecov'
-  gem 'faker'
   gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
   gem 'minitest-rails', "~> 2.0"
