@@ -6,6 +6,8 @@ rails generate scaffold Team name:string organization:references
 
 rails generate migration AddOrganizationToUsers organization:references
 
+rails generate migration AddUsersCountToOrganizations users_count:integer
+
 
 
 

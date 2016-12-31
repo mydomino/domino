@@ -11,17 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221064332) do
+ActiveRecord::Schema.define(version: 20161231013758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
-
-  create_table "clones", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "dashboards", force: :cascade do |t|
     t.string   "lead_name"
@@ -34,7 +28,6 @@ ActiveRecord::Schema.define(version: 20161221064332) do
     t.integer  "user_id"
   end
 
-  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
   add_index "dashboards", ["user_id"], name: "index_dashboards_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -52,6 +45,14 @@ ActiveRecord::Schema.define(version: 20161221064332) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "domino_products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price_cents"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "interests", force: :cascade do |t|
     t.integer  "profile_id"
@@ -123,8 +124,9 @@ ActiveRecord::Schema.define(version: 20161221064332) do
     t.string   "company_url"
     t.string   "sign_up_code"
     t.datetime "join_date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "users_count",  default: 0
   end
 
   create_table "partner_codes", force: :cascade do |t|
@@ -184,9 +186,6 @@ ActiveRecord::Schema.define(version: 20161221064332) do
     t.datetime "updated_at"
     t.integer  "updated_by"
   end
-
-  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
-  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.datetime "start_date"

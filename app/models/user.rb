@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_one :profile, dependent: :destroy
   has_one :dashboard, dependent: :destroy
-  belongs_to :organization
+  belongs_to :organization, counter_cache: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
