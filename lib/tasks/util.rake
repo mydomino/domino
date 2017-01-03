@@ -44,19 +44,47 @@ namespace :util do
   desc "Sungevity onboarding manual steps"
   task sungevity: :environment do 
 
+    org_name = 'Sungevity'
 
     # create an organization
+    Organization.find_or_create_by(name: org_name) do |o|
+
+      puts "Creating org #{org_name}.\n"
+
+      o.name = org_name
+
+    end
 
     # perform case insensitive search
     orgs = Organization.arel_table
-    organization = Organization.where(orgs[:name].matches('sunGeviTy')).first  
+    organization = Organization.where(orgs[:name].matches(org_name)).first  
     #organization = Organization.find_by!("name like ?", "%Sungevity%")
 
+
+    u_email = 'test_2@example.com'
+
     # create an org. admin user
-    user = User.new({email: 'test@example.com', password: 'password', password_confirmation: 'password', role: 'org_admin'})
+    user = User.find_or_create_by(email: u_email) do |u|
+
+      
+
+      puts "Creating user #{u_email}.\n"
+
+      u.email = u_email
+      u.password = 'Invision98!!'
+      u.password_confirmation = 'Invision98!!'
+      u.role = 'org_admin'
+
+    end
+
+    #user = User.new({email: 'test@example.com', password: 'password', password_confirmation: 'password', role: 'org_admin'})
+    
+    # reate profile and associate it with the user
+    Profile.create(first_name: 'Legacy', last_name: 'User', email: 'lu@mydomino.com')
+    @profile.update(dashboard_registered: true)
     user.save!
 
-
+   
     # Add user to organization
     organization.users << user
     organization.save!
@@ -66,7 +94,51 @@ namespace :util do
 
     puts "Orginization is #{org.name} \n"
 
+
+    # refer to registration_controller#after_sign_up_path_for
+
+    # Need to create a dashboard and associated it with the user
+    Dashboard.create(lead_name: 'Legacy User', lead_email: 'lu@mydomino.com', slug: 'legacy-user')
+
+
+    
+
+    # update Zoho
+    DashboardRegisteredZohoJob.perform_later @profile
+
+
   end
+
+
+
+  desc "reset_user_password based on role assignments"
+  task reset_user_password: :environment do 
+
+    for i in %w(test@example.com)
+
+      begin
+
+          user = User.find_by(email: i)
+
+          puts "user is #{user.inspect}"
+
+          puts "Changing password for #{user.email}\n"
+          user.password='Invision98!!'
+          user.password_confirmation='Invision98!!'
+          
+          user.save!  
+          puts "user #{user.email} password is changed.\n"  
+          
+      rescue RecordNotFound => e1  
+          puts "Error: User with email #{i} is not found in database.\n"
+      rescue StandardError  => e2
+          puts "Error: #{e2}\n"
+      end        
+
+    end
+
+  end
+
 
   desc "Update products with Amazon price"
   task update_products_with_amazon: :environment do 
