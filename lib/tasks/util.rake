@@ -61,7 +61,9 @@ namespace :util do
     #organization = Organization.find_by!("name like ?", "%Sungevity%")
 
 
-    u_email = 'test_2@example.com'
+    u_email = 'test_2@sungevity.com'
+    u_fn = 'John'
+    u_ln = 'Alber'
 
     # create an org. admin user
     user = User.find_or_create_by(email: u_email) do |u|
@@ -71,8 +73,8 @@ namespace :util do
       puts "Creating user #{u_email}.\n"
 
       u.email = u_email
-      u.password = 'Invision98!!'
-      u.password_confirmation = 'Invision98!!'
+      u.password = 'Invision98'
+      u.password_confirmation = 'Invision98'
       u.role = 'org_admin'
 
     end
@@ -80,8 +82,38 @@ namespace :util do
     #user = User.new({email: 'test@example.com', password: 'password', password_confirmation: 'password', role: 'org_admin'})
     
     # reate profile and associate it with the user
-    Profile.create(first_name: 'Legacy', last_name: 'User', email: 'lu@mydomino.com')
-    @profile.update(dashboard_registered: true)
+    #profile = Profile.create(first_name: u_fn, last_name: u_ln, email: u_email)
+    profile = Profile.find_or_create_by(email: u_email) do |p|
+
+      puts "Creating profile #{u_email}.\n"
+
+      p.first_name = u_fn
+      p.last_name = u_ln
+      p.email = u_email
+
+    end
+
+
+    profile.update(dashboard_registered: true)
+    profile.save!
+
+    user.profile = profile
+
+    # Create a dashboard and associated it with the user
+    #dashboard = Dashboard.create(lead_name: "#{u_fn} #{u_ln}", lead_email: u_email, slug: " test slug #{u_email}")
+    dashboard = Dashboard.find_or_create_by(lead_email: u_email) do |d|
+
+      puts "Creating dashboard #{u_email}.\n"
+
+      d.lead_name = u_fn + " " + u_ln
+      d.lead_email = u_email
+      d.slug = " test slug #{u_email}"
+
+    end
+
+
+    user.dashboard = dashboard
+
     user.save!
 
    
@@ -97,14 +129,8 @@ namespace :util do
 
     # refer to registration_controller#after_sign_up_path_for
 
-    # Need to create a dashboard and associated it with the user
-    Dashboard.create(lead_name: 'Legacy User', lead_email: 'lu@mydomino.com', slug: 'legacy-user')
-
-
-    
-
     # update Zoho
-    DashboardRegisteredZohoJob.perform_later @profile
+    #DashboardRegisteredZohoJob.perform_later profile
 
 
   end
