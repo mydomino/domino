@@ -45,13 +45,13 @@ namespace :csv do
   end
 
 
-  desc "Create mydomino org and test users for testing."
+  desc "Create mydomino org and users for testing."
   task mydomino: :environment do 
 
     org_name = 'Mydomino'
 
     # create an organization
-    Organization.find_or_create_by(name: org_name) do |o|
+    organization = Organization.find_or_create_by(name: org_name) do |o|
 
       puts "Creating org #{org_name}.\n"
 
@@ -60,25 +60,24 @@ namespace :csv do
     end
 
     # perform case insensitive search
-    orgs = Organization.arel_table
-    organization = Organization.where(orgs[:name].matches(org_name)).first  
-    #organization = Organization.find_by!("name like ?", "%Sungevity%")
-
+    #orgs = Organization.arel_table
+    #organization = Organization.where(orgs[:name].matches(org_name)).first  
+    
+    # create org admin
     role = 'org_admin'
-    for u_email in %w(yong@mydomino.com johnp@mydomino.com marcian@mydomino.com jimmy@mydomino.com)
+    for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
 
       create_user(organization, u_email, role)
 
     end
 
-    role = ''
-    for u_email in %w(test_1@mydomino.com test_2@mydomino.com test_3@mydomino.com)
+    # create regular org user
+    role = 'user'
+    for u_email in %W(test_1@#{org_name}.com test_2@#{org_name}.com test_3@#{org_name}.com)
 
       create_user(organization, u_email, role)
 
     end
-
-    #User.destroy_all("email like '%@mydomino.com%'")
 
 
   end
@@ -132,6 +131,10 @@ namespace :csv do
 
     end
 
+    # associate product and tasks with dashboard
+    dashboard.products = Product.default
+    dashboard.tasks = Task.default
+
 
     user.dashboard = dashboard
 
@@ -149,9 +152,11 @@ namespace :csv do
 
 
     # refer to registration_controller#after_sign_up_path_for
+    # registered_user.rb
 
     # update Zoho
-    #DashboardRegisteredZohoJob.perform_later profile
+    #profile.save_to_zoho
+
     
   end
 
