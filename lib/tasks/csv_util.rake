@@ -67,7 +67,8 @@ namespace :csv do
     role = 'org_admin'
     for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
 
-      create_user(organization, u_email, role)
+      # email is case sensitive for the create, so convert it to lower case
+      create_user(organization, u_email.downcase, role)
 
     end
 
@@ -75,7 +76,8 @@ namespace :csv do
     role = 'user'
     for u_email in %W(test_1@#{org_name}.com test_2@#{org_name}.com test_3@#{org_name}.com)
 
-      create_user(organization, u_email, role)
+      # email is case sensitive for the create, so convert it to lower case
+      create_user(organization, u_email.downcase, role)
 
     end
 
@@ -88,6 +90,8 @@ namespace :csv do
     u_fn = Faker::Name::first_name
     u_ln = Faker::Name::last_name
 
+    puts "Find or create user #{u_email}....\n"
+
     # create an org. admin user
     user = User.find_or_create_by(email: u_email) do |u|
 
@@ -96,13 +100,14 @@ namespace :csv do
       puts "Creating user #{u_email}.\n"
 
       u.email = u_email
-      u.password = 'Invision98'
-      u.password_confirmation = 'Invision98'
+      u.password = 'ILoveCleanEnergy'
+      u.password_confirmation = 'ILoveCleanEnergy'
       u.role = role
 
     end
 
-    
+    puts "Find or create profile #{u_email}....\n"
+
     # create profile and associate it with the user
     profile = Profile.find_or_create_by(email: u_email) do |p|
 
@@ -116,9 +121,13 @@ namespace :csv do
 
 
     profile.update(dashboard_registered: true)
+
+    puts "Saving info for profile #{u_email}....\n"
     profile.save!
 
     user.profile = profile
+
+    puts "Find or create dashboard #{u_email}....\n"
 
     # Create a dashboard and associated it with the user
     dashboard = Dashboard.find_or_create_by(lead_email: u_email) do |d|
@@ -127,7 +136,9 @@ namespace :csv do
 
       d.lead_name = u_fn + " " + u_ln
       d.lead_email = u_email
-      d.slug = " test slug #{u_email}"
+
+      # do not need to set slug
+      #d.slug = " test slug #{u_email}"
 
     end
 
@@ -135,14 +146,21 @@ namespace :csv do
     dashboard.products = Product.default
     dashboard.tasks = Task.default
 
+    puts "Saving info for dashboard #{u_email}....\n"
+    dashboard.save!
+
 
     user.dashboard = dashboard
 
+
+    puts "Saving info for user #{u_email}....\n"
     user.save!
 
    
     # Add user to organization
     organization.users << user
+
+    puts "Saving info for org #{organization.name}....\n"
     organization.save!
 
     # Show the result in reverse manner
