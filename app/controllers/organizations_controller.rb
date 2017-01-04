@@ -1,5 +1,9 @@
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy, :email_members_upload_file, 
+
+  # Default password for individual members added via org admin dashboard
+  DEFAULT_MEMBER_PASSWORD = 'ILoveCleanEnergy'
+
+  before_action :set_organization, only: [:show, :edit, :update, :destroy, :add_individual, :email_members_upload_file, 
     :import_members_upload_file, :test, :download_csv_template]
 
   # GET /organizations
@@ -9,6 +13,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1
   def show
+    @user = User.new # Empty user object for add indiviudal member form
   end
 
   # GET /organizations/new
@@ -44,6 +49,48 @@ class OrganizationsController < ApplicationController
   def destroy
     @organization.destroy
     redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
+  end
+
+  # POST /organizations/1/add_individual
+  def add_individual
+    # Form params
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    email = params[:user][:email]
+
+    # Create user record
+    # Record is assigned the default pw
+    # Record is associated with the organization
+    @user = User.new(
+      email: email,
+      password: DEFAULT_MEMBER_PASSWORD,
+      password_confirmation: DEFAULT_MEMBER_PASSWORD,
+      organization: @organization
+    )
+    
+    # If user record is valid (i.e record with provided email doesn't exist),
+    # Provision Profile and Dashboard resources.
+    if @user.save
+      # Provision Dashboard
+      @dashboard = Dashboard.create(
+        lead_name: "#{first_name} #{last_name}", 
+        lead_email: @user.email
+      )
+
+      @user.dashboard = @dashboard
+
+      #Provision Profile
+      @profile = Profile.create(
+        first_name: first_name, 
+        last_name: last_name, 
+        email: @user.email, 
+        user: @user
+      )
+      
+      redirect_to @organization
+    else
+      render :show
+    end
   end
 
   def email_members_upload_file

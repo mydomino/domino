@@ -37,16 +37,14 @@
       .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
         .bg-white.rounded.p3.mb2
           %h2.my0 Add an employee
-          /= simple_form, url: profile_path(@profile) do |f|
-          %form
+          = simple_form_for @user, url: add_individual_organization_path do |f|
             .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-              %label.h6.mb0.gray-60 First name
-              = text_field_tag :first_name, nil, data: {"parsley-required": "true"}, class: 'rounded'
+              %label.h6.mb0.gray-60{for: 'first_name'} First name
+              = text_field_tag :first_name, nil, class: 'rounded'
             .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-              %label.h6.mb0.gray-60 Last name
-              = text_field_tag :last_name, nil, data: {"parsley-required": "true"}, class: 'rounded'
+              %label.h6.mb0.gray-60{for: 'last_name'} Last name
+              = text_field_tag :last_name, nil, class: 'rounded'
             .col.col-12.px2.sm-pl0.sm-pr2
-              %label.h6.mb0.gray-60 Email address
-              = text_field_tag :address_line_1, nil, class: 'rounded'
+              = f.input :email, input_html: {class: 'rounded'}, label: 'Email', label_html: {class: "h6 mb0 gray-60"}
             .px2.sm-px0
               %button.btn.btn-sm.btn-primary.mt2 Submit

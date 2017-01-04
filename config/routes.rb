@@ -8,10 +8,10 @@ Rails.application.routes.draw do
     member do 
       post 'email_members_upload_file'
       post 'import_members_upload_file'
+      post 'add_individual'
       get  'test'
       get  'download_csv_template'
     end
-
   end
 
 
