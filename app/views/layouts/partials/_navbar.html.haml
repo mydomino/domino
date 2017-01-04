@@ -12,11 +12,17 @@
           -if current_user.role == 'concierge'
             =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
           -else
+            -if current_user.role == 'org_admin'
+              = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
+                %span#i-membership-nav.inline-block.h5{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
+                  = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
+                  Admin
+
             = link_to "/membership", class: 'text-decoration-none' do
               %span#i-membership-nav.inline-block.h5{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
                 = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
                 Membership
-            = link_to "/profile", class: 'text-decoration-none mx2' do
+            = link_to profile_path(current_user.profile), class: 'text-decoration-none mx2' do
               %span#i-user-nav.inline-block.h5{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
                 = embedded_svg "icons/i-user.svg", class: 'block mx-auto'
                 Profile

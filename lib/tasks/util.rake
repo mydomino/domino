@@ -116,10 +116,6 @@ namespace :util do
 
     user.save!
 
-
-
-
-
    
     # Add user to organization
     organization.users << user
@@ -133,13 +129,8 @@ namespace :util do
 
     # refer to registration_controller#after_sign_up_path_for
 
-    
-
-
-    
-
     # update Zoho
-    DashboardRegisteredZohoJob.perform_later @profile
+    #DashboardRegisteredZohoJob.perform_later profile
 
 
   end
