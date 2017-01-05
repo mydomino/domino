@@ -179,6 +179,24 @@ namespace :csv do
   end
 
 
+  desc "Update mydomino users for testing."
+  task update_mydomino_users: :environment do 
+
+
+    # create org admin
+    role = 'org_admin'
+    for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
+
+      # email is case sensitive for the create, so convert it to lower case
+      create_user(organization, u_email.downcase, role)
+
+    end
+
+
+
+  end
+
+
 
 
 
