@@ -1,9 +1,11 @@
 class ErrorsController < ApplicationController
   def not_found
+    Rails.logger.debug "404 error is caught here"
     render(:status => 404)
   end
 
   def internal_server_error
+    Rails.logger.debug "internal_server_error is caught here"
     render(:status => 500)
   end
 

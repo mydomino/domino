@@ -6,27 +6,35 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy, :add_individual, :email_members_upload_file, 
     :import_members_upload_file, :test, :download_csv_template]
 
+  before_action :authenticate_user!
+  after_action :verify_authorized
+
   # GET /organizations
   def index
+    authorize Organization
     @organizations = Organization.all
   end
 
   # GET /organizations/1
   def show
+    authorize Organization
     @user = User.new # Empty user object for add indiviudal member form
   end
 
   # GET /organizations/new
   def new
+    authorize Organization
     @organization = Organization.new
   end
 
   # GET /organizations/1/edit
   def edit
+    authorize Organization
   end
 
   # POST /organizations
   def create
+    authorize Organization
     @organization = Organization.new(organization_params)
 
     if @organization.save
@@ -38,6 +46,7 @@ class OrganizationsController < ApplicationController
 
   # PATCH/PUT /organizations/1
   def update
+    authorize Organization
     if @organization.update(organization_params)
       redirect_to @organization, notice: 'Organization was successfully updated.'
     else
@@ -47,12 +56,15 @@ class OrganizationsController < ApplicationController
 
   # DELETE /organizations/1
   def destroy
+    authorize Organization
     @organization.destroy
     redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
   end
 
   # POST /organizations/1/add_individual
   def add_individual
+
+    authorize Organization
     # Form params
     first_name = params[:first_name]
     last_name = params[:last_name]

@@ -13,7 +13,7 @@
             -if current_user.role == 'concierge'
               =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
             -else
-              -if current_user.role == 'org_admin'
+              -if current_user.role == 'org_admin' || current_user.role == 'concierge'
                 = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
                   %span#i-admin.inline-block.h5.mr2{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
                     = embedded_svg "icons/i-admin.svg", class: 'block mx-auto', id: 'i-admin.svg'

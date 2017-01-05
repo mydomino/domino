@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :capture_utm_campaign, :get_user_agent
   around_action :handle_exceptions
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Let views access current_user
   helper_method :article_for_member_only?
@@ -75,13 +75,18 @@ class ApplicationController < ActionController::Base
        log_error(e)
        redirect_to controller: 'errors', action: 'user_error', err_mesg: e.message
 
+     rescue Pundit::NotAuthorizedError => e
+       log_error(e)
+       redirect_to controller: 'errors', action: 'user_error', err_mesg: "You are not authorized to perform this action."
+
      rescue => e
        log_error(e)
 
        # this also works.... but it relies on the match statement in routes.rb
        # if it is not in development, then do not send exception error 
        if Rails.env.development? 
-         redirect_to "/apperror?err_mesg=#{e.message}" 
+         redirect_to "/apperror?err_mesg=#{e.message}" and return
+         #redirect_to controller: 'errors', action: 'application_error', err_mesg: e.message
        else 
          redirect_to "/apperror"
        end
