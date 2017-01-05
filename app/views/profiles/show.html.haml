@@ -5,8 +5,7 @@
   .max-width-3.mx-auto.p2
 
     .flex.items-center
-      .fill-black
-        = embedded_svg 'icons/i-user.svg'
+      = inline_svg "icons/i-user.svg"
       %h1.ml2 Profile
 
     / Begin Login info section
@@ -26,7 +25,7 @@
           %label.h6.inline.mb0.gray-60.mt3{for: "new_password_confirmation"} Confirm new password
           #confirm-new-password-error.inline{for: "new_password_confirmation"}
           = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
-      
+
       .flex.items-center.mt2
         #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1
           Change password
@@ -38,7 +37,7 @@
         #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1{style: 'display: none;'}
           Cancel
       / End Login Section
-    
+
     .clearfix
       = simple_form_for @profile, url: profile_path(@profile) do |f|
         .clearfix.bg-white.rounded.px3.pt2.pb3.mb2
@@ -87,7 +86,7 @@
                       &nbsp;$
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
-        
+
         .clearfix
           .col.col-12.mt2.px0.sm-px0.sm-py2
             .flex.items-center
@@ -253,7 +252,7 @@
       requirementType: 'string',
       validateString: function(val, elem) {
         return val !== $(elem).val();
-      }, 
+      },
       messages: {
         en: 'New password cannot be same as current'
       }
