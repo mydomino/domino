@@ -1,70 +1,71 @@
 - homepage = current_page?(root_path)
 - nav_element_color = "#{homepage ? 'white' : 'black'}"
 
-%nav#navbar.col-12.z3.top-0.pt2{class: "#{'absolute' if homepage}"}
-  .max-width-4.mx-auto.flex.items-center.justify-between
-    = link_to root_path, id: "navbar-brand", class: 'pl2' do
-      = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
-    
-    .xs-hide.sm-hide.px2.my1
-      .right
-        -if user_signed_in?
-          -if current_user.role == 'concierge'
-            =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
+%header
+  %nav#navbar.col-12.z3.top-0.pt2{class: "#{'absolute' if homepage}"}
+    .max-width-4.mx-auto.flex.items-center.justify-between
+      = link_to root_path, id: "navbar-brand", class: 'pl2' do
+        = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
+      
+      .xs-hide.sm-hide.px2.my1
+        .right
+          -if user_signed_in?
+            -if current_user.role == 'concierge'
+              =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
+            -else
+              -if current_user.role == 'org_admin'
+                = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
+                  %span#i-membership-nav.inline-block.h5.mr2{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
+                    = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
+                    Admin
+
+              = link_to "/dashboard", class: 'text-decoration-none' do
+                %span#i-dashboard-nav.inline-block.h5{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
+                  = embedded_svg "icons/i-dashboard-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
+                  Dashboard
+              = link_to member_profile_path, class: 'text-decoration-none mx2' do
+                %span#i-user-nav.inline-block.h5{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
+                  = embedded_svg "icons/i-user.svg", class: 'block mx-auto'
+                  Profile
+            = link_to destroy_user_session_path, method: :delete, class: 'text-decoration-none' do
+              %span#i-logout-nav.inline-block.h5{class: "#{nav_element_color}"}
+                = embedded_svg "icons/i-logout.svg", class: 'block mx-auto'
+                Logout
           -else
-            -if current_user.role == 'org_admin'
-              = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
-                %span#i-membership-nav.inline-block.h5{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
-                  = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
-                  Admin
+            .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
+              = link_to 'tel:+18009792215', target: '_blank', class: "h3 text-decoration-none", style: "color: inherit" do
+                %i.fa.fa-phone
+                %span 800-979-2215
+            =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none", id: "link-login"
 
-            = link_to "/membership", class: 'text-decoration-none' do
-              %span#i-membership-nav.inline-block.h5{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
-                = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
-                Membership
-            = link_to profile_path(current_user.profile), class: 'text-decoration-none mx2' do
-              %span#i-user-nav.inline-block.h5{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
-                = embedded_svg "icons/i-user.svg", class: 'block mx-auto'
-                Profile
-          = link_to destroy_user_session_path, method: :delete, class: 'text-decoration-none' do
-            %span#i-logout-nav.inline-block.h5{class: "#{nav_element_color}"}
-              = embedded_svg "icons/i-logout.svg", class: 'block mx-auto'
-              Logout
+      .md-hide.lg-hide.px2.right
+        %span#open-nav
+          =embedded_svg 'icons/i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
+      
+    .max-width-4.mx-auto.clearfix
+      .col.col-12.h3.sm-hide.xs-hide
+        = yield :posts_menu
+
+  / Mobile & small viewport navigation menu
+  #nav-overlay
+    #nav-overlay-content
+      %span#close-nav
+        = embedded_svg 'i-close.svg', class:"white pointer absolute top-0 right-0 py3 pl3 pr2"
+
+      .h1.p2.center.mt4
+        = yield :posts_menu
+
+      %ul.mt2.center.list-reset
+        -if !user_signed_in?
+          %li.h1
+            = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
         -else
-          .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
-            = link_to 'tel:+18009792215', target: '_blank', class: "h3 text-decoration-none", style: "color: inherit" do
-              %i.fa.fa-phone
-              %span 800-979-2215
-          =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none", id: "link-login"
-
-    .md-hide.lg-hide.px2.right
-      %span#open-nav
-        =embedded_svg 'icons/i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
-    
-  .max-width-4.mx-auto.clearfix
-    .col.col-12.h3.sm-hide.xs-hide
-      = yield :posts_menu
-
-/ Mobile & small viewport navigation menu
-#nav-overlay
-  #nav-overlay-content
-    %span#close-nav
-      = embedded_svg 'i-close.svg', class:"white pointer absolute top-0 right-0 py3 pl3 pr2"
-
-    .h1.p2.center.mt4
-      = yield :posts_menu
-
-    %ul.mt2.center.list-reset
-      -if !user_signed_in?
+          %li.h1
+            =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
+          %li.h1
+            = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
         %li.h1
-          = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
-      -else
-        %li.h1
-          =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
-        %li.h1
-          = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
-      %li.h1
-        = link_to 'Call us', 'tel:+18009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
+          = link_to 'Call us', 'tel:+18009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
 
 :javascript
   (function(){
