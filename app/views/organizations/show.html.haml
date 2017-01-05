@@ -4,18 +4,18 @@
   .max-width-4.mx-auto.p2
     .flex.items-center
       .fill-black
-        = embedded_svg 'icons/i-user.svg'
+        = embedded_svg 'icons/i-admin.svg'
       %h1.ml2 Admin
 
     .clearfix
       .max-width-1.bg-white.rounded.mb3.flex.content-center
-        / HACK: Need to company logo dynamically 
+        / HACK: Need to company logo dynamically
         =image_tag "partner_logos/SungevityLogo_400x400.jpeg", size: "64x64", class: "m2"
         %div.my2
           %h2.m0= @organization.name
           %h4.m0.gray-60 Currently enrolled: #{pluralize @organization.users.size, 'member'}
 
-    
+
     .clearfix
       .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
         .bg-white.rounded.p3.mb2
@@ -24,7 +24,7 @@
           %p.mt0.gray-60 Download the sample spreadsheet. The first 3 columns: first name, last name, email address are mandatory.
           = form_tag download_csv_template_organization_path(@organization), method: :get do
             = button_tag "Download template", class: 'btn btn-outline gray-60 px2'
-         
+
           %h4.mb0 Step 2. Upload your updated CSV
           %p.mt0.gray-60 After you've added new employees to your CSV file, upload it to add the employees to your account.
           = form_tag email_members_upload_file_organization_path(@organization), multipart: true do

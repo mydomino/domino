@@ -269,6 +269,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   #i-dashboard-nav svg {width: 28px; height: 20px;}
   #i-user-nav svg { width: 22px; height: 22px; }
   #i-logout-nav svg { width: 20px; height: 22px; }
+  #i-admin svg {width: 28px; height: 28px; }
   span.inline-block.h5 {
     &:hover { color: #00ccff; }
   }
@@ -277,8 +278,8 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 #nav-overlay {
   height: 100%;
   width: 0;
-  position: fixed; 
-  z-index: 0; 
+  position: fixed;
+  z-index: 0;
   right: 0;
   top: 0;
   background-color: #00ccff;

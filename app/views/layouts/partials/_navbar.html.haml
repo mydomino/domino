@@ -15,8 +15,8 @@
             -else
               -if current_user.role == 'org_admin'
                 = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
-                  %span#i-membership-nav.inline-block.h5.mr2{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
-                    = embedded_svg "icons/i-membership-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
+                  %span#i-admin.inline-block.h5.mr2{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
+                    = embedded_svg "icons/i-admin.svg", class: 'block mx-auto', id: 'i-admin.svg'
                     Admin
 
               = link_to "/dashboard", class: 'text-decoration-none' do
