@@ -29,11 +29,11 @@
       .flex.items-center.mt2
         #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1
           Change password
-        #msg-password-update.green.flex.items-center{style: 'display:none;'}
+        #msg-password-update.green.flex.items-center
           .mt0
-            Saved&nbsp;
-          %span.block
-            = embedded_svg 'i-success-16px.svg', class: 'block'
+            Saved
+            %span.block
+              = inline_svg "icons/i-success.svg", class: 'icon-s block'
         #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1{style: 'display: none;'}
           Cancel
       / End Login Section
@@ -96,7 +96,7 @@
                 .pl1.m0
                   Saved&nbsp;
                 %span.block
-                  = embedded_svg 'i-success-16px.svg', class: 'block'
+                  = inline_svg "icons/i-success.svg", class: "icon-s block"
 
 :javascript
 
@@ -254,7 +254,7 @@
         return val !== $(elem).val();
       },
       messages: {
-        en: 'New password cannot be same as current'
+        en: 'Your new password is the same as your current password'
       }
     });
 
