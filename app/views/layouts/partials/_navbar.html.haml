@@ -6,7 +6,7 @@
     .max-width-4.mx-auto.flex.items-center.justify-between
       = link_to root_path, id: "navbar-brand", class: 'pl2' do
         = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
-      
+
       .xs-hide.sm-hide.px2.my1
         .right
           -if user_signed_in?
@@ -41,7 +41,7 @@
       .md-hide.lg-hide.px2.right
         %span#open-nav
           =embedded_svg 'icons/i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
-      
+
     .max-width-4.mx-auto.clearfix
       .col.col-12.h3.sm-hide.xs-hide
         = yield :posts_menu
@@ -74,7 +74,7 @@
     var $openNav = $('#open-nav');
     var $closeNav = $('#close-nav');
     var $body = $('body');
-    
+
 
     var openNav = function(){
       $body.addClass('lock-position');
@@ -92,4 +92,3 @@
     $closeNav.on('click', closeNav);
 
   }());
-  
