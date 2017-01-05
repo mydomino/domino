@@ -125,7 +125,7 @@
         },
         error: function() {
           // Server side error: email already taken for user
-          $pEmail.addError('current_password_error', {message: 'Email already taken' , assert: false, updateClass: true});
+          $pEmail.addError('email_taken_error', {message: 'Email already taken' , assert: false, updateClass: true});
         }
       });
     });
