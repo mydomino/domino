@@ -62,9 +62,11 @@ class OrganizationsController < ApplicationController
   end
 
   # POST /organizations/1/add_individual
+  # Purpose: Add member to organiztion via the org admin dashboard
+  # Returns: JSON responses to client
   def add_individual
-
     authorize Organization
+
     # Form params
     first_name = params[:first_name]
     last_name = params[:last_name]
@@ -98,10 +100,20 @@ class OrganizationsController < ApplicationController
         email: @user.email, 
         user: @user
       )
+
+      # Send updated member count back to view
+      member_count = @organization.users.count
       
-      redirect_to @organization
+      render json: {
+        message: "Member added successfully",
+        member_count: member_count, 
+        status: 200
+      }, status: 200
     else
-      render :show
+      render json: {
+        error: "Email already taken",
+        status: 400
+      }, status: 400
     end
   end
 

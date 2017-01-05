@@ -1,3 +1,5 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
 /%p#notice= notice
 
 #member-profile.bg-gray-05
@@ -13,7 +15,9 @@
         =image_tag "partner_logos/SungevityLogo_400x400.jpeg", size: "64x64", class: "m2"
         %div.my2
           %h2.m0= @organization.name
-          %h4.m0.gray-60 Currently enrolled: #{pluralize @organization.users.size, 'member'}
+          %h4.m0.gray-60 
+            Currently enrolled: 
+            %span#member-count #{pluralize @organization.users.size, 'member'}
 
 
     .clearfix
@@ -37,14 +41,93 @@
       .col.col-12.sm-col.sm-col-6.sm-pl0.sm-pr2
         .bg-white.rounded.p3.mb2
           %h2.my0 Add an employee
-          = simple_form_for @user, url: add_individual_organization_path do |f|
+          = simple_form_for @user, url: add_individual_organization_path, html: {class: 'new_user clearfix'} do |f|
             .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
               %label.h6.mb0.gray-60{for: 'first_name'} First name
-              = text_field_tag :first_name, nil, class: 'rounded'
+              = text_field_tag :first_name, nil, class: 'rounded', data: {"parsley-required": "true"}
             .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
               %label.h6.mb0.gray-60{for: 'last_name'} Last name
-              = text_field_tag :last_name, nil, class: 'rounded'
+              = text_field_tag :last_name, nil, class: 'rounded', data: {"parsley-required": "true"}
             .col.col-12.px2.sm-pl0.sm-pr2
-              = f.input :email, input_html: {class: 'rounded'}, label: 'Email', label_html: {class: "h6 mb0 gray-60"}
-            .px2.sm-px0
-              %button.btn.btn-sm.btn-primary.mt2 Submit
+              = f.input :email, input_html: {class: 'rounded', data: {"parsley-required": "true"}}, label: 'Email', label_html: {class: "h6 mb0 gray-60"}
+
+          .px2.sm-px0.mt2
+            .flex.items-center.flex-wrap
+              #btn-add-employee.btn.btn-sm.btn-primary Add employee
+              #msg-add-member.flex.items-center.green{style:'display:none'}
+                .h4.ml0.sm-ml2.mr1 Employee added
+                = inline_svg "icons/i-success.svg", class: 'icon-s'
+
+:javascript
+
+  (function(){
+    
+    /*------------- BEGIN Module variable declarations and initializations-----------*/
+    var $btnAddEmployee,
+        $addMemberForm,
+        $msgAddMember,
+        $memberCount,
+        $pAddMemberForm,
+        $pEmail,
+        $email;
+
+    // JQueryfied elements
+    $memberCount = $('#member-count');
+    $addMemberForm = $('.new_user');
+    $btnAddEmployee = $('#btn-add-employee');
+    $msgAddMember = $('#msg-add-member');
+    $email = $addMemberForm.find('input[type=email]');
+    
+    // Parsleyfied elements
+    $pAddMemberForm = $addMemberForm.parsley({
+                              errorClass: "error",
+                              errorsWrapper: '<div class="invalid-message inline right"></div>',
+                              errorTemplate: '<span></span>',
+                              successClass: null
+                          });
+    
+    // We need to parsleyfy the email field to throw error states for already taken emails
+    $pEmail = $email.parsley();
+
+    /*------------- END Module variable declarations and initializations-----------*/
+
+    /*------------- BEGIN Module event handlers -----------------------------------*/
+    $btnAddEmployee.on('click', function(e){
+      // Reset email field if its in error state, so only one error state can exist at time
+      if($email.hasClass('error')){
+        $pEmail.reset();
+      };
+      $pAddMemberForm.validate();
+    });
+    
+    $pAddMemberForm.on('form:success', function(){
+      var formData = {};
+      
+      // Create form data payload for posting to server
+      $addMemberForm.find("input[name]").each(function (index, node) {
+        formData[node.name] = node.value;
+      });
+
+      $.ajax({
+        type: "POST",
+        url: $addMemberForm.attr('action'),
+        data: formData,
+        dataType: 'json',
+        success: function(msg) {
+          // On successful member addition, reset parsley form, 
+          // Clear input fields, update member count, display feedback message
+          $pAddMemberForm.reset();
+          var mc = msg.member_count;
+          $memberCount.html(mc + ' member' + ((mc == 0 || mc > 1) ? 's' : null));
+          $addMemberForm.find('input[type=text], input[type=email]').val("");
+          $msgAddMember.fadeIn();
+          setTimeout(function(){ $msgAddMember.fadeOut(); }, 5000);
+        },
+        error: function() {
+          // Server side error: email already taken for user
+          $pEmail.addError('current_password_error', {message: 'Email already taken' , assert: false, updateClass: true});
+        }
+      });
+    });
+    /*------------- END Module event handlers -------------------------------------*/
+  }());
