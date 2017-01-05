@@ -27,14 +27,12 @@
           = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
 
       .flex.items-center.mt2
-        #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1
+        #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover
           Change password
-        #msg-password-update.green.flex.items-center
-          .mt0
-            Saved
-            %span.block
-              = inline_svg "icons/i-success.svg", class: 'icon-s block'
-        #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mr1{style: 'display: none;'}
+        #msg-password-update.flex.items-center.green{style:'display:none'}
+          %h4.ml2.mr1 Saved
+          = inline_svg "icons/i-success.svg", class: 'icon-s'
+        #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mx1{style: 'display: none;'}
           Cancel
       / End Login Section
 
@@ -92,11 +90,10 @@
             .flex.items-center
               =f.submit 'Save changes', class: 'btn btn-md btn-primary btn-primary--hover'
               / inline style so jquery show() works.
-              #msg-profile-update.flex.items-center.green{style: 'display: none'}
-                .pl1.m0
-                  Saved&nbsp;
-                %span.block
-                  = inline_svg "icons/i-success.svg", class: "icon-s block"
+              #msg-profile-update.flex.items-center.green{style:'display:none'}
+                .h4.inline-block.ml2.mr1
+                  Saved
+                = inline_svg "icons/i-success.svg", class: "icon-s block"
 
 :javascript
 
@@ -321,7 +318,7 @@
         error: function(data){
           currentPasswordValid = false;
           if(!$currPw.hasClass('error')){
-            $pCurrPw.addError('current_password_error', {message: 'Current password is incorrect.' , assert: false, updateClass: true});
+            $pCurrPw.addError('current_password_error', {message: 'Current password is incorrect' , assert: false, updateClass: true});
           }
         }
       });
