@@ -16,20 +16,20 @@
               -if current_user.role == 'org_admin' || current_user.role == 'concierge'
                 = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
                   %span#i-admin.inline-block.h5.mr2{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
-                    = embedded_svg "icons/i-admin.svg", class: 'block mx-auto', id: 'i-admin.svg'
+                    = inline_svg "icons/i-admin.svg", class:"block mx-auto"
                     Admin
 
               = link_to "/dashboard", class: 'text-decoration-none' do
                 %span#i-dashboard-nav.inline-block.h5{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
-                  = embedded_svg "icons/i-dashboard-nav.svg", class: 'block mx-auto', id: 'i-membership-nav'
+                  = inline_svg "icons/i-dashboard-nav.svg", class:"block mx-auto"
                   Dashboard
               = link_to member_profile_path, class: 'text-decoration-none mx2' do
                 %span#i-user-nav.inline-block.h5{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
-                  = embedded_svg "icons/i-user.svg", class: 'block mx-auto'
+                  = inline_svg "icons/i-user.svg", class:"block mx-auto"
                   Profile
             = link_to destroy_user_session_path, method: :delete, class: 'text-decoration-none' do
               %span#i-logout-nav.inline-block.h5{class: "#{nav_element_color}"}
-                = embedded_svg "icons/i-logout.svg", class: 'block mx-auto'
+                = inline_svg "icons/i-logout.svg", class:"block mx-auto"
                 Logout
           -else
             .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
