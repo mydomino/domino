@@ -17,7 +17,7 @@
           %h2.m0= @organization.name
           %h4.m0.gray-60 
             Employees enrolled: 
-            %span#member-count #{pluralize @organization.users.size, 'member'}
+            %span#member-count= @organization.users.size
 
 
     .clearfix
