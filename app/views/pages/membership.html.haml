@@ -1,11 +1,23 @@
 .mx-auto.relative
   .page-header-image.bg-blue
-  .absolute.max-width-3.bg-white.left-0.right-0.top-0.mx-auto{style: 'margin-top: 100px;'}
-    = image_tag "http://placehold.it/150x150"
-    .h1= "#{@profile.first_name} #{@profile.last_name}"
+  .absolute.max-width-3.bg-white.left-0.right-0.top-0.mx-auto.px2.py4.rounded{style: 'margin-top: 100px;'}
+    .flex.items-center.justify-center
+      = image_tag "http://placehold.it/150x150"
+      .p2
+        .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
+        .gray-80.h6
+          .left
+            Membership type
+            %br
+            Member since
+            %br
+            Renewal date
+          .right
+            = @user.organization ? 'Organization' : 'Individual'
+            %br
+            = @user.created_at.strftime("%m/%d/%y")
+            %br
+            = (@user.created_at + 1.year).strftime("%B %Y")
   .bg-gray-05
-    %p content
-    %p content
-    %p content
-    %p content
-    %p content
+    .pt4
+      some content
