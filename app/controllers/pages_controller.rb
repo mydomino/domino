@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:membership]
   skip_after_action :verify_authorized
   layout 'example', only: :example
 
@@ -45,6 +46,11 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def membership
+    @user = current_user
+    @profile = @user.profile
   end
 
   private
