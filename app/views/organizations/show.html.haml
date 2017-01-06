@@ -118,7 +118,7 @@
           // Clear input fields, update member count, display feedback message
           $pAddMemberForm.reset();
           var mc = msg.member_count;
-          $memberCount.html(mc + ' member' + ((mc == 0 || mc > 1) ? 's' : null));
+          $memberCount.html(mc);
           $addMemberForm.find('input[type=text], input[type=email]').val("");
           $msgAddMember.fadeIn();
           setTimeout(function(){ $msgAddMember.fadeOut(); }, 5000);
