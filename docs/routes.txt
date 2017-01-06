@@ -17,6 +17,7 @@
                                         DELETE   /subscriptions/:id(.:format)                            subscriptions#destroy
  email_members_upload_file_organization POST     /organizations/:id/email_members_upload_file(.:format)  organizations#email_members_upload_file
 import_members_upload_file_organization POST     /organizations/:id/import_members_upload_file(.:format) organizations#import_members_upload_file
+            add_individual_organization POST     /organizations/:id/add_individual(.:format)             organizations#add_individual
                       test_organization GET      /organizations/:id/test(.:format)                       organizations#test
      download_csv_template_organization GET      /organizations/:id/download_csv_template(.:format)      organizations#download_csv_template
                           organizations GET      /organizations(.:format)                                organizations#index

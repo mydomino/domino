@@ -119,6 +119,8 @@ class OrganizationsController < ApplicationController
 
   def email_members_upload_file
 
+    authorize Organization
+
     Rails.logger.debug "Action email_members_upload_file is called."
 
     # check to make sure the CSV file was selected
@@ -132,14 +134,15 @@ class OrganizationsController < ApplicationController
   end
 
   def import_members_upload_file
-    
+    authorize Organization
   end
 
   def test
+    authorize Organization
   end
 
   def download_csv_template
-
+    authorize Organization
     send_data generate_csv_template, filename: "#{@organization.name}_#{Date.today}.csv"
 
   end
