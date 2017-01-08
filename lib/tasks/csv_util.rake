@@ -65,19 +65,30 @@ namespace :csv do
     
     # create org admin
     role = 'org_admin'
+    for_production = false
     for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
 
+      u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
+      u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
+      u_email = for_production ? u_email : 'test_' + u_email
+
       # email is case sensitive for the create, so convert it to lower case
-      create_user(organization, u_email.downcase, role)
+      create_user(organization, u_fn, u_ln, u_email.downcase, role)
 
     end
 
     # create regular org user
     role = 'user'
+    for_production = false
     for u_email in %W(test_1@#{org_name}.com test_2@#{org_name}.com test_3@#{org_name}.com)
 
+
+      u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
+      u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
+      u_email = for_production ? u_email : 'test_' + u_email
+
       # email is case sensitive for the create, so convert it to lower case
-      create_user(organization, u_email.downcase, role)
+      create_user(organization, u_fn, u_ln, u_email.downcase, role)
 
     end
 
@@ -85,10 +96,11 @@ namespace :csv do
   end
 
 
-  def create_user(organization, u_email, role)
+  def create_user(organization, first_name, last_name, u_email, role)
 
-    u_fn = Faker::Name::first_name
-    u_ln = Faker::Name::last_name
+    u_fn = first_name
+    u_ln = last_name
+
 
     puts "Find or create user #{u_email}....\n"
 
@@ -193,6 +205,60 @@ namespace :csv do
     end
 
 
+
+  end
+
+
+  desc "Onboard_org_member_with_csv. Example usage: rake csv:onboard_org_member_with_csv Sungevity sample_3000.csv"
+  task onboard_org_member_with_csv: :environment do 
+
+    DATA_SAVE_FOLDER = Rails.root.join('data')
+
+    # generate an empty task for each argument pass in
+    ARGV.each { |a| task a.to_sym do ; end }
+
+    # validate argument type - only number allow
+    if ARGV[1].nil? or ARGV[1] !~ /\A\d+\z/
+      puts "Error! Please provide proper parameters to your command. Example. csv:onboard_org_member_with_csv Sungevity sample_3000.csv"
+      exit 1
+    end
+
+    # check to see if the data folder exist, if not create it
+    full_path = File.expand_path("#{DATA_SAVE_FOLDER}")
+    #puts "\nFull save path is: #{full_path}"
+
+    if !File.exist?(full_path) 
+      Dir.mkdir(full_path)
+      puts "\nPath #{full_path} was created."
+    end
+
+    file_name_path = full_path + '/' +  ARGV[1] 
+    puts "Data file is imported from #{file_name_path}."
+
+    ActiveRecord::Base.transaction do
+      begin
+
+        role = 'user'
+
+
+        CSV.foreach(file_name_path, headers: true) do |row|
+          puts "Row is #{row}"
+          row.each do |key, value|
+            
+            puts "Key: #{key}. Value: #{value}"
+
+            # email is case sensitive for the create, so convert it to lower case
+            #create_user(organization, u_fn, u_ln, u_email.downcase, role)
+            
+ 
+          end
+          break if row.size > 0  # allow blank lines in the top of the file
+        end
+      rescue Exception => e  
+        puts "\nError! #{e.message}."
+        exit
+      end
+   end
 
   end
 

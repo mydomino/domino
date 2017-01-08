@@ -16,9 +16,7 @@ class SessionsController < Devise::SessionsController
     if @lu && !@lu.dashboard_registered
       redirect_to "/users/sign_up?email=#{@email}" and return
     end
-    Rails.logger.debug  'session create before super'
     super
-    Rails.logger.debug  'session create after super'
   end
 
 end

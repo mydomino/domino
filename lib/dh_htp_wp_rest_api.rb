@@ -42,8 +42,6 @@ class DHHtp
 
 	def get_posts(query_options)
 
-	  Rails.logger.debug "Getting Posts from Dreamhost with WP REST API V2...\n"
-
 	  # merge the query options with default options
     query_options = @options.merge(query_options)
 
@@ -52,8 +50,8 @@ class DHHtp
     response = self.class.get("/wp-json/wp/v2/posts?fields=id,slug,title,excerpt,md_thumbnail,categories,date,better_featured_image", query: query_options)
     Rails.logger.info "\nParams sent to URL is: #{response.request.last_uri.to_s}"
 
-    #Rails.logger.debug "\nPretty print the output\n"
-    #Rails.logger.debug JSON.pretty_generate(JSON.parse(response.body))
+    #Rails.logger.info "\nPretty print the output\n"
+    #Rails.logger.info JSON.pretty_generate(JSON.parse(response.body))
     
     # Error response is now handled at the controller level
     # if response.success?
