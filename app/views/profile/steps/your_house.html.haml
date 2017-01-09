@@ -28,13 +28,13 @@
             %p#phone-input-hint.mt0.display-none.gray-80
               Your number makes it quicker for our concierge team to start helping you.
             .mt0.md-mt2.pt1
-              %label.h4 Average Electric Bill (Optional)
-              .clearfix.pl1
-                .col.col-8.mt1
-                  #slider
+              %label.h4{for: 'avg_electrical_bill'} Average electric bill (Optional)
+              .clearfix.flex.items-center
+                .col.col-8
+                  .slider
                 .col.col-4.pl1
                   .inline-block.center
-                    %h2.m0
+                    %h2.my0.ml1
                       &nbsp;$
                       %span#slider_val
                         = @profile.avg_electrical_bill || "0"
@@ -82,4 +82,4 @@
               =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'living_situation', :vertical_offset => '90px'}
 
 :javascript
-    var args = {yourHouse: {avgElectricalBill: #{@profile.avg_electrical_bill}}};
+  var args = {yourHouse: {avgElectricalBill: #{@profile.avg_electrical_bill}}};

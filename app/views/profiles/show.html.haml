@@ -75,12 +75,12 @@
 
             .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr2.mt1
               %label.h6.mb0.gray-60{for: 'avg_electrical_bill'} Average electric bill
-              .clearfix.pl1.flex.items-center
+              .clearfix.flex.items-center
                 .col.col-8
-                  #slider{target: '#profile_avg_electrical_bill'}
+                  .slider{target: '#profile_avg_electrical_bill'}
                 .col.col-4.pl1
                   .inline-block.center
-                    %h2.m0
+                    %h2.ml1.my0
                       &nbsp;$
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
@@ -163,7 +163,7 @@
     $('#profile_phone').mask('(000) 000-0000');
 
     // jQuery UI Slider for average electrical bill
-    $( "#slider" ).slider({
+    $( ".slider" ).slider({
       range: "min",
       animate: "fast",
       max: 250,
