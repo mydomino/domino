@@ -1,8 +1,8 @@
 - homepage = current_page?(root_path)
 - nav_element_color = "#{homepage ? 'white' : 'black'}"
 
-%header
-  %nav#navbar.col-12.z3.top-0.pt2{class: "#{'absolute' if homepage}"}
+%header#header
+  %nav#navbar.col-12.z3.top-0.pt2{class: "#{homepage ? 'absolute' : 'bg-white'}"}
     .max-width-4.mx-auto.flex.items-center.justify-between
       = link_to root_path, id: "navbar-brand", class: 'pl2' do
         = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"

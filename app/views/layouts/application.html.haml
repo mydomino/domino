@@ -22,14 +22,13 @@
 
   %body{id: page_id, class: page_class}
     .wrapper
-      #header
-        = render 'layouts/partials/navbar'
+      = render 'layouts/partials/navbar'
       #content
         = yield
+    - if !%w(registrations sessions profiles devise passwords organizations).include? params[:controller]
       .push
-
-    .footer
-      = render 'layouts/partials/footer'
+      .footer
+        = render 'layouts/partials/footer'
     
     :javascript
       var args = (typeof args === 'undefined') ? 0 : args;

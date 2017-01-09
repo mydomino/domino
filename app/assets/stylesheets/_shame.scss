@@ -1,3 +1,8 @@
+/*  Set body background to gray on org admin dashboard
+    Since content may not fill entire height of viewport
+*/
+.organizations.show { background-color: #F3F3F3 }
+
 .slick-track{
   display: flex;
 
