@@ -24,10 +24,15 @@ class DashboardsController < ApplicationController
     else
       @dashboard = Dashboard.find_by_user_id(current_user.id)
     end
-    authorize @dashboard   
+
+    authorize @dashboard
+
+    @profile = current_user.profile
+    @welcome_message = @profile.first_name ? "Hi, #{@profile.first_name.capitalize}" : "Hello!"
 
     @products = Product.all
     @tasks = Task.all
+
     @filter = params[:filter]
 
     if(@filter == 'products')
