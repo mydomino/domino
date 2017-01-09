@@ -10,8 +10,6 @@ class PostsController < ApplicationController
   def index
     query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
 
-    Rails.logger.debug "In index action, category param is #{params[:cat]}\n"
-
     #add a category if it is specified in the query
     if !params[:cat].nil?
       filt = {category_name: params[:cat]}
@@ -38,7 +36,6 @@ class PostsController < ApplicationController
 
   def get_post_by_slug
     slug = params[:article]
-    Rails.logger.debug "Post slug is #{slug}\n"
 
     query_param = {filter: {name: slug}}
 
@@ -50,20 +47,15 @@ class PostsController < ApplicationController
 
   def get_posts_by_category
     category = params[:category]
-    Rails.logger.debug "Post category is #{category}\n"
 
     query_param = {filter: {category_name: category}}
   
     response = @dh.get_post_by_slug(query_param)
 
-    #Rails.logger.debug "\n\n\nDisplaying post(s) ....\n"
-    #@dh.display_posts(response.body)
-
     process_post(response.body)
     query_params = {page: params[:page] || 1, per_page: params[:per_page] || 10}
 
     category = params[:category]
-    Rails.logger.debug "Post category is #{category}\n"
 
     query_param = {filter: {category_name: category}}
   
@@ -93,7 +85,6 @@ class PostsController < ApplicationController
   # user can access the post only if he/she had signed in
   def verify_post_access(cat)
     post_id = params[:id]
-    Rails.logger.debug "In verify_post_access(). Post id is #{post_id}\n"
 
     if article_for_member_only?(cat)
 
@@ -115,7 +106,6 @@ class PostsController < ApplicationController
       # retrieve the first post from the array
       post = post[0]
 
-      Rails.logger.debug "\nUsing first element in the post array. "
     end
 
     @post_content = post['content']['rendered']
@@ -131,7 +121,6 @@ class PostsController < ApplicationController
     @author = post['author_meta']['display_name']
     
     @categories = post['categories']
-    Rails.logger.debug "categories id are #{@categories.inspect}\n"
 
     # determine whether the post has a feature image. If not, use the default image
     @feature_img = post['md_thumbnail'] =~ /^http/ ? post['md_thumbnail'] : 'default_feature_img.jpg'

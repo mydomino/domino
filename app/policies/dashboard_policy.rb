@@ -4,7 +4,6 @@ class DashboardPolicy < ApplicationPolicy
   end
 
   def show?
-  	Rails.logger.debug  'db policy show is called.'
     (record.user_id == user.id) || (user.role == 'concierge') || (user.role == 'org_admin')
   end
 

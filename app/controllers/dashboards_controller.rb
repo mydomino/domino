@@ -21,11 +21,8 @@ class DashboardsController < ApplicationController
   def show
     if params.has_key? :id
       @dashboard = Dashboard.find(params[:id])
-      Rails.logger.debug  "dbrd has param key." 
     else
       @dashboard = Dashboard.find_by_user_id(current_user.id)
-
-      Rails.logger.debug  "dbrd has no param key."
     end
     authorize @dashboard   
 

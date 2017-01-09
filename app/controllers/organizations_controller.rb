@@ -121,8 +121,6 @@ class OrganizationsController < ApplicationController
 
     authorize Organization
 
-    Rails.logger.debug "Action email_members_upload_file is called."
-
     # check to make sure the CSV file was selected
     if params[:file].nil?
       redirect_to @organization, alert: 'Error! Please select a CSV file for upload.' and return

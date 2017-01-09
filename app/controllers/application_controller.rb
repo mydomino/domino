@@ -38,10 +38,10 @@ class ApplicationController < ActionController::Base
     if session[:referer] && session[:referer].include?('/articles')
       session[:referer]
     elsif resource.role == 'concierge'
-      #Rails.logger.debug "dashboards_path is #{dashboards_path.inspect}\n\n"
+      
       dashboards_path
     else
-      #Rails.logger.debug "user_dashboard_path is #{user_dashboard_path.inspect}\n\n"
+      
       user_dashboard_path
     end
 

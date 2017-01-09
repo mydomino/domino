@@ -17,23 +17,18 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def add_individual?
-  	#Rails.logger.debug  'org policy add_individual is called.'
     (user.role == 'concierge') || (user.role == 'org_admin')
   end
 
   def update?
-    #Rails.logger.debug  'org policy update is called.'
     (user.role == 'concierge') || (user.role == 'org_admin')
   end
 
   def edit?
-    #Rails.logger.debug  'org policy edit is called.'
     (user.role == 'concierge') || (user.role == 'org_admin')
   end
 
-
   def show?
-  	#Rails.logger.debug  'org policy show is called.'
     (user.role == 'concierge') || (user.role == 'org_admin')
   end
 
@@ -53,12 +48,5 @@ class OrganizationPolicy < ApplicationPolicy
   def test?
     (user.role == 'concierge') || (user.role == 'org_admin')
   end
-
-
-
-
-
-
-
 
 end
