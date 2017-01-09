@@ -102,7 +102,7 @@ class OrganizationsController < ApplicationController
       )
 
       # Send updated member count back to view
-      member_count = @organization.users.count
+      member_count = @organization.users.size
       
       render json: {
         message: "Member added successfully",

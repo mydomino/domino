@@ -48,7 +48,7 @@ namespace :csv do
   desc "Create mydomino org and users for testing."
   task mydomino: :environment do 
 
-    org_name = 'Mydomino'
+    org_name = 'Mydomino3'
 
     # create an organization
     organization = Organization.find_or_create_by(name: org_name) do |o|
@@ -70,7 +70,7 @@ namespace :csv do
 
       u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
       u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
-      u_email = for_production ? u_email : 'test_' + u_email
+      u_email = for_production ? u_email : u_email
 
       # email is case sensitive for the create, so convert it to lower case
       create_user(organization, u_fn, u_ln, u_email.downcase, role)
@@ -85,7 +85,7 @@ namespace :csv do
 
       u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
       u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
-      u_email = for_production ? u_email : 'test_' + u_email
+      u_email = for_production ? u_email :  u_email
 
       # email is case sensitive for the create, so convert it to lower case
       create_user(organization, u_fn, u_ln, u_email.downcase, role)
@@ -185,7 +185,7 @@ namespace :csv do
     # registered_user.rb
 
     # update Zoho
-    #profile.save_to_zoho
+    profile.save_to_zoho
 
     
   end
@@ -217,11 +217,26 @@ namespace :csv do
     # generate an empty task for each argument pass in
     ARGV.each { |a| task a.to_sym do ; end }
 
-    # validate argument type - only number allow
-    if ARGV[1].nil? or ARGV[1] !~ /\A\d+\z/
-      puts "Error! Please provide proper parameters to your command. Example. csv:onboard_org_member_with_csv Sungevity sample_3000.csv"
+    #puts "ARGV.size is #{ARGV.size}"
+    
+    if ARGV.size != 3 
+      puts "Error! Please provide proper parameters to your command. Example. rake csv:onboard_org_member_with_csv Sungevity sample_upload_3000.csv"
       exit 1
     end
+
+    # retrieve the org name
+    org_name = ARGV[1]
+
+    puts "Organization name is #{org_name}.\n" 
+
+    # find an organization
+    begin
+      organization = Organization.find_by!(name: org_name)
+    rescue Exception => e  
+      puts "\nError! #{e.message}."
+      exit
+    end
+   
 
     # check to see if the data folder exist, if not create it
     full_path = File.expand_path("#{DATA_SAVE_FOLDER}")
@@ -232,27 +247,34 @@ namespace :csv do
       puts "\nPath #{full_path} was created."
     end
 
-    file_name_path = full_path + '/' +  ARGV[1] 
+    file_name_path = full_path + '/' +  ARGV[2] 
     puts "Data file is imported from #{file_name_path}."
 
     ActiveRecord::Base.transaction do
       begin
 
         role = 'user'
-
+        for_production = false
+        for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
 
         CSV.foreach(file_name_path, headers: true) do |row|
-          puts "Row is #{row}"
-          row.each do |key, value|
-            
-            puts "Key: #{key}. Value: #{value}"
 
-            # email is case sensitive for the create, so convert it to lower case
-            #create_user(organization, u_fn, u_ln, u_email.downcase, role)
-            
- 
-          end
-          break if row.size > 0  # allow blank lines in the top of the file
+          puts "\n\nRow is #{row}"
+
+          puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
+
+
+          u_fn = for_production ? row['First_name'] : 'test_' + row['First_name']
+          u_ln = for_production ? row['Last_name'] : 'test_' + row['Last_name']
+          u_email = row['Email'] #for_production ? u_email : u_email
+
+
+          puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
+
+
+          # email is case sensitive for the create, so convert it to lower case
+          create_user(organization, u_fn, u_ln, u_email.downcase, role)
+
         end
       rescue Exception => e  
         puts "\nError! #{e.message}."
@@ -261,7 +283,6 @@ namespace :csv do
    end
 
   end
-
 
 
 

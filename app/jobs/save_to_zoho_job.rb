@@ -4,6 +4,8 @@ class SaveToZohoJob < ActiveJob::Base
   def perform(lead)
     #save interests using xml, for only text fields can be updated w/ rubyzoho
     @interests = []
+
+    puts "It is SaveTOZoho here.\n"
     
     lead.offerings.each do |o|
       @interests << o.name 
