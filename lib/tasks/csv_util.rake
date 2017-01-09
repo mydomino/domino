@@ -48,7 +48,7 @@ namespace :csv do
   desc "Create mydomino org and users for testing."
   task mydomino: :environment do 
 
-    org_name = 'Mydomino3'
+    org_name = 'MyDomino'
 
     # create an organization
     organization = Organization.find_or_create_by(name: org_name) do |o|
