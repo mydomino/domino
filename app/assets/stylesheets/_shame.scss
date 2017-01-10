@@ -393,7 +393,9 @@ input{ padding-left: 10px; }
 #member-profile,
 .devise-form,
 .recommendation-form{
-  input[type],
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
   textarea,
   select { border: 1px solid #DDDDDD; }
 }
@@ -405,7 +407,6 @@ input{ padding-left: 10px; }
 .recommendation-form,
 .devise-form,
 #footer{
-
   input[type=text],
   input[type=email],
   input[type=password],

@@ -36,7 +36,7 @@
           %h4.mb0 Step 2. Upload your updated CSV
           %p.mt0.gray-60 After you've added new employees to your CSV file, upload it to add the employees to your account.
           = form_tag email_members_upload_file_organization_path(@organization), multipart: true do
-            = file_field_tag "file", accept: 'text/csv', class: 'upload'
+            = file_field_tag "file", accept: 'text/csv', class: 'p0'
             = button_tag "Upload CSV", class: 'rounded btn btn-primary px2 mt2'
           .container
             - flash.each do |key, value|
