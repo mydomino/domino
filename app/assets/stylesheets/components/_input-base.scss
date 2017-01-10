@@ -6,7 +6,7 @@
     display: inline-block;
     cursor: pointer;
     position: relative;
-    padding-left: 40px;
+    padding-left: 35px;
     margin-right: 15px;
     font-size: 16px;
   }
@@ -33,21 +33,21 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: #00ccff;
+    background-color: $blue;
     position: absolute;
     left: 4px;
     top: 4px;
   }
 
   input[type=radio]:checked + label:before {
-    border-color: #eaeaea;
+    border-color: $blue;
   }
 }
 
 // Custom styling for jQuery UI slider widget
 .slider.ui-slider {
   border-color: #eaeaea;
-  & > div{ background: #00CCFF }
+  & > div{ background: $blue; }
 
   .ui-slider-handle {
     width: 1.5em;

@@ -65,23 +65,23 @@
 
           .clearfix
             .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1
-              %label.h6.mb0.gray-60 Housing
-              #housing-radio-buttons.relative.radio
+              %label.h6.gray-60 Housing
+              #housing-radio-buttons.mt2.radio.nowrap
                 = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
                 = label_tag('profile[housing][own]', "Own")
                 &nbsp;
                 = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
                 = label_tag('profile[housing][rent]', "Rent")
 
-            .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr2.mt1
-              %label.h6.mb0.gray-60{for: 'avg_electrical_bill'} Average electric bill
+            .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr2.mt2.sm-mt1
+              %label.h6.gray-60{for: 'avg_electrical_bill'} Average electric bill
               .clearfix.flex.items-center
-                .col.col-8
+                .col.col-8.mt1
                   .slider{target: '#profile_avg_electrical_bill'}
                 .col.col-4.pl1
                   .inline-block.center
-                    %h2.ml1.my0
-                      &nbsp;$
+                    %h2.ml2.mt1.my0
+                      $
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
 

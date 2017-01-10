@@ -397,7 +397,8 @@ input{ padding-left: 10px; }
   input[type="tel"],
   input[type="email"],
   textarea,
-  select { border: 1px solid #DDDDDD; }
+  select {
+    border: 1px solid #DDDDDD; }
 }
 
 #member-profile select { background: white; }
