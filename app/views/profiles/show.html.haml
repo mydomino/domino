@@ -80,7 +80,7 @@
                   .slider{target: '#profile_avg_electrical_bill'}
                 .col.col-4.pl1
                   .inline-block.center
-                    %h2.ml1.my0
+                    %h2.ml1.mt1.my0
                       $
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
