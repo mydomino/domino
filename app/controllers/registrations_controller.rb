@@ -1,9 +1,25 @@
 class RegistrationsController < Devise::RegistrationsController
   
+  # Corp member registration
+  def new_corp_member
+
+    #1. Via sign up link
+
+    #2. Via company landing page
+
+  end
+
+
   def new
-    #redirect to root if no slug or email in params
+    # Redirect to root path if no slug or email in params
+    # Email param comes from sign up link thats generated after a user completes
+    # onboarding (i.e. https//mydomino.com/users/sign_up?email=[percent encoded email address])
+    # TODO: Figure out where slug param comes from
     redirect_to root_path and return if !(params[:slug] || params[:email])
 
+    # If sthe slug param is provided, it means that a user was a previous user of mydomino,
+    # prior to adding devise authentication. Grab the email associated with the dashboard for
+    # registration
     if params[:slug]
       @dashboard = Dashboard.find_by_slug(params[:slug])
       if @dashboard
@@ -20,12 +36,11 @@ class RegistrationsController < Devise::RegistrationsController
     #TODO should add flash message you already have an account
     redirect_to new_user_session_path and return if User.find_by_email(@email)
     
-    #todo should return to complete onboarding
     if @profile = Profile.find_by_email(@email)
       @profile.onboard_complete ? (super and return) : (redirect_to "/continue/#{@profile.id}" and return)
     end
 
-    #case where legacy users don't have a profile
+    # Case where legacy users don't have a profile
     if LegacyUser.find_by_email(@email)
       super and return
     else
