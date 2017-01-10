@@ -21,13 +21,14 @@ class DashboardsController < ApplicationController
   def show
     if params.has_key? :id
       @dashboard = Dashboard.find(params[:id])
+      @profile = Profile.find_by_email(@dashboard.lead_email)
     else
       @dashboard = Dashboard.find_by_user_id(current_user.id)
+      @profile = current_user.profile
     end
 
     authorize @dashboard
 
-    @profile = current_user.profile
     @welcome_message = @profile.first_name ? "Hi, #{@profile.first_name.capitalize}" : "Hello!"
 
     @products = Product.all
