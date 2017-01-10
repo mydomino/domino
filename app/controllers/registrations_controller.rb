@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   
   # Corp member registration
-  def new_corp_member
+  def new_org_member
 
     #1. Via sign up link
 
