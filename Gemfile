@@ -44,6 +44,10 @@ gem 'httparty', '~> 0.14.0'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'clipboard-rails'
 gem 'jquery-slick-rails'
+gem 'parsley-rails'
+gem 'annotate', '~> 2.7', '>= 2.7.1'
+gem 'faker'
+gem 'inline_svg'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -61,17 +65,18 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
+
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
+
 end
 
 group :test do
   gem 'simplecov'
-  gem 'faker'
   gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
   gem 'minitest-rails', "~> 2.0"

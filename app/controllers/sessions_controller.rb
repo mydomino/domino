@@ -7,6 +7,7 @@ class SessionsController < Devise::SessionsController
     super
   end
 
+  # Note: after this function, after_sign_in_path_for method is called
   def create
     @email = params[:user][:email]
     #if legacy user attempts to login, but has not registered a password
@@ -17,4 +18,5 @@ class SessionsController < Devise::SessionsController
     end
     super
   end
+
 end

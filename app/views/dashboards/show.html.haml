@@ -1,3 +1,6 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+  
 -if current_user.role == 'concierge'
   =render 'concierge_narrow_navbar'
   :css
@@ -18,7 +21,7 @@
     .clearfix.center
       .sm-col.sm-col-12
         %h1.gray-80
-          = @dashboard.lead_name ? "Hi, #{@dashboard.lead_name.titleize}" : "Hello!"
+          = @welcome_message
     .clearfix.center.gray-80
       .sm-col.sm-col-12
         %p

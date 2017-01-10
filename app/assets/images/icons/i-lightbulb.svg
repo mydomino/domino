@@ -1,0 +1,14 @@
+<svg width="20" height="28" viewBox="0 0 20 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>1483510134_bulb</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-168 -73)" figma:type="canvas">
+<g id="1483510134_bulb" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(168 73)" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 5.71429 26.6C 5.71429 27.37 6.35714 28 7.14286 28L 12.8571 28C 13.6429 28 14.2857 27.37 14.2857 26.6L 14.2857 25.2L 5.71429 25.2L 5.71429 26.6ZM 10 0C 4.48571 0 0 4.396 0 9.8C 0 13.132 1.7 16.058 4.28571 17.836L 4.28571 21C 4.28571 21.3695 4.92857 22 5.71429 22L 14.2857 22C 15.0714 22 15.7143 21.3873 15.7143 21L 15.7143 17.836C 18.3 16.058 20 13.132 20 9.8C 20 4.396 15.5143 0 10 0ZM 14.0714 15.54L 13 16.38L 13 19.6L 7 19.6L 7 16.38L 5.92857 15.54C 4 14.224 2.85714 12.082 2.85714 9.8C 2.85714 5.936 6.05714 2.8 10 2.8C 13.9429 2.8 17.1429 5.936 17.1429 9.8C 17.1429 12.082 16 14.224 14.0714 15.54Z"/>
+</defs>
+</svg>

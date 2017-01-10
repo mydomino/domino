@@ -21,6 +21,7 @@
 //= require modal
 //= require clipboard
 //= require jquery.slick
+//= require parsley
 //= require init
 //= require mydomino
 //= require_tree ./pages

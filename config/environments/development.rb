@@ -12,7 +12,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -43,14 +43,24 @@ Rails.application.configure do
   
   #Mailcatcher!
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  #config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  # use gmail account to send emai locally - Yong
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'mydomino.com',
+    user_name:            ENV["GMAIL_USERNAME"],
+    password:             ENV["GMAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true  
+  }
 
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true
   end
 
-  # completely disable web_console whiny_requests for display with ips
+  # completely disable web_console whiny_requests for display with ips - Yong
   config.web_console.whiny_requests = false
 
 end

@@ -1,7 +1,47 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
+  before_action :authenticate_user!, only: [:show]
+  
   layout 'concierge', only: :new
   
+  def show
+    @profile = current_user.profile
+  end
+
+  def verify_current_password
+    valid = current_user.valid_password? params[:current_password]
+    if valid
+      render json: {
+        message: "Current password field valid",
+        status: 200
+      }, status: 200
+    else
+      render json: {
+        error: "Current password field invalid",
+        status: 400
+      }, status: 400
+    end
+  end
+
+  def update_password
+    @user = current_user
+    @user.update(
+      password: params[:updated_password],
+      password_confirmation: params[:updated_password]
+    )
+  
+    # keep user logged in
+    sign_in(@user, :bypass => true)
+    
+    render json: {
+      message: "Password updated successfully",
+      status: 200
+    }, status: 200
+  end
+
+  def edit
+  end
+
   def new
     @profile = Profile.new
   end
@@ -46,8 +86,25 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile.update(profile_params)
-    redirect_to profile_step_path(@profile, Profile.form_steps.first)
+    # Updates via member profile info page
+    if request.xhr?
+      xhr_profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
+      if @profile.update(xhr_profile_params)
+        render json: {
+          message: "Profile updated successfully",
+          status: 200
+        }, status: 200
+      else
+        render json: {
+          message: "Unable to update profile.",
+          status: 400
+        }, status: 400
+      end
+    # Updates via onboarding
+    else
+      @profile.update(profile_params)
+      redirect_to profile_step_path(@profile, Profile.form_steps.first)
+    end
   end
 
   def apply_partner_code(render_js=true)

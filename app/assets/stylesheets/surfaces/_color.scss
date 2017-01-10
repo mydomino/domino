@@ -8,6 +8,7 @@ $gray-30: #C1C1C1;
 $gray-20: #D6D6D6;
 $gray-10: #EAEAEA;
 $gray-05: #F3F3F3;
+$green: #00BC02;
 
 // Brand Color Variables
 $blue: #00CCFF;
@@ -23,13 +24,16 @@ $red: #FF0000;
 .black { color: $black; }
 .gray-90 { color: $gray-90; }
 .gray-80 { color: $gray-80; }
-.gray-30 { color: $gray-30; }
 .gray-60 { color: $gray-60; }
+.gray-30 { color: $gray-30; }
+.gray-20 { color: $gray-20; }
+.gray-10 { color: $gray-10 }
+.gray-05 { color: $gray-05; }
 
 .blue { color: $blue; }
 .red { color: $red; }
 .orange { color: $orange; }
-
+.green { color: $green; }
 // Background Colors
 .bg-transparent{ background-color: transparent; }
 .bg-white { background-color: $white; }
@@ -46,7 +50,7 @@ $red: #FF0000;
 .border-gray-30 { border-color: $gray-30; }
 .border-gray-60 { border-color: $gray-60; }
 
-// On hover
-.text-blue--hover:hover {
+//Hover
+.blue--hover:hover {
   color: $blue;
 }

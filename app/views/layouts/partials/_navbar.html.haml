@@ -1,64 +1,94 @@
 - homepage = current_page?(root_path)
-- nav_element_color = "#{homepage ? 'white' : 'gray-80'}"
+- nav_element_color = "#{homepage ? 'white' : 'black'}"
 
-%nav#navbar.col-12.z3.top-0{class: "#{'absolute' if homepage}"}
-  .max-width-4.mx-auto
-    .clearfix
-      .col.col-4.mt2.ml2
-        = link_to root_path, id: "navbar-brand" do
-          = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
+%header#header
+  %nav#navbar.col-12.z3.top-0.pt2{class: "#{homepage ? 'absolute' : 'bg-white'}"}
+    .max-width-4.mx-auto.flex.items-center.justify-between
+      = link_to root_path, id: "navbar-brand", class: 'pl2' do
+        = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
-      .md-hide.lg-hide.px2.right
-        #js-hamburger
-          =embedded_svg 'i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
-      .xs-hide.sm-hide.py3.px2.my1
+      .xs-hide.sm-hide.px2.my1
         .right
-          .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
-            = link_to 'tel:+18009792215', target: '_blank', class: "h3 text-decoration-none", style: "color: inherit" do
-              %i.fa.fa-phone
-              %span 800-979-2215
           -if user_signed_in?
             -if current_user.role == 'concierge'
               =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
             -else
-              =link_to 'Dashboard', user_dashboard_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
-            =link_to 'Log out', destroy_user_session_path, method: :delete, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none ml1"
+              -if current_user.role == 'org_admin' || current_user.role == 'concierge'
+                = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
+                  %span.inline-block.mr2.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
+                    = inline_svg "icons/i-admin.svg", class:"icon-m block mx-auto"
+                    Admin
+
+              = link_to "/dashboard", class: 'text-decoration-none' do
+                %span.inline-block.h5.blue--hover{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
+                  = inline_svg "icons/i-dashboard-nav.svg", class:"block mx-auto", size:"32px * 22px"
+                  Dashboard
+              = link_to member_profile_path, class: 'text-decoration-none mx2' do
+                %span.inline-block.h5.blue--hover{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
+                  = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
+                  Profile
+            = link_to destroy_user_session_path, method: :delete, class: 'text-decoration-none' do
+              %span.inline-block.h5.blue--hover{class: "#{nav_element_color}"}
+                = inline_svg "icons/i-logout.svg", class:"icon-m block mx-auto"
+                Logout
           -else
+            .h4.mx2.inline.navbar-element{class: "#{nav_element_color}"}
+              = link_to 'tel:+18009792215', target: '_blank', class: "h3 text-decoration-none", style: "color: inherit" do
+                %i.fa.fa-phone
+                %span 800-979-2215
             =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none", id: "link-login"
 
+      .md-hide.lg-hide.px2.right
+        %span#open-nav
+          =embedded_svg 'icons/i-hamburger.svg', class:"#{nav_element_color} pointer navbar-element py2 pl3"
 
-      #mobile-nav.nav-bg.col-12.top-0.left-0.right-0.white.flex.flex-center
-        .content.flex-auto
-          %h1.inline-block
-            #js-hamburger-close
-              =embedded_svg 'i-close.svg', class:"#{nav_element_color} pointer fixed top-0 right-0 py3 pl3 pr2"
-
-          .h1.p2.center
-            = yield :posts_menu
-
-          %ul.mt2.center.list-reset
-            -if !user_signed_in?
-              %li.h1
-                = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
-            -else
-              %li.h1
-                =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
-              %li.h1
-                = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
-            %li.h1
-              = link_to 'Call us', 'tel:+18009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
+    .max-width-4.mx-auto.clearfix
       .col.col-12.h3.sm-hide.xs-hide
         = yield :posts_menu
 
-:javascript
-  $(document).ready(function(){
-    $('#js-hamburger').click(function(){
-      $('nav').addClass('open');
-      $('body').addClass('lock-position');
-    });
+  / Mobile & small viewport navigation menu
+  #nav-overlay
+    #nav-overlay-content
+      %span#close-nav
+        = embedded_svg 'i-close.svg', class:"white pointer absolute top-0 right-0 py3 pl3 pr2"
 
-    $('#js-hamburger-close').click(function(){
-      $('nav').removeClass('open');
-      $('body').removeClass('lock-position');
-    });
-  });
+      .h1.p2.center.mt4
+        = yield :posts_menu
+
+      %ul.mt2.center.list-reset
+        -if !user_signed_in?
+          %li.h1
+            = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
+        -else
+          %li.h1
+            =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
+          %li.h1
+            = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
+        %li.h1
+          = link_to 'Call us', 'tel:+18009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
+
+:javascript
+  (function(){
+    var $nav = $('#nav-overlay');
+    var $navContent = $('#nav-overlay-content');
+    var $openNav = $('#open-nav');
+    var $closeNav = $('#close-nav');
+    var $body = $('body');
+
+
+    var openNav = function(){
+      $body.addClass('lock-position');
+      $nav.css('z-index', '10');
+      $nav.addClass('open');
+    };
+
+    var closeNav = function(){
+      $body.removeClass('lock-position');
+      $nav.removeClass('open');
+      window.setTimeout( function(){ $nav.css('z-index', '0'); }, 500);
+    };
+
+    $openNav.on('click', openNav);
+    $closeNav.on('click', closeNav);
+
+  }());

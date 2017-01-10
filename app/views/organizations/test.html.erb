@@ -1,0 +1,13 @@
+<div class='aa'>
+	Organization name is: <%= @organization.name %>
+	<div class='aa'>
+	  <% if Rails.env.development? %>
+      <%= @organization.name + 'Hello' %>
+	  <% end %>
+	</div>
+
+	<div class='aa'>
+	  Current enrolled <%= pluralize @organization.users.size, 'member' %>
+	</div>
+
+</div>

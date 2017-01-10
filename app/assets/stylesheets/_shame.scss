@@ -2,11 +2,11 @@
   display: flex;
 
   .slick-slide{
-      display: flex;
-      flex-direction: column;
-      height: auto;
-      outline: none;
-      background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    outline: none;
+    background-color: #f1f1f1;
   }
 }
 
@@ -44,11 +44,14 @@
 }
 /* end interest form checkbox css */
 
-/*onboarding icons*/
+/*svg icons*/
 .fill-blue path { fill: #00ccff; }
 .fill-blue rect { stroke: #00ccff; }
-.fill-gray {fill:#c5c5c5}
-.stroke-gray {stroke:#c5c5c5}
+.fill-gray { fill:#c5c5c5; }
+.fill-gray-05 { fill: #f3f3f3; }
+.stroke-gray { stroke:#c5c5c5; }
+.fill-black path { fill: #333; }
+.fill-white path { fill: white; }
 
 .onboarding-icon-2 {
   height: 2rem;
@@ -196,26 +199,6 @@ table#steps {
   opacity: .5;
 }
 
-nav {
-  .nav-bg {
-    height: 100%;
-    display: table;
-    z-index: -1;
-    .content { display: none; }
-  }
-  &.open {
-    height: 100%;
-    z-index: 1000;
-    .nav-bg {
-      background-color: #00ccff;
-      z-index:1000;
-      position: fixed;
-      .content { display: block; }
-      .li a { background-color: #fff; }
-    }
-  }
-}
-
 .hover-show { display: none; }
 
 div:hover {
@@ -283,6 +266,29 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 /* BEGIN custom navbar styles */
 #navbar {
   .fa-bars { padding-top: 1.4rem; }
+}
+#nav-overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 0;
+  right: 0;
+  top: 0;
+  background-color: #00ccff;
+  overflow-x: hidden;
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  &.open {
+    width: 100%;
+  }
+}
+
+/* Position the content inside the overlay */
+#nav-overlay-content {
+  position: relative;
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  white-space: nowrap;
+  overflow: hidden;
 }
 /* END custom navbar styles */
 
@@ -358,12 +364,14 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 input{ padding-left: 10px; }
 
+#member-profile,
 #living-situation,
 #footer {
   input[type=text],
   input[type=email],
   input[type=zip],
   input[type=tel],
+  input[type=password],
   select {
     border: 1px solid #666;
     height: 42px;
@@ -382,6 +390,7 @@ input{ padding-left: 10px; }
 
 .border-light-gray { border-color: #c5c5c5; }
 
+#member-profile,
 .devise-form,
 .recommendation-form{
   input[type],
@@ -389,6 +398,9 @@ input{ padding-left: 10px; }
   select { border: 1px solid #DDDDDD; }
 }
 
+#member-profile select { background: white; }
+
+#member-profile,
 #profile-forms,
 .recommendation-form,
 .devise-form,
@@ -403,6 +415,9 @@ input{ padding-left: 10px; }
   input[type=submit] { display: inline; }
 
   input.error { border-color: #D65A5A!important; }
+
+  // For parsley error messages
+  .invalid-message { color: #D65A5A; }
 
   input[type=text],
   input[type=email],
@@ -583,8 +598,6 @@ body.lock-position {
 span.toggle { width: 1em; }
 
 #profile-forms.non-mobile{ min-height: 620px; }
-
-#slider > div{ background: #00CCFF!important; }
 
 /* Buttons */
 .navbar-element {

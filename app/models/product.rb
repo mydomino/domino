@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :integer          not null, primary key
+#  url         :string
+#  product_id  :string
+#  description :string
+#  image_url   :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  price       :string
+#  xml         :string
+#  name        :string
+#  default     :boolean          default(FALSE)
+#
+
 require 'retries'
 class Product < ActiveRecord::Base
   has_many :recommendations, as: :recommendable, dependent: :destroy

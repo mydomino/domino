@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :capture_utm_campaign, :get_user_agent
   around_action :handle_exceptions
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Let views access current_user
   helper_method :article_for_member_only?
@@ -35,19 +35,23 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
 
     # If user logs in via article views, redirect to whichever article view they left off at
-    if session[:referer].include?('/articles')
+    if session[:referer] && session[:referer].include?('/articles')
       session[:referer]
     elsif resource.role == 'concierge'
-      #Rails.logger.debug "dashboards_path is #{dashboards_path.inspect}\n\n"
+      
       dashboards_path
     else
-      #Rails.logger.debug "user_dashboard_path is #{user_dashboard_path.inspect}\n\n"
+      
       user_dashboard_path
     end
 
   end
 
   def after_sign_out_path_for(resource)
+    # Flash notice workaround so stale notice won't potentially 
+    # appear in devise login/sign up forms
+    flash[:notice] = nil
+    
     root_path
   end
 
@@ -64,15 +68,41 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_exceptions
-    begin
-      yield
+     begin
+       yield
 
-    #Rescue StandardError
-    rescue => e
-      Airbrake.notify(e)
-      Rails.logger.error "Error: #{e.message}"
-      Rails.logger.error  "#{e.backtrace.join("\n")}"
-      redirect_to '/error'
-    end
+     rescue ActiveRecord::RecordNotFound => e
+       log_error(e)
+       redirect_to controller: 'errors', action: 'user_error', err_mesg: e.message
+
+     rescue Pundit::NotAuthorizedError => e
+       log_error(e)
+       redirect_to controller: 'errors', action: 'user_error', err_mesg: "You are not authorized to perform this action."
+
+     rescue => e
+       log_error(e)
+
+       # this also works.... but it relies on the match statement in routes.rb
+       # if it is not in development, then do not send exception error 
+       if Rails.env.development? 
+         redirect_to "/apperror?err_mesg=#{e.message}" and return
+         #redirect_to controller: 'errors', action: 'application_error', err_mesg: e.message
+       else 
+         redirect_to "/apperror"
+       end
+     
+     end
+  end
+
+
+  def log_error(e)
+
+    # only send Airbrake notification when not in development  
+    Airbrake.notify(e) if !Rails.env.development?
+
+    Rails.logger.error "Error occured! Exception error is #{e.inspect}. Error: #{e.message}"
+    # do not need to log trace error
+    #Rails.logger.error  "#{e.backtrace.join("\n")}"
+    
   end
 end

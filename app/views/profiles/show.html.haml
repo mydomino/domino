@@ -1,0 +1,332 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+
+#member-profile.bg-gray-05
+  .max-width-3.mx-auto.p2
+
+    .flex.items-center
+      = inline_svg "icons/i-user.svg"
+      %h1.ml2 Profile
+
+    / Begin Login info section
+    .bg-white.px3.pt2.pb3.rounded.mb2
+      .h2.mb3 Login
+      .h6.mb0.gray-60 Email address
+      .h3.my0= @profile.email
+      = form_tag "#", method: 'post', class: 'edit_password clearfix', style: 'display: none;' do
+        / Inline styles used below for jQuery show and hide animations to work
+        .col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2.mt2
+          %label.h6.inline.mb0.gray-60{for: "current_password"} Current password
+          #curr-password-error.inline
+          = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "rounded"
+          %label.h6.inline.mb0.gray-60.mt3{for: "new_password"} New password
+          #new-password-error.inline
+          = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }, class: "rounded"
+          %label.h6.inline.mb0.gray-60.mt3{for: "new_password_confirmation"} Confirm new password
+          #confirm-new-password-error.inline{for: "new_password_confirmation"}
+          = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
+
+      .flex.items-center.mt2
+        #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover
+          Change password
+        #msg-password-update.flex.items-center.green{style:'display:none'}
+          %h4.ml2.mr1 Saved
+          = inline_svg "icons/i-success.svg", class: 'icon-s'
+        #btn-cancel-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover.mx1{style: 'display: none;'}
+          Cancel
+      / End Login Section
+
+    .clearfix
+      = simple_form_for @profile, url: profile_path(@profile) do |f|
+        .clearfix.bg-white.rounded.px3.pt2.pb3.mb2
+          .h2.mb3 Personal
+          .col.col-12.sm-col.sm-col-5.px0.sm-pl0.sm-pr2
+            = f.input :first_name, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
+
+          .col.col-12.sm-col.sm-col-5.sm-pl0.sm-pr2.mt1.sm-mt0
+            = f.input :last_name, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
+
+          .col.col-12.sm-col.sm-col-10.sm-pl0.sm-pr2.mt1
+            = f.input :phone, input_html: {class: "rounded", data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}}, label_html: {class: 'h6 mb0 gray-60'}
+
+        .clearfix.bg-white.rounded.px3.pt2.pb3
+          .h2.mb3 Home
+          .col.col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2
+            =f.input :address_line_1, input_html: {class: "rounded"}, label: 'Home address', label_html: {class: 'h6 mb0 gray-60'}
+
+          .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2
+            =f.input :city, input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
+
+          .col.col-12.sm-col.sm-col-2.px0.sm-pl0.sm-pr2.mt1.sm-mt0
+            =f.input :state, collection: us_states, include_blank: "Select state...", input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
+
+          .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1.sm-mt0
+            =f.input :zip_code, input_html: {class: "rounded", data: {"parsley-required": "true", "parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}}, label_html: {class: 'h6 mb0 gray-60'}
+
+          .clearfix
+            .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1
+              %label.h6.mb0.gray-60 Housing
+              #housing-radio-buttons.relative.radio
+                = radio_button_tag('profile[housing]', "own", (@profile.housing == 'own'))
+                = label_tag('profile[housing][own]', "Own")
+                &nbsp;
+                = radio_button_tag('profile[housing]', "rent", (@profile.housing == 'rent'))
+                = label_tag('profile[housing][rent]', "Rent")
+
+            .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr2.mt1
+              %label.h6.mb0.gray-60{for: 'avg_electrical_bill'} Average electric bill
+              .clearfix.flex.items-center
+                .col.col-8
+                  .slider{target: '#profile_avg_electrical_bill'}
+                .col.col-4.pl1
+                  .inline-block.center
+                    %h2.ml1.my0
+                      &nbsp;$
+                      %span#slider_val= @profile.avg_electrical_bill
+              =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
+
+        .clearfix
+          .col.col-12.mt2.px0.sm-px0.sm-py2
+            .flex.items-center
+              =f.submit 'Save changes', class: 'btn btn-md btn-primary btn-primary--hover'
+              / inline style so jquery show() works.
+              #msg-profile-update.flex.items-center.green{style:'display:none'}
+                .h4.inline-block.ml2.mr1
+                  Saved
+                = inline_svg "icons/i-success.svg", class: "icon-s block"
+
+:javascript
+
+  (function(){
+    /*------------- BEGIN Module variable declarations and initializations-----------*/
+    var
+        currentPasswordValid,
+        updatedFields,
+        showPasswordForm,
+        hidePasswordForm,
+        submitChangedPassword,
+        $pwForm,
+        $profileForm,
+        $currPw,
+        $pCurrPw,
+        $pPwForm,
+        $pProfileForm,
+        $pwSubmit,
+        $btnProfileSubmit,
+        $msgProfileUpdate,
+        $msgPasswordUpdate,
+        $btnChangePw,
+        $btnCancelChangePw;
+
+    // Variable initializations
+    currentPasswordValid = false;
+    updatedFields = {}; // Payload with updated info to send to server
+
+
+    // jQuerified elements
+    $pwForm = $('.edit_password');
+    $currPw = $('#current_password');
+    $btnChangePw = $('#btn-change-password');
+    $btnCancelChangePw = $('#btn-cancel-change-password');
+
+    $profileForm = $('.edit_profile');
+    $btnProfileSubmit = $profileForm.find('input[type=submit]');
+    $msgProfileUpdate = $profileForm.find('#msg-profile-update');
+    $msgPasswordUpdate = $('#msg-password-update');
+    // Parsleyfied password fields
+    $pCurrPw = $('#current_password').parsley();
+
+    // Parsleyfied forms
+    var $pPwForm = $('.edit_password').parsley({
+                        errorClass: "error",
+                        errorsWrapper: '<div class="invalid-message inline right"></div>',
+                        errorTemplate: '<span></span>',
+                        successClass: null
+                    });
+
+    var $pProfileForm = $('.edit_profile').parsley({
+                            errorClass: "error",
+                            errorsWrapper: '<div class="invalid-message inline right"></div>',
+                            errorTemplate: '<span></span>',
+                            successClass: null
+                        });
+
+
+
+    /*------------- END Module variable declarations and definitions-----------*/
+
+    /*------------- BEGIN Module configurations--------------------------------*/
+
+    /*------------- BEGIN UI configurations -----------------------------------*/
+    // Mask phone and zip code input
+    $('#profile_zip_code').mask('00000');
+    $('#profile_phone').mask('(000) 000-0000');
+
+    // jQuery UI Slider for average electrical bill
+    $( ".slider" ).slider({
+      range: "min",
+      animate: "fast",
+      max: 250,
+      value: #{@profile.avg_electrical_bill},
+      create: function( event, ui ) {
+        $('#slider > span').css({cursor: 'pointer', outline: '0'});
+      },
+      slide: function( event, ui ) {
+        $('#slider_val').html(ui.value);
+        $('#profile_avg_electrical_bill').val(ui.value);
+        setUpdatedField($($(event.target).attr('target')));
+        // enableSubmit();
+      }
+    });
+    /*------------- END UI configurations -----------------------------------*/
+
+    /*------------- BEGIN Profile form configurations -----------------------------------*/
+    // Fields to bind input change handler
+    var profileFields = {
+      first_name: $('#profile_first_name'),
+      last_name: $('#profile_last_name'),
+      phone: $('#profile_phone'),
+      address: $('#profile_address_line_1'),
+      city: $('#profile_city'),
+      state: $('#profile_state'),
+      zip_code: $('#profile_zip_code')
+    };
+
+    // Bind input event handler to profile fields
+    for (key_name in profileFields){
+      profileFields[key_name].on('input', function(event){
+        setUpdatedField($(this));
+        // enableSubmit();
+      });
+    }
+
+    // Event handler for housing radio buttons
+    $('input[type=radio]').change(function() {
+      setUpdatedField($(this));
+      // enableSubmit();
+    });
+
+    // /enableSubmit/ enable submission of profile info if a field is changed
+    // var enableSubmit = function(){
+      // $btnProfileSubmit.prop("disabled", false);
+    // }
+
+    // /setUpdatedField/ On a profile field change, update updatedFields
+    var setUpdatedField = function($field){
+      field_name = $field.attr('name');
+      field_value = $field.val();
+      updatedFields[field_name] = field_value;
+    }
+
+    // Validate profile info fields on submit
+    $btnProfileSubmit.on('click', function(event){
+      event.preventDefault();
+      if(Object.keys(updatedFields).length > 0){
+        $pProfileForm.validate();
+      }
+    });
+
+    // On profile form success, send updatedFields payload to server
+    $pProfileForm.on('form:success', function(){
+      $.ajax({
+        type: "POST",
+        url: $profileForm.attr('action'),
+        data: { _method:'PATCH',  updatedFields},
+        dataType: 'json',
+        success: function(msg) {
+          $pProfileForm.reset();
+          // $btnProfileSubmit.attr('disabled', true);
+          $msgProfileUpdate.show('slow');
+          setTimeout(function(){ $msgProfileUpdate.hide('slow'); }, 5000);
+        }
+      });
+    });
+    /*------------- END Profile form configurations -----------------------------------*/
+
+    /*------------- BEGIN Password form configurations -----------------------------------*/
+    // Custom Parsley validator: new password cannot be the same as current
+    window.Parsley.addValidator('notequalto', {
+      requirementType: 'string',
+      validateString: function(val, elem) {
+        return val !== $(elem).val();
+      },
+      messages: {
+        en: 'Your new password is the same as your current password'
+      }
+    });
+
+    // /showPasswordForm/ animate revealing of the password form elements
+    showPasswordForm = function(){
+      $pwForm.show('slow', function(){
+        $btnChangePw
+          .addClass('btn-primary btn-primary--hover')
+          .removeClass('btn-secondary btn-secondary--hover');
+
+        $btnChangePw.bind('click', submitChangedPassword);
+      });
+      $btnCancelChangePw.show('slow');
+      $btnChangePw.unbind('click');
+    };
+
+    // /hidePasswordForm/ animate hiding of the password form elements and reset form elements
+    hidePasswordForm = function(){
+      $pwForm.hide('slow', function(){
+        // clear password input fields on cancel
+        $pwForm.find('input[type=password]').val("");
+
+        // Reset parsley styles
+        $pPwForm.reset();
+        $pCurrPw.reset();
+        $btnChangePw
+          .removeClass('btn-primary btn-primary--hover')
+          .addClass('btn-secondary btn-secondary--hover');
+      });
+      $btnCancelChangePw.hide('slow');
+      $btnChangePw
+        .unbind('click', submitChangedPassword)
+        .bind('click', showPasswordForm);
+    }
+
+    submitChangedPassword = function(){
+      $pPwForm.validate();
+
+      $.ajax({
+        url: "profile/verify-current-password",
+        data: {'current_password': $('#current_password').val()},
+        dataType: 'json',
+        async: false,
+        type: 'GET',
+        success: function(data){
+          response = true;
+          currentPasswordValid = true;
+          $pCurrPw.removeError('current_password_error', {updateClass: true});
+          if($pPwForm.isValid()){
+            var updated_password = $('#new_password_confirmation').val();
+            $.ajax({
+              type: "POST",
+              url: '/profile/update-password',
+              data: { _method:'PATCH',  updated_password},
+              dataType: 'json',
+              success: function() {
+                hidePasswordForm();
+                $msgPasswordUpdate.show('slow');
+                setTimeout(function(){ $msgPasswordUpdate.hide('slow'); }, 5000);
+              }
+            });
+          };
+        },
+        error: function(data){
+          currentPasswordValid = false;
+          if(!$currPw.hasClass('error')){
+            $pCurrPw.addError('current_password_error', {message: 'Current password is incorrect' , assert: false, updateClass: true});
+          }
+        }
+      });
+    };
+
+    // Change password event handling
+    $btnChangePw.on('click', showPasswordForm);
+    $btnCancelChangePw.on('click', hidePasswordForm);
+    /*------------- END Password form configurations -----------------------------------*/
+    /*------------- END Module configurations-------------------------------------------*/
+  }());
