@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :teams
-  resources :subscriptions
-
-
   resources :organizations do 
     member do 
       post 'email_members_upload_file'
@@ -14,7 +10,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   # use routes error to handle both member and collection routes when exception is thrown
   resources :errors, only: [:user_error, :application_error, :not_found, :internal_server_error] do
      member do
@@ -24,7 +19,6 @@ Rails.application.routes.draw do
      collection do
       get 'user_error'
      end
-    
   end
 
   # exceptions and errors handling for application
@@ -82,7 +76,12 @@ Rails.application.routes.draw do
 
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
   post '/profiles/create-completed-profile' => 'profiles#create_completed_profile', as: 'create_completed_profile'
+  
+  # Devise routes
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
+  devise_scope :user do
+    get "/cm/sign_up" => "registrations#new_org_member"
+  end
 
   resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'
