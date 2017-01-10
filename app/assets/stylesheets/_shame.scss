@@ -268,17 +268,18 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   .fa-bars { padding-top: 1.4rem; }
 }
 #nav-overlay {
-  height: 100%;
-  width: 0;
+  height: 0;
+  width: 100%;
   position: fixed;
   z-index: 0;
   right: 0;
   top: 0;
   background-color: #00ccff;
   overflow-x: hidden;
+  overflow-y: hidden;
   transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
   &.open {
-    width: 100%;
+    height: 100%;
   }
 }
 
