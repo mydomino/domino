@@ -80,7 +80,7 @@ Rails.application.routes.draw do
   # Devise routes
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
   devise_scope :user do
-    get "/cm/sign_up" => "registrations#new_org_member"
+    get "/sungevity" => "registrations#new_org_member"
   end
 
   resources :recommendations, only: [:destroy, :update, :index] do

@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   
   # Corp member registration
   def new_org_member
-
+    @company_name = request.original_url.split('/').last.capitalize
   end
 
 
