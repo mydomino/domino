@@ -45,8 +45,8 @@ namespace :csv do
   end
 
 
-  desc "Create mydomino org and users for testing."
-  task mydomino: :environment do 
+  desc "Create corporate and admin users for onboarding."
+  task create_corporate_and_admin: :environment do 
 
     org_name = 'MyDomino'
 
