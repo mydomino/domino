@@ -3,10 +3,6 @@ class RegistrationsController < Devise::RegistrationsController
   # Corp member registration
   def new_org_member
 
-    #1. Via sign up link
-
-    #2. Via company landing page
-
   end
 
 
