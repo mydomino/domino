@@ -29,5 +29,13 @@ class UserMailer < ActionMailer::Base
     Rails.logger.info "Email with CSV file attachment was sent.\n"
     
   end
+
+  def email_user_with_on_board_url(org_name, u_fn, u_ln, u_email)
+    @org_name, @u_fn, @u_ln, @u_email = org_name, u_fn, u_ln, u_email
+
+    Rails.logger.info "Sending email with Onboard url to #{@u_email}....\n"
+    mail(from: 'MyDomino <team@mydomino.com>', to: @u_email, subject: "Welcome to Mydomino. Here is your on-boarding instructions.")
+
+  end
   
 end

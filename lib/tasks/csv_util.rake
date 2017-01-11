@@ -98,96 +98,104 @@ namespace :csv do
 
   def create_user(organization, first_name, last_name, u_email, role)
 
-    u_fn = first_name
-    u_ln = last_name
+    actions_complete = false
 
+    ActiveRecord::Base.transaction do
 
-    puts "Find or create user #{u_email}....\n"
+      u_fn = first_name
+      u_ln = last_name
+  
+  
+      puts "Find or create user #{u_email}....\n"
+  
+      # create an org. admin user
+      user = User.find_or_create_by(email: u_email) do |u|
+  
+        
+  
+        puts "Creating user #{u_email}.\n"
+  
+        u.email = u_email
+        u.password = 'ILoveCleanEnergy'
+        u.password_confirmation = 'ILoveCleanEnergy'
+        u.role = role
+  
+      end
+  
+      puts "Find or create profile #{u_email}....\n"
+  
+      # create profile and associate it with the user
+      profile = Profile.find_or_create_by(email: u_email) do |p|
+  
+        puts "Creating profile #{u_email}.\n"
+  
+        p.first_name = u_fn
+        p.last_name = u_ln
+        p.email = u_email
+  
+      end
+  
+  
+      profile.update(dashboard_registered: true)
+  
+      puts "Saving info for profile #{u_email}....\n"
+      profile.save!
+  
+      user.profile = profile
+  
+      puts "Find or create dashboard #{u_email}....\n"
+  
+      # Create a dashboard and associated it with the user
+      dashboard = Dashboard.find_or_create_by(lead_email: u_email) do |d|
+  
+        puts "Creating dashboard #{u_email}.\n"
+  
+        d.lead_name = u_fn + " " + u_ln
+        d.lead_email = u_email
+  
+        # do not need to set slug
+        #d.slug = " test slug #{u_email}"
+  
+      end
+  
+      # associate product and tasks with dashboard
+      dashboard.products = Product.default
+      dashboard.tasks = Task.default
+  
+      puts "Saving info for dashboard #{u_email}....\n"
+      dashboard.save!
+  
+      user.dashboard = dashboard
+  
+  
+      puts "Saving info for user #{u_email}....\n"
+      user.save!
+  
+     
+      # Add user to organization
+      organization.users << user
+  
+      puts "Saving info for org #{organization.name}....\n"
+      organization.save!
+  
+  
+      # refer to registration_controller#after_sign_up_path_for
+      # registered_user.rb
+  
+      # update Zoho
+      puts "Sending profile data to Zoho for #{u_email}"
+      profile.save_to_zoho
 
-    # create an org. admin user
-    user = User.find_or_create_by(email: u_email) do |u|
-
-      
-
-      puts "Creating user #{u_email}.\n"
-
-      u.email = u_email
-      u.password = 'ILoveCleanEnergy'
-      u.password_confirmation = 'ILoveCleanEnergy'
-      u.role = role
-
-    end
-
-    puts "Find or create profile #{u_email}....\n"
-
-    # create profile and associate it with the user
-    profile = Profile.find_or_create_by(email: u_email) do |p|
-
-      puts "Creating profile #{u_email}.\n"
-
-      p.first_name = u_fn
-      p.last_name = u_ln
-      p.email = u_email
-
-    end
-
-
-    profile.update(dashboard_registered: true)
-
-    puts "Saving info for profile #{u_email}....\n"
-    profile.save!
-
-    user.profile = profile
-
-    puts "Find or create dashboard #{u_email}....\n"
-
-    # Create a dashboard and associated it with the user
-    dashboard = Dashboard.find_or_create_by(lead_email: u_email) do |d|
-
-      puts "Creating dashboard #{u_email}.\n"
-
-      d.lead_name = u_fn + " " + u_ln
-      d.lead_email = u_email
-
-      # do not need to set slug
-      #d.slug = " test slug #{u_email}"
-
-    end
-
-    # associate product and tasks with dashboard
-    dashboard.products = Product.default
-    dashboard.tasks = Task.default
-
-    puts "Saving info for dashboard #{u_email}....\n"
-    dashboard.save!
-
-
-    user.dashboard = dashboard
-
-
-    puts "Saving info for user #{u_email}....\n"
-    user.save!
-
+      # all actions were completed sucessfully. Let's set the flag to indicate that
+      actions_complete = true
    
-    # Add user to organization
-    organization.users << user
-
-    puts "Saving info for org #{organization.name}....\n"
-    organization.save!
-
-    # Show the result in reverse manner
-    org = user.organization
-
-    puts "Orginization is #{org.name} \n"
+    end
 
 
-    # refer to registration_controller#after_sign_up_path_for
-    # registered_user.rb
+    puts "================================================================\n\n"
 
-    # update Zoho
-    profile.save_to_zoho
+    return actions_complete
 
-    
   end
 
 
@@ -203,9 +211,6 @@ namespace :csv do
       create_user(organization, u_email.downcase, role)
 
     end
-
-
-
   end
 
 
@@ -250,38 +255,48 @@ namespace :csv do
     file_name_path = full_path + '/' +  ARGV[2] 
     puts "Data file is imported from #{file_name_path}."
 
-    ActiveRecord::Base.transaction do
+   
+
+    role = 'user'
+    for_production = false
+    for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
+      (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
+    
+    CSV.foreach(file_name_path, headers: true) do |row|
       begin
 
-        role = 'user'
-        for_production = false
-        for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
+        puts "\n\nRow is #{row}"
+        #puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
 
-        CSV.foreach(file_name_path, headers: true) do |row|
+        next if row.size == 0
 
-          puts "\n\nRow is #{row}"
+        u_fn = for_production ? row['First_name'] : 'test_' + row['First_name']
+        u_ln = for_production ? row['Last_name'] : 'test_' + row['Last_name']
+        u_email = row['Email'] #for_production ? u_email : u_email
 
-          puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
+        puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
 
+        # email is case sensitive for the create, so convert it to lower case
+        if create_user(organization, u_fn, u_ln, u_email.downcase, role)
 
-          u_fn = for_production ? row['First_name'] : 'test_' + row['First_name']
-          u_ln = for_production ? row['Last_name'] : 'test_' + row['Last_name']
-          u_email = row['Email'] #for_production ? u_email : u_email
-
-
-          puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
-
-
-          # email is case sensitive for the create, so convert it to lower case
-          create_user(organization, u_fn, u_ln, u_email.downcase, role)
-
+          # send user email with on board url
+          send_user_email_with_on_board_url(organization.name, u_fn, u_ln, u_email.downcase)
         end
-      rescue Exception => e  
-        puts "\nError! #{e.message}."
-        exit
-      end
-   end
 
+      rescue Exception => e  
+        puts "\nException in CSV for row: #{row}! Error is: #{e.message}."
+      end
+    end
+      
+
+  end
+
+
+
+  def send_user_email_with_on_board_url(org_name, u_fn, u_ln, u_email)
+
+    UserMailer.email_user_with_on_board_url(org_name, u_fn, u_ln, u_email).deliver_now
+    
   end
 
 
