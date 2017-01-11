@@ -5,7 +5,6 @@ class RegistrationsController < Devise::RegistrationsController
     @company_name = request.original_url.split('/').last.capitalize
   end
 
-
   def new
     # Redirect to root path if no slug or email in params
     # Email param comes from sign up link thats generated after a user completes
