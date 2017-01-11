@@ -1,0 +1,15 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Onboard started notification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ </head>
+ <body style="margin: 0; padding: 0;">
+   <% url_link = "https://mydomino.com/#{@org_name}/sign_up?email=#{@u_email}" %>
+   <p>
+     Hi, <%= #{@u_fn} %>. Welcome to Mydomino. Here is the URL to sign up and enjoy your MyDomino's membership: <%= url_link %>
+   </p>
+ </body>
+</html>

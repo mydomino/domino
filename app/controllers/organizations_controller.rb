@@ -123,7 +123,7 @@ class OrganizationsController < ApplicationController
 
     # check to make sure the CSV file was selected
     if params[:file].nil?
-      redirect_to @organization, alert: 'Error! Please select a CSV file for upload.' and return
+      redirect_to @organization, alert: 'Error! Please select a CSV file to upload.' and return
     end
 
     # email the uploaded CSV file to mydomino
