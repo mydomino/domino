@@ -1,0 +1,27 @@
+- content_for :body_class do
+  bg-gray-05
+
+.max-width-4.mx-auto.bg-white.mt4.rounded
+  .clearfix.sm-flex
+    .col.col-12.sm-col.sm-col-6.bg-blue.p4
+      .flex.flex-column{style: 'height: auto;'}
+        %h1 Hi Hooli employee
+        %p
+          Welcome to MyDomino, you're on your way to a clean energy lifestyle.
+
+        %p
+          Sign up to join your company's mission toward a clean energy future.
+    
+    .col.col-12.sm-col.sm-col-6.p4
+      %h1.gray-60 Sign up
+      = form_tag "#" do
+        %label.h6.inline.mb0.gray-60.block{for: "email"} Company email
+        = email_field_tag :email, nil, class: 'text-input'
+        %label.mt2.h6.inline.mb0.gray-60.block{for: "password"} Password
+        = password_field_tag :password, nil, class: 'text-input'
+        %label.mt2.h6.inline.mb0.gray-60.block{for: "password"} Password confirmation
+        = password_field_tag :password_confirmation, nil, class: 'text-input'
+
+        = submit_tag "Sign up", class: "mt2 btn btn-sm btn-primary btn-primary--hover"
+
+
