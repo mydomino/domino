@@ -9,8 +9,10 @@ modulejs.define('new_org_member', function () {
         $orgId,
         $emailSection,
         $msgFormFeedback,
-        $namePwSection;
+        $namePwSectionj,
+        $pEmail;
 
+    // jQuerified elements
     $btnSignUp = $('#btn-sign-up');
     $email = $('#email');
     $firstName = $('#first_name');
@@ -23,31 +25,39 @@ modulejs.define('new_org_member', function () {
     $msgFormFeedback = $('#msg-form-feedback');
     $namePwSection = $('#name-and-password-section');
 
+    // Parsleyfied elements
+    $pEmail = $email.parsley();
+
     $btnSignUp.on('click', function(e){
       e.preventDefault();
 
       // Check email server side
       if ($btnSignUp.attr('value') === 'Continue') {
-        $.ajax({
-          type: "GET",
-          url: '/check-org-member-email',
-          data: { 
-                  organization_id: parseInt($orgId.val()),
-                  email: $email.val() 
-                },
-          dataType: 'json',
-          success: function(data) {
-            if(data.message === 'account exists'){
-              $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
-            } else {
-              $emailSection.hide('slow', function(){
-                $msgFormFeedback.html('Please set name password').slideDown();
-                $namePwSection.show('slow');
-                $btnSignUp.attr('value', 'Sign up');
-              });
+        $pEmail.validate();
+
+        if($pEmail.isValid()){
+          $.ajax({
+            type: "GET",
+            url: '/check-org-member-email',
+            data: { 
+                    organization_id: parseInt($orgId.val()),
+                    email: $email.val() 
+                  },
+            dataType: 'json',
+            success: function(data) {
+              if(data.message === 'account exists'){
+                $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
+              } else {
+                $emailSection.hide('slow', function(){
+                  $msgFormFeedback.html('Please set name password').slideDown();
+                  $namePwSection.show('slow');
+                  $btnSignUp.attr('value', 'Sign up');
+                });
+              }
             }
-          }
-        });
+          });
+        }
+        
       }
       // Submit name and password data to server
       else {

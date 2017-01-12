@@ -19,14 +19,14 @@
         = hidden_field_tag :organization_id, @organization.id
         %section#email-section
           %label.h6.mt2.mb0.gray-60.block{for: 'email'} Email
-          = text_field_tag :email, nil, class: 'text-input'
+          = email_field_tag :email, nil, class: 'text-input', required: true
 
         %section#name-and-password-section{style: 'display: none'}
           .clearfix
             .col.col-12.sm-col.sm-col-6
               .mr0.sm-mr1
                 %label.h6.mt2.mb0.gray-60.block{for: 'first_name'} First name
-                = text_field_tag :first_name, nil, class: 'text-input'
+                = text_field_tag :first_name, nil, class: 'text-input', required: true
             .col.col-12.sm-col.sm-col-6
               .ml0.sm-ml1
                 %label.h6.mt2.mb0.gray-60.block{for: 'last_name'} Last name

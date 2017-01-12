@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/slider
-//= require modulejs
 //= require nprogress
 //= require nprogress-ajax
 //= require turbolinks
@@ -23,6 +22,7 @@
 //= require clipboard
 //= require jquery.slick
 //= require parsley
+//= require modulejs
 //= require init
 //= require mydomino
 //= require_tree ./pages
@@ -30,4 +30,3 @@
 //= require_tree ./profiles
 //= require_tree ./profile_steps
 //= require_tree ./registrations
-
