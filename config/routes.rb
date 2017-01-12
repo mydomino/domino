@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :organizations do 
+  resources :organizations do
+    resources :users, only: [:create] 
     member do 
       post 'email_members_upload_file'
       post 'import_members_upload_file'
@@ -80,8 +81,11 @@ Rails.application.routes.draw do
   # Devise routes
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
   devise_scope :user do
-    get "/sungevity" => "registrations#new_org_member"
+    get "sungevity" => "registrations#new_org_member"
+    get "check-org-member-email" => "registrations#check_org_member_email"
+    post "create-org-member" => "registrations#create_org_member"
   end
+
 
   resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'

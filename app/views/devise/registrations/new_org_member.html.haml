@@ -3,9 +3,9 @@
 
 .max-width-4.mx-auto.bg-white.mt4.rounded
   .clearfix.sm-flex
-    .col.col-12.sm-col.sm-col-6.p4.bg-cover.overlay{style: "background-image: url('#{image_url 'windpower-field'}'); background-position: top right;"}
+    .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.overlay.overlay-blue-alpha-75.black{style: "background-image: url('#{image_url 'windpower-field'}');"}
       .flex.flex-column{style: 'height: auto;'}
-        %h1 Hi #{@company_name} employee
+        %h1 Hi #{@org_name.capitalize} employee
         %p
           Welcome to MyDomino, you're on your way to a clean energy lifestyle.
 
@@ -14,14 +14,101 @@
     
     .col.col-12.sm-col.sm-col-6.p4
       %h1.gray-60 Sign up
-      = form_tag "#" do
-        %label.h6.inline.mb0.gray-60.block{for: "email"} Company email
-        = email_field_tag :email, nil, class: 'text-input'
-        %label.mt2.h6.inline.mb0.gray-60.block{for: "password"} Password
-        = password_field_tag :password, nil, class: 'text-input'
-        %label.mt2.h6.inline.mb0.gray-60.block{for: "password"} Password confirmation
-        = password_field_tag :password_confirmation, nil, class: 'text-input'
+      #msg-form-feedback.gray-60{style: 'display: none;'}
+      = form_tag '#' do
+        = hidden_field_tag :organization_id, @organization.id
+        %section#email-section
+          %label.h6.mt2.mb0.gray-60.block{for: 'email'} Email
+          = text_field_tag :email, nil, class: 'text-input'
 
-        = submit_tag "Sign up", class: "mt2 btn btn-sm btn-primary btn-primary--hover"
+        %section#name-and-password-section{style: 'display: none'}
+          .clearfix
+            .col.col-12.sm-col.sm-col-6
+              .mr0.sm-mr1
+                %label.h6.mt2.mb0.gray-60.block{for: 'first_name'} First name
+                = text_field_tag :first_name, nil, class: 'text-input'
+            .col.col-12.sm-col.sm-col-6
+              .ml0.sm-ml1
+                %label.h6.mt2.mb0.gray-60.block{for: 'last_name'} Last name
+                = text_field_tag :last_name, nil, class: 'text-input'
+          
+          %label.h6.mt2.mb0.gray-60.block{for: 'password'} Password
+          = password_field_tag :password, nil, class: 'text-input'
 
+          %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Password confirmation
+          = password_field_tag :password_confirmation, nil, class: 'text-input'
 
+        = submit_tag "Continue", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
+
+:javascript
+  (function(){
+    var $btnSignUp,
+        $email,
+        $firstName,
+        $lastName,
+        $pw,
+        $pwConfirmation,
+        $orgId,
+        $emailSection,
+        $msgFormFeedback,
+        $namePwSection;
+
+    $btnSignUp = $('#btn-sign-up');
+    $email = $('#email');
+    $firstName = $('#first_name');
+    $lastName = $('#last_name');
+    $pw = $('#password');
+    $pwConfirmation = $('#password-confirmation');
+    $orgId = $('#organization_id');
+
+    $emailSection = $('#email-section');
+    $msgFormFeedback = $('#msg-form-feedback');
+    $namePwSection = $('#name-and-password-section');
+
+    $btnSignUp.on('click', function(e){
+      e.preventDefault();
+
+      // Check email server side
+      if ($btnSignUp.attr('value') === 'Continue') {
+        $.ajax({
+          type: "GET",
+          url: '/check-org-member-email',
+          data: { 
+                  organization_id: parseInt($orgId.val()),
+                  email: $email.val() 
+                },
+          dataType: 'json',
+          success: function(data) {
+            if(data.message === 'account exists'){
+              $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
+            } else {
+              $emailSection.hide('slow', function(){
+                $msgFormFeedback.html('Please set name password').slideDown();
+                $namePwSection.show('slow');
+                $btnSignUp.attr('value', 'Sign up');
+              });
+            }
+          }
+        });
+      }
+      // Submit name and password data to server
+      else {
+        $.ajax({
+          type: "POST",
+          url: '/create-org-member',
+          data: { 
+                  organization_id: $orgId.val(),
+                  email: $email.val(),
+                  first_name: $firstName.val(),
+                  last_name: $lastName.val(),
+                  password: $pw.val(),
+                  password_confirmation: $pwConfirmation.val()
+                },
+          dataType: 'json',
+          success: function(data) {
+            window.location.replace('/dashboard');
+          }
+        });
+      }
+    });
+  }());
