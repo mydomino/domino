@@ -56,6 +56,8 @@ modulejs.define('new_org_member', function () {
             success: function(data) {
               if(data.message === 'account exists'){
                 $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
+                $btnSignUp.attr('disabled', 'disabled');
+                $btnSignUp.css('cursor', 'not-allowed');
               } else {
                 $emailSection.hide('slow', function(){
                   $msgFormFeedback.html('Please set name password').slideDown();

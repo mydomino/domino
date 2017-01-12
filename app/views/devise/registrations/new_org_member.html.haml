@@ -33,7 +33,7 @@
                 = text_field_tag :last_name, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw'}
           
           %label.h6.mt2.mb0.gray-60.block{for: 'password'} Password
-          = password_field_tag :password, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw'}
+          = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Password must be at least 8 characters'}
 
           %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Password confirmation
           = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": 'Password confirmation does not match password'}
