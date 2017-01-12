@@ -10,6 +10,13 @@
     border-color: $blue;
   }
 }
+
+// Error states
+input.error { border-color: #D65A5A!important; }
+
+// For parsley error messages
+.invalid-message { color: #D65A5A; }
+
 // Radio buttons
 
 // Namespace custom radio components, .radio

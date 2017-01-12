@@ -19,24 +19,24 @@
         = hidden_field_tag :organization_id, @organization.id
         %section#email-section
           %label.h6.mt2.mb0.gray-60.block{for: 'email'} Email
-          = email_field_tag :email, nil, class: 'text-input', required: true
+          = email_field_tag :email, nil, class: 'text-input', data: {'parsley-group': 'email'}, required: true
 
         %section#name-and-password-section{style: 'display: none'}
           .clearfix
             .col.col-12.sm-col.sm-col-6
               .mr0.sm-mr1
                 %label.h6.mt2.mb0.gray-60.block{for: 'first_name'} First name
-                = text_field_tag :first_name, nil, class: 'text-input', required: true
+                = text_field_tag :first_name, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw'}
             .col.col-12.sm-col.sm-col-6
               .ml0.sm-ml1
                 %label.h6.mt2.mb0.gray-60.block{for: 'last_name'} Last name
-                = text_field_tag :last_name, nil, class: 'text-input'
+                = text_field_tag :last_name, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw'}
           
           %label.h6.mt2.mb0.gray-60.block{for: 'password'} Password
-          = password_field_tag :password, nil, class: 'text-input'
+          = password_field_tag :password, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw'}
 
           %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Password confirmation
-          = password_field_tag :password_confirmation, nil, class: 'text-input'
+          = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": 'Password confirmation does not match password'}
 
         = submit_tag "Continue", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
 

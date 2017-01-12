@@ -6,11 +6,14 @@ modulejs.define('new_org_member', function () {
         $lastName,
         $pw,
         $pwConfirmation,
+        $namePwFields,
         $orgId,
         $emailSection,
         $msgFormFeedback,
+        $pForm,
         $namePwSectionj,
-        $pEmail;
+        $pEmail,
+        $pNamePwFields;
 
     // jQuerified elements
     $btnSignUp = $('#btn-sign-up');
@@ -24,18 +27,24 @@ modulejs.define('new_org_member', function () {
     $emailSection = $('#email-section');
     $msgFormFeedback = $('#msg-form-feedback');
     $namePwSection = $('#name-and-password-section');
-
     // Parsleyfied elements
-    $pEmail = $email.parsley();
+    // $pEmail = $email.parsley();
+    // $pNamePwFields = $namePwFields.parsley();
+    $pForm =  $('form').parsley({
+                errorClass: "error",
+                errorsWrapper: '<div class="invalid-message inline right"></div>',
+                errorTemplate: '<span></span>',
+                successClass: null
+              });
 
     $btnSignUp.on('click', function(e){
       e.preventDefault();
 
       // Check email server side
       if ($btnSignUp.attr('value') === 'Continue') {
-        $pEmail.validate();
+        $pForm.validate({group: 'email'});
 
-        if($pEmail.isValid()){
+        if($pForm.isValid({group: 'email'})){
           $.ajax({
             type: "GET",
             url: '/check-org-member-email',
@@ -57,26 +66,27 @@ modulejs.define('new_org_member', function () {
             }
           });
         }
-        
+
       }
       // Submit name and password data to server
       else {
-        $.ajax({
-          type: "POST",
-          url: '/create-org-member',
-          data: { 
-                  organization_id: $orgId.val(),
-                  email: $email.val(),
-                  first_name: $firstName.val(),
-                  last_name: $lastName.val(),
-                  password: $pw.val(),
-                  password_confirmation: $pwConfirmation.val()
-                },
-          dataType: 'json',
-          success: function(data) {
-            window.location.replace('/dashboard');
-          }
-        });
+        $pForm.validate({group: 'name-pw'});
+        // $.ajax({
+        //   type: "POST",
+        //   url: '/create-org-member',
+        //   data: { 
+        //           organization_id: $orgId.val(),
+        //           email: $email.val(),
+        //           first_name: $firstName.val(),
+        //           last_name: $lastName.val(),
+        //           password: $pw.val(),
+        //           password_confirmation: $pwConfirmation.val()
+        //         },
+        //   dataType: 'json',
+        //   success: function(data) {
+        //     window.location.replace('/dashboard');
+        //   }
+        // });
       }
     });
   };
