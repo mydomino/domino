@@ -406,11 +406,6 @@ input{ padding-left: 10px; }
 
   input[type=submit] { display: inline; }
 
-  input.error { border-color: #D65A5A!important; }
-
-  // For parsley error messages
-  .invalid-message { color: #D65A5A; }
-
   input[type=text],
   input[type=email],
   input[type=password],
