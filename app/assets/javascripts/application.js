@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/slider
+//= require modulejs
 //= require nprogress
 //= require nprogress-ajax
 //= require turbolinks
@@ -28,3 +29,5 @@
 //= require_tree ./dashboards
 //= require_tree ./profiles
 //= require_tree ./profile_steps
+//= require_tree ./registrations
+
