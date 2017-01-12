@@ -1,4 +1,4 @@
-// Neutral Color Variables
+// Neutral color variables
 $white: #FFFFFF;
 $black: #333333;
 $gray-90: #5C5C5C;
@@ -10,14 +10,19 @@ $gray-10: #EAEAEA;
 $gray-05: #F3F3F3;
 $green: #00BC02;
 
-// Brand Color Variables
+// Brand color variables
 $blue: #00CCFF;
 $navy: #105585;
 $red: #FF0000;
 $orange: orange;
 
-// Alert Color Variables
+// Alert color variables
 $red: #FF0000;
+
+// Colors w/ alpha channel
+$blue-alpha-25: rgba(0, 204, 255, 0.25);
+$blue-alpha-50: rgba(0, 204, 255, 0.5);
+$blue-alpha-75: rgba(0, 204, 255, 0.75);
 
 // Text Colors
 .white { color: $white; }
@@ -34,7 +39,9 @@ $red: #FF0000;
 .red { color: $red; }
 .orange { color: $orange; }
 .green { color: $green; }
-// Background Colors
+
+
+// Background colors
 .bg-transparent{ background-color: transparent; }
 .bg-white { background-color: $white; }
 .bg-gray-05 { background-color: $gray-05; }
@@ -45,7 +52,7 @@ $red: #FF0000;
 .bg-red { background-color: $red; }
 .bg-navy { background-color: $navy; }
 
-// Border Colors
+// Border colors
 .border-gray-10 { border-color: $gray-10; }
 .border-gray-30 { border-color: $gray-30; }
 .border-gray-60 { border-color: $gray-60; }
@@ -53,4 +60,22 @@ $red: #FF0000;
 //Hover
 .blue--hover:hover {
   color: $blue;
+}
+
+// Overlays
+.overlay {
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 100%;
+    z-index: 0;
+  }
+  & * { z-index: 1; }
+}
+.overlay-blue-alpha-75 {
+  &::before { background-color: $blue-alpha-75; }
 }

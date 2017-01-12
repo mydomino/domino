@@ -1,8 +1,85 @@
 class RegistrationsController < Devise::RegistrationsController
   
-  # Corp member registration
+  # Action /new_org_member/
+  # GET mydomino.com/[company name]
+  # Purpose: Organziation landing page for org member onboarding
   def new_org_member
-    @company_name = request.original_url.split('/').last.capitalize
+    # Grab organization name from url
+    @org_name = request.original_url.split('/').last
+    @organization = Organization.where('lower(name) = ?', @org_name.downcase).first
+
+    # Case: Unique sign up link with user auth token
+    # Check auth token
+  end
+  
+  # Action /create_org_member/
+  # POST /create-org-member XmlHttpRequest
+  # Purpose: Creates organization member and provisions Dashboard, and Profile resources
+  def create_org_member
+    @organization = Organization.find(params[:organization_id].to_i)
+    @email = params[:email]
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
+    @pw = params[:password]
+    @pw_confirmation = params[:password_confirmation]
+
+    # Allocate User account, dashboard, and profile 
+    @user = User.create(
+      email: @email,
+      password: @pw,
+      password_confirmation: @pw_confirmation,
+      organization: @organization
+    )
+
+    if @user
+      Dashboard.create(
+        lead_email: @email, 
+        lead_name: "#{@first_name} #{@last_name}",
+        user: @user
+      )
+
+      Profile.create(
+        user: @user,
+        email: @email,
+        first_name: @first_name,
+        last_name: @last_name
+      )
+
+      #sign in newly created user
+      sign_in(@user, scope: :user)
+
+      render json: {
+        message: 'User added',
+        status: 200
+      }, status: 200
+    else
+      render json: {
+        message: 'Error adding user',
+        status: 400
+      }, status: 400
+    end
+  end
+
+  # Action /create_org_member_email/
+  # GET /check-org-member-email XmlHttpRequest
+  # Purpose: Checks submitted org member email. 
+  #   Checks that submitted email has same domain as organization
+  #   Checks if a user account already exists for the provided email address
+  #   If a user account exists, generate unique sign up link and provide relevant feedback
+  #   If a user account doesn't exist, user will be prompted for setting first name, last name,
+  #   and password.
+  def check_org_member_email
+    # TODO check email domain against org domain
+    @organization = Organization.find(params[:organization_id])
+
+    @user = User.find_by_email(params[:email])
+
+    message = @user ? "account exists" : "no account exists"
+    
+    render json: {
+      message: message,
+      status: 200
+    }, status: 200
   end
 
   def new
@@ -92,5 +169,4 @@ class RegistrationsController < Devise::RegistrationsController
     end
     user_dashboard_path
   end
-
 end
