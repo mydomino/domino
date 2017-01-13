@@ -28,7 +28,13 @@ modulejs.define('new_org_member', function () {
     $msgFormFeedback = $('#msg-form-feedback');
     $namePwSection = $('#name-and-password-section');
     // Parsleyfied elements
-    // $pEmail = $email.parsley();
+    $pEmail = $email.parsley();
+
+    // Allow parsley client side validations to override custom server message
+    $pEmail.on('field:error', function(){
+      $pEmail.removeError('email_domain_invalid');
+    });
+
     // $pNamePwFields = $namePwFields.parsley();
     $pForm =  $('form').parsley({
                 errorClass: "error",
@@ -42,6 +48,10 @@ modulejs.define('new_org_member', function () {
 
       // Check email server side
       if ($btnSignUp.attr('value') === 'Continue') {
+
+        // If email domain invalid is present, remove it prior to validation
+        $pEmail.removeError('email_domain_invalid');
+
         $pForm.validate({group: 'email'});
 
         if($pForm.isValid({group: 'email'})){
@@ -65,10 +75,14 @@ modulejs.define('new_org_member', function () {
                   $btnSignUp.attr('value', 'Sign up');
                 });
               }
+            }, 
+            error: function(data){
+              if($('.parsley-email_domain_invalid').length == 0){
+                $pEmail.addError('email_domain_invalid', {message: "Email domain invalid" , assert: false, updateClass: true});
+              }
             }
           });
         }
-
       }
       // Submit name and password data to server
       else {

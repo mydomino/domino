@@ -18,6 +18,9 @@ class RegistrationsController < Devise::RegistrationsController
   def create_org_member
     @organization = Organization.find(params[:organization_id].to_i)
     @email = params[:email]
+
+
+
     @first_name = params[:first_name]
     @last_name = params[:last_name]
     @pw = params[:password]
@@ -71,15 +74,27 @@ class RegistrationsController < Devise::RegistrationsController
   def check_org_member_email
     # TODO check email domain against org domain
     @organization = Organization.find(params[:organization_id])
+    @email = params[:email]
 
-    @user = User.find_by_email(params[:email])
-
-    message = @user ? "account exists" : "no account exists"
+    # Check submitted email domain against org email domain
+    org_email_domain = @organization.email.split("@").last
+    email_domain = @email.split("@").last
     
-    render json: {
-      message: message,
-      status: 200
-    }, status: 200
+    if email_domain != org_email_domain
+      render json: {
+        message: 'Email domain invalid',
+        status: 400
+      }, status: 400
+    else
+      @user = User.find_by_email(params[:email])
+
+      message = @user ? "account exists" : "no account exists"
+      
+      render json: {
+        message: message,
+        status: 200
+      }, status: 200
+    end
   end
 
   def new
