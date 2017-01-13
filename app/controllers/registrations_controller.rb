@@ -9,7 +9,9 @@ class RegistrationsController < Devise::RegistrationsController
     @organization = Organization.where('lower(name) = ?', @org_name.downcase).first
 
     # Case: Unique sign up link with user auth token
-    # Check auth token
+    # If authtoken invalid redirect to error page
+    # Else Store auth token in sess variable
+
   end
   
   # Action /create_org_member/
@@ -19,13 +21,14 @@ class RegistrationsController < Devise::RegistrationsController
     @organization = Organization.find(params[:organization_id].to_i)
     @email = params[:email]
 
-
-
     @first_name = params[:first_name]
     @last_name = params[:last_name]
     @pw = params[:password]
     @pw_confirmation = params[:password_confirmation]
 
+    # TODO check if authtoken is in sess variable
+    # If so, only update user password
+    
     # Allocate User account, dashboard, and profile 
     @user = User.create(
       email: @email,
