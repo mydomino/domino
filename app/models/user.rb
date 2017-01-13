@@ -17,6 +17,8 @@
 #  updated_at             :datetime         not null
 #  role                   :string           default("lead")
 #  organization_id        :integer
+#  signup_token           :string
+#  signup_token_sent_at   :datetime
 #
 # Indexes
 #
