@@ -87,22 +87,24 @@ modulejs.define('new_org_member', function () {
       // Submit name and password data to server
       else {
         $pForm.validate({group: 'name-pw'});
-        // $.ajax({
-        //   type: "POST",
-        //   url: '/create-org-member',
-        //   data: { 
-        //           organization_id: $orgId.val(),
-        //           email: $email.val(),
-        //           first_name: $firstName.val(),
-        //           last_name: $lastName.val(),
-        //           password: $pw.val(),
-        //           password_confirmation: $pwConfirmation.val()
-        //         },
-        //   dataType: 'json',
-        //   success: function(data) {
-        //     window.location.replace('/dashboard');
-        //   }
-        // });
+        if ( $pForm.isValid({group: 'name-pw'}) ) {
+          $.ajax({
+            type: "POST",
+            url: '/create-org-member',
+            data: { 
+                    organization_id: $orgId.val(),
+                    email: $email.val(),
+                    first_name: $firstName.val(),
+                    last_name: $lastName.val(),
+                    password: $pw.val(),
+                    password_confirmation: $pwConfirmation.val()
+                  },
+            dataType: 'json',
+            success: function(data) {
+              window.location.replace('/dashboard');
+            }
+          });
+        }
       }
     });
   };
