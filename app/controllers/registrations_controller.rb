@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     # Grab organization name from url
     @org_name = request.original_url.split('/').last
     @organization = Organization.where('lower(name) = ?', @org_name.downcase).first
-
+    @org_email_domain = @organization.email.split("@").last
     # Case: Unique sign up link with user auth token
     # If authtoken invalid redirect to error page
     # Else Store auth token in sess variable
@@ -53,7 +53,8 @@ class RegistrationsController < Devise::RegistrationsController
 
       #sign in newly created user
       sign_in(@user, scope: :user)
-
+      flash[:notice] = 'Welcome to MyDomino!'
+      
       render json: {
         message: 'User added',
         status: 200
@@ -69,35 +70,19 @@ class RegistrationsController < Devise::RegistrationsController
   # Action /create_org_member_email/
   # GET /check-org-member-email XmlHttpRequest
   # Purpose: Checks submitted org member email. 
-  #   Checks that submitted email has same domain as organization
   #   Checks if a user account already exists for the provided email address
   #   If a user account exists, generate unique sign up link and provide relevant feedback
   #   If a user account doesn't exist, user will be prompted for setting first name, last name,
   #   and password.
   def check_org_member_email
-    # TODO check email domain against org domain
-    @organization = Organization.find(params[:organization_id])
-    @email = params[:email]
+    @user = User.find_by_email(params[:email])
 
-    # Check submitted email domain against org email domain
-    org_email_domain = @organization.email.split("@").last
-    email_domain = @email.split("@").last
+    message = @user ? "account exists" : "no account exists"
     
-    if email_domain != org_email_domain
-      render json: {
-        message: 'Email domain invalid',
-        status: 400
-      }, status: 400
-    else
-      @user = User.find_by_email(params[:email])
-
-      message = @user ? "account exists" : "no account exists"
-      
-      render json: {
-        message: message,
-        status: 200
-      }, status: 200
-    end
+    render json: {
+      message: message,
+      status: 200
+    }, status: 200
   end
 
   def new

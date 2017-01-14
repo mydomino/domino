@@ -1,19 +1,20 @@
-modulejs.define('new_org_member', function () {
-  return function(){
+modulejs.define('new_org_member', function (args) {
+  return function() {
+
+    // Begin module scope variable definitions and initializations
     var $btnSignUp,
         $email,
         $firstName,
         $lastName,
         $pw,
         $pwConfirmation,
-        $namePwFields,
         $orgId,
-        $emailSection,
         $msgFormFeedback,
         $pForm,
-        $namePwSectionj,
-        $pEmail,
-        $pNamePwFields;
+        $namePwSection,
+        $pNamePwFields,
+        verifyEmail,
+        createOrgMember;
 
     // jQuerified elements
     $btnSignUp = $('#btn-sign-up');
@@ -24,18 +25,10 @@ modulejs.define('new_org_member', function () {
     $pwConfirmation = $('#password-confirmation');
     $orgId = $('#organization_id');
 
-    $emailSection = $('#email-section');
     $msgFormFeedback = $('#msg-form-feedback');
     $namePwSection = $('#name-and-password-section');
-    // Parsleyfied elements
-    $pEmail = $email.parsley();
 
-    // Allow parsley client side validations to override custom server message
-    $pEmail.on('field:error', function(){
-      $pEmail.removeError('email_domain_invalid');
-    });
-
-    // $pNamePwFields = $namePwFields.parsley();
+    // Parsleyfied form elements
     $pForm =  $('form').parsley({
                 errorClass: "error",
                 errorsWrapper: '<div class="invalid-message inline right"></div>',
@@ -43,69 +36,82 @@ modulejs.define('new_org_member', function () {
                 successClass: null
               });
 
-    $btnSignUp.on('click', function(e){
+    // Begin method /verifyEmail/
+    // Purpose: This method is used to send the user's submitted email to server.
+    //   The server returns a message indicating whether or not a user account exists
+    //   for the provided email address.
+    //   If an account already exists, the user is informed an email with additional
+    //   instructions for claiming their account has been sent.
+    //   If an account doesn't already exist, the user is shown the name and password
+    //   form
+    verifyEmail = function() {
+      $pForm.validate({group: 'email'});
+
+      if($pForm.isValid({group: 'email'})){
+        $.ajax({
+          type: "GET",
+          url: '/check-org-member-email',
+          data: { 
+                  organization_id: parseInt($orgId.val()),
+                  email: $email.val() 
+                },
+          dataType: 'json',
+          success: function(data) {
+            if(data.message === 'account exists'){
+              $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
+              $btnSignUp.attr('disabled', 'disabled');
+              $btnSignUp.css('cursor', 'not-allowed');
+            } else {
+              $email.prop('disabled', true);
+              $msgFormFeedback.html('Please set your name and password').slideDown();
+              $namePwSection.slideDown('slow');
+              $btnSignUp.attr('value', 'Sign up');
+            }
+          }
+        });
+      }
+    }
+    // End /verifyEmail/
+
+    // Begin /createOrgMember/
+    // Purpose: To submit a new member's name and password information to the server
+    //   such that the appropriate user resources (User, Profile, Dashboard) may be allocated.
+    createOrgMember = function() {
+      $pForm.validate({group: 'name-pw'});
+      if ( $pForm.isValid({group: 'name-pw'}) ) {
+        $.ajax({
+          type: "POST",
+          url: '/create-org-member',
+          data: { 
+                  organization_id: $orgId.val(),
+                  email: $email.val(),
+                  first_name: $firstName.val(),
+                  last_name: $lastName.val(),
+                  password: $pw.val(),
+                  password_confirmation: $pwConfirmation.val()
+                },
+          dataType: 'json',
+          success: function(data) {
+            window.location.replace('/dashboard');
+          }
+        });
+      }
+    }
+    // End /createOrgMember/
+    // End module scope variable definitions and initializations
+
+    // Begin module event handlers
+    $btnSignUp.on('click', function(e) {
       e.preventDefault();
 
-      // Check email server side
       if ($btnSignUp.attr('value') === 'Continue') {
-
-        // If email domain invalid is present, remove it prior to validation
-        $pEmail.removeError('email_domain_invalid');
-
-        $pForm.validate({group: 'email'});
-
-        if($pForm.isValid({group: 'email'})){
-          $.ajax({
-            type: "GET",
-            url: '/check-org-member-email',
-            data: { 
-                    organization_id: parseInt($orgId.val()),
-                    email: $email.val() 
-                  },
-            dataType: 'json',
-            success: function(data) {
-              if(data.message === 'account exists'){
-                $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
-                $btnSignUp.attr('disabled', 'disabled');
-                $btnSignUp.css('cursor', 'not-allowed');
-              } else {
-                $emailSection.hide('slow', function(){
-                  $msgFormFeedback.html('Please set name password').slideDown();
-                  $namePwSection.show('slow');
-                  $btnSignUp.attr('value', 'Sign up');
-                });
-              }
-            }, 
-            error: function(data){
-              if($('.parsley-email_domain_invalid').length == 0){
-                $pEmail.addError('email_domain_invalid', {message: "Email domain invalid" , assert: false, updateClass: true});
-              }
-            }
-          });
-        }
+        verifyEmail();
       }
-      // Submit name and password data to server
       else {
-        $pForm.validate({group: 'name-pw'});
-        if ( $pForm.isValid({group: 'name-pw'}) ) {
-          $.ajax({
-            type: "POST",
-            url: '/create-org-member',
-            data: { 
-                    organization_id: $orgId.val(),
-                    email: $email.val(),
-                    first_name: $firstName.val(),
-                    last_name: $lastName.val(),
-                    password: $pw.val(),
-                    password_confirmation: $pwConfirmation.val()
-                  },
-            dataType: 'json',
-            success: function(data) {
-              window.location.replace('/dashboard');
-            }
-          });
-        }
+        createOrgMember();
       }
     });
+    // End module event handlers
+
   };
 });

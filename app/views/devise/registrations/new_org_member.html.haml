@@ -19,7 +19,9 @@
         = hidden_field_tag :organization_id, @organization.id
         %section#email-section
           %label.h6.mt2.mb0.gray-60.block{for: 'email'} Email
-          = email_field_tag :email, nil, class: 'text-input', data: {'parsley-group': 'email'}, required: true
+          = email_field_tag :email, nil, class: 'text-input', 
+            data: {'parsley-group': 'email', 'parsley-pattern': "\\w+@#{@org_email_domain}", 'parsley-pattern-message': 'Must be company email'}, 
+            required: true
 
         %section#name-and-password-section{style: 'display: none'}
           .clearfix
