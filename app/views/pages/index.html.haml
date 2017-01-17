@@ -195,3 +195,8 @@
           = image_tag 'time-to-choose', class:"pt4"
     .col.col-12.center.mt4.sm-mt3
       =link_to "See more partners >", partners_path, class: " h2 blue text-decoration-none"
+
+:javascript
+  $(document).ready(function(){
+    modulejs.require('home')();
+  });
