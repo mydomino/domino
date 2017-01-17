@@ -1,3 +1,7 @@
+require "#{Rails.root}/app/helpers/posts_helper"
+include PostsHelper
+
+
 namespace :csv do
 
 	require 'faker'
@@ -280,7 +284,11 @@ namespace :csv do
         if create_user(organization, u_fn, u_ln, u_email.downcase, role)
 
           # send user email with on board url
-          send_user_email_with_on_board_url(organization.name, u_fn, u_ln, u_email.downcase)
+          user = User.find_by!(email: u_email.downcase)
+
+          # send user with on borad instructions and signup token
+          user.email_onboard_url(u_fn, u_ln)
+         
         end
 
       rescue Exception => e  
@@ -290,18 +298,6 @@ namespace :csv do
       
 
   end
-
-
-
-  def send_user_email_with_on_board_url(org_name, u_fn, u_ln, u_email)
-
-    UserMailer.email_user_with_on_board_url(org_name, u_fn, u_ln, u_email).deliver_now
-    
-  end
-
-
-
-
 
 
 end
