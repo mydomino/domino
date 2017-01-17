@@ -128,10 +128,6 @@ table#steps {
   transform: rotate(-15deg);
 }
 
-#footer {
-  a:hover, #social-icons .fa:hover { color: #00ccff; }
-}
-
 /********  blog cards on homepage css ********/
 .blog-card-image { height: 256px; }
 
@@ -354,8 +350,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 input{ padding-left: 10px; }
 
-#living-situation,
-#footer {
+#living-situation{
   input[type=text],
   input[type=email],
   input[type=zip],
@@ -400,8 +395,7 @@ input{ padding-left: 10px; }
 
 #profile-forms,
 .recommendation-form,
-.devise-form,
-#footer{
+.devise-form{
   input[type=text],
   input[type=email],
   input[type=password],
