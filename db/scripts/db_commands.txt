@@ -12,7 +12,7 @@ rails g migration add_signup_token_to_users signup_token:string signup_token_sen
 
 
 ############################################
-Rails destroy ....
+Rails destroy ....  
 
 rails destroy scaffold Team
 

@@ -23,7 +23,8 @@ class OrganizationsController < ApplicationController
     @user = User.new
 
     # Grab email domain, to validate email domains client side
-    @org_email_domain = @organization.email.split("@").last
+
+    @org_email_domain = @organization.email.nil? ? nil : @organization.email.split("@").last
   end
 
   # GET /organizations/new
