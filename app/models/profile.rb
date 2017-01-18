@@ -16,10 +16,8 @@ class Profile < ActiveRecord::Base
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true, email: true
-
-  after_create :save_to_zoho
-  after_update :delete_redundant_delayed_jobs, :update_zoho
-  # after_update :update_zoho
+  before_save :downcase_email
+  after_create :send_onboard_started_email
 
   def save_to_zoho
     if LegacyUser.find_by_email(self.email)
@@ -28,21 +26,27 @@ class Profile < ActiveRecord::Base
     end
   end
 
-  #method to minimize api calls to zoho
+  def send_onboard_started_email
+    UserMailer.onboard_started(self).deliver_later
+  end
+
+  #method to minimize api calls to zoho on lead profile updates
   def delete_redundant_delayed_jobs
-    djs = Delayed::Job.where('handler LIKE ?', "%id: '#{self.id}'%:update_zoho%").order(created_at: :desc)
+    djs = Delayed::Job.where('handler LIKE ?', "%job_class: UpdateZohoJob%gid%/Profile/#{self.id}%").order(created_at: :desc)
     if djs.count > 1
-      last_update_job = djs.first
-      djs.where('created_at < ?', last_update_job.created_at).destroy_all
+      djs.where('created_at < ?', djs.first.created_at).destroy_all
     end
   end
   handle_asynchronously :delete_redundant_delayed_jobs
 
   def update_zoho
     #destroy other update operations on same zoho record to minimize zoho api calls
-
-    UpdateZohoJob.perform_later self
+    delete_redundant_delayed_jobs
+    # takes time for zoho record to propogate through api, needs further testing
+    UpdateZohoJob.set(wait: 3.minutes).perform_later self
   end
-  # takes time for zoho record to propogate through api, needs further testing
-  handle_asynchronously :update_zoho, :run_at => Proc.new { 3.minutes.from_now }
+
+  def downcase_email
+    self.email.downcase!
+  end
 end

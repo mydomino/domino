@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Onboard started notification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="margin: 0; padding: 0;">
+ <table border="1" cellpadding="10" cellspacing="0" width="100%">
+  <tr>
+   <td>
+    <strong>Full Name:</strong> <%= "#{@profile.first_name.capitalize} #{@profile.last_name.capitalize}" %>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <strong>Email address:</strong> <%= "#{@profile.email}" %>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <strong>Time submitted:</strong> <%= Time.now.in_time_zone("Pacific Time (US & Canada)").strftime('%m/%d/%Y %H:%M') %>
+   </td>
+  </tr>
+ </table>
+</body>
+</html>

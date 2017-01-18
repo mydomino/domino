@@ -1,23 +1,19 @@
-/ -content_for :logo_class do
-/   blue
 -if current_user.role == 'concierge'
   =render 'concierge_narrow_navbar'
   :css
     body
-    {
-      padding-top: 60px;
-    }
-  .modal#new-recommendation.max-width-4.mx-auto
+    { padding-top: 60px; }
+
+  .modal#new-recommendation.max-width-8.mx-auto.fixed.top-0.bottom-0.left-0.right-0
     .modal-dialog
-      .modal-content
+      .modal-content.bg-white
         .modal-header.relative
-          .absolute.top-0.right-0.close.lh0{"data-dismiss" => "modal"}
-            %span{ style: 'font-size: 2rem;' }
-              .fa.fa-times.blue
+          .absolute.top-0.right-0.close{"data-dismiss" => "modal"}
+            .fa.fa-times.fa-2x.blue.pointer
         .modal-body
           =render 'recommendations/bulk_add_form'
                 
-#dashboard.max-width-4.mx-auto
+#dashboard.max-width-8.mx-auto
   .bg-white.rounded.mb2
     .clearfix.center
       .sm-col.sm-col-12

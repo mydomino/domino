@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
 
+  get "/continue/:profile_id" => 'pages#index'
+
+  get "/newsletter-subscribe" => 'pages#newsletter_subscribe'
   get "/blog" => redirect("http://blog.mydomino.com/")
   get "/blog/:article" => redirect{ |params, req| "http://blog.mydomino.com/#{params[:article]}"}
   get "/blog/category/:category" => redirect{ |params, req| "http://blog.mydomino.com/category/#{params[:category]}"}

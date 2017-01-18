@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520235911) do
+ActiveRecord::Schema.define(version: 20160729181311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(version: 20160520235911) do
     t.string   "email"
     t.string   "phone"
     t.string   "address_line_1"
-    t.string   "address_line_2"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
@@ -164,7 +163,6 @@ ActiveRecord::Schema.define(version: 20160520235911) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "recommendations", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "concierge_id"
     t.integer  "dashboard_id"
     t.boolean  "done"
@@ -203,8 +201,6 @@ ActiveRecord::Schema.define(version: 20160520235911) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "role",                   default: "lead"
-    t.string   "first_name"
-    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

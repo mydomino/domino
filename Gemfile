@@ -50,26 +50,31 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'erb2haml'
   gem "bullet"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rubocop', require: false
+  gem 'haml-lint', require: false
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :test do
   gem 'simplecov'
-  gem 'database_cleaner'
-  gem 'rspec-rails'
   gem 'rspec-activejob'
-  gem 'teaspoon-jasmine'
-  gem 'factory_girl_rails'
+  # gem 'teaspoon-jasmine'
   gem 'faker'
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.53.1'
   gem 'rack_session_access'
-  gem 'webmock'
+  # gem 'webmock'
 end
 
 group :production do
@@ -77,6 +82,3 @@ group :production do
   gem 'skylight'
 end
 
-group :development do
-  gem 'guard-livereload', '~> 2.5', require: false
-end

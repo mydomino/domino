@@ -1,169 +1,159 @@
--content_for :navbar_class do
-  fixed white sm-col-12
--content_for :link_color_class do
-  white
-.alerts.absolute.ml-auto.mr-auto.left-0.right-0.max-width-1.z4
-  =flash_messages
-
-#profile-forms
+#profile-forms{class: "#{@browser.device.mobile? ? 'mobile' : 'non-mobile'}"}
   =render @response[:form]
 
-.clearfix.bg-white.mx-auto
-  .col.col-12.md-col-6.gray-90.p2.center.bg-gray-05.height-420
-    .max-width-2.inline-block.pt4.left-align
-      %h1.mt0 Why MyDomino?
-      %h3
-        We want to help change energy sources from dirty fossil fuels to clean, renewable energy. We believe this will have a substantial, positive impact on climate for people now and in the future.
-      %h3.mb0
-        Check out how MyDomino can help you.
-  %a
-    .col.col-12.md-col-6#hp-video-placeholder.pointer.height-420
-
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
-  %i#close-modal.pointer.fa.fa-2x.fa-times.absolute.white
+  %i#close-modal.p2.pointer.fa.fa-2x.fa-times.absolute.right-0.white
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
 
-#action-path.bg-white.max-width-4.mx-auto.my8
-  .clearfix
-    %h1.center.mb4 YOUR ACTION PATH
+#action-path.bg-white.max-width-8.mx-auto.my4
+  .clearfix.py3
+    .col.col-12.px2.mb4
+      %h1.black.mb0.light.center.line-height-2 Your clean energy action path starts here
+      %h4.gray-80.mt1.mb4.center.max-width-5.mx-auto.line-height-2 We believe changing energy sources from dirty fossil fuels to clean renewable energy will have a substantial, positive impact on the climate for people now and in the future.
 
     .sm-col.sm-col-4.center.mb3.sm-mb0.px2.line-height-1
-      =image_tag "windmill_solar_panel_icon.svg", class: 'mb2'
-      %h2.m0 1. Switch from Dirty to Clean Electricity
-      %p.h4.mt2
+      =image_tag "windmill_solar_panel_icon.svg", id: 'windmill_solar_panel_icon', class: 'mb2'
+      %h2.light.m0 1. Switch from Dirty to Clean&nbsp;Electricity
+      %p.gray-80.h4.mt2.line-height-2
         We'll help you switch your electricity
         %br.sm-hide
           source to 100% clean power
 
     .sm-col.sm-col-4.center.mb3.sm-b0.px2.line-height-1
       =image_tag "lightbulb_outlet_icon.svg", id: 'lightbulb-outlet-icon', class: 'mb2'
-      %h2.m0 2. Maximize Your Clean Electricity
-      %p.h4.mt2
+      %h2.light.m0 2. Maximize Your Clean&nbsp;Electricity
+      %p.gray-80.h4.mt2.line-height-2
         Next, we'll make your clean
         %br.sm-hide
           electricity super-efficient
 
     .sm-col.sm-col-4.center.px2.line-height-1
       =image_tag "heatpump_car_icon.svg", id: 'heatpump-car-icon', class: 'mb2'
-      %h2.m0 3. Do Life on 100% Clean Energy
-      %p.h4.mt2
+      %h2.light.m0 3. Do Life on 100% Clean&nbsp;Energy
+      %p.gray-80.h4.mt2.line-height-2
         Track the progress of your path to a
         %br.sm-hide
           clean energy lifestyle
 
+.bg-gray-05.py4.sm-px2
+  .clearfix.mt3.max-width-8.mx-auto
+    .h1.black.light.center.line-height-2 Learn about clean energy options
+    .clearfix.mx-auto.pt4
+      .sm-col.sm-col-12.md-col-6
+        .blog-card.bg-white.m2
+          .clearfix
+            #solar-blog-card-img.col.col-6.blog-card-image.bg-cover
+            .col.col-6.px2
+              .h2.black.mt3.line-height-1 Solar 101
+              %h5.sm-h4.my2.line-height-2 Confused about solar? Learn everything you need to know&hellip;
+              -# to get clean energy from the sun!
+              =link_to 'Read more', "http://blog.mydomino.com/solar-101", class: 'text-decoration-none gray-80 bold'
 
-%div#about-banner.py4.px2
-  .max-width-3.mx-auto
-    .center.mt3
-      = image_tag "penguin-white.svg", width: '150px'
-    %h1.center.bold.white.mt0.mb3
-      We're All About Good Energy
-    %h2.center.white.mb0
-      Good Energy to Power Your Life
-    .sm-col-11.mx-auto.h3.center.white.mt0
-      We're all about helping you switch from expensive, dirty fuel to
-      good clean energy to power your life. We'll cut through the
-      confusion to make it easy and affordable. We're clean energy
-      nerds committed to helping you join the action path to a 100%
-      clean energy lifestyle, and dedicated to a clean energy domino
-      effect of innovation, hope, and opportunity for everyone.
-    %h2.center.white.mt3.mb0
-      Good Energy that's Guaranteed
-    .sm-col-11.mx-auto.h3.center.white.mt0
-      We work with, and will only refer you to, companies and products
-      with excellent credentials. Our non-commission concierges' first-
-      class service is guaranteed for the entire life of any product or
-      service purchased through MyDomino. Should any issue arise, we'll
-      help resolve it to your 100% satisfaction. Guaranteed good energy.
+      .col-12.sm-col.sm-col-12.md-col-6
+        .blog-card.bg-white.m2
+          .clearfix
+            #cant-go-solar-blog-card-img.col.col-6.blog-card-image.bg-cover
+            .col.col-6.px2
+              .h2.black.mt3.line-height-2 Can't go solar?
+              %h5.sm-h4.my2.line-height-2 Here’s what you can do instead! From clean wind power to&hellip;
+              -# community solar, there’s something for everyone.
+              = link_to 'Read more', 'http://blog.mydomino.com/cant-go-solar', class: 'text-decoration-none gray-80 bold'
+
+      .sm-col.sm-col-12.md-col-6
+        .blog-card.bg-white.m2
+          .clearfix
+            #get-efficient-blog-card-img.col.col-6.blog-card-image.bg-cover
+            .col.col-6.px2
+              .h2.black.pt3.line-height-2 Get efficient!
+              %h5.sm-h4.my2.line-height-2 It’s easy to save with simple actions. Whether it’s LEDs&hellip;
+              -# , smart thermostats, or smart power strips, we’ve got you covered!
+              = link_to 'Read more', 'http://blog.mydomino.com/get-efficient', class: 'text-decoration-none gray-80 bold'
+
+      .sm-col.sm-col-12.md-col-6
+        .blog-card.bg-white.m2
+          .clearfix
+            #family-blog-card-img.col.col-6.blog-card-image.bg-cover
+            .col.col-6.px2
+              .h2.black.pt3.line-height-1 How Sue Got to 100%
+              %h5.sm-h4.mt2.line-height-2 Sue wanted to get her family onto clean energy. But where to start?
+              -# See how MyDomino helped.
+              = link_to 'Read more', 'http://blog.mydomino.com/how-a-family-switched-to-clean-energy/', class: 'text-decoration-none gray-80 bold'
+      .col.col-12.center
+        %h3
+          = link_to 'See more articles >', 'http://blog.mydomino.com', class: 'blue text-decoration-none'
 
 .bg-white
-  .clearfix.max-width-3.mx-auto
-    %h2.sm-h2.mb0.center.p2.my3.line-height-1
-      A small investment with epic savings
-    .rounded.sm-mx0.sm-my2.md-m2.relative.center.bg-gray-05
-      %h1.m0.blue.pt2{style: "font-size: 25px;"}
-        Only
-        %span.relative{style:'font-size: 80px; font-weight:200;'}
-          99
-          %span.absolute{style: 'font-size:18px;left:-10px;top:18px;'}
-            $
-        %span{style: 'margin-left:-22px;'}
-          \/year
-      %ul.list-reset.pb3.px2.inline-block.gray-80
-        %li.left-align
-          %h3.mt0
-            %span
-              %i.fa.fa-check.fa-3.blue
-            A live energy savings concierge at your service
-        %li.left-align
-          %h3
-            %span
-              %i.fa.fa-check.fa-3.blue
-            Your personalized path to 100% clean energy and big savings
-        %li.left-align
-          %h3
-            %span
-              %i.fa.fa-check.fa-3.blue
-            An easy to use, cool dashboard to track your progress
-        %li.left-align
-          %h3
-            %span
-              %i.fa.fa-check.fa-3.blue
-            Access to our seriously cool research on products and vendors
-        %li.left-align
-          %h3
-            %span
-              %i.fa.fa-check.fa-3.blue
-            Exclusive energy and environmental educational stuff
-        %li.left-align
-          %h3
-            %span
-              %i.fa.fa-check.fa-3.blue
-            Privileged access to our product previews and events
+  .clearfix.max-width-9.mx-auto.pt4.px2
+    .h1.black.light.center.pb4.line-height-2 A membership with epic savings
 
-.bg-white.clearfix.mx-auto.m2.max-width-3
-  .col.col-12.px1.center
-    %h1.mt2.mb1.line-height-1
-      Meet our team of clean energy nerds
-    %p.mt0.mb3
-      Dedicated to helping you save money and make a positive impact on the environment.
-    =link_to "Meet the Team", "/team" , class: "btn btn-md btn-primary btn-primary--hover"
+    .col.col-12.md-col-8
+      .h2.light.gray-80 MyDomino members enjoy
+      %table.col.col-12.md-col-8
+        %tr
+          %td
+            %i.mt3.mb2.fa.fa-2x.fa-comments.blue
+          %td
+            .h3.light.mt3.mb2.gray-80.pl2.line-height-1 Unlimited access to an energy savings concierge.
+        %tr
+          %td
+            %i.mb2.fa.fa-2x.fa-file-text-o.blue
+          %td
+            .h3.light.mb2.gray-80.pl2.line-height-1 A personalized plan to 100% clean energy and big savings.
+        %tr
+          %td
+            %i.mb2.fa.fa-2x.fa-dashboard.blue
+          %td
+            .h3.light.mb2.gray-80.pl2.line-height-1 An online dashboard to track your progress.
+        %tr
+          %td
+            %i.mb2.fa.fa-2x.fa-thumbs-o-up.blue
+          %td
+            .h3.light.mb2.gray-80.pl2.line-height-1 Recommendations on clean energy products and services vetted by our team.
 
-.bg-white.clearfix.mx-auto.max-width-4.pt1{style: 'margin-bottom: -7px;'}
-  =image_tag "team-photo2a.jpg", alt: "The Team", class: 'fit mt3'
+    .col.col-12.sm-col.sm-col-12.md-col-4.center
+      .clearfix
+        .col.col-12.sm-col-6.md-col-12.pt2.sm-pt2.md-pt0
+          = embedded_svg 'member-card.svg', class: 'center'
+        .col.col-12.sm-col-6.md-col-12.pt2.sm-pt2
+          .border.border-light-gray.center.rounded.mx-auto{style: 'width:240px;height:150px;'}
+            .h0.mb0.gray-80.mt1
+              %span.strikethrough $99
+              %span.h2 /year
+            .h2.my0.orange.line-height-1 First year free
+            .h3.my0.orange
+              = @rolling_date
+          .p.gray-30 *No credit card required
+
+    .col.col-12.center.pt3.pb4.sm-py4
+      #btn-become-a-member.btn.btn-md.btn-primary.btn-primary--hover Become a member
+
+    .col.col-12
+      .max-width-6.mx-auto
+        %hr.border-none.border-top--gray
+        .px8.py3.center.line-height-2
+          .h3.gray-80 "MyDomino concierge helped guide me through my solar options, now I'm saving so much I'm tired of saving money."
+          .h4.gray-80.pt2 --Billy Joe, MyDomino member in San Francisco, CA
+  %hr.border-none.border-top--gray
+
+.bg-white.pb4
+  .clearfix.max-width-8.mx-auto.py4.center
+    .h1.light.black.center.line-height-2 Our community partners
+    .mt2
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+        = image_tag 'everybody-solar', width: '200px'
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+        = image_tag 'how-to-let-go', width: '200px'
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt3
+        = image_tag 'snow-leopard-conservancy', width: '200px'
+      .sm-col.sm-col-6.md-col-3.mt4.sm-mt0
+        = image_tag 'time-to-choose', width: '200px'
+
+
 %script{src: "//f.vimeocdn.com/js/froogaloop2.min.js", type: 'text/javascript'}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx3fHcF5OsnzG_Utpl1Zm9dtKCNWxBBpk&libraries=places"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"></script>
+%script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAx3fHcF5OsnzG_Utpl1Zm9dtKCNWxBBpk&libraries=places"}
+%script{src: "https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"}
 
 :javascript
-  navbarScroll('#FF0000', '#666');
   $(document).ready(function(){
-    setTimeout(function(){
-      $('.alerts').hide('slow');
-    }, 2000);
-
-    //homepage video js
-    var iframe = $('iframe')[0];
-    var player = $f(iframe);
-    // When the player is ready/loaded, add a finish event listener
-    player.addEvent('ready', function() {
-        player.addEvent('finish', onFinish);
-    });
-
-    function onFinish(id) {
-      $('#video-modal').fadeOut();
-      player.api('unload');
-      $('body').removeClass('lock-position');
-    }
-    $('#hp-video-placeholder').on('click', function(){
-      $('#video-modal').fadeIn();
-      $('body').addClass('lock-position');
-      player.api('play');
-    });
-
-    $('#close-modal').on('click', function(){
-      $('#video-modal').fadeOut();
-      player.api('unload');
-      $('body').removeClass('lock-position');
-    });
+    homepageJS();
   });

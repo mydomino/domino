@@ -23,7 +23,7 @@ class UpdateZohoJob <  ActiveJob::Base
             "<FL val='Last Name'>#{lead.last_name}</FL>"\
             "<FL val='Email'>#{lead.email}</FL>"\
             "<FL val='Interests'>#{@interests.join(';')};</FL>"\
-            "<FL val='Street'>#{lead.address_line_1} #{lead.address_line_2}</FL>"\
+            "<FL val='Street'>#{lead.address_line_1}</FL>"\
             "<FL val='City'>#{lead.city}</FL>"\
             "<FL val='State'>#{lead.state}</FL>"\
             "<FL val='Zip Code'>#{lead.zip_code}</FL>"\

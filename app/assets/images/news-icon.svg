@@ -1,0 +1,16 @@
+<svg width="44" height="46" viewBox="0 0 44 46" version="2.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>1468559596_14.News</title>
+<desc>Created using Figma 0.90</desc>
+<g id="Canvas" transform="translate(297 356)" figma:type="canvas">
+<g id="1468559596_14.News" style="mix-blend-mode:normal;" figma:type="group">
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(-297 -356)" style="mix-blend-mode:normal;"/>
+<use xlink:href="#path1_fill" transform="translate(-297 -356)" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 39 46L 5 46C 2.238 46 0 43.762 0 41L 0 1C 0 0.448 0.447 0 1 0L 35 0C 35.414 0 35.77 0.252 35.922 0.611C 35.972 0.73 36 0.862 36 1L 36 15L 43 15C 43.553 15 44 15.448 44 16L 44 41C 44 43.762 41.762 46 39 46ZM 34 41L 34 2L 2 2L 2 41C 2 42.657 3.344 44 5 44L 35.022 44C 34.39 43.162 34 42.131 34 41ZM 42 17L 36 17L 36 41C 36 42.657 37.343 44 39 44C 40.657 44 42 42.657 42 41L 42 17ZM 5 39C 5 38.448 5.447 38 6 38L 15 38C 15.553 38 16 38.448 16 39C 16 39.553 15.553 40 15 40L 6 40C 5.447 40 5 39.553 5 39ZM 21 28L 30 28C 30.553 28 31 28.448 31 29C 31 29.553 30.553 30 30 30L 21 30C 20.447 30 20 29.553 20 29C 20 28.448 20.447 28 21 28ZM 21 33L 30 33C 30.553 33 31 33.448 31 34C 31 34.553 30.553 35 30 35L 21 35C 20.447 35 20 34.553 20 34C 20 33.448 20.447 33 21 33ZM 21 38L 30 38C 30.553 38 31 38.448 31 39C 31 39.553 30.553 40 30 40L 21 40C 20.447 40 20 39.553 20 39C 20 38.448 20.447 38 21 38ZM 6 33L 15 33C 15.553 33 16 33.448 16 34C 16 34.553 15.553 35 15 35L 6 35C 5.447 35 5 34.553 5 34C 5 33.448 5.447 33 6 33ZM 16 29C 16 29.553 15.553 30 15 30L 6 30C 5.447 30 5 29.553 5 29C 5 28.448 5.447 28 6 28L 15 28C 15.553 28 16 28.448 16 29Z"/>
+<path id="path1_fill" d="M 29 8L 29 22C 29 22.5523 28.5523 23 28 23L 8 23C 7.44772 23 7 22.5523 7 22L 7 8C 7 7.44772 7.44772 7 8 7L 28 7C 28.5523 7 29 7.44772 29 8ZM 31 22L 31 8C 31 6.34315 29.6569 5 28 5L 8 5C 6.34315 5 5 6.34315 5 8L 5 22C 5 23.6569 6.34315 25 8 25L 28 25C 29.6569 25 31 23.6569 31 22Z"/>
+</defs>
+</svg>

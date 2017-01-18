@@ -1,5 +1,3 @@
--content_for :navbar_class do
-  fixed midgray sm-col-12
 #signup.devise-form.pt4
   .max-width-3.mx-auto.mt4
     .bg-lightgray.rounded.pt3.mt4.max-width-2.mx-auto
@@ -22,7 +20,3 @@
       Already have an account?
       %span.blue
         = link_to "Log In", new_user_session_path, class: 'text-decoration-none blue'
-:javascript
-  $(document).ready(function(){
-    navbarScroll('#666', '#00ccff');
-  });

@@ -1,11 +1,11 @@
 #summary.pt4
-  .max-width-3.mx-auto.mt4.px2.pt4
+  .max-width-6.mx-auto.mt8.px2.pt4
     %h1.gray-80.center.line-height-2
       = "Thanks for signing up, #{@profile.first_name.capitalize}!"
     %h2.gray-80.center.line-height-2
       One of our energy savings concierges will contact you shortly.
 
-    .center.mt4
+    .center.mt8
       %p.mb0 Having trouble?
       =link_to "Resend email", "#", class: 'underline gray-80', id: 'lnk-send-email'
       %span.gray-80 or 
@@ -24,10 +24,7 @@
           console.log("success", json);
       });
     });
-    logoColors.startColors.text = '#666'
-    logoColors.startColors.penguin = '#00ccff'
-    $('.navbar-element').css('color', '#666666');
-    navbarScroll('#666666', '#666');
+
     //mobile
     $(window).scrollTop(0)
   });

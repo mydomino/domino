@@ -21,7 +21,6 @@ class DashboardsController < ApplicationController
     end
   end
 
-
   def show
     if !user_signed_in?
       #set flash message to please sign in to access dashboard

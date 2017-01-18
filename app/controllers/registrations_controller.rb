@@ -15,7 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to root_path and return
       end
     else
-      @email = params[:email]
+      @email = params[:email].downcase
       @legacy_user = true if LegacyUser.find_by_email(@email)
     end
 
@@ -27,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
     
     #todo should return to complete onboarding
     if @profile = Profile.find_by_email(@email)
-      @profile.onboard_complete ? (super and return) : (redirect_to root_path and return)
+      @profile.onboard_complete ? (super and return) : (redirect_to "/continue/#{@profile.id}" and return)
     end
 
     #case where legacy users don't have a profile

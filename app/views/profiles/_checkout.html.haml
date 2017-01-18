@@ -1,0 +1,88 @@
+.spacer{style: 'height: 100px;' }       
+-if flash[:notice]
+  =render 'profiles/flash_notice'
+#checkout.mt1
+  .max-width-6.mx-auto
+    .clearfix
+      .sm-col.sm-col-12.mx-auto.center
+        %h2.center.blue.m0
+          Only
+          %span#checkout-price.relative
+            %span#fee
+              = @partner_code ? 0 : 99
+            %span#checkout-dollar-sign.absolute
+              $
+          %span.mxn2
+            \/year
+        %ul.px1.list-reset.my0.max-width-4.mx-auto.inline-block.gray-80
+          %li.left-align
+            %h4.my1
+              %span
+                %i.fa.fa-check.fa-3.blue
+              A live energy savings concierge at your service
+          %li.left-align
+            %h4.my1
+              %span
+                %i.fa.fa-check.fa-3.blue
+              Your personalized path to 100% clean energy and big savings
+          %li.left-align
+            %h4.my1
+              %span
+                %i.fa.fa-check.fa-3.blue
+              An easy to use, cool dashboard to track your progress
+          %li.left-align
+            %h4.my1
+              %span
+                %i.fa.fa-check.fa-3.blue
+              Access to our seriously cool research on products and vendors
+          %li.left-align
+            %h4.my1
+              %span
+                %i.fa.fa-check.fa-3.blue
+              Exclusive energy and environmental educational stuff
+          %li.left-align
+            %h4.my1
+              %span
+                %i.fa.fa-check.fa-3.blue
+              Privileged access to our product previews and events
+
+      =simple_form_for @profile, remote: true do |form|
+        .clearfix.mx-auto
+          .col.col-12.sm-col.sm-col-6.xs-center
+            %label.right#partner-code-label HAVE A PARTNER CODE?
+          .col.col-12.sm-col.sm-col-6.xs-center.relative
+            =@partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @partner_code} ) : (render 'profiles/partner_code_field', f: form)
+            %button.inline{type: "button", disabled: (true if @partner_code), id: 'btn-apply', class: "#{@partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
+              -if @partner_code
+                %i.fa.fa-check.fa-3
+              -else
+                APPLY
+          .col.col-12.center.px2
+            %p.m0.mt3 No Partner Code? No worries! Click Submit and talk to a concierge before you pay.
+        .mt2.px2.relative{style: 'height: 97px;'}
+          =render :partial => "profiles/onboard_submit_btns", :locals=>{:form=>form}
+
+:javascript
+  $(document).ready(function(){
+    $('#btn-apply').on('click', function(){
+      var partnerCode = $('#profile_partner_code').val();
+      $.ajax({
+        type: "POST",
+        url: '/profiles/#{@profile.id}/apply-partner-code', //sumbits it to the given url of the form
+        data: { '_method':'PUT', 'profile': {'partner_code': partnerCode }},
+        dataType: "script" // you want a difference between normal and ajax-calls, and json is standard
+      }).success(function(json){
+          console.log("success", json);
+      });
+    });
+
+    //submit buttons may not be pushed multiple times
+    $("form").submit(function() {
+      $(this).submit(function() {
+        return false;
+      });
+      return true;
+    });
+    //mobile
+    $(window).scrollTop(0)
+  });

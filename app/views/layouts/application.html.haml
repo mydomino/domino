@@ -4,10 +4,11 @@
     %title MyDomino - Change the world, one step at a time
     = render 'layouts/partials/meta'
     = stylesheet_link_tag 'application', media: 'all'
-    %link{rel:"stylesheet", href:"https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"}
+    %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"}
     = javascript_include_tag 'application'
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/placeholders/4.0.1/placeholders.min.js"
     = csrf_meta_tags
-    <link rel="canonical" href="http://mydomino.com" />
+    %link{rel: "canonical", href: "https://mydomino.com"}
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
   %body{class: action_name}
@@ -16,4 +17,4 @@
         = render 'layouts/partials/navbar'
       #content
         = yield
-      = render 'layouts/partials/footer_new'
+      = render 'layouts/partials/footer'
