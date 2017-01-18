@@ -30,10 +30,10 @@
           These hand-picked product recommendations will help you save energy and money.
   .bg-white.px2.mb4
     .clearfix.relative
-      .col.col-12.md-col-8
+      .col.col-12.md-col-6
         %h1.px2.gray-80 Your Recommendations
-      .col.col-12.md-col-4
-        .mt3.right.px2
+      .col.col-12.md-col-6
+        .mt3.right.pr2
           .btn-group
             =link_to 'ALL', {filter: nil}, class: "btn btn-sm border #{@filter.nil? ? 'btn-primary' : 'btn-secondary'}"
             =link_to 'PRODUCTS', {filter: "products"}, class: "btn btn-sm border not-rounded #{(@filter.== 'products') ? 'btn-primary' : 'btn-secondary'}"

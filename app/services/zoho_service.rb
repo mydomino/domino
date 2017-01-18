@@ -17,4 +17,27 @@ class ZohoService
   def get_lead_by_email(email)
     RubyZoho::Crm::Lead.find_by_email(email)
   end
+
+  # BEGIN save to zoho logic
+  # Note:  This job uses delayed job to run the task in the background.
+  #   In order to do so, we have to create a singleton version of the class 
+  #   and mark the asynchronous methods with handle_asynchronously :your_async_method
+  #   Reference: http://nlopez.io/using-delayed_job-with-class-methods/
+  class << self
+    def to_zoho(profile)
+      l = RubyZoho::Crm::Lead.new(
+        :first_name => profile.first_name,
+        :last_name => profile.last_name,
+        :email => profile.email
+      )
+
+      l.save
+    end
+    handle_asynchronously :to_zoho
+  end
+
+  def self.save_to_zoho(profile)
+    ZohoService.to_zoho(profile)
+  end
+  # END save to zoho logic
 end

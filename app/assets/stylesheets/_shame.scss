@@ -338,7 +338,7 @@ input{ padding-left: 10px; }
     border: 1px solid #666;
     height: 42px;
   }
-  select{
+  select {
     -webkit-appearance: none;
     width: 100%;
   }
@@ -497,17 +497,6 @@ input{ padding-left: 10px; }
       border-color: inherit;
     }
   }
-}
-
-.right-10 { right: 10px; }
-
-.top-10 { top: 10px; }
-
-body.lock-position {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  position: fixed;
 }
 
 /* accordion element on FAQ page */

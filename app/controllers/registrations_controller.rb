@@ -14,6 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
     # Case: Unique sign up link with user auth token
     # If authtoken invalid redirect to error page
     # Else Store auth token in sess variable
+    # NOTE: find by signup token, remove email from signup link
     if params[:email]
       @user = User.includes(:profile).find_by_email(params[:email])
       if @user
@@ -79,13 +80,16 @@ class RegistrationsController < Devise::RegistrationsController
         user: @user
       )
 
-      Profile.create(
+      profile = Profile.create(
         user: @user,
         email: @email,
         first_name: @first_name,
         last_name: @last_name,
         dashboard_registered: true
       )
+
+      # Create zoho lead record
+      ZohoService.save_to_zoho(profile)
 
       #sign in newly created user
       sign_in(@user, scope: :user)
@@ -187,6 +191,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # /after_sign_up_path_for/
+  # This action is hit after a user registers through the devise registration form
   def after_sign_up_path_for(resource)
     @email = current_user.email
     @profile = Profile.find_by_email(@email)

@@ -134,3 +134,11 @@ $width-4: 64rem !default;
   width: 16px;
   height: 16px;
 }
+
+body.lock-position {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+}
+

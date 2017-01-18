@@ -19,4 +19,10 @@ class NotifierPreview < ActionMailer::Preview
   def email_template
     UserMailer.email_template('foo@bar.com')
   end
+
+  def email_signup_link
+    @user = User.last
+    @user.organization = Organization.last
+    UserMailer.email_signup_link @user
+  end
 end
