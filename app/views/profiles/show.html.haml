@@ -266,7 +266,7 @@
 
         $btnChangePw.bind('click', submitChangedPassword);
       });
-      $btnCancelChangePw.show('slow');
+      $btnCancelChangePw.fadeIn('slow');
       $btnChangePw.unbind('click');
     };
 
@@ -283,7 +283,7 @@
           .removeClass('btn-primary btn-primary--hover')
           .addClass('btn-secondary btn-secondary--hover');
       });
-      $btnCancelChangePw.hide('slow');
+      $btnCancelChangePw.fadeOut('slow');
       $btnChangePw
         .unbind('click', submitChangedPassword)
         .bind('click', showPasswordForm);
