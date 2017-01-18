@@ -8,13 +8,15 @@
         .clearfix.max-width-4
           .sm-col.sm-col-12.md-col-6.center.py4
             =image_tag product.image_url, style: 'max-height: 256px; max-width: 256px;'
-          .sm-col.sm-col-12.md-col-6
+          .col.col-12.md-col-6
             %h3
               =product.name
             %p
               =product.description
-            =link_to "#{product.price} on Amazon", product.url, class: 'btn-shame block center bg-navy white rounded mb1', target: "_blank"
-            -if(!recommendation.done)
-              =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'btn-shame block center bg-blue white rounded', method: :post
-            -else
-              =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'btn-shame block center bg-blue white rounded', method: :delete
+            %p
+              =link_to "#{product.price} on Amazon", product.url, class: 'center btn btn-sm btn-primary px0 fill-x', style: 'background-color: #105585;',  target: "_blank"
+            %p
+              -if(!recommendation.done)
+                =link_to "I've bought this", recommendation_complete_path(recommendation.id), class: 'center btn btn-sm btn-primary px0 fill-x', method: :post
+              -else
+                =link_to "Mark as Unpurchased", recommendation_undo_complete_path(recommendation.id), class: 'center btn btn-sm btn-primary px0 fill-x', method: :delete

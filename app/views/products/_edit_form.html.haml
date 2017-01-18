@@ -1,11 +1,11 @@
 =simple_form_for @product do |form|
   =form.label :product_id, class: 'bold'
-  =form.text_field :product_id, disabled: true, class: 'mb2'
+  =form.text_field :product_id, disabled: true, class: 'mb2 text-input'
   =form.label :url, class: 'bold'
-  =form.text_field :url, disabled: true, class: 'mb2'
+  =form.text_field :url, disabled: true, class: 'mb2 text-input'
   =form.label :name, class: 'bold'
-  =form.text_field :name, class: 'mb2'
+  =form.text_field :name, class: 'mb2 text-input'
   =form.label :description, class: 'bold'
-  =form.text_area :description, class: 'mb2'
+  =form.text_area :description, class: 'mb2 text-input'
   .my2.block.right-align
     =form.submit "Update Product", class: "btn btn-sm btn-primary"

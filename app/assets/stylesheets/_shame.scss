@@ -142,7 +142,7 @@ table#steps {
 /******** Dashboard Styling ********/
 .recommendation {
   min-height: 310px;
-  &:hover { border-color: #00CCFF; }
+  &:hover { border-color: #00CCFF!important; }
 }
 
 /******** Dashboards index view ********/
@@ -183,9 +183,6 @@ div:hover {
   &>.hover-show { display: block; }
 }
 
-/* Overlay */
-
-
 /***** BEGIN checkout onboarding form components *******/
 #checkout {
   #checkout-price {
@@ -205,7 +202,6 @@ div:hover {
     height: 44px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    // width: 100px;
   }
 
   #partner-code-label{
@@ -348,25 +344,7 @@ input{ padding-left: 10px; }
   }
 }
 
-.border-light {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(0,0,0,0.125);
-}
-
-.border-light-gray { border-color: #c5c5c5; }
-
-.recommendation-form{
-  input[type="text"],
-  input[type="tel"],
-  input[type="email"],
-  textarea,
-  select {
-    border: 1px solid #DDDDDD; }
-}
-
-#profile-forms,
-.recommendation-form{
+#profile-forms{
   input[type=text],
   input[type=email],
   input[type=password],
@@ -457,24 +435,8 @@ input{ padding-left: 10px; }
   }
 }
 
-/* styles for dashboard recommendations */
-.rounded-20 { border-radius: 20px; }
-
-.rounded-20-top { border-radius: 20px 20px 0 0; }
-
-.rounded-20-bottom { border-radius: 0 0 20px 20px; }
-
 /***** dashboard custom css ************/
-.border-blue { border-color: #00ccff; }
-
 #dashboard {
-  hr {
-      border: 0;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      border-bottom-color: rgba(0,0,0,0.125);
-  }
-
   .border {
     border-style: solid;
     border-width: 1px;
@@ -562,16 +524,5 @@ span.toggle { width: 1em; }
     border-color: #00ccff;
     color: #00ccff!important;
   }
-}
-
-.btn-shame {
-  font-family: inherit;
-  font-size: inherit;
-  text-decoration: none;
-  line-height: 1rem;
-  padding: .5rem 1rem;
-  height: auto;
-  vertical-align: middle;
-  -webkit-appearance: none;
 }
 /* END custom.scss */

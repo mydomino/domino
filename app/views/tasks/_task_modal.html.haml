@@ -13,9 +13,12 @@
               =task.name
             %p
               =task.description
+
             -if(task.cta_link.present?)
-              =link_to task.cta_text, task.cta_link, class: 'btn-shame block center bg-navy white rounded mb1'
-            -if(!recommendation.done)
-              =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'center btn-shame block bg-blue white rounded mt1', method: "POST"
-            -else
-              =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'center btn-shame block bg-blue white rounded', method: "DELETE"
+              %p
+                =link_to task.cta_text, task.cta_link, class: 'center btn btn-sm btn-primary px0 fill-x', style: 'background-color: #105585;'
+            %p
+              -if(!recommendation.done)
+                =link_to "I've done this", recommendation_complete_path(recommendation.id), class: 'center btn btn-sm btn-primary px0 fill-x', method: "POST"
+              -else
+                =link_to "Mark as Incomplete", recommendation_undo_complete_path(recommendation.id), class: 'center btn btn-sm btn-primary px0 fill-x', method: "DELETE"
