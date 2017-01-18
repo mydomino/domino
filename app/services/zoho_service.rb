@@ -25,13 +25,20 @@ class ZohoService
   #   Reference: http://nlopez.io/using-delayed_job-with-class-methods/
   class << self
     def to_zoho(profile)
-      l = RubyZoho::Crm::Lead.new(
-        :first_name => profile.first_name,
-        :last_name => profile.last_name,
-        :email => profile.email
-      )
 
-      l.save
+      # First check if record is present in zoho
+      l = RubyZoho::Crm::Lead.find_by_email(profile.email)
+
+      # If record is not already present, create one
+      if !l
+        l = RubyZoho::Crm::Lead.new(
+          :first_name => profile.first_name,
+          :last_name => profile.last_name,
+          :email => profile.email
+        )
+
+        l.save
+      end
     end
     handle_asynchronously :to_zoho
   end
