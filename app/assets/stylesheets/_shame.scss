@@ -53,17 +53,6 @@
 .fill-black path { fill: #333; }
 .fill-white path { fill: white; }
 
-.onboarding-icon-2 {
-  height: 2rem;
-  width: 2rem;
-}
-
-.onboarding-icon-3 {
-  height: 3rem;
-  width: 3rem;
-}
-
-/*end onboarding icons*/
 
 /* sticky footer css*/
 html, body {
@@ -84,19 +73,12 @@ html, body {
 
 /* end sticky footer css */
 
-/* css for progress bar */
+/* BEGIN Onboarding steps css */
 table#steps {
   width: 100%;
   td { width: 20%; }
 }
-
-/* end css for progress bar */
-
-.full-width { width: 100%; }
-
-.onboarding-form {
-  margin-top: 100px;
-}
+/* END Onboarding steps css */
 
 /******** concierge layout css ********/
 .concierge-tools{

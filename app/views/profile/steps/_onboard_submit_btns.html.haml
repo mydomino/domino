@@ -1,8 +1,8 @@
 -if @browser.device.mobile? 
   .mobile-onboard-submit-btns.mt4
-    =form.submit "#{form_name == "checkout" ? "Submit" : "Next"}", class: "btn btn-sm btn-primary btn-primary--hover block full-width my1"
+    =form.submit "#{form_name == "checkout" ? "Submit" : "Next"}", class: "btn btn-sm btn-primary btn-primary--hover block fill-x my1"
 
-    =form.submit "Back", class: "btn btn-sm btn-secondary btn-secondary--hover block full-width my1"
+    =form.submit "Back", class: "btn btn-sm btn-secondary btn-secondary--hover block fill-x my1"
 -else
   .px4.relative{style: "height: #{vertical_offset}"}
     =form.submit "Back", class: "btn btn-sm btn-secondary btn-secondary--hover inline-block absolute", style: "bottom: 1em;"
