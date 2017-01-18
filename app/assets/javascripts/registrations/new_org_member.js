@@ -14,7 +14,8 @@ modulejs.define('new_org_member', function (args) {
         $namePwSection,
         $pNamePwFields,
         verifyEmail,
-        createOrgMember;
+        createOrgMember,
+        setOrgMemberPw;
 
     // jQuerified elements
     $btnSignUp = $('#btn-sign-up');
@@ -77,27 +78,44 @@ modulejs.define('new_org_member', function (args) {
     // Purpose: To submit a new member's name and password information to the server
     //   such that the appropriate user resources (User, Profile, Dashboard) may be allocated.
     createOrgMember = function() {
-      $pForm.validate({group: 'name-pw'});
-      if ( $pForm.isValid({group: 'name-pw'}) ) {
-        $.ajax({
-          type: "POST",
-          url: '/create-org-member',
-          data: { 
-                  organization_id: $orgId.val(),
-                  email: $email.val(),
-                  first_name: $firstName.val(),
-                  last_name: $lastName.val(),
-                  password: $pw.val(),
-                  password_confirmation: $pwConfirmation.val()
-                },
-          dataType: 'json',
-          success: function(data) {
-            window.location.replace('/dashboard');
-          }
-        });
-      }
-    }
+      $.ajax({
+        type: "POST",
+        url: '/create-org-member',
+        data: { 
+                organization_id: $orgId.val(),
+                email: $email.val(),
+                first_name: $firstName.val(),
+                last_name: $lastName.val(),
+                password: $pw.val(),
+                password_confirmation: $pwConfirmation.val()
+              },
+        dataType: 'json',
+        success: function(data) {
+          window.location.replace('/dashboard');
+        }
+      });
+    };
     // End /createOrgMember/
+
+    // Begin /setOrgMemberPw/
+    setOrgMemberPw = function() {
+      $.ajax({
+        type: "POST",
+        url: '/set-org-member-password',
+        data: { 
+          _method:'PATCH',
+          email: $email.val(),
+          password: $pw.val(),
+          password_confirmation: $pwConfirmation.val()
+        },
+        dataType: 'json',
+        success: function() {
+          window.location.replace('/dashboard');
+        }
+      });
+    };
+
+    // End /setOrgMemberPw/
     // End module scope variable definitions and initializations
 
     // Begin module event handlers
@@ -108,10 +126,21 @@ modulejs.define('new_org_member', function (args) {
         verifyEmail();
       }
       else {
-        createOrgMember();
+        $pForm.validate({group: 'name-pw'});
+        if ( $pForm.isValid({group: 'name-pw'}) ) {
+
+          // if first name field is disabled
+          // It means that the user account already exists,
+          // So we have to call setOrgMemberPw()
+          if ($firstName.attr('disabled')){
+            setOrgMemberPw();
+          } 
+          else {
+            createOrgMember();
+          }
+        }
       }
     });
     // End module event handlers
-
   };
 });

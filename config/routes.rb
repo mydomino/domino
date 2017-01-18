@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     get "sungevity" => "registrations#new_org_member"
     get "check-org-member-email" => "registrations#check_org_member_email"
     post "create-org-member" => "registrations#create_org_member"
+    patch "set-org-member-password" => "registrations#set_org_member_password"
   end
 
 

@@ -374,7 +374,6 @@ input{ padding-left: 10px; }
 
 .border-light-gray { border-color: #c5c5c5; }
 
-.devise-form,
 .recommendation-form{
   input[type="text"],
   input[type="tel"],
@@ -394,8 +393,7 @@ input{ padding-left: 10px; }
 }
 
 #profile-forms,
-.recommendation-form,
-.devise-form{
+.recommendation-form{
   input[type=text],
   input[type=email],
   input[type=password],

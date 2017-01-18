@@ -5,15 +5,49 @@ class RegistrationsController < Devise::RegistrationsController
   # Purpose: Organziation landing page for org member onboarding
   def new_org_member
     # Grab organization name from url
-    @org_name = request.original_url.split('/').last
+    # Account for query string parameters as users may have navigated 
+    #   to this view with signup link
+    @org_name = request.original_url.split('?').first.split('/').last
     @organization = Organization.where('lower(name) = ?', @org_name.downcase).first
     @org_email_domain = @organization.email.split("@").last
+
     # Case: Unique sign up link with user auth token
     # If authtoken invalid redirect to error page
     # Else Store auth token in sess variable
-
+    if params[:email]
+      @user = User.includes(:profile).find_by_email(params[:email])
+      if @user
+        @user = nil unless @user.signup_token == params[:a]
+      end
+    end
   end
   
+  # Action /set_org_member_password/
+  # PATCH /set-org-member-password XmlHttpRequest
+  # Purpose: Allow org members to set their passwords via signup link
+  #   These are org members who have had user resources created for them
+  #   by an org admin
+  def set_org_member_password
+    @user = User.find_by_email(params[:email])
+
+    # Update users password and set signup_token to nil
+    # Setting signup_token to nil invalidates sign up link
+    # used by the user.
+    @user.update(
+      password: params[:password],
+      password_confirmation: params[:password_confirmation],
+      signup_token: nil
+    )
+
+    sign_in(@user, scope: :user)
+    flash[:notice] = 'Welcome to MyDomino!'
+
+    render json: {
+      message: 'User password updated',
+      status: 200
+    }, status: 200
+  end
+
   # Action /create_org_member/
   # POST /create-org-member XmlHttpRequest
   # Purpose: Creates organization member and provisions Dashboard, and Profile resources
@@ -77,8 +111,14 @@ class RegistrationsController < Devise::RegistrationsController
   def check_org_member_email
     @user = User.find_by_email(params[:email])
 
-    message = @user ? "account exists" : "no account exists"
-    
+    # If user account exists, send signup link email
+    if @user 
+      message = "account exists"
+      @user.email_signup_link
+    else
+      message = "no account exists"
+    end
+
     render json: {
       message: message,
       status: 200
