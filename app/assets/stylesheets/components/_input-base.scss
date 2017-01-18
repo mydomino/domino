@@ -17,8 +17,20 @@ input.error { border-color: #D65A5A!important; }
 // For parsley error messages
 .invalid-message { color: #D65A5A; }
 
+// Select box
+.select-box {
+  border: 1px solid #666;
+  height: 42px;
+  background: white;
+  -webkit-appearance: none;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: $border-radius;
+   &:focus {
+    border-color: $blue;
+  }
+}
 // Radio buttons
-
 // Namespace custom radio components, .radio
 .radio {
   label {

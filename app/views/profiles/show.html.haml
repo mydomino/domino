@@ -18,13 +18,15 @@
         .col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2.mt2
           %label.h6.inline.mb0.gray-60{for: "current_password"} Current password
           #curr-password-error.inline
-          = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "rounded"
-          %label.h6.inline.mb0.gray-60.mt3{for: "new_password"} New password
-          #new-password-error.inline
-          = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }, class: "rounded"
-          %label.h6.inline.mb0.gray-60.mt3{for: "new_password_confirmation"} Confirm new password
-          #confirm-new-password-error.inline{for: "new_password_confirmation"}
-          = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "rounded"
+          = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "text-input"
+          .mt1
+            %label.h6.inline.mb0.gray-60{for: "new_password"} New password
+            #new-password-error.inline
+            = password_field_tag :new_password, nil, data: { "parsley-required": "true", "parsley-errors-container": "#new-password-error", "parsley-minlength": "8", "parsley-notequalto": "#current_password"  }, class: "text-input"
+          .mt1
+            %label.h6.inline.mb0.gray-60{for: "new_password_confirmation"} Confirm new password
+            #confirm-new-password-error.inline{for: "new_password_confirmation"}
+            = password_field_tag :new_password_confirmation, nil, data: { "parsley-equalto": "#new_password", "parsley-required": "true", "parsley-group": "change-password", "parsley-equalto-message": 'Password confirmation does not match new password', "parsley-errors-container":"#confirm-new-password-error" }, class: "text-input"
 
       .flex.items-center.mt2
         #btn-change-password.btn.btn-sm.btn-secondary.btn-secondary--hover
@@ -58,7 +60,7 @@
             =f.input :city, input_html: {class: "text-input"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-2.px0.sm-pl0.sm-pr2.mt1.sm-mt0
-            =f.input :state, collection: us_states, include_blank: "Select state...", input_html: {class: "rounded"}, label_html: {class: 'h6 mb0 gray-60'}
+            =f.input :state, collection: us_states, input_html: {class: "select-box"}, label_html: {class: 'h6 mb0 gray-60'}
 
           .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1.sm-mt0
             =f.input :zip_code, input_html: {class: "text-input", data: {"parsley-required": "true", "parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}}, label_html: {class: 'h6 mb0 gray-60'}
