@@ -28,5 +28,6 @@
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles
+//= require_tree ./organizations
 //= require_tree ./profile_steps
 //= require_tree ./registrations
