@@ -18,7 +18,12 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   def show
     authorize Organization
-    @user = User.new # Empty user object for add indiviudal member form
+    
+    # Empty user object for add indiviudal member form
+    @user = User.new
+
+    # Grab email domain, to validate email domains client side
+    @org_email_domain = @organization.email.split("@").last
   end
 
   # GET /organizations/new
@@ -103,7 +108,7 @@ class OrganizationsController < ApplicationController
 
       # Save lead record in zoho
       ZohoService.save_to_zoho(@profile)
-      
+
       # Send updated member count back to view
       member_count = @organization.users.size
       
