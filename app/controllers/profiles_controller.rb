@@ -24,6 +24,7 @@ class ProfilesController < ApplicationController
   end
 
   def update_password
+    byebug
     @user = current_user
     @user.update(
       password: params[:updated_password],
@@ -88,7 +89,7 @@ class ProfilesController < ApplicationController
   def update
     # Updates via member profile info page
     if request.xhr?
-      xhr_profile_params = JSON.parse(params["updatedFields"]["profile"].to_json)
+      xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
       if @profile.update(xhr_profile_params)
         render json: {
           message: "Profile updated successfully",

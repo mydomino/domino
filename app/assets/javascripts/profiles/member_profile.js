@@ -122,8 +122,8 @@ modulejs.define('member_profile', function () {
     $pProfileForm.on('form:success', function(){
       $.ajax({
         type: "POST",
+        data: { _method:'PATCH', updated_fields: updatedFields},
         url: $profileForm.attr('action'),
-        data: { _method:'PATCH',  updatedFields},
         dataType: 'json',
         success: function(msg) {
           $pProfileForm.reset();
@@ -197,7 +197,7 @@ modulejs.define('member_profile', function () {
             $.ajax({
               type: "POST",
               url: '/profile/update-password',
-              data: { _method:'PATCH',  updated_password},
+              data: { _method:'PATCH',  updated_password: updated_password},
               dataType: 'json',
               success: function() {
                 hidePasswordForm();
