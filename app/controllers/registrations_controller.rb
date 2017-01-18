@@ -28,7 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
   #   These are org members who have had user resources created for them
   #   by an org admin
   def set_org_member_password
-    @user = User.find_by_email(params[:email])
+    @user = User.includes(:profile).find_by_email(params[:email])
 
     # Update users password and set signup_token to nil
     # Setting signup_token to nil invalidates sign up link
@@ -38,6 +38,7 @@ class RegistrationsController < Devise::RegistrationsController
       password_confirmation: params[:password_confirmation],
       signup_token: nil
     )
+    @user.profile.update(dashboard_registered: true)
 
     sign_in(@user, scope: :user)
     flash[:notice] = 'Welcome to MyDomino!'
@@ -82,7 +83,8 @@ class RegistrationsController < Devise::RegistrationsController
         user: @user,
         email: @email,
         first_name: @first_name,
-        last_name: @last_name
+        last_name: @last_name,
+        dashboard_registered: true
       )
 
       #sign in newly created user
