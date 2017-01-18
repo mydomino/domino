@@ -67,12 +67,14 @@ group :development do
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
 
+
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
+  gem 'mailcatcher', '~> 0.6.1'
 
 end
 

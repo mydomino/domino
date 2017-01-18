@@ -51,24 +51,25 @@ class User < ActiveRecord::Base
     generate_token(:signup_token)
     self.save
     UserMailer.email_signup_link(self).deliver_later
+    puts "User #{self.email} signup token emails on #{PostsHelper::format_post_date(self.signup_token_sent_at.to_s)}\n"
   end
 
   # email signup_token to user
-  def email_onboard_url(first_name, last_name)
-    # generate a new signup token
-    generate_token(:signup_token)
-
-    # save the signup token sent date
-    self.signup_token_sent_at = Time.zone.now
-
-    save!
-
-    org_name = self.organization.nil? ? '' : self.organization.name
-
-    UserMailer.email_user_with_on_board_url(org_name, first_name, last_name, self.email, self.signup_token).deliver_now
-
-    puts "User #{self.email} signup token emails on #{PostsHelper::format_post_date(self.signup_token_sent_at.to_s)}\n"
-  end
+  #def email_onboard_url(first_name, last_name)
+  #  # generate a new signup token
+  #  generate_token(:signup_token)
+#
+  #  # save the signup token sent date
+  #  self.signup_token_sent_at = Time.zone.now
+#
+  #  save!
+#
+  #  org_name = self.organization.nil? ? '' : self.organization.name
+#
+  #  UserMailer.email_user_with_on_board_url(org_name, first_name, last_name, self.email, self.signup_token).deliver_now
+#
+  #  puts "User #{self.email} signup token emails on #{PostsHelper::format_post_date(self.signup_token_sent_at.to_s)}\n"
+  #end
 
   ###############################################################################################################
   private

@@ -287,7 +287,8 @@ namespace :csv do
           user = User.find_by!(email: u_email.downcase)
 
           # send user with on borad instructions and signup token
-          user.email_onboard_url(u_fn, u_ln)
+          #user.email_onboard_url(u_fn, u_ln)
+          user.email_signup_link
          
         end
 
