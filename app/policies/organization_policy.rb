@@ -17,7 +17,7 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def add_individual?
-    (user.role == 'concierge') || (user.role == 'org_admin')
+    (user.role == 'concierge') || (user.role == 'org_admin' )
   end
 
   def update?

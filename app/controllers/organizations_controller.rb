@@ -71,7 +71,7 @@ class OrganizationsController < ApplicationController
   # Purpose: Add member to organiztion via the org admin dashboard
   # Returns: JSON responses to client
   def add_individual
-    authorize Organization
+    authorize @organization
 
     # Form params
     first_name = params[:first_name]
