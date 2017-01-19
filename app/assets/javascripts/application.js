@@ -31,3 +31,4 @@
 //= require_tree ./organizations
 //= require_tree ./profile_steps
 //= require_tree ./registrations
+//= require_tree ./onboarding_module

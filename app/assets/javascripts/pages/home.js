@@ -56,9 +56,6 @@ modulejs.define('home', function () {
     });
     // End module scope event handlers
 
-    // Name and email form validation
-    nameAndEmailFormValidate();
-
     // Slick carousel
     $('.slick').slick({
       centerMode: true,
