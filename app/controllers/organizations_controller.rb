@@ -60,9 +60,6 @@ class OrganizationsController < ApplicationController
         user: @user
       )
 
-      # Save lead record in zoho
-      ZohoService.save_to_zoho(@profile)
-
       # Send updated member count back to view
       member_count = @organization.users.size
       
