@@ -3,14 +3,14 @@ class PagesController < ApplicationController
   layout 'example', only: :example
 
   def index
-    #user goes back from wizard form to homepage
+    # If user goes back to homepage from wizard form
+    # Ensure that the form state is rendered properly
     if params.has_key?(:profile_id) && @profile = Profile.find(params[:profile_id])
       @response = {form: 'profiles/name_and_email', method: :put}
     else
       @profile = Profile.new
       @response = {form: 'profiles/name_and_email', method: :post}
     end
-    @rolling_date = "Until #{Time.now.strftime('%b')} #{Time.now.end_of_month.day}, #{Time.now.year}"
   end
 
   def about
