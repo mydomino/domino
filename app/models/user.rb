@@ -48,7 +48,10 @@ class User < ActiveRecord::Base
   # Purpose: Send signup links to org members who have User accounts previously
   #  created by an org admin.
   def email_signup_link
-    generate_token(:signup_token)
+    # Email signup link is valid until a password is successfully reset
+    if self.signup_token.nil?
+      generate_token(:signup_token)
+    end
     self.save
     UserMailer.email_signup_link(self).deliver_later
   end
