@@ -107,7 +107,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # Action /create_org_member_email/
+  # Action /check_org_member_email/
   # GET /check-org-member-email XmlHttpRequest
   # Purpose: Checks submitted org member email. 
   #   Checks if a user account already exists for the provided email address
@@ -115,7 +115,18 @@ class RegistrationsController < Devise::RegistrationsController
   #   If a user account doesn't exist, user will be prompted for setting first name, last name,
   #   and password.
   def check_org_member_email
-    @user = User.find_by_email(params[:email])
+    @user = User.includes(:profile).find_by_email(params[:email])
+    
+    # If a user has previously set a password,
+    # Redirect them to the sign in page
+    if @user.profile.dashboard_registered
+      flash[:alert] = 'You have already signed up.'
+      render json: {
+        message: 'User has already signed up.',
+        status: 400
+      }, status: 400
+      return
+    end
 
     # If user account exists, send signup link email
     if @user 

@@ -68,6 +68,10 @@ modulejs.define('new_org_member', function (args) {
               $namePwSection.slideDown('slow');
               $btnSignUp.attr('value', 'Sign up');
             }
+          },
+          // User has already signed up
+          error: function(data){
+            window.location.replace('/users/sign_in');
           }
         });
       }

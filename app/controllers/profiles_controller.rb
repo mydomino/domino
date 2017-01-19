@@ -24,7 +24,6 @@ class ProfilesController < ApplicationController
   end
 
   def update_password
-    byebug
     @user = current_user
     @user.update(
       password: params[:updated_password],
