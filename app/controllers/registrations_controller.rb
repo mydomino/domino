@@ -116,22 +116,23 @@ class RegistrationsController < Devise::RegistrationsController
   #   and password.
   def check_org_member_email
     @user = User.includes(:profile).find_by_email(params[:email])
-    
-    # If a user has previously set a password,
-    # Redirect them to the sign in page
-    if @user.profile.dashboard_registered
-      flash[:alert] = 'You have already signed up.'
-      render json: {
-        message: 'User has already signed up.',
-        status: 400
-      }, status: 400
-      return
-    end
 
     # If user account exists, send signup link email
-    if @user 
-      message = "account exists"
-      @user.email_signup_link
+    if @user
+      # If a user has previously set a password,
+      # Redirect them to the sign in page.
+      # Else send the users a sign up link
+      if @user.profile.dashboard_registered 
+        flash[:alert] = 'You have already signed up.'
+        render json: {
+          message: 'User has already signed up.',
+          status: 400
+        }, status: 400
+        return
+      else
+        message = "account exists"
+        @user.email_signup_link
+      end
     else
       message = "no account exists"
     end
