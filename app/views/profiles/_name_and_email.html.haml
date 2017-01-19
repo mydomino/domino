@@ -13,15 +13,15 @@
     =simple_form_for @profile, turboboost: true, method: @response[:method] do |form|
       .clearfix.py2
         .col.col-6
-          =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
+          =form.input_field :first_name, class: "text-input gray-80 required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
           #first-name-error-msg.display-none.red.m0
             'First name' is blank
         .col.col-6.pl1
-          =form.input_field :last_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
+          =form.input_field :last_name, class: "text-input gray-80 required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
           #last-name-error-msg.display-none.red.m0
             'Last name' is blank
         .col.col-6.mt1
-          =form.input_field :email, class: "h3 bg-white gray-80 rounded border border-white required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
+          =form.input_field :email, class: "text-input gray-80 required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
           #email-error-msg.display-none.red.m0
             This email is invalid.
         .col.col-6.pl1.mt1
@@ -57,19 +57,19 @@
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.px1
-                    =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
+                    =form.input_field :first_name, class: "text-input gray-80 required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
                     #first-name-error-msg.display-none.red.m0
                       'First name' is blank
                   .col.col-6.px1
-                    =form.input_field :last_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
+                    =form.input_field :last_name, class: "text-input gray-80 required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
                     #last-name-error-msg.display-none.red.m0
                       'Last name' is blank
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.md-col-8.px1
-                    =form.input_field :email, class: "h3 bg-white gray-80 rounded border border-white required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
+                    =form.input_field :email, class: "text-input gray-80 required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
                     #email-error-msg.display-none.red.m0
                       This email is invalid.
                   .col.col-6.md-col-4.px1
-                    =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-sm btn-primary btn-primary--hover",style: "height:42px;width:100%;"
+                    =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-sm btn-primary btn-primary--hover"
                     

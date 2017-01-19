@@ -308,7 +308,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   }
   input[type=text], input[type=email] {
     border: 1px solid white;
-    height: 42px;
+    &:focus { border: 1px solid #00ccff; }
   }
   ::placeholder{
     color: #858585;
