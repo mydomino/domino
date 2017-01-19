@@ -27,7 +27,8 @@ Profile.create(
   first_name: 'Org',
   last_name: 'Admin',
   email: admin_user.email,
-  user: admin_user
+  user: admin_user,
+  dashboard_registered: true
 )
 
 Dashboard.create(
@@ -59,7 +60,8 @@ Profile.create(
   first_name: 'Org',
   last_name: 'Admin',
   email: admin_user.email,
-  user: admin_user
+  user: admin_user,
+  dashboard_registered: true
 )
 
 Dashboard.create(
@@ -91,7 +93,8 @@ Profile.create(
   first_name: 'Org',
   last_name: 'Admin',
   email: admin_user.email,
-  user: admin_user
+  user: admin_user,
+  dashboard_registered: true
 )
 
 Dashboard.create(
