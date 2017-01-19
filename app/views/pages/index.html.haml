@@ -1,7 +1,7 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
-%div{class: "#{@browser.device.mobile? ? 'mobile' : 'non-mobile'}"}
+%div
   =render @response[:form]
 
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
