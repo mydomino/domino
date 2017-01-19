@@ -325,57 +325,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 input{ padding-left: 10px; }
 
-#living-situation{
-  input[type=text],
-  input[type=email],
-  input[type=zip],
-  input[type=tel],
-  input[type=password],
-  select {
-    border: 1px solid #666;
-    height: 42px;
-  }
-  select {
-    -webkit-appearance: none;
-    width: 100%;
-  }
-}
 
-#profile-forms{
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=tel],
-  textarea { width:100%; }
-
-  input[type=submit] { display: inline; }
-
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=tel],
-  textarea,
-  select {
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    padding: 3px 0px 3px 8px;
-    margin: 0px 1px 3px 0px;
-  }
-
-  input[type=text]:focus,
-  input[type=email]:focus,
-  input[type=password]:focus,
-  input[type=tel]:focus,
-  textarea:focus,
-  select:focus {
-    border-color: #00ccff;
-    padding: 3px 0px 3px 8px;
-    margin: 0px 1px 3px 0px;
-  }
-}
 /* kaminari pagination styles */
 .pagination a,
 .pagination span.current,
@@ -500,8 +450,6 @@ input{ padding-left: 10px; }
 .accordion-content { display: none; }
 
 span.toggle { width: 1em; }
-
-#profile-forms.non-mobile{ min-height: 620px; }
 
 /* Buttons */
 .navbar-element {
