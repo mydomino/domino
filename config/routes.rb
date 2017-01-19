@@ -82,6 +82,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
   devise_scope :user do
     get "sungevity" => "registrations#new_org_member"
+    get "mydomino" => "registrations#new_org_member"
+
     get "check-org-member-email" => "registrations#check_org_member_email"
     post "create-org-member" => "registrations#create_org_member"
     patch "set-org-member-password" => "registrations#set_org_member_password"
