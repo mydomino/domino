@@ -51,7 +51,6 @@ class User < ActiveRecord::Base
     generate_token(:signup_token)
     self.save
     UserMailer.email_signup_link(self).deliver_later
-    puts "User #{self.email} signup token emails on #{PostsHelper::format_post_date(self.signup_token_sent_at.to_s)}\n"
   end
 
   # email signup_token to user
