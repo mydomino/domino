@@ -3,68 +3,21 @@ class OrganizationsController < ApplicationController
   # Default password for individual members added via org admin dashboard
   DEFAULT_MEMBER_PASSWORD = 'ILoveCleanEnergy'
 
-  before_action :set_organization, only: [:show, :edit, :update, :destroy, :add_individual, :email_members_upload_file, 
-    :import_members_upload_file, :test, :download_csv_template]
+  before_action :set_organization, only: [:show, :add_individual, :email_members_upload_file, 
+    :import_members_upload_file, :download_csv_template]
 
   before_action :authenticate_user!
   after_action :verify_authorized
 
-  # GET /organizations
-  def index
-    authorize Organization
-    @organizations = Organization.all
-  end
-
   # GET /organizations/1
   def show
-    authorize Organization
+    authorize @organization
     
     # Empty user object for add indiviudal member form
     @user = User.new
 
     # Grab email domain, to validate email domains client side
-
     @org_email_domain = @organization.email.nil? ? nil : @organization.email.split("@").last
-  end
-
-  # GET /organizations/new
-  def new
-    authorize Organization
-    @organization = Organization.new
-  end
-
-  # GET /organizations/1/edit
-  def edit
-    authorize Organization
-  end
-
-  # POST /organizations
-  def create
-    authorize Organization
-    @organization = Organization.new(organization_params)
-
-    if @organization.save
-      redirect_to @organization, notice: 'Organization was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /organizations/1
-  def update
-    authorize Organization
-    if @organization.update(organization_params)
-      redirect_to @organization, notice: 'Organization was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /organizations/1
-  def destroy
-    authorize Organization
-    @organization.destroy
-    redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
   end
 
   # POST /organizations/1/add_individual
@@ -127,7 +80,6 @@ class OrganizationsController < ApplicationController
   end
 
   def email_members_upload_file
-
     authorize Organization
 
     # check to make sure the CSV file was selected
@@ -144,33 +96,22 @@ class OrganizationsController < ApplicationController
     authorize Organization
   end
 
-  def test
-    authorize Organization
-  end
-
   def download_csv_template
     authorize Organization
     send_data generate_csv_template, filename: "#{@organization.name}_#{Date.today}.csv"
-
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_organization
-      @organization = Organization.find_by!(id: params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def organization_params
-      params.require(:organization).permit(:name, :email, :phone, :fax, :company_url, :sign_up_code, :join_date)
-    end
+  def set_organization
+    @organization = Organization.find_by!(id: params[:id])
+  end
 
-    def generate_csv_template
-
-      CSV.generate do |csv|
-        # Add new headers
-        csv << ['First_name', 'Last_name', 'Email']
-      end
+  def generate_csv_template
+    CSV.generate do |csv|
+      # Add new headers
+      csv << ['First_name', 'Last_name', 'Email']
     end
+  end
 
 end
