@@ -22,36 +22,44 @@ class Organization < ActiveRecord::Base
 
 	validates :name, :presence => true
 
-	LOGO_FULL_FILE_PATH = "#{Rails.root}/app/assets/images/partner_logos"
-	LOGO_ASSETS_FILE_PATH = "partner_logos"
+  # equivalent to this but more portable between OS "#{Rails.root}/public/images/organization_logos"
+	LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "public", "images", "organization_logos" 
+	LOGO_ASSETS_FILE_PATH = "organization_logos"
 
 
+
+  #################################################################
+  # 
+  # Note about placing image files in Rails
+  # If Rails can find the image in the asset folders, then it will link to the compiled asset path. 
+  # If it can not find the image, it will link to the images folder under public instead
+  # 
+  # image_tag("logo.png") 
+  # => '/assets/logo-f2c87c4e3fda671a619ccb7...png'  # if image exists
+  # => '/images/logo.png'   # if image does not exists in asset folder
 
 
 	def has_logo?
 
-      puts "logo_fullpath_filename is #{logo_fullpath_filename}\n"
-      return File.exists? logo_fullpath_filename
-      
-    end
+    return File.exists? logo_fullpath_filename
+    
+  end
 
-    # return the Rails's assets pipeline path and file name of the organization logo
-    def logo_path_name
-      
-      a = File.join LOGO_ASSETS_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
-      puts "logo_path_name is #{a}\n"
-      File.join LOGO_ASSETS_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
-    end
+  # return the Rails's assets pipeline path and file name of the organization logo
+  def logo_path_name
+    
+    File.join LOGO_ASSETS_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
+  end
 
-    # return the full path and file name of the organization logo
+  # return the full path and file name of the organization logo
 	def logo_fullpath_filename
 
-      File.join LOGO_FULL_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
-    end
+    File.join LOGO_FULL_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
+  end
 
 
-    #########################################################################
-    private
+  #########################################################################
+  private
 	
 
 	
