@@ -27,6 +27,5 @@ modulejs.define('onboarding_name_and_email_form', function(){
       }
     });
     // END module event handlers
-
   };
 });
