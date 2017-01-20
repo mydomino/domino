@@ -10,22 +10,17 @@
       %p.mt0.white.relative Watch the video
 
   .clearfix.mx-auto.max-width-2.px2
-    =simple_form_for @profile, turboboost: true, method: @response[:method] do |form|
+    =simple_form_for @profile, method: @response[:method] do |form|
       .clearfix.py2
         .col.col-6
-          =form.input_field :first_name, class: "text-input gray-80 required-field", placeholder: "First name", required: true
-          #first-name-error-msg.display-none.red.m0
-            'First name' is blank
+          =form.input_field :first_name, class: "text-input gray-80", placeholder: "First name", required: true
         .col.col-6.pl1
-          =form.input_field :last_name, class: "text-input gray-80 required-field", placeholder: "Last name", required: true
-          #last-name-error-msg.display-none.red.m0
-            'Last name' is blank
-        .col.col-6.mt1
-          =form.input_field :email, class: "text-input gray-80 required-field", placeholder: "Email address", required: true
-          #email-error-msg.display-none.red.m0
-            This email is invalid.
-        .col.col-6.pl1.mt1
-          =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-md btn-primary btn-primary--hover"
+          =form.input_field :last_name, class: "text-input gray-80", placeholder: "Last name", required: true
+      .clearfix
+        .col.col-6
+          =form.input_field :email, class: "text-input gray-80", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
+        .col.col-6.pl1
+          =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
 
 -if @browser.device.mobile?
   #name-and-email.mobile-form.pt4.relative.bg-cover
@@ -57,21 +52,15 @@
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.px1
-                    =form.input_field :first_name, class: "text-input gray-80 required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
-                    #first-name-error-msg.display-none.red.m0
-                      'First name' is blank
+                    =form.input_field :first_name, class: "text-input gray-80", placeholder: "First name", required: true
                   .col.col-6.px1
-                    =form.input_field :last_name, class: "text-input gray-80 required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
-                    #last-name-error-msg.display-none.red.m0
-                      'Last name' is blank
+                    =form.input_field :last_name, class: "text-input gray-80", placeholder: "Last name", required: true
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.md-col-8.px1
-                    =form.input_field :email, class: "text-input gray-80 required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
-                    #email-error-msg.display-none.red.m0
-                      This email is invalid.
+                    =form.input_field :email, class: "text-input gray-80", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
                   .col.col-6.md-col-4.px1
-                    =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-sm btn-primary btn-primary--hover"
+                    =form.submit "Get started", class: "btn btn-sm btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
 
 :javascript
   modulejs.require('onboarding_name_and_email_form')();

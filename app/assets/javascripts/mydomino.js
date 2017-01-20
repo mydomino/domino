@@ -27,6 +27,7 @@ var nameAndEmailFormValidate = function(){
 
   $('#btn-begin-onboard').on('click', function(e){
     e.preventDefault();
+    console.log('btn begin onboard clicked');
     if (validateRequiredFields($requiredFields)){
       $(".simple_form").submit();
     }
