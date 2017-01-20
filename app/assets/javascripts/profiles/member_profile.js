@@ -36,14 +36,14 @@ modulejs.define('member_profile', function () {
     $pCurrPw = $('#current_password').parsley();
 
     // Parsleyfied forms
-    var $pPwForm = $('.edit_password').parsley({
+    $pPwForm = $('.edit_password').parsley({
                         errorClass: "error",
                         errorsWrapper: '<div class="invalid-message inline right"></div>',
                         errorTemplate: '<span></span>',
                         successClass: null
                     });
 
-    var $pProfileForm = $('.edit_profile').parsley({
+    $pProfileForm = $('.edit_profile').parsley({
                             errorClass: "error",
                             errorsWrapper: '<div class="invalid-message inline right"></div>',
                             errorTemplate: '<span></span>',
@@ -92,7 +92,7 @@ modulejs.define('member_profile', function () {
     };
 
     // Bind input event handler to profile fields
-    for (key_name in profileFields){
+    for (var key_name in profileFields){
       profileFields[key_name].on('input', function(event){
         setUpdatedField($(this));
       });
@@ -205,7 +205,7 @@ modulejs.define('member_profile', function () {
                 setTimeout(function(){ $msgPasswordUpdate.hide('slow'); }, 5000);
               }
             });
-          };
+          }
         },
         error: function(data){
           currentPasswordValid = false;
