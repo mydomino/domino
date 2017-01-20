@@ -30,7 +30,7 @@ modulejs.define('home', function () {
       $videoModal.fadeOut();
       player.api('unload');
       $body.removeClass('lock-position');
-    }
+    };
     // End /onFinish
 
     // Begin module scope event handlers
