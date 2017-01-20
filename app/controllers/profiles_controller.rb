@@ -71,7 +71,6 @@ class ProfilesController < ApplicationController
   def create
     #handle onboarding edge cases 
     @email = (params[:profile][:email]).downcase
-    return if legacy_user?
     return if user_already_registered?
     return if onboarding_incomplete?
     return if onboarded_but_not_registered?
@@ -124,19 +123,6 @@ class ProfilesController < ApplicationController
 
   def create_dashboard(profile)
     Dashboard.create(lead_name: "#{profile.first_name} #{profile.last_name}", lead_email: profile.email)
-  end
-
-  def legacy_user? 
-    if @lu = LegacyUser.find_by_email(@email)
-      if !@lu.dashboard_registered
-        render :js => "window.location ='/users/sign_up?email=#{@lu.email}'"
-      else
-        flash[:notice] = "You have already signed up."
-        redirect_to new_user_session_path
-      end
-      return true
-    end
-    return false
   end
 
   def user_already_registered?

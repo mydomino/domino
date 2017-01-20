@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     member do 
       post 'email_members_upload_file'
       post 'import_members_upload_file'
-      post 'add_individual'
+      post 'add_individual' #add_member
       get  'test'
       get  'download_csv_template'
     end
@@ -79,7 +79,7 @@ Rails.application.routes.draw do
   post '/profiles/create-completed-profile' => 'profiles#create_completed_profile', as: 'create_completed_profile'
   
   # Devise routes
-  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", passwords: "passwords" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   devise_scope :user do
     get "sungevity" => "registrations#new_org_member"
     get "mydomino" => "registrations#new_org_member"

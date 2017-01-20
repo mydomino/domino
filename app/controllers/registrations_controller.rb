@@ -125,6 +125,7 @@ class RegistrationsController < Devise::RegistrationsController
       # If a user has previously set a password,
       # Redirect them to the sign in page.
       # Else send the users a sign up link
+      # TODO: May want to change dashboard_registered to password_registered ?
       if @user.profile.dashboard_registered 
         flash[:alert] = 'You have already signed up.'
         render json: {
