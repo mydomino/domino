@@ -15,7 +15,7 @@
 
     .clearfix
       .max-width-1.bg-white.rounded.mb3.flex.content-center
-        =image_tag "organization_logos/#{@organization_name}_logo", size: "64x64", class: "m2"
+        =image_tag "organization_logos/#{@organization_name.downcase}_logo", size: "64x64", class: "m2"
 
         -# if @organization.has_logo?
           =#image_tag @organization.logo_path_name, size: "64x64", class: "m2"
