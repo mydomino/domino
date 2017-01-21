@@ -61,6 +61,6 @@ class UserMailer < ActionMailer::Base
     org_name = user.organization.name.downcase
     email = user.email
     token = user.signup_token
-    "#{root_url}#{org_name}?email=#{CGI::escape(email)}&a=#{token}"
+    "#{root_url}#{org_name}?a=#{token}"
   end
 end

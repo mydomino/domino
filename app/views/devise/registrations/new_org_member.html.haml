@@ -5,7 +5,7 @@
   .clearfix.sm-flex
     .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.overlay.overlay-blue-alpha-75.black{style: "background-image: url('#{image_url 'windpower-field'}');"}
       .flex.flex-column{style: 'height: auto;'}
-        %h1 Hi #{@org_name.capitalize} employee
+        %h1 Hi #{@organization_name} employee
         %p
           Welcome to MyDomino, you're on your way to a clean energy lifestyle.
 
@@ -17,11 +17,11 @@
       #msg-form-feedback.gray-60{style: 'display: none;'}
 
       = form_tag '#' do
-        = hidden_field_tag :organization_id, @organization.id
+        = hidden_field_tag :organization_id, @organization_id
         %section#email-section
           %label.h6.mt2.mb0.gray-60.block{for: 'email'} Email
           = email_field_tag :email, (@user.email if @user), class: 'text-input', disabled: @user,
-            data: {'parsley-group': 'email', 'parsley-pattern': "[^]+@#{@org_email_domain}", 'parsley-pattern-message': 'Must be company email'}, 
+            data: {'parsley-group': 'email', 'parsley-pattern': "[^]+@#{@organization_email_domain}", 'parsley-pattern-message': 'Must be company email'}, 
             required: true
 
         %section#name-and-password-section{style: "#{'display: none' if !@user}"}

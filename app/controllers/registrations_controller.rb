@@ -7,16 +7,19 @@ class RegistrationsController < Devise::RegistrationsController
     # Grab organization name from url
     # Account for query string parameters as users may have navigated 
     #   to this view with signup link
-    @org_name = request.original_url.split('?').first.split('/').last
-    @organization = Organization.where('lower(name) = ?', @org_name.downcase).first
-    @org_email_domain = @organization.email.split("@").last
+    organization_path_param = request.original_url.split('?').first.split('/').last
+    organization = Organization.where('lower(name) = ?', organization_path_param.downcase).first
+    
+    @organization_id = organization.id
+    @organization_name = organization.name
+    @organization_email_domain = organization.email_domain
 
     # Case: Unique sign up link with user auth token
     # If authtoken invalid redirect to error page
     # Else Store auth token in sess variable
     # NOTE: find by signup token, remove email from signup link
-    if params[:email]
-      @user = User.includes(:profile).find_by_email(params[:email])
+    if params[:a]
+      @user = User.includes(:profile).find_by_signup_token(params[:a])
       if @user
         @user = nil unless @user.signup_token == params[:a]
       end
