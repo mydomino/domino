@@ -4,6 +4,58 @@ include HelperFunctions
 namespace :csv do
 
 	require 'csv'
+
+
+  desc "Create corporate and admin users for onboarding. Usage: rake csv:create_corporate_and_admin Org_name admin_first_name admin_last_name admin_org_email"
+  task create_corporate_and_admin: :environment do 
+
+
+    # generate an empty task for each argument pass in
+    ARGV.each { |a| task a.to_sym do ; end }
+
+    puts "ARGV.size is #{ARGV.size}"
+    
+    if ARGV.size != 7 
+      puts "Error! Please provide proper parameters to your command. \n\nUsage: rake csv:create_corporate_and_admin org_name org_email org_email_domain admin_first_name admin_last_name admin_org_email\n"
+      puts "Example. rake csv:create_corporate_and_admin MyDomino info@mydomino.com mydomino.com Yong Lee yong@mydomino.com\n"
+      exit 1
+    end
+
+    # retrieve the org name
+    org_name = ARGV[1]
+    org_email = ARGV[2]
+    org_email_domain = ARGV[3]
+
+    puts "Organization name is #{org_name}. org_email is #{org_email}. org_email_domain is #{org_email_domain}\n" 
+
+    # create an organization
+    organization = Organization.find_or_create_by!(name: org_name) do |o|
+
+      puts "Creating org #{org_name}.\n"
+
+      o.name = org_name
+      o.email = org_email
+      o.email_domain = org_email_domain
+
+    end
+
+   
+    # create org admin
+    role = 'org_admin'
+    for_production = false
+    for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
+      (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
+
+    u_fn = for_production ? ARGV[4] : 'test_' + ARGV[4]
+    u_ln = for_production ? ARGV[5] : 'test_' + ARGV[5]
+    u_email = ARGV[6]
+
+    puts "admin_first_name is #{u_fn}. admin_last_name is #{u_ln}. admin_org_email is #{u_email}\n" 
+
+    # email is case sensitive for the create, so convert it to lower case
+    HelperFunctions::create_user(organization, u_fn, u_ln, u_email.downcase, role)
+
+  end
 	
 
 
@@ -18,7 +70,9 @@ namespace :csv do
     #puts "ARGV.size is #{ARGV.size}"
     
     if ARGV.size != 3 
-      puts "Error! Please provide proper parameters to your command. Example. rake csv:onboard_org_member_with_csv Sungevity sample_upload_3000.csv"
+      puts "Error! Please provide proper parameters to your command. \n\n"
+      puts "Usage: rake csv:onboard_org_member_with_csv organization_name csv_file_name.csv. Note: please put the csv file under project's root/data folder.\n"
+      puts "Example. rake csv:onboard_org_member_with_csv MyDomino sample_upload_3000.csv"
       exit 1
     end
 
@@ -31,7 +85,7 @@ namespace :csv do
     begin
       organization = Organization.find_by!(name: org_name)
     rescue Exception => e  
-      puts "\nError! #{e.message}. Please note: the name is case sensitive."
+      puts "\nError! #{e.message}. Please note that the organization name is case sensitive."
       exit
     end
    
@@ -47,6 +101,13 @@ namespace :csv do
 
     file_name_path = full_path + '/' +  ARGV[2] 
     puts "Data file is imported from #{file_name_path}."
+
+    # check to make sure the CSV file exists
+    if !File.exist?(file_name_path) 
+      
+      puts "\nError! #{file_name_path} does not exist. Program exit."
+      exit
+    end
 
    
 
@@ -88,6 +149,5 @@ namespace :csv do
       
 
   end
-
 
 end

@@ -16,6 +16,7 @@
 #  email_domain :string
 #
 
+
 class Organization < ActiveRecord::Base
 	has_many :teams, dependent: :destroy
 	has_many :users, dependent: :nullify
@@ -24,7 +25,7 @@ class Organization < ActiveRecord::Base
 	validates :name, :email, :email_domain, :presence => true
 
   # equivalent to this but more portable between OS "#{Rails.root}/public/images/organization_logos"
-	LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "public", "images", "organization_logos" 
+	LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "app", "assets", "images", "organization_logos" 
 	LOGO_ASSETS_FILE_PATH = "organization_logos"
 
 

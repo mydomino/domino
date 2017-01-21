@@ -56,7 +56,7 @@ namespace :md_test do
 
 
   desc "Create corporate and admin users for onboarding."
-  task create_corporate_and_admin: :environment do 
+  task mydomino_create_corporate_and_admin: :environment do 
 
     org_name = 'MyDomino'
 
