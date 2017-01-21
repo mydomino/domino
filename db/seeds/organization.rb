@@ -8,6 +8,7 @@ User.where(email: 'admin@test.org').destroy_all
 organization = Organization.create(
   name: 'Test Org',
   email: 'test@test.org',
+  email_domain: 'test.org',
   phone: '(123) 123-1234',
   company_url: 'http://test.org',
   sign_up_code: nil,
@@ -41,6 +42,7 @@ User.where(email: 'admin@sungevity.com').destroy_all
 organization = Organization.create(
   name: 'Sungevity',
   email: 'test@sungevity.com',
+  email_domain: 'sungevity.com',
   phone: '(123) 123-1234',
   company_url: 'http://sungevity.com',
   sign_up_code: nil,
@@ -74,6 +76,7 @@ User.where(email: 'admin@mydomino.com').destroy_all
 organization = Organization.create(
   name: 'MyDomino',
   email: 'hello@mydomino.com',
+  email_domain: 'mydomino.com',
   phone: '(123) 123-1234',
   company_url: 'https://mydomino.com',
   sign_up_code: nil,
