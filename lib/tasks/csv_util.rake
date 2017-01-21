@@ -13,7 +13,7 @@ namespace :csv do
     # generate an empty task for each argument pass in
     ARGV.each { |a| task a.to_sym do ; end }
 
-    puts "ARGV.size is #{ARGV.size}"
+    #puts "ARGV.size is #{ARGV.size}"
     
     if ARGV.size != 7 
       puts "Error! Please provide proper parameters to your command. \n\nUsage: rake csv:create_corporate_and_admin org_name org_email org_email_domain admin_first_name admin_last_name admin_org_email\n"
