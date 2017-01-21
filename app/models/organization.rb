@@ -13,6 +13,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  users_count  :integer          default(0)
+#  email_domain :string
 #
 
 class Organization < ActiveRecord::Base
@@ -20,7 +21,7 @@ class Organization < ActiveRecord::Base
 	has_many :users, dependent: :nullify
 	has_many :subscriptions, dependent: :destroy
 
-	validates :name, :presence => true
+	validates :name, :email, :email_domain, :presence => true
 
   # equivalent to this but more portable between OS "#{Rails.root}/public/images/organization_logos"
 	LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "public", "images", "organization_logos" 
