@@ -16,8 +16,15 @@ class OrganizationsController < ApplicationController
     # Empty user object for add indiviudal member form
     @user = User.new
 
+    # Grab organization name to display on dashboard
+    # Also, used for dynamically retrieving the company logo
+    @organization_name = @organization.name
+
     # Grab email domain, to validate email domains client side
-    @org_email_domain = @organization.email.nil? ? nil : @organization.email.split("@").last
+    @organization_email_domain = @organization.email_domain
+
+    # Member count is shown in the admin dashboard
+    @member_count = @organization.users.size
   end
 
   # POST /organizations/1/add_individual
