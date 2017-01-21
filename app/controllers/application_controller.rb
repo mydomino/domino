@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :capture_utm_campaign, :get_user_agent
 
   # Bypass handle_exceptions if in development environment
-  around_action :handle_exceptions if Rails.env.development? 
+  around_action :handle_exceptions unless Rails.env.development? 
 
   #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
