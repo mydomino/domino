@@ -15,10 +15,12 @@
 
     .clearfix
       .max-width-1.bg-white.rounded.mb3.flex.content-center
-        - if @organization.has_logo?
-          =image_tag @organization.logo_path_name, size: "64x64", class: "m2"
-        - else
-          No Logo.
+        =image_tag "organization_logos/#{@organization.name.downcase}_logo", size: "64x64", class: "m2"
+
+        -# if @organization.has_logo?
+          =#image_tag @organization.logo_path_name, size: "64x64", class: "m2"
+        -# else
+          -#No Logo.
         /=image_tag "partner_logos/mydomino_logo_400x400.png", size: "64x64", class: "m2"
         %div.my2
           %h2.m0= @organization.name
