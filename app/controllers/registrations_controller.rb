@@ -166,7 +166,6 @@ class RegistrationsController < Devise::RegistrationsController
       end         
     else
       @email = params[:email].downcase
-      @legacy_user = true if LegacyUser.find_by_email(@email)
     end
 
     #check if user already registered, if so redirect to login page
@@ -175,13 +174,6 @@ class RegistrationsController < Devise::RegistrationsController
     
     if @profile = Profile.find_by_email(@email)
       @profile.onboard_complete ? (super and return) : (redirect_to "/continue/#{@profile.id}" and return)
-    end
-
-    # Case where legacy users don't have a profile
-    if LegacyUser.find_by_email(@email)
-      super and return
-    else
-      redirect_to root_path and return
     end
   end
 
@@ -215,25 +207,18 @@ class RegistrationsController < Devise::RegistrationsController
 
     current_user.profile = @profile if !@profile.nil?
     
-    #create and bind dashboard to user if not legacy user
-    if !LegacyUser.find_by_email(@email)
-      #assign provisioned dashboard to newly registered user
-      if dashboard = Dashboard.find_by_lead_email(@email)
-        current_user.dashboard = dashboard
-      else
-        #if dashboard hasn't been allocated (i.e. imported lead) create one
-        current_user.dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
-      end
-
-      @profile.update(dashboard_registered: true)
-      DashboardRegisteredZohoJob.perform_later @profile
+    # Create and bind dashboard to user
+    # Assign provisioned dashboard to newly registered user (i.e. user who onboarded through mydomino.com)
+    if dashboard = Dashboard.find_by_lead_email(@email)
+      current_user.dashboard = dashboard
     else
-      #bind legacy user's dashboard to their newly created user account
-      current_user.dashboard = Dashboard.find_by_lead_email(@email)
-      lu = LegacyUser.find_by_email(@email)
-      lu.update(dashboard_registered: true)
-      @profile.update(dashboard_registered: true) if !@profile.nil?
+      #if dashboard hasn't been allocated (i.e. imported lead) create one
+      current_user.dashboard = Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
     end
+
+    @profile.update(dashboard_registered: true)
+    DashboardRegisteredZohoJob.perform_later @profile
+    
     user_dashboard_path
   end
 end
