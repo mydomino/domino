@@ -25,7 +25,8 @@ class Organization < ActiveRecord::Base
 	validates :name, :email, :email_domain, :presence => true
 
   # equivalent to this but more portable between OS "#{Rails.root}/public/images/organization_logos"
-	LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "app", "assets", "images", "organization_logos" 
+	#LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "app", "assets", "images", "organization_logos" 
+  LOGO_FULL_FILE_PATH = File.join "#{Rails.root}", "public", "images", "organization_logos" 
 	LOGO_ASSETS_FILE_PATH = "organization_logos"
 
 
@@ -50,12 +51,12 @@ class Organization < ActiveRecord::Base
   # return the Rails's assets pipeline path and file name of the organization logo
   def logo_path_name
     
-    #File.join LOGO_ASSETS_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
+    File.join LOGO_ASSETS_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
 
     # hmmm.... This does not work for image_tag
     #File.join "organization_logos", "#{self.name.downcase}_logo_400X400.png"
 
-    "organization_logos/#{self.name.downcase}_logo_400x400.png"
+    #"organization_logos/#{self.name.downcase}_logo_400x400.png"
 
   end
 
