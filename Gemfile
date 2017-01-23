@@ -4,7 +4,7 @@ ruby '2.3.0'
 gem 'rails', '4.2.5.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -48,6 +48,7 @@ gem 'parsley-rails'
 gem 'annotate', '~> 2.7', '>= 2.7.1'
 gem 'faker'
 gem 'inline_svg'
+gem 'modulejs-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -66,12 +67,14 @@ group :development do
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
 
+
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
+  gem 'mailcatcher', '~> 0.6.1'
 
 end
 

@@ -9,7 +9,9 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
+  # User mailcatcher for email debugging
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -45,15 +47,15 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   #config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
   # use gmail account to send emai locally - Yong
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'mydomino.com',
-    user_name:            ENV["GMAIL_USERNAME"],
-    password:             ENV["GMAIL_PASSWORD"],
-    authentication:       'plain',
-    enable_starttls_auto: true  
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'mydomino.com',
+  #   user_name:            ENV["GMAIL_USERNAME"],
+  #   password:             ENV["GMAIL_PASSWORD"],
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true  
+  # }
 
   config.after_initialize do
     Bullet.enable = true
@@ -62,5 +64,4 @@ Rails.application.configure do
 
   # completely disable web_console whiny_requests for display with ips - Yong
   config.web_console.whiny_requests = false
-
 end

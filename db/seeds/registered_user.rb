@@ -23,5 +23,3 @@ Profile.create(
   user_id: user.id
 )
 Profile.set_callback(:create, :after, :save_to_zoho)
-
-

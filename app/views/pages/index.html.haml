@@ -1,17 +1,22 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
-#profile-forms{class: "#{@browser.device.mobile? ? 'mobile' : 'non-mobile'}"}
+/ BEGIN Onboarding module
+%div
   =render @response[:form]
+/ END Onboarding module
 
+/ BEGIN homepage video modal
 #video-modal.absolute.z4.top-0.bottom-0.left-0.right-0
   %i#close-modal.p2.pointer.fa.fa-2x.fa-times.absolute.right-0.white
   %iframe{src:"https://player.vimeo.com/video/169288453?api=1", width:"100%", height:"100%", frameborder:"0", webkitallowfullscreen: "", mozallowfullscreen: "", allowfullscreen: ""}
+/ END homepage video modal
 
 .bg-gray-05.py2.center
   %h3.gray-80.inline Get MyDomino as an employee benefit for your workplace.
   =link_to 'Learn more >', "http://business.mydomino.com", class: 'h3 blue text-decoration-none'
 
+/ BEGIN action path module
 #action-path.bg-white.max-width-4.mx-auto.my2
   .clearfix.py3
     .col.col-12.px2
@@ -41,7 +46,9 @@
         Track the progress of your path to a
         %br.sm-hide
           clean energy lifestyle
+/ END action path module
 
+/ BEGIN blog card module
 .bg-gray-05.py3.sm-px2
   .clearfix.mt3.max-width-4.mx-auto
     .h1.black.light.center.line-height-2.px1 Learn about your clean energy options
@@ -84,7 +91,9 @@
       .col.col-12.center
         %h3
           = link_to 'See more articles >', {controller: 'posts', action: 'index'}, class: 'h2 blue text-decoration-none'
+/ END blog card module
 
+/ BEGIN membership module
 .bg-white.z4
   .clearfix.max-width-4.mx-auto.pt4.px2
     .h1.black.light.center.pb4.line-height-2 A membership with epic savings
@@ -118,7 +127,7 @@
         .col.col-12.sm-col-6.md-col-12.pt2.sm-pt2.md-pt0
           = embedded_svg 'member-card.svg', class: 'center'
         .col.col-12.sm-col-6.md-col-12.pt2.sm-pt2
-          .border.border-light-gray.center.rounded.mx-auto{style: 'width:240px;height:150px;'}
+          .border.border-gray-30.center.rounded.mx-auto{style: 'width:240px;height:150px;'}
             .h0.mb0.gray-80.mt1
               $10
               %span.h2 /month
@@ -131,7 +140,7 @@
         %p.gray-30.inline Already a member? 
         =link_to "Log in", new_user_session_path, class: "inline blue text-decoration-none"
 
-  //testimonial carousel
+  / BEGIN testimonial carousel
   %section
     .slick.gray-80
       .px1.sm-px2.py2.my3.mx2.center.rounded
@@ -176,7 +185,10 @@
           =embedded_svg "icons/i-user.svg", class: "block", alt: "user"
         %h4.mb0.mt1.line-height-1 Chris K.
         %h4.my0.line-height-1 Palm Bay, FL
+  / END testimonial carousel
+/ END membership module
 
+/ BEGIN partner module
 .border-top--gray
   .clearfix.max-width-4.mx-auto.py4.center
     .h1.light.black.center.line-height-2 Our partners
@@ -195,3 +207,8 @@
           = image_tag 'time-to-choose', class:"pt4"
     .col.col-12.center.mt4.sm-mt3
       =link_to "See more partners >", partners_path, class: " h2 blue text-decoration-none"
+/ END partner module
+:javascript
+  $(document).ready(function(){
+    modulejs.require('home')();
+  });

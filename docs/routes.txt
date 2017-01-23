@@ -1,20 +1,5 @@
                                  Prefix Verb     URI Pattern                                             Controller#Action
-                                  teams GET      /teams(.:format)                                        teams#index
-                                        POST     /teams(.:format)                                        teams#create
-                               new_team GET      /teams/new(.:format)                                    teams#new
-                              edit_team GET      /teams/:id/edit(.:format)                               teams#edit
-                                   team GET      /teams/:id(.:format)                                    teams#show
-                                        PATCH    /teams/:id(.:format)                                    teams#update
-                                        PUT      /teams/:id(.:format)                                    teams#update
-                                        DELETE   /teams/:id(.:format)                                    teams#destroy
-                          subscriptions GET      /subscriptions(.:format)                                subscriptions#index
-                                        POST     /subscriptions(.:format)                                subscriptions#create
-                       new_subscription GET      /subscriptions/new(.:format)                            subscriptions#new
-                      edit_subscription GET      /subscriptions/:id/edit(.:format)                       subscriptions#edit
-                           subscription GET      /subscriptions/:id(.:format)                            subscriptions#show
-                                        PATCH    /subscriptions/:id(.:format)                            subscriptions#update
-                                        PUT      /subscriptions/:id(.:format)                            subscriptions#update
-                                        DELETE   /subscriptions/:id(.:format)                            subscriptions#destroy
+                     organization_users POST     /organizations/:organization_id/users(.:format)         users#create
  email_members_upload_file_organization POST     /organizations/:id/email_members_upload_file(.:format)  organizations#email_members_upload_file
 import_members_upload_file_organization POST     /organizations/:id/import_members_upload_file(.:format) organizations#import_members_upload_file
             add_individual_organization POST     /organizations/:id/add_individual(.:format)             organizations#add_individual
@@ -91,6 +76,10 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                         PATCH    /users(.:format)                                        registrations#update
                                         PUT      /users(.:format)                                        registrations#update
                                         DELETE   /users(.:format)                                        registrations#destroy
+                              sungevity GET      /sungevity(.:format)                                    registrations#new_org_member
+                 check_org_member_email GET      /check-org-member-email(.:format)                       registrations#check_org_member_email
+                      create_org_member POST     /create-org-member(.:format)                            registrations#create_org_member
+                set_org_member_password PATCH    /set-org-member-password(.:format)                      registrations#set_org_member_password
                 recommendation_complete POST     /recommendations/:recommendation_id/complete(.:format)  recommendations#complete
            recommendation_undo_complete DELETE   /recommendations/:recommendation_id/undo(.:format)      recommendations#undo
                         recommendations GET      /recommendations(.:format)                              recommendations#index

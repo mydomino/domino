@@ -1,212 +1,62 @@
+require "#{Rails.root}/lib/helper_functions"
+include HelperFunctions
+
 namespace :csv do
 
-	require 'faker'
 	require 'csv'
-	
 
-	desc "Generate X number of fake data rows for CSV file upload. Example usage: rake csv:build_csv_file_with_fake_data 200"
-  task build_csv_file_with_fake_data: :environment do 
 
-  	DATA_SAVE_FOLDER = Rails.root.join('data')
+  desc "Create corporate and admin users for onboarding. Usage: rake csv:create_corporate_and_admin Org_name admin_first_name admin_last_name admin_org_email"
+  task create_corporate_and_admin: :environment do 
 
-  	# generate an empty task for each argument pass in
-  	ARGV.each { |a| task a.to_sym do ; end }
 
-  	# validate argument type - only number allow
-  	if ARGV[1].nil? or ARGV[1] !~ /\A\d+\z/
-  		puts "Error! Please include a number in your command. Example. rake csv:build_csv_file_with_fake_data 1000"
-  		exit 1
-  	end
+    # generate an empty task for each argument pass in
+    ARGV.each { |a| task a.to_sym do ; end }
 
-  	# check to see if the data folder exist, if not create it
-    full_path = File.expand_path("#{DATA_SAVE_FOLDER}")
-    #puts "\nFull save path is: #{full_path}"
-
-    if !File.exist?(full_path) 
-      Dir.mkdir(full_path)
-      puts "\nPath #{full_path} was created."
+    #puts "ARGV.size is #{ARGV.size}"
+    
+    if ARGV.size != 7 
+      puts "Error! Please provide proper parameters to your command. \n\nUsage: rake csv:create_corporate_and_admin org_name org_email org_email_domain admin_first_name admin_last_name admin_org_email\n"
+      puts "Example. rake csv:create_corporate_and_admin MyDomino info@mydomino.com mydomino.com Yong Lee yong@mydomino.com\n"
+      exit 1
     end
 
-    file_name_path = full_path + '/' + 'sample_upload_' + ARGV[1] + '.csv'
-    puts "Data file is saved on #{file_name_path}."
+    # retrieve the org name
+    org_name = ARGV[1]
+    org_email = ARGV[2]
+    org_email_domain = ARGV[3]
 
-  	CSV.open(file_name_path, 'w') do |csv| 
-
-      # Add new headers
-      csv << ['First_name', 'Last_name', 'Email']  
- 
-      # using the pass in argument
-      for i in 1..ARGV[1].to_i
-      	 data_row = [Faker::Name::first_name, Faker::Name::last_name, Faker::Internet.email]
-      	 csv << data_row
-      end
-    end
-
-  end
-
-
-  desc "Create mydomino org and users for testing."
-  task mydomino: :environment do 
-
-    org_name = 'MyDomino'
+    puts "Organization name is #{org_name}. org_email is #{org_email}. org_email_domain is #{org_email_domain}\n" 
 
     # create an organization
-    organization = Organization.find_or_create_by(name: org_name) do |o|
+    organization = Organization.find_or_create_by!(name: org_name) do |o|
 
       puts "Creating org #{org_name}.\n"
 
       o.name = org_name
+      o.email = org_email
+      o.email_domain = org_email_domain
 
     end
-
-    # perform case insensitive search
-    #orgs = Organization.arel_table
-    #organization = Organization.where(orgs[:name].matches(org_name)).first  
-    
-    # create org admin
-    role = 'org_admin'
-    for_production = false
-    for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
-
-      u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
-      u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
-      u_email = for_production ? u_email : u_email
-
-      # email is case sensitive for the create, so convert it to lower case
-      create_user(organization, u_fn, u_ln, u_email.downcase, role)
-
-    end
-
-    # create regular org user
-    role = 'user'
-    for_production = false
-    for u_email in %W(test_1@#{org_name}.com test_2@#{org_name}.com test_3@#{org_name}.com)
-
-
-      u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
-      u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
-      u_email = for_production ? u_email :  u_email
-
-      # email is case sensitive for the create, so convert it to lower case
-      create_user(organization, u_fn, u_ln, u_email.downcase, role)
-
-    end
-
-
-  end
-
-
-  def create_user(organization, first_name, last_name, u_email, role)
-
-    u_fn = first_name
-    u_ln = last_name
-
-
-    puts "Find or create user #{u_email}....\n"
-
-    # create an org. admin user
-    user = User.find_or_create_by(email: u_email) do |u|
-
-      
-
-      puts "Creating user #{u_email}.\n"
-
-      u.email = u_email
-      u.password = 'ILoveCleanEnergy'
-      u.password_confirmation = 'ILoveCleanEnergy'
-      u.role = role
-
-    end
-
-    puts "Find or create profile #{u_email}....\n"
-
-    # create profile and associate it with the user
-    profile = Profile.find_or_create_by(email: u_email) do |p|
-
-      puts "Creating profile #{u_email}.\n"
-
-      p.first_name = u_fn
-      p.last_name = u_ln
-      p.email = u_email
-
-    end
-
-
-    profile.update(dashboard_registered: true)
-
-    puts "Saving info for profile #{u_email}....\n"
-    profile.save!
-
-    user.profile = profile
-
-    puts "Find or create dashboard #{u_email}....\n"
-
-    # Create a dashboard and associated it with the user
-    dashboard = Dashboard.find_or_create_by(lead_email: u_email) do |d|
-
-      puts "Creating dashboard #{u_email}.\n"
-
-      d.lead_name = u_fn + " " + u_ln
-      d.lead_email = u_email
-
-      # do not need to set slug
-      #d.slug = " test slug #{u_email}"
-
-    end
-
-    # associate product and tasks with dashboard
-    dashboard.products = Product.default
-    dashboard.tasks = Task.default
-
-    puts "Saving info for dashboard #{u_email}....\n"
-    dashboard.save!
-
-
-    user.dashboard = dashboard
-
-
-    puts "Saving info for user #{u_email}....\n"
-    user.save!
 
    
-    # Add user to organization
-    organization.users << user
-
-    puts "Saving info for org #{organization.name}....\n"
-    organization.save!
-
-    # Show the result in reverse manner
-    org = user.organization
-
-    puts "Orginization is #{org.name} \n"
-
-
-    # refer to registration_controller#after_sign_up_path_for
-    # registered_user.rb
-
-    # update Zoho
-    profile.save_to_zoho
-
-    
-  end
-
-
-  desc "Update mydomino users for testing."
-  task update_mydomino_users: :environment do 
-
-
     # create org admin
     role = 'org_admin'
-    for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
+    for_production = false
+    for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
+      (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
 
-      # email is case sensitive for the create, so convert it to lower case
-      create_user(organization, u_email.downcase, role)
+    u_fn = for_production ? ARGV[4] : 'test_' + ARGV[4]
+    u_ln = for_production ? ARGV[5] : 'test_' + ARGV[5]
+    u_email = ARGV[6]
 
-    end
+    puts "admin_first_name is #{u_fn}. admin_last_name is #{u_ln}. admin_org_email is #{u_email}\n" 
 
-
+    # email is case sensitive for the create, so convert it to lower case
+    HelperFunctions::create_user(organization, u_fn, u_ln, u_email.downcase, role)
 
   end
+	
 
 
   desc "Onboard_org_member_with_csv. Example usage: rake csv:onboard_org_member_with_csv Sungevity sample_3000.csv"
@@ -220,7 +70,9 @@ namespace :csv do
     #puts "ARGV.size is #{ARGV.size}"
     
     if ARGV.size != 3 
-      puts "Error! Please provide proper parameters to your command. Example. rake csv:onboard_org_member_with_csv Sungevity sample_upload_3000.csv"
+      puts "Error! Please provide proper parameters to your command. \n\n"
+      puts "Usage: rake csv:onboard_org_member_with_csv organization_name csv_file_name.csv. Note: please put the csv file under project's root/data folder.\n"
+      puts "Example. rake csv:onboard_org_member_with_csv MyDomino sample_upload_3000.csv"
       exit 1
     end
 
@@ -233,7 +85,7 @@ namespace :csv do
     begin
       organization = Organization.find_by!(name: org_name)
     rescue Exception => e  
-      puts "\nError! #{e.message}."
+      puts "\nError! #{e.message}. Please note that the organization name is case sensitive."
       exit
     end
    
@@ -250,43 +102,52 @@ namespace :csv do
     file_name_path = full_path + '/' +  ARGV[2] 
     puts "Data file is imported from #{file_name_path}."
 
-    ActiveRecord::Base.transaction do
+    # check to make sure the CSV file exists
+    if !File.exist?(file_name_path) 
+      
+      puts "\nError! #{file_name_path} does not exist. Program exit."
+      exit
+    end
+
+   
+
+    role = 'user'
+    for_production = false
+    for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
+      (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
+    
+    CSV.foreach(file_name_path, headers: true) do |row|
       begin
 
-        role = 'user'
-        for_production = false
-        for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
+        puts "\n\nRow is #{row}"
+        #puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
 
-        CSV.foreach(file_name_path, headers: true) do |row|
+        next if row.size == 0
 
-          puts "\n\nRow is #{row}"
+        u_fn = for_production ? row['First_name'] : 'test_' + row['First_name']
+        u_ln = for_production ? row['Last_name'] : 'test_' + row['Last_name']
+        u_email = row['Email'] #for_production ? u_email : u_email
 
-          puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
+        puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
 
+        # email is case sensitive for the create, so convert it to lower case
+        if HelperFunctions::create_user(organization, u_fn, u_ln, u_email.downcase, role)
 
-          u_fn = for_production ? row['First_name'] : 'test_' + row['First_name']
-          u_ln = for_production ? row['Last_name'] : 'test_' + row['Last_name']
-          u_email = row['Email'] #for_production ? u_email : u_email
+          # send user email with on board url
+          user = User.find_by!(email: u_email.downcase)
 
-
-          puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
-
-
-          # email is case sensitive for the create, so convert it to lower case
-          create_user(organization, u_fn, u_ln, u_email.downcase, role)
-
+          # send user with on borad instructions and signup token
+          #user.email_onboard_url(u_fn, u_ln)
+          user.email_signup_link
+         
         end
+
       rescue Exception => e  
-        puts "\nError! #{e.message}."
-        exit
+        puts "\nException in CSV for row: #{row}! Error is: #{e.message}."
       end
-   end
+    end
+      
 
   end
-
-
-
-
-
 
 end

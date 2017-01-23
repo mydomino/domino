@@ -26,3 +26,6 @@
             =form.association :offerings, label: false, :as => :check_boxes, collection: Offering.all
 
         =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'interests', :vertical_offset => '107px'}
+
+:javascript
+  modulejs.require('onboarding_interests_form')();

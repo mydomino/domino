@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161231013758) do
+ActiveRecord::Schema.define(version: 20170121003701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,13 +89,6 @@ ActiveRecord::Schema.define(version: 20161231013758) do
     t.boolean  "subscribe_to_mailchimp"
   end
 
-  create_table "legacy_users", force: :cascade do |t|
-    t.string   "email"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.boolean  "dashboard_registered", default: false
-  end
-
   create_table "mailkick_opt_outs", force: :cascade do |t|
     t.string   "email"
     t.integer  "user_id"
@@ -127,6 +120,7 @@ ActiveRecord::Schema.define(version: 20161231013758) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "users_count",  default: 0
+    t.string   "email_domain"
   end
 
   create_table "partner_codes", force: :cascade do |t|
@@ -233,6 +227,8 @@ ActiveRecord::Schema.define(version: 20161231013758) do
     t.datetime "updated_at",                              null: false
     t.string   "role",                   default: "lead"
     t.integer  "organization_id"
+    t.string   "signup_token"
+    t.datetime "signup_token_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

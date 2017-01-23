@@ -1,28 +1,25 @@
 /* Basscss Background Images */
-.bg-cover   { background-size: cover }
+.bg-cover   { background-size: cover; }
 
-.bg-contain { background-size: contain }
+.bg-contain { background-size: contain; }
 
-.bg-center  { background-position: center }
+.bg-center  { background-position: center; }
 
-.bg-top     { background-position: top }
+.bg-top     { background-position: top; }
 
-.bg-right   { background-position: right }
+.bg-right   { background-position: right; }
 
-.bg-bottom  { background-position: bottom }
+.bg-bottom  { background-position: bottom; }
 
-.bg-left    { background-position: left }
+.bg-left    { background-position: left; }
+
+.bg-top-right { background-position: top right; }
 
 /* Basscss Background Darken */
 $darken-1: rgba(0, 0, 0, .0625) !default;
 $darken-2: rgba(0, 0, 0, .125) !default;
 $darken-3: rgba(0, 0, 0, .25) !default;
 $darken-4: rgba(0, 0, 0, .5) !default;
-
-
-
-
-
 
 .bg-darken-1 { background-color: $darken-1 }
 

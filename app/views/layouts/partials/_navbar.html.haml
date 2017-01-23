@@ -60,8 +60,13 @@
           %li.h1
             = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
         -else
+          -if current_user.role == 'org_admin'
+            %li.h1
+              =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
           %li.h1
             =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
+          %li.h1
+            =link_to 'Profile', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
           %li.h1
             = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
         %li.h1

@@ -10,22 +10,17 @@
       %p.mt0.white.relative Watch the video
 
   .clearfix.mx-auto.max-width-2.px2
-    =simple_form_for @profile, turboboost: true, method: @response[:method] do |form|
+    =simple_form_for @profile, method: @response[:method] do |form|
       .clearfix.py2
         .col.col-6
-          =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
-          #first-name-error-msg.display-none.red.m0
-            'First name' is blank
+          =form.input_field :first_name, class: "text-input gray-80", placeholder: "First name", required: true
         .col.col-6.pl1
-          =form.input_field :last_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
-          #last-name-error-msg.display-none.red.m0
-            'Last name' is blank
-        .col.col-6.mt1
-          =form.input_field :email, class: "h3 bg-white gray-80 rounded border border-white required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
-          #email-error-msg.display-none.red.m0
-            This email is invalid.
-        .col.col-6.pl1.mt1
-          =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-md btn-primary btn-primary--hover"
+          =form.input_field :last_name, class: "text-input gray-80", placeholder: "Last name", required: true
+      .clearfix
+        .col.col-6
+          =form.input_field :email, class: "text-input gray-80", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
+        .col.col-6.pl1
+          =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
 
 -if @browser.device.mobile?
   #name-and-email.mobile-form.pt4.relative.bg-cover
@@ -40,14 +35,11 @@
         %source{:src => "https://s3-us-west-2.amazonaws.com/mydomino/assets/silent_video_header_360p.mp4", :type => "video/mp4"}
         Your browser does not support the video tag. Please update your browser.
       #form-container.absolute.z2{style: 'top:100px;left:0;right:0'}
-        :css
-          .invalid-field { border-color:red!important; }
-          .fa-play-circle:hover { color: #00ccff; }
         .center.white
           .h0.mt3.mb1.light.line-height-1
             Ditch dirty power. Switch to clean.
           .h2.white.mb2 Join the action path to your 100% clean energy lifestyle.
-          %i.fa.fa-play-circle.fa-5x.pointer.mt3
+          %i.fa.fa-play-circle.fa-5x.pointer.mt3.blue--hover
           %p.mt0.white Watch the video
 
       .absolute.bottom-0.left-0.right-0.clearfix.mx-auto.px2.z2.py1{style: 'background-color: rgba(0,0,0,0.3)'}
@@ -57,19 +49,15 @@
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.px1
-                    =form.input_field :first_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "First name", data: {reg: '\\w', target: '#first-name-error-msg'}
-                    #first-name-error-msg.display-none.red.m0
-                      'First name' is blank
+                    =form.input_field :first_name, class: "text-input gray-80", placeholder: "First name", required: true
                   .col.col-6.px1
-                    =form.input_field :last_name, class: "h3 bg-white gray-80 rounded required-field", placeholder: "Last name", data: {reg: '\\w', target: '#last-name-error-msg'}
-                    #last-name-error-msg.display-none.red.m0
-                      'Last name' is blank
+                    =form.input_field :last_name, class: "text-input gray-80", placeholder: "Last name", required: true
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.md-col-8.px1
-                    =form.input_field :email, class: "h3 bg-white gray-80 rounded border border-white required-field", placeholder: "Email address", data: {reg: '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', target: '#email-error-msg'}
-                    #email-error-msg.display-none.red.m0
-                      This email is invalid.
+                    =form.input_field :email, class: "text-input gray-80", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
                   .col.col-6.md-col-4.px1
-                    =form.submit "Get started", id: 'btn-begin-onboard', class: "btn btn-sm btn-primary btn-primary--hover",style: "height:42px;width:100%;"
-                    
+                    =form.submit "Get started", class: "btn btn-sm btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
+
+:javascript
+  modulejs.require('onboarding_name_and_email_form')();

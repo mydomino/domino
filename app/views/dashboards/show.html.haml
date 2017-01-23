@@ -30,22 +30,20 @@
           These hand-picked product recommendations will help you save energy and money.
   .bg-white.px2.mb4
     .clearfix.relative
-      .col.col-12.md-col-8
-        %h1.ml2.gray-80 Your Recommendations
-      .col.col-12.md-col-4.center
-        .mt3
-          .inline-block
-            %small
-              =link_to 'ALL', {filter: nil}, class: "btn-shame left rounded-left caps #{@filter.nil? ? 'bg-blue white border border-blue' : 'border gray-30'}"
-            %small
-              =link_to 'PRODUCTS', {filter: "products"}, class: "caps left btn-shame border-left not-rounded #{(@filter == 'products') ? 'bg-blue border border-blue white' : 'border gray-30' }"
-            %small
-              =link_to 'ACTIONS', {filter: "actions"}, class: "caps left btn-shame border-left rounded-right #{(@filter == 'actions') ? 'bg-blue border border-blue white' : 'border gray-30' }"
+      .col.col-12.md-col-6
+        %h1.px2.gray-80 Your Recommendations
+      .col.col-12.md-col-6
+        .mt3.right.pr2
+          .btn-group
+            =link_to 'ALL', {filter: nil}, class: "btn btn-sm border #{@filter.nil? ? 'btn-primary' : 'btn-secondary'}"
+            =link_to 'PRODUCTS', {filter: "products"}, class: "btn btn-sm border not-rounded #{(@filter.== 'products') ? 'btn-primary' : 'btn-secondary'}"
+            =link_to 'ACTIONS', {filter: "actions"}, class: "btn btn-sm border rounded-right #{(@filter == 'actions') ? 'btn-primary' : 'btn-secondary' }"
+         
     -@incomplete_recommendations.each_slice(3) do |recommendations|
       .clearfix
         -recommendations.each do |recommendation|
           =render 'recommendations/incomplete', recommendation: recommendation
-    %hr.py3
+    %hr.mt3
     .clearfix
       .col-12.p2
         %h1.mt0

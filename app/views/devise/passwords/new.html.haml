@@ -1,13 +1,12 @@
-#signup.devise-form
-  .max-width-3.mx-auto.mb2.sm-mt2.sm-my4.p2
-    .bg-lightgray.rounded.p3.max-width-2.mx-auto
-      .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
-        = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
-      %h1.center.gray-80 Reset Your Password
-      =simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post } do |f|
-        =render 'shared/error_messages', object: f.object, color: "#666"
-        .form-inputs.max-width-1.mx-auto
-          %label.gray-80 Email Address
-          = f.input_field :email, required: true, autofocus: true, class: 'mb2 mt1', style: 'height: 40px;'
-          .center.py2
-            = f.button :submit, "Send reset instructions", class: "btn btn-md btn-primary fit"
+.max-width-3.mx-auto.mb2.p3
+  .bg-lightgray.rounded.p3.max-width-2.mx-auto
+    .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
+      = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
+    %h1.center.gray-80 Reset Your Password
+    =simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post } do |f|
+      =render 'shared/error_messages', object: f.object, color: "#666"
+      .form-inputs.max-width-1.mx-auto
+        %label.gray-80 Email Address
+        = f.input_field :email, required: true, autofocus: true, class: 'mb2 mt1 text-input'
+        .center.py2
+          = f.button :submit, "Send reset instructions", class: "btn btn-md btn-primary fit"

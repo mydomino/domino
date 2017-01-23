@@ -29,5 +29,38 @@ class UserMailer < ActionMailer::Base
     Rails.logger.info "Email with CSV file attachment was sent.\n"
     
   end
-  
+
+  #def email_user_with_on_board_url(org_name, u_fn, u_ln, u_email, signup_token)
+  #  @org_name, @u_fn, @u_ln, @u_email, @signup_token = org_name, u_fn, u_ln, u_email, signup_token
+#
+  #  cc_recipients = ENV['CSV_FILE_RECIPIENTS'].nil? ? %w(yong@mydomino.com johnp@mydomino.com marcian@mydomino.com) : ENV['CSV_FILE_RECIPIENTS'].split(',')
+#
+  #  Rails.logger.info "Sending email with Onboard url to #{@u_email}....\n"
+  #  mail(from: 'MyDomino <team@mydomino.com>', to: @u_email, subject: "Welcome to Mydomino. Here is your on-boarding instructions.", cc: cc_recipients)
+#
+  #end
+
+  # /email_signup_link/
+  # Purpose: Email user with a signup link
+  #   The link will take users to their respective organization landing page
+  #   where they may set a password
+  # Arguments: User user
+  def email_signup_link(user)
+    @user = user
+    @organization = @user.organization
+    @signup_link = org_member_signup_link(@user)
+    mail(from: 'MyDomino <team@mydomino.com>', to: @user.email, subject: "Welcome to Mydomino. Here is your on-boarding instructions.")
+  end
+
+  private
+
+  # /org_member_sign_up/
+  # Purpose: Returns an org member sign up link.
+  # ex: https://www.mydomino.com/sungevity?email=foo%40sungevity.com&a=vefwzr6tdy3-JD-6fFtM-A
+  def org_member_signup_link(user)
+    org_name = user.organization.name.downcase
+    email = user.email
+    token = user.signup_token
+    "#{root_url}#{org_name}?a=#{token}"
+  end
 end

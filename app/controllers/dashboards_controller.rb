@@ -54,10 +54,6 @@ class DashboardsController < ApplicationController
     @dashboard = Dashboard.find(params[:id])
     authorize @dashboard
 
-    if lu = LegacyUser.find_by_email(@dashboard.lead_email)
-      lu.destroy
-    end
-
     if @dashboard.user_id
       User.find_by_id(@dashboard.user_id).destroy
     else

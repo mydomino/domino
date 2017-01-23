@@ -10,12 +10,6 @@
   }
 }
 
-#btn-begin-onboard {
-  height:42px;
-  line-height: 0.6rem;
-  width: 100%;
-}
-
 /* invalid state for housing toggle button on living situation form */
 .btn-secondary--invalid {
   border-color: red!important;
@@ -53,17 +47,6 @@
 .fill-black path { fill: #333; }
 .fill-white path { fill: white; }
 
-.onboarding-icon-2 {
-  height: 2rem;
-  width: 2rem;
-}
-
-.onboarding-icon-3 {
-  height: 3rem;
-  width: 3rem;
-}
-
-/*end onboarding icons*/
 
 /* sticky footer css*/
 html, body {
@@ -84,19 +67,12 @@ html, body {
 
 /* end sticky footer css */
 
-/* css for progress bar */
+/* BEGIN Onboarding steps css */
 table#steps {
   width: 100%;
   td { width: 20%; }
 }
-
-/* end css for progress bar */
-
-.full-width { width: 100%; }
-
-.onboarding-form {
-  margin-top: 100px;
-}
+/* END Onboarding steps css */
 
 /******** concierge layout css ********/
 .concierge-tools{
@@ -126,10 +102,6 @@ table#steps {
   right: -10px;
   border-top: 4px solid orange;
   transform: rotate(-15deg);
-}
-
-#footer {
-  a:hover, #social-icons .fa:hover { color: #00ccff; }
 }
 
 /********  blog cards on homepage css ********/
@@ -164,7 +136,7 @@ table#steps {
 /******** Dashboard Styling ********/
 .recommendation {
   min-height: 310px;
-  &:hover { border-color: #00CCFF; }
+  &:hover { border-color: #00CCFF!important; }
 }
 
 /******** Dashboards index view ********/
@@ -205,20 +177,6 @@ div:hover {
   &>.hover-show { display: block; }
 }
 
-/* Overlay */
-.overlay {
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    height: 100%;
-    background-color: rgba(0,0,0,.5);
-  }
-}
-
 /***** BEGIN checkout onboarding form components *******/
 #checkout {
   #checkout-price {
@@ -238,7 +196,6 @@ div:hover {
     height: 44px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    // width: 100px;
   }
 
   #partner-code-label{
@@ -264,9 +221,6 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 }
 
 /* BEGIN custom navbar styles */
-#navbar {
-  .fa-bars { padding-top: 1.4rem; }
-}
 #nav-overlay {
   height: 0;
   width: 100%;
@@ -348,7 +302,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
   }
   input[type=text], input[type=email] {
     border: 1px solid white;
-    height: 42px;
+    &:focus { border: 1px solid #00ccff; }
   }
   ::placeholder{
     color: #858585;
@@ -365,89 +319,7 @@ $breakpoint-xs: '(max-width: 40em)' !default;
 
 input{ padding-left: 10px; }
 
-#member-profile,
-#living-situation,
-#footer {
-  input[type=text],
-  input[type=email],
-  input[type=zip],
-  input[type=tel],
-  input[type=password],
-  select {
-    border: 1px solid #666;
-    height: 42px;
-  }
-  select{
-    -webkit-appearance: none;
-    width: 100%;
-  }
-}
 
-.border-light {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(0,0,0,0.125);
-}
-
-.border-light-gray { border-color: #c5c5c5; }
-
-#member-profile,
-.devise-form,
-.recommendation-form{
-  input[type="text"],
-  input[type="tel"],
-  input[type="email"],
-  textarea,
-  select {
-    border: 1px solid #DDDDDD; }
-}
-
-#member-profile select { background: white; }
-
-#member-profile,
-#profile-forms,
-.recommendation-form,
-.devise-form,
-#footer{
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=tel],
-  textarea { width:100%; }
-
-  input[type=submit] { display: inline; }
-
-  input.error { border-color: #D65A5A!important; }
-
-  // For parsley error messages
-  .invalid-message { color: #D65A5A; }
-
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=tel],
-  textarea,
-  select {
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    padding: 3px 0px 3px 8px;
-    margin: 0px 1px 3px 0px;
-  }
-
-  input[type=text]:focus,
-  input[type=email]:focus,
-  input[type=password]:focus,
-  input[type=tel]:focus,
-  textarea:focus,
-  select:focus {
-    border-color: #00ccff;
-    padding: 3px 0px 3px 8px;
-    margin: 0px 1px 3px 0px;
-  }
-}
 /* kaminari pagination styles */
 .pagination a,
 .pagination span.current,
@@ -504,24 +376,8 @@ input{ padding-left: 10px; }
   }
 }
 
-/* styles for dashboard recommendations */
-.rounded-20 { border-radius: 20px; }
-
-.rounded-20-top { border-radius: 20px 20px 0 0; }
-
-.rounded-20-bottom { border-radius: 0 0 20px 20px; }
-
 /***** dashboard custom css ************/
-.border-blue { border-color: #00ccff; }
-
 #dashboard {
-  hr {
-      border: 0;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      border-bottom-color: rgba(0,0,0,0.125);
-  }
-
   .border {
     border-style: solid;
     border-width: 1px;
@@ -584,23 +440,10 @@ input{ padding-left: 10px; }
   }
 }
 
-.right-10 { right: 10px; }
-
-.top-10 { top: 10px; }
-
-body.lock-position {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  position: fixed;
-}
-
 /* accordion element on FAQ page */
 .accordion-content { display: none; }
 
 span.toggle { width: 1em; }
-
-#profile-forms.non-mobile{ min-height: 620px; }
 
 /* Buttons */
 .navbar-element {
@@ -609,16 +452,5 @@ span.toggle { width: 1em; }
     border-color: #00ccff;
     color: #00ccff!important;
   }
-}
-
-.btn-shame {
-  font-family: inherit;
-  font-size: inherit;
-  text-decoration: none;
-  line-height: 1rem;
-  padding: .5rem 1rem;
-  height: auto;
-  vertical-align: middle;
-  -webkit-appearance: none;
 }
 /* END custom.scss */

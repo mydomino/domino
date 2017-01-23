@@ -1,13 +1,17 @@
 =simple_form_for @task do |form|
-    =form.label :name, class: 'bold' 
-    =form.input_field :name
+  =form.label :name, class: 'bold' 
+  =form.input_field :name, class: 'text-input'
+  .mt1
     =form.label :description, class: 'bold'
-    =form.input_field :description
+    =form.input_field :description, class: 'text-input'
+  .mt1
     =form.label :cta_link, class: 'bold'
-    =form.input_field :cta_link
+    =form.input_field :cta_link, class: 'text-input'
+  .mt1
     =form.label :cta_text, class: 'bold'
-    =form.input_field :cta_link
-    =form.label :icon, class: 'block'
-    =form.select :icon, {collection: Task::ICON_OPTIONS}, {}, {class: 'block', style: 'width: 128px;'}
-    .my2.block.right-align
-        =form.submit local_assigns.fetch(:submit_text, "Add Action"), class: "btn btn-sm btn-primary"
+    =form.input_field :cta_link, class: 'text-input'
+  .mt1
+    =form.label :icon, class: 'block bold'
+    =form.select :icon, {collection: Task::ICON_OPTIONS}, {}, {class: 'block select-box', style: 'width: 128px;'}
+  .my2.block.right-align
+    =form.submit local_assigns.fetch(:submit_text, "Add Action"), class: "btn btn-sm btn-primary"

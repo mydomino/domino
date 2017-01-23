@@ -8,12 +8,11 @@ rails generate migration AddOrganizationToUsers organization:references
 
 rails generate migration AddUsersCountToOrganizations users_count:integer
 
-
-
+rails g migration add_signup_token_to_users signup_token:string signup_token_sent_at:datetime
 
 
 ############################################
-Rails destroy ....
+Rails destroy ....  
 
 rails destroy scaffold Team
 

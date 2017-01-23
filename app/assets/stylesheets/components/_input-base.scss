@@ -1,5 +1,35 @@
-// Radio buttons
+// Input fields
+.text-input {
+  width: 100%;
+  height: 42px;
+  border-radius: $border-radius;
+  border: 1px solid #666;
+  outline: none;
+  transition: all 0.30s ease-in-out;
+  &:focus {
+    border-color: $blue;
+  }
+}
 
+// Error states
+input.error { border-color: #D65A5A!important; }
+
+// For parsley error messages
+.invalid-message { color: #D65A5A; }
+
+// Select box
+.select-box {
+  border: 1px solid #666;
+  height: 42px;
+  -webkit-appearance: none;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: $border-radius;
+   &:focus {
+    border-color: $blue;
+  }
+}
+// Radio buttons
 // Namespace custom radio components, .radio
 .radio {
   label {

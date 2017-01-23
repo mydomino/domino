@@ -25,23 +25,23 @@
             %td
               =dashboards
     .bg-white.p2.mt1.rounded
-      =link_to recommendations_path(format: 'csv'), class: 'btn-shame bg-blue white rounded' do
-        %i.fa.fa-download
-        Completed Recommendations
+      =link_to recommendations_path(format: 'csv'), class: 'btn btn-sm btn-primary', title: 'Download completed recommendations' do
+        %i.fa.fa-download.mr1
+        Recommendations
   .col.col-12.sm-col.sm-col-8.py3.px2
     .p2.bg-white.rounded.mt1
       %h1.inline-block.mt1 Recent Activity
       .clearfix
         -@recent_events.reverse.each do |event|
           .clearfix
-            .col.col-9.p2.border-light.rounded-left.mt1
+            .col.col-9.p2.border.border-gray-30.rounded-left.mt1
               =link_to event.dashboard.lead_name, dashboard_path(event.dashboard), class: 'blue text-decoration-none'
               marked
               =event.recommendable.name
               done
               -if(!event.updated_by.nil?)
                 (marked by concierge)
-            .col.col-3.p2.bg-blue.white.border-light.rounded-right.mt1.right-align
+            .col.col-3.p2.bg-blue.white.border.border-gray-30.rounded-right.mt1.right-align
               %small
                 =time_ago_in_words event.updated_at
                 ago

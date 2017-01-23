@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
   before_action :capture_utm_campaign, :get_user_agent
-  around_action :handle_exceptions
+
+  # Bypass handle_exceptions if in development environment
+  around_action :handle_exceptions unless Rails.env.development? 
 
   #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
