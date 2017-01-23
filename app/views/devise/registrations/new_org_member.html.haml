@@ -5,23 +5,23 @@
   .clearfix.sm-flex
     .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.overlay.overlay-blue-alpha-75.black{style: "background-image: url('#{image_url 'windpower-field'}');"}
       .flex.flex-column{style: 'height: auto;'}
-        %h1 Hi #{@organization_name} employee
+        %h1 Hi #{@organization_name} employee,
         %p
-          Welcome to MyDomino, you're on your way to a clean energy lifestyle.
+          Your workplace has granted you a MyDomino membership, you're on your way to a clean energy lifestyle...
 
         %p
-          Sign up to join your company's mission toward a clean energy future.
+          Activate your membership to join your coworkers in a clean energy future.
     
     .col.col-12.sm-col.sm-col-6.p4
-      %h1.gray-60 Sign up
+      %h1.gray-60 Activate your membership
       #msg-form-feedback.gray-60{style: 'display: none;'}
 
       = form_tag '#' do
         = hidden_field_tag :organization_id, @organization_id
         %section#email-section
-          %label.h6.mt2.mb0.gray-60.block{for: 'email'} Email
-          = email_field_tag :email, (@user.email if @user), class: 'text-input', disabled: @user,
-            data: {'parsley-group': 'email', 'parsley-pattern': "[^]+@#{@organization_email_domain}", 'parsley-pattern-message': 'Must be company email'}, 
+          %label.h6.mt2.mb0.gray-60.block{for: 'email'} Your #{@organization_name} email
+          = email_field_tag :email, (@user.email if @user), placeholder: "yourname@#{@organization_email_domain}", class: 'text-input', disabled: @user,
+            data: {'parsley-group': 'email', 'parsley-pattern': "[^]+@#{@organization_email_domain}", 'parsley-pattern-message': 'You need to use your #{@organziation_email_domain} email address'}, 
             required: true
 
         %section#name-and-password-section{style: "#{'display: none' if !@user}"}
@@ -41,7 +41,7 @@
           %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Password confirmation
           = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": 'Password confirmation does not match password'}
 
-        = submit_tag "#{@user ? 'Sign up' : 'Continue'}", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
+        = submit_tag "#{@user ? 'Activate' : 'Continue'}", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
 
 :javascript
   (function(){
