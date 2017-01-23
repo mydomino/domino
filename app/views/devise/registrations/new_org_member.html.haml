@@ -21,7 +21,7 @@
         %section#email-section
           %label.h6.mt2.mb0.gray-60.block{for: 'email'} Your #{@organization_name} email
           = email_field_tag :email, (@user.email if @user), placeholder: "yourname@#{@organization_email_domain}", class: 'text-input', disabled: @user,
-            data: {'parsley-group': 'email', 'parsley-pattern': "[^]+@#{@organization_email_domain}", 'parsley-pattern-message': 'You need to use your #{@organziation_email_domain} email address'}, 
+            data: {'parsley-group': 'email', 'parsley-pattern': "[^]+@#{@organization_email_domain}", 'parsley-pattern-message': "You need to use your #{@organization_email_domain} email address"}, 
             required: true
 
         %section#name-and-password-section{style: "#{'display: none' if !@user}"}
