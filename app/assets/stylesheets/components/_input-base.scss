@@ -9,6 +9,10 @@
   &:focus {
     border-color: $blue;
   }
+  &::placeholder {
+    color: #666666;
+    font-weight: 200;
+  }
 }
 
 // Error states
