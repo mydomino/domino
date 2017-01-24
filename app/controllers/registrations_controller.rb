@@ -130,7 +130,7 @@ class RegistrationsController < Devise::RegistrationsController
       # Else send the users a sign up link
       # TODO: May want to change dashboard_registered to password_registered ?
       if @user.profile.dashboard_registered 
-        flash[:alert] = 'You have already signed up.'
+        flash[:alert] = 'You have already activated your membership. Try logging in.'
         render json: {
           message: 'User has already signed up.',
           status: 400

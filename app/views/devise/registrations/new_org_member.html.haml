@@ -3,17 +3,15 @@
 
 .max-width-4.mx-auto.bg-white.mt4.rounded
   .clearfix.sm-flex
-    .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.overlay.overlay-blue-alpha-75.black{style: "background-image: url('#{image_url 'windpower-field'}');"}
+    .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.gray-80{style: "background-image: url('#{image_url 'windpower-field-blue'}');"}
       .flex.flex-column{style: 'height: auto;'}
-        %h1 Hi #{@organization_name} employee,
-        %p
-          Your workplace has granted you a MyDomino membership, you're on your way to a clean energy lifestyle...
-
-        %p
-          Activate your membership to join your coworkers in a clean energy future.
+        %h1.bold Hello, #{@organization_name} team!
+        %h2.mt0 Welcome to your new employee benefit from MyDomino.
+        %p.mt0
+          You'll get help saving money and energy with simple actions. Compete with your co-workers to take positive steps toward our clean energy future!
     
     .col.col-12.sm-col.sm-col-6.p4
-      %h1.gray-60 Activate your membership
+      %h1.gray-80 Activate your membership
       #msg-form-feedback.gray-60{style: 'display: none;'}
 
       = form_tag '#' do
@@ -36,10 +34,10 @@
                 = text_field_tag :last_name, (@user.profile.last_name.capitalize if @user), class: 'text-input', disabled: @user, required: true, data: {'parsley-group': 'name-pw'}
           
           %label.h6.mt2.mb0.gray-60.block{for: 'password'} Password
-          = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Password must be at least 8 characters'}
+          = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Your password needs at least 8 characters'}
 
-          %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Password confirmation
-          = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": 'Password confirmation does not match password'}
+          %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Confirm password
+          = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": "Oops, your passwords don't match"}
 
         = submit_tag "#{@user ? 'Activate' : 'Continue'}", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
 

@@ -59,14 +59,14 @@ modulejs.define('new_org_member', function (args) {
           dataType: 'json',
           success: function(data) {
             if(data.message === 'account exists'){
-              $msgFormFeedback.html('An email has been sent with instructions for claiming your account.').slideDown();
+              $msgFormFeedback.html("Thanks! Please check your inbox, we've sent you an email on how to activate your membership.").slideDown();
               $btnSignUp.attr('disabled', 'disabled');
               $btnSignUp.css('cursor', 'not-allowed');
             } else {
               $email.prop('disabled', true);
-              $msgFormFeedback.html('Please set your name and password').slideDown();
+              $msgFormFeedback.html('Please set a new password').slideDown();
               $namePwSection.slideDown('slow');
-              $btnSignUp.attr('value', 'Sign up');
+              $btnSignUp.attr('value', 'Activate');
             }
           },
           // User has already signed up
