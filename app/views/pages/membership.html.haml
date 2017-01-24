@@ -1,23 +1,44 @@
+-content_for :body_class do
+  bg-gray-05
+
 .mx-auto.relative
   .page-header-image.bg-blue
-  .absolute.max-width-3.bg-white.left-0.right-0.top-0.mx-auto.px2.py4.rounded{style: 'margin-top: 100px;'}
-    .flex.items-center.justify-center
-      = image_tag "http://placehold.it/150x150"
+  .absolute.max-width-3.bg-white.left-0.right-0.top-0.mx-auto.p2.rounded.clearfix{style: 'margin-top: 100px;'}
+    .flex.items-center.justify-center.flex-wrap
+      .p2
+        = image_tag "http://placehold.it/150x150"
       .p2
         .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
         .gray-80.h6
-          .left
+          .inline-block
             Membership type
             %br
             Member since
             %br
             Renewal date
-          .right
+          .inline-block.ml2.right-align
             = @user.organization ? 'Organization' : 'Individual'
             %br
             = @user.created_at.strftime("%m/%d/%y")
             %br
             = (@user.created_at + 1.year).strftime("%B %Y")
-  .bg-gray-05
-    .pt4
-      some content
+  .p4.max-width-4.mx-auto
+    .clearfix
+      .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
+        %h1 Dashboard
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic minus odio libero voluptatem, nostrum animi vel eveniet at iure ullam, neque, quam asperiores assumenda voluptate iste ab temporibus incidunt. Voluptatum!
+      .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.right.mb2
+        %h1 Food Action Tracker
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non velit harum odio voluptatibus inventore consequatur sit atque delectus, esse reprehenderit iusto autem facere ipsam suscipit quae officiis provident, voluptatum fuga?
+    .clearfix
+      .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
+        %h1 Concierge
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas harum doloremque hic sed, voluptatibus nesciunt nobis? Reiciendis delectus quos recusandae mollitia. Voluptatibus saepe, earum quibusdam. Quisquam, vero libero quae consequatur.
+      .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.right.mb2
+        %h1 Events
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cum iure molestias, provident, quas, eum minima commodi illo fuga dicta quaerat animi ab voluptate, quos tempora deleniti expedita asperiores incidunt.
+    .clearfix
+      .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
+        %h1 Articles
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt iste a facere laudantium commodi similique recusandae sint molestias veniam voluptate, placeat excepturi corrupti fugiat ullam totam qui eaque facilis nam.
+
