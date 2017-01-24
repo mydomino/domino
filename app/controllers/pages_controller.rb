@@ -48,11 +48,6 @@ class PagesController < ApplicationController
     end
   end
 
-  def membership
-    @user = current_user
-    @profile = @user.profile
-  end
-
   private
 
   def interest_form_resources

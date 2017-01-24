@@ -4,8 +4,19 @@ class ProfilesController < ApplicationController
   
   layout 'concierge', only: :new
   
+  # /show/ 
+  # Purpose: This is the member profile info page
+  # GET /profile
   def show
     @profile = current_user.profile
+  end
+
+  # /membership/
+  # Purpose: This is the membership home page
+  # GET /membership
+  def membership
+    @user = current_user
+    @profile = @user.profile
   end
 
   def verify_current_password

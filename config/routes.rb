@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
-  get 'membership' => 'pages#membership'
+  get 'membership' => 'profiles#membership'
   
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
