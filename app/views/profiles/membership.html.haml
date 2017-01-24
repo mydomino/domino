@@ -7,7 +7,7 @@
   .absolute.left-0.right-0.top-0.mx-auto{style: 'margin-top: 100px;'}
     .flex.items-center.justify-center.flex-wrap.rounded.max-width-3.bg-white.p2.mx-auto
       .p2
-        = image_tag "http://placehold.it/150x150"
+        = image_tag "http://placehold.it/150x150", width: 150, height: 150
       .p2
         .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
         .gray-80.h6
@@ -32,7 +32,7 @@
               %i.blue.fa.fa-tachometer{"aria-hidden":"true"}
               Dashboard
             %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic minus odio libero voluptatem, nostrum animi vel eveniet at iure ullam, neque, quam asperiores assumenda voluptate iste ab temporibus incidunt. Voluptatum!
-        =link_to 'food-action-tracker' do
+        =link_to 'food-action-tracker/new' do
           .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.right.mb2
             .h1.gray-80
               %i.blue.fa.fa-cutlery{"aria-hidden":"true"}

@@ -1,0 +1,25 @@
+.max-width-4.mx-auto.my4
+  .center
+    %h2.gray-80= @date.strftime("%b %d, %Y")
+    %h1 What did you eat today?
+    .m2.p2.rounded{style: 'background-color: #E9D460'}
+      %h1 Breakfast
+      %h2 I ate...
+      = render 'food_categories', meal_type: 'breakfast'
+    .m2.p2.rounded{style: 'background-color: #F39C12;'}
+      %h2 Lunch
+      = render 'food_categories', meal_type: 'lunch'
+    .m2.p2.rounded{style: 'background-color: #F4B350;'}
+      %h2 Dinner
+      = render 'food_categories', meal_type: 'dinner'
+
+    -#gauge.gauge.gauge-big.gauge-blue
+      -#.gauge-arrow{data: {percentage: "0"}, style: "transform: rotate(0deg);"}
+    %button#btn-carbon-footprint.btn.btn-lg.btn-primary.btn-primary--hover
+      See my carbon footprint
+    #carbon-footprint{style: 'display: none;'}
+
+:javascript
+  modulejs.require('cm_gauge');
+  modulejs.require('fat_day')();
+  

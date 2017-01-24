@@ -32,3 +32,4 @@
 //= require_tree ./profile_steps
 //= require_tree ./registrations
 //= require_tree ./onboarding_module
+//= require_tree ./fat
