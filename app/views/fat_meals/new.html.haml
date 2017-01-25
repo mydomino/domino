@@ -3,15 +3,19 @@
   .center
     %h2.gray-80= @date.strftime("%b %d, %Y")
     %h1 What did you eat today?
+    -#@meal_types.each do |meal_type|
+      /.m2.p1.rounded{class: "#{meal_type.name}.meal_type"}
+        /.h2.m1= meal_type.name.capitalize
+        =# render 'food_categories'
     .m2.p1.rounded{style: 'background-color: #E9D460'}
       .h2.m1 Breakfast
-      = render 'food_categories', meal_type: 'breakfast'
+      = render 'food_categories'
     .m2.p1.rounded{style: 'background-color: #F39C12;'}
       .h2.m1 Lunch
-      = render 'food_categories', meal_type: 'lunch'
+      = render 'food_categories'
     .m2.p1.rounded{style: 'background-color: #F4B350;'}
       .h2.m1 Dinner
-      = render 'food_categories', meal_type: 'dinner'
+      = render 'food_categories'
 
     -#gauge.gauge.gauge-big.gauge-blue
       -#.gauge-arrow{data: {percentage: "0"}, style: "transform: rotate(0deg);"}

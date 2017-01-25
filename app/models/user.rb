@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_one :dashboard, dependent: :destroy
   belongs_to :organization, counter_cache: true
+  has_many :meal_days
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

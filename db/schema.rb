@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121003701) do
+ActiveRecord::Schema.define(version: 20170125204130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "clones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "dashboards", force: :cascade do |t|
     t.string   "lead_name"
@@ -28,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170121003701) do
     t.integer  "user_id"
   end
 
+  add_index "dashboards", ["concierge_id"], name: "index_dashboards_on_concierge_id", using: :btree
   add_index "dashboards", ["user_id"], name: "index_dashboards_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -46,13 +53,21 @@ ActiveRecord::Schema.define(version: 20170121003701) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "domino_products", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "price_cents"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "food_types", force: :cascade do |t|
+    t.integer "category"
+    t.float   "carbon_footprint"
+    t.string  "icon"
+    t.string  "name"
   end
+
+  create_table "foods", force: :cascade do |t|
+    t.integer "food_type_id"
+    t.float   "portion"
+    t.integer "meal_id"
+  end
+
+  add_index "foods", ["food_type_id"], name: "index_foods_on_food_type_id", using: :btree
+  add_index "foods", ["meal_id"], name: "index_foods_on_meal_id", using: :btree
 
   create_table "interests", force: :cascade do |t|
     t.integer  "profile_id"
@@ -102,6 +117,28 @@ ActiveRecord::Schema.define(version: 20170121003701) do
 
   add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
   add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
+
+  create_table "meal_days", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "date"
+    t.float    "carbon_footprint"
+  end
+
+  add_index "meal_days", ["user_id"], name: "index_meal_days_on_user_id", using: :btree
+
+  create_table "meal_types", force: :cascade do |t|
+    t.integer "caloric_budget"
+    t.string  "name"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.integer "size"
+    t.integer "meal_day_id"
+    t.integer "meal_type_id"
+  end
+
+  add_index "meals", ["meal_day_id"], name: "index_meals_on_meal_day_id", using: :btree
+  add_index "meals", ["meal_type_id"], name: "index_meals_on_meal_type_id", using: :btree
 
   create_table "offerings", force: :cascade do |t|
     t.string   "name"
@@ -181,6 +218,9 @@ ActiveRecord::Schema.define(version: 20170121003701) do
     t.integer  "updated_by"
   end
 
+  add_index "recommendations", ["dashboard_id"], name: "index_recommendations_on_dashboard_id", using: :btree
+  add_index "recommendations", ["recommendable_id", "recommendable_type"], name: "recommendable_index", using: :btree
+
   create_table "subscriptions", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "expire_date"
@@ -236,8 +276,13 @@ ActiveRecord::Schema.define(version: 20170121003701) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "dashboards", "users"
+  add_foreign_key "foods", "food_types"
+  add_foreign_key "foods", "meals"
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
+  add_foreign_key "meal_days", "users"
+  add_foreign_key "meals", "meal_days"
+  add_foreign_key "meals", "meal_types"
   add_foreign_key "profiles", "partner_codes"
   add_foreign_key "profiles", "users"
   add_foreign_key "subscriptions", "organizations"

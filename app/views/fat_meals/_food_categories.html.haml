@@ -6,27 +6,30 @@
     margin-left: -10px;
     text-align: center;
   }
-  
+
+-@food_categories.each do |food_category|
+
+
 .clearfix.max-width-3.mx-auto
   .col.col-12.sm-col.sm-col-6.mt2.sm-mt0
     .flex.justify-around
-      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Fruits"}
+      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Fruits"}
         =image_tag "fat_icons/apple"
-      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Veggies"}
+      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Veggies"}
         =image_tag "fat_icons/carrot"
-      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Dairy"}
+      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Dairy"}
         =image_tag "fat_icons/dairy"
   .col.col-12.sm-col.sm-col-6.mt2.sm-mt0
     .flex.justify-around
-      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Fish, poultry, and/or pork"}
+      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Fish, poultry, and/or pork"}
         =image_tag "fat_icons/fish"
-      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Beef and/or lamb"}
+      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Beef and/or lamb"}
         =image_tag "fat_icons/steak"
-      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Grains"}
+      .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Grains"}
         =image_tag "fat_icons/grain"
   
 .clearfix
   .h2.mt2 Meal size
-  .col.col-12.px2
+  .max-width-1.px2.mx-auto
     .slider.mb4
         

@@ -24,3 +24,6 @@ rails destroy migration AddUserToOrganizations
 # test cases
 nullify for dependent when parent object is destroyed
 
+#rails g migration create_food_types category:int carbon_footprint:float icon name
+
+
