@@ -1,31 +1,32 @@
+:css
+  .slider label {
+    position: absolute;
+    width: 20px;
+    margin-top: 20px;
+    margin-left: -10px;
+    text-align: center;
+  }
+  
 .clearfix.max-width-3.mx-auto
-  .col.col-12.sm-col.sm-col-4.mt2.sm-mt0
+  .col.col-12.sm-col.sm-col-6.mt2.sm-mt0
     .flex.justify-around
       .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Fruits"}
         =image_tag "fat_icons/apple"
       .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Veggies"}
         =image_tag "fat_icons/carrot"
-  .col.col-12.sm-col.sm-col-4.mt2.sm-mt0
-    .flex.justify-around
       .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Dairy"}
         =image_tag "fat_icons/dairy"
+  .col.col-12.sm-col.sm-col-6.mt2.sm-mt0
+    .flex.justify-around
       .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Fish, poultry, and/or pork"}
         =image_tag "fat_icons/fish"
-  .col.col-12.sm-col.sm-col-4.mt2.sm-mt0
-    .flex.justify-around
       .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Beef and/or lamb"}
         =image_tag "fat_icons/steak"
       .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10}, title: "Grains"}
         =image_tag "fat_icons/grain"
   
-  .clearfix.mt4
-    %h2 Meal size
-    .col.col-12.sm-col-4
-      .meal-size.mx-auto.flex.justify-center.items-center.bg-white.border.border-gray-30.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10, 'meal-type': meal_type}, title: "Small"}
-        .h1 S
-    .col.col-12.sm-col-4.center
-      .meal-size.mx-auto.flex.justify-center.items-center.bg-white.border.border-gray-30.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10, 'meal-type': meal_type}, title: "Medium"}
-        .h1 M
-    .col.col-12.sm-col-4.center
-      .meal-size.mx-auto.flex.justify-center.items-center.bg-white.border.border-gray-30.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', data: {points: 10, 'meal-type': meal_type}, title: "Large"}
-        .h1 L
+.clearfix
+  .h2.mt2 Meal size
+  .col.col-12.px2
+    .slider.mb4
+        
