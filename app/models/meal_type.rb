@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  caloric_budget :integer
-#  name           :string
+#  name           :integer
 #
 
 class MealType < ActiveRecord::Base

@@ -8,7 +8,7 @@ class FatMealsController < ApplicationController
     @date = Date.today
     @meal_types = MealType.all
     @food_types = FoodType.all
-    
+
     # put server on PST (for logging)
     # translate to local time zone
     # Time in db should be UTC
@@ -21,11 +21,12 @@ class FatMealsController < ApplicationController
   # POST /food-action-tracker
   def create
     # Create MealDay record
-    # meal_day = MealDay.new(
-                #   user: current_user,
-                #   date: Date.today
-                #   carbon_footprint: calculate_carbon_footprint
-                # )
+    meal_day = Meal.new(
+                  user: current_user,
+                  date: Date.today,
+                  carbon_footprint: calculate_carbon_footprint
+                )
+    byebug
       # meal_day.meals.build()
     # Save users meal tracking
     render json: {
@@ -39,6 +40,6 @@ class FatMealsController < ApplicationController
   # /calculate_carbon_footprint
 
   def calculate_carbon_footprint
-
+    100
   end
 end

@@ -64,8 +64,9 @@ modulejs.define('fat_day', function(){
       $(this).toggleClass('bg-blue bg-white');
       var food_type = $(this).data('food-type');
       var meal_type = $(this).data('meal-type');
+      
       if($(this).hasClass('bg-blue')){
-        fatDayFields[meal_type][food_type] = {};
+        fatDayFields[meal_type][food_type] = {portion: 50};
       }
       else {
         delete fatDayFields[meal_type][food_type]
@@ -79,7 +80,7 @@ modulejs.define('fat_day', function(){
       // Send meal information to server
       // Server will save info for meal_day
       // Server responds with carbon footprint
-      $.post( "/food-action-tracker", { name: "John", time: "2pm" } )
+      $.post( "/food-action-tracker", fatDayFields )
         .done(function(){ showCarbonFootprint(); })
         .fail(function(){ console.log('Error!'); });
     });
