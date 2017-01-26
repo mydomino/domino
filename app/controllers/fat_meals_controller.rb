@@ -6,9 +6,9 @@ class FatMealsController < ApplicationController
   # GET /food-action-tracker/new
   def new
     @date = Date.today
-    # @meal_types = MealType.all
-    # @food_types = FoodType.all
-
+    @meal_types = MealType.all
+    @food_types = FoodType.all
+    
     # put server on PST (for logging)
     # translate to local time zone
     # Time in db should be UTC

@@ -10,8 +10,16 @@
 #
 
 class FoodType < ActiveRecord::Base
-  has_a :food
+  has_many :foods
 
-  enum category: [:fruits, :vegetables, :dairy, :grains, :fish_poultry_pork, :beef_lamb]
+  enum category: {
+    fruits: 0, 
+    vegetables: 1, 
+    dairy: 2, 
+    grains: 3, 
+    fish_poultry_pork: 4, 
+    beef_lamb: 5
+  }
+  
   validates :category, :carbon_footprint, :icon, :name, presence: true
 end
