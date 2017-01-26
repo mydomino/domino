@@ -1,4 +1,5 @@
 modulejs.define('fat_day', function(){
+  window.Meal = modulejs.require('meal');
   return function(){
     var $mealItem,
         $carbonFootprint,
