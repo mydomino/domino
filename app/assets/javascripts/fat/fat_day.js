@@ -33,25 +33,6 @@ modulejs.define('fat_day', function(){
       },
       slide: function( event, ui ) {
       }
-    }).each(function() {
-      // Add labels to slider whose values 
-      // are specified by min, max
-
-      // Get the options for this slider (specified above)
-      var opt = $(this).data().uiSlider.options;
-
-      // Get the number of possible values
-      var vals = opt.max - opt.min;
-
-      // Position the labels
-      for (var i = 0; i <= vals; i++) {
-
-          // Create a new element and position it with percentages
-          var el = $('<label>' + sliderValueMap[i] + '</label>').css('left', (i/vals*100) + '%');
-
-          // Add the element inside #slider
-          $(".slider").append(el);
-      }
     });
 
     showCarbonFootprint = function(){

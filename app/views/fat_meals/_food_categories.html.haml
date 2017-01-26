@@ -7,16 +7,13 @@
     text-align: center;
   }
 
-.clearfix.max-width-3.mx-auto
+.clearfix.max-width-3.mx-auto.mb2
   -@food_types.each_slice(3) do |food_types|
     .col.col-12.sm-col.sm-col-6.mt2.sm-mt0
       .flex.justify-around
         -food_types.each do |food_type|
-          .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Fruits"}
-            =image_tag "fat_icons/#{food_type.icon}"
-  
-.clearfix
-  .h2.mt2 Meal size
-  .max-width-1.px2.mx-auto
-    .slider.mb4
+          .flex.flex-column.items-center
+            .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: "Fruits"}
+              = image_tag "fat_icons/#{food_type.icon}"
+            .gray-80= food_type.name
         
