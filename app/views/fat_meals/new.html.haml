@@ -8,9 +8,10 @@
           .max-width-3.mx-auto.py2
             .left
               = meal_type.name.capitalize
-            .right
-              Meal size: Average
-              .max-width-1.px2.py1.mx-auto
+            .right{style: 'width: 192px;'}
+              Meal size: 
+              %span#txt-meal-size.gray-80 Average
+              .px2.py1.mx-auto
                 .slider
         = render "food_categories"
     -#gauge.gauge.gauge-big.gauge-blue

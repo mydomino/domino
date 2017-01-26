@@ -6,7 +6,9 @@ modulejs.define('fat_day', function(){
         $slider,
         //$gauge,
         $btnCarbonFootprint,
-        showCarbonFootprint;
+        $txtMealSize,
+        showCarbonFootprint,
+        fatDayFields;
         // totalPoints;
 
     // $gauge = $('#gauge .gauge-arrow').cmGauge();
@@ -19,8 +21,15 @@ modulejs.define('fat_day', function(){
 
     $btnCarbonFootprint = $('#btn-carbon-footprint');
     $carbonFootprint = $('#carbon-footprint');
+    $textMealSize = $('#txt-meal-size');
 
-    var sliderValueMap = ["S", "M", "L"];
+    fatDayFields = {
+      breakfast: [],
+      lunch: [], 
+      dinner: []
+    };
+
+    var sliderValueMap = ["Less", "Average", "More"];
 
     $slider = $( ".slider" ).slider({
       range: "min",
@@ -28,10 +37,11 @@ modulejs.define('fat_day', function(){
       min:0,
       max: 2,
       step: 1,
-      value: 0,
+      value: 1,
       create: function( event, ui ) {
       },
       slide: function( event, ui ) {
+        $(this).parent().siblings('#txt-meal-size').html(sliderValueMap[ui.value]);
       }
     });
 
