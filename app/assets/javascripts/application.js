@@ -25,6 +25,9 @@
 //= require modulejs
 //= require init
 //= require mydomino
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles

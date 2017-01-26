@@ -49,6 +49,7 @@ gem 'annotate', '~> 2.7', '>= 2.7.1'
 gem 'faker'
 gem 'inline_svg'
 gem 'modulejs-rails'
+gem 'react-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
