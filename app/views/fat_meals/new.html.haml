@@ -14,13 +14,13 @@
               .px2.py1.mx-auto
                 .slider{data: {'meal-type': meal_type.name}}
         = render "food_categories", meal_type: meal_type
-    -#gauge.gauge.gauge-big.gauge-blue
-      -#.gauge-arrow{data: {percentage: "0"}, style: "transform: rotate(0deg);"}
+    .gauge.gauge.gauge-big.gauge-blue
+      .gauge-arrow{data: {percentage: "0"}, style: "transform: rotate(0deg);"}
     %button#btn-carbon-footprint.btn.btn-lg.btn-primary.btn-primary--hover.mt2
       See my carbon footprint
     #carbon-footprint{style: 'display: none;'}
 
 :javascript
   modulejs.require('cm_gauge');
-  modulejs.require('fat_day')();
+  modulejs.require('fat_day')(#{@meal_types.to_json}, #{@food_types.to_json});
   

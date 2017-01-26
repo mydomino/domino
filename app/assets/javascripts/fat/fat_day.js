@@ -1,14 +1,18 @@
 modulejs.define('fat_day', function(){
-  window.Meal = modulejs.require('meal');
-  return function(){
+  Meal = modulejs.require('meal');
+  FoodType = modulejs.require('food_type');
+
+  return function(mealTypes, foodTypes){
+    window.mt = mealTypes;
     var $mealItem,
         $carbonFootprint,
         $slider,
         //$gauge,
         $btnCarbonFootprint,
         showCarbonFootprint,
-        fatDayFields;
-        // totalPoints;
+        fatDayFields,
+        meals,
+        foods;
 
     // $gauge = $('#gauge .gauge-arrow').cmGauge();
 
@@ -23,17 +27,24 @@ modulejs.define('fat_day', function(){
     // fatDayFields is the JS object that tracks the state of the meal tracker
     // This object will be the payload sent to the service to create the required
     // resources rails side
-    fatDayFields = {
-      breakfast: {
-        meal_size: 1
-      },
-      lunch: {
-        meal_size: 1
-      }, 
-      dinner: {
-        meal_size: 1
-      }
-    };
+    meals = {};
+    foods = {};
+
+    // Create meal objects
+    for(var i = 0; i < mealTypes.length; i++){
+      var id = mealTypes[i].id 
+      var name = mealTypes[i].name;
+      var size = 1;
+
+      meals[name] = new Meal(id, name, size);
+    }
+    // window.meals = meals;
+    // Create food type objects
+    for(var i = 0; i < foodTypes.length; i++){
+      var id = foodTypes[i].id;
+      var category = foodTypes[i].category;
+      foods[category] = new FoodType(id, category);
+    }
 
     var sliderValueMap = ["Less", "Average", "More"];
 
@@ -44,12 +55,10 @@ modulejs.define('fat_day', function(){
       max: 2,
       step: 1,
       value: 1,
-      create: function( event, ui ) {
-      },
       slide: function( event, ui ) {
         $(this).parent().siblings('#txt-meal-size').html(sliderValueMap[ui.value]);
         var meal_type = $(this).data('meal-type');
-        fatDayFields[meal_type].meal_size = ui.value;
+        meals[meal_type].setSize(ui.value);
       }
     });
 
@@ -60,28 +69,26 @@ modulejs.define('fat_day', function(){
       });
     };
 
-
     $mealItem.on('click', function(e){
       $(this).toggleClass('bg-blue bg-white');
       var food_type = $(this).data('food-type');
       var meal_type = $(this).data('meal-type');
       
       if($(this).hasClass('bg-blue')){
-        fatDayFields[meal_type][food_type] = {portion: 50};
+        meals[meal_type].addFood(foods[food_type]);
       }
       else {
-        delete fatDayFields[meal_type][food_type]
+        delete meals[meal_type].removeFood(foods[food_type]);
       }
-      // debuggin
-      window.fatDayFields = fatDayFields;
     });
 
     $btnCarbonFootprint.on('click', function(){
       $(this).prop('disabled', true);
-      // Send meal information to server
-      // Server will save info for meal_day
-      // Server responds with carbon footprint
-      $.post( "/food-action-tracker", fatDayFields )
+      console.log(meals);
+      // // Send meal information to server
+      // // Server will save info for meal_day
+      // // Server responds with carbon footprint
+      $.post( "/food-action-tracker", {meals: JSON.stringify(meals)}, "json")
         .done(function(){ showCarbonFootprint(); })
         .fail(function(){ console.log('Error!'); });
     });

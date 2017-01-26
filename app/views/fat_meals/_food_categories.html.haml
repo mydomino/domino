@@ -13,7 +13,7 @@
       .flex.justify-around
         -food_types.each do |food_type|
           .flex.flex-column.items-center
-            .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: food_type.name.capitalize, data: {'food-type': food_type.category, 'meal-type': meal_type.name}}
+            .meal-item.bg-white.border.border-gray-30.p2.pointer.inline-block{style:'width: 64px;height:64px;border-radius:32px;', title: food_type.name.capitalize, data: {'food-type-id': food_type.id, 'food-type': food_type.category, 'meal-type': meal_type.name}}
               = image_tag "fat_icons/#{food_type.icon}"
             .gray-80= food_type.name.capitalize
         
