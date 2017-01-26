@@ -8,7 +8,12 @@
 #
 
 class MealType < ActiveRecord::Base
-  enum name: [:breakfast, :lunch, :dinner]
+  enum name: {
+    breakfast: 0, 
+    lunch: 1, 
+    dinner: 2
+  }
 
   validates :caloric_budget, :name, presence: true
+  validates :name, uniqueness: true
 end
