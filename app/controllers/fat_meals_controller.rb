@@ -20,7 +20,12 @@ class FatMealsController < ApplicationController
 
   # GET /food-action-tracker/edit
   def edit
+    @meal_day = MealDay.find_by(user: current_user, date: Date.today)
+    @meals = @meal_day.meals
+    @date = Date.today
     
+    @meal_types = MealType.all
+    @food_types = FoodType.all
   end
 
   # POST /food-action-tracker
@@ -32,11 +37,10 @@ class FatMealsController < ApplicationController
                 )
 
     meals = JSON.parse(params[:meals])
-    
+    byebug
     meals.each do |meal|
       properties = meal[1];
       foods = properties["foods"]
-      # byebug
       meal = Meal.create(
         size: properties['size'],
         meal_type: MealType.find(properties['id']),

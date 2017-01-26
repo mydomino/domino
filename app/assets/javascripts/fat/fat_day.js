@@ -54,12 +54,16 @@ modulejs.define('fat_day', function(){
       min:0,
       max: 2,
       step: 1,
-      value: 1,
       slide: function( event, ui ) {
         $(this).parent().siblings('#txt-meal-size').html(sliderValueMap[ui.value]);
         var meal_type = $(this).data('meal-type');
         meals[meal_type].setSize(ui.value);
+        console.log(ui.value);
       }
+    }).each( function(){
+      $(this).slider({
+        value: $(this).data('value')
+      });
     });
 
     showCarbonFootprint = function(){

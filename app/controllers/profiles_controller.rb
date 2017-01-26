@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
     @user = current_user
     @profile = @user.profile
 
-    @meal_day = MealDay.where(date: Date.today, user: @user)
+    @meal_day = MealDay.find_by(date: Date.today, user: @user)
     @fat_link = @meal_day ? 'food-action-tracker/edit' : 'food-action-tracker/new'
   end
 

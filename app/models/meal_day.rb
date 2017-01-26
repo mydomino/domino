@@ -20,5 +20,5 @@ class MealDay < ActiveRecord::Base
   belongs_to :user
   has_many :meals, dependent: :destroy
 
-  validates :user, :date, :carbon_footprint, presence: :true
+  validates :user, :date, presence: :true
 end
