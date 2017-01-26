@@ -1,12 +1,10 @@
 modulejs.define('fat_day', function(){
   return function(){
     var $mealItem,
-        $mealSize,
         $carbonFootprint,
         $slider,
         //$gauge,
         $btnCarbonFootprint,
-        $txtMealSize,
         showCarbonFootprint,
         fatDayFields;
         // totalPoints;
@@ -17,16 +15,23 @@ modulejs.define('fat_day', function(){
     // $('#gaugeDemo .gauge-arrow').trigger('updateGauge', NewValue);
 
     $mealItem = $('.meal-item');
-    $mealSize = $('.meal-size');
 
     $btnCarbonFootprint = $('#btn-carbon-footprint');
     $carbonFootprint = $('#carbon-footprint');
-    $textMealSize = $('#txt-meal-size');
 
+    // fatDayFields is the JS object that tracks the state of the meal tracker
+    // This object will be the payload sent to the service to create the required
+    // resources rails side
     fatDayFields = {
-      breakfast: [],
-      lunch: [], 
-      dinner: []
+      breakfast: {
+        meal_size: 1
+      },
+      lunch: {
+        meal_size: 1
+      }, 
+      dinner: {
+        meal_size: 1
+      }
     };
 
     var sliderValueMap = ["Less", "Average", "More"];
@@ -42,6 +47,8 @@ modulejs.define('fat_day', function(){
       },
       slide: function( event, ui ) {
         $(this).parent().siblings('#txt-meal-size').html(sliderValueMap[ui.value]);
+        var meal_type = $(this).data('meal-type');
+        fatDayFields[meal_type].meal_size = ui.value;
       }
     });
 
@@ -52,14 +59,19 @@ modulejs.define('fat_day', function(){
       });
     };
 
-    $mealItem.on('click', function(){
-      $(this).toggleClass('bg-blue bg-white');
-    });
 
-    $mealSize.on('click', function(){
-      var mealType = $(this).data('meal-type');
+    $mealItem.on('click', function(e){
       $(this).toggleClass('bg-blue bg-white');
-      $('.meal-size[data-meal-type="' + mealType + '"]').not(this).removeClass('bg-blue').addClass('bg-white');
+      var food_type = $(this).data('food-type');
+      var meal_type = $(this).data('meal-type');
+      if($(this).hasClass('bg-blue')){
+        fatDayFields[meal_type][food_type] = {};
+      }
+      else {
+        delete fatDayFields[meal_type][food_type]
+      }
+      // debuggin
+      window.fatDayFields = fatDayFields;
     });
 
     $btnCarbonFootprint.on('click', function(){
