@@ -1,4 +1,6 @@
                                  Prefix Verb     URI Pattern                                             Controller#Action
+                food_action_tracker_new GET      /food-action-tracker/new(.:format)                      fat_meals#new
+                    food_action_tracker POST     /food-action-tracker(.:format)                          fat_meals#create
                      organization_users POST     /organizations/:organization_id/users(.:format)         users#create
  email_members_upload_file_organization POST     /organizations/:id/email_members_upload_file(.:format)  organizations#email_members_upload_file
 import_members_upload_file_organization POST     /organizations/:id/import_members_upload_file(.:format) organizations#import_members_upload_file
@@ -29,6 +31,7 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                     faq GET      /faq(.:format)                                          pages#faq
                                 example GET      /example(.:format)                                      pages#example
                                partners GET      /partners(.:format)                                     pages#partners
+                             membership GET      /membership(.:format)                                   profiles#membership
                                         GET      /welcome-email/:profile_id(.:format)                    profiles#welcome_email
                                         GET      /legacy-user-registration-email/:lu_id(.:format)        profiles#lu_registration_email
                                         GET      /dashboard/:slug(.:format)                              redirect(301)
@@ -64,11 +67,11 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                        new_user_session GET      /users/sign_in(.:format)                                sessions#new
                            user_session POST     /users/sign_in(.:format)                                sessions#create
                    destroy_user_session DELETE   /users/sign_out(.:format)                               sessions#destroy
-                          user_password POST     /users/password(.:format)                               passwords#create
-                      new_user_password GET      /users/password/new(.:format)                           passwords#new
-                     edit_user_password GET      /users/password/edit(.:format)                          passwords#edit
-                                        PATCH    /users/password(.:format)                               passwords#update
-                                        PUT      /users/password(.:format)                               passwords#update
+                          user_password POST     /users/password(.:format)                               devise/passwords#create
+                      new_user_password GET      /users/password/new(.:format)                           devise/passwords#new
+                     edit_user_password GET      /users/password/edit(.:format)                          devise/passwords#edit
+                                        PATCH    /users/password(.:format)                               devise/passwords#update
+                                        PUT      /users/password(.:format)                               devise/passwords#update
                cancel_user_registration GET      /users/cancel(.:format)                                 registrations#cancel
                       user_registration POST     /users(.:format)                                        registrations#create
                   new_user_registration GET      /users/sign_up(.:format)                                registrations#new
@@ -77,6 +80,7 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                         PUT      /users(.:format)                                        registrations#update
                                         DELETE   /users(.:format)                                        registrations#destroy
                               sungevity GET      /sungevity(.:format)                                    registrations#new_org_member
+                               mydomino GET      /mydomino(.:format)                                     registrations#new_org_member
                  check_org_member_email GET      /check-org-member-email(.:format)                       registrations#check_org_member_email
                       create_org_member POST     /create-org-member(.:format)                            registrations#create_org_member
                 set_org_member_password PATCH    /set-org-member-password(.:format)                      registrations#set_org_member_password

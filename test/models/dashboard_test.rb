@@ -14,13 +14,13 @@
 #
 # Indexes
 #
-#  index_dashboards_on_concierge_id  (concierge_id)
-#  index_dashboards_on_user_id       (user_id)
+#  index_dashboards_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_8cb1930a1d  (user_id => users.id)
 #
+
 
 require "test_helper"
 

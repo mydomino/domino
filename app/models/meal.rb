@@ -18,7 +18,9 @@
 #  fk_rails_604de882b4  (meal_type_id => meal_types.id)
 #
 
+
 class Meal < ActiveRecord::Base
+	has_many :foods, dependent: :destroy
   belongs_to :meal_day
   belongs_to :meal_type
 

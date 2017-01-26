@@ -15,6 +15,7 @@
 #  default     :boolean          default(FALSE)
 #
 
+
 require "test_helper"
 
 class ProductTest < ActiveSupport::TestCase

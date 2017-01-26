@@ -17,6 +17,7 @@
 #  fk_rails_f07f0bd66d  (organization_id => organizations.id)
 #
 
+
 require 'test_helper'
 
 class TeamTest < ActiveSupport::TestCase

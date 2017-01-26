@@ -31,6 +31,7 @@
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
 
+
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase

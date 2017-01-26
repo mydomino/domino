@@ -19,6 +19,7 @@
 #  fk_rails_364213cc3e  (organization_id => organizations.id)
 #
 
+
 class Subscription < ActiveRecord::Base
   belongs_to :organization
 end

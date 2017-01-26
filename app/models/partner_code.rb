@@ -9,5 +9,6 @@
 #  updated_at   :datetime         not null
 #
 
+
 class PartnerCode < ActiveRecord::Base
 end

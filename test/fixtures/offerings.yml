@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #
 
+
 ---
 Offering_1:
   id: 1

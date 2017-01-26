@@ -19,6 +19,7 @@
 #  fk_rails_e224210bc5  (profile_id => profiles.id)
 #
 
+
 require "test_helper"
 
 class InterestTest < ActiveSupport::TestCase

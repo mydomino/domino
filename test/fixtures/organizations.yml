@@ -16,6 +16,7 @@
 #  email_domain :string
 #
 
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

@@ -27,6 +27,7 @@
 #  subscribe_to_mailchimp :boolean
 #
 
+
 require "test_helper"
 
 class LeadTest < ActiveSupport::TestCase

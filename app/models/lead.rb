@@ -27,5 +27,6 @@
 #  subscribe_to_mailchimp :boolean
 #
 
+
 class Lead < ActiveRecord::Base
 end

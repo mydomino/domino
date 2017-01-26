@@ -19,6 +19,7 @@
 #  fk_rails_364213cc3e  (organization_id => organizations.id)
 #
 
+
 require 'test_helper'
 
 class SubscriptionTest < ActiveSupport::TestCase

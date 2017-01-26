@@ -36,6 +36,7 @@
 #  fk_rails_e424190865  (user_id => users.id)
 #
 
+
 require 'test_helper'
  
 class ProfileTest < ActiveSupport::TestCase

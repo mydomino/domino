@@ -16,6 +16,7 @@
 #  email_domain :string
 #
 
+
 require 'test_helper'
 
 class OrganizationTest < ActiveSupport::TestCase

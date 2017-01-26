@@ -19,6 +19,7 @@
 #  fk_rails_364213cc3e  (organization_id => organizations.id)
 #
 
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
