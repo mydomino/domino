@@ -1,4 +1,4 @@
-var Meal = React.createClass({
+var FoodType = React.createClass({
   propTypes: {
     name: React.PropTypes.string
   },
@@ -6,8 +6,7 @@ var Meal = React.createClass({
   render: function() {
     return (
       <div>
-        <div>{this.props.name}</div>
-        <FoodType name="fruits" />
+        <div>Name: {this.props.name}</div>
       </div>
     );
   }

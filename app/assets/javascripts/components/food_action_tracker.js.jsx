@@ -1,13 +1,9 @@
-var FoodActionTracker = React.createClass({
-  propTypes: {
-    date: React.PropTypes.node
-  },
-
-  render: function() {
+class FoodActionTracker extends React.Component {
+  render() {
     return (
       <div>
-        <div>Date: {this.props.date}</div>
+        <Meal name="breakfast" />
       </div>
     );
   }
-});
+}
