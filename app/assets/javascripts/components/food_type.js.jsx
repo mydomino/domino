@@ -5,9 +5,7 @@ var FoodType = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <div>Name: {this.props.name}</div>
-      </div>
+      <div onClick={() => this.props.onClick()}>{this.props.name}</div>
     );
   }
 });
