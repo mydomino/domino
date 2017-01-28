@@ -1,12 +1,39 @@
 class FoodActionTracker extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      meals: []
+    };
+  }
+  componentWillMount(){
+    this.setState({
+      meals: this.props.fatDay.meals
+    }); 
+  }
+  updateMealSize(newSize, mealIndex){
+    // e.preventDefault()
+    const meals = this.state.meals.slice();
+    //window.meals = meals;
+    // alert(mealIndex);
+    console.log(mealIndex);
+    meals[mealIndex].size = newSize;
+    this.setState({
+      meals: meals
+    });
+  }
   render() {
-      var mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
-      var foodTypes = ['Fruits', 'Vegetables'];
-
-      var meals = mealTypes.map(function(name, index){
-                    return <Meal key={index} name={name} index={index} foodTypes={foodTypes} />;
+      // var mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
+      // var foodTypes = ['Fruits', 'Vegetables'];
+      // // var fatDay = this.props.fatDay;
+      // console.log(this.state.meals);
+        // <FoodCategories onClick={() => this.handleClick()} />
+      
+      
+      // var meals = <Meal key={1} index={1} meal={this.state.meals[0]} updateMealSize={()=>this.updateMealSize()} />;
+      var that = this
+      var meals = this.state.meals.map(function(meal, index){
+                    return <Meal key={index} mealIndex={index} meal={meal} updateMealSize={(n,i)=>that.updateMealSize(n,i)} />;
                   });
-
       return (
         <div>
           <div className='border rounded'>
@@ -18,7 +45,7 @@ class FoodActionTracker extends React.Component {
   }
   componentDidMount() {
     $('#btn-carbon-footprint').on('click', function(){
-      // alert('test');
+    
     });
   }
 }

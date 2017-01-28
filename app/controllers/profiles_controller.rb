@@ -19,7 +19,9 @@ class ProfilesController < ApplicationController
     @profile = @user.profile
 
     @meal_day = MealDay.find_by(date: Date.today, user: @user)
-    @fat_link = @meal_day ? 'food-action-tracker/edit' : 'food-action-tracker/new'
+    # @fat_link = @meal_day ? 'food-action-tracker/edit' : 'food-action-tracker/new'
+    @fat_link = 'food-action-tracker'
+
   end
 
   def verify_current_password

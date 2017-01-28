@@ -20,13 +20,17 @@ class FatMealsController < ApplicationController
 
   # GET /food-action-tracker/edit
   def edit
-    @meal_day = MealDay.find_by(user: current_user, date: Date.today)
-    @meals = @meal_day.meals
-    @date = Date.today
-    
-    @meal_types = MealType.all
-    @food_types = FoodType.all
+    #todo check if meal_day exists for day by users timezone
+    date = Date.today
+    meal_day = MealDay.find_by(user: current_user, date: date)
+    @fat_day = {
+      meal_day: meal_day,
+      meals: meal_day ? meal_day.meals : newMeals(meal_day),
+      date: date,
+      food_types: FoodType.all
+    }
   end
+  # food-action-tracker/:date
 
   # POST /food-action-tracker
   def create
@@ -75,5 +79,23 @@ class FatMealsController < ApplicationController
 
   def calculate_carbon_footprint
     100
+  end
+
+  def newMeals(meal_day)
+    [
+      {
+        size: 0,
+        name: MealType.breakfast.first.name
+      },
+      {
+        size: 1,
+        name: MealType.lunch.first.name
+      },
+      {
+        size: 2,
+        name: MealType.dinner.first.name
+      }
+    ]
+        
   end
 end

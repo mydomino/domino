@@ -1,2 +1,5 @@
-
-= render "fat_interface"
+.max-width-4.mx-auto
+  .center
+    %h2.gray-80= @fat_day[:date].strftime("%b %d, %Y")
+    %h1 What did you eat today?
+  = react_component('FoodActionTracker', fatDay: @fat_day)
