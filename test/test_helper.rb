@@ -21,7 +21,9 @@ end
 
 
 class ActionController::TestCase
-  include Devise::TestHelpers
+	# This is deprecated. 
+  #include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 end
 
 

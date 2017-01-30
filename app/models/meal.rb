@@ -24,7 +24,7 @@ class Meal < ActiveRecord::Base
   belongs_to :meal_day
   belongs_to :meal_type
 
-  enum size: [:small, :medium, :large]
+  enum size: {small: 0, medium: 1, large: 2}
 
   validates :meal_day, :meal_type, :size, presence: true
 end
