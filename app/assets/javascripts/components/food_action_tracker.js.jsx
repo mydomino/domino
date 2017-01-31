@@ -16,6 +16,7 @@ class FoodActionTracker extends React.Component {
       meal_day: this.props.fatDay.meal_day
     }); 
   }
+
   updateMealSize(n, meal){
     let meals = this.state.meals.slice();
     let index = meals.findIndex(x => x.meal_type_id === meal.meal_type_id);
@@ -56,7 +57,9 @@ class FoodActionTracker extends React.Component {
         <div className='border rounded'>
           {meals}
         </div>          
-        <button id='btn-carbon-footprint' className='btn btn-lg btn-primary btn-primary--hover'>Find out my carbon footprint</button>
+        <div className="my2 center">
+          <button id='btn-carbon-footprint' className='btn btn-lg btn-primary btn-primary--hover'>Find out my carbon footprint</button>
+        </div>
       </div>
     );
   }

@@ -2,15 +2,32 @@ class FatMealsController < ApplicationController
 
   # GET /food-action-tracker
   # GET /food-action-tracker/:year/:month/:day
+  # Purpose: Display the FAT interface for a given date
+  #  If no date params are provided, the interface will
+  #  render for the current date
   def edit
-    #todo check if meal_day exists for day by users timezone
-    date = Date.today
-    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: date)
+    #TODO get date by user timezone
+
+    if params[:year].present?
+      year = params[:year].to_i
+      month = params[:month].to_i
+      day = params[:day].to_i
+
+      fat_date = Date.new(year, month, day)
+    else
+      fat_date = Date.today
+    end
+
+    @prev_date = fat_date - 1.day
+    @next_date = fat_date + 1.day
+    @current_date = Date.today
+    
+    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: fat_date)
 
     @fat_day = {
       meal_day: meal_day,
       meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
-      date: date,
+      date: fat_date,
       meal_type: MealType.all,
       food_types: FoodType.all
     }

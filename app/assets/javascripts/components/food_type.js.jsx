@@ -27,7 +27,7 @@ class FoodType extends React.Component {
   }
   render() {
     return (
-      <div className='flex flex-column' >
+      <div className='flex flex-column items-center' >
         <div  onClick={()=>this.toggleFood()} 
               className={(this.state.selected ? 'bg-blue ' : 'bg-white ') + "border border-gray-30 p2 pointer inline-block"} 
               style={{borderRadius: '32px', width: '64px', height: '64px'}}>
