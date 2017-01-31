@@ -69,7 +69,6 @@ class FatMealsController < ApplicationController
             food_type_id: value[:food_type_id],
             meal: meal
           )
-          byebug
         end
       end
     end
