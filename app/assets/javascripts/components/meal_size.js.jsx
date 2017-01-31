@@ -1,7 +1,7 @@
 class MealSize extends React.Component {
   render() {
     return  (
-      <div className="mb2">
+      <div className="mb2 mr0 sm-mr2">
         <div className="h3 mb1">{"Meal size: " + this.props.meal.size}</div>
         <div className={"slider "+ this.props.meal.meal_type.name}></div>
       </div>

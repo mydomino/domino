@@ -54,11 +54,11 @@ class FoodActionTracker extends React.Component {
                 });
     return (
       <div>
-        <div className='border rounded'>
+        <div className='border rounded clearfix'>
           {meals}
         </div>          
         <div className="my2 center">
-          <button id='btn-carbon-footprint' className='btn btn-lg btn-primary btn-primary--hover'>Find out my carbon footprint</button>
+          <button id='btn-carbon-footprint' className='btn btn-md btn-primary btn-primary--hover'>Find out my carbon footprint</button>
         </div>
       </div>
     );

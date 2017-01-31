@@ -1,6 +1,6 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
-  
+
 .max-width-4.mx-auto
   .center
     .flex.items-center.justify-center
@@ -10,5 +10,5 @@
       - if @next_date <= @current_date
         = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day) do
           %i.fa.fa-2x.fa-angle-right.gray-80.blue--hover
-    %h1 What did you eat today?
+    .h1 What did you eat today?
   = react_component('FoodActionTracker', {fatDay: @fat_day})
