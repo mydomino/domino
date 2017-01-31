@@ -4,26 +4,21 @@ class FoodActionTracker extends React.Component {
     this.state = {
       date: null,
       meals: [],
-      method: null // PUT or POST
+      method: null,
+      meal_day: null // PUT or POST
     };
   }
   componentWillMount(){
     this.setState({
       date: this.props.fatDay.date,
       meals: this.props.fatDay.meals,
-      method: (this.props.fatDay.meal_day == null) ? 'POST' : 'PATCH'
+      method: (this.props.fatDay.meal_day == null) ? 'POST' : 'PATCH',
+      meal_day: this.props.fatDay.meal_day
     }); 
   }
   updateMealSize(n, meal){
-    // e.preventDefault()
     let meals = this.state.meals.slice();
-    console.log(meal);
     let index = meals.findIndex(x => x.meal_type_id === meal.meal_type_id);
-    // alert(index);
-    //window.meals = meals;
-    // alert(mealIndex);
-    // console.log(mealIndex);
-    console.log(meals[index]);
     meals[index].size = n;
     this.setState({
       meals: meals
@@ -71,8 +66,13 @@ class FoodActionTracker extends React.Component {
       console.log(that.state.method);
 
       $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state, meal_day: that.props.fatDay.meal_day }, "json")
-        .done(function(){ 
-          that.setState({method: 'PATCH'});
+        .done(function(data){
+          console.log(data)
+          that.setState({
+            method: 'PATCH',
+            meals: data.meals,
+            meal_day: data.meal_day
+          });
           that.showCarbonFootprint(); 
         })
         .fail(function(){ console.log('Error!'); });

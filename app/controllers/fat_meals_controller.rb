@@ -34,9 +34,9 @@ class FatMealsController < ApplicationController
       )
 
       if fat_meal[:foods]
-        fat_meal[:foods].each do |food|
-          Food.create(
-            food_type_id: food,
+        fat_meal[:foods].each do |key, value|
+          food = Food.create(
+            food_type_id: value[:food_type_id],
             meal: meal
           )
         end
@@ -47,15 +47,18 @@ class FatMealsController < ApplicationController
     # meal_day.update(carbon_footprint: carbon_footprint)
     render json: {
       carbon_footprint: 100,
+      meals: JSON.parse(meal_day.meals.order(:meal_type_id).to_json(:include => [:meal_type, :foods])),
+      meal_day: meal_day,
       status: 200
     }, status: 200
   end
 
   # PATCH /food-action-tracker/
   def update
-    # meal_day_id = params[:meal_day_id]
-    # meal_day = MealDay.find(meal_day_id)
+    meal_day_id = params[:meal_day][:id].to_i
+    meal_day = MealDay.find(meal_day_id)
     meals = params[:fat_day][:meals]
+
     meals.each do |fat_meal|
       data = fat_meal[1]
       foods = data[:foods]
@@ -72,8 +75,11 @@ class FatMealsController < ApplicationController
         end
       end
     end
+
     render json: {
       carbon_footprint: 100,
+      meals: meal_day ? JSON.parse(meal_day.meals.order(:meal_type_id).to_json(:include => [:meal_type, :foods])) : new_meals,
+      meal_day: meal_day,
       status: 200
     }, status: 200
   end
