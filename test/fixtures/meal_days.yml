@@ -13,10 +13,10 @@ meal_day_one:
 meal_day_two: 
   user: User_2   
   date: <%= Time.now %>          
-  carbon_footprint: 60.50
+  carbon_footprint: 160.50
 # 
 meal_day_three:
   user: User_3    
   date: <%= Time.now - 1.days %>          
-  carbon_footprint: 60.50
+  carbon_footprint: 30.50
 #
