@@ -72,7 +72,6 @@ class FatMealsController < ApplicationController
 
   # PATCH /food-action-tracker/
   def update
-    byebug
     meal_day_id = params[:meal_day][:id].to_i
     meal_day = MealDay.find(meal_day_id)
     meals = params[:fat_day][:meals]
