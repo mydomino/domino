@@ -65,7 +65,7 @@ class FoodActionTracker extends React.Component {
     $('#btn-carbon-footprint').on('click', function(){
       console.log(that.state.method);
 
-      $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state, meal_day: that.props.fatDay.meal_day }, "json")
+      $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state, meal_day: that.state.meal_day }, "json")
         .done(function(data){
           console.log(data)
           that.setState({
