@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   get 'food-action-tracker' => 'fat_meals#edit'
-
   post 'food-action-tracker' => 'fat_meals#create'
+  patch 'food-action-tracker' => 'fat_meals#update'
 
   resources :organizations do
     resources :users, only: [:create] 

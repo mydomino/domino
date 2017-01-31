@@ -17,7 +17,7 @@ class MealType < ActiveRecord::Base
 
   
   has_many :meals, dependent: :destroy
-
+  
   validates :caloric_budget, :name, presence: true
   validates :name, uniqueness: true
 end

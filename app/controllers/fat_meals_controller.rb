@@ -1,101 +1,120 @@
 class FatMealsController < ApplicationController
-  def index
-   
-  end
 
-  # GET /food-action-tracker/
-  # call this edit?
-  def new
-    @date = Date.today
-    @meal_types = MealType.all
-    @food_types = FoodType.all
-    # put server on PST (for logging)
-    # translate to local time zone
-    # Time in db should be UTC
-  end
-
+  # GET /food-action-tracker
   # GET /food-action-tracker/:year/:month/:day
-  def show
-  end
-
-  # GET /food-action-tracker/edit
   def edit
     #todo check if meal_day exists for day by users timezone
     date = Date.today
-    meal_day = MealDay.find_by(user: current_user, date: date)
+    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: date)
+
     @fat_day = {
       meal_day: meal_day,
-      meals: meal_day ? meal_day.meals : newMeals(meal_day),
+      meals: meal_day ? JSON.parse(meal_day.meals.order(:meal_type_id).to_json(:include => [:meal_type, :foods])) : new_meals,
       date: date,
+      meal_type: MealType.all,
       food_types: FoodType.all
     }
   end
-  # food-action-tracker/:date
 
   # POST /food-action-tracker
   def create
-    # Create MealDay record
+    date_param = params[:fat_day][:date]
+    meals = params[:fat_day][:meals]
+
     meal_day =  MealDay.create(
                   user: current_user,
-                  date: Date.today
+                  date: date_param
                 )
 
-    meals = JSON.parse(params[:meals])
-    byebug
-    meals.each do |meal|
-      properties = meal[1];
-      foods = properties["foods"]
+    meals.each do |key, fat_meal|
       meal = Meal.create(
-        size: properties['size'],
-        meal_type: MealType.find(properties['id']),
+        size: fat_meal[:size],
+        meal_type: MealType.find(fat_meal[:meal_type][:id]),
         meal_day: meal_day
       )
 
-      foods.each do |food|
-        properties = food[1]
-        Food.create(
-          meal: meal,
-          food_type: FoodType.find(properties['id'])
-        )
+      if fat_meal[:foods]
+        fat_meal[:foods].each do |food|
+          Food.create(
+            food_type_id: food,
+            meal: meal
+          )
+        end
       end
     end
 
-    carbon_footprint = calculate_carbon_footprint
-    meal_day.update(carbon_footprint: carbon_footprint)
+    # carbon_footprint = calculate_carbon_footprint
+    # meal_day.update(carbon_footprint: carbon_footprint)
     render json: {
-      carbon_footprint: carbon_footprint,
+      carbon_footprint: 100,
       status: 200
     }, status: 200
   end
 
-  # PUT /food-action-tracker/
+  # PATCH /food-action-tracker/
   def update
+    # meal_day_id = params[:meal_day_id]
+    # meal_day = MealDay.find(meal_day_id)
+    meals = params[:fat_day][:meals]
+    meals.each do |fat_meal|
+      data = fat_meal[1]
+      foods = data[:foods]
+      meal = Meal.find(data[:id])
+      meal.update(size: data[:size])
+      meal.foods.destroy_all
 
+      if foods 
+        foods.each do |key, value|
+          food = Food.create(
+            food_type_id: value[:food_type_id],
+            meal: meal
+          )
+          byebug
+        end
+      end
+    end
+    render json: {
+      carbon_footprint: 100,
+      status: 200
+    }, status: 200
   end
 
   private
 
-  # /calculate_carbon_footprint
-
+  # /calculate_carbon_footprint/
   def calculate_carbon_footprint
     100
   end
 
-  def newMeals(meal_day)
+  def new_meals
     [
       {
-        size: 0,
-        name: MealType.breakfast.first.name
+        meal_type_id: 1,
+        size: "medium",
+        foods: [],
+        meal_type: {
+          id: 1,
+          name: "breakfast"
+        }
       },
       {
-        size: 1,
-        name: MealType.lunch.first.name
+        meal_type_id: 2,
+        size: "medium",
+        foods: [],
+        meal_type: {
+          id: 2,
+          name: "lunch"
+        }
       },
       {
-        size: 2,
-        name: MealType.dinner.first.name
+        meal_type_id: 3,
+        size: "medium",
+        foods: [],
+        meal_type: {
+          id: 3,
+          name: "dinner"
+        }
       }
     ]
-        
   end
 end

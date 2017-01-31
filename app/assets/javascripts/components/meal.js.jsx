@@ -1,41 +1,29 @@
 class Meal extends React.Component {
-  // propTypes: {
-  //   name: React.PropTypes.string
-  // },
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     size: 1,
-  //     foods:{}
-  //   };
-  // }
-  // // setSize(newSize) {
-  // //   this.setState({
-  // //     size: newSize
-  // //   });
-  // // }
-  // componentWillMount(){
-  //   this.setState({
-  //     size: this.props.meal.size
-  //   });
-  // }
   render() {
+    var that = this;
+    var foodTypes = this.props.foodTypes.map(function(foodType){
+                      return <FoodType key={foodType.name} foodType={foodType} toggleFood={(food)=>that.props.toggleFood(food)} meal={that.props.meal} />
+                    });
+
     return (
-      <div>
-        <div className={"col col-12" + (this.props.index != 0 ? ' border-top' : '')}>
-          <div className='max-width-3'>
-            <div className='left'>{this.props.meal.name}</div>
-            <div className='right max-width-2'>
-              <MealSize mealIndex={this.props.mealIndex} updateMealSize={(n,i)=>this.props.updateMealSize(n,i)} meal={this.props.meal} />
+      <div className={this.props.index != 0 ? 'border-top' : ''}>
+
+        <div className='clearfix'>
+          <div className='left'>{this.props.meal.meal_type.name}</div>
+          <div className='right  max-width-2'>
+            <MealSize mealSizeMap={this.props.mealSizeMap} updateMealSize={(n, m)=>this.props.updateMealSize(n,m)} meal={this.props.meal} />
+          </div>
+        </div>
+
+        <div className='clearfix'>
+          <div className=' col col-12 mt2 sm-mt0'>
+            <div className='flex justify-around'>
+              {foodTypes}
             </div>
           </div>
         </div>
-        <FoodCategories onClick={() => this.handleClick()} />
+
       </div>
     );
-  }
-
-  handleClick(){
-    alert('testing');
   }
 }
