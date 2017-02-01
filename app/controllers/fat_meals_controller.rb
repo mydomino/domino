@@ -15,20 +15,10 @@ class FatMealsController < ApplicationController
 
       fat_date = Date.new(year, month, day)
     else
-      fat_date = Date.today
+      time_zone_name = Time.zone.name
+      time = Time.now.in_time_zone(time_zone_name)
+      fat_date = Date.new(time.year, time.month, time.day)
     end
-      
-    puts "#######################################"
-    puts "#######################################"
-    puts "#######################################"
-    puts "#######################################"
-    puts "DateTime.now: #{DateTime.now}"
-    puts "Time.now: #{Time.now}"
-    puts "Time.zone.name: #{Time.zone.name}"
-    puts "Time.now.in_time_zone(Time.zone.name): #{Time.now.in_time_zone(Time.zone.name)}"
-    puts "#######################################"
-    puts "#######################################"
-    puts "#######################################"
 
     @prev_date = fat_date - 1.day
     @next_date = fat_date + 1.day
