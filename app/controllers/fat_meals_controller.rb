@@ -25,6 +25,7 @@ class FatMealsController < ApplicationController
     puts "DateTime.now: #{DateTime.now}"
     puts "Time.now: #{Time.now}"
     puts "Time.zone.name: #{Time.zone.name}"
+    puts "Time.now.in_time_zone(Time.zone.name): #{Time.now.in_time_zone(Time.zone.name)}"
     puts "#######################################"
     puts "#######################################"
     puts "#######################################"
