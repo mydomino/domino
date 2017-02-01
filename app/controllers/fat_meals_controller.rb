@@ -8,7 +8,7 @@ class FatMealsController < ApplicationController
   #  render for the current date
   def edit
     #TODO get date by user timezone
-
+    byebug
     if params[:year].present?
       year = params[:year].to_i
       month = params[:month].to_i

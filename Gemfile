@@ -50,6 +50,7 @@ gem 'faker'
 gem 'inline_svg'
 gem 'modulejs-rails'
 gem 'react-rails'
+gem 'browser-timezone-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
