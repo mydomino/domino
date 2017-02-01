@@ -20,7 +20,8 @@ class FatMealsController < ApplicationController
       # This is made possible by the browser-timezone-rails gem
       time = Time.now
     end
-
+    fat_date = Date.new(time.year, time.month, time.day)
+    
     @prev_date = time - 1.day
     @next_date = time + 1.day
     @current_date = Date.today
@@ -30,7 +31,7 @@ class FatMealsController < ApplicationController
     @fat_day = {
       meal_day: meal_day,
       meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
-      date: time,
+      date: fat_date,
       meal_type: MealType.all,
       food_types: FoodType.all
     }
