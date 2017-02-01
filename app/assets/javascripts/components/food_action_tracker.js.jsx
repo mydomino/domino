@@ -1,13 +1,4 @@
 class FoodActionTracker extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      date: null,
-      meals: [],
-      method: null,
-      meal_day: null // PUT or POST
-    };
-  }
   componentWillMount(){
     this.setState({
       date: this.props.fatDay.date,

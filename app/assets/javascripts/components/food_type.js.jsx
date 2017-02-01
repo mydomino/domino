@@ -1,10 +1,4 @@
 class FoodType extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      selected: false
-    };
-  }
   componentWillMount() {
     selected = false;
     for(var food in this.props.meal.foods){
