@@ -8,6 +8,8 @@ class FatMealsController < ApplicationController
   #  render for the current date based on users timezone
   def edit
     time_zone_name = Time.zone.name
+    time_now = Time.now.in_time_zone(time_zone_name)
+    @current_date = Date.new(time_now.year, time_now.month, time_now.day)
 
     if params[:year].present?
       year = params[:year].to_i
@@ -18,7 +20,6 @@ class FatMealsController < ApplicationController
     else
       # Set FAT date based on user timezone
       # This is made possible by the browser-timezone-rails gem
-      time_now = Time.now.in_time_zone(time_zone_name)
       # Remove time data
       date = Date.new(time_now.year, time_now.month, time_now.day)
     end
@@ -26,7 +27,6 @@ class FatMealsController < ApplicationController
 
     @prev_date = date - 1.day
     @next_date = date + 1.day
-    @current_date = Date.today
 
     meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: date)
 
