@@ -43,14 +43,12 @@ class FatMealsController < ApplicationController
   # Create FAT resources for the date provided in params.
   def create
     date_param = params[:fat_day][:date]
-    byebug
     meals = params[:fat_day][:meals]
     
     meal_day =  MealDay.create(
                   user: current_user,
                   date: date_param
                 )
-    byebug
 
     meals.each do |key, fat_meal|
       meal = Meal.create(
