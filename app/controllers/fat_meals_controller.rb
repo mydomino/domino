@@ -21,10 +21,10 @@ class FatMealsController < ApplicationController
       time = Time.now
     end
     fat_date = Date.new(time.year, time.month, time.day)
-    
-    @prev_date = time - 1.day
-    @next_date = time + 1.day
-    @current_date = Date.today
+
+    @prev_date = fat_date - 1.day
+    @next_date = fat_date + 1.day
+    @current_date = fat_date
     
     meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: time.in_time_zone(time_zone_name))
 
