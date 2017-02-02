@@ -1,0 +1,19 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+breakfast:
+  caloric_budget: 50
+  name: 0        
+#
+lunch:
+  caloric_budget: 60
+  name: 1        
+#
+dinner:
+  caloric_budget: 70
+  name: 2        
+#
