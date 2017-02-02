@@ -41,18 +41,34 @@ namespace :md_test do
   	start_date = Time.zone.today - 60.days
   	end_date = Time.zone.today
 
+    @total_carbon_foodprint = 0
+
   	user.meal_days.where(["date >= ? and date <= ?", start_date, end_date]).each do |meal_day|
 
-      puts "meal_day: #{meal_day.date}\n"
+      #puts "meal_day: #{meal_day.date}\n"
+      @day_carbon_foodprint = 0
 
-      meal_day.meals
+      meal_day.meals.each do |meal|
+
+        @meal_carbon_foodprint = 0
+
+        meal.foods.each do |food|
+
+          @meal_carbon_foodprint += food.food_type.carbon_footprint
+          
+        end
+      end
+
+      @day_carbon_foodprint += @meal_carbon_foodprint
+  
+      puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n\n\n"
+      @total_carbon_foodprint += @day_carbon_foodprint
+
 
     end
 
 
-  	
-
-
+    puts "Total Carbon footprint for the period is #{@total_carbon_foodprint}\n"
 
   	# 
 
