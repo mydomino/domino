@@ -14,11 +14,11 @@ class FatMealsController < ApplicationController
       month = params[:month].to_i
       day = params[:day].to_i
 
-      time = Time.new(year, month, day)
+      time = Time.new(year, month, day).in_time_zone(time_zone_name)
     else
       # Set FAT date based on user timezone
       # This is made possible by the browser-timezone-rails gem
-      time = Time.now
+      time = Time.now.in_time_zone(time_zone_name)
     end
     fat_date = Date.new(time.year, time.month, time.day)
 
@@ -26,7 +26,7 @@ class FatMealsController < ApplicationController
     @next_date = fat_date + 1.day
     @current_date = fat_date
     
-    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: time.in_time_zone(time_zone_name))
+    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: fat_date)
 
     @fat_day = {
       meal_day: meal_day,
