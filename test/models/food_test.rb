@@ -8,7 +8,7 @@ class FoodTest < ActiveSupport::TestCase
     @user = users(:User_1)
 
     @meal_day = MealDay.create(user: @user, 
-    	date: Time.now, 
+    	date: Time.zone.now, 
     	carbon_footprint: 35
     )
 
