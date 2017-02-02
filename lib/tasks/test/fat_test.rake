@@ -41,7 +41,13 @@ namespace :md_test do
   	start_date = Time.zone.today - 60.days
   	end_date = Time.zone.today
 
-  	user.meal_days.where(["date >= ? and date <= ?", start_date, end_date])
+  	user.meal_days.where(["date >= ? and date <= ?", start_date, end_date]).each do |meal_day|
+
+      puts "meal_day: #{meal_day.date}\n"
+
+      meal_day.meals
+
+    end
 
 
   	
@@ -60,32 +66,42 @@ namespace :md_test do
   	food_category = %W(fruits vegetables dairy grains fish_poultry_pork beef_lamb)
   	food_category_size = food_category.size
 
+    meal_portion = %W(small medium large)
+    meal_portion_size = meal_portion.size
+
+    @meal_type = MealType.create(caloric_budget: 60, 
+        name: 'breakfast'       
+    )
+
+
+
     # create n meal days
-    for i in 1..n 
+    for i in 0..n 
   	  
   	  # create meal day
   	  @meal_day = MealDay.create(user: user, 
     	  date: Time.zone.now - i.day, #Time.zone.today
     	  carbon_footprint: i + 35
       )
-
-
-      @meal_type = MealType.create(caloric_budget: 60, 
-      	name: 'breakfast'       
-      )
   
-      @meal = Meal.create(size: Meal.small, 
+      @meal = Meal.create(size: meal_portion[i % 3], 
       	meal_day:  @meal_day, 
       	meal_type: @meal_type
       )
   
-      @food_type = FoodType.create(category: food_category[i % food_category_size], 
-      	carbon_footprint: 32.5+i, 
-      	icon: "#{food_category[i % food_category_size]}.png", 
-      	name: food_category[i % food_category_size]
-      )
-  
-      food = Food.create(portion: 38+i, food_type: @food_type, meal: @meal)
+      # create 7 food 
+      for j in 0..7
+
+        @food_type = FoodType.find_or_create_by!(category: food_category[i % food_category_size]) do |ft|
+        
+        	ft.carbon_footprint = 32.5+i, 
+        	ft.icon = "#{food_category[i % food_category_size]}.png", 
+        	ft.name = food_category[i % food_category_size]
+        end
+    
+        food = Food.create(portion: 38+i, food_type: @food_type, meal: @meal)
+
+      end
 
     end
   	
