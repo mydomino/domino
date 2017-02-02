@@ -14,24 +14,26 @@ class FatMealsController < ApplicationController
       month = params[:month].to_i
       day = params[:day].to_i
 
-      time = Time.new(year, month, day).in_time_zone(time_zone_name)
+      date = Date.new(year, month, day)
     else
       # Set FAT date based on user timezone
       # This is made possible by the browser-timezone-rails gem
-      time = Time.now.in_time_zone(time_zone_name)
+      time_now = Time.now.in_time_zone(time_zone_name)
+      # Remove time data
+      date = Date.new(time_now.year, time_now.month, time_now.day)
     end
-    fat_date = Date.new(time.year, time.month, time.day)
+    # fat_date = Date.new(time.year, time.month, time.day)
 
-    @prev_date = fat_date - 1.day
-    @next_date = fat_date + 1.day
-    @current_date = fat_date
-    
-    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: fat_date)
+    @prev_date = date - 1.day
+    @next_date = date + 1.day
+    @current_date = Date.today
+
+    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: date)
 
     @fat_day = {
       meal_day: meal_day,
       meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
-      date: fat_date,
+      date: date,
       meal_type: MealType.all,
       food_types: FoodType.all
     }
@@ -41,12 +43,14 @@ class FatMealsController < ApplicationController
   # Create FAT resources for the date provided in params.
   def create
     date_param = params[:fat_day][:date]
+    byebug
     meals = params[:fat_day][:meals]
-
+    
     meal_day =  MealDay.create(
                   user: current_user,
                   date: date_param
                 )
+    byebug
 
     meals.each do |key, fat_meal|
       meal = Meal.create(
