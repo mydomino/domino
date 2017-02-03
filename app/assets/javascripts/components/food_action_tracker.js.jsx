@@ -2,7 +2,6 @@ class FoodActionTracker extends React.Component {
   componentWillMount(){
     this.setState({
       date: this.props.fatDay.date,
-      meals: this.props.fatDay.meals,
       method: (this.props.fatDay.meal_day == null) ? 'POST' : 'PATCH',
       meal_day: this.props.fatDay.meal_day
     }); 
@@ -16,6 +15,7 @@ class FoodActionTracker extends React.Component {
       meals: meals
     });
   }
+  
   toggleFood(food){
     let meals = this.state.meals.slice();
     let index = meals.findIndex(x => x.meal_type_id === food.meal_type_id);
@@ -34,15 +34,9 @@ class FoodActionTracker extends React.Component {
   }
   render() {
     var that = this;
-    var meals = this.state.meals.map(function(meal, index){
-                  return  <Meal 
-                            key={index} 
-                            index={index} 
-                            mealSizeMap={that.props.mealSizeMap} 
-                            meal={meal} updateMealSize={(n,m)=>that.updateMealSize(n,m)} 
-                            foodTypes={that.props.fatDay.food_types} 
-                            toggleFood={(food)=>that.toggleFood(food)} />;
-                });
+    var foodTypes = this.props.foodTypes.map(function(foodType, index){
+                      return <FoodType index={index} key={foodType.name} foodType={foodType} toggleFood={(food)=>that.props.toggleFood(food)} />
+                    });
     return (
       <div>
         <div className='border rounded clearfix'>

@@ -32,9 +32,9 @@ class FatMealsController < ApplicationController
 
     @fat_day = {
       meal_day: meal_day,
-      meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
+      # meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
       date: date,
-      meal_type: MealType.all,
+      # meal_type: MealType.all,
       food_types: FoodType.all
     }
   end
