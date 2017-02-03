@@ -10,6 +10,9 @@ rails generate migration AddUsersCountToOrganizations users_count:integer
 
 rails g migration add_signup_token_to_users signup_token:string signup_token_sent_at:datetime
 
+rails generate migration AddMealCarbonFootprintToUsers meal_carbon_footprint:float
+
+
 
 ############################################
 Rails destroy ....  

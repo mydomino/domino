@@ -19,6 +19,7 @@
 #
 
 
+
 class Meal < ActiveRecord::Base
 	has_many :foods, dependent: :destroy
   belongs_to :meal_day

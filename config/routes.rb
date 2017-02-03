@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'leader_board/cfp_ranking'
+
   # BEGIN Food Action Tracker routes
   get "food-action-tracker/:year/:month/:day" => "fat_meals#edit", as: 'fat_date'
   get "food-action-tracker" => "fat_meals#edit"

@@ -8,6 +8,7 @@
 #
 
 
+
 class MealType < ActiveRecord::Base
   enum name: {
     breakfast: 0, 

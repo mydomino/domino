@@ -19,6 +19,7 @@
 #  organization_id        :integer
 #  signup_token           :string
 #  signup_token_sent_at   :datetime
+#  meal_carbon_footprint  :float            default(0.0)
 #
 # Indexes
 #
@@ -30,6 +31,9 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
+
+
+
 
 
 
@@ -60,22 +64,48 @@ class User < ActiveRecord::Base
     UserMailer.email_signup_link(self).deliver_later
   end
 
-  # email signup_token to user
-  #def email_onboard_url(first_name, last_name)
-  #  # generate a new signup token
-  #  generate_token(:signup_token)
-#
-  #  # save the signup token sent date
-  #  self.signup_token_sent_at = Time.zone.now
-#
-  #  save!
-#
-  #  org_name = self.organization.nil? ? '' : self.organization.name
-#
-  #  UserMailer.email_user_with_on_board_url(org_name, first_name, last_name, self.email, self.signup_token).deliver_now
-#
-  #  puts "User #{self.email} signup token emails on #{PostsHelper::format_post_date(self.signup_token_sent_at.to_s)}\n"
-  #end
+  
+  # calculate the food carbon footprint during a period
+  def get_fat_carbon_footprint(start_date, end_date)
+
+    #start_date = Time.zone.today - 60.days
+    #end_date = Time.zone.today
+
+    @total_carbon_foodprint = 0
+
+    self.meal_days.where(["date >= ? and date <= ?", start_date, end_date]).each do |meal_day|
+
+      @day_carbon_foodprint = 0
+
+      meal_day.meals.each do |meal|
+
+        @meal_carbon_foodprint = 0
+
+        meal.foods.each do |food|
+
+          @meal_carbon_foodprint += food.food_type.carbon_footprint
+          #puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. meal_carbon_foodprint = #{@meal_carbon_foodprint}."
+          
+        end
+
+        #puts "Carbon footprint for meal: #{meal.id} is #{@meal_carbon_foodprint}\n"
+      end
+
+      @day_carbon_foodprint += @meal_carbon_foodprint
+  
+      #puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n"
+      @total_carbon_foodprint += @day_carbon_foodprint
+
+    end
+
+    # update the carbon footprint value
+    self.meal_carbon_footprint = @total_carbon_foodprint
+
+    self.save!
+
+    return (self.meal_carbon_footprint)
+    
+  end
 
   ###############################################################################################################
   private

@@ -16,6 +16,7 @@
 #  fk_rails_bef09397d1  (user_id => users.id)
 #
 
+
 class MealDay < ActiveRecord::Base
   belongs_to :user
   has_many :meals, dependent: :destroy
