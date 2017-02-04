@@ -12,15 +12,6 @@ class FoodTest < ActiveSupport::TestCase
     	carbon_footprint: 35
     )
 
-    @meal_type = MealType.create(caloric_budget: 60, 
-    	name: 'breakfast'  
-    	#name: MealType.breakfast        
-    )
-
-    @meal = Meal.create(size: Meal.small, 
-    	meal_day:  @meal_day, 
-    	meal_type: @meal_type
-    )
 
     @food_type = FoodType.create(category: 'fruits', 
     	carbon_footprint: 32.5, 
@@ -28,7 +19,7 @@ class FoodTest < ActiveSupport::TestCase
     	name: "fruits"
     )
 
-    food = Food.create(portion: 38, food_type: @food_type, meal: @meal)
+    food = Food.create(portion: 38, food_type: @food_type, meal_day: @meal_day)
     assert food.valid?, 'The food was not valid when all parameters were supplied' 
     
   end

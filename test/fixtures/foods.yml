@@ -8,15 +8,15 @@
 food_1:
   food_type: fruits
   portion:  20    
-  meal: meal_one     
+  meal_day: meal_day_one     
 #
 food_2:
   food_type: dairy
   portion:  20    
-  meal: meal_two     
+  meal_day: meal_day_one     
 #
 food_3:
   food_type: beef_lamb
   portion:  30    
-  meal: meal_two     
+  meal_day: meal_day_one     
 #
