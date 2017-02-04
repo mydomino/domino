@@ -21,5 +21,5 @@ class Food < ActiveRecord::Base
   belongs_to :food_type
   belongs_to :meal_day
 
-  validates :food_type, :meal, presence: true
+  validates :food_type, :meal_day, presence: true
 end

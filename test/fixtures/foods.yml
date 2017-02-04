@@ -7,16 +7,16 @@
 #
 food_1:
   food_type: fruits
-  portion:  20    
+  size:  20    
   meal_day: meal_day_one     
 #
 food_2:
   food_type: dairy
-  portion:  20    
+  size:  20    
   meal_day: meal_day_one     
 #
 food_3:
   food_type: beef_lamb
-  portion:  30    
+  size:  30    
   meal_day: meal_day_one     
 #

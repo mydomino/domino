@@ -19,7 +19,7 @@ class FoodTest < ActiveSupport::TestCase
     	name: "fruits"
     )
 
-    food = Food.create(portion: 38, food_type: @food_type, meal_day: @meal_day)
+    food = Food.create(size: 38, food_type: @food_type, meal_day: @meal_day)
     assert food.valid?, 'The food was not valid when all parameters were supplied' 
     
   end
@@ -27,7 +27,7 @@ class FoodTest < ActiveSupport::TestCase
 
   test "Food can not be saved without all required parameters" do
 
-    food = Food.create(portion: 23)
+    food = Food.create(size: 23)
     assert_not food.valid?, 'The food was not valid when missing required parameters.' 
     
   end

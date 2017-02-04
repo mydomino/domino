@@ -66,35 +66,33 @@ class User < ActiveRecord::Base
 
   
   # calculate the food carbon footprint during a period
-  def get_fat_carbon_footprint(start_date, end_date)
+  # Note: start_date is today/current date, end_date is yesterday or before today date
+  def get_fat_carbon_footprint(start_date, end_date = nil)
 
-    #start_date = Time.zone.today - 60.days
-    #end_date = Time.zone.today
+    
+    # determine whether end_date is given. If not given, use start_date as end_date
+    end_date = end_date.nil? ? start_date : end_date
+
 
     @total_carbon_foodprint = 0
 
-    self.meal_days.where(["date >= ? and date <= ?", start_date, end_date]).each do |meal_day|
+    self.meal_days.where(["date <= ? and date >= ?", start_date, end_date]).each do |meal_day|
 
+      puts "meal_day: #{meal_day.date}\n"
       @day_carbon_foodprint = 0
 
-      meal_day.meals.each do |meal|
+      meal_day.foods.each do |food|
 
-        @meal_carbon_foodprint = 0
-
-        meal.foods.each do |food|
-
-          @meal_carbon_foodprint += food.food_type.carbon_footprint
-          #puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. meal_carbon_foodprint = #{@meal_carbon_foodprint}."
+        
+        @day_carbon_foodprint += food.food_type.carbon_footprint
+        puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. day_carbon_foodprint = #{@day_carbon_foodprint}."
           
-        end
-
-        #puts "Carbon footprint for meal: #{meal.id} is #{@meal_carbon_foodprint}\n"
       end
 
-      @day_carbon_foodprint += @meal_carbon_foodprint
   
-      #puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n"
+      puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n"
       @total_carbon_foodprint += @day_carbon_foodprint
+
 
     end
 
