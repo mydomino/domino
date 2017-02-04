@@ -28,13 +28,13 @@ class FatMealsController < ApplicationController
     @prev_date = date - 1.day
     @next_date = date + 1.day
 
-    meal_day = MealDay.includes(meals: [:meal_type, :foods]).find_by(user: current_user, date: date)
+    meal_day = MealDay.includes(:foods).find_by(user: current_user, date: date)
 
     @fat_day = {
       meal_day: meal_day,
+      foods: meal_day ? meal_day.foods : {},
       # meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
       date: date,
-      # meal_type: MealType.all,
       food_types: FoodType.all
     }
   end

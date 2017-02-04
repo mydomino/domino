@@ -3,44 +3,37 @@ class FoodActionTracker extends React.Component {
     this.setState({
       date: this.props.fatDay.date,
       method: (this.props.fatDay.meal_day == null) ? 'POST' : 'PATCH',
-      meal_day: this.props.fatDay.meal_day
+      meal_day: this.props.fatDay.meal_day,
+      foods: this.props.fatDay.foods
     }); 
   }
-
-  updateMealSize(n, meal){
-    let meals = this.state.meals.slice();
-    let index = meals.findIndex(x => x.meal_type_id === meal.meal_type_id);
-    meals[index].size = n;
-    this.setState({
-      meals: meals
-    });
-  }
   
-  toggleFood(food){
-    let meals = this.state.meals.slice();
-    let index = meals.findIndex(x => x.meal_type_id === food.meal_type_id);
-    let food_index = meals[index].foods.findIndex(x => x.food_type_id === food.id);
+  updateFoodSize(food){
+    let foods = this.state.foods;
 
-    if(food_index !== -1){
-      meals[index].foods.splice(food_index, 1);
+    if (food.newSize > 0) {
+      foods[food.id] = food.newSize;
     }
     else {
-      meals[index].foods.push({food_type_id: food.id });
+      delete foods[food.id]
     }
 
     this.setState({
-      meals: meals
+        foods: foods
     });
   }
+
   render() {
     var that = this;
-    var foodTypes = this.props.foodTypes.map(function(foodType, index){
-                      return <FoodType index={index} key={foodType.name} foodType={foodType} toggleFood={(food)=>that.props.toggleFood(food)} />
+    var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
+                      return <FoodType index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
     return (
       <div>
-        <div className='border rounded clearfix'>
-          {meals}
+        <div className='border border-gray-30 rounded clearfix p2'>
+          <div className='col-12'>
+            {foodTypes}
+          </div>
         </div>          
         <div className="my2 center">
           <button id='btn-carbon-footprint' className='btn btn-md btn-primary btn-primary--hover'>Find out my carbon footprint</button>
@@ -55,7 +48,6 @@ class FoodActionTracker extends React.Component {
         .done(function(data){
           that.setState({
             method: 'PATCH',
-            meals: data.meals,
             meal_day: data.meal_day
           });
           that.showCarbonFootprint(); 
@@ -67,6 +59,3 @@ class FoodActionTracker extends React.Component {
     alert('cf');
   }
 }
-FoodActionTracker.defaultProps = {
-  mealSizeMap : ["small", "medium", "large"]
-};
