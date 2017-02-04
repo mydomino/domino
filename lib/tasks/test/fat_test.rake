@@ -45,14 +45,21 @@ namespace :md_test do
 
   	user.meal_days.where(["date >= ? and date <= ?", start_date, end_date]).each do |meal_day|
 
-      #puts "meal_day: #{meal_day.date}\n"
+
+      puts "ddddddddd"
+
+      puts "meal_day: #{meal_day.date}\n"
       @day_carbon_foodprint = 0
 
       meal_day.meals.each do |meal|
 
+        puts "cccccccccccccccc"
+
         @meal_carbon_foodprint = 0
 
         meal.foods.each do |food|
+
+          puts "aaaaaaaaaaaaa" 
 
           @meal_carbon_foodprint += food.food_type.carbon_footprint
           puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. meal_carbon_foodprint = #{@meal_carbon_foodprint}."
@@ -114,7 +121,7 @@ namespace :md_test do
       # create 7 food 
       for j in 0..7
 
-         
+        
 
         @food_type = FoodType.find_or_create_by!(category: j % food_category_size) do |ft|
         
@@ -126,6 +133,8 @@ namespace :md_test do
         food = Food.create(portion: j+10, food_type: @food_type, meal: @meal)
 
       end
+
+      puts "11111111bbbbbbbbbbbbb" 
 
     end
   	
