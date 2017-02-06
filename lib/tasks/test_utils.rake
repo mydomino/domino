@@ -66,6 +66,8 @@ namespace :md_test do
       puts "Creating org #{org_name}.\n"
 
       o.name = org_name
+      o.email = 'info@mydomino.com'
+      o.email_domain = 'mydomino.com'
 
     end
 

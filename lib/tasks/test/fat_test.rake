@@ -38,38 +38,24 @@ namespace :md_test do
   	# test ...
 
   	#set up date range
-  	start_date = Time.zone.today - 60.days
-  	end_date = Time.zone.today
+  	start_date = Time.zone.today 
+  	end_date = Time.zone.today - 60.days
 
     @total_carbon_foodprint = 0
 
-  	user.meal_days.where(["date >= ? and date <= ?", start_date, end_date]).each do |meal_day|
-
-
-      puts "ddddddddd"
+  	user.meal_days.where(["date <= ? and date >= ?", start_date, end_date]).each do |meal_day|
 
       puts "meal_day: #{meal_day.date}\n"
       @day_carbon_foodprint = 0
 
-      meal_day.meals.each do |meal|
+      meal_day.foods.each do |food|
 
-        puts "cccccccccccccccc"
-
-        @meal_carbon_foodprint = 0
-
-        meal.foods.each do |food|
-
-          puts "aaaaaaaaaaaaa" 
-
-          @meal_carbon_foodprint += food.food_type.carbon_footprint
-          puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. meal_carbon_foodprint = #{@meal_carbon_foodprint}."
+        
+        @day_carbon_foodprint += food.food_type.carbon_footprint
+        puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. day_carbon_foodprint = #{@day_carbon_foodprint}."
           
-        end
-
-        puts "Carbon footprint for meal: #{meal.id} is #{@meal_carbon_foodprint}\n"
       end
 
-      @day_carbon_foodprint += @meal_carbon_foodprint
   
       puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n"
       @total_carbon_foodprint += @day_carbon_foodprint
@@ -92,12 +78,9 @@ namespace :md_test do
   	food_category = %W(fruits vegetables dairy grains fish_poultry_pork beef_lamb)
   	food_category_size = food_category.size
 
-    meal_portion = %W(small medium large)
-    meal_portion_size = meal_portion.size
+    # set up a random generator for carbon footprint
+    cfp = Random.new
 
-    @meal_type = MealType.create(caloric_budget: 60, 
-        name: 'breakfast'       
-    )
 
    
 
@@ -108,11 +91,6 @@ namespace :md_test do
   	  @meal_day = MealDay.create(user: user, 
     	  date: Time.zone.now - i.day, #Time.zone.today
     	  carbon_footprint: i + 35
-      )
-  
-      @meal = Meal.create(size: meal_portion[i % 3], 
-      	meal_day:  @meal_day, 
-      	meal_type: @meal_type
       )
 
 
@@ -125,16 +103,16 @@ namespace :md_test do
 
         @food_type = FoodType.find_or_create_by!(category: j % food_category_size) do |ft|
         
-        	ft.carbon_footprint = 1.0 + j 
+          # generate a random carbon footprint between 0 to 50
+        	ft.carbon_footprint = cfp.rand(50.0) 
         	ft.icon = "#{food_category[j % food_category_size]}.png" 
         	ft.name = food_category[j % food_category_size]
+          ft.average_size = cfp.rand(50.0) * 2
         end
 
-        food = Food.create(portion: j+10, food_type: @food_type, meal: @meal)
+        food = Food.create(size: cfp.rand(2.0), food_type: @food_type, meal_day: @meal_day)
 
       end
-
-      puts "11111111bbbbbbbbbbbbb" 
 
     end
   	
@@ -164,18 +142,22 @@ namespace :md_test do
     begin
 
       user = User.find_by!(email: user_email)
-      #user = User.find_by!(email: 'yong@mydomino.com')
+
+      #set up date range
+      start_date = Time.zone.today 
+      end_date = Time.zone.today - 60.days
+
+      
+      puts "Total Carbon footprint for the period is #{user.get_fat_carbon_footprint(start_date, end_date)}"
+  #
+      puts "\nCarbon footprint for the date #{start_date} is #{user.get_fat_carbon_footprint(start_date)}"
 
     rescue ActiveRecord::RecordNotFound
       puts "\n Error: user with email #{user_email} is not found. \nPlease run rake csv:create_corporate_and_admin to create the test user. Program exit.\n"
       exit
     end
 
-    #set up date range
-    start_date = Time.zone.today - 60.days
-    end_date = Time.zone.today
 
-    puts "Total Carbon footprint for the period is #{user.get_fat_carbon_footprint(start_date, end_date)}"
 
 
 
