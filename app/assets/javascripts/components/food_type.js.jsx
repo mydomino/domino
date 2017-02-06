@@ -34,18 +34,27 @@ class FoodType extends React.Component {
             </div>
           </div>
         </div>
-        <div data-remodal-id="modal">
+
+        <div data-remodal-id={this.props.index + "-modal"}>
           <button data-remodal-action="close" className="remodal-close"></button>
-          <h1>Remodal</h1>
+            <div className="flex items-center justify-center">
+              <img src={"/fat_icons/" + this.props.foodType.icon} />
+              <div className="h1 ml1">{this.props.foodType.name}</div>
+            </div>
           <br/>
-          <button data-remodal-action="cancel" className="remodal-cancel">Cancel</button>
-          <button data-remodal-action="confirm" className="remodal-confirm">OK</button>
+          <div className="h2">How much did you eat? </div>
+          <div id={this.props.index + "-slider"}></div>
+          <div className="m2">
+            <button data-remodal-action="cancel" className="remodal-cancel">Cancel</button>
+            <button data-remodal-action="confirm" className="remodal-confirm">OK</button>
+          </div>
+
         </div>
       </div>
     );
   }
   componentDidMount() {
-    this.$modal =  $('[data-remodal-id=modal]').remodal();
+    this.$modal =  $('[data-remodal-id=' + this.props.index + '-modal]').remodal();
     $slider = $( "#" + this.props.index + "-slider");
 
     $slider.slider({

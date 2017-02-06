@@ -30,7 +30,7 @@ class FoodActionTracker extends React.Component {
                     });
     return (
       <div className='remodal-bg'>
-        <div className='border border-gray-30 rounded clearfix p2'>
+        <div className='clearfix p2'>
           <div className='col-12'>
             {foodTypes}
           </div>
