@@ -8,25 +8,28 @@ class FoodActionTracker extends React.Component {
     }); 
   }
   
-  updateFoodSize(food){
-    let foods = this.state.foods;
+  updateFoodSize(f){
+    let food_base = {size: null, food_type_id: null};
 
-    if (food.newSize > 0) {
-      foods[food.id] = food.newSize;
+    let foods = Object.assign({}, this.state.foods);
+    let food = Object.assign(food_base, f);
+
+    if (food.size > 0) {
+      foods[food.food_type_id] = food;
     }
     else {
-      delete foods[food.id]
+      delete foods[food.food_type_id];
     }
 
     this.setState({
-        foods: foods
+      foods: foods
     });
   }
 
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
-                      return <FoodType index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
+                      return <FoodType food={that.state.foods[foodType.id]} index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
     return (
       <div className='remodal-bg'>
@@ -44,11 +47,12 @@ class FoodActionTracker extends React.Component {
   componentDidMount() {
     var that=this;
     $('#btn-carbon-footprint').on('click', function(){
-      $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state, meal_day: that.state.meal_day }, "json")
+      $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state }, "json")
         .done(function(data){
           that.setState({
             method: 'PATCH',
-            meal_day: data.meal_day
+            meal_day: data.meal_day,
+            foods: data.foods
           });
           that.showCarbonFootprint(); 
         })

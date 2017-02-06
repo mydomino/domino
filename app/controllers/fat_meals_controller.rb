@@ -32,7 +32,7 @@ class FatMealsController < ApplicationController
 
     @fat_day = {
       meal_day: meal_day,
-      foods: meal_day ? meal_day.foods : {},
+      foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
       # meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
       date: date,
       food_types: FoodType.all
@@ -43,27 +43,18 @@ class FatMealsController < ApplicationController
   # Create FAT resources for the date provided in params.
   def create
     date_param = params[:fat_day][:date]
-    meals = params[:fat_day][:meals]
-    
+    foods = params[:fat_day][:foods]
     meal_day =  MealDay.create(
                   user: current_user,
                   date: date_param
                 )
-
-    meals.each do |key, fat_meal|
-      meal = Meal.create(
-        size: fat_meal[:size],
-        meal_type: MealType.find(fat_meal[:meal_type][:id]),
-        meal_day: meal_day
-      )
-
-      if fat_meal[:foods]
-        fat_meal[:foods].each do |key, value|
-          food = Food.create(
-            food_type_id: value[:food_type_id],
-            meal: meal
-          )
-        end
+    if foods
+      foods.each do |key, value|
+        food = Food.create(
+          meal_day: meal_day,
+          food_type_id: key.to_i,
+          size: value[:size].to_i
+        )
       end
     end
 
@@ -71,7 +62,7 @@ class FatMealsController < ApplicationController
 
     render json: {
       carbon_footprint: meal_day.carbon_footprint,
-      meals: meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]),
+      foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
       meal_day: meal_day,
       status: 200
     }, status: 200
@@ -80,30 +71,27 @@ class FatMealsController < ApplicationController
   # PATCH /food-action-tracker/
   # Update FAT resources for date provided in params
   def update
-    meal_day_id = params[:meal_day][:id].to_i
+    meal_day_id = params[:fat_day][:meal_day][:id].to_i
+    foods = params[:fat_day][:foods]
+
     meal_day = MealDay.find(meal_day_id)
-    meals = params[:fat_day][:meals]
-
-    meals.each do |fat_meal|
-      data = fat_meal[1]
-      foods = data[:foods]
-      meal = Meal.find(data[:id])
-      meal.update(size: data[:size])
-      meal.foods.destroy_all
-
-      if foods 
-        foods.each do |key, value|
-          food = Food.create(
-            food_type_id: value[:food_type_id],
-            meal: meal
-          )
-        end
+    
+    meal_day.foods.destroy_all
+    if foods 
+      foods.each do |key, value|
+        food = Food.create(
+          meal_day: meal_day,
+          food_type_id: key.to_i,
+          size: value[:size].to_i
+        )
       end
     end
 
+    meal_day.update(carbon_footprint: calculate_carbon_footprint)
+
     render json: {
-      carbon_footprint: 100,
-      meals: meal_day ? JSON.parse(meal_day.meals.order(:meal_type_id).to_json(:include => [:meal_type, :foods])) : new_meals,
+      carbon_footprint: meal_day.carbon_footprint,
+      foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
       meal_day: meal_day,
       status: 200
     }, status: 200

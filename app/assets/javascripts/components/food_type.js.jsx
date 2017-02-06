@@ -1,32 +1,28 @@
 class FoodType extends React.Component {
   componentWillMount() {
-    selected = false;
-    size = 0;
+    let food = Object.assign({food_type_id: this.props.foodType.id}, this.props.food);
     this.setState({
-      selected: selected,
-      size: 0
+      food: food
     });
   }
   updateFoodSize(newSize){
+    let food = Object.assign({}, this.state.food);
+    food.size = newSize;
+
     this.setState({
-      size: newSize 
+      food: food 
     });
-    this.props.updateFoodSize({id: this.props.foodType.id, newSize: newSize});
-  }
-  toggleFood(){
-    selected = this.state.selected;
-    this.setState({
-      selected: !selected
-    });
+
+    this.props.updateFoodSize(this.state.food);
   }
   render() {
+    let size = this.state.food ? this.state.food.size : 0;
+
     return (
       <div>
-        <div  onClick={()=>this.remodal()} style={{backgroundColor: this.props.foodSizeBGColorMap[this.state.size]}} className="col col-6 sm-col sm-col-4 relative food-type" data-toggle="modal" data-target={"#" + this.props.index + "-modal"} >
+        <div  onClick={()=>this.remodal()} style={{backgroundColor: this.props.bgColorMap[size]}} className="col col-6 sm-col sm-col-4 relative food-type" >
           <div className='flex flex-column items-center border border-gray-30 p2 pointer inline-block' >
-            <div  onClick={()=>this.toggleFood()} 
-                  className="p2 inline-block"
-                  style={{width: '64px', height: '64px'}}>
+            <div className="p2 inline-block" style={{width: '64px', height: '64px'}}>
               <img src={"/fat_icons/" + this.props.foodType.icon} />
             </div>
             <div className="gray-80">
@@ -48,12 +44,14 @@ class FoodType extends React.Component {
             <button data-remodal-action="cancel" className="remodal-cancel">Cancel</button>
             <button data-remodal-action="confirm" className="remodal-confirm">OK</button>
           </div>
-
         </div>
+
       </div>
     );
   }
   componentDidMount() {
+    let size = this.state.food ? this.state.food.size : 0;
+
     this.$modal =  $('[data-remodal-id=' + this.props.index + '-modal]').remodal();
     $slider = $( "#" + this.props.index + "-slider");
 
@@ -63,7 +61,7 @@ class FoodType extends React.Component {
       min:0,
       max: 3,
       step: 1,
-      value: 0,
+      value: size,
       slide: function(event, ui){
         this.updateFoodSize(ui.value);
       }.bind(this)
@@ -74,5 +72,5 @@ class FoodType extends React.Component {
   }
 }
 FoodType.defaultProps = {
-  foodSizeBGColorMap : ["white", "#87D37C", "#00ccff", "#E26A6A"]
+  bgColorMap : ["white", "#87D37C", "#00ccff", "#E26A6A"]
 };
