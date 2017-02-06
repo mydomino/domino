@@ -15,6 +15,7 @@
 # Foreign Keys
 #
 #  fk_rails_457a970eb0  (food_type_id => food_types.id)
+#  fk_rails_6f1af38b63  (meal_day_id => meal_days.id)
 #
 
 class Food < ActiveRecord::Base
