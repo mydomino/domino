@@ -29,7 +29,7 @@ class FoodActionTracker extends React.Component {
                       return <FoodType index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
     return (
-      <div>
+      <div className='remodal-bg'>
         <div className='border border-gray-30 rounded clearfix p2'>
           <div className='col-12'>
             {foodTypes}

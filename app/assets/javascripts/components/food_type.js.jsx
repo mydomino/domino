@@ -22,7 +22,7 @@ class FoodType extends React.Component {
   render() {
     return (
       <div>
-        <div  onClick={()=>this.revealModal()} style={{backgroundColor: this.props.foodSizeBGColorMap[this.state.size]}} className="col col-6 sm-col sm-col-4 relative food-type" data-toggle="modal" data-target={"#" + this.props.index + "-modal"} >
+        <div  onClick={()=>this.remodal()} style={{backgroundColor: this.props.foodSizeBGColorMap[this.state.size]}} className="col col-6 sm-col sm-col-4 relative food-type" data-toggle="modal" data-target={"#" + this.props.index + "-modal"} >
           <div className='flex flex-column items-center border border-gray-30 p2 pointer inline-block' >
             <div  onClick={()=>this.toggleFood()} 
                   className="p2 inline-block"
@@ -34,30 +34,18 @@ class FoodType extends React.Component {
             </div>
           </div>
         </div>
-
-        <div className="modal max-width-3 mx-auto fixed top-0 bottom-0 left-0 right-0" id={this.props.index + "-modal"}>
-          <div className="modal-dialog">
-            <div className="modal-content bg-white">
-              <div className="modal-header relative">
-                <div className="absolute top-0 right-0 close" data-dismiss="modal">
-                  <div onClick={()=>this.hideModal()} className="fa fa-times fa-2x blue pointer">
-                  </div>
-                </div>
-              </div>
-              <div className="modal-body">
-                <div className="h1">
-                  {this.props.foodType.name}
-                </div>
-                How much did you eat?
-                <div className="my2" id={this.props.index + "-slider"}></div>
-              </div>
-            </div>
-          </div>
+        <div data-remodal-id="modal">
+          <button data-remodal-action="close" className="remodal-close"></button>
+          <h1>Remodal</h1>
+          <br/>
+          <button data-remodal-action="cancel" className="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" className="remodal-confirm">OK</button>
         </div>
       </div>
     );
   }
   componentDidMount() {
+    this.$modal =  $('[data-remodal-id=modal]').remodal();
     $slider = $( "#" + this.props.index + "-slider");
 
     $slider.slider({
@@ -72,15 +60,8 @@ class FoodType extends React.Component {
       }.bind(this)
     });
   }
-  revealModal(target) {
-    $("#" + this.props.index + "-modal").show();
-    $('body').append('<div class="modal-bg fixed top-0 bottom-0 left-0 right-0"></div>');
-    $('body').addClass('lock-position');
-  }
-  hideModal() {
-    $('.modal-bg').remove();
-    $('.modal').hide();
-    $('body').removeClass('lock-position');
+  remodal(){
+    this.$modal.open();
   }
 }
 FoodType.defaultProps = {
