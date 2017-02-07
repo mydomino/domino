@@ -18,6 +18,7 @@
 #  fk_rails_6f1af38b63  (meal_day_id => meal_days.id)
 #
 
+
 class Food < ActiveRecord::Base
   belongs_to :food_type
   belongs_to :meal_day

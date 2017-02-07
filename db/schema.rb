@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206232858) do
+ActiveRecord::Schema.define(version: 20170207050800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,18 @@ ActiveRecord::Schema.define(version: 20170206232858) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "points_logs", force: :cascade do |t|
+    t.date     "point_date"
+    t.string   "point_type"
+    t.string   "desc"
+    t.integer  "point"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "points_logs", ["user_id"], name: "index_points_logs_on_user_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "url"
     t.string   "product_id"
@@ -269,6 +281,7 @@ ActiveRecord::Schema.define(version: 20170206232858) do
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
   add_foreign_key "meal_days", "users"
+  add_foreign_key "points_logs", "users"
   add_foreign_key "profiles", "partner_codes"
   add_foreign_key "profiles", "users"
   add_foreign_key "subscriptions", "organizations"
