@@ -46,19 +46,24 @@ namespace :md_test do
   	user.meal_days.where(["date <= ? and date >= ?", start_date, end_date]).each do |meal_day|
 
       puts "meal_day: #{meal_day.date}\n"
-      @day_carbon_foodprint = 0
+      meal_day.carbon_footprint = 0
 
       meal_day.foods.each do |food|
 
         
-        @day_carbon_foodprint += food.food_type.carbon_footprint
-        puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. day_carbon_foodprint = #{@day_carbon_foodprint}."
+        meal_day.carbon_footprint += (food.food_type.carbon_footprint * food.size)
+
+
+        puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. day_carbon_foodprint = #{meal_day.carbon_footprint}."
           
       end
 
+      # save the calculated value
+      meal_day.save!
+
   
-      puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n"
-      @total_carbon_foodprint += @day_carbon_foodprint
+      puts "Carbon footprint for day: #{meal_day.date} is #{meal_day.carbon_footprint}\n"
+      @total_carbon_foodprint += meal_day.carbon_footprint
 
 
     end

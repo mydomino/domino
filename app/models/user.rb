@@ -79,25 +79,13 @@ class User < ActiveRecord::Base
 
     @total_carbon_foodprint = 0
 
-    self.meal_days.where(["date <= ? and date >= ?", start_date, end_date]).each do |meal_day|
+    meal_days = self.meal_days.where(["date <= ? and date >= ?", start_date, end_date])
 
-      puts "meal_day: #{meal_day.date}\n"
-      @day_carbon_foodprint = 0
+    carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days != nil 
 
-      meal_day.foods.each do |food|
+    # sum up value in the array
+    @total_carbon_foodprint = carbon_foodprints.inject(:+) if carbon_foodprints!= nil
 
-        
-        @day_carbon_foodprint += food.food_type.carbon_footprint
-        puts "food.food_type.carbon_footprint = #{food.food_type.carbon_footprint}. day_carbon_foodprint = #{@day_carbon_foodprint}."
-          
-      end
-
-  
-      puts "Carbon footprint for day: #{meal_day.date} is #{@day_carbon_foodprint}\n"
-      @total_carbon_foodprint += @day_carbon_foodprint
-
-
-    end
 
     # update the carbon footprint value
     self.meal_carbon_footprint = @total_carbon_foodprint
