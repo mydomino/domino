@@ -213,7 +213,7 @@ namespace :md_test do
 
 
   
-    users = User.where(["organization_id = ?", organization.id]).order("fat_reward_points ASC").limit(8)
+    users = User.where(["organization_id = ?", organization.id]).order("fat_reward_points DESC").limit(8)
 
     puts "First 8 top users in leader board are ...."
     # print user score in order
@@ -245,7 +245,7 @@ namespace :md_test do
     org_name = 'MyDomino'
     org_name = org_name.downcase
 
-    for user_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com \
+    for user_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com
       rosana@#{org_name}.com stephen@#{org_name}.com mel@#{org_name}.com admin@#{org_name}.com info@#{org_name}.com)
 
       puts "\n User email is #{user_email}\n"
