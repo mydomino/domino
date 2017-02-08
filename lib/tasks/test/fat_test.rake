@@ -197,17 +197,118 @@ namespace :md_test do
       exit
     end
 
-    
 
-    users = User.where(["organization_id = ?", organization.id]).order("meal_carbon_footprint ASC")
+    users = User.where(["organization_id = ?", organization.id])
 
+    #set up date range
+    start_date = Time.zone.today 
+    end_date = Time.zone.today - 60.days
+
+    # refresh the total reward points
+    users.each do |u|
+
+      u.get_fat_reward_points(start_date, end_date)
+      
+    end
+
+
+  
+    users = User.where(["organization_id = ?", organization.id]).order("fat_reward_points ASC").limit(8)
+
+    puts "First 8 top users in leader board are ...."
     # print user score in order
     users.each do |u|
-      puts "User: #{u.email} CFP: #{u.meal_carbon_footprint}"
+
+      puts "User: #{u.email} Reward Points: #{u.fat_reward_points}"
     end
 
 
   end
+
+
+
+  desc "generate_user_reward_points"
+  task test_generate_user_reward_points: :environment do
+
+    # generate an empty task for each argument pass in
+    ARGV.each { |a| task a.to_sym do ; end }
+
+    #puts "ARGV.size is #{ARGV.size}"
+    
+    #if ARGV.size != 2 
+    #  puts "Error! Please provide proper parameters to your command. \n\nUsage: rake md_test:test_generate_user_reward_points\n"
+    #  puts "Example: rake md_test:test_generate_user_reward_points yong@mydomino.com\n"
+    #  exit 1
+    #end
+#
+    #user_email = ARGV[1]
+    org_name = 'MyDomino'
+    org_name = org_name.downcase
+
+    for user_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com \
+      rosana@#{org_name}.com stephen@#{org_name}.com mel@#{org_name}.com admin@#{org_name}.com info@#{org_name}.com)
+
+      puts "\n User email is #{user_email}\n"
+  
+  
+      begin
+  
+        user = User.find_by!(email: user_email)
+        #user = User.find_by!(email: 'yong@mydomino.com')
+  
+      rescue ActiveRecord::RecordNotFound
+        puts "\n Error: user with email #{user_email} is not found. \nPlease run rake md_test:mydomino_create_corporate_and_admin to create the test user. Program exit.\n"
+        exit
+      end
+      
+  
+      # test ...
+  
+      #set up date range
+      start_date = Time.zone.today 
+      end_date = Time.zone.today - 60.days
+  
+      date_range = end_date..start_date
+  
+      # set up a random generator
+      plog = Random.new
+  
+      action_type = [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TAKE_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
+        PointsLog::CONTACT_CONCIERGE, PointsLog::SHARE_ARTICLE, PointsLog::BEAT_CFP_EMISSION, 
+        PointsLog::EAT_NO_BEEF_LAMB_A_DAY, PointsLog::EAT_NO_DAIRY_A_DAY]    
+  
+  
+  
+      date_range.each do |date|
+  
+        # generate an action point log
+        for i in 0..5
+  
+          index = plog.rand(action_type.size-1)
+  
+          p_log = PointsLog.find_or_create_by!(user: user,
+            point_type: action_type[index], point_date: date) do |pl| 
+      
+              pl.user = user
+              pl.point_type = action_type[index]
+              pl.point_date = date
+              pl.desc = action_type[index]
+              pl.point =  plog.rand(15)
+        
+            end
+  
+          p_log.save!
+          puts "Pointslog #{p_log.inspect} is saved.\n"
+  
+        end
+      end
+
+      puts "\n\n=========================================================\n\n"
+    end
+
+  end
+
+
 
 
     

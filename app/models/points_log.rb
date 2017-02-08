@@ -22,7 +22,7 @@
 
 class PointsLog < ActiveRecord::Base
 
-  # ACTIONS CONTANT
+  # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
   TAKE_FOOD_LOG           = 'TAKE_FOOD_LOG'
   CLICK_ARTICLE_LINK      = 'CLICK_ARTICLE_LINK'

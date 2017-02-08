@@ -78,7 +78,8 @@ namespace :md_test do
     # create org admin
     role = 'org_admin'
     for_production = false
-    for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com)
+    for u_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com
+      rosana@#{org_name}.com stephen@#{org_name}.com mel@#{org_name}.com admin@#{org_name}.com info@#{org_name}.com )
 
       u_fn = for_production ? Faker::Name::first_name : 'test_' + Faker::Name::first_name
       u_ln = for_production ? Faker::Name::last_name : 'test_' + Faker::Name::last_name
