@@ -1,5 +1,8 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
+  
+:javascript
+  modulejs.require('cm_gauge');
 
 .max-width-4.mx-auto
   .center
@@ -12,3 +15,4 @@
           %i.fa.fa-2x.fa-angle-right.gray-80.blue--hover
     .h1 What did you eat today?
   = react_component('FoodActionTracker', {fatDay: @fat_day})
+

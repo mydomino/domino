@@ -31,7 +31,7 @@ class FatMealsController < ApplicationController
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: date)
 
     @fat_day = {
-      meal_day: meal_day,
+      meal_day: meal_day || MealDay.new,
       foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
       # meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
       date: date,

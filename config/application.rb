@@ -38,5 +38,8 @@ module Domino
 
     # Use routes for error handling
     config.exceptions_app = self.routes
+
+    # React addons
+    config.react.addons = true
   end
 end

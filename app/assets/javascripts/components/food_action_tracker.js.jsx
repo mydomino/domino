@@ -2,13 +2,16 @@ class FoodActionTracker extends React.Component {
   componentWillMount(){
     this.setState({
       date: this.props.fatDay.date,
-      method: (this.props.fatDay.meal_day == null) ? 'POST' : 'PATCH',
+      method: (this.props.fatDay.meal_day.id == null) ? 'POST' : 'PATCH',
       meal_day: this.props.fatDay.meal_day,
       foods: this.props.fatDay.foods
     }); 
   }
-  
   updateFoodSize(f){
+    // reset cf
+    let meal_day = this.state.meal_day
+    meal_day.carbon_footprint = null;
+
     let food_base = {size: null, food_type_id: null};
 
     let foods = Object.assign({}, this.state.foods);
@@ -22,10 +25,11 @@ class FoodActionTracker extends React.Component {
     }
 
     this.setState({
-      foods: foods
+      foods: foods,
+      meal_day: meal_day
     });
-  }
 
+  }
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
@@ -37,31 +41,28 @@ class FoodActionTracker extends React.Component {
           <div className='col-12'>
             {foodTypes}
           </div>
-        </div>          
-        <div className="my2 center">
-          <button id='btn-carbon-footprint' className='btn btn-md btn-primary btn-primary--hover'>Find out my carbon footprint</button>
         </div>
+        <CarbonFootprint ref="cf"
+          cf={this.state.meal_day.carbon_footprint}
+          getCarbonFootprint={()=>this.getCarbonFootprint()}
+        />
       </div>
     );
   }
-  componentDidMount() {
-    var that=this;
-    $('#btn-carbon-footprint').on('click', function(){
-      $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state }, "json")
-        .done(function(data){
-          that.setState({
-            method: 'PATCH',
-            meal_day: data.meal_day,
-            foods: data.foods
-          });
-          that.showCarbonFootprint(); 
-        })
-        .fail(function(){ console.log('Error!'); });
-    });
-  }
-  showCarbonFootprint(){
-    alert('cf');
-  }
+  getCarbonFootprint(){
+    // Ajax request to get cf calculation from server
+    var that = this;
+    $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state }, "json")
+      .done(function(data){
+        that.setState({
+          method: 'PATCH',
+          meal_day: data.meal_day,
+          foods: data.foods
+        });
+        that.refs.cf.setCarbonFootprint(data.meal_day.carbon_footprint);
+      })
+      .fail(function(){ console.log('Error!'); });
+  };
 }
 FoodActionTracker.defaultProps = {
   foodSizeInfo : {
