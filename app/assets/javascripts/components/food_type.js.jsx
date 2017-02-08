@@ -56,7 +56,7 @@ class FoodType extends React.Component {
                 </div>
               </div>
               <div className="size-information col col-12 sm-col sm-col-8 left-align">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus et totam saepe nulla vero fugit labore praesentium error voluptatem corrupti officia, aliquam doloribus maiores autem illo! Voluptates fugiat, quae aut.
+                {this.props.sizeInfo[this.state.food.size]}
               </div>
             </div>
             <div className="m2 clearfix">
