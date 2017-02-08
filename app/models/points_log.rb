@@ -21,17 +21,36 @@
 #
 
 class PointsLog < ActiveRecord::Base
+
+  # ACTIONS CONTANT
+  SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
+  TAKE_FOOD_LOG           = 'TAKE_FOOD_LOG'
+  CLICK_ARTICLE_LINK      = 'CLICK_ARTICLE_LINK'
+  CONTACT_CONCIERGE       = 'CONTACT_CONCIERGE'
+  SHARE_ARTICLE           = 'SHARE_ARTICLE'
+  BEAT_CFP_EMISSION       = 'BEAT_CFP_EMISSION'
+  EAT_NO_BEEF_LAMB_A_DAY  = 'EAT_NO_BEEF_LAMB_A_DAY'
+  EAT_NO_DAIRY_A_DAY      = 'EAT_NO_DAIRY_A_DAY' 
+
+
+
+
+
   belongs_to :user
 
 
   validates :point_date, :point_type, :point, :user, presence: true
 
 
+
+
   def self.add_point(user, point_type, desc, point, point_date)
 
   	
     # these action types are allowed only to be rewarded once per day
-    if ["SIGN_IN_EACH_DAY", "TAKE_FOOD_LOG"].include?(point_type)
+    if [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TAKE_FOOD_LOG, PointsLog::BEAT_CFP_EMISSION, 
+      PointsLog::EAT_NO_BEEF_LAMB_A_DAY, PointsLog::EAT_NO_DAIRY_A_DAY].include?(point_type)
+
   	  p_log = PointsLog.find_or_create_by!(user: user,
   	  	point_type: point_type, point_date: point_date) do |pl| 
   
