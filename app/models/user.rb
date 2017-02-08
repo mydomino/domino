@@ -20,6 +20,7 @@
 #  signup_token           :string
 #  signup_token_sent_at   :datetime
 #  meal_carbon_footprint  :float            default(0.0)
+#  point_date      :integer          default(0)
 #
 # Indexes
 #
@@ -31,6 +32,8 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
+
+
 
 
 
@@ -93,6 +96,26 @@ class User < ActiveRecord::Base
     self.save!
 
     return (self.meal_carbon_footprint)
+    
+  end
+
+
+  def get_fat_reward_points(start_date, end_date = nil)
+
+    # determine whether end_date is given. If not given, use start_date as end_date
+    end_date = end_date.nil? ? start_date : end_date
+
+    points_log = self.points_logs.where(["point_date <= ? and point_date >= ?", start_date, end_date])
+
+    points = points_log.map(&:point) if points_log != nil
+
+    # sum up the points
+    self.fat_reward_points = points.inject(:+) if points != nil
+    self.save!
+
+    puts "Email: #{self.email} Reward Total: #{fat_reward_points}\n"
+
+    return(self.fat_reward_points)
     
   end
 

@@ -24,6 +24,8 @@ rails g migration AddSizeToFoods size:integer
 
 rails g model PointsLog point_date:date point_type:string desc:string point:integer user:references
 
+rails g migration AddFatRewardPointsToUsers	fat_reward_points:integer
+
 ############################################
 Rails destroy ....  
 
