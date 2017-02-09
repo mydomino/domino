@@ -80,7 +80,7 @@ class FoodType extends React.Component {
       min:0,
       max: 200,
       step: 50,
-      value: 100,
+      value: size,
       slide: function(event, ui){
         this.updateFoodSize(ui.value);
       }.bind(this)
