@@ -32,10 +32,11 @@
               %i.blue.fa.fa-cutlery{"aria-hidden":"true"}
               Food Action Tracker
             %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non velit harum odio voluptatibus inventore consequatur sit atque delectus, esse reprehenderit iusto autem facere ipsam suscipit quae officiis provident, voluptatum fuga?
+            %canvas#myChart{width: "400", height: "100"}
       
       .clearfix
         =link_to 'dashboard' do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
+          .col.col-12.sm-col.sm-col-6.bg-white.rounded.p2.mb2
             .h1.gray-80
               %i.blue.fa.fa-tachometer{"aria-hidden":"true"}
               Dashboard
@@ -50,7 +51,7 @@
       
       .clearfix
         =link_to "tel:+18009792215" do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
+          .col.col-12.sm-col.sm-col-6.bg-white.rounded.p2.mb2
             .h1.gray-80
               %i.blue.fa.fa-comments{"aria-hidden":"true"}
               Concierge
@@ -61,3 +62,34 @@
               %i.blue.fa.fa-calendar{"aria-hidden":"true"}
               Events
             %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cum iure molestias, provident, quas, eum minima commodi illo fuga dicta quaerat animi ab voluptate, quos tempora deleniti expedita asperiores incidunt.
+
+:javascript
+  $(document).ready(function(){
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: #{@fat_graph_cf_map.keys},
+            datasets: [{
+                label: 'My Carbon Footprint',
+                data: #{@fat_graph_cf_map.values},
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255,99,132,1)',
+                borderWidth: 1
+            },
+            {
+              label: "Avg. Carbon Footprint",
+              data: new Array(7).fill(6.2)
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+  });

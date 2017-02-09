@@ -32,6 +32,7 @@
 //= require jstz
 //= require browser_timezone_rails/set_time_zone
 //= require remodal
+//= require Chart
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles

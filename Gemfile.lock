@@ -83,6 +83,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chart-js-rails (0.1.1)
+      railties (> 3.1)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     clipboard-rails (1.5.16)
@@ -490,6 +492,7 @@ DEPENDENCIES
   browser-timezone-rails
   bullet
   byebug
+  chart-js-rails
   clipboard-rails
   coffee-rails (~> 4.1.0)
   crack (~> 0.4.3)
