@@ -11,7 +11,7 @@ class CarbonFootprint extends React.Component {
             Find out my carbon footprint
         </button>
         
-        <CfGauge ref='cfgauge' value={this.props.cf} />
+        <CfGauge ref='cfgauge' cf={this.props.cf} />
       </div>
     );
   }
