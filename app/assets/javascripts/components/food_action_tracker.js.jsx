@@ -7,34 +7,44 @@ class FoodActionTracker extends React.Component {
       foods: this.props.fatDay.foods
     }); 
   }
-  updateFoodSize(f){
-    // reset cf
+  resetCf() {
     let meal_day = this.state.meal_day
     meal_day.carbon_footprint = null;
+
+    this.setState({
+      meal_day: meal_day
+    })
+  }
+  addFood(f) {
+    this.resetCf();
 
     let food_base = {size: null, food_type_id: null};
 
     let foods = Object.assign({}, this.state.foods);
     let food = Object.assign(food_base, f);
-
-    if (food.size > 0) {
-      foods[food.food_type_id] = food;
-    }
-    else {
-      delete foods[food.food_type_id];
-    }
+    foods[food.food_type_id] = food;
 
     this.setState({
-      foods: foods,
-      meal_day: meal_day
+      foods: foods
     });
+  }
+  removeFood(f) {
+    console.log(f);
+    this.resetCf();
 
+    let foods = Object.assign({}, this.state.foods);
+    delete foods[f.food_type_id];
+    console.log(foods);
+    this.setState({
+      foods: foods
+    });
   }
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
-                      return <FoodType sizeInfo={that.props.foodSizeInfo[foodType.id]} food={that.state.foods[foodType.id]} index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
+                      return <FoodType removeFood={(f)=>that.removeFood(f)} addFood={(f)=>that.addFood(f)} sizeInfo={that.props.foodSizeInfo[foodType.id]} food={that.state.foods[foodType.id]} index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
+
     return (
       <div className='remodal-bg'>
         <div className='clearfix p2'>

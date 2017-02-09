@@ -10,6 +10,28 @@ class FoodType extends React.Component {
       active: active
     });
   }
+  updateSizeLabel(value){
+    let food = Object.assign({}, this.state.food);
+    food.size = value;
+    this.setState({
+      food: food
+    });
+  }
+  removeFood(){
+    this.setState({
+      active: false
+    });
+    this.props.removeFood(this.state.food);
+  }
+  addFood(size){
+    let food = Object.assign({}, this.state.food);
+    food.size = size;
+    this.setState({
+      food: food,
+      active: true
+    });
+    this.props.addFood(this.state.food);
+  }
   updateFoodSize(newSize){
     let food = Object.assign({}, this.state.food);
     food.size = newSize;
@@ -68,22 +90,36 @@ class FoodType extends React.Component {
     );
   }
   componentDidMount() {
+    let that = this;
     let size = this.state.food.size;
+    let modalSelector = "[data-remodal-id=" + this.props.index + "-modal]";
+    let $modal = $(modalSelector);
 
-    this.$modal =  $('[data-remodal-id=' + this.props.index + '-modal]').remodal();
-    $slider = $( "#" + this.props.index + "-slider");
+    this.$modal =  $modal.remodal();
 
-    $slider.slider({
+    let sliderSelector = "#" + this.props.index + "-slider";
+
+    let $slider = $(sliderSelector).slider({
       orientation: "vertical",
       range: "min",
       animate: "fast",
-      min:0,
+      min:50,
       max: 200,
       step: 50,
       value: size,
       slide: function(event, ui){
-        this.updateFoodSize(ui.value);
+        this.updateSizeLabel(ui.value);
       }.bind(this)
+    });
+
+    // Modal event handlers
+    $(document).on('cancellation', modalSelector, function (e) {
+      that.$modal.close();
+      that.removeFood();
+    });
+
+    $(document).on('confirmation', modalSelector, function (e) {
+      that.addFood($slider.slider("value"));
     });
   }
   remodal(){
