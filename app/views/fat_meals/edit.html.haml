@@ -9,7 +9,7 @@
     .flex.items-center.justify-center
       = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day) do
         %i.fa.fa-2x.fa-angle-left.gray-80.blue--hover
-      %h2.gray-80.mx2= @fat_day[:date].strftime("%b %d, %Y")
+      %h2.gray-80.mx2= @fat_day[:date].strftime("%a %b %d, %Y")
       - if @next_date <= @current_date
         = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day) do
           %i.fa.fa-2x.fa-angle-right.gray-80.blue--hover
