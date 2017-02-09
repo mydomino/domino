@@ -308,6 +308,19 @@ namespace :md_test do
 
   end
 
+  desc "generate_user_reward_points"
+  task show_users: :environment  do
+
+    organization = Organization.find_by!(name: 'MyDomino')
+    users = User.where(["organization_id = ?", organization.id])
+    
+    users.each do |u|
+      
+      puts "ID: #{u.id}. Name: #{u.profile.first_name}. Email: #{u.email}"
+    end
+    
+  end
+
 
 
 

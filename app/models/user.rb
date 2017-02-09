@@ -20,7 +20,7 @@
 #  signup_token           :string
 #  signup_token_sent_at   :datetime
 #  meal_carbon_footprint  :float            default(0.0)
-#  point_date      :integer          default(0)
+#  fat_reward_points      :integer          default(0)
 #
 # Indexes
 #
@@ -32,6 +32,7 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
+
 
 
 
@@ -110,10 +111,10 @@ class User < ActiveRecord::Base
     points = points_log.map(&:point) if points_log != nil
 
     # sum up the points
-    self.fat_reward_points = points.inject(:+) if points != nil
-    self.save!
-
-    puts "Email: #{self.email} Reward Total: #{fat_reward_points}\n"
+    if points != nil
+      self.fat_reward_points = points.inject(:+) 
+      self.save!
+    end
 
     return(self.fat_reward_points)
     
