@@ -3,6 +3,7 @@
 
 # BEGIN FoodType Seeds
 # CF map
+# C02 emission values in grams per KiloCalorie
 cf_map = {
   "fruits": 4.6,
   "vegetables": 2.8,

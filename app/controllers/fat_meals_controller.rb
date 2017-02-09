@@ -33,7 +33,6 @@ class FatMealsController < ApplicationController
     @fat_day = {
       meal_day: meal_day || MealDay.new,
       foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
-      # meals: meal_day ? meal_day.meals.order(:meal_type_id).as_json(:include => [:meal_type, :foods]) : new_meals,
       date: date,
       food_types: FoodType.all
     }
@@ -50,15 +49,10 @@ class FatMealsController < ApplicationController
                 )
     if foods
       foods.each do |key, value|
-        food = Food.create(
-          meal_day: meal_day,
-          food_type_id: key.to_i,
-          size: value[:size].to_i
-        )
+        meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
       end
     end
-
-    meal_day.update(carbon_footprint: calculate_carbon_footprint)
+    meal_day.calculate_cf
 
     render json: {
       carbon_footprint: meal_day.carbon_footprint,
@@ -75,19 +69,15 @@ class FatMealsController < ApplicationController
     foods = params[:fat_day][:foods]
 
     meal_day = MealDay.find(meal_day_id)
-    
+
     meal_day.foods.destroy_all
+
     if foods 
       foods.each do |key, value|
-        food = Food.create(
-          meal_day: meal_day,
-          food_type_id: key.to_i,
-          size: value[:size].to_i
-        )
+        meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
       end
     end
-
-    meal_day.update(carbon_footprint: calculate_carbon_footprint)
+    meal_day.calculate_cf
 
     render json: {
       carbon_footprint: meal_day.carbon_footprint,
@@ -100,8 +90,8 @@ class FatMealsController < ApplicationController
   private
 
   # /calculate_carbon_footprint/
-  def calculate_carbon_footprint
-    100
+  def calculate_cf(foods)
+    foods.inject(0) {|sum, f| sum + (f.food_type.carbon_footprint * (f.size/100.0))}
   end
 
   # /new_meals/

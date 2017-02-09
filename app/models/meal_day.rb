@@ -22,4 +22,9 @@ class MealDay < ActiveRecord::Base
   belongs_to :user
   has_many :foods, dependent: :destroy
   validates :user, :date, presence: :true
+
+  def calculate_cf
+    self.carbon_footprint = self.foods.inject(0) {|sum, f| sum + (f.food_type.carbon_footprint * (f.size/100.0))}
+    self.save
+  end
 end
