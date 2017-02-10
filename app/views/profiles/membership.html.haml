@@ -1,6 +1,6 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
-  
+
 -content_for :body_class do
   bg-gray-05
 
@@ -27,7 +27,7 @@
             %br
             = (@user.created_at + 1.year).strftime("%B %Y")
 
-    .p4.max-width-4.mx-auto
+    .mt4.max-width-4.mx-auto
       .clearfix
         =link_to @fat_link do
           .col.col-12.bg-white.rounded.p2.right.mb2
