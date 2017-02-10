@@ -2,7 +2,7 @@ class CfGauge extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      cf: this.props.cf,
+      cf: this.props.cf || 0,
       value: this.getValue(this.props.cf)
     };
   }
@@ -20,7 +20,7 @@ class CfGauge extends React.Component {
   }
   render(){
     return(
-      <div className = "cf-gauge" style={{display: (this.props.cf === null ? 'none' : 'block')}} >
+      <div className = "cf-gauge">
         <div className = "gauge gauge gauge-big gauge-blue">
           <div  className = "gauge-arrow" 
                 data-percentage = {this.state.value}

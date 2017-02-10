@@ -40,18 +40,6 @@ class FoodType extends React.Component {
     });
     this.props.addFood(this.state.food);
   }
-  updateFoodSize(newSize){
-    let food = Object.assign({}, this.state.food);
-    food.size = newSize;
-    let active = newSize != 0 ? true : false;
-
-    this.setState({
-      food: food, 
-      active: active
-    });
-
-    this.props.updateFoodSize(this.state.food);
-  }
   render() {
     return (
       <div>

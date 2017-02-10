@@ -27,6 +27,7 @@ class FoodActionTracker extends React.Component {
     this.setState({
       foods: foods
     });
+    this.getCarbonFootprint();
   }
   removeFood(f) {
     console.log(f);
