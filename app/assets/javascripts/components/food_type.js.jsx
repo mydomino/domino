@@ -18,7 +18,15 @@ class FoodType extends React.Component {
     });
   }
   removeFood(){
+    //reset slider value
+    this.$slider.slider("value",100);    
+    //reset size
+    let food = Object.assign({}, this.state.food);
+    food.size = 100;
+
+
     this.setState({
+      food: food,
       active: false
     });
     this.props.removeFood(this.state.food);
@@ -99,7 +107,7 @@ class FoodType extends React.Component {
 
     let sliderSelector = "#" + this.props.index + "-slider";
 
-    let $slider = $(sliderSelector).slider({
+    that.$slider = $(sliderSelector).slider({
       orientation: "vertical",
       range: "min",
       animate: "fast",
@@ -119,11 +127,14 @@ class FoodType extends React.Component {
     });
 
     $(document).on('confirmation', modalSelector, function (e) {
-      that.addFood($slider.slider("value"));
+      that.addFood(that.$slider.slider("value"));
     });
   }
   remodal(){
-    this.$modal.open();
+    if(this.state.active)
+      this.removeFood()
+    else
+      this.$modal.open();
   }
 }
 FoodType.defaultProps = {
