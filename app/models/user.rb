@@ -100,15 +100,19 @@ class User < ActiveRecord::Base
     
   end
 
-
+ 
+  # calculate user reward points during the period and save it to the user's member variable
   def get_fat_reward_points(start_date, end_date = nil)
+
+    Rails.logger.info("User: #{self.email} is here.")
 
     # determine whether end_date is given. If not given, use start_date as end_date
     end_date = end_date.nil? ? start_date : end_date
 
     points_log = self.points_logs.where(["point_date <= ? and point_date >= ?", start_date, end_date])
 
-    points = points_log.map(&:point) if points_log != nil
+    # return a points array
+    points = points_log.map(&:point) if points_log.size > 0
 
     # sum up the points
     if points != nil

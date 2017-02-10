@@ -22,6 +22,7 @@ class LeaderBoardController < ApplicationController
     # refresh the total reward points
     users.each do |u|
 
+      # calculate user reward points during the period and save it to the user's member variable
       u.get_fat_reward_points(start_date, end_date)
       
     end

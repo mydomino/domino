@@ -108,4 +108,19 @@ namespace :md_test do
 
   end
 
+
+  desc "Initialize users with random reward point to 0"
+  task test_init_users_with_random_reward_points: :environment do 
+    
+    r = Random.new
+
+    User.find_each do |u|
+      u.fat_reward_points = r.rand(50) + 1
+      u.save!
+      puts "ID: #{u.id} points was set. Email: #{u.email}"
+    end
+
+  end
+
+
 end
