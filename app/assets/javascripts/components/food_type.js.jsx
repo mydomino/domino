@@ -57,7 +57,7 @@ class FoodType extends React.Component {
     //this.props.bgColorMap[this.state.food.size]
     return (
       <div>
-        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : 'white' }} className="col col-6 sm-col sm-col-4 relative food-type" >
+        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eee' }} className="col col-6 sm-col sm-col-4 relative food-type" >
           <div className='flex flex-column items-center border border-gray-30 p2 pointer inline-block' >
             <div className="p2 inline-block" style={{width: '64px', height: '64px'}}>
               <img src={"/fat_icons/" + this.props.foodType.icon} />
