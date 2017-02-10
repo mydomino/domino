@@ -71,14 +71,16 @@
         data: {
             labels: #{@fat_graph_cf_map.keys},
             datasets: [{
-                label: 'My Carbon Footprint',
+                type: 'bar',
+                label: 'My Carbon Footprint (kg)',
                 data: #{@fat_graph_cf_map.values},
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255,99,132,1)',
                 borderWidth: 1
             },
             {
-              label: "Avg. Carbon Footprint",
+              type: 'line',
+              label: "Avg. Carbon Footprint (kg)",
               data: new Array(7).fill(6.2)
             }]
         },
