@@ -18,18 +18,19 @@ class FoodType extends React.Component {
     });
   }
   removeFood(){
-    //reset slider value
-    this.$slider.slider("value",100);    
-    //reset size
     let food = Object.assign({}, this.state.food);
-    food.size = 100;
+    this.props.removeFood(food);
+    
+    //reset slider value
+    this.$slider.slider("value",100);  
+    //reset size
 
+    food.size = 100;
 
     this.setState({
       food: food,
       active: false
     });
-    this.props.removeFood(this.state.food);
   }
   addFood(size){
     let food = Object.assign({}, this.state.food);

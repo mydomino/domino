@@ -7,16 +7,16 @@ class FoodActionTracker extends React.Component {
       foods: this.props.fatDay.foods
     }); 
   }
-  resetCf() {
-    let meal_day = this.state.meal_day
-    meal_day.carbon_footprint = null;
+  // resetCf() {
+  //   let meal_day = this.state.meal_day
+  //   meal_day.carbon_footprint = null;
 
-    this.setState({
-      meal_day: meal_day
-    })
-  }
+  //   this.setState({
+  //     meal_day: meal_day
+  //   })
+  // }
   addFood(f) {
-    this.resetCf();
+    // this.resetCf();
 
     let food_base = {size: null, food_type_id: null};
 
@@ -26,19 +26,17 @@ class FoodActionTracker extends React.Component {
 
     this.setState({
       foods: foods
-    });
-    this.getCarbonFootprint();
+    },this.getCarbonFootprint);
   }
   removeFood(f) {
-    console.log(f);
-    this.resetCf();
+    // this.resetCf();
 
     let foods = Object.assign({}, this.state.foods);
     delete foods[f.food_type_id];
-    console.log(foods);
+
     this.setState({
       foods: foods
-    });
+    }, this.getCarbonFootprint);
   }
   render() {
     var that = this;
@@ -63,6 +61,7 @@ class FoodActionTracker extends React.Component {
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
     var that = this;
+    console.log(that.state);
     $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state }, "json")
       .done(function(data){
         that.setState({
