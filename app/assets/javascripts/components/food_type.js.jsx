@@ -53,8 +53,6 @@ class FoodType extends React.Component {
     this.props.updateFoodSize(this.state.food);
   }
   render() {
-    // let size = this.state.food ? this.state.food.size : 100;
-    //this.props.bgColorMap[this.state.food.size]
     return (
       <div>
         <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eee' }} className="col col-6 sm-col sm-col-4 relative food-type" >
@@ -90,7 +88,6 @@ class FoodType extends React.Component {
               </div>
             </div>
             <div className="m2 clearfix">
-              <button data-remodal-action="cancel" className="remodal-cancel">Cancel</button>
               <button data-remodal-action="confirm" className="remodal-confirm">OK</button>
             </div>
           </div>
@@ -119,13 +116,6 @@ class FoodType extends React.Component {
         this.updateSizeLabel(ui.value);
       }.bind(this)
     });
-
-    // Modal event handlers
-    $(document).on('cancellation', modalSelector, function (e) {
-      that.$modal.close();
-      that.removeFood();
-    });
-
     $(document).on('confirmation', modalSelector, function (e) {
       that.addFood(that.$slider.slider("value"));
     });
