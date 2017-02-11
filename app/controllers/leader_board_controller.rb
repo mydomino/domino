@@ -28,7 +28,6 @@ class LeaderBoardController < ApplicationController
     end
 
     @users = User.includes(:profile).where(["organization_id = ?", organization.id]).order("fat_reward_points DESC").first(8)
-
   end
 
 
