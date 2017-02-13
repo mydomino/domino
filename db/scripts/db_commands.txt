@@ -10,6 +10,21 @@ rails generate migration AddUsersCountToOrganizations users_count:integer
 
 rails g migration add_signup_token_to_users signup_token:string signup_token_sent_at:datetime
 
+rails generate migration AddMealCarbonFootprintToUsers meal_carbon_footprint:float
+
+rails g migration DropMealTypes
+
+rails g migration DropMeals
+
+rails g migration AddMealDayReferenceToFood 
+
+rails g migration AddSizeToFoods size:integer 
+
+rails g migration AddSizeToFoods size:integer
+
+rails g model PointsLog point_date:date point_type:string desc:string point:integer user:references
+
+rails g migration AddFatRewardPointsToUsers	fat_reward_points:integer
 
 ############################################
 Rails destroy ....  
@@ -23,4 +38,7 @@ rails destroy migration AddUserToOrganizations
 
 # test cases
 nullify for dependent when parent object is destroyed
+
+#rails g migration create_food_types category:int carbon_footprint:float icon name
+
 

@@ -18,11 +18,16 @@
                   %span.inline-block.mr2.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-admin.svg", class:"icon-m block mx-auto"
                     Admin
-
-              = link_to "/dashboard", class: 'text-decoration-none' do
-                %span.inline-block.h5.blue--hover{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
-                  = inline_svg "icons/i-dashboard-nav.svg", class:"block mx-auto", size:"32px * 22px"
-                  Dashboard
+              -if current_user.organization
+                = link_to membership_path, class: 'text-decoration-none' do
+                  %span.inline-block.h5.blue--hover{class: "#{(current_page? '/membership') ? 'fill-blue blue' : nav_element_color}"}
+                    = inline_svg "icons/i-membership-nav.svg", class:"block mx-auto", size:"32px * 22px"
+                    Membership
+              -else
+                = link_to "/dashboard", class: 'text-decoration-none' do
+                  %span.inline-block.h5.blue--hover{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
+                    = inline_svg "icons/i-dashboard-nav.svg", class:"block mx-auto", size:"32px * 22px"
+                    Dashboard
               = link_to member_profile_path, class: 'text-decoration-none mx2' do
                 %span.inline-block.h5.blue--hover{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
@@ -64,7 +69,7 @@
             %li.h1
               =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
           %li.h1
-            =link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
+            =link_to 'Membership', membership_path, class: "white py1 inline-block text-decoration-none"
           %li.h1
             =link_to 'Profile', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
           %li.h1

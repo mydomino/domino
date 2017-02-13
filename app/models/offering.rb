@@ -8,5 +8,7 @@
 #  updated_at :datetime         not null
 #
 
+
+
 class Offering < ActiveRecord::Base
 end

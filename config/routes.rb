@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'leader_board/cfp_ranking'
+
+  # BEGIN Food Action Tracker routes
+  get "food-action-tracker/:year/:month/:day" => "fat_meals#edit", as: 'fat_date'
+  get "food-action-tracker" => "fat_meals#edit"
+  post "food-action-tracker" => "fat_meals#create"
+  patch "food-action-tracker" => "fat_meals#update"
+  # END Food Action Tracker routes
+
+
   resources :organizations do
     resources :users, only: [:create] 
     member do 
@@ -40,6 +50,8 @@ Rails.application.routes.draw do
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
+  get 'membership' => 'profiles#membership'
+  
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }

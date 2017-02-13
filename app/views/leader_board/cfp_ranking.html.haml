@@ -1,0 +1,12 @@
+.bg-gray-05
+  .max-width-3.mx-auto.p2
+    %p Leader Board
+    %table.table.table-hover
+      %col{:width => "20"}/
+      %col{:width => "80"}/
+      %col{:width => "120"}/
+      - @users.each do |u|
+        %tr
+          %td= inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
+          %td{:colspan => "2"}= u.profile.first_name
+          %td= u.fat_reward_points

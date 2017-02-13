@@ -73,5 +73,17 @@ namespace :util do
   end
 
 
+  desc "Initialize users FAT reward point to 0"
+  task init_users_fat_reward_points: :environment do 
+    
+    User.find_each do |u|
+      u.fat_reward_points = 0
+      u.save!
+      puts "ID: #{u.id} points was set. Email: #{u.email}"
+    end
+
+  end
+
+
   
 end

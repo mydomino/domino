@@ -35,18 +35,16 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-
     # If user logs in via article views, redirect to whichever article view they left off at
     if session[:referer] && session[:referer].include?('/articles')
       session[:referer]
     elsif resource.role == 'concierge'
-      
       dashboards_path
+    elsif resource.organization
+      membership_path
     else
-      
       user_dashboard_path
     end
-
   end
 
   def after_sign_out_path_for(resource)

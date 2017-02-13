@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121003701) do
+ActiveRecord::Schema.define(version: 20170207235444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,23 @@ ActiveRecord::Schema.define(version: 20170121003701) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "food_types", force: :cascade do |t|
+    t.integer "category"
+    t.float   "carbon_footprint"
+    t.string  "icon"
+    t.string  "name"
+    t.float   "average_size"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.integer "food_type_id"
+    t.float   "size"
+    t.integer "meal_day_id"
+  end
+
+  add_index "foods", ["food_type_id"], name: "index_foods_on_food_type_id", using: :btree
+  add_index "foods", ["meal_day_id"], name: "index_foods_on_meal_day_id", using: :btree
 
   create_table "interests", force: :cascade do |t|
     t.integer  "profile_id"
@@ -103,6 +120,14 @@ ActiveRecord::Schema.define(version: 20170121003701) do
   add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
   add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
 
+  create_table "meal_days", force: :cascade do |t|
+    t.integer "user_id"
+    t.date    "date"
+    t.float   "carbon_footprint"
+  end
+
+  add_index "meal_days", ["user_id"], name: "index_meal_days_on_user_id", using: :btree
+
   create_table "offerings", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -129,6 +154,18 @@ ActiveRecord::Schema.define(version: 20170121003701) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "points_logs", force: :cascade do |t|
+    t.date     "point_date"
+    t.string   "point_type"
+    t.string   "desc"
+    t.integer  "point"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "points_logs", ["user_id"], name: "index_points_logs_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "url"
@@ -229,6 +266,8 @@ ActiveRecord::Schema.define(version: 20170121003701) do
     t.integer  "organization_id"
     t.string   "signup_token"
     t.datetime "signup_token_sent_at"
+    t.float    "meal_carbon_footprint",  default: 0.0
+    t.integer  "fat_reward_points",      default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -236,8 +275,12 @@ ActiveRecord::Schema.define(version: 20170121003701) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "dashboards", "users"
+  add_foreign_key "foods", "food_types"
+  add_foreign_key "foods", "meal_days"
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
+  add_foreign_key "meal_days", "users"
+  add_foreign_key "points_logs", "users"
   add_foreign_key "profiles", "partner_codes"
   add_foreign_key "profiles", "users"
   add_foreign_key "subscriptions", "organizations"

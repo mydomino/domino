@@ -53,6 +53,10 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.6.1)
       execjs
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     basscss-rails (4.1.0)
     bcrypt (3.1.11)
     benchmark-ips (2.7.2)
@@ -63,6 +67,10 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     browser (2.3.0)
+    browser-timezone-rails (1.0.1)
+      js_cookie_rails
+      jstz-rails3-plus
+      rails (>= 3.1)
     builder (3.2.3)
     bullet (5.5.0)
       activesupport (>= 3.0.0)
@@ -75,6 +83,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chart-js-rails (0.1.1)
+      railties (> 3.1)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     clipboard-rails (1.5.16)
@@ -87,6 +97,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
+    connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     daemons (1.2.4)
@@ -198,7 +209,11 @@ GEM
       railties (>= 3.1)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    js_cookie_rails (2.1.3)
+      railties (>= 3.1)
     json (1.8.6)
+    jstz-rails3-plus (1.0.5)
+      railties (>= 3.1)
     kaminari (1.0.0)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.0)
@@ -336,6 +351,14 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rdoc (4.3.0)
+    react-rails (1.10.0)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
+    remodal-rails (1.1.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     retries (0.0.5)
@@ -466,8 +489,10 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   browser
+  browser-timezone-rails
   bullet
   byebug
+  chart-js-rails
   clipboard-rails
   coffee-rails (~> 4.1.0)
   crack (~> 0.4.3)
@@ -512,6 +537,8 @@ DEPENDENCIES
   rack_session_access
   rails (= 4.2.5.1)
   rails_12factor
+  react-rails
+  remodal-rails
   retries
   rubocop
   rubyzoho

@@ -1,0 +1,43 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+fruits:
+  category: 0       
+  carbon_footprint: 1.1
+  icon: "fruits_icon.png"           
+  name: "fruits"           
+#
+vegetables:
+  category: 1       
+  carbon_footprint: 2.0
+  icon: "vegetables_icon.png"           
+  name: "vegetables"           
+#
+dairy:
+  category: 2       
+  carbon_footprint: 13.5
+  icon: "dairy_icon.png"           
+  name: "dairy"           
+#
+grains:
+  category: 3      
+  carbon_footprint: 2.3
+  icon: "grains_icon.png"           
+  name: "grains"           
+#
+fish_poultry_pork:
+  category: 4       
+  carbon_footprint: 
+  icon: "fish_poultry_pork_icon.png"           
+  name: "fish_poultry_pork"           
+#
+beef_lamb:
+  category: 5       
+  carbon_footprint: 
+  icon: "beef_lamb_icon.png"           
+  name: "beef_lamb"           
+#

@@ -19,6 +19,8 @@
 #  organization_id        :integer
 #  signup_token           :string
 #  signup_token_sent_at   :datetime
+#  meal_carbon_footprint  :float            default(0.0)
+#  fat_reward_points      :integer          default(0)
 #
 # Indexes
 #
@@ -31,14 +33,15 @@
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
 
-
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_one :profile, dependent: :destroy
   has_one :dashboard, dependent: :destroy
   belongs_to :organization, counter_cache: true
+  has_many :meal_days, dependent: :destroy
+  has_many :points_logs, dependent: :destroy
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -57,22 +60,56 @@ class User < ActiveRecord::Base
     UserMailer.email_signup_link(self).deliver_later
   end
 
-  # email signup_token to user
-  #def email_onboard_url(first_name, last_name)
-  #  # generate a new signup token
-  #  generate_token(:signup_token)
-#
-  #  # save the signup token sent date
-  #  self.signup_token_sent_at = Time.zone.now
-#
-  #  save!
-#
-  #  org_name = self.organization.nil? ? '' : self.organization.name
-#
-  #  UserMailer.email_user_with_on_board_url(org_name, first_name, last_name, self.email, self.signup_token).deliver_now
-#
-  #  puts "User #{self.email} signup token emails on #{PostsHelper::format_post_date(self.signup_token_sent_at.to_s)}\n"
-  #end
+  
+  # calculate the food carbon footprint during a period
+  # Note: start_date is today/current date, end_date is yesterday or before today date
+  def get_fat_carbon_footprint(start_date, end_date = nil)
+
+    
+    # determine whether end_date is given. If not given, use start_date as end_date
+    end_date = end_date.nil? ? start_date : end_date
+
+
+    @total_carbon_foodprint = 0
+
+    meal_days = self.meal_days.where(["date <= ? and date >= ?", start_date, end_date])
+
+    carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days != nil 
+
+    # sum up value in the array
+    @total_carbon_foodprint = carbon_foodprints.inject(:+) if carbon_foodprints!= nil
+
+
+    # update the carbon footprint value
+    self.meal_carbon_footprint = @total_carbon_foodprint
+
+    self.save!
+
+    return (self.meal_carbon_footprint)
+    
+  end
+
+ 
+  # calculate user reward points during the period and save it to the user's member variable
+  def get_fat_reward_points(start_date, end_date = nil)
+
+    # determine whether end_date is given. If not given, use start_date as end_date
+    end_date = end_date.nil? ? start_date : end_date
+
+    points_log = self.points_logs.where(["point_date <= ? and point_date >= ?", start_date, end_date])
+
+    # return a points array
+    points = points_log.map(&:point) if points_log.size > 0
+
+    # sum up the points
+    if points != nil
+      self.fat_reward_points = points.inject(:+) 
+      self.save!
+    end
+
+    return(self.fat_reward_points)
+    
+  end
 
   ###############################################################################################################
   private

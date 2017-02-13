@@ -4,8 +4,32 @@ class ProfilesController < ApplicationController
   
   layout 'concierge', only: :new
   
+  # /show/ 
+  # Purpose: This is the member profile info page
+  # GET /profile
   def show
     @profile = current_user.profile
+  end
+
+  # /membership/
+  # Purpose: This is the membership home page
+  # GET /membership
+  def membership
+    # @user used to display membership type, member since, and renewal date info
+    @user = current_user
+
+    # @profile used to display first and last name
+    @profile = @user.profile
+
+    @fat_graph_cf_map = {}
+    
+    fat_graph_date = Date.today-6.days
+
+    7.times do
+      meal_day = MealDay.find_by_date(fat_graph_date)
+      @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
+      fat_graph_date += 1.day
+    end
   end
 
   def verify_current_password

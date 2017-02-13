@@ -17,6 +17,8 @@
 #  fk_rails_f07f0bd66d  (organization_id => organizations.id)
 #
 
+
+
 class Team < ActiveRecord::Base
   belongs_to :organization
 end

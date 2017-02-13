@@ -19,6 +19,8 @@
 #  fk_rails_e224210bc5  (profile_id => profiles.id)
 #
 
+
+
 class Interest < ActiveRecord::Base
   belongs_to :profile
   belongs_to :offering

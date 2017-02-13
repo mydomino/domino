@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: recommendations
+#
+#  id                 :integer          not null, primary key
+#  concierge_id       :integer
+#  dashboard_id       :integer
+#  done               :boolean
+#  recommendable_id   :integer
+#  recommendable_type :string
+#  created_at         :datetime
+#  updated_at         :datetime
+#  updated_by         :integer
+#
+
+
 require "test_helper"
 
 class RecommendationTest < ActiveSupport::TestCase

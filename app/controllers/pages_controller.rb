@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:membership]
   skip_after_action :verify_authorized
   layout 'example', only: :example
 
