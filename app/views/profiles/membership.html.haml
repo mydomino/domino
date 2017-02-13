@@ -6,75 +6,81 @@
 
 .mx-auto.relative
   .page-header-image.bg-blue
-  .absolute.left-0.right-0.top-0.mb4{style: 'margin-top: 100px;'}
-    .max-width-4.mx-auto
-      .clearfix
-        .col.col-12.sm-col.sm-col-7
-          .flex.items-center.justify-center.flex-wrap.rounded.bg-white.p2.mx-auto
-            .p2
-              = image_tag "http://placehold.it/150x150", width: 150, height: 150
-            .p2
-              .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
-              .gray-80.h6
-                .inline-block
-                  Membership type
-                  %br
-                  Member since
-                  %br
-                  Renewal date
-                .inline-block.ml2.right-align
-                  = @user.organization ? 'Organization' : 'Individual'
-                  %br
-                  = @user.created_at.strftime("%m/%d/%y")
-                  %br
-                  = (@user.created_at + 1.year).strftime("%B %Y")
-        .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right
-          .h1 Leaderboard
+    .absolute.left-0.right-0.top-0.mb4{style: 'margin-top: 100px;'}
+      .max-width-4.mx-auto
+        .clearfix
+          .col.col-12.sm-col.sm-col-7
+            .flex.items-center.justify-center.flex-wrap.rounded.bg-white.p2.mx-auto
+              .p2
+                = image_tag "http://placehold.it/150x150", width: 150, height: 150
+              .p2
+                .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
+                .gray-80.h6
+                  .inline-block
+                    Membership type
+                    %br
+                    Member since
+                    %br
+                    Renewal date
+                  .inline-block.ml2.right-align
+                    = @user.organization ? 'Organization' : 'Individual'
+                    %br
+                    = @user.created_at.strftime("%m/%d/%y")
+                    %br
+                    = (@user.created_at + 1.year).strftime("%B %Y")
+          .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right
+            .h1 Leaderboard
 
-    .mt4.max-width-4.mx-auto
-      .clearfix
-        =link_to "food-action-tracker" do
-          .col.col-12.bg-white.rounded.p2.right.mb2
-            .h1.gray-80
-              %i.blue.fa.fa-cutlery{"aria-hidden":"true"}
-              Food Impact Tracker
-            %p Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
-            %canvas#myChart{width: "400", height: "100"}
-      
-      .clearfix
-        =link_to 'dashboard' do
-          .col.col-12.sm-col.sm-col-6.px1.mb2
-            .p2.bg-white
-              .flex.items-center
-                =image_tag "icons/i-leaf.png", :class => "mr1"
-                .h1.gray-80 Dashboard
-              %p Check out your recommended products and tips for clean energy.
-        
-        =link_to "articles" do
-          .col.col-12.sm-col.sm-col-6.px1.mb2
-            .p2.bg-white
-              .flex.items-center
-                =image_tag "icons/i-paper.png", :class => "mr1"
-                .h1.gray-80 Articles
-              %p Read up on easy ways to reduce your carbon impact.
-      
-      .clearfix
+  .mt4.max-width-4.mx-auto
+    .clearfix
+      =link_to "food-action-tracker" do
+        .col.col-12.bg-white.rounded.p2.right.mb2
+          .h1.gray-80
+            %i.blue.fa.fa-cutlery{"aria-hidden":"true"}
+            Food Impact Tracker
+          %p Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
+          %canvas#myChart{width: "400", height: "100"}
+
+    .mt2.mb4.max-width-4.mx-auto
+      .clearfix.mxn1
         .col.col-12.sm-col.sm-col-6.px1.mb2
-          .p2.bg-white
-            .flex.items-center
-              =image_tag "icons/i-concierge.png", :class => "mr1"
-              .h1.gray-80 Concierge
-            %p Questions about clean energy? Talk to a concierge today.
-            =link_to "tel:+18009792215", class: 'text-decoration-none blue' do
-              Call 800-721-2215
-        =link_to "events" do
-          .col.col-12.sm-col.sm-col-6.px1.mb2
-            .p2.bg-white
-              .flex.items-center
-                =image_tag "icons/i-calendar.png", :class => "mr1"
-                .h1.gray-80 Events
-              %p  See upcoming brown-bag events for your company.
+          .p2.bg-white.rounded
+            =image_tag "icons/i-leaf.png", :class => "mr1 relative", style:"top:8px"
+            %h1.black.inline.line-height-1.my0
+              Dashboard
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 Check out your recommended products and tips for clean energy.
+            %p.mb0.line-height-1
+              =link_to 'dashboard' do
+                View dashboard
 
+        .col.col-12.sm-col.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-concierge.png", :class => "mr1 relative", style:"top:8px"
+            %h1.black.inline.line-height-1.my0
+              Concierge
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 Questions about clean energy? Talk to a concierge today.
+            %p.mb0.line-height-1
+              =link_to "tel:+18009792215" do
+                Call 800-721-2215
+      .clearfix.mxn1
+        .col.col-12.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-paper.png", :class => "mr1 relative", style:"top:8px"
+            %h1.black.inline.line-height-1.my0
+              Articles
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 Read up on easy ways to reduce your carbon impact.
+            %p.mb0.line-height-1
+              =link_to "articles" do
+                Read articles
+        .col.col-12.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-calendar.png", :class => "mr1 relative", style:"top:8px"
+            %h1.black.inline.line-height-1.my0
+              Events
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 See upcoming brown-bag events for your company.
+            %p.mb0.line-height-1
+              =link_to "events" do
+                See events
 :javascript
   $(document).ready(function(){
     var ctx = document.getElementById("myChart");
