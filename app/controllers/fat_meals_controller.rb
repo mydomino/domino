@@ -41,6 +41,8 @@ class FatMealsController < ApplicationController
   # POST /food-action-tracker
   # Create FAT resources for the date provided in params.
   def create
+
+    # PointLog.award_point(user, 'FAT_TRACK')
     date_param = params[:fat_day][:date]
     foods = params[:fat_day][:foods]
     meal_day =  MealDay.create(
@@ -53,6 +55,8 @@ class FatMealsController < ApplicationController
       end
     end
     meal_day.calculate_cf
+
+    award_points(meal_day)
 
     render json: {
       carbon_footprint: meal_day.carbon_footprint,
@@ -85,46 +89,5 @@ class FatMealsController < ApplicationController
       meal_day: meal_day,
       status: 200
     }, status: 200
-  end
-
-  private
-
-  # /calculate_carbon_footprint/
-  def calculate_cf(foods)
-    foods.inject(0) {|sum, f| sum + (f.food_type.carbon_footprint * (f.size/100.0))}
-  end
-
-  # /new_meals/
-  # Purpose: For new FAT views, pass default meal objects to React
-  def new_meals
-    [
-      {
-        meal_type_id: 1,
-        size: "medium",
-        foods: [],
-        meal_type: {
-          id: 1,
-          name: "breakfast"
-        }
-      },
-      {
-        meal_type_id: 2,
-        size: "medium",
-        foods: [],
-        meal_type: {
-          id: 2,
-          name: "lunch"
-        }
-      },
-      {
-        meal_type_id: 3,
-        size: "medium",
-        foods: [],
-        meal_type: {
-          id: 3,
-          name: "dinner"
-        }
-      }
-    ]
   end
 end

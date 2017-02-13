@@ -21,6 +21,13 @@
 #
 
 class PointsLog < ActiveRecord::Base
+  # def get_points
+  #   # return all the points for the user
+  # end
+
+  # def award_points(user, point_type)
+  #   #logic to see if pts already awarded
+  # end
 
   # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
@@ -32,17 +39,25 @@ class PointsLog < ActiveRecord::Base
   EAT_NO_BEEF_LAMB_A_DAY  = 'EAT_NO_BEEF_LAMB_A_DAY'
   EAT_NO_DAIRY_A_DAY      = 'EAT_NO_DAIRY_A_DAY' 
 
+  # Group = "TRANSPORTATION"
+  # => types: ["BIKE_TO_WORK", "RIDE_PUBLIC_TRANSIT"]
+  
+  # Group = "FAT"
+  # => types: ["EAT_NO_DAIRY_A_DAY", "EAT_NO_BEEF_LAMB_A_DAY"]
 
-
-
+  # Group = "Engagement"
+  # => types: ["SIGN_IN_EACH_DAY", "CLICK_ARTICLE_LINK ",  "CONTACT_CONCIERGE"]
 
   belongs_to :user
 
 
   validates :point_date, :point_type, :point, :user, presence: true
 
-
-
+  # /get_points/
+  # Purpose: Get user's total points by group
+  def get_points_by_group
+    # self.point_entries.inject(0){|sum, entry| sum += entry.point_type.points }
+  end
 
   def self.add_point(user, point_type, desc, point, point_date)
 

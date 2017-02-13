@@ -30,6 +30,8 @@ class ProfilesController < ApplicationController
       @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end
+
+    @leader_board_list = get_leader_board(@user)
   end
 
   def verify_current_password
@@ -144,6 +146,10 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def get_leaderboard(user)
+    user.organization.get_leaderboard
+  end
 
   def create_dashboard(profile)
     Dashboard.create(lead_name: "#{profile.first_name} #{profile.last_name}", lead_email: profile.email)
