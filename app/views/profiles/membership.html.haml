@@ -3,7 +3,7 @@
 
 .mx-auto.relative
   .page-header-image.bg-blue
-  
+
   .absolute.left-0.right-0.top-0.mx-auto{style: 'margin-top: 100px;'}
     .flex.items-center.justify-center.flex-wrap.rounded.max-width-3.bg-white.p2.mx-auto
       .p2
@@ -25,37 +25,49 @@
             = (@user.created_at + 1.year).strftime("%B %Y")
 
     .p4.max-width-4.mx-auto
-      .clearfix
-        =link_to 'dashboard' do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
-            .h1.gray-80
-              %i.blue.fa.fa-tachometer{"aria-hidden":"true"}
+      -# =link_to @fat_link do
+      -#   .col.col-12.sm-col-6.bg-white.rounded.p2.right.mb2
+      -#     .h1.gray-80
+      -#       %i.blue.fa.fa-cutlery{"aria-hidden":"true"}
+      -#       %h1.black.line-height-1.my0
+      -#     Food Action Tracker
+      -#     %p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      .clearfix.mxn1
+        .col.col-12.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-leaf.png", :class => "mr1"
+            %h1.black.inline.line-height-1.my0
               Dashboard
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic minus odio libero voluptatem, nostrum animi vel eveniet at iure ullam, neque, quam asperiores assumenda voluptate iste ab temporibus incidunt. Voluptatum!
-        =link_to @fat_link do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.right.mb2
-            .h1.gray-80
-              %i.blue.fa.fa-cutlery{"aria-hidden":"true"}
-              Food Action Tracker
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non velit harum odio voluptatibus inventore consequatur sit atque delectus, esse reprehenderit iusto autem facere ipsam suscipit quae officiis provident, voluptatum fuga?
-      .clearfix
-        =link_to "tel:+18009792215" do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
-            .h1.gray-80
-              %i.blue.fa.fa-comments{"aria-hidden":"true"}
-              Concierge
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas harum doloremque hic sed, voluptatibus nesciunt nobis? Reiciendis delectus quos recusandae mollitia. Voluptatibus saepe, earum quibusdam. Quisquam, vero libero quae consequatur.
-        =link_to "events" do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.right.mb2
-            .h1.gray-80
-              %i.blue.fa.fa-calendar{"aria-hidden":"true"}
-              Events
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cum iure molestias, provident, quas, eum minima commodi illo fuga dicta quaerat animi ab voluptate, quos tempora deleniti expedita asperiores incidunt.
-      .clearfix
-        =link_to "articles" do
-          .col.col-12.sm-col.sm-col-5.bg-white.rounded.p2.mb2
-            .h1.gray-80
-              %i.blue.fa.fa-newspaper-o{"aria-hidden":"true"}
-              Articles
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt iste a facere laudantium commodi similique recusandae sint molestias veniam voluptate, placeat excepturi corrupti fugiat ullam totam qui eaque facilis nam.
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 Check out your recommended products and tips for clean energy.
+            %p.mb0.line-height-1
+              =link_to 'dashboard' do
+                View dashboard
 
+        .col.col-12.sm-col.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-concierge.png", :class => "mr1"
+            %h1.black.inline.line-height-1.my0
+              Concierge
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 Questions about clean energy? Talk to a concierge today.
+            %p.mb0.line-height-1
+              =link_to "tel:+18009792215" do
+                Call 800-721-2215
+      .clearfix.mxn1
+        .col.col-12.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-paper.png", :class => "mr1"
+            %h1.black.inline.line-height-1.my0
+              Articles
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 Read up on easy ways to reduce your carbon impact.
+            %p.mb0.line-height-1
+              =link_to "articles" do
+                Read articles
+        .col.col-12.sm-col.sm-col-6.px1.mb2
+          .p2.bg-white.rounded
+            =image_tag "icons/i-calendar.png", :class => "mr1"
+            %h1.black.inline.line-height-1.my0
+              Events
+            %p.line-height-3.col-12.sm-col-9.gray-60.mb4 See upcoming brown-bag events for your company.
+            %p.mb0.line-height-1
+              =link_to "events" do
+                See events
