@@ -1,6 +1,6 @@
 class FatMealsController < ApplicationController
   before_action :authenticate_user!
-  
+  include FatCompetition
   # GET /food-action-tracker
   # GET /food-action-tracker/:year/:month/:day
   # Purpose: Display the FAT interface for a given date
@@ -41,7 +41,6 @@ class FatMealsController < ApplicationController
   # POST /food-action-tracker
   # Create FAT resources for the date provided in params.
   def create
-
     # PointLog.award_point(user, 'FAT_TRACK')
     date_param = params[:fat_day][:date]
     foods = params[:fat_day][:foods]
@@ -56,7 +55,7 @@ class FatMealsController < ApplicationController
     end
     meal_day.calculate_cf
 
-    award_points(meal_day)
+    FatCompetition::award_points(meal_day)
 
     render json: {
       carbon_footprint: meal_day.carbon_footprint,

@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
       fat_graph_date += 1.day
     end
 
-    @leader_board_list = get_leader_board(@user)
+    # @leader_board_list = get_leader_board(@user)
   end
 
   def verify_current_password
@@ -147,9 +147,9 @@ class ProfilesController < ApplicationController
 
   private
 
-  def get_leaderboard(user)
-    user.organization.get_leaderboard
-  end
+  # def get_leaderboard(user)
+  #   user.organization.get_leaderboard
+  # end
 
   def create_dashboard(profile)
     Dashboard.create(lead_name: "#{profile.first_name} #{profile.last_name}", lead_email: profile.email)
