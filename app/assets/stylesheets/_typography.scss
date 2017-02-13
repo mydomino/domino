@@ -72,6 +72,10 @@
 
 .line-height-4 { line-height: $line-height-4 }
 
+.measure { max-width: 48rem }
+.measure-narrow { max-width: 32rem }
+.measure-wide { max-width: 60rem }
+
 .list-style-none { list-style: none }
 
 .underline { text-decoration: underline }
