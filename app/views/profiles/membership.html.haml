@@ -7,29 +7,34 @@
 .mx-auto.relative
   .page-header-image.bg-blue
   
-  .absolute.left-0.right-0.top-0.mx-auto{style: 'margin-top: 100px;'}
-    .flex.items-center.justify-center.flex-wrap.rounded.max-width-3.bg-white.p2.mx-auto
-      .p2
-        = image_tag "http://placehold.it/150x150", width: 150, height: 150
-      .p2
-        .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
-        .gray-80.h6
-          .inline-block
-            Membership type
-            %br
-            Member since
-            %br
-            Renewal date
-          .inline-block.ml2.right-align
-            = @user.organization ? 'Organization' : 'Individual'
-            %br
-            = @user.created_at.strftime("%m/%d/%y")
-            %br
-            = (@user.created_at + 1.year).strftime("%B %Y")
+  .absolute.left-0.right-0.top-0{style: 'margin-top: 100px;'}
+    .max-width-4.mx-auto
+      .clearfix
+        .col.col-12.sm-col.sm-col-7
+          .flex.items-center.justify-center.flex-wrap.rounded.bg-white.p2.mx-auto
+            .p2
+              = image_tag "http://placehold.it/150x150", width: 150, height: 150
+            .p2
+              .h1.bold= "#{@profile.first_name} #{@profile.last_name}"
+              .gray-80.h6
+                .inline-block
+                  Membership type
+                  %br
+                  Member since
+                  %br
+                  Renewal date
+                .inline-block.ml2.right-align
+                  = @user.organization ? 'Organization' : 'Individual'
+                  %br
+                  = @user.created_at.strftime("%m/%d/%y")
+                  %br
+                  = (@user.created_at + 1.year).strftime("%B %Y")
+        .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right
+          .h1 Leaderboard
 
     .mt4.max-width-4.mx-auto
       .clearfix
-        =link_to @fat_link do
+        =link_to "food-action-tracker" do
           .col.col-12.bg-white.rounded.p2.right.mb2
             .h1.gray-80
               %i.blue.fa.fa-cutlery{"aria-hidden":"true"}

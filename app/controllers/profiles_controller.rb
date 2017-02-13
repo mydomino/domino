@@ -15,11 +15,11 @@ class ProfilesController < ApplicationController
   # Purpose: This is the membership home page
   # GET /membership
   def membership
+    # @user used to display membership type, member since, and renewal date info
     @user = current_user
-    @profile = @user.profile
 
-    @meal_day = MealDay.find_by(date: Date.today, user: @user)
-    @fat_link = 'food-action-tracker'
+    # @profile used to display first and last name
+    @profile = @user.profile
 
     @fat_graph_cf_map = {}
     
