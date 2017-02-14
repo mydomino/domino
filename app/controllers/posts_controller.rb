@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   def get_post_by_slug
     slug = params[:article]
 
-    query_param = {filter: {name: slug}}
+    query_param = {slug: slug}
 
     response = @dh.get_post_by_slug(query_param)
 
