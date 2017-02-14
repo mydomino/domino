@@ -21,13 +21,6 @@
 #
 
 class PointsLog < ActiveRecord::Base
-  # def get_points
-  #   # return all the points for the user
-  # end
-
-  # def award_points(user, point_type)
-  #   #logic to see if pts already awarded
-  # end
 
   # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
@@ -85,5 +78,39 @@ class PointsLog < ActiveRecord::Base
     
   end
 
+
+  def self.remove_point(user, point_type, point_date)
+
+    p_log = PointsLog.find_by(user: user,
+        point_type: point_type, point_date: point_date) 
+
+    if (p_log != nil)
+      PointsLog.destroy(p_log.id)
+    end
+  end
+
+
+  def self.update_point(user, point_type, desc, point, point_date)
+
+    p_log = PointsLog.find_by(user: user,
+        point_type: point_type, point_date: point_date) 
+
+    if (p_log != nil)
+
+      PointsLog.update(p_log.id, point: point, desc: desc)
+    end
+  end
+
+
+  def self.has_point?(user, point_type, point_date)
+
+    p_log = PointsLog.find_by(user: user,
+        point_type: point_type, point_date: point_date) 
+
+    found = (p_log != nil)? true : false
+
+    return found
+
+  end
 
 end
