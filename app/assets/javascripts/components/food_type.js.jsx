@@ -55,10 +55,10 @@ class FoodType extends React.Component {
 
         <div data-remodal-id={this.props.index + "-modal"}>
             <button data-remodal-action="close" className="remodal-close"></button>
-              <div className="flex items-center justify-center">
-                <img src={"/fat_icons/" + this.props.foodType.icon} />
-                <div className="h1 ml1">{this.props.foodType.name}</div>
-              </div>
+            <div className="flex items-center justify-center">
+              <img src={"/fat_icons/" + this.props.foodType.icon} />
+              <div className="h1 ml1">{this.props.foodType.name}</div>
+            </div>
             <br/>
             <div className="h2">How much did you eat? </div>
             <div className="clearfix p2">
@@ -75,7 +75,7 @@ class FoodType extends React.Component {
               </div>
             </div>
             <div className="m2 clearfix">
-              <button data-remodal-action="confirm" className="remodal-confirm">OK</button>
+              <button data-remodal-action="confirm" className="btn btn-md btn-primary">OK</button>
             </div>
           </div>
       </div>
