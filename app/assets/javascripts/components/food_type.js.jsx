@@ -20,9 +20,9 @@ class FoodType extends React.Component {
   removeFood(){
     let food = Object.assign({}, this.state.food);
     this.props.removeFood(food);
-    
+
     //reset slider value
-    this.$slider.slider("value",100);  
+    this.$slider.slider("value",100);
     //reset size
 
     food.size = 100;
@@ -44,8 +44,8 @@ class FoodType extends React.Component {
   render() {
     return (
       <div>
-        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eee' }} className="col col-6 sm-col sm-col-4 relative food-type" >
-          <div className='flex flex-column items-center border border-gray-30 p2 pointer inline-block' >
+        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }} className="col col-6 sm-col-4 rounded relative food-type" >
+          <div className='flex flex-column items-center border border-gray-10 p2 pointer inline-block' >
             <div className="p2 inline-block" style={{width: '64px', height: '64px'}}>
               <img src={"/fat_icons/" + this.props.foodType.icon} />
             </div>
@@ -117,10 +117,10 @@ class FoodType extends React.Component {
   }
 }
 FoodType.defaultProps = {
-  bgColorMap : { 
-    "0" : "white", 
-    "50" : "#87D37C", 
-    "100" : "#00ccff", 
+  bgColorMap : {
+    "0" : "white",
+    "50" : "#87D37C",
+    "100" : "#00ccff",
     "150" : "#F1A9A0",
     "200" : "#E26A6A"
   }

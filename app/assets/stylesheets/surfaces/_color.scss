@@ -9,6 +9,7 @@ $gray-20: #D6D6D6;
 $gray-10: #EAEAEA;
 $gray-05: #F3F3F3;
 $green: #00BC02;
+$cyan:#0CC;
 
 // Brand color variables
 $blue: #00CCFF;
@@ -51,7 +52,7 @@ $blue-alpha-75: rgba(0, 204, 255, 0.75);
 .bg-blue { background-color: $blue; }
 .bg-red { background-color: $red; }
 .bg-navy { background-color: $navy; }
-
+.bg-cyan {background-color: $cyan;}
 // Border colors
 .border-gray-10 { border-color: $gray-10; }
 .border-gray-30 { border-color: $gray-30; }
