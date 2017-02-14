@@ -24,7 +24,7 @@ class PointsLogTest < ActiveSupport::TestCase
 
   test "can add point with class function single time" do
 
-  	p_log = PointsLog.add_point(users(:User_1), PointsLog::TAKE_FOOD_LOG, "Log food TAT each day", 5, Time.zone.today)
+  	p_log = PointsLog.add_point(users(:User_1), PointsLog::TRACK_FOOD_LOG, "Log food TAT each day", 5, Time.zone.today)
   	assert p_log.valid?
   	
   end

@@ -24,25 +24,28 @@ class PointsLog < ActiveRecord::Base
 
   # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
-  TAKE_FOOD_LOG           = 'TAKE_FOOD_LOG'
+  TRACK_FOOD_LOG           = 'TRACK_FOOD_LOG'
   CLICK_ARTICLE_LINK      = 'CLICK_ARTICLE_LINK'
   CONTACT_CONCIERGE       = 'CONTACT_CONCIERGE'
   SHARE_ARTICLE           = 'SHARE_ARTICLE'
   BEAT_CFP_EMISSION       = 'BEAT_CFP_EMISSION'
   EAT_NO_BEEF_LAMB_A_DAY  = 'EAT_NO_BEEF_LAMB_A_DAY'
-  EAT_NO_DAIRY_A_DAY      = 'EAT_NO_DAIRY_A_DAY' 
+  EAT_NO_DAIRY_A_DAY      = 'EAT_NO_DAIRY_A_DAY'
+  COMMENT_ARTICLE         = 'COMMENT_ARTICLE'
 
-  # Group = "TRANSPORTATION"
-  # => types: ["BIKE_TO_WORK", "RIDE_PUBLIC_TRANSIT"]
-  
-  # Group = "FAT"
-  # => types: ["EAT_NO_DAIRY_A_DAY", "EAT_NO_BEEF_LAMB_A_DAY"]
+  # define Action Point Constant 
+  SIGN_IN_EACH_DAY_POINTS         = 5
+  TRACK_FOOD_LOG_POINTS           = 10
+  CLICK_ARTICLE_LINK_POINTS       = 5
+  CONTACT_CONCIERGE_POINTS        = 10
+  SHARE_ARTICLE_POINTS            = 10
+  BEAT_CFP_EMISSION_POINTS        = 1
+  EAT_NO_BEEF_LAMB_A_DAY_POINTS   = 10
+  EAT_NO_DAIRY_A_DAY_POINTS       = 5
+  COMMENT_ARTICLE_POINTS          = 10
 
-  # Group = "Engagement"
-  # => types: ["SIGN_IN_EACH_DAY", "CLICK_ARTICLE_LINK ",  "CONTACT_CONCIERGE"]
 
   belongs_to :user
-
 
   validates :point_date, :point_type, :point, :user, presence: true
 
@@ -56,7 +59,7 @@ class PointsLog < ActiveRecord::Base
 
   	
     # these action types are allowed only to be rewarded once per day
-    if [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TAKE_FOOD_LOG, PointsLog::BEAT_CFP_EMISSION, 
+    if [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TRACK_FOOD_LOG, PointsLog::BEAT_CFP_EMISSION, 
       PointsLog::EAT_NO_BEEF_LAMB_A_DAY, PointsLog::EAT_NO_DAIRY_A_DAY].include?(point_type)
 
   	  p_log = PointsLog.find_or_create_by!(user: user,
