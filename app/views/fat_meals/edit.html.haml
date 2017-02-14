@@ -1,6 +1,9 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
+-content_for :body_class do
+  bg-cyan
+  
 :javascript
   modulejs.require('cm_gauge');
 

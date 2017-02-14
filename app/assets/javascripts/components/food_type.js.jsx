@@ -1,5 +1,3 @@
-
-
 class FoodType extends React.Component {
   componentWillMount() {
     let active = this.props.food != null ? true : false;
@@ -44,7 +42,7 @@ class FoodType extends React.Component {
   render() {
     return (
       <div>
-        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }} className="col col-6 sm-col-4 rounded relative food-type" >
+        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }} className="col col-6 sm-col-4 food-type" >
           <div className='flex flex-column items-center border border-gray-10 p2 pointer inline-block' >
             <div className="p2 inline-block">
               <img src={"/fat_icons/" + this.props.foodType.icon} />

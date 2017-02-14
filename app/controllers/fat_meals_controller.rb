@@ -82,6 +82,8 @@ class FatMealsController < ApplicationController
     end
     meal_day.calculate_cf
 
+    FatCompetition::award_points(meal_day)
+
     render json: {
       carbon_footprint: meal_day.carbon_footprint,
       foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
