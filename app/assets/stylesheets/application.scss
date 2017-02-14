@@ -17,13 +17,13 @@
  *= require remodal-default-theme
  *= require remodal
  */
- 
+
 // Variables
 @import 'config';
 
 // Reset
 @import 'base';
-
+@import 'typography';
 @import 'slick';
 @import 'slick-theme';
 @import 'parsley';

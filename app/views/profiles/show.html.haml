@@ -1,6 +1,9 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
+-content_for :body_class do
+  adelle
+
 .bg-gray-05
   .max-width-3.mx-auto.p2
 
@@ -99,4 +102,3 @@
 
 :javascript
   modulejs.require('member_profile')(#{@profile.avg_electrical_bill});
-
