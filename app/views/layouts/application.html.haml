@@ -25,7 +25,7 @@
       = render 'layouts/partials/navbar'
       #content
         = yield
-    - if !%w(registrations sessions profiles devise passwords organizations).include? params[:controller]
+    - if !%w(registrations sessions profiles devise passwords organizations fat_meals).include? params[:controller]
       .push
       .footer
         = render 'layouts/partials/footer'
