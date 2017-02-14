@@ -2,7 +2,8 @@
 require 'dh_htp_wp_rest_api'
 
 class PostsController < ApplicationController
-  #before_action :set_post, only: [:show, :edit, :update, :destroy]
+  include PostsHelper
+  
   before_action :set_dream_host_instance
   #before_filter :verify_post_access
 
@@ -12,8 +13,10 @@ class PostsController < ApplicationController
 
     #add a category if it is specified in the query
     if !params[:cat].nil?
-      filt = {category_name: params[:cat]}
-      query_params[:filter] = filt
+      category_id = PostsHelper::CATEGORY_SLUG_TO_ID[params[:cat]]
+      if category_id
+        query_params= {categories: category_id}
+      end
     end
 
     response = @dh.get_posts(query_params)
@@ -21,7 +24,6 @@ class PostsController < ApplicationController
     @posts = JSON.parse(response.body)
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
-    
   end
 
   # GET /posts/1
@@ -37,7 +39,7 @@ class PostsController < ApplicationController
   def get_post_by_slug
     slug = params[:article]
 
-    query_param = {filter: {name: slug}}
+    query_param = {slug: slug}
 
     response = @dh.get_post_by_slug(query_param)
 
@@ -48,7 +50,7 @@ class PostsController < ApplicationController
   def get_posts_by_category
     category = params[:category]
 
-    query_param = {filter: {category_name: category}}
+    query_param = {category_name: category}
   
     response = @dh.get_post_by_slug(query_param)
 
@@ -57,7 +59,7 @@ class PostsController < ApplicationController
 
     category = params[:category]
 
-    query_param = {filter: {category_name: category}}
+    query_param = {category_name: category}
   
     response = @dh.get_post_by_slug(query_param)
 
