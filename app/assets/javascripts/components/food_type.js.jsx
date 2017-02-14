@@ -54,7 +54,9 @@ class FoodType extends React.Component {
         </div>
 
         <div data-remodal-id={this.props.index + "-modal"}>
-            <button data-remodal-action="close" className="remodal-close"></button>
+            <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
+              <img src={"/fat_icons/i-close.svg"} />
+            </a>
             <div className="flex items-center justify-center">
               <img src={"/fat_icons/" + this.props.foodType.icon} />
               <div className="h1 ml1">{this.props.foodType.name}</div>
