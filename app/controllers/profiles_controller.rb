@@ -11,10 +11,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
   end
 
-  # /myhome/
+  # /my_home/
   # Purpose: This is the membership home page
-  # GET /myhome
-  def myhome
+  # GET /my_home
+  def my_home
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
 

@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
-  get 'myhome' => 'profiles#myhome'
+  get 'my_home' => 'profiles#my_home'
   
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
