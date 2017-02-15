@@ -42,10 +42,14 @@ class FoodType extends React.Component {
   render() {
     return (
       <div>
-        <div  onClick={()=>this.remodal()} className="col col-6 sm-col-4 food-type" >
+        <div onClick={(e)=>this.remodal(e)} className="col col-6 sm-col-4 food-type relative" >
+          <a id="cancel-food-type" className={"absolute top-0 right-0 p2 pointer " + (this.state.active ? "inline" : "hidden")}>
+            <img src={"/fat_icons/i-close.svg"} />
+          </a>
           <div style={{ borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea',
                         backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }}
                 className={'flex flex-column items-center border border-gray-10 p2 pointer inline-block ' + this.props.borderRadiusClasses[this.props.index]} >
+            
             <div className="p2 inline-block">
               <img src={"/fat_icons/" + this.props.foodType.icon} />
             </div>
@@ -111,9 +115,9 @@ class FoodType extends React.Component {
       that.addFood(that.$slider.slider("value"));
     });
   }
-  remodal(){
-    if(this.state.active)
-      this.removeFood()
+  remodal(e){
+    if( $(e.target).parents()[0].id === "cancel-food-type" )
+      this.removeFood();
     else
       this.$modal.open();
   }
