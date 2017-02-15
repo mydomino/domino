@@ -43,15 +43,15 @@ class FoodType extends React.Component {
     return (
       <div>
         <div  onClick={()=>this.remodal()} className="col col-6 sm-col-4 food-type" >
-          <div style={{ borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea', 
-                        backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }} 
+          <div style={{ borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea',
+                        backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }}
                 className={'flex flex-column items-center border border-gray-10 p2 pointer inline-block ' + this.props.borderRadiusClasses[this.props.index]} >
             <div className="p2 inline-block">
               <img src={"/fat_icons/" + this.props.foodType.icon} />
             </div>
-            <div className="gray-80">
+            <h5 className="sm-h4 my0">
               {this.props.foodType.name}
-            </div>
+            </h5>
           </div>
         </div>
 

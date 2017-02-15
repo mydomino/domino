@@ -22,12 +22,12 @@ class CfGauge extends React.Component {
     return(
       <div className = "cf-gauge">
         <div className = "gauge gauge gauge-big gauge-blue">
-          <div  className = "gauge-arrow" 
+          <div  className = "gauge-arrow"
                 data-percentage = {this.state.value}
                 style={{transform: "rotate(0deg)"}}>
           </div>
         </div>
-        <div className = "cf-text h1 p1">{this.state.cf} kg CO<sub>2</sub></div>
+        <div className = "cf-text h1 p1">{this.state.cf} kg CO<div className="subs">2</div></div>
       </div>
     );
   }
@@ -35,4 +35,3 @@ class CfGauge extends React.Component {
     $('.gauge .gauge-arrow').cmGauge();
   }
 }
-

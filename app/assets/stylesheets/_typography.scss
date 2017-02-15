@@ -123,3 +123,17 @@
   list-style: none;
   padding-left: 0;
 }
+
+.tnum{
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+.subs {
+  display: inline;
+  font-variant-position: sub;
+ -moz-font-feature-settings: "subs";
+ -webkit-font-feature-settings: "subs";
+ font-feature-settings: "subs";
+}
