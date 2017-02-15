@@ -20,7 +20,7 @@
                     Admin
               -if current_user.organization
                 = link_to my_home_path, class: 'text-decoration-none' do
-                  %span.inline-block.h5.blue--hover{class: "#{(current_page? '/myhome') ? 'fill-blue blue' : nav_element_color}"}
+                  %span.inline-block.h5.blue--hover{class: "#{(current_page? '/my_home') ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-myhome.svg", class:"block mx-auto", size:"32px * 22px"
                     My Home
               -else
