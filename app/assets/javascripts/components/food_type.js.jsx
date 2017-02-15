@@ -1,12 +1,14 @@
 class FoodType extends React.Component {
-  componentWillMount() {
-    let active = this.props.food != null ? true : false;
+  constructor(props){
+    super(props);
 
+    let active = this.props.food != null ? true : false;
     let food = Object.assign({food_type_id: this.props.foodType.id, size: 100}, this.props.food);
-    this.setState({
+    
+    this.state = {
       food: food,
       active: active
-    });
+    };
   }
   updateSizeLabel(value){
     let food = Object.assign({}, this.state.food);
