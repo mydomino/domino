@@ -123,6 +123,9 @@ class FoodType extends React.Component {
     else
       this.$modal.open();
   }
+  componentWillUnmount(){
+    $(document).unbind('confirmation');
+  }
 }
 FoodType.defaultProps = {
   bgColorMap : {
