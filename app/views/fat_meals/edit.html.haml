@@ -17,5 +17,5 @@
         - if @next_date <= @current_date
           = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day) do
             %i.fa.fa-2x.fa-angle-right.gray-80.blue--hover
-      %h1.white.mt0 What did you eat?
+      %h1.white.mt0.bold What did you eat?
     = react_component('FoodActionTracker', {fatDay: @fat_day})

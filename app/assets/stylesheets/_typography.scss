@@ -43,9 +43,39 @@
 
 .text-decoration-none { text-decoration: none }
 
+.line {
+  text-decoration: none;
+  display:inline-block;
+  position: relative;
+  z-index: 1;
+}
+.line:after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height:4px;
+  bottom:1px;
+  background-color: #b2efff;
+  left:0;
+  right:0;
+  z-index:-1;
+  transition: all 0.2s ease-in-out;
+  -webkit-tranisition: all 0.2s ease-in-out;
+  border-radius:0;
+
+}
+.line:hover:after {
+  bottom: -4px;
+  background-color: #66e0ff;
+  transition: all 0.2s ease-in-out;
+  -webkit-tranisition: all 0.2s ease-in-out;
+  height: 2px;
+  border-radius:1px;
+}
+
 .bold    { font-weight: 700}
 
-.medium { font-weight: 500 }
+.medium { font-weight: 600 }
 
 .regular { font-weight: 400 }
 
@@ -92,4 +122,18 @@
 .list-reset {
   list-style: none;
   padding-left: 0;
+}
+
+.tnum{
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+.subs {
+  display: inline;
+  font-variant-position: sub;
+ -moz-font-feature-settings: "subs";
+ -webkit-font-feature-settings: "subs";
+ font-feature-settings: "subs";
 }
