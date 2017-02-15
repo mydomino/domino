@@ -42,8 +42,10 @@ class FoodType extends React.Component {
   render() {
     return (
       <div>
-        <div  onClick={()=>this.remodal()} style={{backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }} className="col col-6 sm-col-4 food-type" >
-          <div style={{borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea' }} className={'flex flex-column items-center border border-gray-10 p2 pointer inline-block'} >
+        <div  onClick={()=>this.remodal()} className="col col-6 sm-col-4 food-type" >
+          <div style={{ borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea', 
+                        backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }} 
+                className={'flex flex-column items-center border border-gray-10 p2 pointer inline-block ' + this.props.borderRadiusClasses[this.props.index]} >
             <div className="p2 inline-block">
               <img src={"/fat_icons/" + this.props.foodType.icon} />
             </div>
@@ -123,5 +125,14 @@ FoodType.defaultProps = {
     "100" : "#00ccff",
     "150" : "#F1A9A0",
     "200" : "#E26A6A"
-  }
+  },
+
+  borderRadiusClasses : [
+    'rounded-top-left',
+    'rounded-top-right sm-not-rounded',
+    'sm-rounded-top-right not-rounded',
+    'not-rounded sm-rounded-bottom-left',
+    'rounded-bottom-left sm-not-rounded',
+    'rounded-bottom-right'
+  ]
 };
