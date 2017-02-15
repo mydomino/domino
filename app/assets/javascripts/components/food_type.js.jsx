@@ -55,7 +55,7 @@ class FoodType extends React.Component {
           </div>
         </div>
 
-        <div data-remodal-id={this.props.index + "-modal"}>
+        <div data-remodal-id={this.props.index + "-modal"} className="rounded">
             <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
               <img src={"/fat_icons/i-close.svg"} />
             </a>
