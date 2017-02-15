@@ -1,23 +1,14 @@
 class FoodActionTracker extends React.Component {
-  componentWillMount(){
-    this.setState({
+  constructor(props){
+    super(props);
+    this.state = {
       date: this.props.fatDay.date,
       method: (this.props.fatDay.meal_day.id == null) ? 'POST' : 'PATCH',
       meal_day: this.props.fatDay.meal_day,
       foods: this.props.fatDay.foods
-    }); 
+    };
   }
-  // resetCf() {
-  //   let meal_day = this.state.meal_day
-  //   meal_day.carbon_footprint = null;
-
-  //   this.setState({
-  //     meal_day: meal_day
-  //   })
-  // }
   addFood(f) {
-    // this.resetCf();
-
     let food_base = {size: null, food_type_id: null};
 
     let foods = Object.assign({}, this.state.foods);
@@ -29,8 +20,6 @@ class FoodActionTracker extends React.Component {
     },this.getCarbonFootprint);
   }
   removeFood(f) {
-    // this.resetCf();
-
     let foods = Object.assign({}, this.state.foods);
     delete foods[f.food_type_id];
 

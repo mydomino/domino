@@ -4,7 +4,7 @@ class FoodType extends React.Component {
 
     let active = this.props.food != null ? true : false;
     let food = Object.assign({food_type_id: this.props.foodType.id, size: 100}, this.props.food);
-    
+
     this.state = {
       food: food,
       active: active
@@ -24,7 +24,6 @@ class FoodType extends React.Component {
     //reset slider value
     this.$slider.slider("value",100);
     //reset size
-
     food.size = 100;
 
     this.setState({
@@ -114,6 +113,7 @@ class FoodType extends React.Component {
       }.bind(this)
     });
     $(document).on('confirmation', modalSelector, function (e) {
+      console.log(modalSelector);
       that.addFood(that.$slider.slider("value"));
     });
   }
