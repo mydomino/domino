@@ -44,12 +44,12 @@ class FoodType extends React.Component {
       <div>
         <div onClick={(e)=>this.remodal(e)} className="col col-6 sm-col-4 food-type relative" >
           <a id="cancel-food-type" className={"absolute top-0 right-0 p2 pointer " + (this.state.active ? "inline" : "hidden")}>
-            <img src={"/fat_icons/i-close.svg"} />
+            <img src={"/fat_icons/i-close.svg"} className="icon-s"/>
           </a>
           <div style={{ borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea',
                         backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }}
                 className={'flex flex-column items-center border border-gray-10 p2 pointer inline-block ' + this.props.borderRadiusClasses[this.props.index]} >
-            
+
             <div className="p2 inline-block">
               <img src={"/fat_icons/" + this.props.foodType.icon} />
             </div>
@@ -61,7 +61,7 @@ class FoodType extends React.Component {
 
         <div data-remodal-id={this.props.index + "-modal"} className="rounded">
             <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
-              <img src={"/fat_icons/i-close.svg"} />
+              <img src={"/fat_icons/i-close.svg"} className= "icon-m"/>
             </a>
             <div className="flex items-center justify-center">
               <img src={"/fat_icons/" + this.props.foodType.icon} />
