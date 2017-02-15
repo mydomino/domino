@@ -34,6 +34,7 @@
 //= require remodal
 //= require Chart
 //= require cm_gauge
+//= require gauge
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles
