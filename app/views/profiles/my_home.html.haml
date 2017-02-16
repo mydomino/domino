@@ -7,9 +7,9 @@
 
 .mx-auto.relative
   .page-header-image.bg-blue
-    .absolute.left-0.right-0.top-0.mx2.lg-mx0.mb4{style: 'margin-top: 100px;'}
+    .absolute.left-0.right-0.top-0.mb4{style: 'margin-top: 100px;'}
       .max-width-4.mx-auto
-        .clearfix
+        .clearfix.mx2.lg-mx1
           .col.col-12.sm-col.sm-col-7
             .flex.items-center.justify-center.flex-wrap.rounded.bg-white.p2.mx-auto
               .p2
@@ -35,7 +35,7 @@
               .h2 #{i + 1}) #{u.profile.first_name} #{u.profile.last_name} - #{u.fat_reward_points} pts
 
   .mt4.max-width-4.mx-auto
-    .clearfix.mx2.lg-mx0
+    .clearfix.mx2.lg-mx1
       =link_to "food-action-tracker" do
         .col.col-12.mb2
           .p3.bg-white.rounded
@@ -46,11 +46,11 @@
                   Food Impact
               %p.col-12.sm-col-5.gray-60.mt1 Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
               %button.btn.btn-sm.btn-primary.btn-primary--hover
-                .medium Update Today
+                .medium Update today
             %canvas#myChart{width: "400", height: "100"}
 
     .mt2.mb4.max-width-4.mx-auto
-      .clearfix.mx2.lg-mx0
+      .clearfix.mx2.lg-mx1
         .mxn1
           .col.col-12.sm-col.sm-col-6.px1.mb2
             .py2.px3.bg-white.rounded
@@ -73,7 +73,7 @@
               %p.mb0.line-height-1
                 =link_to "tel:+18009792215", class:"black line medium" do
                   Call 800-721-2215
-      .clearfix.mx2.lg-mx0
+      .clearfix.mx2.lg-mx1
         .mxn1
           .col.col-12.sm-col.sm-col-6.px1.mb2
             .py2.px3.bg-white.rounded
