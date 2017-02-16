@@ -43,18 +43,18 @@
 
   .mt4.max-width-4.mx-auto
     .clearfix.mx2.lg-mx1
-      =link_to "food-action-tracker" do
-        .col.col-12.mb2
-          .p3.bg-white.rounded
-            .mb3
-              .flex.items-center
-                =image_tag "icons/i-apple.png", :class => "mr1"
-                .h1.black.bold.inline.line-height-1
-                  Food Impact
-              %p.col-12.sm-col-5.gray-60.mt1 Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
+      .col.col-12.mb2
+        .p3.bg-white.rounded
+          .mb3
+            .flex.items-center
+              =image_tag "icons/i-apple.png", :class => "mr1"
+              .h1.black.bold.inline.line-height-1
+                Food Impact
+            %p.col-12.sm-col-5.gray-60.mt1 Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
+            = link_to "food-action-tracker" do
               %button.btn.btn-sm.btn-primary.btn-primary--hover
                 .medium Update today
-            %canvas#myChart{width: "400", height: "100"}
+          %canvas#myChart{width: "400", height: "100"}
 
     .mt2.mb4.max-width-4.mx-auto
       .clearfix.mx2.lg-mx1
@@ -105,32 +105,43 @@
 :javascript
   $(document).ready(function(){
     var ctx = document.getElementById("myChart");
+
     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: #{@fat_graph_cf_map.keys},
-            datasets: [{
-                type: 'bar',
-                label: 'My Carbon Footprint (kg)',
-                data: #{@fat_graph_cf_map.values},
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255,99,132,1)',
-                borderWidth: 1
-            },
-            {
-              type: 'line',
-              label: "Avg. Carbon Footprint (kg)",
-              data: new Array(7).fill(6.2)
-            }]
+      type: 'bar',
+      data: {
+        labels: #{@fat_graph_cf_map.keys},
+        datasets: [{
+          type: 'bar',
+          label: 'My Carbon Footprint (kg)',
+          data: #{@fat_graph_cf_map.values},
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255,99,132,1)',
+          borderWidth: 1
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
+        {
+          type: 'line',
+          label: "Avg. Carbon Footprint (kg)",
+          data: new Array(7).fill(6.2)
+        }]
+      },
+      options: {
+        onClick: handleClick,
+        scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero:true
+              }
+          }]
         }
+      }
     });
+    
+    function handleClick(e){
+      var element = myChart.getElementAtEvent(e)[0];
+
+      if(element !== undefined && element._model.label !== undefined) {
+        var label = element._model.label;
+        window.location = "food-action-tracker/" + label.split("-").join("/");
+      }
+    }
   });

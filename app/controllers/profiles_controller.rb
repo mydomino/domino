@@ -30,7 +30,6 @@ class ProfilesController < ApplicationController
       @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end
-
     @leaderboard_users = cfp_ranking
   end
 
