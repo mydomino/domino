@@ -35,13 +35,9 @@ class PointsLog < ActiveRecord::Base
 
   # define Action Point Constant 
   SIGN_IN_EACH_DAY_POINTS         = 5
-  TRACK_FOOD_LOG_POINTS           = 10
   CLICK_ARTICLE_LINK_POINTS       = 5
   CONTACT_CONCIERGE_POINTS        = 10
   SHARE_ARTICLE_POINTS            = 10
-  BEAT_CFP_EMISSION_POINTS        = 1
-  EAT_NO_BEEF_LAMB_A_DAY_POINTS   = 10
-  EAT_NO_DAIRY_A_DAY_POINTS       = 5
   COMMENT_ARTICLE_POINTS          = 10
 
 
