@@ -37,12 +37,17 @@
   .mt4.max-width-4.mx-auto
     .clearfix
       =link_to "food-action-tracker" do
-        .col.col-12.bg-white.rounded.p2.right.mb2
-          .h1.black.bold
-            %i.blue.fa.fa-cutlery{"aria-hidden":"true"}
-            Your Food Impact
-          %p.col-12.sm-col-5.gray-60.mt1.mb4 Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
-          %canvas#myChart{width: "400", height: "100"}
+        .col.col-12.mb2
+          .p3.bg-white.rounded
+            .mb3
+              .flex.items-center
+                =image_tag "icons/i-apple.png", :class => "mr1"
+                .h1.black.bold.inline.line-height-1
+                  Food Impact
+              %p.col-12.sm-col-5.gray-60.mt1 Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
+              %button.btn.btn-sm.btn-primary.btn-primary--hover
+                .medium Update Today
+            %canvas#myChart{width: "400", height: "100"}
 
     .mt2.mb4.max-width-4.mx-auto
       .clearfix.mxn1
