@@ -1,9 +1,11 @@
 class CfGauge extends React.Component {
   constructor(props){
     super(props);
+    let value = this.props.cf > 12.4 ? 12.4 : this.props.cf
+
     this.state = {
       cf: this.props.cf || 0,
-      value: this.getValue(this.props.cf)
+      value: this.getValue(value)
     };
   }
   getValue(cf){
@@ -16,7 +18,7 @@ class CfGauge extends React.Component {
       cf: v,
       value: value
     });
-    this.gauge.set(this.state.cf); // set actual value
+    this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf); // set actual value
   }
   render(){
     return(
@@ -52,8 +54,8 @@ class CfGauge extends React.Component {
         fractionDigits: 1  // Optional: Numerical precision. 0=round off.
       },
       staticZones: [
-         {strokeStyle: "#87D37C", min: 0, max: 4.1}, // Red from 100 to 130
-         {strokeStyle: "#81CFE0", min: 4.1, max: 8.2}, // Yellow
+         {strokeStyle: "#87D37C", min: 0, max: 4.1},
+         {strokeStyle: "#81CFE0", min: 4.1, max: 8.2},
          {strokeStyle: "#E26A6A", min: 8.2, max: 12.4}
       ]
     };
@@ -62,6 +64,7 @@ class CfGauge extends React.Component {
     this.gauge.maxValue = 12.4; // set max gauge value
     this.gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
     this.gauge.animationSpeed = 32; // set animation speed (32 is default value)
-    this.gauge.set(this.state.cf); // set actual value
+    let value = this.state.cf > 12.4 ? 12.4 : this.state.cf
+    this.gauge.set(value); // set actual value
   };
 }
