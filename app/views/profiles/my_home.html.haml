@@ -30,9 +30,16 @@
                     %br
                     = (@user.created_at + 1.year).strftime("%B %Y")
           .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right
-            .h3.gray-80 Leaderboard
+            .h3.mb1.gray-80 Leaderboard
             - @leaderboard_users.each_with_index do |u, i|
-              .h2 #{i + 1}) #{u.profile.first_name} #{u.profile.last_name} - #{u.fat_reward_points} pts
+              .flex.items-center.mb1
+                .flex.items-center.justify-center.h6.border.p1.circle.icon-m
+                  = i + 1
+                .fill-x
+                  .left-align.inline-block
+                    .h5.ml1 #{u.profile.first_name} #{u.profile.last_name}
+                  .right.inline-block
+                    .h5 #{u.fat_reward_points} pts
 
   .mt4.max-width-4.mx-auto
     .clearfix.mx2.lg-mx1
