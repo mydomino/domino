@@ -21,7 +21,8 @@ class CfGauge extends React.Component {
   render(){
     return(
       <div>
-        <div className="h1 white">{this.state.cf} kg CO<sub>2</sub></div>
+        <div className="h1 white">{this.state.cf} kg CO<sub>2</sub>
+        </div>
         <canvas id="foo"></canvas>
       </div>
     );
@@ -42,7 +43,19 @@ class CfGauge extends React.Component {
       colorStop: '#8FC0DA',    // just experiment with them
       strokeColor: '#E0E0E0',  // to see which ones work best for you
       generateGradient: true,
-      highDpiSupport: true     // High resolution support
+      highDpiSupport: true,    // High resolution support
+      // percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]],
+      staticLabels: {
+        font: "16px sans-serif",  // Specifies font
+        labels: [0, 6.2, 12.4],  // Print labels at these values
+        color: "#fff",  // Optional: Label text color
+        fractionDigits: 1  // Optional: Numerical precision. 0=round off.
+      },
+      staticZones: [
+         {strokeStyle: "#87D37C", min: 0, max: 4.1}, // Red from 100 to 130
+         {strokeStyle: "#81CFE0", min: 4.1, max: 8.2}, // Yellow
+         {strokeStyle: "#E26A6A", min: 8.2, max: 12.4}
+      ]
     };
     var target = document.getElementById('foo'); // your canvas element
     this.gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
