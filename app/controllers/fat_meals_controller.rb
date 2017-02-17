@@ -17,11 +17,13 @@ class FatMealsController < ApplicationController
       day = params[:day].to_i
 
       date = Date.new(year, month, day)
+      @date_str = (@current_date - 1 == date) ? 'Yesterday' : ( (date == @current_date) ? 'Today' : date.strftime("%a") )
     else
       # Set FAT date based on user timezone
       # This is made possible by the browser-timezone-rails gem
       # Remove time data
       date = Date.new(time_now.year, time_now.month, time_now.day)
+      @date_str = "Today"
     end
     # fat_date = Date.new(time.year, time.month, time.day)
 
