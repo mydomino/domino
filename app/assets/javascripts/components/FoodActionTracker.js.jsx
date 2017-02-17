@@ -40,6 +40,9 @@ class FoodActionTracker extends React.Component {
             {foodTypes}
           </div>
         </div>
+        <div>
+          <div className="btn btn-md btn-primary">Finish</div>
+        </div>
         <CarbonFootprint ref="cf"
           cf={this.state.meal_day.carbon_footprint}
           getCarbonFootprint={()=>this.getCarbonFootprint()}

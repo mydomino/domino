@@ -121,21 +121,25 @@
         {
           type: 'line',
           label: "Avg. Carbon Footprint (kg)",
-          data: new Array(7).fill(6.2)
+          data: new Array(7).fill(6.2),
+          backgroundColor: 'rgba(255, 255, 255, 0)',
+          borderColor: 'rgb(0, 204, 255)',
+          elements: { point: { radius: 0 } }
         }]
       },
       options: {
+        elements: { point: { radius: 0 } },
         onClick: handleClick,
         scales: {
           yAxes: [{
-              ticks: {
-                  beginAtZero:true
-              }
+            ticks: {
+              beginAtZero:true
+            }
           }]
         }
       }
     });
-    
+
     function handleClick(e){
       var element = myChart.getElementAtEvent(e)[0];
 
