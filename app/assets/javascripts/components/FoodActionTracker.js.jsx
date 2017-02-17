@@ -57,7 +57,7 @@ class FoodActionTracker extends React.Component {
     // Ajax request to get cf calculation from server
     var that = this;
     console.log(that.state);
-    $.post( "/food-action-tracker", { _method: that.state.method, fat_day: that.state }, "json")
+    $.post( "/food", { _method: that.state.method, fat_day: that.state }, "json")
       .done(function(data){
         that.setState({
           method: 'PATCH',
