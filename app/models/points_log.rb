@@ -107,12 +107,9 @@ class PointsLog < ActiveRecord::Base
 
   def self.has_point?(user, point_type, point_date)
 
-    p_log = PointsLog.find_by(user: user,
-        point_type: point_type, point_date: point_date) 
+    found = PointsLog.find_by(user: user, point_type: point_type, point_date: point_date) 
 
-    found = (p_log != nil)? true : false
-
-    return found
+    return !found.nil?
 
   end
 
