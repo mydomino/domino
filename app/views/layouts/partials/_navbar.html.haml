@@ -19,12 +19,12 @@
                     = inline_svg "icons/i-admin.svg", class:"icon-m block mx-auto"
                     Admin
               -if current_user.organization
-                = link_to my_home_path, class: 'text-decoration-none' do
+                = link_to myhome_path, class: 'text-decoration-none' do
                   %span.inline-block.h5.blue--hover{class: "#{(current_page? '/my_home') ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-myhome.svg", class:"block mx-auto", size:"32px * 22px"
                     My Home
               -else
-                = link_to "/dashboard", class: 'text-decoration-none' do
+                = link_to user_dashboard_path, class: 'text-decoration-none' do
                   %span.inline-block.h5.blue--hover{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-dashboard-nav.svg", class:"block mx-auto", size:"32px * 22px"
                     Dashboard
@@ -68,10 +68,14 @@
           -if current_user.role == 'org_admin'
             %li.h1
               =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
+          -if current_user.organization
+            %li.h1
+              =link_to 'My Home', myhome_path, class: "white py1 inline-block text-decoration-none"
+          -else
+            %li.h1
+              = link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
           %li.h1
-            =link_to 'My Home', my_home_path, class: "white py1 inline-block text-decoration-none"
-          %li.h1
-            =link_to 'Profile', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
+            =link_to 'Profile', member_profile_path, class: "white py1 inline-block text-decoration-none"
           %li.h1
             = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
         %li.h1
