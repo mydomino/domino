@@ -64,27 +64,27 @@ class FoodType extends React.Component {
             <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
               <img src={"/fat_icons/i-close.svg"} className= "icon-m"/>
             </a>
-            <div className="flex items-center justify-center">
-              <img src={"/fat_icons/" + this.props.foodType.icon} />
-              <div className="h1 ml1">{this.props.foodType.name}</div>
+            <div className="flex items-center justify-center mb3">
+              <img src={"/fat_icons/" + this.props.foodType.icon} className="icon-l"/>
+              <div className="h2 ml1 medium">{this.props.foodType.name}</div>
             </div>
-            <br/>
-            <div className="h2">How much did you eat? </div>
-            <div className="clearfix p2">
-              <div className="col col-12 sm-col sm-col-3">
-                <div className="flex flex-column items-center justify-center">
-                  <div className="meal-size-label mb1 h3">
-                    {this.state.food.size}
-                  </div>
-                  <div id={this.props.index + "-slider"}></div>
+            <div className="col col-3">
+              <div className="flex flex-column items-center justify-center">
+                <div className="meal-size-label mb1 h3 display-none">
+                  {this.state.food.size}
                 </div>
-              </div>
-              <div className="size-information col col-12 sm-col sm-col-8 left-align">
-                {this.props.sizeInfo[this.state.food.size]}
+                <div id={this.props.index + "-slider"}></div>
               </div>
             </div>
-            <div className="m2 clearfix">
-              <button data-remodal-action="confirm" className="btn btn-md btn-primary">OK</button>
+            <div className="col col-9 mb4">
+              <h3 className="h3 sm-h2 line-height-2 my0 left-align mb0">How much did you eat?</h3>
+              <p className="sm-h3 gray-60 size-information left-align mt1">
+                {this.props.sizeInfo[this.state.food.size]}
+              </p>
+            </div>
+
+            <div className="col col-12 mt1">
+              <button data-remodal-action="confirm" className="btn btn-sm btn-primary">Done</button>
             </div>
           </div>
       </div>
