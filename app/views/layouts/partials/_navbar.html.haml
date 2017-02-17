@@ -4,7 +4,8 @@
 %header#header
   %nav#navbar.col-12.z3.top-0.pt2{class: "#{homepage ? 'absolute' : 'bg-white'}"}
     .max-width-4.mx-auto.flex.items-center.justify-between
-      = link_to root_path, id: "navbar-brand", class: 'pl2' do
+      - org_member = current_user && !current_user.organization.nil?
+      = link_to (org_member ? myhome_path : root_path), id: "navbar-brand", class: 'pl2' do
         = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
       .xs-hide.sm-hide.px2.my1
