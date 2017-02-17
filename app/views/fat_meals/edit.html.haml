@@ -11,11 +11,11 @@
   .max-width-4.mx-auto
     .center
       .flex.items-center.justify-center
-        = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day) do
-          %i.fa.fa-2x.fa-angle-left.gray-80.blue--hover
-        %h3.black.mx2= @fat_day[:date].strftime("%b %d")
+        = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
+          =inline_svg "icons/i-arrow-left.svg", class:"icon-s fill-white"
+        %h3.white.mx2= @fat_day[:date].strftime("%b %d")
         - if @next_date <= @current_date
-          = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day) do
-            %i.fa.fa-2x.fa-angle-right.gray-80.blue--hover
+          = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
+            =inline_svg "icons/i-arrow-right.svg", class:"icon-s fill-white"
       %h1.white.mt0.bold What did you eat?
     = react_component('FoodActionTracker', {fatDay: @fat_day})

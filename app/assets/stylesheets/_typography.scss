@@ -97,6 +97,8 @@
 
 .break-word { word-wrap: break-word }
 
+.line-height-0 {line-height: 0;} //temporary solution to global body{line-height:1.5}
+
 .line-height-1 { line-height: $line-height-1 }
 
 .line-height-2 { line-height: $line-height-2 }
