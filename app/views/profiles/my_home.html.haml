@@ -21,14 +21,17 @@
                     Membership type
                     %br
                     Member since
-                    %br
-                    Renewal date
+                    / show renewal date if user is an individual member
+                    - if !@user.organization
+                      %br
+                      Renewal date
                   .inline-block.ml2.right-align
                     = @user.organization ? 'Organization' : 'Individual'
                     %br
                     = @user.created_at.strftime("%m/%d/%y")
-                    %br
-                    = (@user.created_at + 1.year).strftime("%B %Y")
+                    - if !@user.organization
+                      %br
+                      = (@user.created_at + 1.year).strftime("%B %Y")
           .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right.my1.sm-my0
             .h3.mb1.gray-80 Leaderboard
             - @leaderboard_users.each_with_index do |u, i|
