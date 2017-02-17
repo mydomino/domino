@@ -20,17 +20,15 @@
 #  fk_rails_f97c67f538  (user_id => users.id)
 #
 
+#require File.expand_path("../../../lib/fat_competition", __FILE__)
+
 class PointsLog < ActiveRecord::Base
 
   # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
-  TRACK_FOOD_LOG           = 'TRACK_FOOD_LOG'
   CLICK_ARTICLE_LINK      = 'CLICK_ARTICLE_LINK'
   CONTACT_CONCIERGE       = 'CONTACT_CONCIERGE'
   SHARE_ARTICLE           = 'SHARE_ARTICLE'
-  BEAT_CFP_EMISSION       = 'BEAT_CFP_EMISSION'
-  EAT_NO_BEEF_LAMB_A_DAY  = 'EAT_NO_BEEF_LAMB_A_DAY'
-  EAT_NO_DAIRY_A_DAY      = 'EAT_NO_DAIRY_A_DAY'
   COMMENT_ARTICLE         = 'COMMENT_ARTICLE'
 
   # define Action Point Constant 
@@ -55,8 +53,8 @@ class PointsLog < ActiveRecord::Base
 
   	
     # these action types are allowed only to be rewarded once per day
-    if [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TRACK_FOOD_LOG, PointsLog::BEAT_CFP_EMISSION, 
-      PointsLog::EAT_NO_BEEF_LAMB_A_DAY, PointsLog::EAT_NO_DAIRY_A_DAY].include?(point_type)
+    if [PointsLog::SIGN_IN_EACH_DAY, FatCompetition::TRACK_FOOD_LOG, FatCompetition::BEAT_CFP_EMISSION, 
+      FatCompetition::EAT_NO_BEEF_LAMB_A_DAY, FatCompetition::EAT_NO_DAIRY_A_DAY].include?(point_type)
 
   	  p_log = PointsLog.find_or_create_by!(user: user,
   	  	point_type: point_type, point_date: point_date) do |pl| 
@@ -74,7 +72,8 @@ class PointsLog < ActiveRecord::Base
     	p_log = PointsLog.create!(user: user, point_type: point_type, desc: desc, point: point, point_date: point_date)
     
     end
-    
+
+    return p_log
   end
 
 
@@ -86,6 +85,9 @@ class PointsLog < ActiveRecord::Base
     if (p_log != nil)
       PointsLog.destroy(p_log.id)
     end
+
+
+    return true 
   end
 
 
@@ -98,6 +100,8 @@ class PointsLog < ActiveRecord::Base
 
       PointsLog.update(p_log.id, point: point, desc: desc)
     end
+
+    return true
   end
 
 
