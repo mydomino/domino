@@ -40,9 +40,12 @@ class FoodActionTracker extends React.Component {
             {foodTypes}
           </div>
         </div>
-        <div>
-          <div className="btn btn-md btn-primary">Finish</div>
+        <div className="flex justify-center">
+          <a href={'/my_home'} className="mx-auto">
+            <button className="btn btn-md btn-primary btn-primary--hover">Finish</button>
+          </a>
         </div>
+
         <CarbonFootprint ref="cf"
           cf={this.state.meal_day.carbon_footprint}
           getCarbonFootprint={()=>this.getCarbonFootprint()}
@@ -70,50 +73,50 @@ FoodActionTracker.defaultProps = {
   foodSizeInfo : {
     "1" : {
         // Fruits avg: 95 cal
-        "0" : "None!", 
-        "50" : "Just a few pieces, around 50 calories", 
-        "100" : "Average, around 100 calories", 
+        "0" : "None!",
+        "50" : "Just a few pieces, around 50 calories",
+        "100" : "Average, around 100 calories",
         "150" : "A lot, around 150 calories",
         "200" : "Fruit monster, around 200 calories"
     },
     "2" : {
       // Veg avg: 122 cal
-      "0" : "None!", 
-      "50" : "Just a little, around 60 calories", 
-      "100" : "Average, around 120 calories", 
+      "0" : "None!",
+      "50" : "Just a little, around 60 calories",
+      "100" : "Average, around 120 calories",
       "150" : "A lot, around 180 calories",
       "200" : "A crap load, around 240 calories"
     },
     "3" : {
       // Dairy avg: 278 cal
-      "0" : "None!", 
-      "50" : "Only a little, around 140 calories", 
-      "100" : "Average, around 280 calories", 
+      "0" : "None!",
+      "50" : "Only a little, around 140 calories",
+      "100" : "Average, around 280 calories",
       "150" : "A lot, around 420 calories",
       "200" : "I went nuts, around 560 calories"
     },
     "4" : {
       // Grains avg: 618 cal
-      "0" : "None!", 
-      "50" : "A little bit, around 310 calories", 
-      "100" : "Average, around 620 calories", 
+      "0" : "None!",
+      "50" : "A little bit, around 310 calories",
+      "100" : "Average, around 620 calories",
       "150" : "More than average, around 930 calories",
       "200" : "I love my carbs! Around 1240 calories"
     },
     "5" : {
       // Fish, poultry, pork avg: 238 cal
-      "0" : "None!", 
-      "50" : "Half portion, around 120 calories ", 
-      "100" : "Average, around 240 calories", 
+      "0" : "None!",
+      "50" : "Half portion, around 120 calories ",
+      "100" : "Average, around 240 calories",
       "150" : "I had seconds, around 360 calories",
       "200" : "I pigged out! Around 480 calories"
     },
     "6" : {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
-      "0" : "None!", 
-      "50" : "Only a little bit, around 80 calories.", 
-      "100" : "Average, around 160 calories", 
+      "0" : "None!",
+      "50" : "Only a little bit, around 80 calories.",
+      "100" : "Average, around 160 calories",
       "150" : "A burger, around 230 calories.",
       "200" : "A big burger, around 310 calories"
     }

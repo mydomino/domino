@@ -5,8 +5,8 @@ $breakpoints: (
   md: 52em,
   lg: 64em,
   );
-
-
+// Fonts
+$adelle-sans: 'adelle-sans',sans-serif;
 // Typography
 $h0: 3rem !default; // 48px
 $h1: 2rem !default; // 32px
@@ -40,7 +40,7 @@ $gray-20: #D6D6D6;
 $gray-10: #EAEAEA;
 $gray-05: #F3F3F3;
 $green: #00BC02;
-$cyan:#0CC;
+$cyan:#07c3c3;
 
 // Brand color variables
 $blue: #00CCFF;

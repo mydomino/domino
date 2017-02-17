@@ -84,7 +84,7 @@ class FoodType extends React.Component {
             </div>
 
             <div className="col col-12 mt1">
-              <button data-remodal-action="confirm" className="btn btn-sm btn-primary">Done</button>
+              <button data-remodal-action="confirm" className="btn btn-sm btn-primary">Save</button>
             </div>
           </div>
       </div>
