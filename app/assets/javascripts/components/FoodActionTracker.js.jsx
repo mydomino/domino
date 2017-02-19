@@ -40,15 +40,15 @@ class FoodActionTracker extends React.Component {
             {foodTypes}
           </div>
         </div>
-        <div className="flex justify-center mt2 mb3">
-          <a href="#" className="mr2">
-            <button className="btn btn-md btn-secondary" style={{height:54}}>
-            <span className="flex items-center">
+        <div className="sm-flex justify-center mx2 mt2 mb3">
+          <a href="#" className="sm-mr2">
+            <button className="col col-12 btn btn-md btn-secondary" style={{height:54}}>
+            <span className="flex items-center justify-center">
               <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>Didn't Eat</span>
               </button>
           </a>
           <a href={'/my_home'}>
-            <button className="btn btn-md btn-primary btn-primary--hover">Finish</button>
+            <button className="col col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
           </a>
         </div>
 
