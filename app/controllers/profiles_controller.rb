@@ -26,7 +26,7 @@ class ProfilesController < ApplicationController
     fat_graph_date = Date.today-6.days
 
     7.times do
-      meal_day = MealDay.find_by_date(fat_graph_date)
+      meal_day = MealDay.find_by(date: fat_graph_date, user: current_user)
       @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end
