@@ -9,6 +9,7 @@
     = render 'layouts/partials/meta'
     = stylesheet_link_tag 'application', media: 'all'
     %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"}
+    %link{ :rel => "stylesheet", :href => "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"}/
     = javascript_include_tag 'application'
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/placeholders/4.0.1/placeholders.min.js"
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDyxW8lze0iyV1G0oYYC_7SRLI4tsiGGBY&v=3.26&libraries=places"
@@ -29,7 +30,7 @@
       .push
       .footer
         = render 'layouts/partials/footer'
-    
+
     :javascript
       var args = (typeof args === 'undefined') ? 0 : args;
       init(args);
