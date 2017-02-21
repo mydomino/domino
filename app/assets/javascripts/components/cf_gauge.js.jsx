@@ -24,7 +24,7 @@ class CfGauge extends React.Component {
     console.log(this.props.method);
     return(
       <div>
-        <div className="h3 white mb2">{ (this.props.method == "POST") ? "-" : this.state.cf } kg Carbon Emissions
+        <div className="h2 medium white my0 line-height-3">{ (this.props.method == "POST") ? "-" : this.state.cf } kg <div className="h3 mt0 mb2">Carbon Emissions</div>
         </div>
         <canvas id="gauge"  style={{ opacity: (this.props.cf == null) ? 0.4 : 1 }}></canvas>
       </div>
