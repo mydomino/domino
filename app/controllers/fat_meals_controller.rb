@@ -43,6 +43,7 @@ class FatMealsController < ApplicationController
   # POST /food-action-tracker
   # Create FAT resources for the date provided in params.
   def create
+    # byebug
     # PointLog.award_point(user, 'FAT_TRACK')
     date_param = params[:fat_day][:date]
     foods = params[:fat_day][:foods]
@@ -59,12 +60,18 @@ class FatMealsController < ApplicationController
 
     FatCompetition::award_points(meal_day)
 
-    render json: {
-      carbon_footprint: meal_day.carbon_footprint,
-      foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
-      meal_day: meal_day,
-      status: 200
-    }, status: 200
+    if params[:commit] == "didnt-eat"
+      render json: {
+        status: 200
+      }
+    else
+      render json: {
+        carbon_footprint: meal_day.carbon_footprint,
+        foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
+        meal_day: meal_day,
+        status: 200
+      }, status: 200
+    end
   end
 
   # PATCH /food-action-tracker/
@@ -85,12 +92,17 @@ class FatMealsController < ApplicationController
     meal_day.calculate_cf
 
     FatCompetition::award_points(meal_day)
-
-    render json: {
-      carbon_footprint: meal_day.carbon_footprint,
-      foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
-      meal_day: meal_day,
-      status: 200
-    }, status: 200
+    if params[:commit] == "didnt-eat"
+      render json: {
+        status: 200
+      }
+    else
+      render json: {
+        carbon_footprint: meal_day.carbon_footprint,
+        foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
+        meal_day: meal_day,
+        status: 200
+      }, status: 200
+    end
   end
 end

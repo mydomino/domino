@@ -20,6 +20,7 @@ class FoodActionTracker extends React.Component {
     },this.getCarbonFootprint);
   }
   removeFood(f) {
+
     let foods = Object.assign({}, this.state.foods);
     delete foods[f.food_type_id];
 
@@ -41,11 +42,13 @@ class FoodActionTracker extends React.Component {
           </div>
         </div>
         <div className="sm-flex justify-center mx2 mt2 mb3">
-          <a href="#" className="sm-mr2">
+          <a onClick={()=>this.didntEat()} className="sm-mr2">
             <button className="col col-12 btn btn-md btn-secondary" style={{height:54}}>
-            <span className="flex items-center justify-center">
-              <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>Didn't Eat</span>
-              </button>
+              <span className="flex items-center justify-center">
+                <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
+                {"Didn't Eat"}
+                </span>
+            </button>
           </a>
           <a href={'/myhome'}>
             <button className="col col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
@@ -59,10 +62,26 @@ class FoodActionTracker extends React.Component {
       </div>
     );
   }
+  didntEat() {
+    let foods = Object.assign({}, this.state.foods);
+    for (var food in foods) delete foods[food];
+
+    this.setState({
+      foods: foods
+    }, function(){
+      $.post( "/food", { _method: this.state.method, fat_day: this.state, commit: "didnt-eat" }, "json")
+      .done(function(data){
+        window.location = "/myhome";
+      })
+      .fail(function(){ console.log('Error!'); });
+    });
+
+    
+  }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
     var that = this;
-    console.log(that.state);
+
     $.post( "/food", { _method: that.state.method, fat_day: that.state }, "json")
       .done(function(data){
         that.setState({
