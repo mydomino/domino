@@ -33,7 +33,7 @@
 //= require browser_timezone_rails/set_time_zone
 //= require remodal
 //= require Chart
-//= require cm_gauge
+//= require gauge
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles
@@ -41,4 +41,3 @@
 //= require_tree ./profile_steps
 //= require_tree ./registrations
 //= require_tree ./onboarding_module
-

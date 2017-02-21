@@ -24,7 +24,7 @@ FoodType.categories.each do |key, value|
     category: key,
     carbon_footprint: cf_map[key],
     icon: "#{key}_icon.png",
-    name: key.split('_').join(', ')
+    name: key.split('_').map{|e| e.capitalize}.join(', ')
   )
 end
 # END FoodType Seeds

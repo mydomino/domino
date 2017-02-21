@@ -1,3 +1,6 @@
+/* Product Font */
+
+.adelle {font-family: $adelle-sans}
 
 /* Basscss Type Scale */
 .h0 { font-size: $h0 }
@@ -40,9 +43,39 @@
 
 .text-decoration-none { text-decoration: none }
 
+.line {
+  text-decoration: none;
+  display:inline-block;
+  position: relative;
+  z-index: 1;
+}
+.line:after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height:4px;
+  bottom:1px;
+  background-color: #b2efff;
+  left:0;
+  right:0;
+  z-index:-1;
+  transition: all 0.2s ease-in-out;
+  -webkit-tranisition: all 0.2s ease-in-out;
+  border-radius:0;
+
+}
+.line:hover:after {
+  bottom: -4px;
+  background-color: #66e0ff;
+  transition: all 0.2s ease-in-out;
+  -webkit-tranisition: all 0.2s ease-in-out;
+  height: 2px;
+  border-radius:1px;
+}
+
 .bold    { font-weight: 700}
 
-.medium { font-weight: 500 }
+.medium { font-weight: 600 }
 
 .regular { font-weight: 400 }
 
@@ -63,6 +96,8 @@
 .nowrap { white-space: nowrap }
 
 .break-word { word-wrap: break-word }
+
+.line-height-0 {line-height: 0;} //temporary solution to global body{line-height:1.5}
 
 .line-height-1 { line-height: $line-height-1 }
 
@@ -89,4 +124,44 @@
 .list-reset {
   list-style: none;
   padding-left: 0;
+}
+
+.tnum{
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+.subs {
+  display: inline;
+  font-variant-position: sub;
+ -moz-font-feature-settings: "subs";
+ -webkit-font-feature-settings: "subs";
+ font-feature-settings: "subs";
+}
+// CSS classes from WordPress
+
+.post-header {
+  h1, h2 { font-weight: 300 }
+  h1 { font-size: 2.5rem }
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.75em;
+  li { margin-bottom: 0.5em }
+  a {
+    color: $blue;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.wp-caption-text {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+  margin: 0 0 2em 0;
 }

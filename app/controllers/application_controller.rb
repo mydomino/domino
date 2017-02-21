@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
     elsif resource.role == 'concierge'
       dashboards_path
     elsif resource.organization
-      membership_path
+      myhome_path
     else
       user_dashboard_path
     end

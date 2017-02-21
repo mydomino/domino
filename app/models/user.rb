@@ -33,6 +33,7 @@
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
 
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -88,7 +89,6 @@ class User < ActiveRecord::Base
     return (self.meal_carbon_footprint)
     
   end
-
  
   # calculate user reward points during the period and save it to the user's member variable
   def get_fat_reward_points(start_date, end_date = nil)

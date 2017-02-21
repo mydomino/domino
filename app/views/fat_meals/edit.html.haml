@@ -1,17 +1,24 @@
 -content_for :meta do
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
+-content_for :body_class do
+  bg-cyan
+  adelle
 :javascript
-  modulejs.require('cm_gauge');
-  
-.max-width-4.mx-auto
-  .center
-    .flex.items-center.justify-center
-      = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day) do
-        %i.fa.fa-2x.fa-angle-left.gray-80.blue--hover
-      %h2.gray-80.mx2= @fat_day[:date].strftime("%b %d, %Y")
-      - if @next_date <= @current_date
-        = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day) do
-          %i.fa.fa-2x.fa-angle-right.gray-80.blue--hover
-    .h1 What did you eat today?
-  = react_component('FoodActionTracker', {fatDay: @fat_day})
+  modulejs.require('gauge');
+
+.bg-cyan
+  .max-width-4.mx-auto
+    .center.mt3.sm-mt4
+      %h1.white.mb0.bold What did you eat?
+      .flex.items-center.justify-center
+        = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
+          =inline_svg "icons/i-arrow-left.svg", class:"icon-s fill-white"
+        .mx1.my1
+          %h3.white.bold.inline= "#{@date_str},"
+          %h3.white.inline="#{@fat_day[:date].strftime("%B %d")}"
+        - if @next_date <= @current_date
+          = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
+            =inline_svg "icons/i-arrow-right.svg", class:"icon-s fill-white"
+    .animated.fadeIn
+      = react_component('FoodActionTracker', {fatDay: @fat_day})

@@ -273,7 +273,7 @@ namespace :md_test do
       # set up a random generator
       plog = Random.new
   
-      action_type = [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TAKE_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
+      action_type = [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TRACK_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
         PointsLog::CONTACT_CONCIERGE, PointsLog::SHARE_ARTICLE, PointsLog::BEAT_CFP_EMISSION, 
         PointsLog::EAT_NO_BEEF_LAMB_A_DAY, PointsLog::EAT_NO_DAIRY_A_DAY]    
   

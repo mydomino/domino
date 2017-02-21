@@ -11,10 +11,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
   end
 
-  # /membership/
+  # /myhome/
   # Purpose: This is the membership home page
-  # GET /membership
-  def membership
+  # GET /myhome
+  def myhome
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
 
@@ -30,6 +30,7 @@ class ProfilesController < ApplicationController
       @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end
+    @leaderboard_users = cfp_ranking
   end
 
   def verify_current_password
@@ -144,6 +145,31 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  # /cfp_ranking/
+  # Purpose: returns list of users to be displayed on the leaderboard
+  def cfp_ranking
+    organization = current_user.organization
+
+    if organization.nil?
+      # find the default organization
+      organization = Organization.find_by!(name: 'MyDomino')
+    end
+
+    users = User.where(organization: organization)
+
+    #set up date range
+    start_date = Time.zone.today 
+    end_date = Time.zone.today - 60.days
+
+    # refresh the total reward points
+    users.each do |u|
+      # calculate user reward points during the period and save it to the user's member variable
+      u.get_fat_reward_points(start_date, end_date)
+    end
+
+    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(8)
+  end
 
   def create_dashboard(profile)
     Dashboard.create(lead_name: "#{profile.first_name} #{profile.last_name}", lead_email: profile.email)

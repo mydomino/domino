@@ -19,6 +19,7 @@
 
 
 
+
 class Organization < ActiveRecord::Base
 	has_many :teams, dependent: :destroy
 	has_many :users, dependent: :nullify
@@ -68,6 +69,14 @@ class Organization < ActiveRecord::Base
     File.join LOGO_FULL_FILE_PATH, "#{self.name.downcase}_logo_400X400.png"
   end
 
+  # /get_leaderboard
+  # Purpose: returns the organization's leaderboard
+  def get_leaderboard
+    users = self.users
+    users.each do |u|
+      u.point_log.get_points
+    end
+  end
 
   #########################################################################
   private

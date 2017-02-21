@@ -1,0 +1,155 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+
+-content_for :body_class do
+  bg-gray-05
+  adelle
+
+.mx-auto.relative
+  .page-header-image.bg-blue
+    .absolute.left-0.right-0.top-0.mb4{style: 'margin-top: 100px;'}
+      .max-width-4.mx-auto
+        .clearfix.mx2.lg-mx1
+          .col.col-12.sm-col.sm-col-7
+            .flex.items-center.justify-center.flex-wrap.rounded.bg-white.p2.mx-auto
+              .p2
+                = image_tag "http://placehold.it/150x150", width: 150, height: 150
+              .p2
+                .h1= "#{@profile.first_name} #{@profile.last_name}"
+                .gray-80.h6
+                  .inline-block
+                    Membership type
+                    %br
+                    Member since
+                    / show renewal date if user is an individual member
+                    - if !@user.organization
+                      %br
+                      Renewal date
+                  .inline-block.ml2.right-align
+                    = @user.organization ? 'Organization' : 'Individual'
+                    %br
+                    = @user.created_at.strftime("%m/%d/%y")
+                    - if !@user.organization
+                      %br
+                      = (@user.created_at + 1.year).strftime("%B %Y")
+          .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right.my1.sm-my0
+            .h3.bold.mb1.gray-80.inline-block Leaderboard
+            .h5.gray-80.mt1.right.inline-block Points
+            - @leaderboard_users.each_with_index do |u, i|
+              .flex.items-center.mb1
+                .flex.items-center.justify-center.h6.border.p1.circle.icon-m
+                  = i + 1
+                .fill-x
+                  .left-align.inline-block
+                    .h5.ml1 #{u.profile.first_name} #{u.profile.last_name}
+                  .right.inline-block
+                    .h5 #{u.fat_reward_points}
+
+      .mt4.max-width-4.mx-auto
+        .clearfix.mx2.lg-mx1
+          .col.col-12.mb2
+            .p3.bg-white.rounded
+              .mb3
+                .flex.items-center
+                  =image_tag "icons/i-apple.png", :class => "mr1"
+                  .h1.black.bold.inline.line-height-1
+                    Food Impact
+                %p.col-12.sm-col-8.gray-60.mt1 Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
+                = link_to fat_path do
+                  %button.btn.btn-sm.btn-primary.btn-primary--hover
+                    .bold Update today
+              %canvas#myChart{width: "400", height: "100"}
+
+        .mt2.mb4.max-width-4.mx-auto
+          .clearfix.mx2.lg-mx1
+            .mxn1
+              .col.col-12.sm-col.sm-col-6.px1.mb2
+                .py2.px3.bg-white.rounded
+                  .flex.items-center
+                    =image_tag "icons/i-leaf.png", :class => "mr1"
+                    %h2.black.inline.line-height-1
+                      Dashboard
+                  %p.line-height-3.col-12.sm-col-8.gray-60.mt1.mb4 Check out your recommended products and tips for clean energy.
+                  %p.mb0.line-height-1
+                    =link_to 'dashboard', class:"black line medium" do
+                      View dashboard
+
+              .col.col-12.sm-col.sm-col.sm-col-6.px1.mb2
+                .py2.px3.bg-white.rounded
+                  .flex.items-center
+                    =image_tag "icons/i-concierge.png", :class => "mr1"
+                    %h2.black.inline.line-height-1
+                      Concierge
+                  %p.line-height-3.col-12.sm-col-8.gray-60.mt1.mb4 Questions about clean energy? Talk to a concierge today.
+                  %p.mb0.line-height-1
+                    =link_to "tel:+18009792215", class:"black line medium" do
+                      Call 800-721-2215
+          .clearfix.mx2.lg-mx1
+            .mxn1
+              .col.col-12.sm-col.sm-col-6.px1.mb2
+                .py2.px3.bg-white.rounded
+                  .flex.items-center
+                    =image_tag "icons/i-paper.png", :class => "mr1"
+                    %h2.black.inline.line-height-1
+                      Articles
+                  %p.line-height-3.col-12.sm-col-8.gray-60.mt1.mb4 Read up on easy ways to reduce your carbon impact.
+                  %p.mb0.line-height-1
+                    =link_to "articles", class:"black line medium" do
+                      Read articles
+              .col.col-12.sm-col.sm-col-6.px1.mb2
+                .py2.px3.bg-white.rounded
+                  .flex.items-center
+                    =image_tag "icons/i-calendar.png", :class => "mr1"
+                    %h2.black.inline.line-height-1
+                      Events
+                  %p.line-height-3.col-12.sm-col-7.gray-60.mt1.mb4 See upcoming brown-bag events for your company.
+                  %p.mb0.line-height-1
+                    =link_to "events", class:"black line medium" do
+                      See events
+:javascript
+  $(document).ready(function(){
+    var ctx = document.getElementById("myChart");
+
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: #{@fat_graph_cf_map.keys},
+        datasets: [{
+          type: 'bar',
+          label: 'My Carbon Footprint (kg)',
+          data: #{@fat_graph_cf_map.values},
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255,99,132,1)',
+          borderWidth: 1
+        },
+        {
+          type: 'line',
+          label: "Avg. Carbon Footprint (kg)",
+          data: new Array(7).fill(6.2),
+          backgroundColor: 'rgba(255, 255, 255, 0)',
+          borderColor: 'rgb(0, 204, 255)',
+          elements: { point: { radius: 0 } }
+        }]
+      },
+      options: {
+        elements: { point: { radius: 0 } },
+        onClick: handleClick,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    function handleClick(e){
+      var element = myChart.getElementAtEvent(e)[0];
+
+      if(element !== undefined && element._model.label !== undefined) {
+        var label = element._model.label;
+        window.location = "#{fat_path}/" + label.split("-").join("/");
+      }
+    }
+  });

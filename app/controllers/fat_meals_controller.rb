@@ -1,6 +1,6 @@
 class FatMealsController < ApplicationController
   before_action :authenticate_user!
-  
+  include FatCompetition
   # GET /food-action-tracker
   # GET /food-action-tracker/:year/:month/:day
   # Purpose: Display the FAT interface for a given date
@@ -17,11 +17,13 @@ class FatMealsController < ApplicationController
       day = params[:day].to_i
 
       date = Date.new(year, month, day)
+      @date_str = (@current_date - 1 == date) ? 'Yesterday' : ( (date == @current_date) ? 'Today' : date.strftime("%a") )
     else
       # Set FAT date based on user timezone
       # This is made possible by the browser-timezone-rails gem
       # Remove time data
       date = Date.new(time_now.year, time_now.month, time_now.day)
+      @date_str = "Today"
     end
     # fat_date = Date.new(time.year, time.month, time.day)
 
@@ -41,6 +43,8 @@ class FatMealsController < ApplicationController
   # POST /food-action-tracker
   # Create FAT resources for the date provided in params.
   def create
+    # byebug
+    # PointLog.award_point(user, 'FAT_TRACK')
     date_param = params[:fat_day][:date]
     foods = params[:fat_day][:foods]
     meal_day =  MealDay.create(
@@ -54,12 +58,20 @@ class FatMealsController < ApplicationController
     end
     meal_day.calculate_cf
 
-    render json: {
-      carbon_footprint: meal_day.carbon_footprint,
-      foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
-      meal_day: meal_day,
-      status: 200
-    }, status: 200
+    FatCompetition::award_points(meal_day)
+
+    if params[:commit] == "didnt-eat"
+      render json: {
+        status: 200
+      }
+    else
+      render json: {
+        carbon_footprint: meal_day.carbon_footprint,
+        foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
+        meal_day: meal_day,
+        status: 200
+      }, status: 200
+    end
   end
 
   # PATCH /food-action-tracker/
@@ -79,52 +91,18 @@ class FatMealsController < ApplicationController
     end
     meal_day.calculate_cf
 
-    render json: {
-      carbon_footprint: meal_day.carbon_footprint,
-      foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
-      meal_day: meal_day,
-      status: 200
-    }, status: 200
-  end
-
-  private
-
-  # /calculate_carbon_footprint/
-  def calculate_cf(foods)
-    foods.inject(0) {|sum, f| sum + (f.food_type.carbon_footprint * (f.size/100.0))}
-  end
-
-  # /new_meals/
-  # Purpose: For new FAT views, pass default meal objects to React
-  def new_meals
-    [
-      {
-        meal_type_id: 1,
-        size: "medium",
-        foods: [],
-        meal_type: {
-          id: 1,
-          name: "breakfast"
-        }
-      },
-      {
-        meal_type_id: 2,
-        size: "medium",
-        foods: [],
-        meal_type: {
-          id: 2,
-          name: "lunch"
-        }
-      },
-      {
-        meal_type_id: 3,
-        size: "medium",
-        foods: [],
-        meal_type: {
-          id: 3,
-          name: "dinner"
-        }
+    FatCompetition::award_points(meal_day)
+    if params[:commit] == "didnt-eat"
+      render json: {
+        status: 200
       }
-    ]
+    else
+      render json: {
+        carbon_footprint: meal_day.carbon_footprint,
+        foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
+        meal_day: meal_day,
+        status: 200
+      }, status: 200
+    end
   end
 end
