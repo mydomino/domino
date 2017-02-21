@@ -5,7 +5,8 @@ class FoodActionTracker extends React.Component {
       date: this.props.fatDay.date,
       method: (this.props.fatDay.meal_day.id == null) ? 'POST' : 'PATCH',
       meal_day: this.props.fatDay.meal_day,
-      foods: this.props.fatDay.foods
+      foods: this.props.fatDay.foods,
+      didntEat: (this.props.fatDay.meal_day.carbon_footprint == 0) ? true : false
     };
   }
   addFood(f) {
@@ -16,7 +17,8 @@ class FoodActionTracker extends React.Component {
     foods[food.food_type_id] = food;
 
     this.setState({
-      foods: foods
+      foods: foods,
+      didntEat: false
     },this.getCarbonFootprint);
   }
   removeFood(f) {
@@ -51,7 +53,9 @@ class FoodActionTracker extends React.Component {
         </div>
         <div className="flex flex-column sm-row justify-center mx2 mt1 mb0">
           <a onClick={()=>this.didntEat()} className="sm-mr2">
-            <button className="col col-12 btn btn-md btn-secondary" style={{height:54}}>
+            <button id="btn-didnt-eat" 
+                    className={(this.state.didntEat ? "border-none " : null) + "col col-12 btn btn-md btn-secondary"} 
+                    style={{backgroundColor: (this.state.didntEat ? "white" : null), height:54}}>
               <span className="flex items-center justify-center">
                 <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
                 {"Didn't Eat"}
@@ -83,7 +87,8 @@ class FoodActionTracker extends React.Component {
     }
 
     this.setState({
-      foods: foods
+      foods: foods,
+      didntEat: true
     }, this.getCarbonFootprint);
   }
   getCarbonFootprint(){
