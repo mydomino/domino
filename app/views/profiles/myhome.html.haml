@@ -33,7 +33,8 @@
                       %br
                       = (@user.created_at + 1.year).strftime("%B %Y")
           .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right.my1.sm-my0
-            .h3.mb1.gray-80 Leaderboard
+            .h3.bold.mb1.gray-80.inline-block Leaderboard
+            .h5.gray-80.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
               .flex.items-center.mb1
                 .flex.items-center.justify-center.h6.border.p1.circle.icon-m
@@ -42,7 +43,7 @@
                   .left-align.inline-block
                     .h5.ml1 #{u.profile.first_name} #{u.profile.last_name}
                   .right.inline-block
-                    .h5 #{u.fat_reward_points} pts
+                    .h5 #{u.fat_reward_points}
 
       .mt4.max-width-4.mx-auto
         .clearfix.mx2.lg-mx1
@@ -53,7 +54,7 @@
                   =image_tag "icons/i-apple.png", :class => "mr1"
                   .h1.black.bold.inline.line-height-1
                     Food Impact
-                %p.col-12.sm-col-5.gray-60.mt1 Track what foods you eat on a daily basis and see how your dietary habits affect your carbon footprint.
+                %p.col-12.sm-col-8.gray-60.mt1 Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
                 = link_to fat_path do
                   %button.btn.btn-sm.btn-primary.btn-primary--hover
                     .bold Update today
