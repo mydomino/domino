@@ -47,7 +47,7 @@ class FoodActionTracker extends React.Component {
               <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>Didn't Eat</span>
               </button>
           </a>
-          <a href={'/my_home'}>
+          <a href={'/myhome'}>
             <button className="col col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
           </a>
         </div>
