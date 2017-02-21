@@ -25,7 +25,7 @@ class CfGauge extends React.Component {
       <div>
         <div className="h1 white mb2">{this.state.cf} kg CO<div className="subs">2</div>
         </div>
-        <canvas id="foo"></canvas>
+        <canvas id="gauge"></canvas>
       </div>
     );
   }
@@ -59,7 +59,7 @@ class CfGauge extends React.Component {
          {strokeStyle: "#E26A6A", min: 8.2, max: 12.4}
       ]
     };
-    var target = document.getElementById('foo'); // your canvas element
+    var target = document.getElementById('gauge'); // your canvas element
     this.gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
     this.gauge.maxValue = 12.4; // set max gauge value
     this.gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
