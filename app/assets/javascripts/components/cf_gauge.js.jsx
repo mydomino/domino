@@ -23,7 +23,7 @@ class CfGauge extends React.Component {
   render(){
     return(
       <div>
-        <div className="h1 white mb2 mt3">{this.state.cf} kg CO<div className="subs">2</div>
+        <div className="h1 white mb2">{this.state.cf} kg CO<div className="subs">2</div>
         </div>
         <canvas id="foo"></canvas>
       </div>
