@@ -1,5 +1,5 @@
 class FoodType extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     let active = this.props.food != null ? true : false;
@@ -10,6 +10,9 @@ class FoodType extends React.Component {
       active: active
     };
   }
+  getData() {
+    return this.state;
+  }
   updateSizeLabel(value){
     let food = Object.assign({}, this.state.food);
     food.size = value;
@@ -17,7 +20,7 @@ class FoodType extends React.Component {
       food: food
     });
   }
-  removeFood(){
+  removeFood() {
     let food = Object.assign({}, this.state.food);
     this.props.removeFood(food);
 

@@ -31,7 +31,15 @@ class FoodActionTracker extends React.Component {
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
-                      return <FoodType removeFood={(f)=>that.removeFood(f)} addFood={(f)=>that.addFood(f)} sizeInfo={that.props.foodSizeInfo[foodType.id]} food={that.state.foods[foodType.id]} index={index} key={foodType.name} foodType={foodType} updateFoodSize={(f)=>that.updateFoodSize(f)} />
+                      return <FoodType  index={index}
+                                        ref={"foodtype" + (index+1)}
+                                        removeFood={(f)=>that.removeFood(f)} 
+                                        addFood={(f)=>that.addFood(f)} 
+                                        sizeInfo={that.props.foodSizeInfo[foodType.id]} 
+                                        food={that.state.foods[foodType.id]} index={index} 
+                                        key={foodType.name} 
+                                        foodType={foodType} 
+                                        updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
 
     return (
@@ -65,19 +73,18 @@ class FoodActionTracker extends React.Component {
   }
   didntEat() {
     let foods = Object.assign({}, this.state.foods);
-    for (var food in foods) delete foods[food];
+
+    for (var food in foods) {
+      let selector = "foodtype" + food;
+      this.refs[selector].setState({
+        active: false
+      });
+      delete foods[food];
+    }
 
     this.setState({
       foods: foods
-    }, function(){
-      $.post( "/food", { _method: this.state.method, fat_day: this.state, commit: "didnt-eat" }, "json")
-      .done(function(data){
-        window.location = "/myhome";
-      })
-      .fail(function(){ console.log('Error!'); });
-    });
-
-    
+    }, this.getCarbonFootprint);
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
