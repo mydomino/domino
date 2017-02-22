@@ -109,10 +109,11 @@
                       See events
 :javascript
   $(document).ready(function(){
-    var ctx = document.getElementById("myChart");
+    var ctx = document.getElementById("myChart").getContext("2d");
 
     var myChart = new Chart(ctx, {
       type: 'bar',
+      responsive: true,
       data: {
         labels: #{@fat_graph_cf_map.keys},
         datasets: [{
@@ -121,7 +122,8 @@
           data: #{@fat_graph_cf_map.values},
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255,99,132,1)',
-          borderWidth: 1
+          borderWidth: 1,
+          xAxisID: "x-axis-1"
         },
         {
           type: 'line',
@@ -129,13 +131,21 @@
           data: new Array(7).fill(6.2),
           backgroundColor: 'rgba(255, 255, 255, 0)',
           borderColor: 'rgb(0, 204, 255)',
-          elements: { point: { radius: 0 } }
+          elements: { point: { radius: 0 } },
+          xAxisID: 'x-axis-2'
         }]
       },
       options: {
         elements: { point: { radius: 0 } },
         onClick: handleClick,
         scales: {
+          xAxes: [{
+            position: "bottom",
+            id: "x-axis-1"
+          },{
+            position: "top",
+            id: "x-axis-2"
+          }],
           yAxes: [{
             ticks: {
               beginAtZero:true
@@ -144,7 +154,7 @@
         }
       }
     });
-
+    window.test = myChart;
     function handleClick(e){
       var element = myChart.getElementAtEvent(e)[0];
 
