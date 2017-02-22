@@ -12,8 +12,9 @@
     .center.mt3.sm-mt4
       %h1.white.mb0.bold What did you eat?
       .flex.items-center.justify-center
-        = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
-          =inline_svg "icons/i-arrow-left.svg", class:"icon-s fill-white"
+        -if(@fat_day[:date] != @lower_date_bounds)
+          = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
+            =inline_svg "icons/i-arrow-left.svg", class:"icon-s fill-white"
         .mx1.my1
           %h3.white.bold.inline= "#{@date_str},"
           %h3.white.inline="#{@fat_day[:date].strftime("%B %d")}"
