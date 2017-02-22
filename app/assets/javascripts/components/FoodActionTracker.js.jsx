@@ -93,7 +93,28 @@ class FoodActionTracker extends React.Component {
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
-    var that = this;
+    let that = this;
+    
+    // client side calculation of cf
+    let foods = Object.assign({}, this.state.foods);
+    let foodTypes = Object.assign({}, this.props.fatDay.food_types);
+
+    let foodSizeCfs = [];
+    for(let food in foods){
+      let obj = foods[food];
+      let foodTypeIndex = obj.food_type_id - 1;
+      let foodType = foodTypes[foodTypeIndex];
+
+      foodSizeCfs.push({size: obj.size, cf: foodType.carbon_footprint})
+    }
+    carbon_footprint = foodSizeCfs.map(function(el){return (el.size*el.cf/100);}).reduce(function(a,b){return a + b;}, 0)
+    that.refs.cf.setCarbonFootprint(carbon_footprint);
+    let meal_day = Object.assign({}, this.state.meal_day);
+    
+    // meal_day.carbon_footprint = carbon_footprint;
+    // this.setState({
+    //   meal_day: meal_day
+    // });
 
     $.post( "/food", { _method: that.state.method, fat_day: that.state }, "json")
       .done(function(data){
@@ -102,7 +123,6 @@ class FoodActionTracker extends React.Component {
           meal_day: data.meal_day,
           foods: data.foods
         });
-        that.refs.cf.setCarbonFootprint(data.meal_day.carbon_footprint);
       })
       .fail(function(){ console.log('Error!'); });
   };

@@ -10,6 +10,7 @@ class CfGauge extends React.Component {
   }
   getValue(cf){
     // 6.2kg == 50% gauge, 12.4k == 100% gauge
+    console.log("get value: " + cf);
     return ((cf / 12.4) * 100).toFixed(2);
   }
   setValue(v){
@@ -17,8 +18,12 @@ class CfGauge extends React.Component {
     this.setState({
       cf: v,
       value: value
+    }, function(){
+      this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf);
     });
-    this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf); // set actual value
+    // console.log('cf: ' + this.state.cf);
+    // console.log('v: ' + this.state.value);
+
   }
   render(){
     console.log(this.props.method);
@@ -64,7 +69,7 @@ class CfGauge extends React.Component {
     this.gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
     this.gauge.maxValue = 12.4; // set max gauge value
     this.gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-    this.gauge.animationSpeed = 32; // set animation speed (32 is default value)
+    this.gauge.animationSpeed = 15; // set animation speed (32 is default value)
     let value = this.state.cf > 12.4 ? 12.4 : this.state.cf
     this.gauge.set(value); // set actual value
   };

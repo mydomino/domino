@@ -94,6 +94,16 @@ class RegistrationsController < Devise::RegistrationsController
         user: @user
       )
 
+      profile = Profile.find_or_create_by!(email: @email,
+        user: @user,
+        email: @email,
+        first_name: @first_name,
+        last_name: @last_name,
+        dashboard_registered: true
+      )
+
+      PointsLog.find_or_create_by!(user: user,
+        point_type: point_type, point_date: point_date)
       profile = Profile.create(
         user: @user,
         email: @email,
@@ -217,7 +227,10 @@ class RegistrationsController < Devise::RegistrationsController
     @profile = Profile.find_by_email(@email)
 
     current_user.profile = @profile if !@profile.nil?
+    # Assumption is that profiles exist
+    # fallback to default profile
     
+
     # Create and bind dashboard to user
     # Assign provisioned dashboard to newly registered user (i.e. user who onboarded through mydomino.com)
     if dashboard = Dashboard.find_by_lead_email(@email)
