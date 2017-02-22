@@ -94,23 +94,23 @@ class RegistrationsController < Devise::RegistrationsController
         user: @user
       )
 
-      profile = Profile.find_or_create_by!(email: @email,
-        user: @user,
-        email: @email,
-        first_name: @first_name,
-        last_name: @last_name,
-        dashboard_registered: true
-      )
+      profile = Profile.find_or_create_by!(email: @email) do |profile|
+        profile.user = @user
+        profile.first_name = @first_name
+        profile.last_name = @last_name
+        profile.dashboard_registered = true
+      end
+      byebug
 
-      PointsLog.find_or_create_by!(user: user,
-        point_type: point_type, point_date: point_date)
-      profile = Profile.create(
-        user: @user,
-        email: @email,
-        first_name: @first_name,
-        last_name: @last_name,
-        dashboard_registered: true
-      )
+      # PointsLog.find_or_create_by!(user: user,
+      #   point_type: point_type, point_date: point_date)
+      # profile = Profile.create(
+      #   user: @user,
+      #   email: @email,
+      #   first_name: @first_name,
+      #   last_name: @last_name,
+      #   dashboard_registered: true
+      # )
 
       # Create zoho lead record
       ZohoService.save_to_zoho(profile)
