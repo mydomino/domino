@@ -12,7 +12,15 @@ class RegistrationsController < Devise::RegistrationsController
     
     @organization_id = organization.id
     @organization_name = organization.name
+
+    # Grab email domain, to validate email domains client side
+    # If no email domain exists, all domains are accepted when adding org members
     @organization_email_domain = organization.email_domain
+    if @organization_email_domain
+      @email_regex = "[^]+@" + @organization_email_domain
+    else
+      @email_regex = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+    end
 
     # Case: Unique sign up link with user auth token
     # If authtoken invalid redirect to error page
