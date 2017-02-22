@@ -36,9 +36,9 @@
             .h3.bold.mb1.gray-80.inline-block Leaderboard
             .h5.gray-80.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
-              .flex.items-center.mb1
+              .flex.items-center.mb1.rounded{style: "padding: 4px;#{'background: #F4B350' if u.email ==  current_user.email}"}
                 .flex.items-center.justify-center.h6.border.p1.circle.icon-m
-                  = i + 1
+                  = (i==5) ? i + @current_user_standing : i + 1
                 .fill-x
                   .left-align.inline-block
                     .h5.ml1 #{u.profile.first_name} #{u.profile.last_name}

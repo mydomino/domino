@@ -168,7 +168,13 @@ class ProfilesController < ApplicationController
       u.get_fat_reward_points(start_date, end_date)
     end
 
-    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(8)
+    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
+    
+    if ( !@users.any?{|u| u.email == current_user.email} )
+      @users << current_user
+      @current_user_standing = @users.index{|u| u.email == current_user.email}
+    end
+    @users
   end
 
   def create_dashboard(profile)
