@@ -32,12 +32,13 @@
                     - if !@user.organization
                       %br
                       = (@user.created_at + 1.year).strftime("%B %Y")
-          .col.col-12.sm-col.sm-col-4.bg-white.p2.rounded.right.my1.sm-my0
-            .h3.bold.mb1.gray-80.inline-block Leaderboard
-            .h5.gray-80.mt1.right.inline-block Points
+          .col.col-12.sm-col.sm-col-4.bg-white.rounded.right.my1.sm-my0
+            .px2.pt1.gray-80
+              .h3.bold.inline-block Leaderboard
+              .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
-              .flex.items-center.mb1.rounded{style: "padding: 4px;#{'background: #F4B350' if u.email ==  current_user.email}"}
-                .flex.items-center.justify-center.h6.border.p1.circle.icon-m
+              .flex.items-center{style: "padding: 4px 16px;#{'background: #F4B350' if u.email ==  current_user.email}"}
+                .flex.items-center.justify-center.h6.border.circle.icon-m
                   = (i==5) ? i + @current_user_standing : i + 1
                 .fill-x
                   .left-align.inline-block
