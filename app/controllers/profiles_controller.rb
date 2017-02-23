@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show, :myhome]
   
   layout 'concierge', only: :new
   
