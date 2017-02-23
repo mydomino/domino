@@ -109,6 +109,19 @@
                       See events
 :javascript
   $(document).ready(function(){
+  
+    var getBarBackgrounds = function(values){
+      var colors = [];
+
+      colors = values.map(function(v){
+        if(v < 6.2) return "rgba(46, 204, 113, 0.4)";
+        if(v >= 6.2 && v <= 12) return "rgba(37, 116, 169, 0.4)"
+        return "rgba(255, 0, 0, 0.4)"
+      });
+
+      return colors;
+    }
+
     var ctx = document.getElementById("myChart").getContext("2d");
 
     var myChart = new Chart(ctx, {
@@ -120,8 +133,8 @@
           type: 'bar',
           label: 'My Carbon Footprint (kg)',
           data: #{@fat_graph_cf_map.values},
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor:  getBarBackgrounds(#{@fat_graph_cf_map.values}),
+          borderColor: 'rgba(0,0,0,0)',
           borderWidth: 1,
           xAxisID: "x-axis-1"
         },
