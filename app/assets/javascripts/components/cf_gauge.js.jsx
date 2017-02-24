@@ -10,8 +10,7 @@ class CfGauge extends React.Component {
   }
   getValue(cf){
     // 6.2kg == 50% gauge, 12.4k == 100% gauge
-    console.log("get value: " + cf);
-    return ((cf / 12.4) * 100).toFixed(2);
+    return (cf / 12.4) * 100;
   }
   setValue(v){
     let value = this.getValue(v);
@@ -21,8 +20,6 @@ class CfGauge extends React.Component {
     }, function(){
       this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf);
     });
-    // console.log('cf: ' + this.state.cf);
-    // console.log('v: ' + this.state.value);
 
   }
   render(){

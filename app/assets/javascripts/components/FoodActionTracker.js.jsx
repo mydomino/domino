@@ -105,16 +105,17 @@ class FoodActionTracker extends React.Component {
       let foodTypeIndex = obj.food_type_id - 1;
       let foodType = foodTypes[foodTypeIndex];
 
-      foodSizeCfs.push({size: obj.size, cf: foodType.carbon_footprint})
+      foodSizeCfs.push({size: obj.size, cf: foodType.carbon_footprint, avgSize: foodType.average_size});
     }
-    carbon_footprint = foodSizeCfs.map(function(el){return (el.size*el.cf/100);}).reduce(function(a,b){return a + b;}, 0)
+    carbon_footprint =  foodSizeCfs.map(function(el){
+                                      return (el.cf*(el.size/100)*el.avgSize);
+                                    }).reduce(function(a,b){
+                                      return a + b;
+                                    }, 0);
+
+    carbon_footprint += 1064;
+    carbon_footprint = +((carbon_footprint/1000).toFixed(2));
     that.refs.cf.setCarbonFootprint(carbon_footprint);
-    let meal_day = Object.assign({}, this.state.meal_day);
-    
-    // meal_day.carbon_footprint = carbon_footprint;
-    // this.setState({
-    //   meal_day: meal_day
-    // });
 
     $.post( "/food", { _method: that.state.method, fat_day: that.state }, "json")
       .done(function(data){

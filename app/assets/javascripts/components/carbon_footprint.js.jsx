@@ -1,6 +1,5 @@
 class CarbonFootprint extends React.Component {
   setCarbonFootprint(cf) {
-    console.log("test: " + cf);
     this.refs.cfgauge.setValue(cf);
   }
   render() {
