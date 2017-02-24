@@ -22,8 +22,9 @@ class ProfilesController < ApplicationController
     @profile = @user.profile
 
     @fat_graph_cf_map = {}
-    
-    fat_graph_date = Date.today-6.days
+    time_zone_name = Time.zone.name
+    time_now = Time.now.in_time_zone(time_zone_name)
+    fat_graph_date = Date.new(time_now.year, time_now.month, time_now.day) - 6.days
 
     7.times do
       meal_day = MealDay.find_by(date: fat_graph_date, user: current_user)
