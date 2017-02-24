@@ -170,7 +170,6 @@
     });
     function handleClick(e){
       var element = myChart.getElementAtEvent(e)[0];
-
       if(element !== undefined && element._model.label !== undefined) {
         var label = element._model.label;
         window.location = "#{fat_path}/" + label.split("-").join("/");

@@ -25,20 +25,11 @@ class ProfilesController < ApplicationController
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
     today = Date.new(time_now.year, time_now.month, time_now.day)
-    yesterday = today - 1.day
     fat_graph_date = today - 6.days
 
     7.times do
       meal_day = MealDay.find_by(date: fat_graph_date, user: current_user)
-      if fat_graph_date == today
-        date_label = "Today"
-      elsif fat_graph_date == yesterday
-        date_label = "Yesterday"
-      else
-        date_label = fat_graph_date.strftime("%a, %b %d")
-      end
-        
-      @fat_graph_cf_map[date_label] = meal_day ? meal_day.carbon_footprint : 6.2
+      @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end
     @leaderboard_users = cfp_ranking
