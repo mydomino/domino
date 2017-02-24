@@ -99,7 +99,7 @@ class FoodType extends React.Component {
     let modalSelector = "[data-remodal-id=" + this.props.index + "-modal]";
     let $modal = $(modalSelector);
 
-    this.$modal =  $modal.remodal();
+    this.$modal =  $modal.remodal({hashTracking:false});
 
     let sliderSelector = "#" + this.props.index + "-slider";
 
@@ -116,7 +116,6 @@ class FoodType extends React.Component {
       }.bind(this)
     });
     $(document).on('confirmation', modalSelector, function (e) {
-      console.log(modalSelector);
       that.addFood(that.$slider.slider("value"));
     });
   }
