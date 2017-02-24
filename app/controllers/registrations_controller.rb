@@ -101,7 +101,6 @@ class RegistrationsController < Devise::RegistrationsController
         last_name: @last_name,
         dashboard_registered: true
       )
-      byebug
 
       # profile = Profile.find_or_create_by!(email: @email) do |profile|
       #   profile.user = @user
