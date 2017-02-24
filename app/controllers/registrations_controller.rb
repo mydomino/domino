@@ -110,7 +110,9 @@ class RegistrationsController < Devise::RegistrationsController
       # end
 
       # Create zoho lead record
-      ZohoService.save_to_zoho(profile)
+      if @organization.name != 'test'
+        ZohoService.save_to_zoho(profile)
+      end
 
       #sign in newly created user
       sign_in(@user, scope: :user)
