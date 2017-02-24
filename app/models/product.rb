@@ -38,9 +38,10 @@ class Product < ActiveRecord::Base
     parsed_response = Nokogiri::XML(response.body)
     begin
       self.price = !parsed_response.at_css('Price FormattedPrice').nil? ? parsed_response.at_css('Price FormattedPrice').text : parsed_response.at_css('FormattedPrice').text
-    rescue Exception
+    rescue StandardError => error
       #todo 
       #if this exception is encountered, the product is currently unavailable
+      puts "Error is caught in update_amazon price method! Error is #{e.message}"
     end
     self.save
   end

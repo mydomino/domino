@@ -156,17 +156,21 @@ class ProfilesController < ApplicationController
       organization = Organization.find_by!(name: 'MyDomino')
     end
 
-    users = User.where(organization: organization)
+    # Move to CalculateFatTotalPointJob
+    # users = User.where(organization: organization)
+# 
+    # #set up date range
+    # start_date = Time.zone.today 
+    # end_date = Time.zone.today - 60.days
+# 
+    # # refresh the total reward points
+    # users.each do |u|
+    #   # calculate user reward points during the period and save it to the user's member variable
+    #   u.get_fat_reward_points(start_date, end_date)
+    # end
 
-    #set up date range
-    start_date = Time.zone.today 
-    end_date = Time.zone.today - 60.days
-
-    # refresh the total reward points
-    users.each do |u|
-      # calculate user reward points during the period and save it to the user's member variable
-      u.get_fat_reward_points(start_date, end_date)
-    end
+    # use backend job to perform point calculations
+    CalculateFatTotalPointJob.perform_later organization
 
     @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
     
