@@ -95,7 +95,6 @@ class RegistrationsController < Devise::RegistrationsController
       )
 
       profile = Profile.find_or_create_by!(email: @email) do |profile|
-        profile.organization = @organization
         profile.user = @user
         profile.first_name = @first_name
         profile.last_name = @last_name
