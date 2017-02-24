@@ -43,7 +43,7 @@ puts "\nFile import path is: #{path}"
 begin
   leads = CSV.read(path, headers:true)
   # puts "#{leads.headers}"
-rescue Exception => e  
+rescue StandardError => e  
   puts "\nError! #{e.message}."
   exit
 end

@@ -9,7 +9,11 @@ class FatMealsController < ApplicationController
   def edit
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
+
     @current_date = Date.new(time_now.year, time_now.month, time_now.day)
+
+    # Fat logging allowed only for the past week
+    @lower_date_bounds = @current_date - 6.days
 
     if params[:year].present?
       year = params[:year].to_i
@@ -17,6 +21,14 @@ class FatMealsController < ApplicationController
       day = params[:day].to_i
 
       date = Date.new(year, month, day)
+      # check date is within bounds
+      # check lower bounds
+      if(date < @lower_date_bounds)
+        date = @lower_date_bounds
+      #check upper bounds 
+      elsif(date > @current_date)
+        date = @current_date
+      end
       @date_str = (@current_date - 1 == date) ? 'Yesterday' : ( (date == @current_date) ? 'Today' : date.strftime("%a") )
     else
       # Set FAT date based on user timezone

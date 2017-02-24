@@ -94,13 +94,12 @@ class RegistrationsController < Devise::RegistrationsController
         user: @user
       )
 
-      profile = Profile.create(
-        user: @user,
-        email: @email,
-        first_name: @first_name,
-        last_name: @last_name,
-        dashboard_registered: true
-      )
+      profile = Profile.find_or_create_by!(email: @email) do |profile|
+        profile.user = @user
+        profile.first_name = @first_name
+        profile.last_name = @last_name
+        profile.dashboard_registered = true
+      end
 
       # Create zoho lead record
       ZohoService.save_to_zoho(profile)
@@ -217,7 +216,10 @@ class RegistrationsController < Devise::RegistrationsController
     @profile = Profile.find_by_email(@email)
 
     current_user.profile = @profile if !@profile.nil?
+    # Assumption is that profiles exist
+    # fallback to default profile
     
+
     # Create and bind dashboard to user
     # Assign provisioned dashboard to newly registered user (i.e. user who onboarded through mydomino.com)
     if dashboard = Dashboard.find_by_lead_email(@email)
