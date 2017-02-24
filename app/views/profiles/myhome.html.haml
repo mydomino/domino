@@ -135,16 +135,17 @@
           backgroundColor:  getBarBackgrounds(#{@fat_graph_cf_map.values}),
           borderColor: 'rgba(0,0,0,0)',
           borderWidth: 1,
-          xAxisID: "x-axis-1"
+          xAxisID: "x-axis-1",
         },
         {
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          fill: false,
           type: 'line',
           label: "Avg. Carbon Footprint (kg)",
           data: new Array(7).fill(6.2),
-          backgroundColor: 'rgba(255, 255, 255, 0)',
           borderColor: 'rgb(0, 204, 255)',
-          elements: { point: { radius: 0 } },
-          xAxisID: 'x-axis-2'
+          xAxisID: 'x-axis-2',
         }]
       },
       options: {
