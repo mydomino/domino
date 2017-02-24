@@ -94,20 +94,12 @@ class RegistrationsController < Devise::RegistrationsController
         user: @user
       )
 
-      profile = Profile.create(
-        user: @user,
-        email: @email,
-        first_name: @first_name,
-        last_name: @last_name,
-        dashboard_registered: true
-      )
-
-      # profile = Profile.find_or_create_by!(email: @email) do |profile|
-      #   profile.user = @user
-      #   profile.first_name = @first_name
-      #   profile.last_name = @last_name
-      #   profile.dashboard_registered = true
-      # end
+      profile = Profile.find_or_create_by!(email: @email) do |profile|
+        profile.user = @user
+        profile.first_name = @first_name
+        profile.last_name = @last_name
+        profile.dashboard_registered = true
+      end
 
       # Create zoho lead record
       if @organization.name != 'test'
