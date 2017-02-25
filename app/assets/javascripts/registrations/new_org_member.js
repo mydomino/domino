@@ -116,7 +116,7 @@ modulejs.define('new_org_member', function (args) {
         },
         dataType: 'json',
         success: function() {
-          window.location.replace('/dashboard');
+          window.location.replace('/myhome');
         }
       });
     };

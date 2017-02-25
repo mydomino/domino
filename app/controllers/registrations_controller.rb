@@ -53,7 +53,9 @@ class RegistrationsController < Devise::RegistrationsController
     @user.profile.update(dashboard_registered: true)
 
     # Create zoho lead record
-    ZohoService.save_to_zoho(profile)
+    if @user.organization.name != 'test'
+      ZohoService.save_to_zoho(@user.profile)
+    end
     
     sign_in(@user, scope: :user)
     flash[:notice] = 'Welcome to MyDomino!'
