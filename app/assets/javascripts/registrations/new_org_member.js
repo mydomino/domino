@@ -65,7 +65,9 @@ modulejs.define('new_org_member', function (args) {
             } else {
               $email.prop('disabled', true);
               $msgFormFeedback.html('Please set a new password').slideDown();
-              $namePwSection.slideDown('slow');
+              $namePwSection.slideDown('slow', function(){
+                $firstName.focus();
+              });
               $btnSignUp.attr('value', 'Activate');
             }
           },
@@ -121,7 +123,6 @@ modulejs.define('new_org_member', function (args) {
 
     // End /setOrgMemberPw/
     // End module scope variable definitions and initializations
-
     // Begin module event handlers
     $btnSignUp.on('click', function(e) {
       e.preventDefault();
