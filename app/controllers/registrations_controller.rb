@@ -111,7 +111,7 @@ class RegistrationsController < Devise::RegistrationsController
 
       #sign in newly created user
       sign_in(@user, scope: :user)
-      flash[:notice] = 'Welcome to MyDomino!'
+      # flash[:notice] = 'Welcome to MyDomino!'
       
       render json: {
         message: 'User added',
