@@ -154,7 +154,8 @@
         scales: {
           xAxes: [{
             position: "bottom",
-            id: "x-axis-1"
+            id: "x-axis-1",
+            gridLines: {color: "rgba(0, 0, 0, 0)"}
           },{
             position: "top",
             id: "x-axis-2",
@@ -163,7 +164,10 @@
           yAxes: [{
             ticks: {
               beginAtZero:true
-            }
+            },
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+            }  
           }]
         }
       }
