@@ -53,6 +53,7 @@ gem 'react-rails'
 gem 'browser-timezone-rails'
 gem 'remodal-rails'
 gem 'chart-js-rails'
+gem "d3-rails"
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
