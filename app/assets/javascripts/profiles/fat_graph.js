@@ -1,38 +1,29 @@
 modulejs.define('fat_graph', function () {
   return function(cf){
     var data = cf;
-      /*var data = [ 
-                    {cf: 4, pts: 5},
-                    {cf: 8, pts: 3}, 
-                    {cf: 15, pts: 10}, 
-                    {cf: null, pts: null}, 
-                    {cf: 10, pts: 4}, 
-                    {cf: 6, pts: 7 }, 
-                    {cf: 5, pts: 8 }
-                  ];
-                  */
 
-      var margin = {top: 20, right: 30, bottom: 30, left: 40},
-          width = 960 - margin.left - margin.right,
-          height = 300 - margin.top - margin.bottom;
+    // Set margins
+    var margin = {top: 20, right: 30, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
 
-      var x = d3.scaleBand()
-                .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
-                .rangeRound([0, width]);
+    var x = d3.scaleBand()
+      .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
+      .rangeRound([0, width]);
 
-      var x2Domain = data.map(function(el){
-        return el.cf ? el.cf + " lbs." : "Incomplete";
-      });
+    var x2Domain = data.map(function(el){
+      return el.cf ? el.cf + " lbs." : "Incomplete";
+    });
 
-      var x2 = d3.scaleBand()
-                .domain(x2Domain)
-                .rangeRound([0, width]);
+    var x2 = d3.scaleBand()
+              .domain(x2Domain)
+              .rangeRound([0, width]);
 
-      var xAxis = d3.axisBottom(x).tickSize(0);
-      var x2Axis = d3
-        .axisTop(x2)
-        .tickSize(0)
-        .tickPadding(5);
+    var xAxis = d3.axisBottom(x).tickSize(0);
+    var x2Axis = d3
+      .axisTop(x2)
+      .tickSize(0)
+      .tickPadding(5);
 
       var y = d3.scaleLinear()
               .domain([0,15])
@@ -58,9 +49,13 @@ modulejs.define('fat_graph', function () {
       var p_mousein = false;
       // Primary bar elements
       bar.append("rect")
-        .attr("class", function(d){
-          if(d.cf == null)
+        .attr("class", function(d) {
+          if(d.cf == null){
             return "null";
+          }
+          if(d.cf == "future") {
+            return "future";
+          }
         })
         .attr("y", function(d){
           // var v = (d.cf == null ? 15 : d.cf);
@@ -182,6 +177,10 @@ modulejs.define('fat_graph', function () {
         .style("stroke", "#4ECDC4")
         .style("stroke-width", 4);
 
+        //future sections
+        d3.selectAll(".future")
+        .attr("height", 0)
+        
       // top axis
       chart.append("g")
         .attr("class", "x2 axis")

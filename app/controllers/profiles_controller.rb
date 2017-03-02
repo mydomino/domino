@@ -28,7 +28,6 @@ class ProfilesController < ApplicationController
 
     active_days = today.cwday
     days_left = 7 - today.cwday
-    byebug
     fat_graph_date = today - active_days.days - 1
     @cf = []
 
