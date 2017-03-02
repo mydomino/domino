@@ -28,13 +28,14 @@ class ProfilesController < ApplicationController
 
     active_days = today.cwday
     days_left = 7 - today.cwday
-    fat_graph_date = today - active_days.days - 1
+    fat_graph_date = today - active_days.days + 1
     @cf = []
+
 
     active_days.times do
       meal_day = MealDay.find_by(date: fat_graph_date, user: current_user)
       cf = meal_day ? meal_day.carbon_footprint : nil
-      @cf << {cf: cf, pts: nil}
+      @cf << {cf: cf, pts: nil, path: fat_graph_date.to_s.split("-").join("/")}
       # @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end

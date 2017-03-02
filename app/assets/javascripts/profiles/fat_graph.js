@@ -11,25 +11,37 @@ modulejs.define('fat_graph', function () {
       .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
       .rangeRound([0, width]);
 
-    var x2Domain = data.map(function(el){
-      return el.cf ? el.cf + " lbs." : "Incomplete";
+    var x2labels = data.map(function(el){
+      if(el.cf == null){
+        return "Incomplete";
+      }
+      if(el.cf == "future") {
+        return " ";
+      }
+      if(el.cf >= 0) {
+        return el.cf + " lbs.";
+      }
     });
-
+    //var x2Domain = ["M", "Tu", "W", "Th", "F", "Sa", "Su"]
+    // console.log(x2Domain);
     var x2 = d3.scaleBand()
-              .domain(x2Domain)
+              .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
 
     var xAxis = d3.axisBottom(x).tickSize(0);
+
     var x2Axis = d3
       .axisTop(x2)
+      // .ticks(7)
+      // .tickValues(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
       .tickSize(0)
       .tickPadding(5);
 
-      var y = d3.scaleLinear()
-              .domain([0,15])
-              //.domain([0, d3.max(data, function(d) { 
-              //  return +d.cf;} )])
-              .range([height, 0]);
+    var y = d3.scaleLinear()
+            .domain([0,15])
+            //.domain([0, d3.max(data, function(d) { 
+            //  return +d.cf;} )])
+            .range([height, 0]);
 
       var chart = d3.select(".chart")
         // .attr("width", width + margin.left + margin.right)
@@ -46,7 +58,6 @@ modulejs.define('fat_graph', function () {
           return "translate(" + i * barWidth + ",0)"; 
         });
 
-      var p_mousein = false;
       // Primary bar elements
       bar.append("rect")
         .attr("class", function(d) {
@@ -59,18 +70,17 @@ modulejs.define('fat_graph', function () {
         })
         .attr("y", function(d){
           // var v = (d.cf == null ? 15 : d.cf);
-          return y(15);
+          return y(d.cf);
         })
         .attr("height", function(d){
           //return height-y(d.cf);
-          return height-y(15);
+          return height-y(d.cf);
         })
         .attr("width", barWidth - 15)
         .attr("fill", function(d){
           // return "none";
           return "steelblue";
         })
-        /*
         .on("mouseenter", function(d, i) {
             d3.select("#lbl-x2-" + i)
               .text(function(){
@@ -105,11 +115,10 @@ modulejs.define('fat_graph', function () {
         .on("click", function(){
           console.log("Test");
         });
-        */
 
 
         // auxillary bars to show amount below or above avg cf
-        /*
+        
         bar.append("rect")
           .attr("id", function(d, i){
             return "aux-" + i;
@@ -166,7 +175,7 @@ modulejs.define('fat_graph', function () {
               return textBBox.width/2 - 7;
             });
           });
-        */
+        
 
         // incomplete sections
         d3.selectAll(".null")
@@ -175,18 +184,25 @@ modulejs.define('fat_graph', function () {
         .attr("fill", "white")
         .style("stroke-dasharray", ("40, 10"))
         .style("stroke", "#4ECDC4")
-        .style("stroke-width", 4);
+        .style("stroke-width", 4)
+        .on('click', function(d){
+          window.location = "food/" + d.path;
+        })
+
 
         //future sections
         d3.selectAll(".future")
         .attr("height", 0)
-        
+
       // top axis
       chart.append("g")
         .attr("class", "x2 axis")
         .attr("transform", "translate(0," + 0 + ")")
         .call(x2Axis)
         .selectAll("text")
+        .text(function(d,i){
+          return x2labels[i];
+        })
         .attr("x", function(d,i){
           var textBBox = this.getBBox();
           return textBBox.width/2 - 7;

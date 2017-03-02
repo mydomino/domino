@@ -14,6 +14,10 @@ module FatCompetition
   EAT_NO_BEEF_LAMB_A_DAY_POINTS   = 10
   EAT_NO_DAIRY_A_DAY_POINTS       = 5
 
+  def self.get_meal_day_points(meal_day) {
+    user = meal_day.user
+    
+  }
   # /self.award_points/
   # Purpose: Award a user with points for a given meal_day
   def self.award_points(meal_day)
