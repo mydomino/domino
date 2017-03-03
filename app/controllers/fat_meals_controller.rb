@@ -1,6 +1,9 @@
 class FatMealsController < ApplicationController
   before_action :authenticate_user!
   include FatCompetition
+  def results
+
+  end
   # GET /food-action-tracker
   # GET /food-action-tracker/:year/:month/:day
   # Purpose: Display the FAT interface for a given date

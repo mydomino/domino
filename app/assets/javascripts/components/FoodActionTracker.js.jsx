@@ -62,7 +62,7 @@ class FoodActionTracker extends React.Component {
                 </span>
             </button>
           </a>
-          <a href={'/myhome'}>
+          <a href={'/food/results/' + this.state.date.split("-").join("/")}>
             <button className="col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
           </a>
         </div>
