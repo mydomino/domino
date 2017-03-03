@@ -65,14 +65,18 @@ modulejs.define('fat_graph', function () {
 
       // Primary bar elements
       bar.append("rect")
-        .attr("class", function(d) {
+        .classed("pointer", "true")
+        .classed("null", function(d) {
           if(d.cf == null){
-            return "null";
+            return true;
           }
-          if(d.cf == "future") {
-            return "future";
-          }
+          return false;
         })
+
+        //   if(d.cf == "future") {
+        //     return "future";
+        //   }
+        // })
         .attr("y", function(d){
           // var v = (d.cf == null ? 15 : d.cf);
           return y(d.cf);
@@ -125,6 +129,7 @@ modulejs.define('fat_graph', function () {
         // auxillary bars to show amount below or above avg cf
         
         bar.append("rect")
+          .attr("class", "pointer")
           .attr("id", function(d, i){
             return "aux-" + i;
           })
@@ -152,7 +157,6 @@ modulejs.define('fat_graph', function () {
           .attr("fill", function(d){
             if(d.cf == null) return "none";
             return (d.cf < 6.2 ? "green" : "red");
-            // return (d.cf == null ? "white" : "steelblue")
           })
           .style("opacity", 0)
           .on("mouseenter", function(d,i){
@@ -193,8 +197,8 @@ modulejs.define('fat_graph', function () {
         
 
         //future sections
-        d3.selectAll(".future")
-        .attr("height", 0)
+        // d3.selectAll(".future")
+        // .attr("height", 0)
 
       // top axis
       chart.append("g")
