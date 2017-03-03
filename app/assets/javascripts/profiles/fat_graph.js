@@ -22,8 +22,7 @@ modulejs.define('fat_graph', function () {
         return el.cf + " lbs.";
       }
     });
-    //var x2Domain = ["M", "Tu", "W", "Th", "F", "Sa", "Su"]
-    // console.log(x2Domain);
+
     var x2 = d3.scaleBand()
               .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
@@ -32,16 +31,12 @@ modulejs.define('fat_graph', function () {
 
     var x2Axis = d3
       .axisTop(x2)
-      // .ticks(7)
-      // .tickValues(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
       .tickSize(0)
       .tickPadding(5);
 
     var max = d3.max(data, function(d) { return +d.cf;} );
-    console.log(max);
-    if(max < 12) {
-      max = 12;
-    }
+    max = (max <= 12 ? 12 : max);
+
     var y = d3.scaleLinear()
             .domain([0,max])
             //.domain([0, d3.max(data, function(d) { 
@@ -194,11 +189,7 @@ modulejs.define('fat_graph', function () {
         .style("stroke-dasharray", ("40, 10"))
         .style("stroke", "#4ECDC4")
         .style("stroke-width", 4)
-        
 
-        //future sections
-        // d3.selectAll(".future")
-        // .attr("height", 0)
 
       // top axis
       chart.append("g")
