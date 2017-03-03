@@ -37,8 +37,13 @@ modulejs.define('fat_graph', function () {
       .tickSize(0)
       .tickPadding(5);
 
+    var max = d3.max(data, function(d) { return +d.cf;} );
+    console.log(max);
+    if(max < 12) {
+      max = 12;
+    }
     var y = d3.scaleLinear()
-            .domain([0,15])
+            .domain([0,max])
             //.domain([0, d3.max(data, function(d) { 
             //  return +d.cf;} )])
             .range([height, 0]);
@@ -112,8 +117,8 @@ modulejs.define('fat_graph', function () {
                 return "steelblue";
               });
         })
-        .on("click", function(){
-          console.log("Test");
+        .on('click', function(d){
+          window.location = "food/" + d.path;
         });
 
 
@@ -179,16 +184,13 @@ modulejs.define('fat_graph', function () {
 
         // incomplete sections
         d3.selectAll(".null")
-        .attr("y", y(15))
-        .attr("height", height-y(15))
+        .attr("y", y(max))
+        .attr("height", height-y(max))
         .attr("fill", "white")
         .style("stroke-dasharray", ("40, 10"))
         .style("stroke", "#4ECDC4")
         .style("stroke-width", 4)
-        .on('click', function(d){
-          window.location = "food/" + d.path;
-        })
-
+        
 
         //future sections
         d3.selectAll(".future")
