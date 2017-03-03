@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207235444) do
+ActiveRecord::Schema.define(version: 20170303192402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20170207235444) do
     t.integer "user_id"
     t.date    "date"
     t.float   "carbon_footprint"
+    t.integer "points"
   end
 
   add_index "meal_days", ["user_id"], name: "index_meal_days_on_user_id", using: :btree

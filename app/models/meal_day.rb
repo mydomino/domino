@@ -6,6 +6,7 @@
 #  user_id          :integer
 #  date             :date
 #  carbon_footprint :float
+#  points           :integer
 #
 # Indexes
 #
@@ -31,5 +32,4 @@ class MealDay < ActiveRecord::Base
     self.carbon_footprint = (self.carbon_footprint / 1000).round(2) # Convert from g to kg
     self.save
   end
-
 end
