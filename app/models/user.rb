@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
 
     meal_days = self.meal_days.where(["date <= ? and date >= ?", start_date, end_date])
 
-    carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days != nil 
+    carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days.size > 0
 
     # sum up value in the array
     @total_carbon_foodprint = carbon_foodprints.inject(:+) if carbon_foodprints!= nil

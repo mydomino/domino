@@ -40,10 +40,11 @@ class ApplicationController < ActionController::Base
       session[:referer]
     elsif resource.role == 'concierge'
       dashboards_path
-    elsif resource.organization
-      myhome_path
+    #elsif resource.organization
+    #  myhome_path
     else
-      user_dashboard_path
+      #user_dashboard_path
+      myhome_path
     end
   end
 
