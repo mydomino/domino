@@ -24,6 +24,10 @@
 
 class PointsLog < ActiveRecord::Base
 
+  after_save :recal_user_total_points
+  after_destroy :recal_user_total_points
+
+
   # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
   CLICK_ARTICLE_LINK      = 'CLICK_ARTICLE_LINK'
@@ -111,6 +115,18 @@ class PointsLog < ActiveRecord::Base
 
     return !found.nil?
 
+  end
+
+
+  private
+
+  def recal_user_total_points
+
+    puts "recal_user_total_points is called."
+
+    
+    RecalUserTotalPointsJob.perform_later self.user
+    
   end
 
 end

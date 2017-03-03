@@ -237,7 +237,7 @@ namespace :md_test do
     
     #if ARGV.size != 2 
     #  puts "Error! Please provide proper parameters to your command. \n\nUsage: rake md_test:test_generate_user_reward_points\n"
-    #  puts "Example: rake md_test:test_generate_user_reward_points yong@mydomino.com\n"
+    #  puts "Example: rake md_test:test_generate_user_reward_points\n"
     #  exit 1
     #end
 #
@@ -273,9 +273,9 @@ namespace :md_test do
       # set up a random generator
       plog = Random.new
   
-      action_type = [PointsLog::SIGN_IN_EACH_DAY, PointsLog::TRACK_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
-        PointsLog::CONTACT_CONCIERGE, PointsLog::SHARE_ARTICLE, PointsLog::BEAT_CFP_EMISSION, 
-        PointsLog::EAT_NO_BEEF_LAMB_A_DAY, PointsLog::EAT_NO_DAIRY_A_DAY]    
+      action_type = [PointsLog::SIGN_IN_EACH_DAY, FatCompetition::TRACK_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
+        PointsLog::CONTACT_CONCIERGE, PointsLog::SHARE_ARTICLE, FatCompetition::BEAT_CFP_EMISSION, 
+        FatCompetition::EAT_NO_BEEF_LAMB_A_DAY, FatCompetition::EAT_NO_DAIRY_A_DAY]    
   
   
   
@@ -308,7 +308,203 @@ namespace :md_test do
 
   end
 
-  desc "generate_user_reward_points"
+
+  desc "test remove_user_reward_points"
+  task test_remove_user_reward_points: :environment do
+
+    # generate an empty task for each argument pass in
+    ARGV.each { |a| task a.to_sym do ; end }
+
+    #puts "ARGV.size is #{ARGV.size}"
+    
+    #if ARGV.size != 2 
+    #  puts "Error! Please provide proper parameters to your command. \n\nUsage: rake md_test:test_remove_user_reward_points\n"
+    #  puts "Example: rake md_test:test_remove_user_reward_points\n"
+    #  exit 1
+    #end
+#
+    #user_email = ARGV[1]
+    org_name = 'MyDomino'
+    org_name = org_name.downcase
+
+    for user_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com
+      rosana@#{org_name}.com stephen@#{org_name}.com mel@#{org_name}.com admin@#{org_name}.com info@#{org_name}.com)
+
+      puts "\n User email is #{user_email}\n"
+  
+  
+      begin
+  
+        user = User.find_by!(email: user_email)
+        #user = User.find_by!(email: 'yong@mydomino.com')
+  
+      rescue ActiveRecord::RecordNotFound
+        puts "\n Error: user with email #{user_email} is not found. \nPlease run rake md_test:mydomino_create_corporate_and_admin to create the test user. Program exit.\n"
+        exit
+      end
+      
+  
+      # test ...
+  
+      #set up date range
+      start_date = Time.zone.today 
+      end_date = Time.zone.today - 60.days
+  
+      date_range = end_date..start_date
+  
+      # set up a random generator
+      plog = Random.new
+  
+      action_type = [PointsLog::SIGN_IN_EACH_DAY, FatCompetition::TRACK_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
+        PointsLog::CONTACT_CONCIERGE, PointsLog::SHARE_ARTICLE, FatCompetition::BEAT_CFP_EMISSION, 
+        FatCompetition::EAT_NO_BEEF_LAMB_A_DAY, FatCompetition::EAT_NO_DAIRY_A_DAY]    
+  
+  
+  
+      date_range.each do |date|
+  
+        # generate an action point log
+        for i in 0..2
+  
+          index = plog.rand(action_type.size-1)
+  
+          p_log = PointsLog.find_by(user: user, point_date: date) 
+  
+          # delete the record
+          #PointsLog.delete(p_log.id) if p_log != nil
+
+          # note: destroy will invoke the call_back hook, delete will not!!
+          PointsLog.destroy(p_log.id) if p_log != nil
+
+
+          puts "Pointslog #{p_log.inspect} is deleted.\n"
+  
+        end
+      end
+
+      puts "\n\n=========================================================\n\n"
+    end
+
+  end
+
+
+
+  desc "test_update_user_reward_points"
+  task test_update_user_reward_points: :environment do
+
+    # generate an empty task for each argument pass in
+    ARGV.each { |a| task a.to_sym do ; end }
+
+    #puts "ARGV.size is #{ARGV.size}"
+    
+    #if ARGV.size != 2 
+    #  puts "Error! Please provide proper parameters to your command. \n\nUsage: rake md_test:test_update_user_reward_points\n"
+    #  puts "Example: rake md_test:test_update_user_reward_points\n"
+    #  exit 1
+    #end
+#
+    #user_email = ARGV[1]
+    org_name = 'MyDomino'
+    org_name = org_name.downcase
+
+    for user_email in %W(yong@#{org_name}.com johnp@#{org_name}.com marcian@#{org_name}.com jimmy@#{org_name}.com
+      rosana@#{org_name}.com stephen@#{org_name}.com mel@#{org_name}.com admin@#{org_name}.com info@#{org_name}.com)
+
+      puts "\n User email is #{user_email}\n"
+  
+  
+      begin
+  
+        user = User.find_by!(email: user_email)
+        #user = User.find_by!(email: 'yong@mydomino.com')
+  
+      rescue ActiveRecord::RecordNotFound
+        puts "\n Error: user with email #{user_email} is not found. \nPlease run rake md_test:mydomino_create_corporate_and_admin to create the test user. Program exit.\n"
+        exit
+      end
+      
+  
+      # test ...
+  
+      #set up date range
+      start_date = Time.zone.today 
+      end_date = Time.zone.today - 60.days
+  
+      date_range = end_date..start_date
+  
+      # set up a random generator
+      plog = Random.new
+  
+      action_type = [PointsLog::SIGN_IN_EACH_DAY, FatCompetition::TRACK_FOOD_LOG, PointsLog::CLICK_ARTICLE_LINK, 
+        PointsLog::CONTACT_CONCIERGE, PointsLog::SHARE_ARTICLE, FatCompetition::BEAT_CFP_EMISSION, 
+        FatCompetition::EAT_NO_BEEF_LAMB_A_DAY, FatCompetition::EAT_NO_DAIRY_A_DAY]    
+  
+  
+  
+      date_range.each do |date|
+  
+        # generate an action point log
+        for i in 0..5
+  
+          index = plog.rand(action_type.size-1)
+
+          puts "Finding points...."
+  
+          p_log = PointsLog.find_by(user: user, point_date: date)
+
+          if p_log != nil
+
+            p_log.user = user
+            p_log.point_type = action_type[index]
+            p_log.point_date = date
+            p_log.desc = action_type[index]
+            p_log.point =  plog.rand(15)
+
+            p_log.save!
+            puts "Pointslog #{p_log.inspect} is saved.\n"
+
+          end
+  
+        end
+      end
+
+      puts "\n\n=========================================================\n\n"
+    end
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  desc "show MyDomino users"
   task show_users: :environment  do
 
     organization = Organization.find_by!(name: 'MyDomino')
