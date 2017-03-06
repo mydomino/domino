@@ -5,6 +5,49 @@
   bg-gray-05
   adelle
 
+:css
+  li {
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 1em;
+    background: dodgerblue;
+    margin: 0 1em;
+    display: inline-block;
+    color: white;
+    position: relative;
+  }
+
+  li::before{
+    content: '';
+    position: absolute;
+    top: .9em;
+    left: -4em;
+    width: 4em;
+    height: .2em;
+    background: dodgerblue;
+    z-index: -1;
+  }
+
+
+
+  li:first-child::before {
+    display: none;
+  }
+
+  .active {
+    background: dodgerblue;
+  }
+
+  .active ~ li {
+    background: lightblue;
+  }
+
+  .active ~ li::before {
+    background: lightblue;
+  }
+
 .mx-auto.relative
   .page-header-image.bg-blue
     .absolute.left-0.right-0.top-0.mb4{style: 'margin-top: 100px;'}
@@ -59,6 +102,14 @@
                 = link_to 'food' do
                   %button.btn.btn-sm.btn-primary.btn-primary--hover
                     .bold Update today
+                %ul
+                  %li M
+                  %li Tu
+                  %li.active W
+                  %li Th
+                  %li F
+                  %li Sa
+                  %li Su
 
         .mt2.mb4.max-width-4.mx-auto
           .clearfix.mx2.lg-mx1
