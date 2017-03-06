@@ -4,36 +4,6 @@
 -content_for :body_class do
   bg-gray-05
   adelle
-:css
-  .pointer {
-    cursor: pointer;
-  }
-  .chart rect {
-    /*fill: steelblue;*/
-  }
-  .chart text {
-    fill: black;
-    font: 16px sans-serif;
-    text-anchor: end;
-  }
-
-  .axis text {
-    font: 16px sans-serif;
-  }
-
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-  .x.axis path {
-    display: none;
-  }
-
-  .x2.axis path {
-    stroke: lightgrey;
-  }
 
 .mx-auto.relative
   .page-header-image.bg-blue
@@ -89,7 +59,6 @@
                 = link_to 'food' do
                   %button.btn.btn-sm.btn-primary.btn-primary--hover
                     .bold Update today
-              %svg.chart{viewBox: "0 0 960 300", preserveAspectRatio:"xMidYMid meet"}
 
         .mt2.mb4.max-width-4.mx-auto
           .clearfix.mx2.lg-mx1
@@ -136,5 +105,3 @@
                   %p.line-height-4.col-12.sm-col-10.gray-80.mt1.mb4 See upcoming brown-bags and webinars for your company.
                   %h3.mb1.line-height-1.gray-60.medium
                     No events scheduled yet
-:javascript
-  modulejs.require('fat_graph')(#{@cf.to_json});
