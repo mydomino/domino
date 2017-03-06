@@ -51,23 +51,27 @@ class FoodActionTracker extends React.Component {
           getCarbonFootprint={()=>this.getCarbonFootprint()}
           method={this.state.method} />
 
-        <div className='clearfix bg-white'>
+        <div className='clearfix bg-white p2'>
           <div className='col-12 p2'>
             {foodTypes}
+          </div>
+          <div className="center">
+           <a onClick={()=>this.didntEat()} >
+              <button id="btn-didnt-eat" 
+                className={(this.state.didntEat ? "border " : null) + " fill-x px2 mt1 btn btn-md btn-secondary"}
+                style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
+
+                <span className="flex items-center justify-center">
+                  <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
+                  {"Ate none of these"}
+                </span>
+              </button>
+            </a>
           </div>
         </div>
 
         <div className="flex flex-column sm-row justify-center mx2 mt1 mb0">
-          <a onClick={()=>this.didntEat()} className="sm-mr2">
-            <button id="btn-didnt-eat" 
-                    className={(this.state.didntEat ? "border-none " : null) + "col col-12 btn btn-md btn-secondary"} 
-                    style={{backgroundColor: (this.state.didntEat ? "white" : null), height:54}}>
-              <span className="flex items-center justify-center">
-                <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                {"Didn't Eat"}
-                </span>
-            </button>
-          </a>
+          
           <a href={'/food/results/' + this.state.date.split("-").join("/")}>
             <button className="col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
           </a>
