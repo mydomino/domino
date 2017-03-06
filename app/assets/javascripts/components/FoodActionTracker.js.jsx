@@ -46,11 +46,17 @@ class FoodActionTracker extends React.Component {
 
     return (
       <div className='remodal-bg'>
-        <div className='clearfix p2'>
-          <div className='col-12'>
+        <CarbonFootprint ref="cf"
+          cf={this.state.meal_day.carbon_footprint}
+          getCarbonFootprint={()=>this.getCarbonFootprint()}
+          method={this.state.method} />
+
+        <div className='clearfix bg-white'>
+          <div className='col-12 p2'>
             {foodTypes}
           </div>
         </div>
+
         <div className="flex flex-column sm-row justify-center mx2 mt1 mb0">
           <a onClick={()=>this.didntEat()} className="sm-mr2">
             <button id="btn-didnt-eat" 
@@ -66,12 +72,6 @@ class FoodActionTracker extends React.Component {
             <button className="col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
           </a>
         </div>
-
-        <CarbonFootprint ref="cf"
-          cf={this.state.meal_day.carbon_footprint}
-          getCarbonFootprint={()=>this.getCarbonFootprint()}
-          method={this.state.method}
-        />
       </div>
     );
   }

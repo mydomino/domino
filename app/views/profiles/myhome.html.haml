@@ -27,7 +27,7 @@
     width: 4em;
     height: .2em;
     background: dodgerblue;
-    z-index: -1;
+    z-index: 0;
   }
 
 
@@ -91,8 +91,8 @@
 
       .mt4.max-width-4.mx-auto
         .clearfix.mx2.lg-mx1
-          .col.col-12.mb2
-            .p3.bg-white.rounded
+          .col.col-12.mb2.center
+            .p3.bg-white.rounded.center
               .mb3
                 .flex.items-center
                   =image_tag "icons/i-apple.png", :class => "mr1"
@@ -103,13 +103,17 @@
                   %button.btn.btn-sm.btn-primary.btn-primary--hover
                     .bold Update today
                 %ul
-                  %li M
-                  %li Tu
-                  %li.active W
-                  %li Th
-                  %li F
-                  %li Sa
-                  %li Su
+                  %li{style: 'z-index: 7'} M
+                  %li{style: 'z-index: 6'} Tu
+                  %li.active{style: 'z-index: 5'} W
+                  %li{style: 'z-index: 4'} Th
+                  %li{style: 'z-index: 3'} F
+                  %li{style: 'z-index: 2'} Sa
+                  %li{style: 'z-index: 1'} Su
+
+                .circle Step 1
+                .circle Step 2
+                .circle Step 3
 
         .mt2.mb4.max-width-4.mx-auto
           .clearfix.mx2.lg-mx1

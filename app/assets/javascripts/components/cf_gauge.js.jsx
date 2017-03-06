@@ -26,9 +26,11 @@ class CfGauge extends React.Component {
     console.log(this.props.method);
     return(
       <div>
-        <div className="h2 medium white my0 line-height-3">{ (this.props.method == "POST") ? "-" : this.state.cf } kg <div className="h3 mt0 mb2">Carbon Emissions</div>
+        <canvas id="gauge"  
+          style={{ opacity: (this.props.cf == null) ? 0.4 : 1 }}></canvas>
+
+        <div className="bg-white h2 medium white my0 line-height-3 black">{ (this.props.method == "POST") ? "-" : this.state.cf } kg <div className="h3 mt0">Carbon Emissions</div>
         </div>
-        <canvas id="gauge"  style={{ opacity: (this.props.cf == null) ? 0.4 : 1 }}></canvas>
       </div>
     );
   }

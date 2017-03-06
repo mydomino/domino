@@ -1,3 +1,12 @@
+/* BEGIN styles for FAT gauge */
+#gauge {
+    background-color: white;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    margin-bottom: -6px;
+}
+
+/* END styles for FAT gauge */
 .gauge {
     position: relative;
     display: inline-block;
