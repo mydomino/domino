@@ -46,24 +46,23 @@ class FatMealsController < ApplicationController
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: date)
 
     # data for fat graph
-    time_zone_name = Time.zone.name
-    time_now = Time.now.in_time_zone(time_zone_name)
+    # time_zone_name = Time.zone.name
+    # time_now = Time.now.in_time_zone(time_zone_name)
     today = Date.new(time_now.year, time_now.month, time_now.day)
 
-    active_days = today.cwday
+    @active_days = today.cwday
     days_left = 7 - today.cwday
-    fat_graph_date = today - active_days.days + 1
+    fat_graph_date = today - @active_days.days + 1
     @cf = []
 
-
-    active_days.times do
+    @active_days.times do
       meal_day = MealDay.find_by(date: fat_graph_date, user: current_user)
       cf = meal_day ? meal_day.carbon_footprint : nil
       points = meal_day ? (meal_day.points || 0) : 0
       @cf << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
-      # @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
       fat_graph_date += 1.day
     end
+
     days_left.times do 
       @cf << {cf: "future", pts: "future"}
     end
