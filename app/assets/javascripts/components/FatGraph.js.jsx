@@ -23,30 +23,12 @@ class FatGraph extends React.Component {
       .range([that.state.height, 0]);
     
     var cf = d.values[d.day_index].cf;
-    console.log(cf);
-        // .attr("y", function(d){
-        //   var v = (d.cf == "future" ? 15 : d.cf);
-        //   return y(v);
-        // })
-        // .attr("height", function(d){
-        //   //return height-y(d.cf);
-        //   var v = (d.cf == "future" ? 15 : d.cf);
-
-        //   return height-y(v);
-        // })
     d3.select('#rect-'+ d.day_index)
       .attr("y", function(d){
-        // var v = (d.cf == "future" ? 15 : d.cf);
         return y(cf);
       })
       .attr("height", function(d){
-        //return height-y(d.cf);
-        // console.log(d);
-
-        // var v = 100;
-
         return that.state.height-y(cf);
-        // return v;
       });
      
   }

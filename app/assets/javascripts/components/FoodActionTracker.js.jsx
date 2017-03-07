@@ -58,7 +58,7 @@ class FoodActionTracker extends React.Component {
             method={this.state.method} />
 
           <div className='clearfix bg-white p2 relative' id="food-picker" >
-            <div>
+            <div id="food-picker">
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
