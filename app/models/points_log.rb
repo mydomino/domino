@@ -20,6 +20,7 @@
 #  fk_rails_f97c67f538  (user_id => users.id)
 #
 
+
 #require File.expand_path("../../../lib/fat_competition", __FILE__)
 
 class PointsLog < ActiveRecord::Base

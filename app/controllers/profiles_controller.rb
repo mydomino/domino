@@ -140,16 +140,18 @@ class ProfilesController < ApplicationController
   def cfp_ranking
     organization = current_user.organization
 
-    if organization.nil?
-      # find the default organization
-      organization = Organization.find_by!(name: 'MyDomino')
-    end
+    #if organization.nil?
+    #  # find the default organization
+    #  organization = Organization.find_by!(name: 'MyDomino')
+    #end
 
   
     # use background job to perform point calculations
     #CalculateFatTotalPointJob.perform_later organization
 
+    # find users with or without organization 
     @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
+    
     
     if ( !@users.any?{|u| u.email == current_user.email} )
       @users << current_user
