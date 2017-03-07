@@ -1,5 +1,6 @@
 class FatMealsController < ApplicationController
   before_action :authenticate_user!
+
   # before_action :fat_graph_params, only: [:create, :update]
   include FatCompetition
  
@@ -9,58 +10,14 @@ class FatMealsController < ApplicationController
   #  If no date params are provided, the interface will
   #  render for the current date based on users timezone
   def edit
-    time_zone_name = Time.zone.name
-    time_now = Time.now.in_time_zone(time_zone_name)
+    
+    set_timezone
 
-    @today = Date.new(time_now.year, time_now.month, time_now.day)
-
-    # Fat logging allowed only back to monday of current week
-    @active_days = @today.cwday
-    @lower_date_bounds = @today - @active_days + 1
-
-    if params[:year].present?
-      year = params[:year].to_i
-      month = params[:month].to_i
-      day = params[:day].to_i
-
-      @date = Date.new(year, month, day)
-      # check date is within bounds
-      # check lower bounds
-      if(@date < @lower_date_bounds)
-        @date = @lower_date_bounds
-      #check upper bounds 
-      elsif(@date > @today)
-        @date = @today
-      end
-      @date_str = (@today - 1 == @date) ? 'Yesterday' : ( (@date == @today) ? 'Today' : date.strftime("%a") )
-    else
-      # Set FAT date based on user timezone
-      # This is made possible by the browser-timezone-rails gem
-      # Remove time data
-      @date = @today
-      @date_str = "Today"
-    end
-
-    @prev_date = @date - 1
-    @next_date = @date + 1
+    set_date
 
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: @date)
-    # Days after today up to Sunday
-    days_left = 7 - @today.cwday
-    fat_graph_date = @today - @active_days + 1
-    @cf = {day_index: @date.cwday - 1, values: []}
-
-    @active_days.times do
-      meal_day_g = MealDay.find_by(date: fat_graph_date, user: current_user)
-      cf = meal_day_g ? meal_day_g.carbon_footprint : nil
-      points = meal_day_g ? (meal_day_g.points || 0) : 0
-      @cf[:values] << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
-      fat_graph_date += 1.day
-    end
-
-    days_left.times do 
-      @cf[:values] << {cf: "future", pts: "future"}
-    end
+    
+    fat_graph_params(@date)
 
     @fat_day = {
       meal_day: meal_day || MealDay.new,
@@ -140,13 +97,53 @@ class FatMealsController < ApplicationController
     end
   end
 
-  private 
+  private
 
-  def fat_graph_params(date)
+  # /set_date/
+  # Purpose: Set the date of the fat interface
+  def set_date
+
+    # Food logging only permitted back to Monday of current week
+    @lower_date_bounds = @today - @today.cwday + 1
+
+    if params[:year].present?
+      year = params[:year].to_i
+      month = params[:month].to_i
+      day = params[:day].to_i
+
+      @date = Date.new(year, month, day)
+      
+      # check date is within bounds
+      # Lower bounds: M of current week
+      # Upper bounds: Su of current week. Su is last day of week
+      if(@date < @lower_date_bounds)
+        @date = @lower_date_bounds
+      #check upper bounds 
+      elsif(@date > @today)
+        @date = @today
+      end
+      @date_str = (@today - 1 == @date) ? 'Yesterday' : ( (@date == @today) ? 'Today' : date.strftime("%a") )
+    else
+      @date = @today
+      @date_str = "Today"
+    end
+
+    @prev_date = @date - 1
+    @next_date = @date + 1
+  end
+
+  # /set_timezone/
+  # Purpose: Set FAT date based on user timezone. This is made possible by the browser-timezone-rails gem
+  def set_timezone
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
-
     @today = Date.new(time_now.year, time_now.month, time_now.day)
+  end
+  # /fat_graph_params/
+  # Purpose: Create a data structure whose values are used to render fat graph
+  def fat_graph_params(date)
+    set_timezone
+    
     @active_days = @today.cwday
 
     days_left = 7 - @today.cwday
