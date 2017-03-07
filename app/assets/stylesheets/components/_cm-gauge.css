@@ -3,15 +3,20 @@
     background-color: white;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    margin-bottom: -6px;
+    display: block;
+    margin: auto;
+    /*margin-bottom: -6px;*/
 }
 
 /* END styles for FAT gauge */
 
 
 /* Begin FAT graph styles */
-  .pointer {
+.pointer {
   cursor: pointer;
+}
+.chart {
+  vertical-align: top;
 }
 .chart rect {
   /*fill: steelblue;*/

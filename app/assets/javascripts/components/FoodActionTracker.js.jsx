@@ -7,7 +7,8 @@ class FoodActionTracker extends React.Component {
       meal_day: this.props.fatDay.meal_day,
       foods: this.props.fatDay.foods,
       didntEat: ((this.props.fatDay.meal_day.carbon_footprint == 0) ? true : false),
-      results: null
+      results: null,
+      nextView: false
     };
   }
   addFood(f) {
@@ -47,39 +48,40 @@ class FoodActionTracker extends React.Component {
 
     return (
       <div className='remodal-bg'>
-        <div className='max-width-4 mx-auto'>
+        <div className='max-width-4 mx-auto py2'>
           <CarbonFootprint ref="cf"
             cf={this.state.meal_day.carbon_footprint}
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
-          <div className='clearfix bg-white p2'>
-            <div className='col-12 p2'>
-              {foodTypes}
-            </div>
-            <div className="center">
-             <a onClick={()=>this.didntEat()} >
-                <button id="btn-didnt-eat" 
-                  className={(this.state.didntEat ? "border " : null) + " fill-x px2 mt1 btn btn-md btn-secondary"}
-                  style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
+          <div className='clearfix bg-white p2 relative' id="food-picker" >
+            <div>
+              <div className='col-12 p2'>
+                {foodTypes}
+              </div>
+              <div className="center">
+               <a onClick={()=>this.didntEat()} >
+                  <button id="btn-didnt-eat" 
+                    className={(this.state.didntEat ? "border " : null) + " fill-x px2 mt1 btn btn-md btn-secondary"}
+                    style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
 
-                  <span className="flex items-center justify-center">
-                    <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                    {"Ate none of these"}
-                  </span>
-                </button>
-              </a>
+                    <span className="flex items-center justify-center">
+                      <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
+                      {"Ate none of these"}
+                    </span>
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="flex flex-column sm-row justify-center mx2 mt1 mb0">
           
+        </div> {/* end food-picker */}
+        <div className="flex flex-column sm-row justify-center m2 mb0">
           <a onClick={()=>this.getResults()} >
-            <button className="col-12 mt2 sm-mt0 btn btn-md btn-primary btn-primary--hover">See results</button>
+            <button className="col-12 sm-mt0 btn btn-md btn-primary btn-primary--hover">See results</button>
           </a>
         </div>
-        <div className={(this.state.results ? "block" : "display-none") + " py4"}>
+        <div className={(this.state.results ? "block" : "display-none")}>
           <Results results={this.props.fatDay.cf} />
         </div>
       </div>
@@ -87,7 +89,8 @@ class FoodActionTracker extends React.Component {
   }
   getResults() {
     this.setState({
-      results: "test"
+      results: "test",
+      nextView: true
     });
   }
   didntEat() {

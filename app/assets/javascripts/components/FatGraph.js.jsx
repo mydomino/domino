@@ -59,13 +59,6 @@ class FatGraph extends React.Component {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-     
-
-        // .attr("width", width + margin.left + margin.right)
-        // .attr("height", height + margin.top + margin.bottom)
-        
-        
-
       var barWidth = width / data.length;
 
       var bar = chart.selectAll("g")
