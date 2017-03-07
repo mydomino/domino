@@ -89,8 +89,7 @@ class FoodActionTracker extends React.Component {
   }
   getResults() {
     this.setState({
-      results: "test",
-      nextView: true
+      results: true
     });
   }
   didntEat() {
@@ -140,7 +139,8 @@ class FoodActionTracker extends React.Component {
         that.setState({
           method: 'PATCH',
           meal_day: data.meal_day,
-          foods: data.foods
+          foods: data.foods,
+          cf: data.cf
         });
       })
       .fail(function(){ console.log('Error!'); });
