@@ -23,7 +23,6 @@ class CfGauge extends React.Component {
 
   }
   render(){
-    console.log(this.props.method);
     return(
       <div>
         <canvas id="gauge"  

@@ -1,8 +1,8 @@
 class FatMealsController < ApplicationController
-  before_action :authenticate_user!
-
-  # before_action :fat_graph_params, only: [:create, :update]
   include FatCompetition
+
+  before_action :authenticate_user!
+  before_action :set_date, only: [:edit, :create, :update]
  
   # GET /food-action-tracker
   # GET /food-action-tracker/:year/:month/:day
@@ -10,11 +10,7 @@ class FatMealsController < ApplicationController
   #  If no date params are provided, the interface will
   #  render for the current date based on users timezone
   def edit
-    
-    set_timezone
-
     set_date
-
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: @date)
     
     fat_graph_params(@date)
@@ -28,85 +24,83 @@ class FatMealsController < ApplicationController
     }
   end
 
-  # POST /food-action-tracker
+  # POST /food-action-tracker XmlHttpRequest
   # Create FAT resources for the date provided in params.
   def create
-    date_param = params[:fat_day][:date]
     foods = params[:fat_day][:foods]
-    meal_day =  MealDay.create(
+    @meal_day =  MealDay.create(
                   user: current_user,
-                  date: date_param
+                  date: @date
                 )
     if foods
       foods.each do |key, value|
-        meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
+        @meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
       end
     end
-    meal_day.calculate_cf
-    FatCompetition::award_points(meal_day)
 
-    fat_graph_params(Date.new(date_param))
-
-    if params[:commit] == "didnt-eat"
-      render json: {
-        status: 200
-      }
-    else
-      render json: {
-        carbon_footprint: meal_day.carbon_footprint,
-        foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
-        meal_day: meal_day,
-        graph_params: @graph_params,
-        status: 200
-      }, status: 200
-    end
+    @meal_day.calculate_cf
+    FatCompetition::award_points(@meal_day)
+    
+    fat_graph_params(@date)
+    render_response
   end
 
-  # PATCH /food-action-tracker/
+  # PATCH /food-action-tracker/ XmlHttpRequest
   # Update FAT resources for date provided in params
   def update
     meal_day_id = params[:fat_day][:meal_day][:id].to_i
     foods = params[:fat_day][:foods]
 
-    meal_day = MealDay.find(meal_day_id)
+    @meal_day = MealDay.find(meal_day_id)
 
-    meal_day.foods.destroy_all
+    @meal_day.foods.destroy_all
 
     if foods 
       foods.each do |key, value|
-        meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
+        @meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
       end
     end
-    meal_day.calculate_cf
-    FatCompetition::award_points(meal_day)
+    @meal_day.calculate_cf
+    FatCompetition::award_points(@meal_day)
 
-    fat_graph_params(meal_day.date)
+    fat_graph_params(@meal_day.date)
 
-    if params[:commit] == "didnt-eat"
+    render_response
+  end
+
+  private
+
+  # /render_response/
+  # Purpose: send response payload back to FAT react UI
+  def render_response
+     if params[:commit] == "didnt-eat"
       render json: {
         status: 200
       }
     else
       render json: {
-        carbon_footprint: meal_day.carbon_footprint,
-        foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
-        meal_day: meal_day,
+        carbon_footprint: @meal_day.carbon_footprint,
+        foods: @meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
+        meal_day: @meal_day,
         graph_params: @graph_params,
         status: 200
       }, status: 200
     end
   end
 
-  private
-
   # /set_date/
   # Purpose: Set the date of the fat interface
   def set_date
+    time_zone_name = Time.zone.name
+    time_now = Time.now.in_time_zone(time_zone_name)
+    @today = Date.new(time_now.year, time_now.month, time_now.day)
 
     # Food logging only permitted back to Monday of current week
     @lower_date_bounds = @today - @today.cwday + 1
-
-    if params[:year].present?
+    
+    if params[:fat_day]
+      @date = Date.strptime(params[:fat_day][:date], "%Y-%m-%d")
+    elsif params[:year].present?
       year = params[:year].to_i
       month = params[:month].to_i
       day = params[:day].to_i
@@ -132,24 +126,15 @@ class FatMealsController < ApplicationController
     @next_date = @date + 1
   end
 
-  # /set_timezone/
-  # Purpose: Set FAT date based on user timezone. This is made possible by the browser-timezone-rails gem
-  def set_timezone
-    time_zone_name = Time.zone.name
-    time_now = Time.now.in_time_zone(time_zone_name)
-    @today = Date.new(time_now.year, time_now.month, time_now.day)
-  end
 
   # /fat_graph_params/
   # Purpose: Create a data structure whose values are used to render fat graph
   def fat_graph_params(date)
-    set_timezone
-    
     @active_days = @today.cwday
 
     days_left = 7 - @today.cwday
     fat_graph_date = @today - @active_days + 1
-    @graph_params = {day_index: date.cwday - 1, values: []}
+    @graph_params = {day_index: @date.cwday - 1, values: []}
 
     @active_days.times do
       meal_day_g = MealDay.find_by(date: fat_graph_date, user: current_user)
