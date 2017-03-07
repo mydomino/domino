@@ -24,7 +24,7 @@ class FatMealsController < ApplicationController
       foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
       date: @date,
       food_types: FoodType.all,
-      cf: @cf
+      graph_params: @graph_params
     }
   end
 
@@ -56,7 +56,7 @@ class FatMealsController < ApplicationController
         carbon_footprint: meal_day.carbon_footprint,
         foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
         meal_day: meal_day,
-        cf: @cf,
+        graph_params: @graph_params,
         status: 200
       }, status: 200
     end
@@ -91,7 +91,7 @@ class FatMealsController < ApplicationController
         carbon_footprint: meal_day.carbon_footprint,
         foods: meal_day.foods.map { |f| [f.food_type_id, f] }.to_h,
         meal_day: meal_day,
-        cf: @cf,
+        graph_params: @graph_params,
         status: 200
       }, status: 200
     end
@@ -139,6 +139,7 @@ class FatMealsController < ApplicationController
     time_now = Time.now.in_time_zone(time_zone_name)
     @today = Date.new(time_now.year, time_now.month, time_now.day)
   end
+
   # /fat_graph_params/
   # Purpose: Create a data structure whose values are used to render fat graph
   def fat_graph_params(date)
@@ -148,18 +149,18 @@ class FatMealsController < ApplicationController
 
     days_left = 7 - @today.cwday
     fat_graph_date = @today - @active_days + 1
-    @cf = {day_index: date.cwday - 1, values: []}
+    @graph_params = {day_index: date.cwday - 1, values: []}
 
     @active_days.times do
       meal_day_g = MealDay.find_by(date: fat_graph_date, user: current_user)
       cf = meal_day_g ? meal_day_g.carbon_footprint : nil
       points = meal_day_g ? (meal_day_g.points || 0) : 0
-      @cf[:values] << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
+      @graph_params[:values] << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
       fat_graph_date += 1.day
     end
 
     days_left.times do 
-      @cf[:values] << {cf: "future", pts: "future"}
+      @graph_params[:values] << {cf: "future", pts: "future"}
     end
   end
 end

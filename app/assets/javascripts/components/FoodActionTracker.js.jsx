@@ -85,7 +85,7 @@ class FoodActionTracker extends React.Component {
           </a>
         </div>
         <div className={(this.state.results ? "block" : "display-none")}>
-          <Results ref="results" results={this.props.fatDay.cf} />
+          <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
     );
@@ -143,9 +143,9 @@ class FoodActionTracker extends React.Component {
           method: 'PATCH',
           meal_day: data.meal_day,
           foods: data.foods,
-          cf: data.cf
+          graph_params: data.graph_params
         }, function(){
-          this.updateGraph(this.state.cf);
+          this.updateGraph(this.state.graph_params);
         });
       })
       .fail(function(){ console.log('Error!'); });

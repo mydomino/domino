@@ -2,7 +2,7 @@ class FatGraph extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: this.props.results.values,
+      data: this.props.graph_params.values,
       height: 250
     };
   }
@@ -33,7 +33,7 @@ class FatGraph extends React.Component {
      
   }
   componentDidMount() {
-    var data = this.props.results.values;
+    var data = this.props.graph_params.values;
 
     // Set margins
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
