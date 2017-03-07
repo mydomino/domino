@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get "food" => "fat_meals#edit", as: 'fat'
   post "food" => "fat_meals#create"
   patch "food" => "fat_meals#update"
-  get "food/results/:year/:month/:day" => "fat_meals#results", as: 'fat_results'
   # END Food Action Tracker routes
 
   resources :organizations do
