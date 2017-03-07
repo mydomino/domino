@@ -5,3 +5,38 @@
     border-top-right-radius: 50%;
     margin-bottom: -6px;
 }
+
+/* END styles for FAT gauge */
+
+
+/* Begin FAT graph styles */
+  .pointer {
+  cursor: pointer;
+}
+.chart rect {
+  /*fill: steelblue;*/
+}
+.chart text {
+  fill: black;
+  font: 16px sans-serif;
+  text-anchor: end;
+}
+
+.axis text {
+  font: 16px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.x.axis path {
+  display: none;
+}
+
+.x2.axis path {
+  stroke: lightgrey;
+}
+/* END FAT graph styles */
