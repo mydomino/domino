@@ -32,6 +32,9 @@ class FoodActionTracker extends React.Component {
       foods: foods
     }, this.getCarbonFootprint);
   }
+  updateGraph(d) {
+    this.refs.results.updateGraph(d);
+  }
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
@@ -82,7 +85,7 @@ class FoodActionTracker extends React.Component {
           </a>
         </div>
         <div className={(this.state.results ? "block" : "display-none")}>
-          <Results results={this.props.fatDay.cf} />
+          <Results ref="results" results={this.props.fatDay.cf} />
         </div>
       </div>
     );
@@ -141,6 +144,8 @@ class FoodActionTracker extends React.Component {
           meal_day: data.meal_day,
           foods: data.foods,
           cf: data.cf
+        }, function(){
+          this.updateGraph(this.state.cf);
         });
       })
       .fail(function(){ console.log('Error!'); });

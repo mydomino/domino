@@ -23,49 +23,49 @@ class FatMealsController < ApplicationController
       month = params[:month].to_i
       day = params[:day].to_i
 
-      date = Date.new(year, month, day)
+      @date = Date.new(year, month, day)
       # check date is within bounds
       # check lower bounds
-      if(date < @lower_date_bounds)
-        date = @lower_date_bounds
+      if(@date < @lower_date_bounds)
+        @date = @lower_date_bounds
       #check upper bounds 
-      elsif(date > @today)
-        date = @today
+      elsif(@date > @today)
+        @date = @today
       end
-      @date_str = (@today - 1 == date) ? 'Yesterday' : ( (date == @today) ? 'Today' : date.strftime("%a") )
+      @date_str = (@today - 1 == @date) ? 'Yesterday' : ( (@date == @today) ? 'Today' : date.strftime("%a") )
     else
       # Set FAT date based on user timezone
       # This is made possible by the browser-timezone-rails gem
       # Remove time data
-      date = @today
+      @date = @today
       @date_str = "Today"
     end
 
-    @prev_date = date - 1.day
-    @next_date = date + 1.day
+    @prev_date = @date - 1
+    @next_date = @date + 1
 
-    meal_day = MealDay.includes(:foods).find_by(user: current_user, date: date)
+    meal_day = MealDay.includes(:foods).find_by(user: current_user, date: @date)
     # Days after today up to Sunday
     days_left = 7 - @today.cwday
     fat_graph_date = @today - @active_days + 1
-    @cf = []
+    @cf = {day_index: @date.cwday - 1, values: []}
 
     @active_days.times do
       meal_day_g = MealDay.find_by(date: fat_graph_date, user: current_user)
       cf = meal_day_g ? meal_day_g.carbon_footprint : nil
       points = meal_day_g ? (meal_day_g.points || 0) : 0
-      @cf << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
+      @cf[:values] << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
       fat_graph_date += 1.day
     end
 
     days_left.times do 
-      @cf << {cf: "future", pts: "future"}
+      @cf[:values] << {cf: "future", pts: "future"}
     end
 
     @fat_day = {
       meal_day: meal_day || MealDay.new,
       foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
-      date: date,
+      date: @date,
       food_types: FoodType.all,
       cf: @cf
     }
@@ -88,7 +88,7 @@ class FatMealsController < ApplicationController
     meal_day.calculate_cf
     FatCompetition::award_points(meal_day)
 
-    fat_graph_params
+    fat_graph_params(Date.new(date_param))
 
     if params[:commit] == "didnt-eat"
       render json: {
@@ -123,7 +123,7 @@ class FatMealsController < ApplicationController
     meal_day.calculate_cf
     FatCompetition::award_points(meal_day)
 
-    fat_graph_params
+    fat_graph_params(meal_day.date)
 
     if params[:commit] == "didnt-eat"
       render json: {
@@ -142,7 +142,7 @@ class FatMealsController < ApplicationController
 
   private 
 
-  def fat_graph_params
+  def fat_graph_params(date)
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
 
@@ -151,18 +151,18 @@ class FatMealsController < ApplicationController
 
     days_left = 7 - @today.cwday
     fat_graph_date = @today - @active_days + 1
-    @cf = []
+    @cf = {day_index: date.cwday - 1, values: []}
 
     @active_days.times do
       meal_day_g = MealDay.find_by(date: fat_graph_date, user: current_user)
       cf = meal_day_g ? meal_day_g.carbon_footprint : nil
       points = meal_day_g ? (meal_day_g.points || 0) : 0
-      @cf << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
+      @cf[:values] << {cf: cf, pts: points || 0, path: fat_graph_date.to_s.split("-").join("/")}
       fat_graph_date += 1.day
     end
 
     days_left.times do 
-      @cf << {cf: "future", pts: "future"}
+      @cf[:values] << {cf: "future", pts: "future"}
     end
   end
 end

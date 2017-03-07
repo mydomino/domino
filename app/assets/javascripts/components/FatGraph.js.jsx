@@ -1,4 +1,11 @@
 class FatGraph extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      data: this.props.results.values,
+      height: 250
+    };
+  }
   render() {
     return (
       <div>
@@ -6,8 +13,45 @@ class FatGraph extends React.Component {
       </div>
     );
   }
+  updateGraph(d) {
+    var that = this;
+    var max = d3.max(that.state.data, function(d) { return +d.cf;} );
+    max = (max <= 12 ? 12 : max);
+
+    var y = d3.scaleLinear()
+      .domain([0,max])
+      .range([that.state.height, 0]);
+    
+    var cf = d.values[d.day_index].cf;
+    console.log(cf);
+        // .attr("y", function(d){
+        //   var v = (d.cf == "future" ? 15 : d.cf);
+        //   return y(v);
+        // })
+        // .attr("height", function(d){
+        //   //return height-y(d.cf);
+        //   var v = (d.cf == "future" ? 15 : d.cf);
+
+        //   return height-y(v);
+        // })
+    d3.select('#rect-'+ d.day_index)
+      .attr("y", function(d){
+        // var v = (d.cf == "future" ? 15 : d.cf);
+        return y(cf);
+      })
+      .attr("height", function(d){
+        //return height-y(d.cf);
+        // console.log(d);
+
+        // var v = 100;
+
+        return that.state.height-y(cf);
+        // return v;
+      });
+     
+  }
   componentDidMount() {
-    var data = this.props.results;
+    var data = this.props.results.values;
 
     // Set margins
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
@@ -45,15 +89,16 @@ class FatGraph extends React.Component {
     max = (max <= 12 ? 12 : max);
 
     var y = d3.scaleLinear()
-            .domain([0,max])
-            //.domain([0, d3.max(data, function(d) { 
-            //  return +d.cf;} )])
-            .range([height, 0]);
+      .domain([0,max])
+      //.domain([0, d3.max(data, function(d) { 
+      //  return +d.cf;} )])
+      .range([height, 0]);
 
-       d3.select(".chart").append("rect")
-        .attr("width", "100%")
-        .attr("height", "100%")
-        .attr("fill", "white");
+    // Graph bg color
+    d3.select(".chart").append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("fill", "white");
 
       var chart = d3.select(".chart")
         .append("g")
@@ -70,6 +115,9 @@ class FatGraph extends React.Component {
 
       // Primary bar elements
       bar.append("rect")
+        .attr("id", function(d,i){
+          return "rect-" + i;
+        })
         .classed("pointer", "true")
         .classed("null", function(d) {
           if(d.cf == null){
