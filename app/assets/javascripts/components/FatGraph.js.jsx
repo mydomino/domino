@@ -50,11 +50,21 @@ class FatGraph extends React.Component {
             //  return +d.cf;} )])
             .range([height, 0]);
 
+       d3.select(".chart").append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", "white");
+
       var chart = d3.select(".chart")
-        // .attr("width", width + margin.left + margin.right)
-        // .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+     
+
+        // .attr("width", width + margin.left + margin.right)
+        // .attr("height", height + margin.top + margin.bottom)
+        
+        
 
       var barWidth = width / data.length;
 
@@ -74,18 +84,21 @@ class FatGraph extends React.Component {
           }
           return false;
         })
-
-        //   if(d.cf == "future") {
-        //     return "future";
-        //   }
-        // })
+        .classed("future", function(d) {
+            if(d.cf == "future") {
+              return true;
+            }
+            return false;
+        })
         .attr("y", function(d){
-          // var v = (d.cf == null ? 15 : d.cf);
-          return y(d.cf);
+          var v = (d.cf == "future" ? 15 : d.cf);
+          return y(v);
         })
         .attr("height", function(d){
           //return height-y(d.cf);
-          return height-y(d.cf);
+          var v = (d.cf == "future" ? 15 : d.cf);
+
+          return height-y(v);
         })
         .attr("width", barWidth - 15)
         .attr("fill", function(d){
@@ -130,90 +143,90 @@ class FatGraph extends React.Component {
 
         // auxillary bars to show amount below or above avg cf
         
-        bar.append("rect")
-          .attr("class", "pointer")
-          .attr("id", function(d, i){
-            return "aux-" + i;
-          })
-          .attr("y", function(d){
-            if(d.cf == null) return null;
-            if(d.cf < 6.2) {
-              return y(6.2);
-            }
-            else {
-              var diff = y(6.2) - y(d.cf);
-              return y(6.2) - diff;
-            }
-          })
-          .attr("height", function(d){
-            if(d.cf == null) return null;
-            if(d.cf < 6.2) {
-              var height = y(d.cf) - y(6.2);
-            }
-            else {
-              var height = y(6.2) - y(d.cf);
-            }
-            return height;
-          })
-          .attr("width", barWidth - 15)
-          .attr("fill", function(d){
-            if(d.cf == null) return "none";
-            return (d.cf < 6.2 ? "green" : "red");
-          })
-          .style("opacity", 0)
-          .on("mouseenter", function(d,i){
-            d3.select("#lbl-x2-" + i)
-              .text(function(){
-                return (d.cf == null ? "N/A" : d.pts + " pts")
-              })
-              .attr("x", function(d){
-                var textBBox = this.getBBox();
-                return textBBox.width/2 - 7;
-              });
-            d3.select(this)
-              .style("opacity", 1);
+        // bar.append("rect")
+        //   .attr("class", "pointer")
+        //   .attr("id", function(d, i){
+        //     return "aux-" + i;
+        //   })
+        //   .attr("y", function(d){
+        //     if(d.cf == null) return null;
+        //     if(d.cf < 6.2) {
+        //       return y(6.2);
+        //     }
+        //     else {
+        //       var diff = y(6.2) - y(d.cf);
+        //       return y(6.2) - diff;
+        //     }
+        //   })
+        //   .attr("height", function(d){
+        //     if(d.cf == null) return null;
+        //     if(d.cf < 6.2) {
+        //       var height = y(d.cf) - y(6.2);
+        //     }
+        //     else {
+        //       var height = y(6.2) - y(d.cf);
+        //     }
+        //     return height;
+        //   })
+        //   .attr("width", barWidth - 15)
+        //   .attr("fill", function(d){
+        //     if(d.cf == null) return "none";
+        //     return (d.cf < 6.2 ? "green" : "red");
+        //   })
+        //   .style("opacity", 0)
+        //   .on("mouseenter", function(d,i){
+        //     d3.select("#lbl-x2-" + i)
+        //       .text(function(){
+        //         return (d.cf == null ? "N/A" : d.pts + " pts")
+        //       })
+        //       .attr("x", function(d){
+        //         var textBBox = this.getBBox();
+        //         return textBBox.width/2 - 7;
+        //       });
+        //     d3.select(this)
+        //       .style("opacity", 1);
             
-          })
-          .on("mouseout", function(d,i){
-            d3.select(this)
-              .style("opacity", 0);
-           d3.select("#lbl-x2-" + i)
-            .text(function(){
-              return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
-            })
-            .attr("x", function(d){
-              var textBBox = this.getBBox();
-              return textBBox.width/2 - 7;
-            });
-          });
+        //   })
+        //   .on("mouseout", function(d,i){
+        //     d3.select(this)
+        //       .style("opacity", 0);
+        //    d3.select("#lbl-x2-" + i)
+        //     .text(function(){
+        //       return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
+        //     })
+        //     .attr("x", function(d){
+        //       var textBBox = this.getBBox();
+        //       return textBBox.width/2 - 7;
+        //     });
+        //   });
         
 
         // incomplete sections
-        d3.selectAll(".null")
-        .attr("y", y(max))
-        .attr("height", height-y(max))
-        .attr("fill", "white")
-        .style("stroke-dasharray", ("40, 10"))
-        .style("stroke", "#4ECDC4")
-        .style("stroke-width", 4)
+        // d3.selectAll(".null")
+        // .attr("y", y(max))
+        // .attr("height", height-y(max))
+        // .attr("fill", "white")
+        // .style("stroke-dasharray", ("40, 10"))
+        // .style("stroke", "#4ECDC4")
+        // .style("stroke-width", 4)
 
 
-      // top axis
-      chart.append("g")
-        .attr("class", "x2 axis")
-        .attr("transform", "translate(0," + 0 + ")")
-        .call(x2Axis)
-        .selectAll("text")
-        .text(function(d,i){
-          return x2labels[i];
-        })
-        .attr("x", function(d,i){
-          var textBBox = this.getBBox();
-          return textBBox.width/2 - 7;
-        })
-        .attr("id", function(d, i){
-          return "lbl-x2-" + i;
-        });
+      // // top axis
+      // chart.append("g")
+      //   .attr("class", "x2 axis")
+      //   .attr("transform", "translate(0," + 0 + ")")
+      //   .call(x2Axis)
+      //   .selectAll("text")
+      //   .text(function(d,i){
+      //     return x2labels[i];
+      //   })
+      //   .attr("x", function(d,i){
+      //     var textBBox = this.getBBox();
+      //     return textBBox.width/2 - 7;
+      //   })
+      //   .attr("id", function(d, i){
+      //     return "lbl-x2-" + i;
+      //   });
 
       chart.append("g")
         .attr("class", "x axis")
