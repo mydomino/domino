@@ -14,29 +14,17 @@ class FatGraph extends React.Component {
     );
   }
   updateGraph(d) {
-    var that = this;
-    var max = d3.max(that.state.data, function(d) { return +d.cf;} );
-    max = (max <= 12 ? 12 : max);
-
-    var y = d3.scaleLinear()
-      .domain([0,max])
-      .range([that.state.height, 0]);
-    
-    var cf = d.values[d.day_index].cf;
-    d3.select('#rect-'+ d.day_index)
-      .attr("y", function(d){
-        return y(cf);
-      })
-      .attr("height", function(d){
-        return that.state.height-y(cf);
-      })
-      .attr("fill", "steelblue")
-      .style("stroke-dasharray", "none")
-      .style("stroke", "none")
-     
+    console.log(d)
+    let data = this.state.data
+    data[d.day_index] = d.values[d.day_index];
+    this.setState({
+      data: data
+    }, function(){
+      this.drawGraph();
+    }); 
   }
-  drawGraph(data){
-    var data = data;
+  drawGraph(){
+    var data = this.state.data;
     // Set margins, width, and height
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 960 - margin.left - margin.right,
@@ -272,6 +260,6 @@ class FatGraph extends React.Component {
         .style("stroke-dasharray", ("10, 5"));
   } // end drawGraph();
   componentDidMount() {
-    this.drawGraph(this.props.graph_params.values);
+    this.drawGraph();
   } // end componentWillMount()
 }
