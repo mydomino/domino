@@ -29,12 +29,14 @@ class FatGraph extends React.Component {
       })
       .attr("height", function(d){
         return that.state.height-y(cf);
-      });
+      })
+      .attr("fill", "steelblue")
+      .style("stroke-dasharray", "none")
+      .style("stroke", "none")
      
   }
-  componentDidMount() {
-    var data = this.props.graph_params.values;
-
+  drawGraph(data){
+    var data = data;
     // Set margins, width, and height
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 960 - margin.left - margin.right,
@@ -63,7 +65,6 @@ class FatGraph extends React.Component {
     var x2 = d3.scaleBand()
               .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
-
 
     var x2Axis = d3
       .axisTop(x2)
@@ -161,7 +162,7 @@ class FatGraph extends React.Component {
             });
       })
       .on('click', function(d){
-        window.location = "food/" + d.path;
+        window.location = "/food/" + d.path;
       });
 
 
@@ -225,32 +226,35 @@ class FatGraph extends React.Component {
         //   });
         
 
-        // incomplete sections
-        // d3.selectAll(".null")
-        // .attr("y", y(max))
-        // .attr("height", height-y(max))
-        // .attr("fill", "white")
-        // .style("stroke-dasharray", ("40, 10"))
-        // .style("stroke", "#4ECDC4")
-        // .style("stroke-width", 4)
+        //incomplete sections
+        d3.selectAll(".null")
+          .attr("y", y(max))
+          .attr("height", height-y(max))
+          .attr("fill", "white")
+          .style("stroke-dasharray", ("40, 10"))
+          .style("stroke", "#4ECDC4")
+          .style("stroke-width", 4)
+
+        d3.selectAll(".future")
+          .attr("height", 0);
 
 
-      // // top axis
-      // chart.append("g")
-      //   .attr("class", "x2 axis")
-      //   .attr("transform", "translate(0," + 0 + ")")
-      //   .call(x2Axis)
-      //   .selectAll("text")
-      //   .text(function(d,i){
-      //     return x2labels[i];
-      //   })
-      //   .attr("x", function(d,i){
-      //     var textBBox = this.getBBox();
-      //     return textBBox.width/2 - 7;
-      //   })
-      //   .attr("id", function(d, i){
-      //     return "lbl-x2-" + i;
-      //   });
+      // top axis
+      chart.append("g")
+        .attr("class", "x2 axis")
+        .attr("transform", "translate(0," + 0 + ")")
+        .call(x2Axis)
+        .selectAll("text")
+        .text(function(d,i){
+          return x2labels[i];
+        })
+        .attr("x", function(d,i){
+          var textBBox = this.getBBox();
+          return textBBox.width/2 - 7;
+        })
+        .attr("id", function(d, i){
+          return "lbl-x2-" + i;
+        });
 
       chart.append("g")
         .attr("class", "x axis")
@@ -266,5 +270,8 @@ class FatGraph extends React.Component {
         .attr('stroke', "#00ccff")
         .style("opacity", 0.5)
         .style("stroke-dasharray", ("10, 5"));
+  } // end drawGraph();
+  componentDidMount() {
+    this.drawGraph(this.props.graph_params.values);
   } // end componentWillMount()
 }

@@ -7,8 +7,8 @@ class FoodActionTracker extends React.Component {
       meal_day: this.props.fatDay.meal_day,
       foods: this.props.fatDay.foods,
       didntEat: ((this.props.fatDay.meal_day.carbon_footprint == 0) ? true : false),
-      results: null,
-      nextView: false
+      results: (this.props.fatDay.meal_day.id == null) ? false : true,
+      nextView: (this.props.fatDay.meal_day.id == null) ? false : true
     };
   }
   addFood(f) {
@@ -24,7 +24,6 @@ class FoodActionTracker extends React.Component {
     },this.getCarbonFootprint);
   }
   removeFood(f) {
-
     let foods = Object.assign({}, this.state.foods);
     delete foods[f.food_type_id];
 
@@ -91,10 +90,10 @@ class FoodActionTracker extends React.Component {
         </div> {/* end food-picker */}
         <div className="flex flex-column sm-row justify-center m2 mb0">
           <a onClick={()=>this.getResults()} >
-            <button className="btn btn-md btn-primary btn-primary--hover">See results</button>
+            <button disabled={!this.state.results} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-        <div className={(this.state.results ? "block" : "display-none")}>
+        <div className={((this.state.results && this.state.nextView) ? "block" : "display-none")}>
           <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
@@ -111,7 +110,7 @@ class FoodActionTracker extends React.Component {
   }
   getResults() {
     this.setState({
-      results: true
+      nextView: true
     });
     $('#food-picker').animate({opacity: 0}, function(){
       $('#food-picker').css("visibility", "hidden");
@@ -167,7 +166,8 @@ class FoodActionTracker extends React.Component {
           method: 'PATCH',
           meal_day: data.meal_day,
           foods: data.foods,
-          graph_params: data.graph_params
+          graph_params: data.graph_params,
+          results: true
         }, function(){
           this.updateGraph(this.state.graph_params);
         });
