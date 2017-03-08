@@ -20,6 +20,10 @@ class ProfilesController < ApplicationController
     # @profile used to display first and last name
     @profile = @user.profile
     @leaderboard_users = cfp_ranking
+
+    #date to display on FAT module
+    beginning_of_week = Date.today.beginning_of_week
+    @week_of = "Week of " + beginning_of_week.strftime("%b #{beginning_of_week.day.ordinalize}")
   end
 
   def verify_current_password
