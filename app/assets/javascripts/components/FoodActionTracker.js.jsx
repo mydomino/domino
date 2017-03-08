@@ -58,7 +58,7 @@ class FoodActionTracker extends React.Component {
             method={this.state.method} />
 
           <div className='clearfix bg-white p2 relative'>
-            <div id="food-picker">
+            <div id="food-picker" style={{zIndex: 1}}>
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
@@ -76,7 +76,8 @@ class FoodActionTracker extends React.Component {
                 </a>
               </div>
             </div>
-            <div id="results-summary" className="absolute center top-0 left-0 right-0 p2" style={{opacity: 0}}>
+
+            <div id="results-summary" className="hidden absolute center top-0 left-0 right-0 p2" style={{opacity: 0}}>
               <h1>What it means</h1>
               <hr/>
               <p className="left-align">
@@ -102,6 +103,8 @@ class FoodActionTracker extends React.Component {
   componentDidMount() {
     $('#btn-food-picker').on("click", function() {
       $('#results-summary').animate({opacity: 0}, function(){
+        $('#results-summary').css("visibility", "hidden");
+        $('#food-picker').css("visibility", "visible");
         $('#food-picker').animate({opacity: 1});
       });
     });
@@ -111,6 +114,8 @@ class FoodActionTracker extends React.Component {
       results: true
     });
     $('#food-picker').animate({opacity: 0}, function(){
+      $('#food-picker').css("visibility", "hidden");
+      $('#results-summary').css("visibility", "visible")
       $('#results-summary').animate({opacity: 1});
     });
   }
