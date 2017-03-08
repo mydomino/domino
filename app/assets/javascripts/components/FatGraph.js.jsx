@@ -24,6 +24,7 @@ class FatGraph extends React.Component {
     }); 
   }
   drawGraph(){
+    d3.selectAll("svg > *").remove();
     var data = this.state.data;
     // Set margins, width, and height
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
@@ -87,6 +88,7 @@ class FatGraph extends React.Component {
 
     // Primary bar elements
     bar.append("rect")
+      .classed("bar", true)
       .attr("id", function(d,i){
         return "rect-" + i;
       })
