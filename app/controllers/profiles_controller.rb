@@ -24,6 +24,30 @@ class ProfilesController < ApplicationController
     #date to display on FAT module
     beginning_of_week = Date.today.beginning_of_week
     @week_of = "Week of " + beginning_of_week.strftime("%b #{beginning_of_week.day.ordinalize}")
+
+    #fat timeline data
+
+    time_zone_name = Time.zone.name
+    time_now = Time.now.in_time_zone(time_zone_name)
+    today = Date.new(time_now.year, time_now.month, time_now.day)
+
+    active_days = today.cwday
+
+    days_left = 7 - today.cwday
+    fat_graph_date = today - active_days + 1
+    @timeline_params = []
+
+    active_days.times do
+      meal_day_t = MealDay.find_by(date: fat_graph_date, user: current_user)
+      @timeline_params << { day: fat_graph_date.strftime("%A").downcase, status: (meal_day_t ? "complete" : "incomplete") }
+      fat_graph_date += 1.day
+    end
+
+    days_left.times do 
+      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future"}
+      fat_graph_date += 1.day
+    end
+    # byebug
   end
 
   def verify_current_password

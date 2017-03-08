@@ -17,16 +17,17 @@
     display: inline-block;
     color: white;
     position: relative;
+    border: 2px solid lightgrey;
   }
 
-  li::before{
+  li.chained::before{
     content: '';
     position: absolute;
     top: .9em;
     left: -4em;
     width: 4em;
     height: .2em;
-    background: dodgerblue;
+    background: #2ECC71;
     z-index: 0;
   }
 
@@ -37,9 +38,45 @@
     right: 0;
     text-align: center;
     color: black;
-    content: "M"
   }
 
+  li.monday::after { content: 'M'; }
+  li.tuesday::after { content: 'Tu';} 
+  li.wednesday::after { content: 'W';}
+  li.thursday::after { content: 'Th';} 
+  li.friday::after { content: 'F';}
+  li.saturday::after { content: 'Sa';}
+  li.sunday::after { content: 'Su';}
+
+  li.complete {
+    background: #2ECC71;
+    border-color: #2ECC71;
+  }
+
+  li.incomplete {
+    background: white;
+    border: 2px solid #00ccff;
+  }
+
+  li.complete .fa-check {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+  }
+
+  li.incomplete .fa-question {
+    color: #00ccff;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+  }
+
+  li.future {
+    border-color: #666666;
+    background: white;
+  }
 
 
   li:first-child::before {
@@ -77,35 +114,6 @@
   .h2:before {
       margin-left: -50%;
       text-align: right;
-  }
-  .color {
-      background-color: #ccc;
-  }
-  .chart {
-    vertical-align: top;
-  }
-  .chart text {
-    fill: black;
-    font: 16px sans-serif;
-    text-anchor: end;
-  }
-
-  .axis text {
-    font: 16px sans-serif;
-  }
-
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-  .x.axis path {
-    display: none;
-  }
-
-  .x2.axis path {
-    stroke: lightgrey;
   }
 
 .mx-auto.relative
@@ -164,15 +172,18 @@
                     .bold Update today
                 .h2.mt2.mb1.gray-80
                   = @week_of
-                %svg#fat-timeline{viewBox:"0 0 960 150", preserveAspectRatio:"xMidYMid meet"}
-                %ul
-                  %li{style: 'z-index: 7'} 
-                  %li{style: 'z-index: 6'}
-                  %li.active{style: 'z-index: 5'}
-                  %li{style: 'z-index: 4'}
-                  %li{style: 'z-index: 3'}
-                  %li{style: 'z-index: 2'}
-                  %li{style: 'z-index: 1'}
+                %ul.list-reset
+                  -z_index = 7
+                  -prev_complete = false
+                  -@timeline_params.each do |p|
+                    %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')}", style: "z-index: #{z_index}"}
+                      -if p[:status]=="complete"
+                        %i.fa.fa-check
+                        -prev_complete = true
+                      -elsif p[:status]=="incomplete"
+                        %i.fa.fa-question
+                        -prev_complete = false
+                    -z_index -= 1
 
         .mt2.mb4.max-width-4.mx-auto
           .clearfix.mx2.lg-mx1
@@ -219,86 +230,3 @@
                   %p.line-height-4.col-12.sm-col-10.gray-80.mt1.mb4 See upcoming brown-bags and webinars for your company.
                   %h3.mb1.line-height-1.gray-60.medium
                     No events scheduled yet
-
-:javascript
-
-  var margin = {top: 20, right: 30, bottom: 30, left: 40},
-      width = 960 - margin.left - margin.right,
-      height = 150 - margin.top - margin.bottom;
-
-  var data = [
-    { day: "M",
-      complete: true,
-      future: false
-    },
-    { day: "Tu",
-      complete: false,
-      future: false
-    },
-    { day: "W",
-      complete: false,
-      future: false
-    },
-    { day: "Th",
-      complete: false,
-      future: false
-    },
-    { day: "F",
-      complete: false,
-      future: false
-    },
-    { day: "Sa",
-      complete: false,
-      future: false
-    },
-    { day: "Su",
-      complete: false,
-      future: false
-    },
-  ];
-
-  var x = d3.scaleBand()
-    .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
-    .rangeRound([0, width]);
-
-  var xAxis = d3.axisBottom(x).tickSize(0);
-
-  var svgContainer = d3.select('#fat-timeline')
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");;
- 
-  var circleWidth = (width + 30) / data.length;
-
-  var circle = svgContainer.selectAll("g")
-    .data(data)
-    .enter().append("g")
-    .attr("transform", function(d,i){
-      return "translate(" + i * circleWidth + ",0)";
-    });
-
-  circle.append("circle")
-    .attr("cx", 30)
-    .attr("cy", 30)
-    .attr("r", 20)
-    .attr("fill", "white")
-    .attr("stroke-width", 2)
-    .attr("stroke", "#00ccff")
-    .classed("complete", function(d){
-      if(d.complete)
-        return true;
-      return false;
-    });
-
-  circle.append("text")
-    .attr("dy", 70)
-    .attr("dx", 20)
-    .text(function(d){
-      return d.day;
-    });
-
-
-  d3.select('.complete')
-    .attr("fill", "green")
-    .append("svg:image")
-    .attr("xlink:href","#{image_path 'icons/i-success.svg'}");
-
