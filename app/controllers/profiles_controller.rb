@@ -39,12 +39,15 @@ class ProfilesController < ApplicationController
 
     active_days.times do
       meal_day_t = MealDay.find_by(date: fat_graph_date, user: current_user)
-      @timeline_params << { day: fat_graph_date.strftime("%A").downcase, status: (meal_day_t ? "complete" : "incomplete") }
+      day = fat_graph_date.strftime("%A").downcase
+      status = meal_day_t ? "complete" : "incomplete"
+      link = "/food/" + fat_graph_date.strftime("%Y/%m/%d")
+      @timeline_params << { day: day , status: status, link: link }
       fat_graph_date += 1.day
     end
 
     days_left.times do 
-      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future"}
+      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
       fat_graph_date += 1.day
     end
     # byebug

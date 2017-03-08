@@ -74,25 +74,15 @@
   }
 
   li.future {
-    border-color: #666666;
+    border-color: #eaeaea;
     background: white;
   }
-
+  li.future::after {
+    color: #eaeaea
+  }
 
   li:first-child::before {
     display: none;
-  }
-
-  .active {
-    background: dodgerblue;
-  }
-
-  .active ~ li {
-    background: lightblue;
-  }
-
-  .active ~ li::before {
-    background: lightblue;
   }
 
   .h2 {
@@ -176,7 +166,7 @@
                   -z_index = 7
                   -prev_complete = false
                   -@timeline_params.each do |p|
-                    %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')}", style: "z-index: #{z_index}"}
+                    %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')} #{'pointer' if p[:status] != 'future'}", style: "z-index: #{z_index}", data: {link: p[:link]}}
                       -if p[:status]=="complete"
                         %i.fa.fa-check
                         -prev_complete = true
@@ -230,3 +220,8 @@
                   %p.line-height-4.col-12.sm-col-10.gray-80.mt1.mb4 See upcoming brown-bags and webinars for your company.
                   %h3.mb1.line-height-1.gray-60.medium
                     No events scheduled yet
+
+:javascript
+  $('li.complete, li.incomplete').on('click', function(){
+    window.location = $(this).data('link');
+  });
