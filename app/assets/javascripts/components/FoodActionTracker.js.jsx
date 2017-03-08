@@ -57,7 +57,7 @@ class FoodActionTracker extends React.Component {
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
-          <div className='clearfix bg-white p2 relative' id="food-picker" >
+          <div className='clearfix bg-white p2 relative'>
             <div id="food-picker">
               <div className='col-12 p2'>
                 {foodTypes}
@@ -76,12 +76,21 @@ class FoodActionTracker extends React.Component {
                 </a>
               </div>
             </div>
+            <div id="results-summary" className="absolute center top-0 left-0 right-0 p2" style={{opacity: 0}}>
+              <h1>What it means</h1>
+              <hr/>
+              <p className="left-align">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet, 
+                consectetur adipiscing elit. Praesent consequat, orci eu tempus sodales, risus massa aliquet velit, a faucibus felis 
+                nisl vel velit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
+              </p>
+              <button id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
+            </div>
           </div>
-          
         </div> {/* end food-picker */}
         <div className="flex flex-column sm-row justify-center m2 mb0">
           <a onClick={()=>this.getResults()} >
-            <button className="col-12 sm-mt0 btn btn-md btn-primary btn-primary--hover">See results</button>
+            <button className="btn btn-md btn-primary btn-primary--hover">See results</button>
           </a>
         </div>
         <div className={(this.state.results ? "block" : "display-none")}>
@@ -90,9 +99,19 @@ class FoodActionTracker extends React.Component {
       </div>
     );
   }
+  componentDidMount() {
+    $('#btn-food-picker').on("click", function() {
+      $('#results-summary').animate({opacity: 0}, function(){
+        $('#food-picker').animate({opacity: 1});
+      });
+    });
+  }
   getResults() {
     this.setState({
       results: true
+    });
+    $('#food-picker').animate({opacity: 0}, function(){
+      $('#results-summary').animate({opacity: 1});
     });
   }
   didntEat() {

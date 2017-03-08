@@ -35,14 +35,17 @@ class FatGraph extends React.Component {
   componentDidMount() {
     var data = this.props.graph_params.values;
 
-    // Set margins
+    // Set margins, width, and height
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 960 - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom;
 
+    // x axis showing days of week
     var x = d3.scaleBand()
       .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
       .rangeRound([0, width]);
+
+    var xAxis = d3.axisBottom(x).tickSize(0);
 
     var x2labels = data.map(function(el){
       if(el.cf == null){
@@ -56,11 +59,11 @@ class FatGraph extends React.Component {
       }
     });
 
+    // Top x axis showing c02 footprints and point values
     var x2 = d3.scaleBand()
               .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
 
-    var xAxis = d3.axisBottom(x).tickSize(0);
 
     var x2Axis = d3
       .axisTop(x2)
@@ -72,8 +75,6 @@ class FatGraph extends React.Component {
 
     var y = d3.scaleLinear()
       .domain([0,max])
-      //.domain([0, d3.max(data, function(d) { 
-      //  return +d.cf;} )])
       .range([height, 0]);
 
     // Graph bg color
@@ -95,73 +96,73 @@ class FatGraph extends React.Component {
           return "translate(" + i * barWidth + ",0)"; 
         });
 
-      // Primary bar elements
-      bar.append("rect")
-        .attr("id", function(d,i){
-          return "rect-" + i;
-        })
-        .classed("pointer", "true")
-        .classed("null", function(d) {
-          if(d.cf == null){
+    // Primary bar elements
+    bar.append("rect")
+      .attr("id", function(d,i){
+        return "rect-" + i;
+      })
+      .classed("pointer", "true")
+      .classed("null", function(d) {
+        if(d.cf == null){
+          return true;
+        }
+        return false;
+      })
+      .classed("future", function(d) {
+          if(d.cf == "future") {
             return true;
           }
           return false;
-        })
-        .classed("future", function(d) {
-            if(d.cf == "future") {
-              return true;
-            }
-            return false;
-        })
-        .attr("y", function(d){
-          var v = (d.cf == "future" ? 15 : d.cf);
-          return y(v);
-        })
-        .attr("height", function(d){
-          //return height-y(d.cf);
-          var v = (d.cf == "future" ? 15 : d.cf);
+      })
+      .attr("y", function(d){
+        var v = (d.cf == "future" ? 15 : d.cf);
+        return y(v);
+      })
+      .attr("height", function(d){
+        //return height-y(d.cf);
+        var v = (d.cf == "future" ? 15 : d.cf);
 
-          return height-y(v);
-        })
-        .attr("width", barWidth - 15)
-        .attr("fill", function(d){
-          // return "none";
-          return "steelblue";
-        })
-        .on("mouseenter", function(d, i) {
-            d3.select("#lbl-x2-" + i)
-              .text(function(){
-                return (d.cf == null ? "N/A" : d.pts + " pts")
-              })
-              .attr("x", function(d){
-                var textBBox = this.getBBox();
-                return textBBox.width/2 - 7;
-              });
-            d3.select("#aux-" + i)
-              .style("opacity", 1);
-        })
-        .on("mouseout", function(d, i) {
+        return height-y(v);
+      })
+      .attr("width", barWidth - 15)
+      .attr("fill", function(d){
+        // return "none";
+        return "steelblue";
+      })
+      .on("mouseenter", function(d, i) {
           d3.select("#lbl-x2-" + i)
             .text(function(){
-              return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
+              return (d.cf == null ? "N/A" : d.pts + " pts")
             })
             .attr("x", function(d){
               var textBBox = this.getBBox();
               return textBBox.width/2 - 7;
             });
+          d3.select("#aux-" + i)
+            .style("opacity", 1);
+      })
+      .on("mouseout", function(d, i) {
+        d3.select("#lbl-x2-" + i)
+          .text(function(){
+            return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
+          })
+          .attr("x", function(d){
+            var textBBox = this.getBBox();
+            return textBBox.width/2 - 7;
+          });
 
-            d3.select("#aux-" + i)
-              .style("opacity", 0);
+          d3.select("#aux-" + i)
+            .style("opacity", 0);
 
-            d3.select(this)
-              .attr("fill", function(d){
-                if(d.cf == null) return "white";
-                return "steelblue";
-              });
-        })
-        .on('click', function(d){
-          window.location = "food/" + d.path;
-        });
+          d3.select(this)
+            .attr("fill", function(d){
+              if(d.cf == null) return "white";
+              return "steelblue";
+            });
+      })
+      .on('click', function(d){
+        window.location = "food/" + d.path;
+      });
 
 
         // auxillary bars to show amount below or above avg cf
