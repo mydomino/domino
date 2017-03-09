@@ -1,8 +1,8 @@
 /* BEGIN styles for FAT gauge */
 #gauge {
     background-color: white;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
+    border-top-left-radius: 300px;
+    border-top-right-radius: 300px;
     display: block;
     margin: auto;
     /*margin-bottom: -6px;*/

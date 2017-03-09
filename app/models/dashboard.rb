@@ -14,8 +14,7 @@
 #
 # Indexes
 #
-#  index_dashboards_on_concierge_id  (concierge_id)
-#  index_dashboards_on_user_id       (user_id)
+#  index_dashboards_on_user_id  (user_id)
 #
 # Foreign Keys
 #
