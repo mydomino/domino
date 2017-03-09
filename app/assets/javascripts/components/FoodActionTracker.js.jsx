@@ -39,18 +39,18 @@ class FoodActionTracker extends React.Component {
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
                       return <FoodType  index={index}
                                         ref={"foodtype" + (index+1)}
-                                        removeFood={(f)=>that.removeFood(f)} 
-                                        addFood={(f)=>that.addFood(f)} 
-                                        sizeInfo={that.props.foodSizeInfo[foodType.id]} 
-                                        food={that.state.foods[foodType.id]} index={index} 
-                                        key={foodType.name} 
-                                        foodType={foodType} 
+                                        removeFood={(f)=>that.removeFood(f)}
+                                        addFood={(f)=>that.addFood(f)}
+                                        sizeInfo={that.props.foodSizeInfo[foodType.id]}
+                                        food={that.state.foods[foodType.id]} index={index}
+                                        key={foodType.name}
+                                        foodType={foodType}
                                         updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
 
     return (
-      <div className='remodal-bg'>
-        <div className='max-width-4 mx-auto py2'>
+      <div className='remodal-bg '>
+        <div className='max-width-3 mx-auto py2'>
           <CarbonFootprint ref="cf"
             cf={this.state.meal_day.carbon_footprint}
             getCarbonFootprint={()=>this.getCarbonFootprint()}
@@ -61,10 +61,10 @@ class FoodActionTracker extends React.Component {
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
-              <div className="center">
+              <div className="center px2">
                <a onClick={()=>this.didntEat()} >
-                  <button id="btn-didnt-eat" 
-                    className={(this.state.didntEat ? "border " : null) + " fill-x px2 mt1 btn btn-md btn-secondary"}
+                  <button id="btn-didnt-eat"
+                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-md btn-secondary"}
                     style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
 
                     <span className="flex items-center justify-center">
@@ -80,8 +80,8 @@ class FoodActionTracker extends React.Component {
               <h1>What it means</h1>
               <hr/>
               <p className="left-align">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet, 
-                consectetur adipiscing elit. Praesent consequat, orci eu tempus sodales, risus massa aliquet velit, a faucibus felis 
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Praesent consequat, orci eu tempus sodales, risus massa aliquet velit, a faucibus felis
                 nisl vel velit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
               </p>
               <button id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
@@ -137,7 +137,7 @@ class FoodActionTracker extends React.Component {
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
     let that = this;
-    
+
     // client side calculation of cf
     let foods = Object.assign({}, this.state.foods);
     let foodTypes = Object.assign({}, this.props.fatDay.food_types);

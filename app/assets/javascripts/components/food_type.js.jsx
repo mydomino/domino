@@ -55,7 +55,7 @@ class FoodType extends React.Component {
                 className={'flex flex-column items-center border border-gray-10 p2 pointer inline-block ' + this.props.borderRadiusClasses[this.props.index]} >
 
             <div className="p2 inline-block">
-              <img src={"/fat_icons/" + this.props.foodType.icon} />
+              <img src={"/fat_icons/" + this.props.foodType.icon} className="icon-xl" />
             </div>
             <h5 className="sm-h4 my0">
               {this.props.foodType.name}
