@@ -1,0 +1,27 @@
+.mt4.max-width-4.mx-auto
+  .clearfix.mx2.lg-mx1
+    .col.col-12.mb2.center
+      .p3.bg-white.rounded.center
+        .mb3
+          .flex.items-center.justify-center
+            =image_tag "icons/i-apple.png", :class => "mr1"
+            .h1.black.bold.inline.line-height-1
+              Food Impact
+          %p.col-12.sm-col-8.gray-60.mt1.mx-auto Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
+          = link_to 'food' do
+            %button.btn.btn-sm.btn-primary.btn-primary--hover
+              .bold Update today
+          .h2.mt2.mb1.gray-80
+            = @week_of
+          %ul.list-reset
+            -z_index = 7
+            -prev_complete = false
+            -@timeline_params.each do |p|
+              %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')} #{'pointer' if p[:status] != 'future'}", style: "z-index: #{z_index}", data: {link: p[:link]}}
+                -if p[:status]=="complete"
+                  %i.fa.fa-check
+                  -prev_complete = true
+                -elsif p[:status]=="incomplete"
+                  %i.fa.fa-question
+                  -prev_complete = false
+              -z_index -= 1
