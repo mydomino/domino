@@ -226,7 +226,7 @@ namespace :csv do
         puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
 
         # email is case sensitive for the create, so convert it to lower case
-        if HelperFunctions::create_user(group, u_fn, u_ln, u_email.downcase, role)
+        if HelperFunctions::create_user_by_group(group, u_fn, u_ln, u_email.downcase, role)
 
           # send user email with on board url
           user = User.find_by!(email: u_email.downcase)

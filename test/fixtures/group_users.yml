@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+group_user_one:
+  user: User_1
+  group: group_1
+  datetime_sign_in: 2017-03-09 10:57:12
+
+#two:
+#  user_id: 
+#  group_id: 
+#  datetime_sign_in: 2017-03-09 10:57:12
+#
