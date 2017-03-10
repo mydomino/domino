@@ -92,7 +92,7 @@
                   .center
                     %p.line-height-4.gray-80.mt1.mb4 
                       Your personal clean energy concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
-                    %h3.mb1.line-height-2
+                    %h3.mb2.line-height-2
                       Call your concierge
                       %br
                       =link_to "tel:+18009792215", class:"black line medium" do
@@ -106,22 +106,40 @@
                     =image_tag "icons/i-calendar.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
                       All eyes are on...
-                  .clearfix
-                    .col.col-12.sm-col.cm-col-4
-                    .col.col-12.sm-col.sm-col-6
-                  %p.line-height-4.gray-80.mt1.mb4 Check out our latest clean energy articles and learn easy ways to reduce your carbon impact.
-                  %h3.mb1.line-height-1
-                    =link_to "articles", class:"black line medium" do
-                      Read articles
+                  .clearfix.mb3
+                    .col.col-12.sm-col.sm-col-4
+                      = image_tag "timetochoose_poster", class: 'fit'
+                    .col.col-12.sm-col.sm-col-8.p1
+                      %p.line-height-4.mt1.mb2.gray-80
+                        Check out this film by our founder for some good climate news.
+                      %p.flex.items-center.gray-80
+                        %span= image_tag "rotten_tomato" 
+                        %span.ml1.h3.black 86%&nbsp; 
+                        on Rotten Tomatos
+                      %h3.mb1.line-height-1
+                        .gray-80 Watch the film
+                        .flex.items-center
+                          = image_tag "amazon_video"
+                          .inline.h5.blue.ml1 More viewing options
+
               .col.col-12.sm-col.sm-col-6.px1.mb2
                 .py2.px3.bg-white.rounded
                   .flex.items-center
-                    =image_tag "icons/i-calendar.png", :class => "mr1"
+                    =image_tag "icons/i-wallet.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
-                      Events & Webinars
-                  %p.line-height-4.col-12.sm-col-10.gray-80.mt1.mb4 See upcoming brown-bags and webinars for your company.
-                  %h3.mb1.line-height-1.gray-60.medium
-                    No events scheduled yet
+                      Coins back in your pocket
+                  %p.line-height-4.gray-80.mt1.mb4.center Get exclusive discounts on sustainable living products
+                  .clearfix.flex.items-center
+                    .col.col-12.sm-col.sm-col-2
+                      = image_tag "imperfect_produce", class: "fit"
+                    .col.col-12.sm-col.sm-col-4
+                      = image_tag "arcadia_power", class: "fit"
+                    .col.col-12.sm-col.sm-col-3
+                      = image_tag "badger", class: "fit"
+                    .col.col-12.sm-col.sm-col-3
+                      = image_tag "farm_fresh", class: "fit"
+                  %h3.mb1.line-height-1.gray-60.medium.center
+                    See discount details
 
 :javascript
   $('li.complete, li.incomplete').on('click', function(){
