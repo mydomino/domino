@@ -5,111 +5,6 @@
   bg-gray-05
   adelle
 
-:css
-  li {
-    width: 2em;
-    height: 2em;
-    text-align: center;
-    line-height: 2em;
-    border-radius: 1em;
-    background: dodgerblue;
-    margin: 0 1em;
-    display: inline-block;
-    color: white;
-    position: relative;
-    border: 2px solid lightgrey;
-  }
-
-  li.chained::before{
-    content: '';
-    position: absolute;
-    top: .9em;
-    left: -4em;
-    width: 4em;
-    height: .2em;
-    background: #2ECC71;
-    z-index: 0;
-  }
-
-  li::after {
-    position: absolute;
-    top: 2em;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: black;
-  }
-
-  li.monday::after { content: 'M'; }
-  li.tuesday::after { content: 'Tu';} 
-  li.wednesday::after { content: 'W';}
-  li.thursday::after { content: 'Th';} 
-  li.friday::after { content: 'F';}
-  li.saturday::after { content: 'Sa';}
-  li.sunday::after { content: 'Su';}
-
-  li.complete {
-    background: #2ECC71;
-    border-color: #2ECC71;
-  }
-
-  li.incomplete {
-    background: white;
-    border: 2px solid #00ccff;
-  }
-
-  li.complete .fa-check {
-    position: absolute;
-    top: 8px;
-    left: 0;
-    right: 0;
-  }
-
-  li.incomplete .fa-question {
-    color: #00ccff;
-    position: absolute;
-    top: 8px;
-    left: 0;
-    right: 0;
-  }
-
-  li.future {
-    border-color: #eaeaea;
-    background: white;
-  }
-  li.future::after {
-    color: #eaeaea
-  }
-
-  li:first-child::before {
-    display: none;
-  }
-
-  .h2 {
-      position: relative;
-      font-size: 30px;
-      z-index: 1;
-      overflow: hidden;
-      text-align: center;
-  }
-  @media (max-width: 400px) {
-    .h2:before, .h2:after {
-      display: none;
-    }
-  }
-  .h2:before, .h2:after {
-      position: absolute;
-      top: 51%;
-      overflow: hidden;
-      width: 50%;
-      height: 1px;
-      content: '\a0';
-      background-color: #eaeaea;
-  }
-  .h2:before {
-      margin-left: -50%;
-      text-align: right;
-  }
 
 .mx-auto.relative
   .page-header-image.bg-blue
@@ -152,7 +47,10 @@
                   .right.inline-block
                     .h5 #{u.fat_reward_points}
 
-        =# render 'food_impact_module'
+        .center.my4
+          .h2.black Member Benefits
+        
+        = render 'food_impact_module'
 
         .mt2.mb4.max-width-4.mx-auto
           .clearfix.mx2.lg-mx1
@@ -160,32 +58,57 @@
               .col.col-12.sm-col.sm-col-6.px1.mb2
                 .py2.px3.bg-white.rounded
                   .flex.items-center
-                    =image_tag "icons/i-leaf.png", :class => "mr1"
+                    =image_tag "icons/i-paper.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
-                      Dashboard
-                  %p.line-height-4.gray-80.mt1.mb4 See your recommended clean energy products and tips from your concierge.
-                  %h3.mb1.line-height-1
-                    =link_to 'dashboard', class:"black line medium" do
-                      View dashboard
+                      Take-out bites
+                  .clearfix
+                    .col.col-12.sm-col.sm-col-4.px1.mb2.sm-mb0
+                      .bg-gray-05
+                        = image_tag "http://placehold.it/100x50", class: 'fill-x'
+                        .p1
+                          Appetizers: Your first course
+                    .col.col-12.sm-col.sm-col-4.px1.mb2.sm-mb0
+                      .bg-gray-05
+                        = image_tag "http://placehold.it/100x50", class: 'fill-x'
+                        .p1
+                          Are cows the key to saving the planet?
+                    .col.col-12.sm-col.sm-col-4.px1.mb2.sm-mb0
+                      .bg-gray-05
+                        = image_tag "http://placehold.it/100x50", class: 'fill-x'
+                        .p1
+                          Hidden health. Benefits of ugly produce
+                    
+
+                  %h3.mb1.line-height-1.center
+                    =link_to '#', class:"black line medium" do
+                      Still hungry? Get more tasty bites
 
               .col.col-12.sm-col.sm-col.sm-col-6.px1.mb2
                 .py2.px3.bg-white.rounded
                   .flex.items-center
                     =image_tag "icons/i-concierge.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
-                      Concierge
-                  %p.line-height-4.gray-80.mt1.mb4 Have questions about clean energy? Need help with an action? Give your concierge a call.
-                  %h3.mb1.line-height-1
-                    =link_to "tel:+18009792215", class:"black line medium" do
-                      Call (800) 979-2215
+                      Hungry for more?
+                  .center
+                    %p.line-height-4.gray-80.mt1.mb4 
+                      Your personal clean energy concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
+                    %h3.mb1.line-height-2
+                      Call your concierge
+                      %br
+                      =link_to "tel:+18009792215", class:"black line medium" do
+                        800-721-2215
+
           .clearfix.mx2.lg-mx1
             .mxn1
               .col.col-12.sm-col.sm-col-6.px1.mb2
                 .py2.px3.bg-white.rounded
                   .flex.items-center
-                    =image_tag "icons/i-paper.png", :class => "mr1"
+                    =image_tag "icons/i-calendar.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
-                      Articles
+                      All eyes are on...
+                  .clearfix
+                    .col.col-12.sm-col.cm-col-4
+                    .col.col-12.sm-col.sm-col-6
                   %p.line-height-4.gray-80.mt1.mb4 Check out our latest clean energy articles and learn easy ways to reduce your carbon impact.
                   %h3.mb1.line-height-1
                     =link_to "articles", class:"black line medium" do
