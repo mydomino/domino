@@ -4,11 +4,11 @@ class Results extends React.Component {
   }
   render() {
     return (
-      <div className="center" style={{backgroundColor: '#36D7B7'}}>
-        <div className="h1 gray-80 py4">WEEKLY PROGRESS</div>
+      <div className="center bg-aqua">
+        <div className="h4 caps bold gray-80 pt4 pb3">WEEKLY PROGRESS</div>
         <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         <div className="py4 center" style={{backgroundColor: "#C5EFF7"}}>
-          <div className="h1 gray-80">LEARN MORE</div>
+          <div className="h4 caps bold gray-80">LEARN MORE</div>
         </div>
       </div>
     );

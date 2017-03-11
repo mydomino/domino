@@ -56,7 +56,7 @@ class FoodActionTracker extends React.Component {
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
-          <div className='clearfix bg-white p2 relative'>
+          <div className='clearfix rounded-bottom bg-white p2 relative'>
             <div id="food-picker" style={{zIndex: 1}}>
               <div className='col-12 p2'>
                 {foodTypes}
