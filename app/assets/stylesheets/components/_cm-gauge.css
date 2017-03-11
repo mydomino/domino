@@ -22,8 +22,8 @@
 }
 .chart text {
   fill: black;
-  font: 16px sans-serif;
-  text-anchor: end;
+  font: 12px sans-serif;
+  text-anchor: middle;
 }
 
 .axis text {

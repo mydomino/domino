@@ -5,12 +5,17 @@ modulejs.define('fat_graph', function () {
     // Set margins
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 960 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        height = 200 - margin.top - margin.bottom;
 
+    // Bottom axis scale band
     var x = d3.scaleBand()
       .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
       .rangeRound([0, width]);
 
+    // Bottom axis  
+    var xAxis = d3.axisBottom(x).tickSize(0);
+
+    // Labels for top axis
     var x2labels = data.map(function(el){
       if(el.cf == null){
         return "Incomplete";
@@ -23,29 +28,22 @@ modulejs.define('fat_graph', function () {
       }
     });
 
+    // Top axis scale band
     var x2 = d3.scaleBand()
               .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
 
-    var xAxis = d3.axisBottom(x).tickSize(0);
-
+    // Bottom axis
     var x2Axis = d3
       .axisTop(x2)
       .tickSize(0)
       .tickPadding(5);
 
-    var max = d3.max(data, function(d) { return +d.cf;} );
-    max = (max <= 12 ? 12 : max);
-
     var y = d3.scaleLinear()
-            .domain([0,max])
-            //.domain([0, d3.max(data, function(d) { 
-            //  return +d.cf;} )])
+            .domain([0, 13]) // max y value: 13 kg C02
             .range([height, 0]);
 
       var chart = d3.select(".chart")
-        // .attr("width", width + margin.left + margin.right)
-        // .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -80,7 +78,7 @@ modulejs.define('fat_graph', function () {
           //return height-y(d.cf);
           return height-y(d.cf);
         })
-        .attr("width", barWidth - 15)
+        .attr("width", 50)
         .attr("fill", function(d){
           // return "none";
           return "steelblue";

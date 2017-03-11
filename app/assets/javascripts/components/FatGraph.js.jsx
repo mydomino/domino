@@ -3,13 +3,14 @@ class FatGraph extends React.Component {
     super(props);
     this.state = {
       data: this.props.graph_params.values,
-      height: 250
+      chartContainerHeight: 200,
+      chartContainerWidth: null
     };
   }
   render() {
     return (
-      <div>
-        <svg className="chart" viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet"></svg>
+      <div className="chart-container">
+        <svg className="chart" /*viewBox="0 0 960 150"*/ /*preserveAspectRatio="xMidYMid meet"*/></svg>
       </div>
     );
   }
@@ -26,17 +27,25 @@ class FatGraph extends React.Component {
   drawGraph(){
     d3.selectAll("svg.chart > *").remove();
     var data = this.state.data;
+    var containerHeight = this.state.chartContainerHeight;
+    var winWidth = this.state.chartContainerWidth;
+    // var winWidth = $(window).width();
+    // console.log(winWidth);
+
     // Set margins, width, and height
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
-        width = 960 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        width = winWidth - margin.left - margin.right,
+        // width = 960 - margin.left - margin.right,
+        height = containerHeight - margin.top - margin.bottom;
 
     // x axis showing days of week
     var x = d3.scaleBand()
       .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
       .rangeRound([0, width]);
 
-    var xAxis = d3.axisBottom(x).tickSize(0);
+    var xAxis = d3.axisBottom(x)
+      // .tickSize(0);
+      .tickPadding(5);
 
     var x2labels = data.map(function(el){
       if(el.cf == null){
@@ -67,24 +76,34 @@ class FatGraph extends React.Component {
       .domain([0,max])
       .range([height, 0]);
 
-    // Graph bg color
+    // Chart bg color
     d3.select(".chart").append("rect")
       .attr("width", "100%")
       .attr("height", "100%")
       .attr("fill", "white");
 
-      var chart = d3.select(".chart")
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // Chart container
+    var chartContainer = d3.select('.chart-container')
+          .style("height", containerHeight + "px");
 
-      var barWidth = width / data.length;
+    // Chart
+    var chart = d3.select(".chart")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      var bar = chart.selectAll("g")
-        .data(data)
-        .enter().append("g")
-        .attr("transform", function(d, i) {
-          return "translate(" + i * barWidth + ",0)"; 
-        });
+    var barWidth = 20;
+    var barContainerWidth = width/data.length;
+    var barOffset = barWidth/barContainerWidth
+    var dx = barContainerWidth/2 - barWidth/2;
+
+    var bar = chart.selectAll("g")
+      .data(data)
+      .enter().append("g")
+      .attr("transform", function(d, i) {
+        return "translate(" + (i * barContainerWidth + dx) + ",0)"; 
+      });
 
     // Primary bar elements
     bar.append("rect")
@@ -115,7 +134,7 @@ class FatGraph extends React.Component {
 
         return height-y(v);
       })
-      .attr("width", barWidth - 15)
+      .attr("width", 20)
       .attr("fill", function(d){
         // return "none";
         return "steelblue";
@@ -125,10 +144,6 @@ class FatGraph extends React.Component {
             .text(function(){
               return (d.cf == null ? "N/A" : d.pts + " pts")
             })
-            .attr("x", function(d){
-              var textBBox = this.getBBox();
-              return textBBox.width/2 - 7;
-            });
           d3.select("#aux-" + i)
             .style("opacity", 1);
       })
@@ -137,11 +152,6 @@ class FatGraph extends React.Component {
           .text(function(){
             return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
           })
-          .attr("x", function(d){
-            var textBBox = this.getBBox();
-            return textBBox.width/2 - 7;
-          });
-
           d3.select("#aux-" + i)
             .style("opacity", 0);
 
@@ -221,9 +231,9 @@ class FatGraph extends React.Component {
           .attr("y", y(max))
           .attr("height", height-y(max))
           .attr("fill", "white")
-          .style("stroke-dasharray", ("40, 10"))
+          .style("stroke-dasharray", ("10, 5"))
           .style("stroke", "#4ECDC4")
-          .style("stroke-width", 4)
+          .style("stroke-width", 2)
 
         d3.selectAll(".future")
           .attr("height", 0);
@@ -238,30 +248,43 @@ class FatGraph extends React.Component {
         .text(function(d,i){
           return x2labels[i];
         })
-        .attr("x", function(d,i){
-          var textBBox = this.getBBox();
-          return textBBox.width/2 - 7;
-        })
         .attr("id", function(d, i){
           return "lbl-x2-" + i;
         });
 
+      // bottom axis
       chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
+        // .call(adjustTextLabels);
 
       chart.append("line")
         .attr("x1",0)
         .attr("y1", y(6.2))
         .attr("x2",width)
         .attr("y2", y(6.2))
-        .attr('stroke-width', 4)
+        .attr('stroke-width', 2)
         .attr('stroke', "#00ccff")
         .style("opacity", 0.5)
-        .style("stroke-dasharray", ("10, 5"));
+        .style("stroke-dasharray", ("20, 5"));
+
+      d3.select(window).on('resize', this.resize.bind(this)); 
+
   } // end drawGraph();
+  resize(){
+    this.setState({
+      chartContainerWidth: $(window).width()
+    }, function(){
+      this.drawGraph();
+    });
+  }
   componentDidMount() {
-    this.drawGraph();
+    this.setState({
+      chartContainerWidth: $(window).width()
+    }, function(){
+      this.drawGraph();
+    });
+
   } // end componentWillMount()
 }
