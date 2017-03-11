@@ -12,13 +12,6 @@
 #  updated_at         :datetime
 #  updated_by         :integer
 #
-# Indexes
-#
-#  index_recommendations_on_dashboard_id  (dashboard_id)
-#  recommendable_index                    (recommendable_id,recommendable_type)
-#
-
-
 
 class Recommendation < ActiveRecord::Base
   

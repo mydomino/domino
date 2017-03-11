@@ -35,11 +35,11 @@
       margin-bottom: 1em;
     }
 
-    li.monday::after { content: 'M'; }
-    li.tuesday::after { content: 'Tu';} 
-    li.wednesday::after { content: 'W';}
-    li.thursday::after { content: 'Th';} 
-    li.friday::after { content: 'F';}
+    li.monday::after { content: 'Mo'; }
+    li.tuesday::after { content: 'Tu';}
+    li.wednesday::after { content: 'We';}
+    li.thursday::after { content: 'Th';}
+    li.friday::after { content: 'Fr';}
     li.saturday::after { content: 'Sa';}
     li.sunday::after { content: 'Su';}
 
@@ -119,8 +119,12 @@
           = link_to 'food' do
             %button.btn.btn-sm.btn-primary.btn-primary--hover
               .bold Update today
-          .h2.mt2.mb1.gray-80
-            = @week_of
+          .mt2
+            .col.col-12.bg-gray-10.relative{style:"height:1px; top:16px;"}
+          .bg-white.col-3.px1.mx-auto.relative
+            .h3
+              = @week_of
+
           %ul.list-reset
             -z_index = 7
             -prev_complete = false
