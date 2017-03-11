@@ -1,61 +1,3 @@
-// Breakpoints
-$breakpoints: (
-  xs: 32em,
-  sm: 40em,
-  md: 52em,
-  lg: 64em,
-  );
-// Fonts
-$adelle-sans: 'adelle-sans',sans-serif;
-// Typography
-$h0: 3rem !default; // 48px
-$h1: 2rem !default; // 32px
-$h2: 1.5rem !default; // 24px
-$h3: 1.25rem !default; // 20px
-$h4: 1rem !default; // 16px
-$h5: .875rem !default; // 14px
-$h6: .75rem !default; // 12px
-
-$line-height-1: 1 !default;
-$line-height-2: 1.125 !default;
-$line-height-3: 1.25 !default;
-$line-height-4: 1.5 !default;
-$line-height-5: 2 !default;
-
-$letter-spacing: 1 !default;
-$caps-letter-spacing: .2em !default;
-$bold-font-weight: bold !default;
-
-$layout-count: 25;
-
-// Color Variables
-// Neutral color variables
-$white: #FFFFFF;
-$black: #333333;
-$gray-90: #5C5C5C;
-$gray-80: #666666; /*changed from domino-gray*/
-$gray-60: #858585;
-$gray-30: #C1C1C1;
-$gray-20: #D6D6D6;
-$gray-10: #EAEAEA;
-$gray-05: #F3F3F3;
-$green: #00BC02;
-$cyan:#07c3c3;
-
-// Brand color variables
-$blue: #00CCFF;
-$navy: #105585;
-$red: #FF0000;
-$orange: orange;
-
-// Alert color variables
-$red: #FF0000;
-
-// Colors w/ alpha channel
-$blue-alpha-25: rgba(0, 204, 255, 0.25);
-$blue-alpha-50: rgba(0, 204, 255, 0.5);
-$blue-alpha-75: rgba(0, 204, 255, 0.75);
-
 // Text Colors
 .white { color: $white; }
 .black { color: $black; }
@@ -93,7 +35,6 @@ $blue-alpha-75: rgba(0, 204, 255, 0.75);
 .blue--hover:hover {
   color: $blue;
 }
-
 // Overlays
 .overlay {
   position: relative;
