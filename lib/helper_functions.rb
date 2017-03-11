@@ -107,5 +107,13 @@ module HelperFunctions
 
   end
 
+  def self.monday_of_current_week
+    time_zone_name = Time.zone.name
+    time_now = Time.now.in_time_zone(time_zone_name)
+    @today = Date.new(time_now.year, time_now.month, time_now.day)
+
+    # Date object: Monday of current week
+    @today - @today.cwday + 1
+  end
 
 end
