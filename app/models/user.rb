@@ -2,25 +2,26 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :inet
-#  last_sign_in_ip        :inet
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  role                   :string           default("lead")
-#  organization_id        :integer
-#  signup_token           :string
-#  signup_token_sent_at   :datetime
-#  meal_carbon_footprint  :float            default(0.0)
-#  fat_reward_points      :integer          default(0)
+#  id                      :integer          not null, primary key
+#  email                   :string           default(""), not null
+#  encrypted_password      :string           default(""), not null
+#  reset_password_token    :string
+#  reset_password_sent_at  :datetime
+#  remember_created_at     :datetime
+#  sign_in_count           :integer          default(0), not null
+#  current_sign_in_at      :datetime
+#  last_sign_in_at         :datetime
+#  current_sign_in_ip      :inet
+#  last_sign_in_ip         :inet
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  role                    :string           default("lead")
+#  organization_id         :integer
+#  signup_token            :string
+#  signup_token_sent_at    :datetime
+#  meal_carbon_footprint   :float            default(0.0)
+#  fat_reward_points       :integer          default(0)
+#  total_fat_reward_points :integer          default(0)
 #
 # Indexes
 #
@@ -32,6 +33,7 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
+
 
 
 
@@ -95,21 +97,20 @@ class User < ActiveRecord::Base
   # calculate user reward points during the period and save it to the user's member variable
   def get_fat_reward_points(start_date, end_date = nil)
 
-    # determine whether end_date is given. If not given, use start_date as end_date
-    end_date = end_date.nil? ? start_date : end_date
-
-    points_log = self.points_logs.where(["point_date >= ? and point_date <= ?", start_date, end_date])
-
-    # return a points array
-    points = points_log.map(&:point) if points_log.size > 0
-
-    # sum up the points
-    if points != nil
-      self.fat_reward_points = points.inject(:+) 
-      self.save!
-    end
+    self.fat_reward_points = calculate_reward_points(start_date, end_date)
+    self.save!
 
     return(self.fat_reward_points)
+    
+  end
+
+
+  def get_total_fat_reward_points(start_date, end_date = nil)
+
+    self.total_fat_reward_points = calculate_reward_points(start_date, end_date)
+    self.save!
+
+    return(self.total_fat_reward_points)
     
   end
 
@@ -123,5 +124,27 @@ class User < ActiveRecord::Base
       self[column_name] = SecureRandom.urlsafe_base64
       self.signup_token_sent_at = Time.zone.now
     end while User.exists?(column_name => self[column_name])
+  end
+
+
+  def calculate_reward_points(start_date, end_date = nil)
+
+    # determine whether end_date is given. If not given, use start_date as end_date
+    end_date = end_date.nil? ? start_date : end_date
+
+    points_log = self.points_logs.where(["point_date <= ? and point_date >= ?", start_date, end_date])
+
+    # return a points array
+    points = points_log.map(&:point) if points_log.size > 0
+
+    # sum up the points
+    reward_points = 0
+
+    if points != nil
+      reward_points = points.inject(:+) 
+    end
+
+    return(reward_points)
+    
   end
 end

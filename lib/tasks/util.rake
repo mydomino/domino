@@ -17,8 +17,8 @@ namespace :util do
 
           u = User.find(ele.id)
       
-          u.password='Mydom!no1234'
-          u.password_confirmation='Mydom!no1234'
+          u.password='ILoveCleanEnergy'
+          u.password_confirmation='ILoveCleanEnergy'
           u.save!  
           puts "User #{u.email} password is changed.\n"  
 

@@ -178,7 +178,7 @@ class ProfilesController < ApplicationController
 
   
     # use background job to perform point calculations
-    #CalculateFatTotalPointJob.perform_later organization
+    CalculateFatTotalPointJob.perform_later organization
 
     # find users with or without organization 
     @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
