@@ -245,4 +245,25 @@ namespace :csv do
 
   end
 
+
+  desc "Reset FAT reward points for everone"
+  task reset_fat_reward_points_all_users: :environment do
+
+    users = User.all
+
+    #set up date range
+    start_date = Date.today - Date.today.wday
+    end_date = start_date + 6
+    #start_date = Time.zone.today 
+    #end_date = Time.zone.today - 60.days
+
+    # refresh the total reward points
+    users.each do |u|
+      # calculate user reward points during the period and save it to the user's member variable
+      puts "reseting FAT point for #{u.email}..."
+      u.get_fat_reward_points(start_date, end_date)
+    end
+    
+  end
+
 end

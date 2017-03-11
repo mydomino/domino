@@ -12,8 +12,11 @@ class CalculateFatTotalPointJob <  ActiveJob::Base
        users = User.where(organization: organization)
 
        #set up date range
-       start_date = Time.zone.today 
-       end_date = Time.zone.today - 60.days
+       start_date = Date.today - Date.today.wday
+       end_date = start_date + 6
+
+       #start_date = Time.zone.today 
+       #end_date = Time.zone.today - 60.days
    
        # refresh the total reward points
        users.each do |u|

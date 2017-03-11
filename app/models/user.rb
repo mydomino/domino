@@ -35,6 +35,7 @@
 
 
 
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -97,7 +98,7 @@ class User < ActiveRecord::Base
     # determine whether end_date is given. If not given, use start_date as end_date
     end_date = end_date.nil? ? start_date : end_date
 
-    points_log = self.points_logs.where(["point_date <= ? and point_date >= ?", start_date, end_date])
+    points_log = self.points_logs.where(["point_date >= ? and point_date <= ?", start_date, end_date])
 
     # return a points array
     points = points_log.map(&:point) if points_log.size > 0

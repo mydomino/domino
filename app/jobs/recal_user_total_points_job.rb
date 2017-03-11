@@ -8,9 +8,13 @@ class RecalUserTotalPointsJob <  ActiveJob::Base
 
        puts "*********** RecalUserTotalPointsJob is run for user_id: #{user.id}\n\n"
        
-       #set up date range
-       start_date = Time.zone.today 
-       end_date = Time.zone.today - 60.days
+       #set up date range 
+       # get the start day and end day of the current week
+       start_date = Date.today - Date.today.wday
+       end_date = start_date + 6
+       
+       #start_date = Time.zone.today 
+       #end_date = Time.zone.today - 60.days
    
        # refresh the total reward points
        
