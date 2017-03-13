@@ -62,7 +62,10 @@ class FoodActionTracker extends React.Component {
 
           <div className='clearfix rounded-bottom bg-white p2 relative'>
 
-            <div id="food-picker" style={{zIndex: 1}} style={{opacity: (this.state.nextView ? 0 : 1)}}>
+            <div  id="food-picker" 
+                  className={(this.state.nextView ? "hidden" : "")}
+                  style={{zIndex: 1, opacity: (this.state.nextView ? 0 : 1)}}>
+
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
@@ -81,7 +84,9 @@ class FoodActionTracker extends React.Component {
               </div>
             </div> {/* end food-picker */}
 
-            <div id="results-summary" className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0 p2"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
+            <div  id="results-summary" 
+                  className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0 p2"} 
+                  style={{opacity: (this.state.nextView ? 1 : 0)}}>
               <h1>What it means</h1>
               <hr/>
               <p className="left-align">
