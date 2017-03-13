@@ -6,8 +6,7 @@
       text-align: center;
       line-height: 2em;
       border-radius: 1em;
-      background: dodgerblue;
-      margin: 1rem 1rem;
+      margin: auto 1rem;
       display: inline-block;
       color: white;
       position: relative;
@@ -44,29 +43,14 @@
     li.sunday::after { content: 'Su';}
 
     li.complete {
-      background: #2ECC71;
-      border-color: #2ECC71;
+      background: #00F0B9;
+      border:none;
     }
 
     li.incomplete {
       background: white;
-      border: 2px solid #00ccff;
-    }
-
-    li.complete .fa-check {
-      position: absolute;
-      top: 8px;
-      left: 0;
-      right: 0;
-    }
-
-    li.incomplete .fa-question {
-      color: #00ccff;
-      position: absolute;
-      top: 8px;
-      left: 0;
-      right: 0;
-    }
+      border:none;
+      }
 
     li.future {
       border-color: #eaeaea;
@@ -115,7 +99,7 @@
             =image_tag "icons/i-apple.png", :class => "mr1"
             .h1.black.bold.inline.line-height-1
               Food Impact
-          %p.col-12.sm-col-8.gray-60.mt1.mx-auto Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
+          %p.col-12.sm-col-8.gray-60.mt2.mx-auto Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
           = link_to 'food' do
             %button.btn.btn-sm.btn-primary.btn-primary--hover
               .bold Update today
@@ -131,9 +115,9 @@
             -@timeline_params.each do |p|
               %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')} #{'pointer' if p[:status] != 'future'}", style: "z-index: #{z_index}", data: {link: p[:link]}}
                 -if p[:status]=="complete"
-                  %i.fa.fa-check
+                  =inline_svg "icons/i-success.svg", class:"icon-l fill-black"
                   -prev_complete = true
                 -elsif p[:status]=="incomplete"
-                  %i.fa.fa-question
+                  =inline_svg "icons/i-question.svg", class:"icon-l"
                   -prev_complete = false
               -z_index -= 1
