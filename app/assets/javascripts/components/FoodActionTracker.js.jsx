@@ -54,14 +54,14 @@ class FoodActionTracker extends React.Component {
 
     return (
       <div className='remodal-bg '>
-        <div className='max-width-3 mx-auto py2'>
+        <div className='max-width-3 mx-auto py2 px1'>
           <CarbonFootprint ref="cf"
             cf={this.state.meal_day.carbon_footprint}
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
           <div className='clearfix rounded-bottom bg-white p2 relative'>
-            
+
             <div id="food-picker" style={{zIndex: 1}} style={{opacity: (this.state.nextView ? 0 : 1)}}>
               <div className='col-12 p2'>
                 {foodTypes}
@@ -92,8 +92,8 @@ class FoodActionTracker extends React.Component {
               <button onClick={() => this.showFoodPicker()} id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
             </div> {/* end results-summary */}
           </div>
-        </div> 
-        <div className="flex flex-column sm-row justify-center m2 mb0">
+        </div>
+        <div className="center my2">
           <a onClick={()=>this.getResults()} >
             <button disabled={!this.state.results} style={{visibility: (this.state.nextView ? "hidden" : "visible")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
@@ -110,7 +110,7 @@ class FoodActionTracker extends React.Component {
     });
   }
   componentDidMount() {
-    
+
     // $('#btn-food-picker').on("click", function() {
     //   $('#results-summary').animate({opacity: 0}, function(){
     //     $('#results-summary').css("visibility", "hidden");
