@@ -98,7 +98,7 @@ class FoodActionTracker extends React.Component {
             <button disabled={!this.state.results} style={{visibility: (this.state.nextView ? "hidden" : "visible")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-        <div className={((this.state.results) ? "block" : "display-none")}>
+        <div className={((this.state.nextView) ? "block" : "display-none")}>
           <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
@@ -109,25 +109,10 @@ class FoodActionTracker extends React.Component {
       nextView: false
     });
   }
-  componentDidMount() {
-
-    // $('#btn-food-picker').on("click", function() {
-    //   $('#results-summary').animate({opacity: 0}, function(){
-    //     $('#results-summary').css("visibility", "hidden");
-    //     $('#food-picker').css("visibility", "visible");
-    //     $('#food-picker').animate({opacity: 1});
-    //   });
-    // });
-  }
   getResults() {
     this.setState({
       nextView: true
     });
-    // $('#food-picker').animate({opacity: 0}, function(){
-    //   $('#food-picker').css("visibility", "hidden");
-    //   $('#results-summary').css("visibility", "visible")
-    //   $('#results-summary').animate({opacity: 1});
-    // });
   }
   didntEat() {
     let foods = Object.assign({}, this.state.foods);
