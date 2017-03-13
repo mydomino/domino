@@ -12,7 +12,7 @@ class FoodActionTracker extends React.Component {
       foods: fatDay.foods,
       didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
       results: !mealDayNull,
-      nextView:!mealDayNull
+      nextView: false
     };
   }
   addFood(f) {
