@@ -45,3 +45,7 @@
   stroke: lightgrey;
 }
 /* END FAT graph styles */
+
+#food-picker, #results-summary {
+  transition: opacity 0.5s ease-in-out;
+}

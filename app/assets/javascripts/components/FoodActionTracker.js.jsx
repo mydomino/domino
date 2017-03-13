@@ -1,14 +1,18 @@
 class FoodActionTracker extends React.Component {
   constructor(props){
     super(props);
+
+    let fatDay = this.props.fatDay;
+    let mealDayNull = fatDay.meal_day.id == null ? true : false;
+
     this.state = {
-      date: this.props.fatDay.date,
-      method: (this.props.fatDay.meal_day.id == null) ? 'POST' : 'PATCH',
-      meal_day: this.props.fatDay.meal_day,
-      foods: this.props.fatDay.foods,
-      didntEat: ((this.props.fatDay.meal_day.carbon_footprint == 0) ? true : false),
-      results: (this.props.fatDay.meal_day.id == null) ? false : true,
-      nextView: (this.props.fatDay.meal_day.id == null) ? false : true
+      date: fatDay.date,
+      method: mealDayNull ? 'POST' : 'PATCH',
+      meal_day: fatDay.meal_day,
+      foods: fatDay.foods,
+      didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
+      results: !mealDayNull,
+      nextView:!mealDayNull
     };
   }
   addFood(f) {
@@ -57,7 +61,8 @@ class FoodActionTracker extends React.Component {
             method={this.state.method} />
 
           <div className='clearfix rounded-bottom bg-white p2 relative'>
-            <div id="food-picker" style={{zIndex: 1}}>
+            
+            <div id="food-picker" style={{zIndex: 1}} style={{opacity: (this.state.nextView ? 0 : 1)}}>
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
@@ -74,9 +79,9 @@ class FoodActionTracker extends React.Component {
                   </button>
                 </a>
               </div>
-            </div>
+            </div> {/* end food-picker */}
 
-            <div id="results-summary" className="hidden absolute center top-0 left-0 right-0 p2" style={{opacity: 0}}>
+            <div id="results-summary" className={/*hidden*/ "absolute center top-0 left-0 right-0 p2"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
               <h1>What it means</h1>
               <hr/>
               <p className="left-align">
@@ -84,10 +89,10 @@ class FoodActionTracker extends React.Component {
                 consectetur adipiscing elit. Praesent consequat, orci eu tempus sodales, risus massa aliquet velit, a faucibus felis
                 nisl vel velit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
               </p>
-              <button id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
-            </div>
+              <button onClick={() => this.showFoodPicker()} id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
+            </div> {/* end results-summary */}
           </div>
-        </div> {/* end food-picker */}
+        </div> 
         <div className="flex flex-column sm-row justify-center m2 mb0">
           <a onClick={()=>this.getResults()} >
             <button disabled={!this.state.results} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
@@ -99,24 +104,30 @@ class FoodActionTracker extends React.Component {
       </div>
     );
   }
-  componentDidMount() {
-    $('#btn-food-picker').on("click", function() {
-      $('#results-summary').animate({opacity: 0}, function(){
-        $('#results-summary').css("visibility", "hidden");
-        $('#food-picker').css("visibility", "visible");
-        $('#food-picker').animate({opacity: 1});
-      });
+  showFoodPicker() {
+    this.setState({
+      nextView: false
     });
+  }
+  componentDidMount() {
+    
+    // $('#btn-food-picker').on("click", function() {
+    //   $('#results-summary').animate({opacity: 0}, function(){
+    //     $('#results-summary').css("visibility", "hidden");
+    //     $('#food-picker').css("visibility", "visible");
+    //     $('#food-picker').animate({opacity: 1});
+    //   });
+    // });
   }
   getResults() {
     this.setState({
       nextView: true
     });
-    $('#food-picker').animate({opacity: 0}, function(){
-      $('#food-picker').css("visibility", "hidden");
-      $('#results-summary').css("visibility", "visible")
-      $('#results-summary').animate({opacity: 1});
-    });
+    // $('#food-picker').animate({opacity: 0}, function(){
+    //   $('#food-picker').css("visibility", "hidden");
+    //   $('#results-summary').css("visibility", "visible")
+    //   $('#results-summary').animate({opacity: 1});
+    // });
   }
   didntEat() {
     let foods = Object.assign({}, this.state.foods);
