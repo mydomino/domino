@@ -72,19 +72,13 @@ class FoodType extends React.Component {
               <img src={"/fat_icons/" + this.props.foodType.icon} className="icon-l"/>
               <div className="h2 ml1 medium">{this.props.foodType.name}</div>
             </div>
-            <div className="col col-3">
-              <div className="flex flex-column items-center justify-center">
-                <div className="meal-size-label mb1 h3 display-none">
-                  {this.state.food.size}
-                </div>
-                <div id={this.props.index + "-slider"}></div>
-              </div>
-            </div>
-            <div className="col col-9 mb4">
-              <h3 className="h3 sm-h2 line-height-2 my0 left-align mb0">How much did you eat?</h3>
-              <p className="sm-h3 gray-60 size-information left-align mt1">
+           
+            <div className="max-width-2 mx-auto mb4">
+              <h3 className="h3 sm-h2 line-height-2 my0 mb0">How much did you eat?</h3>
+              <p className="sm-h3 gray-60 size-information mt1">
                 {this.props.sizeInfo[this.state.food.size]}
               </p>
+              <div id={this.props.index + "-slider"}></div>
             </div>
 
             <div className="col col-12 mt1">
@@ -105,7 +99,6 @@ class FoodType extends React.Component {
     let sliderSelector = "#" + this.props.index + "-slider";
 
     that.$slider = $(sliderSelector).slider({
-      orientation: "vertical",
       range: "min",
       animate: "fast",
       min:50,
