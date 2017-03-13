@@ -81,7 +81,7 @@ class FoodActionTracker extends React.Component {
               </div>
             </div> {/* end food-picker */}
 
-            <div id="results-summary" className={/*hidden*/ "absolute center top-0 left-0 right-0 p2"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
+            <div id="results-summary" className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0 p2"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
               <h1>What it means</h1>
               <hr/>
               <p className="left-align">
@@ -95,10 +95,10 @@ class FoodActionTracker extends React.Component {
         </div> 
         <div className="flex flex-column sm-row justify-center m2 mb0">
           <a onClick={()=>this.getResults()} >
-            <button disabled={!this.state.results} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
+            <button disabled={!this.state.results} style={{visibility: (this.state.nextView ? "hidden" : "visible")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-        <div className={((this.state.results && this.state.nextView) ? "block" : "display-none")}>
+        <div className={((this.state.results) ? "block" : "display-none")}>
           <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
