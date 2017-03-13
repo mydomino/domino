@@ -10,7 +10,7 @@ class FatGraph extends React.Component {
   render() {
     return (
       <div className="chart-container">
-        <svg className="chart" /*viewBox="0 0 960 150"*/ /*preserveAspectRatio="xMidYMid meet"*/></svg>
+        <svg className="chart"></svg>
       </div>
     );
   }
@@ -24,7 +24,35 @@ class FatGraph extends React.Component {
       this.drawGraph();
     });
   }
+  onBarEnter(d,i) {
+    d3.select("#lbl-x2-" + i)
+      .text(function() {
+        return (d.cf == null ? "N/A" : d.pts + " pts")
+      });
+
+    d3.select("#aux-" + i)
+      .style("opacity", 1);
+  }
+  onBarExit(d, i) {
+    d3.select("#lbl-x2-" + i)
+    .text(function() {
+      return (d.cf == null ? "Incomplete" : d.cf + " kg");
+    });
+
+    d3.select("#aux-" + i)
+      .style("opacity", 0);
+
+    if(!d3.select(this).classed("aux")) {
+      d3.select(this)
+        .attr("fill", function(d){
+          if(d.cf == null) return "white";
+          // console.log(d3.select(this).classed("aux"));
+          return "steelblue";
+        });
+    }
+  }
   drawGraph(){
+    componentCtx = this;
     d3.selectAll("svg.chart > *").remove();
 
     var data = this.state.data;
@@ -44,7 +72,7 @@ class FatGraph extends React.Component {
 
     var xAxis = d3.axisBottom(x)
       .tickSize(0)
-      .tickPadding(5);
+      .tickPadding(8);
 
     var x2labels = data.map(function(el){
       if(el.cf == null){
@@ -54,7 +82,7 @@ class FatGraph extends React.Component {
         return " ";
       }
       if(el.cf >= 0) {
-        return el.cf + " kg.";
+        return el.cf + " kg";
       }
     });
 
@@ -66,7 +94,7 @@ class FatGraph extends React.Component {
     var x2Axis = d3
       .axisTop(x2)
       .tickSize(0)
-      .tickPadding(5);
+      .tickPadding(10);
 
     var max = d3.max(data, function(d) { return +d.cf;} );
     max = (max <= 12 ? 12 : max);
@@ -135,37 +163,17 @@ class FatGraph extends React.Component {
         // return "none";
         return "steelblue";
       })
-      .on("mouseenter", function(d, i) {
-          d3.select("#lbl-x2-" + i)
-            .text(function(){
-              return (d.cf == null ? "N/A" : d.pts + " pts")
-            })
-          d3.select("#aux-" + i)
-            .style("opacity", 1);
-      })
-      .on("mouseout", function(d, i) {
-        d3.select("#lbl-x2-" + i)
-          .text(function(){
-            return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
-          })
-          d3.select("#aux-" + i)
-            .style("opacity", 0);
-
-          d3.select(this)
-            .attr("fill", function(d){
-              if(d.cf == null) return "white";
-              return "steelblue";
-            });
-      })
+      .on("mouseenter", componentCtx.onBarEnter)
+      .on("mouseout", componentCtx.onBarExit)
       .on('click', function(d){
         window.location = "/food/" + d.path;
       });
 
+ 
 
         // auxillary bars to show amount below or above avg cf
-
         bar.append("rect")
-          .attr("class", "pointer")
+          .attr("class", "pointer aux")
           .attr("id", function(d, i){
             return "aux-" + i;
           })
@@ -195,23 +203,8 @@ class FatGraph extends React.Component {
             return (d.cf < 6.2 ? "green" : "red");
           })
           .style("opacity", 0)
-          .on("mouseenter", function(d,i){
-            d3.select("#lbl-x2-" + i)
-              .text(function(){
-                return (d.cf == null ? "N/A" : d.pts + " pts")
-              })
-            d3.select(this)
-              .style("opacity", 1);
-            })
-          .on("mouseout", function(d,i){
-            d3.select(this)
-              .style("opacity", 0);
-           d3.select("#lbl-x2-" + i)
-            .text(function(){
-              return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
-            });
-          });
-
+          .on("mouseenter", componentCtx.onBarEnter)
+          .on("mouseout", componentCtx.onBarExit);
 
         //incomplete sections
         d3.selectAll(".null")
