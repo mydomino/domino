@@ -54,7 +54,7 @@ class FatGraph extends React.Component {
         return " ";
       }
       if(el.cf >= 0) {
-        return el.cf + " lbs.";
+        return el.cf + " kg.";
       }
     });
 

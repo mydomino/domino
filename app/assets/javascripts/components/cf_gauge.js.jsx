@@ -20,7 +20,6 @@ class CfGauge extends React.Component {
     }, function(){
       this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf);
     });
-
   }
   render(){
     return(
