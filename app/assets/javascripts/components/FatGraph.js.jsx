@@ -121,9 +121,10 @@ class FatGraph extends React.Component {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var barWidth = 20;
+    // var barWidth = 20;
     var barContainerWidth = width/data.length;
     var barOffset = barWidth/barContainerWidth
-    var dx = barContainerWidth/2 - barWidth/2;
+    var dx = barContainerWidth/4;
 
     var bar = chart.selectAll("g")
       .data(data)
@@ -158,7 +159,7 @@ class FatGraph extends React.Component {
 
         return height-y(v);
       })
-      .attr("width", 20)
+      .attr("width", barContainerWidth/2)
       .attr("fill", function(d){
         // return "none";
         return "steelblue";
@@ -197,7 +198,7 @@ class FatGraph extends React.Component {
             }
             return height;
           })
-          .attr("width", 20)
+          .attr("width", barContainerWidth/2)
           .attr("fill", function(d){
             if(d.cf == null) return "none";
             return (d.cf < 6.2 ? "green" : "red");
