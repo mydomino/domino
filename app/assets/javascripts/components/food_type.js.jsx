@@ -43,6 +43,7 @@ class FoodType extends React.Component {
     });
     this.props.addFood(this.state.food);
   }
+  // foodSelector Modal //
   render() {
     return (
       <div>
