@@ -5,6 +5,7 @@
     border-top-right-radius: 300px;
     display: block;
     margin: auto;
+    transition: opacity 0.5s linear;
 }
 
 /* END styles for FAT gauge */
