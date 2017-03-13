@@ -98,7 +98,7 @@ class FoodActionTracker extends React.Component {
             <button disabled={!this.state.results} style={{visibility: (this.state.nextView ? "hidden" : "visible")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-        <div className={((this.state.results) ? "block" : "display-none")}>
+        <div className={((this.state.nextView) ? "block" : "display-none")}>
           <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
