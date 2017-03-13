@@ -15,9 +15,9 @@ class FatGraph extends React.Component {
     );
   }
   updateGraph(d) {
-    console.log(d)
     let data = this.state.data
     data[d.day_index] = d.values[d.day_index];
+
     this.setState({
       data: data
     }, function(){
@@ -26,14 +26,13 @@ class FatGraph extends React.Component {
   }
   drawGraph(){
     d3.selectAll("svg.chart > *").remove();
+
     var data = this.state.data;
     var containerHeight = this.state.chartContainerHeight;
     var winWidth = this.state.chartContainerWidth;
-    // var winWidth = $(window).width();
-    // console.log(winWidth);
 
     // Set margins, width, and height
-    var margin = {top: 20, right: 30, bottom: 30, left: 40},
+    var margin = {top: 32, right: 16, bottom: 32, left: 16},
         width = winWidth - margin.left - margin.right,
         // width = 960 - margin.left - margin.right,
         height = containerHeight - margin.top - margin.bottom;
@@ -44,7 +43,7 @@ class FatGraph extends React.Component {
       .rangeRound([0, width]);
 
     var xAxis = d3.axisBottom(x)
-      // .tickSize(0);
+      .tickSize(0)
       .tickPadding(5);
 
     var x2labels = data.map(function(el){
@@ -113,10 +112,7 @@ class FatGraph extends React.Component {
       })
       .classed("pointer", "true")
       .classed("null", function(d) {
-        if(d.cf == null){
-          return true;
-        }
-        return false;
+        return (d.cf == null ? true : false);
       })
       .classed("future", function(d) {
           if(d.cf == "future") {
@@ -168,62 +164,53 @@ class FatGraph extends React.Component {
 
         // auxillary bars to show amount below or above avg cf
 
-        // bar.append("rect")
-        //   .attr("class", "pointer")
-        //   .attr("id", function(d, i){
-        //     return "aux-" + i;
-        //   })
-        //   .attr("y", function(d){
-        //     if(d.cf == null) return null;
-        //     if(d.cf < 6.2) {
-        //       return y(6.2);
-        //     }
-        //     else {
-        //       var diff = y(6.2) - y(d.cf);
-        //       return y(6.2) - diff;
-        //     }
-        //   })
-        //   .attr("height", function(d){
-        //     if(d.cf == null) return null;
-        //     if(d.cf < 6.2) {
-        //       var height = y(d.cf) - y(6.2);
-        //     }
-        //     else {
-        //       var height = y(6.2) - y(d.cf);
-        //     }
-        //     return height;
-        //   })
-        //   .attr("width", barWidth - 15)
-        //   .attr("fill", function(d){
-        //     if(d.cf == null) return "none";
-        //     return (d.cf < 6.2 ? "green" : "red");
-        //   })
-        //   .style("opacity", 0)
-        //   .on("mouseenter", function(d,i){
-        //     d3.select("#lbl-x2-" + i)
-        //       .text(function(){
-        //         return (d.cf == null ? "N/A" : d.pts + " pts")
-        //       })
-        //       .attr("x", function(d){
-        //         var textBBox = this.getBBox();
-        //         return textBBox.width/2 - 7;
-        //       });
-        //     d3.select(this)
-        //       .style("opacity", 1);
-
-        //   })
-        //   .on("mouseout", function(d,i){
-        //     d3.select(this)
-        //       .style("opacity", 0);
-        //    d3.select("#lbl-x2-" + i)
-        //     .text(function(){
-        //       return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
-        //     })
-        //     .attr("x", function(d){
-        //       var textBBox = this.getBBox();
-        //       return textBBox.width/2 - 7;
-        //     });
-        //   });
+        bar.append("rect")
+          .attr("class", "pointer")
+          .attr("id", function(d, i){
+            return "aux-" + i;
+          })
+          .attr("y", function(d){
+            if(d.cf == null || d.cf == "future") return null;
+            if(d.cf < 6.2) {
+              return y(6.2);
+            }
+            else {
+              var diff = y(6.2) - y(d.cf);
+              return y(6.2) - diff;
+            }
+          })
+          .attr("height", function(d){
+            if(d.cf == null || d.cf == "future") return null;
+            if(d.cf < 6.2) {
+              var height = y(d.cf) - y(6.2);
+            }
+            else {
+              var height = y(6.2) - y(d.cf);
+            }
+            return height;
+          })
+          .attr("width", 20)
+          .attr("fill", function(d){
+            if(d.cf == null) return "none";
+            return (d.cf < 6.2 ? "green" : "red");
+          })
+          .style("opacity", 0)
+          .on("mouseenter", function(d,i){
+            d3.select("#lbl-x2-" + i)
+              .text(function(){
+                return (d.cf == null ? "N/A" : d.pts + " pts")
+              })
+            d3.select(this)
+              .style("opacity", 1);
+            })
+          .on("mouseout", function(d,i){
+            d3.select(this)
+              .style("opacity", 0);
+           d3.select("#lbl-x2-" + i)
+            .text(function(){
+              return (d.cf == null ? "Incomplete" : d.cf + " lbs.");
+            });
+          });
 
 
         //incomplete sections
@@ -237,10 +224,8 @@ class FatGraph extends React.Component {
           .style("position","relative")
           .style("z-index","3")
 
-
         d3.selectAll(".future")
           .attr("height", 0);
-
 
       // top axis
       chart.append("g")
@@ -251,6 +236,7 @@ class FatGraph extends React.Component {
         .text(function(d,i){
           return x2labels[i];
         })
+        .attr("class", "top-axis-label")
         .attr("id", function(d, i){
           return "lbl-x2-" + i;
         });
@@ -260,7 +246,6 @@ class FatGraph extends React.Component {
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
-        // .call(adjustTextLabels);
 
       chart.append("line")
         .attr("x1",0)

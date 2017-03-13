@@ -109,25 +109,10 @@ class FoodActionTracker extends React.Component {
       nextView: false
     });
   }
-  componentDidMount() {
-    
-    // $('#btn-food-picker').on("click", function() {
-    //   $('#results-summary').animate({opacity: 0}, function(){
-    //     $('#results-summary').css("visibility", "hidden");
-    //     $('#food-picker').css("visibility", "visible");
-    //     $('#food-picker').animate({opacity: 1});
-    //   });
-    // });
-  }
   getResults() {
     this.setState({
       nextView: true
     });
-    // $('#food-picker').animate({opacity: 0}, function(){
-    //   $('#food-picker').css("visibility", "hidden");
-    //   $('#results-summary').css("visibility", "visible")
-    //   $('#results-summary').animate({opacity: 1});
-    // });
   }
   didntEat() {
     let foods = Object.assign({}, this.state.foods);

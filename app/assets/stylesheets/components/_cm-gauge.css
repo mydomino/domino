@@ -49,3 +49,7 @@
 #food-picker, #results-summary {
   transition: opacity 0.5s ease-in-out;
 }
+
+@media (max-width: 600px) {
+  .top-axis-label { display: none; }
+}
