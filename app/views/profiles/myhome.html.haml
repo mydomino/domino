@@ -33,7 +33,8 @@
                     - if !@user.organization
                       %br
                       = (@user.created_at + 1.year).strftime("%B %Y")
-          .col.col-12.sm-col.sm-col-4.bg-white.rounded.right.my1.sm-my0
+
+          .col.col-12.sm-col.sm-col-4.bg-white.rounded.right.my1.sm-my0{ style: 'min-height: 220px'}
             .px2.pt1.gray-80
               .h3.bold.inline-block Leaderboard
               .h5.mt1.right.inline-block Points
@@ -48,8 +49,10 @@
                     .h5 #{u.fat_reward_points}
 
         = render 'food_impact_module'
-        .center.my3
-          .h3 Member Benefits
+
+        .center.m3
+          .h1.black.bold Member Benefits
+
         .mt2.mb4.max-width-4.mx-auto
           .clearfix.mx2.lg-mx1
             .mxn1
@@ -75,7 +78,6 @@
                         = image_tag "http://placehold.it/100x50", class: 'fill-x'
                         .p1
                           Hidden health. Benefits of ugly produce
-
 
                   %h3.mb1.line-height-1.center
                     =link_to '#', class:"black line medium" do
@@ -104,21 +106,27 @@
                     =image_tag "icons/i-calendar.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
                       All eyes are on...
-                  .clearfix.mb3
-                    .col.col-12.sm-col.sm-col-4
-                      = image_tag "timetochoose_poster", class: 'fit'
-                    .col.col-12.sm-col.sm-col-8.p1
-                      %p.line-height-4.mt1.mb2.gray-80
+                  .clearfix.my2
+                    .col.col-12.sm-col.sm-col-4{ style: 'box-shadow: 2px 2px 6px #aaa;' }
+                      = link_to "http://www.timetochoose.com/", target: "_blank" do
+                        = image_tag "timetochoose_poster", class: 'fit'
+                    .col.col-12.sm-col.sm-col-8.pl3
+                      %p.line-height-4.mt0.mb1.gray-80
                         Check out this film by our founder for some good climate news.
-                      %p.flex.items-center.gray-80
-                        %span= image_tag "rotten_tomato"
-                        %span.ml1.h3.black 86%&nbsp;
-                        on Rotten Tomatos
-                      %h3.mb1.line-height-1
-                        .gray-80 Watch the film
+
+                      =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank" do
+                        %p.flex.items-center.gray-80.mt0
+                          %span= image_tag "rotten_tomato" 
+                          %span.ml1.h3.black 86%&nbsp; 
+                          on Rotten Tomatos
+                      %h3.mb0.mt4.line-height-1
+                        .black Watch the film
+
                         .flex.items-center
-                          = image_tag "amazon_video"
-                          .inline.h5.blue.ml1 More viewing options
+                          =link_to "https://www.amazon.com/Time-Choose-Oscar-Isaac/dp/B01LOUPR34", target: "_blank" do
+                            = image_tag "amazon_video"
+                          =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank", class: "text-link" do
+                            .inline.h5.blue.ml1 More viewing options
 
               .col.col-12.sm-col.sm-col-6.px1.mb2
                 .py2.px3.bg-white.rounded
