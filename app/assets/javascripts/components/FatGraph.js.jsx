@@ -22,7 +22,7 @@ class FatGraph extends React.Component {
       data: data
     }, function(){
       this.drawGraph();
-    }); 
+    });
   }
   drawGraph(){
     d3.selectAll("svg.chart > *").remove();
@@ -40,7 +40,7 @@ class FatGraph extends React.Component {
 
     // x axis showing days of week
     var x = d3.scaleBand()
-      .domain(["M", "Tu", "W", "Th", "F", "Sa", "Su"])
+      .domain(["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"])
       .rangeRound([0, width]);
 
     var xAxis = d3.axisBottom(x)
@@ -102,7 +102,7 @@ class FatGraph extends React.Component {
       .data(data)
       .enter().append("g")
       .attr("transform", function(d, i) {
-        return "translate(" + (i * barContainerWidth + dx) + ",0)"; 
+        return "translate(" + (i * barContainerWidth + dx) + ",0)";
       });
 
     // Primary bar elements
@@ -167,7 +167,7 @@ class FatGraph extends React.Component {
 
 
         // auxillary bars to show amount below or above avg cf
-        
+
         // bar.append("rect")
         //   .attr("class", "pointer")
         //   .attr("id", function(d, i){
@@ -210,7 +210,7 @@ class FatGraph extends React.Component {
         //       });
         //     d3.select(this)
         //       .style("opacity", 1);
-            
+
         //   })
         //   .on("mouseout", function(d,i){
         //     d3.select(this)
@@ -224,16 +224,19 @@ class FatGraph extends React.Component {
         //       return textBBox.width/2 - 7;
         //     });
         //   });
-        
+
 
         //incomplete sections
         d3.selectAll(".null")
           .attr("y", y(max))
           .attr("height", height-y(max))
-          .attr("fill", "white")
+          .attr("fill", "blue")
           .style("stroke-dasharray", ("10, 5"))
           .style("stroke", "#4ECDC4")
           .style("stroke-width", 2)
+          .style("position","relative")
+          .style("z-index","3")
+
 
         d3.selectAll(".future")
           .attr("height", 0);
@@ -269,7 +272,7 @@ class FatGraph extends React.Component {
         .style("opacity", 0.5)
         .style("stroke-dasharray", ("20, 5"));
 
-      d3.select(window).on('resize', this.resize.bind(this)); 
+      d3.select(window).on('resize', this.resize.bind(this));
 
   } // end drawGraph();
   resize(){
