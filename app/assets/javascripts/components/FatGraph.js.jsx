@@ -210,7 +210,7 @@ class FatGraph extends React.Component {
         d3.selectAll(".null")
           .attr("y", y(max))
           .attr("height", height-y(max))
-          .attr("fill", "blue")
+          .attr("fill", "white")
           .style("stroke-dasharray", ("10, 5"))
           .style("stroke", "#4ECDC4")
           .style("stroke-width", 2)
@@ -266,6 +266,5 @@ class FatGraph extends React.Component {
     }, function(){
       this.drawGraph();
     });
-
   } // end componentWillMount()
 }
