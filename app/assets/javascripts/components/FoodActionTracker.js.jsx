@@ -69,7 +69,7 @@ class FoodActionTracker extends React.Component {
               <div className="center px2">
                <a onClick={()=>this.didntEat()} >
                   <button id="btn-didnt-eat"
-                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-md btn-secondary"}
+                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-sm btn-secondary"}
                     style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
 
                     <span className="flex items-center justify-center">
