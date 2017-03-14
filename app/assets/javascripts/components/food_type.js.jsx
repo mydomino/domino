@@ -43,13 +43,12 @@ class FoodType extends React.Component {
     });
     this.props.addFood(this.state.food);
   }
-  // foodSelector Modal //
   render() {
     return (
       <div>
         <div onClick={(e)=>this.remodal(e)} className="col col-6 sm-col-4 food-type relative" >
           <a id="cancel-food-type" className={"absolute top-0 right-0 p2 pointer " + (this.state.active ? "inline" : "hidden")}>
-            <img src={"/fat_icons/i-close.svg"} className="icon-s"/>
+            <img src={"/fat_icons/i-close.svg"} className="icon-m"/>
           </a>
           <div style={{ borderColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#eaeaea',
                         backgroundColor: (this.state.active) ? this.props.bgColorMap[this.state.food.size] : '#fff' }}
@@ -63,29 +62,27 @@ class FoodType extends React.Component {
             </h5>
           </div>
         </div>
-
+{/* foodSelector Modal */}
         <div data-remodal-id={this.props.index + "-modal"} className="rounded">
             <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
               <img src={"/fat_icons/i-close.svg"} className= "icon-m"/>
             </a>
-            <div className="flex items-center justify-center mb3">
-              <img src={"/fat_icons/" + this.props.foodType.icon} className="icon-l"/>
-              <div className="h2 ml1 medium">{this.props.foodType.name}</div>
+            <div className="mb3">
+              <img src={"/fat_icons/" + this.props.foodType.icon} className="mx-auto mb1"/>
+              <div className="h2 sm-h1 bold">I ate {this.state.food.size} {this.props.foodType.name}</div>
             </div>
-            <div className="col col-3">
-              <div className="flex flex-column items-center justify-center">
-                <div className="meal-size-label mb1 h3 display-none">
-                  {this.state.food.size}
-                </div>
-                <div id={this.props.index + "-slider"}></div>
-              </div>
-            </div>
-            <div className="col col-9 mb4">
-              <h3 className="h3 sm-h2 line-height-2 my0 left-align mb0">How much did you eat?</h3>
-              <p className="sm-h3 gray-60 size-information left-align mt1">
+            <div className="col-10 sm-col-6 mb3 mx-auto left-align">
+              <h3 className="h5 gray-60 bold caps line-height-2 my0">Details</h3>
+              <p className="h4 size-information left-align mt1">
                 {this.props.sizeInfo[this.state.food.size]}
               </p>
+              <h3 className="h5 gray-60 bold caps line-height-2 my0">Examples</h3>
+              <p className="h4 size-information left-align mt1">
+                a cup of yogurt, 1 cup of milk , 1 slice of cheese
+                </p>
             </div>
+            <div id={this.props.index + "-slider"} className="col-10 mx-auto meal-size-label slider slider-l my3"></div>
+
 
             <div className="col col-12 mt1">
               <button data-remodal-action="confirm" className="btn btn-sm btn-primary">Save</button>
@@ -105,7 +102,6 @@ class FoodType extends React.Component {
     let sliderSelector = "#" + this.props.index + "-slider";
 
     that.$slider = $(sliderSelector).slider({
-      orientation: "vertical",
       range: "min",
       animate: "fast",
       min:50,
