@@ -115,6 +115,13 @@ class FatGraph extends React.Component {
       .attr("height", "30px")
       .attr("fill", "#66FFDB");
 
+     // Top axis background
+    d3.select(".chart").append("rect")
+      .attr("transform", "translate(0," + 170 + ")")
+      .attr("width", "100%")
+      .attr("height", "30px")
+      .attr("fill", "#66FFDB");
+
     // Chart container
     var chartContainer = d3.select('.chart-container')
           .style("height", containerHeight + "px");
@@ -170,6 +177,8 @@ class FatGraph extends React.Component {
         // return "none";
         return "steelblue";
       })
+      .style("stroke", "steelblue")
+      .style("stroke-width", 4)
       .on("mouseenter", componentCtx.onBarEnter)
       .on("mouseout", componentCtx.onBarExit)
       .on('click', function(d){
@@ -209,6 +218,11 @@ class FatGraph extends React.Component {
             if(d.cf == null) return "none";
             return (d.cf < 6.2 ? "green" : "red");
           })
+          .style("stroke", function(d){
+            if(d.cf == null) return "none";
+            return (d.cf < 6.2 ? "green" : "red");
+          })
+          .style("stroke-width", 4)
           .style("opacity", 0)
           .on("mouseenter", componentCtx.onBarEnter)
           .on("mouseout", componentCtx.onBarExit);
@@ -245,17 +259,21 @@ class FatGraph extends React.Component {
       chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .attr('fill', 'red');
 
+
+
+      // Avg cf line
       chart.append("line")
         .attr("x1",0)
         .attr("y1", y(6.2))
         .attr("x2",width)
         .attr("y2", y(6.2))
-        .attr('stroke-width', 2)
-        .attr('stroke', "#00ccff")
+        .attr('stroke-width', 4)
+        .attr('stroke', "#87D37C")
         .style("opacity", 0.5)
-        .style("stroke-dasharray", ("20, 5"));
+        .style("stroke-dasharray", ("6, 4"));
 
       d3.select(window).on('resize', this.resize.bind(this));
 
