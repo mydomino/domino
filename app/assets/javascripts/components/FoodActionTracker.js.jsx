@@ -113,7 +113,7 @@ class FoodActionTracker extends React.Component {
             <button className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-        <div className={((this.state.nextView) ? "block" : "display-none")}>
+        <div className={((this.state.nextView) ? "inherit" : "display-none")}>
           <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
