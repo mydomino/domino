@@ -109,6 +109,12 @@ class FatGraph extends React.Component {
       .attr("height", "100%")
       .attr("fill", "white");
 
+    // Top axis background
+    d3.select(".chart").append("rect")
+      .attr("width", "100%")
+      .attr("height", "30px")
+      .attr("fill", "#66FFDB");
+
     // Chart container
     var chartContainer = d3.select('.chart-container')
           .style("height", containerHeight + "px");
@@ -212,9 +218,9 @@ class FatGraph extends React.Component {
           .attr("y", y(max))
           .attr("height", height-y(max))
           .attr("fill", "white")
-          .style("stroke-dasharray", ("10, 5"))
+          .style("stroke-dasharray", ("30, 15"))
           .style("stroke", "#4ECDC4")
-          .style("stroke-width", 2)
+          .style("stroke-width", 4)
           .style("position","relative")
           .style("z-index","3")
 
@@ -224,7 +230,7 @@ class FatGraph extends React.Component {
       // top axis
       chart.append("g")
         .attr("class", "x2 axis")
-        .attr("transform", "translate(0," + 0 + ")")
+        .attr("transform", "translate(0," + -2 + ")")
         .call(x2Axis)
         .selectAll("text")
         .text(function(d,i){

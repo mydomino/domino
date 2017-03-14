@@ -130,9 +130,9 @@ class FatMealsController < ApplicationController
   # /fat_graph_params/
   # Purpose: Create a data structure whose values are used to render fat graph
   def fat_graph_params(date)
-    @active_days = @today.cwday+1
+    @active_days = @today.cwday
 
-    days_left = 6 - @today.cwday
+    days_left = 7 - @today.cwday
     fat_graph_date = @today - @active_days + 1
     @graph_params = {day_index: @date.cwday - 1, values: []}
 
