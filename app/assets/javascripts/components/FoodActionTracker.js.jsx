@@ -102,7 +102,10 @@ class FoodActionTracker extends React.Component {
                 consectetur adipiscing elit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
               </p>
               </div>
-
+              <div className="mx-auto center my2">
+            <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
+            <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
+            </div>
             </div> {/* end results-summary */}
           </div>
         </div>
