@@ -63,8 +63,7 @@ class FoodActionTracker extends React.Component {
           <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
 
             <div  id="food-picker"
-                  className={(this.state.nextView ? "hidden" : "")}
-                  style={{zIndex: 1, opacity: (this.state.nextView ? 0 : 1)}}>
+                  className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
 
               <div className='col-12 p2'>
                 {foodTypes}
@@ -84,7 +83,7 @@ class FoodActionTracker extends React.Component {
               </div>
             </div> {/* end food-picker */}
 
-            <div id="results-summary" className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
+            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " center animated"}>
 
             <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
             <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
