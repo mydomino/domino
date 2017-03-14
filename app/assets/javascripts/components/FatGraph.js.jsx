@@ -47,7 +47,7 @@ class FatGraph extends React.Component {
         .attr("fill", function(d){
           if(d.cf == null) return "white";
           // console.log(d3.select(this).classed("aux"));
-          return "steelblue";
+          return "#D6D6D6";
         });
     }
   }
@@ -113,14 +113,14 @@ class FatGraph extends React.Component {
     d3.select(".chart").append("rect")
       .attr("width", "100%")
       .attr("height", "30px")
-      .attr("fill", "#66FFDB");
+      .attr("fill", "#B3FFEE");
 
      // Top axis background
     d3.select(".chart").append("rect")
       .attr("transform", "translate(0," + 170 + ")")
       .attr("width", "100%")
       .attr("height", "30px")
-      .attr("fill", "#66FFDB");
+      .attr("fill", "#B3FFEE");
 
     // Chart container
     var chartContainer = d3.select('.chart-container')
@@ -175,9 +175,9 @@ class FatGraph extends React.Component {
       .attr("width", barContainerWidth/2)
       .attr("fill", function(d){
         // return "none";
-        return "steelblue";
+        return "#D6D6D6";
       })
-      .style("stroke", "steelblue")
+      .style("stroke", "#D6D6D6")
       .style("stroke-width", 4)
       .on("mouseenter", componentCtx.onBarEnter)
       .on("mouseout", componentCtx.onBarExit)
@@ -185,7 +185,7 @@ class FatGraph extends React.Component {
         window.location = "/food/" + d.path;
       });
 
- 
+
 
         // auxillary bars to show amount below or above avg cf
         bar.append("rect")
@@ -216,11 +216,11 @@ class FatGraph extends React.Component {
           .attr("width", barContainerWidth/2)
           .attr("fill", function(d){
             if(d.cf == null) return "none";
-            return (d.cf < 6.2 ? "green" : "red");
+            return (d.cf < 6.2 ? "#B4FAFF" : "#FFA7A7");
           })
           .style("stroke", function(d){
             if(d.cf == null) return "none";
-            return (d.cf < 6.2 ? "green" : "red");
+            return (d.cf < 6.2 ? "B4FAFF" : "#FFA7A7");
           })
           .style("stroke-width", 4)
           .style("opacity", 0)
@@ -232,8 +232,8 @@ class FatGraph extends React.Component {
           .attr("y", y(max))
           .attr("height", height-y(max))
           .attr("fill", "white")
-          .style("stroke-dasharray", ("30, 15"))
-          .style("stroke", "#4ECDC4")
+          .style("stroke-dasharray", ("16, 16"))
+          .style("stroke", "#FFA7A7")
           .style("stroke-width", 4)
           .style("position","relative")
           .style("z-index","3")
@@ -270,7 +270,7 @@ class FatGraph extends React.Component {
         .attr("y1", y(6.2))
         .attr("x2",width)
         .attr("y2", y(6.2))
-        .attr('stroke-width', 4)
+        .attr('stroke-width', 2)
         .attr('stroke', "#87D37C")
         .style("opacity", 0.5)
         .style("stroke-dasharray", ("6, 4"));
