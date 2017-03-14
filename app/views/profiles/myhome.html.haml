@@ -53,96 +53,96 @@
         .center.m3
           .h1.black.bold Member Benefits
 
+        .flex.items-stretch.flex-column.md-row.mx1
+          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
+            .flex.items-center
+              =image_tag "icons/i-paper.png", :class => "mr1"
+              %h2.gray-90.bold.inline.line-height-1
+                Take-out bites
+            .flex.flex-auto.flex-wrap.justify-around.mt1
+              .px1.mb2{style: 'max-width: 200px; min-width: 120px; flex: 1'}
+                .bg-gray-05
+                  = image_tag "http://placehold.it/100x50", class: 'fill-x'
+                  .p1
+                    Appetizers: Your first course
+              .px1.mb2{style: 'max-width: 200px; min-width: 120px; flex: 1'}
+                .bg-gray-05
+                  = image_tag "http://placehold.it/100x50", class: 'fill-x'
+                  .p1
+                    Are cows the key to saving the planet?
+              .px1.mb2{style: 'max-width: 200px; min-width: 120px; flex: 1'}
+                .bg-gray-05
+                  = image_tag "http://placehold.it/100x50", class: 'fill-x'
+                  .p1
+                    Hidden health. Benefits of ugly produce
+
+            %h3.mb1.line-height-1.center
+              =link_to '#', class:"black line medium" do
+                Still hungry? Get more tasty bites
+
+          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
+            .flex.flex-column.justify-between.fill-y
+              .flex.items-center
+                =image_tag "icons/i-concierge.png", :class => "mr1"
+                %h2.gray-90.bold.inline.line-height-1
+                  Hungry for more?
+              .p.line-height-4.gray-80.my2.center
+                Your concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
+              .h3.mb2.line-height-2.center
+                Call your concierge
+                %br
+                =link_to "tel:+18009792215", class:"black line medium" do
+                  800-721-2215
+
         .mt2.mb4.max-width-4.mx-auto
-          .clearfix.mx2.lg-mx1
-            .mxn1
-              .col.col-12.sm-col.sm-col-6.px1.mb2
-                .py2.px3.bg-white.rounded
-                  .flex.items-center
-                    =image_tag "icons/i-paper.png", :class => "mr1"
-                    %h2.gray-90.bold.inline.line-height-1
-                      Take-out bites
-                  .clearfix
-                    .col.col-12.sm-col.sm-col-4.px1.mb2.sm-mb0
-                      .bg-gray-05
-                        = image_tag "http://placehold.it/100x50", class: 'fill-x'
-                        .p1
-                          Appetizers: Your first course
-                    .col.col-12.sm-col.sm-col-4.px1.mb2.sm-mb0
-                      .bg-gray-05
-                        = image_tag "http://placehold.it/100x50", class: 'fill-x'
-                        .p1
-                          Are cows the key to saving the planet?
-                    .col.col-12.sm-col.sm-col-4.px1.mb2.sm-mb0
-                      .bg-gray-05
-                        = image_tag "http://placehold.it/100x50", class: 'fill-x'
-                        .p1
-                          Hidden health. Benefits of ugly produce
-
-                  %h3.mb1.line-height-1.center
-                    =link_to '#', class:"black line medium" do
-                      Still hungry? Get more tasty bites
-
-              .col.col-12.sm-col.sm-col.sm-col-6.px1.mb2
-                .py2.px3.bg-white.rounded
-                  .flex.items-center
-                    =image_tag "icons/i-concierge.png", :class => "mr1"
-                    %h2.gray-90.bold.inline.line-height-1
-                      Hungry for more?
-                  .center
-                    %p.line-height-4.gray-80.mt1.mb4
-                      Your concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
-                    %h3.mb2.line-height-2
-                      Call your concierge
-                      %br
-                      =link_to "tel:+18009792215", class:"black line medium" do
-                        800-721-2215
 
           .clearfix.mx2.lg-mx1
             .mxn1
               .col.col-12.sm-col.sm-col-6.px1.mb2
-                .py2.px3.bg-white.rounded
+                .p3.bg-white.rounded
                   .flex.items-center
                     =image_tag "icons/i-calendar.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
                       All eyes are on...
                   .clearfix.my2
-                    .col.col-12.sm-col.sm-col-4{ style: 'box-shadow: 2px 2px 6px #aaa;' }
+                    .col.col-12.mb1.sm-col.sm-col-4.center
                       = link_to "http://www.timetochoose.com/", target: "_blank" do
-                        = image_tag "timetochoose_poster", class: 'fit'
-                    .col.col-12.sm-col.sm-col-8.pl3
+                        = image_tag "timetochoose_poster", class: 'fit', style: 'box-shadow: 2px 2px 6px #aaa; max-height:250px'
+                    .col.col-12.sm-col.sm-col-8.sm-pl3
                       %p.line-height-4.mt0.mb1.gray-80
                         Check out this film by our founder for some good climate news.
 
-                      =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank" do
-                        %p.flex.items-center.gray-80.mt0
-                          %span= image_tag "rotten_tomato" 
-                          %span.ml1.h3.black 86%&nbsp; 
+                      %p.flex.items-center.gray-80.mt0
+                        =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank", class: 'text-decoration-none' do
+                          %span= image_tag "rotten_tomato"
+                          %span.h3.black 86%&nbsp;
                           on Rotten Tomatos
-                      %h3.mb0.mt4.line-height-1
+                      %h3.mb0.mt1.sm-mt4.line-height-1
                         .black Watch the film
 
                         .flex.items-center
                           =link_to "https://www.amazon.com/Time-Choose-Oscar-Isaac/dp/B01LOUPR34", target: "_blank" do
                             = image_tag "amazon_video"
-                          =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank", class: "text-link" do
-                            .inline.h5.blue.ml1 More viewing options
+                          
+                          .inline.h5.blue.ml1.text-link
+                            =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
+                              More viewing options
 
               .col.col-12.sm-col.sm-col-6.px1.mb2
-                .py2.px3.bg-white.rounded
+                .p3.bg-white.rounded
                   .flex.items-center
                     =image_tag "icons/i-wallet.png", :class => "mr1"
                     %h2.gray-90.bold.inline.line-height-1
                       Coins back in your pocket
-                  %p.line-height-4.gray-80.mt1.mb4.center Get exclusive discounts on sustainable living products
+                  %p.line-height-4.gray-80.my1.sm-mb4.center Get exclusive discounts on sustainable living products
                   .clearfix.flex.items-center
-                    .col.col-12.sm-col.sm-col-2
+                    %div
                       = image_tag "imperfect_produce", class: "fit"
-                    .col.col-12.sm-col.sm-col-4
+                    %div
                       = image_tag "arcadia_power", class: "fit"
-                    .col.col-12.sm-col.sm-col-3
-                      = image_tag "badger", class: "fit"
-                    .col.col-12.sm-col.sm-col-3
+                    -# .col.col-12.sm-col.sm-col-3
+                    -#  = image_tag "badger", class: "fit", height: '100px'
+                    %div
                       = image_tag "farm_fresh", class: "fit"
                   %h3.mb1.line-height-1.gray-60.medium.center
                     See discount details
