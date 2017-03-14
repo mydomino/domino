@@ -62,7 +62,7 @@ class FoodActionTracker extends React.Component {
 
           <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
 
-            <div  id="food-picker" 
+            <div  id="food-picker"
                   className={(this.state.nextView ? "hidden" : "")}
                   style={{zIndex: 1, opacity: (this.state.nextView ? 0 : 1)}}>
 
@@ -84,20 +84,31 @@ class FoodActionTracker extends React.Component {
               </div>
             </div> {/* end food-picker */}
 
-            <div id="results-summary" className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0 bg-white mx2 my1 py2 rounded"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
-              <h3 className="bold mb0">What does my score means</h3>
+            <div id="results-summary" className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
+
+            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+              <h4 className="medium my0">Back</h4>
+            </span>
+            <div className="bg-white mx2 my1 py2 rounded">
+              <h3 className="bold mb0">What does my score mean?</h3>
               <p className="left-align mx-auto mt1 col-8 center">
                 Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
                 consectetur adipiscing elit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
               </p>
+              <h3 className="bold mb0">How is food related to carbon footprint?</h3>
+              <p className="left-align mx-auto mt1 col-8 center">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
+              </p>
+              </div>
 
-              <button onClick={() => this.showFoodPicker()} id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
             </div> {/* end results-summary */}
           </div>
         </div>
-        <div className="center my2">
+        <div disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}}  className="center my2">
           <a onClick={()=>this.getResults()} >
-            <button disabled={!this.state.results} style={{visibility: (this.state.nextView ? "hidden" : "visible")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
+            <button className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
         <div className={((this.state.nextView) ? "block" : "display-none")}>
