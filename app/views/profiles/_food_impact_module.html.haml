@@ -6,7 +6,7 @@
       text-align: center;
       line-height: 2em;
       border-radius: 1em;
-      margin: auto 1rem;
+      margin: 0 auto;
       display: inline-block;
       color: white;
       position: relative;
@@ -108,8 +108,8 @@
           .bg-white.col-8.sm-col-3.px1.mx-auto.relative
             .h3
               = @week_of
-
-          %ul.list-reset
+        .md-col-7.md-mx-auto
+          %ul.list-reset.flex.justify-between
             -z_index = 7
             -prev_complete = false
             -@timeline_params.each do |p|
