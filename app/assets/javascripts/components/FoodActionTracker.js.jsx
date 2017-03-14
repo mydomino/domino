@@ -108,9 +108,9 @@ class FoodActionTracker extends React.Component {
             </div> {/* end results-summary */}
           </div>
         </div>
-        <div disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}}  className="center my2">
+        <div className="center my2">
           <a onClick={()=>this.getResults()} >
-            <button className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
+            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
         <div className={((this.state.nextView) ? "inherit" : "display-none")}>
