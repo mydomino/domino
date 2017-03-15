@@ -16,7 +16,11 @@
               = image_tag "http://placehold.it/150x150", width: 80, height: 80
             .m1.center
               .h2.m0.black= "#{@profile.first_name} #{@profile.last_name}"
-              .h4.gray-80 MyDomino Inc
+              .h4.gray-80
+                = @user.organization ? @user.organization.name : ''
+            .m1.center
+              .h2.m0.black= "184"
+              .h4.gray-80= "Total Points"
             .m1.gray-80.h6
               .inline-block
                 Membership type
@@ -135,6 +139,9 @@
                     .inline.h5.blue.text-link
                       =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
                         More viewing options
+                    .mr1
+                      = form_tag points_add_watch_ttc_moive_points_path do
+                        = button_tag "I had watched this!", class: 'rounded btn btn-primary px2 mt2'
 
           .m1.p3.bg-white.rounded{ style: 'flex: 1' }
             .flex.items-center

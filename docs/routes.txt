@@ -1,6 +1,9 @@
                                  Prefix Verb     URI Pattern                                             Controller#Action
-                food_action_tracker_new GET      /food-action-tracker/new(.:format)                      fat_meals#new
-                    food_action_tracker POST     /food-action-tracker(.:format)                          fat_meals#create
+      points_add_watch_ttc_moive_points POST     /points/add_watch_ttc_moive_points(.:format)            points#add_watch_ttc_moive_points
+                               fat_date GET      /food/:year/:month/:day(.:format)                       fat_meals#edit
+                                    fat GET      /food(.:format)                                         fat_meals#edit
+                                   food POST     /food(.:format)                                         fat_meals#create
+                                        PATCH    /food(.:format)                                         fat_meals#update
                      organization_users POST     /organizations/:organization_id/users(.:format)         users#create
  email_members_upload_file_organization POST     /organizations/:id/email_members_upload_file(.:format)  organizations#email_members_upload_file
 import_members_upload_file_organization POST     /organizations/:id/import_members_upload_file(.:format) organizations#import_members_upload_file
@@ -31,7 +34,8 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                     faq GET      /faq(.:format)                                          pages#faq
                                 example GET      /example(.:format)                                      pages#example
                                partners GET      /partners(.:format)                                     pages#partners
-                             membership GET      /membership(.:format)                                   profiles#membership
+                                 myhome GET      /myhome(.:format)                                       profiles#myhome
+                                 fat_d3 GET      /fat-d3(.:format)                                       pages#fat_d3
                                         GET      /welcome-email/:profile_id(.:format)                    profiles#welcome_email
                                         GET      /legacy-user-registration-email/:lu_id(.:format)        profiles#lu_registration_email
                                         GET      /dashboard/:slug(.:format)                              redirect(301)
@@ -81,6 +85,7 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                         DELETE   /users(.:format)                                        registrations#destroy
                               sungevity GET      /sungevity(.:format)                                    registrations#new_org_member
                                mydomino GET      /mydomino(.:format)                                     registrations#new_org_member
+                                   test GET      /test(.:format)                                         registrations#new_org_member
                  check_org_member_email GET      /check-org-member-email(.:format)                       registrations#check_org_member_email
                       create_org_member POST     /create-org-member(.:format)                            registrations#create_org_member
                 set_org_member_password PATCH    /set-org-member-password(.:format)                      registrations#set_org_member_password

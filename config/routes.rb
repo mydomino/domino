@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'points/add_watch_ttc_moive_points'
+
   # BEGIN Food Action Tracker routes
   get "food/:year/:month/:day" => "fat_meals#edit", as: 'fat_date'
   get "food" => "fat_meals#edit", as: 'fat'
