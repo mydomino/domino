@@ -33,6 +33,7 @@
                 - if !@user.organization
                   %br
                   = (@user.created_at + 1.year).strftime("%B %Y")
+
           .m1.p3.bg-white.rounded.sm-col-6.md-col-3{ style: 'flex-grow: 1'}
             =image_tag "i-impact-categories.png", :class => "mt1"
 
@@ -46,19 +47,20 @@
                 #{cf_percent.abs}%
                 = cf_percent > 0 ? "better" : "worse"
               than the average American's this week.
-          .m1.bg-white.rounded{style: 'min-width: 250px; flex-grow: 1'}
-            .px2.py1.gray-90
+
+          .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px; flex-grow: 1'}
+            .px3.py1.gray-90
               .h3.mr1.bold.inline-block Weeky leaders
               .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
-              .flex.items-center{style: "padding: 4px 16px;#{'background: #F4B350' if u.email ==  current_user.email}"}
-                .flex.items-center.justify-center.h6.border.circle.icon-m
-                  = (i==5) ? i + @current_user_standing : i + 1
+              .flex.px3.py1.items-center{style: "#{'background: #fff9c4' if u.email == current_user.email}"}
+                .flex.items-center.justify-center.h6.border.circle.icon-m.black
+                  = (i == 5) ? i + @current_user_standing : i + 1
                 .fill-x
                   .left-align.inline-block
-                    .h5.ml1 #{u.profile.first_name} #{u.profile.last_name}
+                    .h4.ml1.black #{u.profile.first_name} #{u.profile.last_name} #{"(You)" if u.email == current_user.email}
                   .right.inline-block
-                    .h5 #{u.fat_reward_points}
+                    .h4.black #{u.fat_reward_points}
 
         = render 'food_impact_module'
 
