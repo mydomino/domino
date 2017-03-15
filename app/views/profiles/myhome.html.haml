@@ -58,14 +58,15 @@
               .h3.mr1.bold.inline-block Weeky leaders
               .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
-              .flex.px3.py1.items-center{style: "#{'background: #fff9c4' if u.email == current_user.email}"}
-                .flex.items-center.justify-center.h6.border.circle.icon-m.gray-80
-                  = (i == 6) ? i + @current_user_standing : i + 1
-                .fill-x
-                  .left-align.inline-block
-                    .h4.ml1.mr2.black #{u.profile.first_name} #{u.profile.last_name} #{"(You)" if u.email == current_user.email}
-                  .right.inline-block
-                    .h4.gray-80 #{u.fat_reward_points}
+              - unless u.profile.nil? # Skip any users wihtout a profile
+                .flex.px3.py1.items-center{style: "#{'background: #fff9c4' if u.email == current_user.email}"}
+                  .flex.items-center.justify-center.h6.border.circle.icon-m.gray-80
+                    = (i == 6) ? i + @current_user_standing : i + 1
+                  .fill-x
+                    .left-align.inline-block
+                      .h4.ml1.mr2.black #{u.profile.first_name} #{u.profile.last_name} #{"(You)" if u.email == current_user.email}
+                    .right.inline-block
+                      .h4.gray-80 #{u.fat_reward_points}
 
         = render 'food_impact_module'
 
