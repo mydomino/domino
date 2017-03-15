@@ -16,7 +16,8 @@
               - if @user.organization
                 = image_tag "organization_logos/#{@profile.user.organization.name.downcase}_logo_400x400.png", size: "80x80", class: "rounded"
               - else
-                = image_tag "i-avatar.png", size: "80x80", class: "rounded"
+                .border.border-gray-10.line-height-0.px2.py1.rounded
+                  = image_tag "icons/i-avatar.png", class: "rounded icon-xl"
 
             .m1.center
               .h2.m0.black= "#{@profile.first_name} #{@profile.last_name}"
