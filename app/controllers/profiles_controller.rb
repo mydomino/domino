@@ -181,7 +181,7 @@ class ProfilesController < ApplicationController
     CalculateFatTotalPointJob.perform_later organization
 
     # find users with or without organization 
-    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
+    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(6)
     
     
     if ( !@users.any?{|u| u.email == current_user.email} )
