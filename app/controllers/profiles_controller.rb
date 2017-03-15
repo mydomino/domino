@@ -17,22 +17,40 @@ class ProfilesController < ApplicationController
   def myhome
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
-
     # @profile used to display first and last name
     @profile = @user.profile
+    @leaderboard_users = cfp_ranking
 
-    @fat_graph_cf_map = {}
+    #date to display on FAT module
+    beginning_of_week = Date.today.beginning_of_week
+    @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
+
+    #fat timeline data
+
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
     today = Date.new(time_now.year, time_now.month, time_now.day)
-    fat_graph_date = today - 6.days
 
-    7.times do
-      meal_day = MealDay.find_by(date: fat_graph_date, user: current_user)
-      @fat_graph_cf_map[fat_graph_date.to_s] = meal_day ? meal_day.carbon_footprint : 6.2
+    active_days = today.cwday
+
+    days_left = 7 - today.cwday
+    fat_graph_date = today - active_days + 1
+    @timeline_params = []
+
+    active_days.times do
+      meal_day_t = MealDay.find_by(date: fat_graph_date, user: current_user)
+      day = fat_graph_date.strftime("%A").downcase
+      status = meal_day_t ? "complete" : "incomplete"
+      link = "/food/" + fat_graph_date.strftime("%Y/%m/%d")
+      @timeline_params << { day: day , status: status, link: link }
       fat_graph_date += 1.day
     end
-    @leaderboard_users = cfp_ranking
+
+    days_left.times do 
+      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
+      fat_graph_date += 1.day
+    end
+    # byebug
   end
 
   def verify_current_password
@@ -153,28 +171,18 @@ class ProfilesController < ApplicationController
   def cfp_ranking
     organization = current_user.organization
 
-    if organization.nil?
-      # find the default organization
-      organization = Organization.find_by!(name: 'MyDomino')
-    end
+    #if organization.nil?
+    #  # find the default organization
+    #  organization = Organization.find_by!(name: 'MyDomino')
+    #end
 
-    # Move to CalculateFatTotalPointJob
-    # users = User.where(organization: organization)
-# 
-    # #set up date range
-    # start_date = Time.zone.today 
-    # end_date = Time.zone.today - 60.days
-# 
-    # # refresh the total reward points
-    # users.each do |u|
-    #   # calculate user reward points during the period and save it to the user's member variable
-    #   u.get_fat_reward_points(start_date, end_date)
-    # end
-
-    # use backend job to perform point calculations
+  
+    # use background job to perform point calculations
     CalculateFatTotalPointJob.perform_later organization
 
-    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
+    # find users with or without organization 
+    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(6)
+    
     
     if ( !@users.any?{|u| u.email == current_user.email} )
       @users << current_user

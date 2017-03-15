@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'points/add_watch_ttc_moive_points'
+
   # BEGIN Food Action Tracker routes
   get "food/:year/:month/:day" => "fat_meals#edit", as: 'fat_date'
   get "food" => "fat_meals#edit", as: 'fat'
@@ -48,6 +50,7 @@ Rails.application.routes.draw do
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
   get 'myhome' => 'profiles#myhome'
+  get 'fat-d3' => 'pages#fat_d3'
   
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'

@@ -1,0 +1,123 @@
+:scss
+  .fat-module {
+    li {
+      width: 2em;
+      height: 2em;
+      text-align: center;
+      line-height: 2em;
+      border-radius: 1em;
+      margin: 0 auto;
+      display: inline-block;
+      color: white;
+      position: relative;
+      border: 2px solid lightgrey;
+    }
+
+    li.chained::before{
+      content: '';
+      position: absolute;
+      top: .9em;
+      left: -5vw;
+      width: 5vw;
+      height: .2em;
+      background: #2ECC71;
+      z-index: 0;
+    }
+
+    li::after {
+      position: absolute;
+      top: 2em;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: black;
+      margin-bottom: 1em;
+    }
+
+    li.monday::after { content: 'Mo'; }
+    li.tuesday::after { content: 'Tu';}
+    li.wednesday::after { content: 'We';}
+    li.thursday::after { content: 'Th';}
+    li.friday::after { content: 'Fr';}
+    li.saturday::after { content: 'Sa';}
+    li.sunday::after { content: 'Su';}
+
+    li.complete {
+      background: #00F0B9;
+      border:none;
+    }
+
+    li.incomplete {
+      background: white;
+      border:none;
+      }
+
+    li.future {
+      border-color: #eaeaea;
+      background: white;
+    }
+    li.future::after {
+      color: #eaeaea
+    }
+
+    li:first-child::before {
+      display: none;
+    }
+
+    .h2 {
+        position: relative;
+        font-size: 30px;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+    }
+    @media (max-width: 400px) {
+      .h2:before, .h2:after {
+        display: none;
+      }
+    }
+    .h2:before, .h2:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 50%;
+        height: 1px;
+        content: '\a0';
+        background-color: #eaeaea;
+    }
+    .h2:before {
+        margin-left: -50%;
+        text-align: right;
+    }
+  }
+.fat-module.mt3.max-width-4.mx-auto
+  .clearfix.mx2.lg-mx1
+    .col.col-12.mb2.center
+      .p3.bg-white.rounded.center
+        .mb3
+          .flex.items-center.justify-center
+            =image_tag "icons/i-apple.png", :class => "mr1"
+            .h1.black.bold.inline.line-height-1
+              Food Impact
+          %p.col-12.sm-col-8.gray-60.mt2.mx-auto Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
+          = link_to 'food' do
+            %button.btn.btn-sm.btn-primary.btn-primary--hover
+              .bold Update today
+          .mt2
+            .col.col-12.bg-gray-10.relative{style:"height:1px; top:1rem ;"}
+          .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
+            .h4.sm-h3
+              = @week_of
+        .col-12.sm-col-8.sm-col-7.mx-auto
+          %ul.list-reset.flex.justify-between
+            -z_index = 7
+            -prev_complete = false
+            -@timeline_params.each do |p|
+              %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')} #{'pointer' if p[:status] != 'future'}", style: "z-index: #{z_index}", data: {link: p[:link]}}
+                -if p[:status]=="complete"
+                  =inline_svg "icons/i-success.svg", class:"icon-l fill-black"
+                  -prev_complete = true
+                -elsif p[:status]=="incomplete"
+                  =inline_svg "icons/i-question.svg", class:"icon-l"
+                  -prev_complete = false
+              -z_index -= 1

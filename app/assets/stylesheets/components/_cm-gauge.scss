@@ -1,0 +1,59 @@
+/* BEGIN styles for FAT gauge */
+#gauge {
+    background-color: $gray-05;
+    border-top-left-radius: 300px;
+    border-top-right-radius: 300px;
+    display: block;
+    margin: auto;
+    transition: opacity 0.5s linear;
+}
+
+/* END styles for FAT gauge */
+
+
+/* Begin FAT graph styles */
+.pointer {
+  cursor: pointer;
+}
+.chart {
+  vertical-align: top;
+}
+.chart rect {
+  /*fill: steelblue;*/
+}
+.chart text {
+  fill: black;
+  font: 12px sans-serif;
+  text-anchor: middle;
+}
+
+.axis text {
+  font: 16px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.x.axis path {
+  display: none;
+}
+
+.x.axis text {
+  fill: #666;
+}
+
+.x2.axis path {
+  stroke: lightgrey;
+}
+/* END FAT graph styles */
+
+#food-picker, #results-summary {
+  transition: opacity 0.5s ease-in-out;
+}
+
+@media (max-width: 600px) {
+  .top-axis-label { display: none; }
+}

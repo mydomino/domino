@@ -4,7 +4,7 @@
 %header#header
   %nav#navbar.col-12.z3.top-0.pt2{class: "#{homepage ? 'absolute' : 'bg-white'}"}
     .max-width-4.mx-auto.flex.items-center.justify-between
-      - org_member = current_user && !current_user.organization.nil?
+      - org_member = true #current_user && !current_user.organization.nil?
       = link_to (org_member ? myhome_path : root_path), id: "navbar-brand", class: 'pl2' do
         = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
@@ -15,7 +15,7 @@
             -if current_user.role == 'concierge'
               =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
 
-            -if current_user.organization
+            -if true #current_user.organization
               = link_to myhome_path, class: 'text-decoration-none' do
                 %span.inline-block.h5.blue--hover{class: "#{(current_page? '/myhome') ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-myhome.svg", class:"block mx-auto", size:"32px * 22px"
@@ -32,7 +32,7 @@
                 = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
                 Profile
 
-            -if current_user.role == 'org_admin'
+            -if current_user.role == 'org_admin' && current_user.organization != nil
               = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
                 %span.inline-block.mr2.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-admin.svg", class:"icon-m block mx-auto"
@@ -81,7 +81,7 @@
           %li.h1
             =link_to 'Profile', member_profile_path, class: "white py1 inline-block text-decoration-none"
           
-          -if current_user.role == 'org_admin'
+          -if current_user.role == 'org_admin' && current_user.organization != nil
             %li.h1
               =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
 

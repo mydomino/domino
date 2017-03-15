@@ -1,12 +1,18 @@
 class FoodActionTracker extends React.Component {
   constructor(props){
     super(props);
+
+    let fatDay = this.props.fatDay;
+    let mealDayNull = fatDay.meal_day.id == null ? true : false;
+
     this.state = {
-      date: this.props.fatDay.date,
-      method: (this.props.fatDay.meal_day.id == null) ? 'POST' : 'PATCH',
-      meal_day: this.props.fatDay.meal_day,
-      foods: this.props.fatDay.foods,
-      didntEat: (this.props.fatDay.meal_day.carbon_footprint == 0) ? true : false
+      date: fatDay.date,
+      method: mealDayNull ? 'POST' : 'PATCH',
+      meal_day: fatDay.meal_day,
+      foods: fatDay.foods,
+      didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
+      results: !mealDayNull,
+      nextView: false
     };
   }
   addFood(f) {
@@ -22,7 +28,6 @@ class FoodActionTracker extends React.Component {
     },this.getCarbonFootprint);
   }
   removeFood(f) {
-
     let foods = Object.assign({}, this.state.foods);
     delete foods[f.food_type_id];
 
@@ -30,50 +35,101 @@ class FoodActionTracker extends React.Component {
       foods: foods
     }, this.getCarbonFootprint);
   }
+  updateGraph(d) {
+    this.refs.results.updateGraph(d);
+  }
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
                       return <FoodType  index={index}
                                         ref={"foodtype" + (index+1)}
-                                        removeFood={(f)=>that.removeFood(f)} 
-                                        addFood={(f)=>that.addFood(f)} 
-                                        sizeInfo={that.props.foodSizeInfo[foodType.id]} 
-                                        food={that.state.foods[foodType.id]} index={index} 
-                                        key={foodType.name} 
-                                        foodType={foodType} 
+                                        removeFood={(f)=>that.removeFood(f)}
+                                        addFood={(f)=>that.addFood(f)}
+                                        sizeInfo={that.props.foodSizeInfo[foodType.id]}
+                                        food={that.state.foods[foodType.id]} index={index}
+                                        key={foodType.name}
+                                        foodType={foodType}
                                         updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
 
     return (
       <div className='remodal-bg'>
-        <div className='clearfix p2'>
-          <div className='col-12'>
-            {foodTypes}
+        <div className='max-width-3 mx-auto py2 px1'>
+          <CarbonFootprint ref="cf"
+            cf={this.state.meal_day.carbon_footprint}
+            getCarbonFootprint={()=>this.getCarbonFootprint()}
+            method={this.state.method} />
+
+          <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
+
+            <div  id="food-picker"
+                  className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
+
+              <div className='col-12 p2'>
+                {foodTypes}
+              </div>
+              <div className="center px2">
+               <a onClick={()=>this.didntEat()} >
+                  <button id="btn-didnt-eat"
+                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-sm btn-secondary"}
+                    style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
+
+                    <span className="flex items-center justify-center">
+                      <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
+                      {"Ate none of these"}
+                    </span>
+                  </button>
+                </a>
+              </div>
+            </div> {/* end food-picker */}
+
+            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
+
+            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+              <h4 className="medium my0">Back</h4>
+            </span>
+            <div className="bg-white mx2 my1 py2 rounded center">
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+              </p>
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+              </p>
+              </div>
+              <div className="mx-auto center my2">
+            <a href="#weeklyprogress">
+            <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
+            </a>
+            <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
+            </div>
+            </div> {/* end results-summary */}
           </div>
         </div>
-        <div className="flex flex-column sm-row justify-center mx2 mt1 mb0">
-          <a onClick={()=>this.didntEat()} className="sm-mr2">
-            <button id="btn-didnt-eat" 
-                    className={(this.state.didntEat ? "border-none " : null) + "col col-12 btn btn-md btn-secondary"} 
-                    style={{backgroundColor: (this.state.didntEat ? "white" : null), height:54}}>
-              <span className="flex items-center justify-center">
-                <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                {"Didn't Eat"}
-                </span>
-            </button>
-          </a>
-          <a href={'/myhome'}>
-            <button className="col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
+        <div className="center my2">
+          <a onClick={()=>this.getResults()} >
+            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-
-        <CarbonFootprint ref="cf"
-          cf={this.state.meal_day.carbon_footprint}
-          getCarbonFootprint={()=>this.getCarbonFootprint()}
-          method={this.state.method}
-        />
+        <div className={((this.state.nextView) ? "inherit" : "display-none")}>
+          <Results ref="results" graph_params={this.props.fatDay.graph_params} />
+        </div>
       </div>
     );
+  }
+  showFoodPicker() {
+    this.setState({
+      nextView: false
+    });
+  }
+  getResults() {
+    this.setState({
+      nextView: true
+    });
   }
   didntEat() {
     let foods = Object.assign({}, this.state.foods);
@@ -94,7 +150,7 @@ class FoodActionTracker extends React.Component {
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
     let that = this;
-    
+
     // client side calculation of cf
     let foods = Object.assign({}, this.state.foods);
     let foodTypes = Object.assign({}, this.props.fatDay.food_types);
@@ -122,7 +178,11 @@ class FoodActionTracker extends React.Component {
         that.setState({
           method: 'PATCH',
           meal_day: data.meal_day,
-          foods: data.foods
+          foods: data.foods,
+          graph_params: data.graph_params,
+          results: true
+        }, function(){
+          this.updateGraph(this.state.graph_params);
         });
       })
       .fail(function(){ console.log('Error!'); });
@@ -180,4 +240,5 @@ FoodActionTracker.defaultProps = {
       "200" : "A big burger, around 310 calories"
     }
   }
+  
 };

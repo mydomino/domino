@@ -26,6 +26,9 @@ rails g model PointsLog point_date:date point_type:string desc:string point:inte
 
 rails g migration AddFatRewardPointsToUsers	fat_reward_points:integer
 
+rails g migration AddTotalFatRewardPointsToUsers total_fat_reward_points:integer
+
+
 ############################################
 Rails destroy ....  
 

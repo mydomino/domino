@@ -20,9 +20,14 @@
 #  fk_rails_f97c67f538  (user_id => users.id)
 #
 
+
 #require File.expand_path("../../../lib/fat_competition", __FILE__)
 
 class PointsLog < ActiveRecord::Base
+
+  after_save :recal_user_total_points
+  after_destroy :recal_user_total_points
+
 
   # define ACTIONS type CONTANT
   SIGN_IN_EACH_DAY        = 'SIGN_IN_EACH_DAY'
@@ -30,6 +35,7 @@ class PointsLog < ActiveRecord::Base
   CONTACT_CONCIERGE       = 'CONTACT_CONCIERGE'
   SHARE_ARTICLE           = 'SHARE_ARTICLE'
   COMMENT_ARTICLE         = 'COMMENT_ARTICLE'
+  WATCH_TTC_MOVIE         = 'WATCH_TTC_MOVIE'
 
   # define Action Point Constant 
   SIGN_IN_EACH_DAY_POINTS         = 5
@@ -37,6 +43,7 @@ class PointsLog < ActiveRecord::Base
   CONTACT_CONCIERGE_POINTS        = 10
   SHARE_ARTICLE_POINTS            = 10
   COMMENT_ARTICLE_POINTS          = 10
+  WATCH_TTC_MOVIE_POINTS          = 100
 
 
   belongs_to :user
@@ -66,7 +73,21 @@ class PointsLog < ActiveRecord::Base
       	pl.point = point
   
       end
+    # these action types are allowed only to be rewarded once
+    elsif [PointsLog::WATCH_TTC_MOVIE].include?(point_type)
 
+      p_log = PointsLog.find_or_create_by!(user: user,
+        point_type: point_type) do |pl| 
+  
+        pl.user = user
+        pl.point_type = point_type
+        pl.point_date = Time.zone.now.to_date
+        pl.desc = desc
+        pl.point = point
+  
+      end
+        
+    # these action types are allowed with no limit
     else
 
     	p_log = PointsLog.create!(user: user, point_type: point_type, desc: desc, point: point, point_date: point_date)
@@ -111,6 +132,18 @@ class PointsLog < ActiveRecord::Base
 
     return !found.nil?
 
+  end
+
+
+  private
+
+  def recal_user_total_points
+
+    puts "recal_user_total_points is called."
+
+    
+    RecalUserTotalPointsJob.perform_later self.user
+    
   end
 
 end
