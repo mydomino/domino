@@ -41,11 +41,11 @@
             %span.h0.bold.my0.orange
               = @user.get_current_week_grade
             %div.h4.gray-60.col-11
-              Your carbon footprint is
+              Your carbon "foodprint" is
               %span.bold 
                 - cf_percent = 100 - @user.get_current_week_foodcf_percent.round(0)
                 #{cf_percent.abs}%
-                = cf_percent > 0 ? "better" : "worse"
+                = cf_percent > 0 ? "lower" : "higher"
               than the average American's this week.
 
           .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px; flex-grow: 1'}
@@ -129,9 +129,9 @@
 
                   .mt0
                     =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank", class: 'text-decoration-none' do
-                      %span= image_tag "rotten_tomato"
-                      %span.h3.black 86%
-                      %span.h5.black on&nbsp;Rotten&nbsp;Tomatos
+                      %span= image_tag "rotten_tomato", style: "vertical-align: top"
+                      %span.h3.gray-80 86%
+                      %span.h5.gray-80 on&nbsp;Rotten&nbsp;Tomatos
                 .h3.my1
                   .black Watch the film
 
