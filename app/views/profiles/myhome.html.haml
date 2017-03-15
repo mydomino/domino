@@ -11,7 +11,7 @@
       .max-width-4.mx-auto
 
         .flex.flex-column.sm-row
-          .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column
+          .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
               = image_tag "http://placehold.it/150x150", width: 80, height: 80
             .m1.center
@@ -34,15 +34,15 @@
                   %br
                   = (@user.created_at + 1.year).strftime("%B %Y")
 
-          .m1.p3.bg-white.rounded.sm-col-6.md-col-3{ style: 'flex-grow: 1'}
-            =image_tag "i-impact-categories.png", :class => "mt1"
+          .m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1'}
+            =image_tag "i-impact-categories.png", :class => "mt1 col-4 sm-col-6"
 
             %h4.gray-80.mb0.mt1.bold.caps Clean Score
             %span.h0.bold.my0.orange
               = @user.get_current_week_grade
             %div.h4.gray-60.col-11
               Your carbon footprint is
-              %span.bold 
+              %span.bold
                 - cf_percent = 100 - @user.get_current_week_foodcf_percent.round(0)
                 #{cf_percent.abs}%
                 = cf_percent > 0 ? "better" : "worse"
