@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
     grade_percent = ((-4 * cf_percent) + 940) / 7
 
     # Map to letter grade
-    case grade_percent
+    case grade_percent.round(0)
     when 100..Float::INFINITY
       "A+"
     when 94..99
