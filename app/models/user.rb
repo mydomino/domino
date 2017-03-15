@@ -67,32 +67,37 @@ class User < ActiveRecord::Base
   end
 
   
-  # calculate the food carbon footprint during a period
-  # Note: start_date is today/current date, end_date is yesterday or before today date
-  def get_fat_carbon_footprint(start_date, end_date = nil)
+  # Returns total carbon footprint from FAT in a given period, number of days included
+  #   start_date must =< end_date
+  #   include missing days assumes avg american value if user didnt log
+  def get_fat_cf(start_date, end_date = nil, include_missing_days = nil)
 
-    
     # determine whether end_date is given. If not given, use start_date as end_date
     end_date = end_date.nil? ? start_date : end_date
 
+    if end_date >= start_date
+      # Get CF from all days in date range
+      meal_days = self.meal_days.where(["date <= ? and date >= ?", end_date, start_date])
+      carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days.size > 0
 
-    @total_carbon_foodprint = 0
+      # Sum values in the array
+      total_cf = 0
+      total_cf = carbon_foodprints.inject(:+) if carbon_foodprints!= nil
 
-    meal_days = self.meal_days.where(["date <= ? and date >= ?", start_date, end_date])
+      # Include the days user didn't log, assuming value to be average american's
+      if include_missing_days
+        total_days = (end_date - start_date).to_i + 1
+        num_missing_days = total_days - meal_days.size
+        total_cf += num_missing_days * 6.2
+      end 
 
-    carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days.size > 0
-
-    # sum up value in the array
-    @total_carbon_foodprint = carbon_foodprints.inject(:+) if carbon_foodprints!= nil
-
-
-    # update the carbon footprint value
-    self.meal_carbon_footprint = @total_carbon_foodprint
-
-    self.save!
-
-    return (self.meal_carbon_footprint)
-    
+      # [TODO: REMOVE] DEPRECATED - update the carbon footprint value
+      # self.meal_carbon_footprint = @total_carbon_foodprint
+      # self.save!
+      return total_cf
+    else
+      return false, "Error: end date can't be before start date"
+    end
   end
  
   # calculate user reward points during the period and save it to the user's member variable

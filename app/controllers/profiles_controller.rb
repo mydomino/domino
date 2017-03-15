@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
     #date to display on FAT module
     beginning_of_week = Date.today.beginning_of_week
-    @week_of = "Week of " + beginning_of_week.strftime("%b #{beginning_of_week.day.ordinalize}")
+    @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
 
     #fat timeline data
 
