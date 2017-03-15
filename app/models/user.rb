@@ -66,7 +66,54 @@ class User < ActiveRecord::Base
     UserMailer.email_signup_link(self).deliver_later
   end
 
-  
+
+  # Returns a letter grade based on user's current week's food CF
+  def get_current_week_food_grade
+    # Get FAT CF and calculate % from national average
+    total_cf = get_fat_cf(Date.today.beginning_of_week, Date.today, true)
+    average_cf = (Date.today - Date.today.beginning_of_week + 1) * MealDay::AVG_DAILY_CF / 1000
+    cf_percentile = total_cf / average_cf
+
+    # Translate to grade in percentile under these grading guidelines:
+    #  A+ = 60% below average CF (Avg CF of a vegan diet)
+    #  C = 100% of average (Average american)
+    #  F = 130% of average (Avg CF of a meat lover's diet)
+    grade_percentile = ((-4 * cf_percentile * 100) + 940) / 7
+
+    # Map to letter grade
+    case grade_percentile
+    when 100..Float::INFINITY
+      "A+"
+    when 94..99
+      "A"
+    when 90..93
+      "A-"
+    when 87..89
+      "B+"
+    when 83..86
+      "B"
+    when 80..82
+      "B-"
+    when 77..79
+      "C+"
+    when 73..76
+      "C"
+    when 70..72
+      "C-"
+    when 67..69
+      "D+"
+    when 63..66
+      "D"
+    when 60..62
+      "D-"
+    when 0..60
+      "F"
+    else
+      nil
+    end
+  end
+
+
   # Returns total carbon footprint from FAT in a given period, number of days included
   #   start_date must =< end_date
   #   include missing days assumes avg american value if user didnt log
@@ -88,7 +135,7 @@ class User < ActiveRecord::Base
       if include_missing_days
         total_days = (end_date - start_date).to_i + 1
         num_missing_days = total_days - meal_days.size
-        total_cf += num_missing_days * 6.2
+        total_cf += num_missing_days * MealDay::AVG_DAILY_CF / 1000
       end 
 
       # [TODO: REMOVE] DEPRECATED - update the carbon footprint value
