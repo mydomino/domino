@@ -13,7 +13,8 @@
         .flex.flex-column.sm-row
           .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
-              = image_tag "http://placehold.it/150x150", width: 80, height: 80
+              = image_tag "organization_logos/#{@profile.user.organization.name.downcase}_logo_400x400.png", size: "80x80", class: "m2"
+
             .m1.center
               .h2.m0.black= "#{@profile.first_name} #{@profile.last_name}"
               .h4.gray-80
