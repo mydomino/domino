@@ -121,6 +121,7 @@ class User < ActiveRecord::Base
 
     # determine whether end_date is given. If not given, use start_date as end_date
     end_date = end_date.nil? ? start_date : end_date
+    total_cf = 0
 
     if end_date >= start_date
       # Get CF from all days in date range
@@ -128,7 +129,6 @@ class User < ActiveRecord::Base
       carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days.size > 0
 
       # Sum values in the array
-      total_cf = 0
       total_cf = carbon_foodprints.inject(:+) if carbon_foodprints!= nil
 
       # Include the days user didn't log, assuming value to be average american's
@@ -141,10 +141,13 @@ class User < ActiveRecord::Base
       # [TODO: REMOVE] DEPRECATED - update the carbon footprint value
       # self.meal_carbon_footprint = @total_carbon_foodprint
       # self.save!
-      return total_cf
-    else
-      return false, "Error: end date can't be before start date"
+      #return total_cf
+    #else
+    #  return false, "Error: end date can't be before start date"
     end
+
+    return total_cf
+
   end
  
   # calculate user reward points during the period and save it to the user's member variable
