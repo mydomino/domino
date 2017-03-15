@@ -9,7 +9,7 @@ class Results extends React.Component {
         </div>
         <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         <div className="pt3 pb4 center bg-gray-05">
-          <div className="mx-auto">
+          <div className="mx3 sm-mx0">
             <div className="h4 caps bold gray-80 my3">LEARN MORE
             </div>
             <div className="max-width-3 mx-auto">
@@ -18,7 +18,9 @@ class Results extends React.Component {
                 <div className="bg-white m2 rounded-bottom">
                 <a href="http://actions.mydomino.com/" className="text-decoration-none black">
                   <img src="/fat_icons/appetizers.jpg" className="fill-x rounded-top"/>
-                    <h3 className="p1 left-align">Appetizers: Your first course</h3>
+                    <h3 className="px1 left-align mb0">Appetizers: Your first course</h3>
+                    <p className="h5 left-align gray-80 px1 mt1 mb3 col-10">Expand your gastronomy horizons
+                    </p>
                   </a>
                 </div>
 
@@ -30,13 +32,15 @@ class Results extends React.Component {
                     </p>
                     </a>
                 </div>
-
-                <a href="https://mydomino.com/articles/hidden-health-benefits-of-ugly-produce/">
                 <div className="bg-white m2 rounded-bottom">
+                  <a href="https://mydomino.com/articles/hidden-health-benefits-of-ugly-produce/" className="text-decoration-none black">
                   <img src="/fat_icons/ugly-apples.jpg" className="fill-x rounded-top"/>
-                    <h3 className="p1 left-align">Hidden health. Benefits of ugly produce</h3>
+                    <h3 className="px1 left-align mb0">Hidden health. Benefits of ugly produce</h3>
+                    <p className="h5 left-align gray-80 px1 mt1 mb3 col-11">Imperfect produce may be more perfect than you realize
+                    </p>
+                    </a>
                   </div>
-                  </a>
+
               </div>
               </div>
             </div>
