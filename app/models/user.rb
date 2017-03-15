@@ -66,22 +66,26 @@ class User < ActiveRecord::Base
     UserMailer.email_signup_link(self).deliver_later
   end
 
-
-  # Returns a letter grade based on user's current week's food CF
-  def get_current_week_food_grade
-    # Get FAT CF and calculate % from national average
+  # Returns the percentage of user's current week CF compare to national avg
+  def get_current_week_foodcf_percent
     total_cf = get_fat_cf(Date.today.beginning_of_week, Date.today, true)
     average_cf = (Date.today - Date.today.beginning_of_week + 1) * MealDay::AVG_DAILY_CF / 1000
-    cf_percentile = total_cf / average_cf
+    return total_cf / average_cf * 100
+  end
 
-    # Translate to grade in percentile under these grading guidelines:
+  # Returns a letter grade based on user's current week's food CF
+  def get_current_week_grade
+    # Get FAT CF and calculate % from national average
+    cf_percent = self.get_current_week_foodcf_percent
+
+    # Translate to grade in percent under these grading guidelines:
     #  A+ = 60% below average CF (Avg CF of a vegan diet)
     #  C = 100% of average (Average american)
     #  F = 130% of average (Avg CF of a meat lover's diet)
-    grade_percentile = ((-4 * cf_percentile * 100) + 940) / 7
+    grade_percent = ((-4 * cf_percent) + 940) / 7
 
     # Map to letter grade
-    case grade_percentile
+    case grade_percent
     when 100..Float::INFINITY
       "A+"
     when 94..99
