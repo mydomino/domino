@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
     #date to display on FAT module
     beginning_of_week = Date.today.beginning_of_week
-    @week_of = "Week of " + beginning_of_week.strftime("%b #{beginning_of_week.day.ordinalize}")
+    @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
 
     #fat timeline data
 
@@ -181,7 +181,7 @@ class ProfilesController < ApplicationController
     CalculateFatTotalPointJob.perform_later organization
 
     # find users with or without organization 
-    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(5)
+    @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(6)
     
     
     if ( !@users.any?{|u| u.email == current_user.email} )

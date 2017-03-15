@@ -132,7 +132,6 @@ namespace :md_test do
     ARGV.each { |a| task a.to_sym do ; end }
 
     #puts "ARGV.size is #{ARGV.size}"
-    
     if ARGV.size != 2 
       puts "Error! Please provide proper parameters to your command. \n\nUsage: rake md_test:test_user_model_cfp_method user_email\n"
       puts "Example: rake md_test:test_user_model_cfp_method yong@mydomino.com\n"
@@ -143,19 +142,15 @@ namespace :md_test do
 
     puts "\n User email is #{user_email}\n"
 
-
     begin
-
       user = User.find_by!(email: user_email)
 
       #set up date range
-      start_date = Time.zone.today 
-      end_date = Time.zone.today - 60.days
+      start_date = Time.zone.today - 60.days
+      end_date = Time.zone.today 
 
-      
-      puts "Total Carbon footprint for the period is #{user.get_fat_carbon_footprint(start_date, end_date)}"
-  #
-      puts "\nCarbon footprint for the date #{start_date} is #{user.get_fat_carbon_footprint(start_date)}"
+      puts "Total Carbon footprint for the period is #{user.get_fat_cf(start_date, end_date)}"
+      puts "\nCarbon footprint for the date #{end_date} is #{user.get_fat_cf(end_date)}"
 
     rescue ActiveRecord::RecordNotFound
       puts "\n Error: user with email #{user_email} is not found. \nPlease run rake csv:create_corporate_and_admin to create the test user. Program exit.\n"
@@ -163,12 +158,7 @@ namespace :md_test do
     end
 
 
-
-
-
   end
-
-
 
   desc "test leader board ranking for carbon footprint"
   task test_leader_board_cfp: :environment do

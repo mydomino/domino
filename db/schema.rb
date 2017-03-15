@@ -70,6 +70,25 @@ ActiveRecord::Schema.define(version: 20170311052408) do
   add_index "foods", ["food_type_id"], name: "index_foods_on_food_type_id", using: :btree
   add_index "foods", ["meal_day_id"], name: "index_foods_on_meal_day_id", using: :btree
 
+  create_table "group_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "datetime_sign_in"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id", using: :btree
+  add_index "group_users", ["user_id", "group_id"], name: "index_group_users_on_user_id_and_group_id", unique: true, using: :btree
+  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "interests", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "offering_id"
@@ -281,6 +300,8 @@ ActiveRecord::Schema.define(version: 20170311052408) do
   add_foreign_key "dashboards", "users"
   add_foreign_key "foods", "food_types"
   add_foreign_key "foods", "meal_days"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
   add_foreign_key "meal_days", "users"

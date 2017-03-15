@@ -47,7 +47,7 @@ class FatGraph extends React.Component {
         .attr("fill", function(d){
           if(d.cf == null) return "white";
           // console.log(d3.select(this).classed("aux"));
-          return "steelblue";
+          return "#D6D6D6";
         });
     }
   }
@@ -109,6 +109,19 @@ class FatGraph extends React.Component {
       .attr("height", "100%")
       .attr("fill", "white");
 
+    // Top axis background
+    d3.select(".chart").append("rect")
+      .attr("width", "100%")
+      .attr("height", "30px")
+      .attr("fill", "#B3FFEE");
+
+     // Top axis background
+    d3.select(".chart").append("rect")
+      .attr("transform", "translate(0," + 170 + ")")
+      .attr("width", "100%")
+      .attr("height", "30px")
+      .attr("fill", "#B3FFEE");
+
     // Chart container
     var chartContainer = d3.select('.chart-container')
           .style("height", containerHeight + "px");
@@ -121,9 +134,10 @@ class FatGraph extends React.Component {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var barWidth = 20;
+    // var barWidth = 20;
     var barContainerWidth = width/data.length;
     var barOffset = barWidth/barContainerWidth
-    var dx = barContainerWidth/2 - barWidth/2;
+    var dx = barContainerWidth/4;
 
     var bar = chart.selectAll("g")
       .data(data)
@@ -158,18 +172,20 @@ class FatGraph extends React.Component {
 
         return height-y(v);
       })
-      .attr("width", 20)
+      .attr("width", barContainerWidth/2)
       .attr("fill", function(d){
         // return "none";
-        return "steelblue";
+        return "#D6D6D6";
       })
+      .style("stroke", "#D6D6D6")
+      .style("stroke-width", 4)
       .on("mouseenter", componentCtx.onBarEnter)
       .on("mouseout", componentCtx.onBarExit)
       .on('click', function(d){
         window.location = "/food/" + d.path;
       });
 
- 
+
 
         // auxillary bars to show amount below or above avg cf
         bar.append("rect")
@@ -197,11 +213,16 @@ class FatGraph extends React.Component {
             }
             return height;
           })
-          .attr("width", 20)
+          .attr("width", barContainerWidth/2)
           .attr("fill", function(d){
             if(d.cf == null) return "none";
-            return (d.cf < 6.2 ? "green" : "red");
+            return (d.cf < 6.2 ? "#B4FAFF" : "#FFA7A7");
           })
+          .style("stroke", function(d){
+            if(d.cf == null) return "none";
+            return (d.cf < 6.2 ? "B4FAFF" : "#FFA7A7");
+          })
+          .style("stroke-width", 4)
           .style("opacity", 0)
           .on("mouseenter", componentCtx.onBarEnter)
           .on("mouseout", componentCtx.onBarExit);
@@ -211,9 +232,9 @@ class FatGraph extends React.Component {
           .attr("y", y(max))
           .attr("height", height-y(max))
           .attr("fill", "white")
-          .style("stroke-dasharray", ("10, 5"))
-          .style("stroke", "#4ECDC4")
-          .style("stroke-width", 2)
+          .style("stroke-dasharray", ("16, 16"))
+          .style("stroke", "#FFA7A7")
+          .style("stroke-width", 4)
           .style("position","relative")
           .style("z-index","3")
 
@@ -223,7 +244,7 @@ class FatGraph extends React.Component {
       // top axis
       chart.append("g")
         .attr("class", "x2 axis")
-        .attr("transform", "translate(0," + 0 + ")")
+        .attr("transform", "translate(0," + -2 + ")")
         .call(x2Axis)
         .selectAll("text")
         .text(function(d,i){
@@ -238,17 +259,21 @@ class FatGraph extends React.Component {
       chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .attr('fill', 'red');
 
+
+
+      // Avg cf line
       chart.append("line")
         .attr("x1",0)
         .attr("y1", y(6.2))
         .attr("x2",width)
         .attr("y2", y(6.2))
         .attr('stroke-width', 2)
-        .attr('stroke', "#00ccff")
+        .attr('stroke', "#87D37C")
         .style("opacity", 0.5)
-        .style("stroke-dasharray", ("20, 5"));
+        .style("stroke-dasharray", ("6, 4"));
 
       d3.select(window).on('resize', this.resize.bind(this));
 

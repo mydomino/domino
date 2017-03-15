@@ -6,7 +6,7 @@
       text-align: center;
       line-height: 2em;
       border-radius: 1em;
-      margin: auto 1rem;
+      margin: 0 auto;
       display: inline-block;
       color: white;
       position: relative;
@@ -17,8 +17,8 @@
       content: '';
       position: absolute;
       top: .9em;
-      left: -4em;
-      width: 4em;
+      left: -5vw;
+      width: 5vw;
       height: .2em;
       background: #2ECC71;
       z-index: 0;
@@ -90,7 +90,7 @@
         text-align: right;
     }
   }
-.fat-module.mt4.max-width-4.mx-auto
+.fat-module.mt3.max-width-4.mx-auto
   .clearfix.mx2.lg-mx1
     .col.col-12.mb2.center
       .p3.bg-white.rounded.center
@@ -105,11 +105,11 @@
               .bold Update today
           .mt2
             .col.col-12.bg-gray-10.relative{style:"height:1px; top:1rem ;"}
-          .bg-white.col-8.sm-col-3.px1.mx-auto.relative
-            .h3
+          .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
+            .h4.sm-h3
               = @week_of
-
-          %ul.list-reset
+        .col-12.sm-col-8.sm-col-7.mx-auto
+          %ul.list-reset.flex.justify-between
             -z_index = 7
             -prev_complete = false
             -@timeline_params.each do |p|

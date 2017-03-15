@@ -12,7 +12,7 @@ class FoodActionTracker extends React.Component {
       foods: fatDay.foods,
       didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
       results: !mealDayNull,
-      nextView:!mealDayNull
+      nextView: false
     };
   }
   addFood(f) {
@@ -62,7 +62,9 @@ class FoodActionTracker extends React.Component {
 
           <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
 
-            <div id="food-picker" style={{zIndex: 1}} style={{opacity: (this.state.nextView ? 0 : 1)}}>
+            <div  id="food-picker"
+                  className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
+
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
@@ -81,23 +83,39 @@ class FoodActionTracker extends React.Component {
               </div>
             </div> {/* end food-picker */}
 
-            <div id="results-summary" className={(this.state.nextView ? "" : "hidden ") + "absolute center top-0 left-0 right-0 bg-white mx2 my1 py2 rounded"} style={{opacity: (this.state.nextView ? 1 : 0)}}>
-              <h3 className="bold mb0">What does my score means</h3>
-              <p className="left-align mx-auto mt1 col-8 center">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
-              </p>
+            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
-              <button onClick={() => this.showFoodPicker()} id="btn-food-picker" className="btn btn-md btn-primary btn-primary--hover">Back</button>
+            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+              <h4 className="medium my0">Back</h4>
+            </span>
+            <div className="bg-white mx2 my1 py2 rounded center">
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+              </p>
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+              </p>
+              </div>
+              <div className="mx-auto center my2">
+            <a href="#weeklyprogress">
+            <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
+            </a>
+            <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
+            </div>
             </div> {/* end results-summary */}
           </div>
         </div>
         <div className="center my2">
           <a onClick={()=>this.getResults()} >
-            <button disabled={!this.state.results} style={{visibility: (this.state.nextView ? "hidden" : "visible")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
+            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-        <div className={((this.state.nextView) ? "block" : "display-none")}>
+        <div className={((this.state.nextView) ? "inherit" : "display-none")}>
           <Results ref="results" graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
@@ -222,4 +240,5 @@ FoodActionTracker.defaultProps = {
       "200" : "A big burger, around 310 calories"
     }
   }
+  
 };
