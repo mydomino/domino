@@ -12,16 +12,15 @@ class Results extends React.Component {
           <div className="mx-auto">
             <div className="h4 caps bold gray-80 my3">LEARN MORE
             </div>
-            <div className="max-width-4 mx-auto">
+            <div className="max-width-3 mx-auto">
               <div className="flex flex-column sm-row justify-around">
 
                 <div className="bg-white m2 rounded-bottom">
-                <a href="https://actions.mydomino.com/" className="text-decoration-none black">
+                <a href="http://actions.mydomino.com/" className="text-decoration-none black">
                   <img src="/fat_icons/appetizers.jpg" className="fill-x rounded-top"/>
                     <h3 className="p1 left-align">Appetizers: Your first course</h3>
                   </a>
                 </div>
-
 
                 <div className="bg-white m2 rounded-bottom">
                   <a href="https://mydomino.com/articles/cows-climate-change" className="text-decoration-none black">

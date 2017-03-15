@@ -77,23 +77,26 @@
             .flex.flex-auto.flex-wrap.justify-around.mt1
               .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
                 .bg-gray-05
-                  = image_tag "http://placehold.it/100x50", class: 'fill-x'
-                  .p1.h5.sm-h4
-                    Appetizers: Your first course
+                  =link_to 'http://actions.mydomino.com', class:"text-decoration-none black" do
+                    = image_tag "appetizers.jpg", class: 'fill-x'
+                    .p1.h5.sm-h4
+                      Appetizers: Your first course
               .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
                 .bg-gray-05
-                  = image_tag "http://placehold.it/100x50", class: 'fill-x'
-                  .p1.h5.sm-h4
-                    Are cows the key to saving the planet?
+                  =link_to 'https://mydomino.com/articles/cows-climate-change', class:"text-decoration-none black" do
+                    = image_tag "cow-tongue.jpg", class: 'fill-x'
+                    .p1.h5.sm-h4
+                      Are cows the key to saving the planet?
               .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
                 .bg-gray-05
-                  = image_tag "http://placehold.it/100x50", class: 'fill-x'
-                  .p1.h5.sm-h4
-                    Hidden health. Benefits of ugly produce
+                  =link_to 'https://mydomino.com/articles/hidden-health-benefits-of-ugly-produce/', class:"text-decoration-none black" do
+                    = image_tag "ugly-apples.jpg", class: 'fill-x'
+                    .p1.h5.sm-h4
+                      Hidden health. Benefits of ugly produce
             %h4.mb0.center
               Still hungry?
             %h3.my1.line-height-1.center
-              =link_to '#', class:"black line medium" do
+              =link_to 'http://mydomino.com/articles', class:"black line medium" do
                 Read more tasty bites
 
           .m1.p3.bg-white.rounded{ style: 'flex: 1' }
@@ -116,7 +119,7 @@
           .m1.p3.bg-white.rounded{ style: 'flex: 1' }
 
             .flex.items-center
-              =image_tag "icons/i-calendar.png", :class => "mr1"
+              =image_tag "icons/i-movie.png", :class => "mr1"
               %h2.gray-90.bold.inline.line-height-1
                 All eyes are on...
             .flex.flex-wrap.mt2.justify-center
@@ -143,9 +146,11 @@
                     .inline.h5.blue.text-link
                       =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
                         More viewing options
-                  .blue
+                  .blue.mt1
                     = form_tag points_add_watch_ttc_moive_points_path do
-                      = button_tag "I've watched it! +100 points", class: 'rounded btn btn-outline px1 h5'
+                      .inline
+                        = button_tag "I've watched it!", class: 'rounded btn btn-outline px1 h5'
+                      .inline.h5.medium.gray-60.caps +100 pts
 
           .m1.p3.bg-white.rounded{ style: 'flex: 1' }
             .flex.items-center
