@@ -90,7 +90,7 @@
               Still hungry?
             %h3.my1.line-height-1.center
               =link_to '#', class:"black line medium" do
-                Get more tasty bites
+                Read more tasty bites
 
           .m1.p3.bg-white.rounded{ style: 'flex: 1' }
             .flex.flex-column.justify-between.fill-y
@@ -102,10 +102,10 @@
                 Your concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
               %div
                 .h4.mb0.center
-                  Call your concierge
+                  Talk to your concierge
                 .h3.mt1.mb2.line-height-2.center
                   =link_to "tel:+18009792215", class:"black line medium" do
-                    800-721-2215
+                    Call 800-721-2215
 
         .flex.items-stretch.flex-column.md-row.mx1
 
@@ -116,7 +116,7 @@
               %h2.gray-90.bold.inline.line-height-1
                 All eyes are on...
             .flex.flex-wrap.mt2.justify-center
-              .mb1.mr2
+              .mr2
                 = link_to "http://www.timetochoose.com/", target: "_blank" do
                   = image_tag "timetochoose_poster", class: 'fit', style: 'box-shadow: 2px 2px 6px #aaa; max-height:230px'
               .flex.flex-column.justify-between{ style: 'flex: 1; min-width: 160px' }
@@ -135,13 +135,13 @@
                   .flex.flex-wrap.items-center
                     .mr1
                       =link_to "https://www.amazon.com/Time-Choose-Oscar-Isaac/dp/B01LOUPR34", target: "_blank" do
-                        = image_tag "amazon_video"
+                        = image_tag "amazon_video", style: 'max-width: 90px'
                     .inline.h5.blue.text-link
                       =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
                         More viewing options
-                    .mr1
-                      = form_tag points_add_watch_ttc_moive_points_path do
-                        = button_tag "I had watched this!", class: 'rounded btn btn-primary px2 mt2'
+                  .blue
+                    = form_tag points_add_watch_ttc_moive_points_path do
+                      = button_tag "I've watched it! +100 points", class: 'rounded btn btn-outline px1 h5'
 
           .m1.p3.bg-white.rounded{ style: 'flex: 1' }
             .flex.items-center
@@ -159,7 +159,8 @@
               %div
                 = image_tag "farm_fresh", class: "fit"
             %h3.mb1.line-height-1.gray-60.medium.center
-              See discount details
+              =link_to "articles/coins-in-your-pocket", class:"black line medium" do
+                See discount details
 
 :javascript
   $('li.complete, li.incomplete').on('click', function(){
