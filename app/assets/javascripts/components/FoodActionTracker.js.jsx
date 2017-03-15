@@ -83,26 +83,28 @@ class FoodActionTracker extends React.Component {
               </div>
             </div> {/* end food-picker */}
 
-            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " center animated"}>
+            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
             <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
             <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
               <h4 className="medium my0">Back</h4>
             </span>
-            <div className="bg-white mx2 my1 py2 rounded">
-              <h3 className="bold mb0">What does my score mean?</h3>
-              <p className="left-align mx-auto mt1 col-8 center">
+            <div className="bg-white mx2 my1 py2 rounded center">
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
                 Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
+                consectetur adipiscing elit.
               </p>
-              <h3 className="bold mb0">How is food related to carbon footprint?</h3>
-              <p className="left-align mx-auto mt1 col-8 center">
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
                 Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Integer interdum quis nisi eu pretium. Donec congue massa eget nulla ultricies semper.
+                consectetur adipiscing elit.
               </p>
               </div>
               <div className="mx-auto center my2">
+            <a href="#weeklyprogress">
             <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
+            </a>
             <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
             </div>
             </div> {/* end results-summary */}
@@ -238,4 +240,5 @@ FoodActionTracker.defaultProps = {
       "200" : "A big burger, around 310 calories"
     }
   }
+  
 };
