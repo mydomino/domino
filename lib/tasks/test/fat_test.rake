@@ -147,7 +147,7 @@ namespace :md_test do
 
       #set up date range
       start_date = Time.zone.today - 60.days
-      end_date = Time.zone.today
+      end_date = Time.zone.today 
 
       puts "Total Carbon footprint for the period is #{user.get_fat_cf(start_date, end_date)}"
       puts "\nCarbon footprint for the date #{end_date} is #{user.get_fat_cf(end_date)}"

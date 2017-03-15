@@ -142,8 +142,8 @@ class User < ActiveRecord::Base
       # self.meal_carbon_footprint = @total_carbon_foodprint
       # self.save!
       #return total_cf
-    #else
-    #  return false, "Error: end date can't be before start date"
+    else
+      raise "Error: end date can't be before start date"
     end
 
     return total_cf
