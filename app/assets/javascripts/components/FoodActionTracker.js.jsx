@@ -149,9 +149,7 @@ class FoodActionTracker extends React.Component {
 
     for (var food in foods) {
       let selector = "foodtype" + food;
-      this.refs[selector].setState({
-        active: false
-      });
+      this.refs[selector].removeFood();
       delete foods[food];
     }
 
@@ -203,6 +201,7 @@ class FoodActionTracker extends React.Component {
 }
 FoodActionTracker.defaultProps = {
   foodSizeInfo : {
+    // Fruits
     "1" : {
         // Fruits avg: 95 cal
         "0" : "None!",
@@ -211,6 +210,7 @@ FoodActionTracker.defaultProps = {
         "150" : "A lot, around 150 calories",
         "200" : "Fruit monster, around 200 calories"
     },
+    // Vegetables
     "2" : {
       // Veg avg: 122 cal
       "0" : "None!",
