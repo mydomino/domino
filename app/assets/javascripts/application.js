@@ -35,6 +35,7 @@
 //= require Chart
 //= require gauge
 //= require d3
+//= require jquery.ui.touch-punch.min.js
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles
