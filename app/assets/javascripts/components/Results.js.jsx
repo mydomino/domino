@@ -35,7 +35,7 @@ class Results extends React.Component {
                 <div className="bg-white m2 rounded-bottom">
                   <a href="https://mydomino.com/articles/hidden-health-benefits-of-ugly-produce/" className="text-decoration-none black">
                   <img src="/fat_icons/ugly-apples.jpg" className="fill-x rounded-top"/>
-                    <h3 className="px1 left-align mb0">Hidden health. Benefits of ugly produce</h3>
+                    <h3 className="px1 left-align mb0">Hidden health benefits of ugly produce</h3>
                     <p className="h5 left-align gray-80 px1 mt1 mb3 col-11">Imperfect produce may be more perfect than you realize
                     </p>
                     </a>
