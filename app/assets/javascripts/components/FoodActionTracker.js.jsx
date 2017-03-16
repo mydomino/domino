@@ -14,6 +14,7 @@ class FoodActionTracker extends React.Component {
       results: !mealDayNull,
       nextView: false
     };
+    this.onButtonClick = this.onButtonClick.bind(this);
   }
   addFood(f) {
     let food_base = {size: null, food_type_id: null};
@@ -37,6 +38,11 @@ class FoodActionTracker extends React.Component {
   }
   updateGraph(d) {
     this.refs.results.updateGraph(d);
+  }
+  onButtonClick() {
+    var itemView = document.getElementById('weeklyprogress');
+    var offset = itemView.offsetTop;
+    window.scrollTo(0, offset);
   }
   render() {
     var that = this;
@@ -102,9 +108,7 @@ class FoodActionTracker extends React.Component {
               </p>
               </div>
               <div className="mx-auto center my2">
-            <a href="#weeklyprogress">
-            <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
-            </a>
+            <button className="btn btn-sm btn-primary btn-primary--hover" onClick={this.onButtonClick}>See Weekly Progress</button>
             <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
             </div>
             </div> {/* end results-summary */}
@@ -240,5 +244,5 @@ FoodActionTracker.defaultProps = {
       "200" : "A big burger, around 310 calories"
     }
   }
-  
+
 };
