@@ -64,7 +64,6 @@ class FoodActionTracker extends React.Component {
 
             <div  id="food-picker"
                   className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
-
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
@@ -102,11 +101,11 @@ class FoodActionTracker extends React.Component {
               </p>
               </div>
               <div className="mx-auto center my2">
-            <a href="#weeklyprogress">
-            <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
-            </a>
-            <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
-            </div>
+                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See Weekly Progress</button>
+                <span className="ml1">
+                  or <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                </span>
+              </div>
             </div> {/* end results-summary */}
           </div>
         </div>
@@ -120,6 +119,20 @@ class FoodActionTracker extends React.Component {
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    $('.smooth-scroll').on('click', function(){
+      var target = $(this).data("target");
+      $('html, body').animate({
+          scrollTop: $(target).offset().top
+        },
+        1000,
+        $.noop
+      );
+    });
+  }
+  componentWillUnmount() {
+    $('.smooth-scroll').unbind('click');
   }
   showFoodPicker() {
     this.setState({
