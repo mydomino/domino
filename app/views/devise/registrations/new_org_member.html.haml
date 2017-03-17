@@ -1,3 +1,6 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+
 - content_for :body_class do
   bg-gray-05
 
@@ -18,7 +21,7 @@
         = hidden_field_tag :organization_id, @organization_id
         %section#email-section
           %label.h6.mt2.mb0.gray-60.block{for: 'email'} Your #{@organization_name} email
-          = email_field_tag :email, (@user.email if @user), placeholder: "yourname@#{@organization_email_domain || 'example.com'}", class: 'text-input', disabled: @user,
+          = email_field_tag :email, (@user.email if @user), placeholder: "yourname@#{@organization_email_domain || 'example.com'}", class: 'text-input', disabled: @user, autofocus: !@user,
             data: {'parsley-group': 'email', 'parsley-pattern': "#{@email_regex.to_s}", 'parsley-pattern-message': "You need to use your #{@organization_email_domain} email address"}, 
             required: true
 
@@ -34,7 +37,7 @@
                 = text_field_tag :last_name, (@user.profile.last_name.capitalize if @user), class: 'text-input', disabled: @user, required: true, data: {'parsley-group': 'name-pw'}
           
           %label.h6.mt2.mb0.gray-60.block{for: 'password'} Password
-          = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Your password needs at least 8 characters'}
+          = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Your password needs at least 8 characters'}, autofocus: @user
 
           %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Confirm password
           = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": "Oops, your passwords don't match"}
@@ -42,7 +45,5 @@
         = submit_tag "#{@user ? 'Activate' : 'Continue'}", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
 
 :javascript
-  (function(){
-    modulejs.require('new_org_member')();
-  }());
+  modulejs.require('new_org_member')();
   
