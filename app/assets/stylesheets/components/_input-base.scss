@@ -81,7 +81,7 @@ input.error { border-color: #D65A5A!important; }
 // Custom styling for jQuery UI slider widget
 
 .slider{
-  border-color: #eaeaea;
+  border-color: $gray-10;
   & > div{ background: $blue; }
 
   .ui-slider-handle {
