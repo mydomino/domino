@@ -36,10 +36,7 @@ $width-4: 64rem !default;
 
 .left  { float: left }
 
-@media #{$breakpoint-sm} {
-  .sm-left { float: left; }
-  .sm-right { float: right; }
-}
+
 
 .right { float: right }
 
