@@ -10,26 +10,15 @@
 
 /* END styles for FAT gauge */
 
-
 /* Begin FAT graph styles */
-.pointer {
-  cursor: pointer;
-}
-.chart {
-  vertical-align: top;
-}
-.chart rect {
-  /*fill: steelblue;*/
-}
+.chart { vertical-align: top; }
+
 .chart text {
   fill: black;
-  font: 12px sans-serif;
   text-anchor: middle;
 }
 
-.axis text {
-  font: 16px sans-serif;
-}
+.axis text { font-size: 16px;}
 
 .axis path,
 .axis line {
@@ -37,17 +26,11 @@
   stroke: #000;
   shape-rendering: crispEdges;
 }
-.x.axis path {
-  display: none;
-}
+.x.axis path { display: none; }
 
-.x.axis text {
-  fill: #666;
-}
+.x.axis text { fill: #666; }
 
-.x2.axis path {
-  stroke: lightgrey;
-}
+.x2.axis path { stroke: lightgrey; }
 /* END FAT graph styles */
 
 #food-picker, #results-summary {

@@ -124,6 +124,7 @@ class FatGraph extends React.Component {
 
     // Chart container
     var chartContainer = d3.select('.chart-container')
+          .attr("class", "adelle")
           .style("height", containerHeight + "px");
 
     // Chart
@@ -243,7 +244,7 @@ class FatGraph extends React.Component {
 
       // top axis
       chart.append("g")
-        .attr("class", "x2 axis")
+        .attr("class", "x2 axis adelle")
         .attr("transform", "translate(0," + -2 + ")")
         .call(x2Axis)
         .selectAll("text")
@@ -257,7 +258,7 @@ class FatGraph extends React.Component {
 
       // bottom axis
       chart.append("g")
-        .attr("class", "x axis")
+        .attr("class", "x axis adelle")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
         .attr('fill', 'red');
