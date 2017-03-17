@@ -5,7 +5,7 @@ class Results extends React.Component {
   render() {
     return (
       <div className="center bg-leaf pt3 mt3">
-        <div className="h4 caps bold gray-80 mt3 mb2">WEEKLY PROGRESS
+        <div id="weeklyprogress" className="h4 caps bold gray-80 mt3 mb2">WEEKLY PROGRESS
         </div>
         <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         <div className="pt3 pb4 center bg-gray-05">
