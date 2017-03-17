@@ -20,7 +20,6 @@
                 %span.inline-block.h5.blue--hover{class: "#{(current_page? '/myhome') ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-myhome.svg", class:"block mx-auto", size:"32px * 22px"
                   My Home
-
             -else
               = link_to user_dashboard_path, class: 'text-decoration-none' do
                 %span.inline-block.h5.blue--hover{class: "#{(current_page? '/dashboard') ? 'fill-blue blue' : nav_element_color}"}
@@ -32,7 +31,7 @@
                 = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
                 Profile
 
-            -if current_user.role == 'org_admin'
+            -if current_user.role == 'org_admin' && current_user.organization != nil
               = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
                 %span.inline-block.mr2.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-admin.svg", class:"icon-m block mx-auto"
@@ -81,7 +80,7 @@
           %li.h1
             =link_to 'Profile', member_profile_path, class: "white py1 inline-block text-decoration-none"
           
-          -if current_user.role == 'org_admin'
+          -if current_user.role == 'org_admin' && current_user.organization != nil
             %li.h1
               =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
 

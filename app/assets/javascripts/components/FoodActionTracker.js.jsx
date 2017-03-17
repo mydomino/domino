@@ -1,12 +1,18 @@
 class FoodActionTracker extends React.Component {
   constructor(props){
     super(props);
+
+    let fatDay = this.props.fatDay;
+    let mealDayNull = fatDay.meal_day.id == null ? true : false;
+
     this.state = {
-      date: this.props.fatDay.date,
-      method: (this.props.fatDay.meal_day.id == null) ? 'POST' : 'PATCH',
-      meal_day: this.props.fatDay.meal_day,
-      foods: this.props.fatDay.foods,
-      didntEat: (this.props.fatDay.meal_day.carbon_footprint == 0) ? true : false
+      date: fatDay.date,
+      method: mealDayNull ? 'POST' : 'PATCH',
+      meal_day: fatDay.meal_day,
+      foods: fatDay.foods,
+      didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
+      results: !mealDayNull,
+      nextView: false
     };
   }
   addFood(f) {
@@ -22,7 +28,6 @@ class FoodActionTracker extends React.Component {
     },this.getCarbonFootprint);
   }
   removeFood(f) {
-
     let foods = Object.assign({}, this.state.foods);
     delete foods[f.food_type_id];
 
@@ -30,59 +35,121 @@ class FoodActionTracker extends React.Component {
       foods: foods
     }, this.getCarbonFootprint);
   }
+  updateGraph(d) {
+    this.refs.results.updateGraph(d);
+  }
   render() {
     var that = this;
     var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
                       return <FoodType  index={index}
                                         ref={"foodtype" + (index+1)}
-                                        removeFood={(f)=>that.removeFood(f)} 
-                                        addFood={(f)=>that.addFood(f)} 
-                                        sizeInfo={that.props.foodSizeInfo[foodType.id]} 
-                                        food={that.state.foods[foodType.id]} index={index} 
-                                        key={foodType.name} 
-                                        foodType={foodType} 
+                                        removeFood={(f)=>that.removeFood(f)}
+                                        addFood={(f)=>that.addFood(f)}
+                                        sizeInfo={that.props.foodSizeInfo[foodType.id]}
+                                        food={that.state.foods[foodType.id]} index={index}
+                                        key={foodType.name}
+                                        foodType={foodType}
                                         updateFoodSize={(f)=>that.updateFoodSize(f)} />
                     });
 
     return (
       <div className='remodal-bg'>
-        <div className='clearfix p2'>
-          <div className='col-12'>
-            {foodTypes}
+        <div className='max-width-3 mx-auto py2 px1'>
+          <CarbonFootprint ref="cf"
+            cf={this.state.meal_day.carbon_footprint}
+            getCarbonFootprint={()=>this.getCarbonFootprint()}
+            method={this.state.method} />
+
+          <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
+
+            <div  id="food-picker"
+                  className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
+              <div className='col-12 p2'>
+                {foodTypes}
+              </div>
+              <div className="center px2">
+               <a onClick={()=>this.didntEat()} >
+                  <button id="btn-didnt-eat"
+                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-sm btn-secondary"}
+                    style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
+
+                    <span className="flex items-center justify-center">
+                      <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
+                      {"Ate none of these"}
+                    </span>
+                  </button>
+                </a>
+              </div>
+            </div> {/* end food-picker */}
+
+            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
+
+            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+              <h4 className="medium my0">Back</h4>
+            </span>
+            <div className="bg-white mx2 my1 py2 rounded center">
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+              </p>
+              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
+              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+              </p>
+              </div>
+              <div className="mx-auto center my2">
+                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See Weekly Progress</button>
+                <span className="ml1">
+                  or <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                </span>
+              </div>
+            </div> {/* end results-summary */}
           </div>
         </div>
-        <div className="flex flex-column sm-row justify-center mx2 mt1 mb0">
-          <a onClick={()=>this.didntEat()} className="sm-mr2">
-            <button id="btn-didnt-eat" 
-                    className={(this.state.didntEat ? "border-none " : null) + "col col-12 btn btn-md btn-secondary"} 
-                    style={{backgroundColor: (this.state.didntEat ? "white" : null), height:54}}>
-              <span className="flex items-center justify-center">
-                <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                {"Didn't Eat"}
-                </span>
-            </button>
-          </a>
-          <a href={'/myhome'}>
-            <button className="col-12 mt1 sm-mt0 btn btn-md btn-primary btn-primary--hover">Finish</button>
+        <div className="center my2">
+          <a onClick={()=>this.getResults()} >
+            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
-
-        <CarbonFootprint ref="cf"
-          cf={this.state.meal_day.carbon_footprint}
-          getCarbonFootprint={()=>this.getCarbonFootprint()}
-          method={this.state.method}
-        />
+        <div className={((this.state.nextView) ? "inherit" : "display-none")}>
+          <Results ref="results" graph_params={this.props.fatDay.graph_params} />
+        </div>
       </div>
     );
+  }
+  componentDidMount() {
+    $('.smooth-scroll').on('click', function(){
+      var target = $(this).data("target");
+      $('html, body').animate({
+          scrollTop: $(target).offset().top
+        },
+        1000,
+        $.noop
+      );
+    });
+  }
+  componentWillUnmount() {
+    $('.smooth-scroll').unbind('click');
+  }
+  showFoodPicker() {
+    this.setState({
+      nextView: false
+    });
+  }
+  getResults() {
+    this.setState({
+      nextView: true
+    });
   }
   didntEat() {
     let foods = Object.assign({}, this.state.foods);
 
     for (var food in foods) {
       let selector = "foodtype" + food;
-      this.refs[selector].setState({
-        active: false
-      });
+      this.refs[selector].removeFood();
       delete foods[food];
     }
 
@@ -94,7 +161,7 @@ class FoodActionTracker extends React.Component {
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
     let that = this;
-    
+
     // client side calculation of cf
     let foods = Object.assign({}, this.state.foods);
     let foodTypes = Object.assign({}, this.props.fatDay.food_types);
@@ -122,7 +189,11 @@ class FoodActionTracker extends React.Component {
         that.setState({
           method: 'PATCH',
           meal_day: data.meal_day,
-          foods: data.foods
+          foods: data.foods,
+          graph_params: data.graph_params,
+          results: true
+        }, function(){
+          this.updateGraph(this.state.graph_params);
         });
       })
       .fail(function(){ console.log('Error!'); });
@@ -130,54 +201,127 @@ class FoodActionTracker extends React.Component {
 }
 FoodActionTracker.defaultProps = {
   foodSizeInfo : {
+    // Fruits
     "1" : {
         // Fruits avg: 95 cal
-        "0" : "None!",
-        "50" : "Just a few pieces, around 50 calories",
-        "100" : "Average, around 100 calories",
-        "150" : "A lot, around 150 calories",
-        "200" : "Fruit monster, around 200 calories"
+        "50" : {
+                  details: "Just a few pieces, around 50 calories",
+                  examples: "Half an orange"
+                },
+        "100" : {
+                  details: "Average, around 100 calories",
+                  examples: "A whole orange"
+                },
+        "150" : {
+                  details: "A lot, around 150 calories",
+                  examples: "An orange and an apple"
+                },
+        "200" : {
+                  details: "Fruit monster, around 200 calories",
+                  examples: "A watermelon"
+                }
     },
+    // Vegetables
     "2" : {
       // Veg avg: 122 cal
-      "0" : "None!",
-      "50" : "Just a little, around 60 calories",
-      "100" : "Average, around 120 calories",
-      "150" : "A lot, around 180 calories",
-      "200" : "A crap load, around 240 calories"
+      "50" :  {
+                details: "Just a little, around 60 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 120 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              }, 
+      "150" : {
+                details: "A lot, around 180 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              }, 
+      "200" : {
+                details: "A crap load, around 240 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              } 
     },
+    // Dairy
     "3" : {
       // Dairy avg: 278 cal
-      "0" : "None!",
-      "50" : "Only a little, around 140 calories",
-      "100" : "Average, around 280 calories",
-      "150" : "A lot, around 420 calories",
-      "200" : "I went nuts, around 560 calories"
+      "50" : {
+                details: "Only a little, around 140 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 280 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "A lot, around 420 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I went nuts, around 560 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Grains
     "4" : {
       // Grains avg: 618 cal
-      "0" : "None!",
-      "50" : "A little bit, around 310 calories",
-      "100" : "Average, around 620 calories",
-      "150" : "More than average, around 930 calories",
-      "200" : "I love my carbs! Around 1240 calories"
+      "50" :  {
+                details: "A little bit, around 310 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 620 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "More than average, around 930 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I love my carbs! Around 1240 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Fish, poultry, pork
     "5" : {
       // Fish, poultry, pork avg: 238 cal
-      "0" : "None!",
-      "50" : "Half portion, around 120 calories ",
-      "100" : "Average, around 240 calories",
-      "150" : "I had seconds, around 360 calories",
-      "200" : "I pigged out! Around 480 calories"
+      "50" : {
+                details: "Half portion, around 120 calories ",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 240 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "I had seconds, around 360 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I pigged out! Around 480 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Beef, lamb
     "6" : {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
-      "0" : "None!",
-      "50" : "Only a little bit, around 80 calories.",
-      "100" : "Average, around 160 calories",
-      "150" : "A burger, around 230 calories.",
-      "200" : "A big burger, around 310 calories"
+      "50" : {
+                details: "Only a little bit, around 80 calories.",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 160 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "A burger, around 230 calories.",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "A big burger, around 310 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     }
   }
+  
 };

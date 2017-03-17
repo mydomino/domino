@@ -159,6 +159,16 @@
   }
 }
 
+.text-link {
+  a {
+    color: $blue;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
 .wp-caption-text {
   font-size: 1rem;
   font-weight: 300;

@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
       myhome_path
     else
       user_dashboard_path
+      # myhome_path
     end
   end
 

@@ -4,7 +4,7 @@ class CarbonFootprint extends React.Component {
   }
   render() {
     return (
-      <div className="mt3 center">
+      <div className="mt1 center">
         <CfGauge ref='cfgauge' cf={this.props.cf} method={this.props.method} />
       </div>
     );

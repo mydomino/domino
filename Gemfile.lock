@@ -100,6 +100,8 @@ GEM
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    d3-rails (4.3.0)
+      railties (>= 3.1)
     daemons (1.2.4)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
@@ -496,6 +498,7 @@ DEPENDENCIES
   clipboard-rails
   coffee-rails (~> 4.1.0)
   crack (~> 0.4.3)
+  d3-rails
   daemons
   database_cleaner
   delayed_job_active_record

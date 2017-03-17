@@ -35,6 +35,10 @@ class PagesController < ApplicationController
   def partners
   end
 
+  def fat_d3
+    
+  end
+
   def newsletter_subscribe
     unless params[:email] =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
       @message = "Invalid email format."
