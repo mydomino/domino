@@ -1,11 +1,9 @@
-#require 'wp_relation' 
 require 'dh_htp_wp_rest_api'
 
 class PostsController < ApplicationController
   include PostsHelper
   
   before_action :set_dream_host_instance
-  #before_filter :verify_post_access
 
   # GET /posts
   def index
@@ -15,10 +13,9 @@ class PostsController < ApplicationController
     if !params[:cat].nil?
       category_id = PostsHelper::CATEGORY_SLUG_TO_ID[params[:cat]]
       if category_id
-        query_params= {categories: category_id}
+        query_params.merge!({categories: category_id})
       end
     end
-
     response = @dh.get_posts(query_params)
 
     @posts = JSON.parse(response.body)

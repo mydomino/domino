@@ -50,12 +50,12 @@ class CfGauge extends React.Component {
       generateGradient: true,
       highDpiSupport: true,    // High resolution support
       // percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]],
-      staticLabels: {
-        font: "16px sans-serif",  // Specifies font
-        labels: [0, 6.2, 12.4],  // Print labels at these values
-        color: "#fff",  // Optional: Label text color
-        fractionDigits: 1  // Optional: Numerical precision. 0=round off.
-      },
+      // staticLabels: {
+      //   font: "16px sans-serif",  // Specifies font
+      //   labels: [0, 6.2, 12.4],  // Print labels at these values
+      //   color: "#fff",  // Optional: Label text color
+      //   fractionDigits: 1  // Optional: Numerical precision. 0=round off.
+      // },
       staticZones: [
          {strokeStyle: "#00FFC4", min: 0, max:8.2},
          {strokeStyle: "#FF7A7A", min: 8.2, max: 12.4}
