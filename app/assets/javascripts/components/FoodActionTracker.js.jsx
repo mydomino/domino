@@ -204,53 +204,123 @@ FoodActionTracker.defaultProps = {
     // Fruits
     "1" : {
         // Fruits avg: 95 cal
-        "0" : "None!",
-        "50" : "Just a few pieces, around 50 calories",
-        "100" : "Average, around 100 calories",
-        "150" : "A lot, around 150 calories",
-        "200" : "Fruit monster, around 200 calories"
+        "50" : {
+                  details: "Just a few pieces, around 50 calories",
+                  examples: "Half an orange"
+                },
+        "100" : {
+                  details: "Average, around 100 calories",
+                  examples: "A whole orange"
+                },
+        "150" : {
+                  details: "A lot, around 150 calories",
+                  examples: "An orange and an apple"
+                },
+        "200" : {
+                  details: "Fruit monster, around 200 calories",
+                  examples: "A watermelon"
+                }
     },
     // Vegetables
     "2" : {
       // Veg avg: 122 cal
-      "0" : "None!",
-      "50" : "Just a little, around 60 calories",
-      "100" : "Average, around 120 calories",
-      "150" : "A lot, around 180 calories",
-      "200" : "A crap load, around 240 calories"
+      "50" :  {
+                details: "Just a little, around 60 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 120 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              }, 
+      "150" : {
+                details: "A lot, around 180 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              }, 
+      "200" : {
+                details: "A crap load, around 240 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              } 
     },
+    // Dairy
     "3" : {
       // Dairy avg: 278 cal
-      "0" : "None!",
-      "50" : "Only a little, around 140 calories",
-      "100" : "Average, around 280 calories",
-      "150" : "A lot, around 420 calories",
-      "200" : "I went nuts, around 560 calories"
+      "50" : {
+                details: "Only a little, around 140 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 280 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "A lot, around 420 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I went nuts, around 560 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Grains
     "4" : {
       // Grains avg: 618 cal
-      "0" : "None!",
-      "50" : "A little bit, around 310 calories",
-      "100" : "Average, around 620 calories",
-      "150" : "More than average, around 930 calories",
-      "200" : "I love my carbs! Around 1240 calories"
+      "50" :  {
+                details: "A little bit, around 310 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 620 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "More than average, around 930 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I love my carbs! Around 1240 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Fish, poultry, pork
     "5" : {
       // Fish, poultry, pork avg: 238 cal
-      "0" : "None!",
-      "50" : "Half portion, around 120 calories ",
-      "100" : "Average, around 240 calories",
-      "150" : "I had seconds, around 360 calories",
-      "200" : "I pigged out! Around 480 calories"
+      "50" : {
+                details: "Half portion, around 120 calories ",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 240 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "I had seconds, around 360 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I pigged out! Around 480 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Beef, lamb
     "6" : {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
-      "0" : "None!",
-      "50" : "Only a little bit, around 80 calories.",
-      "100" : "Average, around 160 calories",
-      "150" : "A burger, around 230 calories.",
-      "200" : "A big burger, around 310 calories"
+      "50" : {
+                details: "Only a little bit, around 80 calories.",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 160 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "A burger, around 230 calories.",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "A big burger, around 310 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     }
   }
   

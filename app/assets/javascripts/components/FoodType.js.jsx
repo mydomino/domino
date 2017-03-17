@@ -84,11 +84,11 @@ class FoodType extends React.Component {
             <div className="col-10 sm-col-6 mb3 mx-auto left-align">
               <h3 className="h5 gray-60 bold caps line-height-2 my0">Details</h3>
               <p className="h4 size-information left-align mt1">
-                {this.props.sizeInfo[this.state.food.size]}
+                {this.props.sizeInfo[this.state.food.size].details}
               </p>
               <h3 className="h5 gray-60 bold caps line-height-2 my0">Examples</h3>
               <p className="h4 size-information left-align mt1">
-                a cup of yogurt, 1 cup of milk , 1 slice of cheese
+                {this.props.sizeInfo[this.state.food.size].examples}
               </p>
             </div>
             <div id={this.props.index + "-slider"} className="col-10 mx-auto meal-size-label slider slider-l my3"></div>
