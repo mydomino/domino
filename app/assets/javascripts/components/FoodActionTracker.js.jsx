@@ -64,7 +64,6 @@ class FoodActionTracker extends React.Component {
 
             <div  id="food-picker"
                   className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
-
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
@@ -102,11 +101,11 @@ class FoodActionTracker extends React.Component {
               </p>
               </div>
               <div className="mx-auto center my2">
-            <a href="#weeklyprogress">
-            <button className="btn btn-sm btn-primary btn-primary--hover">See Weekly Progress</button>
-            </a>
-            <span className="ml1">or <span className="line pointer ml1 line-height-1">Learn More</span></span>
-            </div>
+                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See Weekly Progress</button>
+                <span className="ml1">
+                  or <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                </span>
+              </div>
             </div> {/* end results-summary */}
           </div>
         </div>
@@ -120,6 +119,20 @@ class FoodActionTracker extends React.Component {
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    $('.smooth-scroll').on('click', function(){
+      var target = $(this).data("target");
+      $('html, body').animate({
+          scrollTop: $(target).offset().top
+        },
+        1000,
+        $.noop
+      );
+    });
+  }
+  componentWillUnmount() {
+    $('.smooth-scroll').unbind('click');
   }
   showFoodPicker() {
     this.setState({
@@ -136,9 +149,7 @@ class FoodActionTracker extends React.Component {
 
     for (var food in foods) {
       let selector = "foodtype" + food;
-      this.refs[selector].setState({
-        active: false
-      });
+      this.refs[selector].removeFood();
       delete foods[food];
     }
 
@@ -190,54 +201,126 @@ class FoodActionTracker extends React.Component {
 }
 FoodActionTracker.defaultProps = {
   foodSizeInfo : {
+    // Fruits
     "1" : {
         // Fruits avg: 95 cal
-        "0" : "None!",
-        "50" : "Just a few pieces, around 50 calories",
-        "100" : "Average, around 100 calories",
-        "150" : "A lot, around 150 calories",
-        "200" : "Fruit monster, around 200 calories"
+        "50" : {
+                  details: "Just a few pieces, around 50 calories",
+                  examples: "Half an orange"
+                },
+        "100" : {
+                  details: "Average, around 100 calories",
+                  examples: "A whole orange"
+                },
+        "150" : {
+                  details: "A lot, around 150 calories",
+                  examples: "An orange and an apple"
+                },
+        "200" : {
+                  details: "Fruit monster, around 200 calories",
+                  examples: "A watermelon"
+                }
     },
+    // Vegetables
     "2" : {
       // Veg avg: 122 cal
-      "0" : "None!",
-      "50" : "Just a little, around 60 calories",
-      "100" : "Average, around 120 calories",
-      "150" : "A lot, around 180 calories",
-      "200" : "A crap load, around 240 calories"
+      "50" :  {
+                details: "Just a little, around 60 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 120 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              }, 
+      "150" : {
+                details: "A lot, around 180 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              }, 
+      "200" : {
+                details: "A crap load, around 240 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              } 
     },
+    // Dairy
     "3" : {
       // Dairy avg: 278 cal
-      "0" : "None!",
-      "50" : "Only a little, around 140 calories",
-      "100" : "Average, around 280 calories",
-      "150" : "A lot, around 420 calories",
-      "200" : "I went nuts, around 560 calories"
+      "50" : {
+                details: "Only a little, around 140 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 280 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "A lot, around 420 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I went nuts, around 560 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Grains
     "4" : {
       // Grains avg: 618 cal
-      "0" : "None!",
-      "50" : "A little bit, around 310 calories",
-      "100" : "Average, around 620 calories",
-      "150" : "More than average, around 930 calories",
-      "200" : "I love my carbs! Around 1240 calories"
+      "50" :  {
+                details: "A little bit, around 310 calories",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 620 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "More than average, around 930 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I love my carbs! Around 1240 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Fish, poultry, pork
     "5" : {
       // Fish, poultry, pork avg: 238 cal
-      "0" : "None!",
-      "50" : "Half portion, around 120 calories ",
-      "100" : "Average, around 240 calories",
-      "150" : "I had seconds, around 360 calories",
-      "200" : "I pigged out! Around 480 calories"
+      "50" : {
+                details: "Half portion, around 120 calories ",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 240 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "I had seconds, around 360 calories",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "I pigged out! Around 480 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     },
+    // Beef, lamb
     "6" : {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
-      "0" : "None!",
-      "50" : "Only a little bit, around 80 calories.",
-      "100" : "Average, around 160 calories",
-      "150" : "A burger, around 230 calories.",
-      "200" : "A big burger, around 310 calories"
+      "50" : {
+                details: "Only a little bit, around 80 calories.",
+                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+              },
+      "100" : {
+                details: "Average, around 160 calories",
+                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+              },
+      "150" : {
+                details: "A burger, around 230 calories.",
+                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+              },
+      "200" : {
+                details: "A big burger, around 310 calories",
+                examples: "In at iure excepturi praesentium tempora rerum?"
+              }
     }
   }
   
