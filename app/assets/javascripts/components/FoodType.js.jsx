@@ -90,9 +90,9 @@ class FoodType extends React.Component {
               <p className="h4 size-information left-align mt1">
                 {this.props.sizeInfo[this.state.food.size].examples}
               </p>
-              <div id={this.props.index + "-slider"}></div>
+              <div id={this.props.index + "-slider"} className="col-10 mx-auto meal-size-label slider slider-l my3"></div>
+
             </div>
-            <div id={this.props.index + "-slider"} className="col-10 mx-auto meal-size-label slider slider-l my3"></div>
             <div className="col col-12 mt1">
               <button data-remodal-action="confirm" className="btn btn-sm btn-primary">Save</button>
             </div>
