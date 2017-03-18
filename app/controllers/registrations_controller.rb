@@ -9,7 +9,6 @@ class RegistrationsController < Devise::RegistrationsController
     #   to this view with signup link
     organization_path_param = request.original_url.split('?').first.split('/').last
 
-    puts "Org anme is #{organization_path_param}"
     organization = Organization.where('lower(name) = ?', organization_path_param.downcase).first
     
     @organization_id = organization.id
