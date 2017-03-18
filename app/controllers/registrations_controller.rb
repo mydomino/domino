@@ -8,6 +8,8 @@ class RegistrationsController < Devise::RegistrationsController
     # Account for query string parameters as users may have navigated 
     #   to this view with signup link
     organization_path_param = request.original_url.split('?').first.split('/').last
+
+    puts "Org anme is #{organization_path_param}"
     organization = Organization.where('lower(name) = ?', organization_path_param.downcase).first
     
     @organization_id = organization.id
@@ -32,6 +34,17 @@ class RegistrationsController < Devise::RegistrationsController
         @user = nil unless @user.signup_token == params[:a]
       end
     end
+  end
+
+  def new_member
+
+    if params[:a]
+      @user = User.includes(:profile).find_by_signup_token(params[:a])
+      if @user
+        @user = nil unless @user.signup_token == params[:a]
+      end
+    end
+    
   end
   
   # Action /set_org_member_password/

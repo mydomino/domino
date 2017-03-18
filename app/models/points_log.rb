@@ -21,6 +21,7 @@
 #
 
 
+
 #require File.expand_path("../../../lib/fat_competition", __FILE__)
 
 class PointsLog < ActiveRecord::Base

@@ -32,6 +32,7 @@ rails destroy model Group
 # do this for has_many through
 rails g model Group name:string desc:string
 rails g model GroupUser user:references group:references datetime_sign_in:datetime 
+rails g migration removeGroupUserUniqueIndex
 
 
 

@@ -13,13 +13,15 @@
 #
 #  index_group_users_on_group_id              (group_id)
 #  index_group_users_on_user_id               (user_id)
-#  index_group_users_on_user_id_and_group_id  (user_id,group_id) UNIQUE
+#  index_group_users_on_user_id_and_group_id  (user_id,group_id)
 #
 # Foreign Keys
 #
 #  fk_rails_1486913327  (user_id => users.id)
 #  fk_rails_a9d5f48449  (group_id => groups.id)
 #
+
+
 
 class GroupUser < ActiveRecord::Base
   belongs_to :user

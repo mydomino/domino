@@ -2,25 +2,26 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :inet
-#  last_sign_in_ip        :inet
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  role                   :string           default("lead")
-#  organization_id        :integer
-#  signup_token           :string
-#  signup_token_sent_at   :datetime
-#  meal_carbon_footprint  :float            default(0.0)
-#  fat_reward_points      :integer          default(0)
+#  id                      :integer          not null, primary key
+#  email                   :string           default(""), not null
+#  encrypted_password      :string           default(""), not null
+#  reset_password_token    :string
+#  reset_password_sent_at  :datetime
+#  remember_created_at     :datetime
+#  sign_in_count           :integer          default(0), not null
+#  current_sign_in_at      :datetime
+#  last_sign_in_at         :datetime
+#  current_sign_in_ip      :inet
+#  last_sign_in_ip         :inet
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  role                    :string           default("lead")
+#  organization_id         :integer
+#  signup_token            :string
+#  signup_token_sent_at    :datetime
+#  meal_carbon_footprint   :float            default(0.0)
+#  fat_reward_points       :integer          default(0)
+#  total_fat_reward_points :integer          default(0)
 #
 # Indexes
 #
@@ -32,6 +33,8 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
+
+
 
 
 

@@ -1,0 +1,48 @@
+- content_for :body_class do
+  bg-gray-05
+
+.max-width-4.mx-auto.bg-white.mt4.rounded
+  .clearfix.sm-flex
+    .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.gray-80{style: "background-image: url('#{image_url 'windpower-field-blue'}');"}
+      .flex.flex-column{style: 'height: auto;'}
+        %h1.bold Hello, #{@user.profile.first_name.capitalize}
+        %h2.mt0 Welcome to your new benefit from MyDomino.
+        %p.mt0
+          You'll get help saving money and energy with simple actions. Compete with other members to take positive steps toward our clean energy future!
+    
+    .col.col-12.sm-col.sm-col-6.p4
+      %h1.gray-80 Activate your membership
+      #msg-form-feedback.gray-60{style: 'display: none;'}
+
+      = form_tag '#' do
+        /= hidden_field_tag :organization_id, @organization_id
+        %section#email-section
+          %label.h6.mt2.mb0.gray-60.block{for: 'email'} Your email
+          = email_field_tag :email, (@user.email if @user), placeholder: "yourname@example.com", class: 'text-input', disabled: @user,
+            data: {'parsley-group': 'email', 'parsley-pattern': "#{@email_regex.to_s}", 'parsley-pattern-message': "You need to use your email address"}, 
+            required: true
+
+        %section#name-and-password-section{style: "#{'display: none' if !@user}"}
+          .clearfix
+            .col.col-12.sm-col.sm-col-6
+              .mr0.sm-mr1
+                %label.h6.mt2.mb0.gray-60.block{for: 'first_name'} First name
+                = text_field_tag :first_name, (@user.profile.first_name.capitalize if @user), class: 'text-input', disabled: @user, required: true, data: {'parsley-group': 'name-pw'}
+            .col.col-12.sm-col.sm-col-6
+              .ml0.sm-ml1
+                %label.h6.mt2.mb0.gray-60.block{for: 'last_name'} Last name
+                = text_field_tag :last_name, (@user.profile.last_name.capitalize if @user), class: 'text-input', disabled: @user, required: true, data: {'parsley-group': 'name-pw'}
+          
+          %label.h6.mt2.mb0.gray-60.block{for: 'password'} Password
+          = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Your password needs at least 8 characters'}
+
+          %label.h6.mt2.mb0.gray-60.block{for: 'password_confirmation'} Confirm password
+          = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": "Oops, your passwords don't match"}
+
+        = submit_tag "#{@user ? 'Activate' : 'Continue'}", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
+
+:javascript
+  (function(){
+    modulejs.require('new_org_member')();
+  }());
+  

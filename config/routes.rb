@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       post 'email_members_upload_file'
       post 'import_members_upload_file'
       post 'add_individual' #add_member
-      get  'test'
       get  'download_csv_template'
     end
   end
@@ -91,9 +90,11 @@ Rails.application.routes.draw do
   # Devise routes
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   devise_scope :user do
-    get "sungevity" => "registrations#new_org_member"
-    get "mydomino" => "registrations#new_org_member"
-    get "test" => "registrations#new_org_member"
+    #get "sungevity" => "registrations#new_org_member"
+    #get "mydomino" => "registrations#new_org_member"
+    #get "test" => "registrations#new_org_member"
+    get ':org_name'  => "registrations#new_org_member", constraints: { org_name: /(sungevity|mydomino|test)/ }
+    get 'pm'  => "registrations#new_member"
     
     get "check-org-member-email" => "registrations#check_org_member_email"
     post "create-org-member" => "registrations#create_org_member"

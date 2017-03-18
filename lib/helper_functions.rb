@@ -19,6 +19,8 @@ module HelperFunctions
 
     end
 
+    puts "================================================================\n\n"
+
     return success
 
   end
@@ -35,12 +37,14 @@ module HelperFunctions
 
       # Add group and user to group_user
 
-      group_user = GroupUser.create!(user: user, group: group, datetime_sign_in: nil)
+      group_user = GroupUser.create!(user: user, group: group, datetime_sign_in: Time.zone.now)
   
-      puts "Saving info for org #{organization.name}....\n"
+      puts "Saving info for group_user #{group.name} #{user.email}....\n"
       group_user.save!
 
     end
+
+    puts "================================================================\n\n"
 
     return success
 
@@ -139,9 +143,6 @@ module HelperFunctions
       actions_complete = true
    
     end
-
-
-    puts "================================================================\n\n"
 
     return actions_complete
 
