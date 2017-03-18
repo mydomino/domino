@@ -38,10 +38,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new_member
 
     if params[:a]
-      @user = User.includes(:profile).find_by_signup_token(params[:a])
-      if @user
-        @user = nil unless @user.signup_token == params[:a]
-      end
+      @user = User.includes(:profile).find_by!(signup_token: params[:a])
     end
     
   end
