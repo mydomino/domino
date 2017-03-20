@@ -203,19 +203,19 @@ FoodActionTracker.defaultProps = {
         // Fruits avg: 95 cal
         "50" : {
                   details: "Just a few pieces, around 50 calories",
-                  examples: "Half an orange"
+                  examples: "An orange. 1/2 an apple. 1/2 a banana."
                 },
         "100" : {
                   details: "Average, around 100 calories",
-                  examples: "A whole orange"
+                  examples: "Two oranges. An apple. A banana."
                 },
         "150" : {
                   details: "A lot, around 150 calories",
-                  examples: "An orange and an apple"
+                  examples: "2.5 oranges. 1.5 Apples. 1.5 bananas."
                 },
         "200" : {
                   details: "Fruit monster, around 200 calories",
-                  examples: "A watermelon"
+                  examples: "4 oranges. 2 apples. 2 bananas"
                 }
     },
     // Vegetables
