@@ -145,18 +145,20 @@ class FoodActionTracker extends React.Component {
     });
   }
   didntEat() {
-    let foods = Object.assign({}, this.state.foods);
+    if(!this.state.didntEat) {
+      let foods = Object.assign({}, this.state.foods);
 
-    for (var food in foods) {
-      let selector = "foodtype" + food;
-      this.refs[selector].removeFood();
-      delete foods[food];
+      for (var food in foods) {
+        let selector = "foodtype" + food;
+        this.refs[selector].removeFood();
+        delete foods[food];
+      }
+
+      this.setState({
+        foods: foods,
+        didntEat: true
+      }, this.getCarbonFootprint);
     }
-
-    this.setState({
-      foods: foods,
-      didntEat: true
-    }, this.getCarbonFootprint);
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
