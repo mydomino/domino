@@ -84,7 +84,7 @@ class FoodActionTracker extends React.Component {
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
-            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer sm-absolute">
+            <span onClick={() => this.toggleView()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer sm-absolute">
             <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
               <h4 className="medium my0">Back</h4>
             </span>
@@ -110,7 +110,7 @@ class FoodActionTracker extends React.Component {
           </div>
         </div>
         <div className="center my2">
-          <a onClick={()=>this.getResults()} >
+          <a onClick={()=>this.toggleView()} >
             <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
@@ -134,14 +134,9 @@ class FoodActionTracker extends React.Component {
   componentWillUnmount() {
     $('.smooth-scroll').unbind('click');
   }
-  showFoodPicker() {
+  toggleView() {
     this.setState({
-      nextView: false
-    });
-  }
-  getResults() {
-    this.setState({
-      nextView: true
+      nextView: !this.state.nextView
     });
   }
   didntEat() {
