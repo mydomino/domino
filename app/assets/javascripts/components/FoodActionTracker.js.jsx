@@ -215,7 +215,7 @@ FoodActionTracker.defaultProps = {
                 },
         "200" : {
                   details: "Fruit monster, around 200 calories",
-                  examples: "4 oranges. 2 apples. 2 bananas"
+                  examples: "4 oranges. 2 apples. 2 bananas."
                 }
     },
     // Vegetables
