@@ -223,7 +223,7 @@ FoodActionTracker.defaultProps = {
       // Veg avg: 122 cal
       "50" :  {
                 details: "Just a little, around 60 calories",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                examples: "2 carrots. A head of lettuce. An onion"
               },
       "100" : {
                 details: "Average, around 120 calories",
