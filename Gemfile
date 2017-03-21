@@ -54,6 +54,7 @@ gem 'browser-timezone-rails'
 gem 'remodal-rails'
 gem 'chart-js-rails'
 gem "d3-rails"
+gem "introjs-rails"
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -71,8 +72,6 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
-
-
 end
 
 group :development, :test do
