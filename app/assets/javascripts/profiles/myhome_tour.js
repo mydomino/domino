@@ -1,26 +1,28 @@
 modulejs.define('myhome_tour', function(){
   return function() {
-    var firstModal = $('.remodal#first').remodal();
-    var secondModal = $('.remodal#second').remodal();
-    var thirdModal = $('.remodal#third').remodal();
+    var firstModal = $('#first').remodal();
+    var secondModal = $('#second').remodal();
+    var thirdModal = $('#third').remodal();
     
     firstModal.open();
 
+    // Remove remodal plugin overlay
+    // Else theres a glitch effect between modal transitions
     $('.remodal-overlay').remove();
 
-    $('#first .remodal-confirm').on('click', function(){
+    $('#first').on('click', function(){
       $(this).parent().fadeOut(function() {
         secondModal.open();
       });
     });
 
-    $('#second .remodal-confirm').on('click', function(){
+    $('#second').on('click', function(){
       $(this).parent().fadeOut(function() {
         thirdModal.open();
       });
     });
 
-    $('#third .remodal-confirm').on('click', function(){
+    $('#third').on('click', function(){
       thirdModal.close();
       thirdModal.destroy();
       $('.welcome-tour-bg').fadeOut(function() {
