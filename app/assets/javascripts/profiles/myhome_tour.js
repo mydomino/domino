@@ -51,7 +51,9 @@ modulejs.define('myhome_tour', function(){
             firstModal.destroy();
             secondModal.destroy();
             // tour.start();
-            var intro = introJs().start();
+            var intro = introJs();
+            intro.setOptions({showStepNumbers: false});
+            intro.start();
           });
         });
       });
