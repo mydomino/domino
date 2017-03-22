@@ -5,7 +5,7 @@
   bg-gray-05
   adelle
 
-= render "profiles/myhome_components/welcome_tour_modals"
+=# render "profiles/myhome_components/welcome_tour_modals"
 
 .mx-auto.relative
   .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
@@ -13,7 +13,7 @@
       .max-width-4.mx-auto
 
         .flex.flex-column.sm-row
-          .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
+          .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1', data: {intro: 'Hello step one!'}}
             .mt1
               - if @user.organization
                 = image_tag "organization_logos/#{@profile.user.organization.name.downcase}_logo_400x400.png", size: "80x80", class: "rounded"
@@ -153,7 +153,8 @@
                 See discount details
 
 :javascript
-  modulejs.require('myhome_tour')();
+  //modulejs.require('myhome_tour')();
+  introJs().start();
   $('li.complete, li.incomplete').on('click', function(){
     window.location = $(this).data('link');
   });
