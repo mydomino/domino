@@ -52,7 +52,8 @@ class ProfilesController < ApplicationController
     end
 
     # If its users first time signing in, give them the tour of myhome
-    @tour = (current_user.sign_in_count == 1)
+    # @tour = (current_user.sign_in_count == 1)
+    @tour = true #debug
   end
 
   def verify_current_password
