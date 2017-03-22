@@ -8,6 +8,15 @@ modulejs.define('myhome_tour', function(){
         Cookies.set('welcometour', 'finished');
       }
 
+      var remodalOpts = {
+        closeOnOutsideClick: false,
+        closeOnEscape: true
+      }
+
+      var firstModal = $('#first').remodal(remodalOpts);
+      var secondModal = $('#second').remodal(remodalOpts);
+      var thirdModal = $('#third').remodal(remodalOpts);
+
       $('.welcome-tour-bg').css({
         position: "fixed",
         zIndex: 9999,
@@ -18,37 +27,32 @@ modulejs.define('myhome_tour', function(){
         background: "rgba(43, 46, 56, 0.9)"
       });
 
-      var firstModal = $('#first').remodal();
-      var secondModal = $('#second').remodal();
-      var thirdModal = $('#third').remodal();
-      
       firstModal.open();
 
       // Remove remodal plugin overlay
       // Else theres a glitch effect between modal transitions
       $('.remodal-overlay').remove();
 
-      $('#first').on('click', function(){
+      $('#first .btn').on('click', function(){
         $(this).parent().fadeOut(function() {
           secondModal.open();
         });
       });
 
-      $('#second').on('click', function(){
+      $('#second .btn').on('click', function(){
         $(this).parent().fadeOut(function() {
           thirdModal.open();
         });
       });
 
-      $('#third').on('click', function(){
+      $('#third .btn').on('click', function(){
         thirdModal.close();
         thirdModal.destroy();
+        
         $('.welcome-tour-bg').fadeOut(function() {
           intro = introJs().start();
-
           intro.oncomplete(setTourDoneCookie);
           intro.onexit(setTourDoneCookie);
-
         });
       });
     }
