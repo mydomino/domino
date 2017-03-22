@@ -5,8 +5,17 @@
   bg-gray-05
   adelle
 
-= render "profiles/myhome_components/welcome_tour_modals"
+:css
+  .shepherd-content {
+    max-width: 350px;
+    z-index: 1000000;
+  }
+  .shepherd-step {
+    z-index: 1000000;
+  }
 
+= render "profiles/myhome_components/welcome_tour_modals"
+.shep-overlay
 .mx-auto.relative
   .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
     .absolute.left-0.right-0.top-0.my3
@@ -41,7 +50,7 @@
                   %br
                   = (@user.created_at + 1.year).strftime("%B %Y")
 
-          .m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1'}
+          .clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {intro: 'Hello step one!', step: "2"}}
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
             %h4.gray-80.mb0.mt1.bold.caps Clean Score
@@ -71,9 +80,9 @@
                       .h4.gray-80 #{u.fat_reward_points}
 
         = render 'profiles/myhome_components/food_impact_module'
-
+        
         .center.m3
-          .h1.black.bold Member Benefits
+          .member-benefits.h1.black.bold{data: {intro: 'Hello step one!', step: "3"}} Member Benefits
 
         .flex.items-stretch.flex-column.md-row.mx1
           = render "profiles/myhome_components/take_out_bites_module"

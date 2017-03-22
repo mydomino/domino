@@ -37,6 +37,8 @@
 //= require d3
 //= require jquery.ui.touch-punch.min.js
 //= require introjs
+//= require tether
+//= require shepherd
 //= require_tree ./pages
 //= require_tree ./dashboards
 //= require_tree ./profiles
