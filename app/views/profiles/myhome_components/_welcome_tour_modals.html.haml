@@ -41,34 +41,3 @@
     The good news is, food changes are easy to make -- and you can make a dent in your “carbon foodprint” right away!
     Join the food challenge and compete with your co-workers to see how big an impact you can make.
   .btn.btn-md.btn-primary.btn-primary--hover.remodal-confirm See how we'll help you.
-  
-
-:javascript
-  var firstModal = $('.remodal#first').remodal();
-  var secondModal = $('.remodal#second').remodal();
-  var thirdModal = $('.remodal#third').remodal();
-  
-  firstModal.open();
-
-  $('.remodal-overlay').remove();
-
-  $('#first .remodal-confirm').on('click', function(){
-    $(this).parent().fadeOut(function() {
-      secondModal.open();
-    });
-  });
-
-  $('#second .remodal-confirm').on('click', function(){
-    $(this).parent().fadeOut(function() {
-      thirdModal.open();
-    });
-  });
-
-  $('#third .remodal-confirm').on('click', function(){
-    thirdModal.close();
-    thirdModal.destroy();
-    $('.welcome-tour-bg').fadeOut(function() {
-      alert('introjs tour starts here!');
-    });
-  });
-
