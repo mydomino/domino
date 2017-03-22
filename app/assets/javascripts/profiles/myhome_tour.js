@@ -15,7 +15,6 @@ modulejs.define('myhome_tour', function(){
 
       var firstModal = $('#first').remodal(remodalOpts);
       var secondModal = $('#second').remodal(remodalOpts);
-      var thirdModal = $('#third').remodal(remodalOpts);
 
       $('.welcome-tour-bg').css({
         position: "fixed",
@@ -48,19 +47,12 @@ modulejs.define('myhome_tour', function(){
       });
 
       $('#second .btn').on('click', function(){
-        $(this).parent().fadeOut(function() {
-          thirdModal.open();
-        });
-      });
-
-      $('#third .btn').on('click', function(){
-        thirdModal.close();
-        thirdModal.destroy();
-        
-        $('.welcome-tour-bg').fadeOut(function() {
-          intro = introJs().start();
-          intro.oncomplete(setTourDoneCookie);
-          intro.onexit(setTourDoneCookie);
+        $('#second').fadeOut(function() {
+          $('.welcome-tour-bg').fadeOut(function() {
+            intro = introJs().start();
+            intro.oncomplete(setTourDoneCookie);
+            intro.onexit(setTourDoneCookie);
+          });
         });
       });
     }
