@@ -24,13 +24,17 @@ class MealDay < ActiveRecord::Base
   has_many :foods, dependent: :destroy
   validates :user, :date, presence: :true
 
+  # Define averge CF constants (in grams of CO2e)
+  AVG_DAILY_CF   = 7004
+  BASELINE_CF    = 1064  # for oils, snacks & sugar, and drinks
+
   # Carbon footprint calculation formula:
   #   Average size (in Calories) of food type x Size (percentage) x Carbon footprint of that food type (g/Calories)
   def calculate_cf
     self.carbon_footprint = self.foods.inject(0) do |sum, f| 
       sum + (f.food_type.carbon_footprint * (f.size / 100.0) * f.food_type.average_size)
     end
-    self.carbon_footprint += 1064 # add baseline carbon emission (1064g) for oils, snacks & sugar, and drinks
+    self.carbon_footprint += MealDay::BASELINE_CF # add baseline carbon emission (1064g)
     self.carbon_footprint = (self.carbon_footprint / 1000).round(2) # Convert from g to kg
     self.save
   end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'points/add_watch_ttc_moive_points'
+
   # BEGIN Food Action Tracker routes
   get "food/:year/:month/:day" => "fat_meals#edit", as: 'fat_date'
   get "food" => "fat_meals#edit", as: 'fat'
@@ -57,23 +59,24 @@ Rails.application.routes.draw do
 
   get "/newsletter-subscribe" => 'pages#newsletter_subscribe'
   
+  ## BEGIN articles routes ##
   get "/articles/:id", to: 'posts#show', constraints: {id: /[0-9]+/}
   get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
 
   # for backward supports of old URLs
-  #get "/blog", to: 'posts#index'
   get "/blog", to: redirect('/articles')
 
   # take care of get post by article slug
   get "/blog/:article",  to: redirect('/articles/%{article}')
 
   # take care of get posts by category
-  get "/blog/category/:cat", to: redirect('/category/%{cat}')
+  get "/blog/category/:cat", to: redirect('/articles/?cat=%{cat}')
 
+  resources :posts, :path => 'articles'
 
-  get "/category/:cat", to: 'posts#index'
-
-
+  get "/category/:cat", to: redirect('/articles?cat=%{cat}')
+  ## END articles routes ##
+  
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
@@ -119,8 +122,4 @@ Rails.application.routes.draw do
   resource :analytics, only: [:show]
 
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
-
-  #post '/posts/:id', to: 'posts#show', as: 'post'
-  resources :posts, :path => 'articles'
-  #resources :posts
 end

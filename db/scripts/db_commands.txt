@@ -26,6 +26,7 @@ rails g model PointsLog point_date:date point_type:string desc:string point:inte
 
 rails g migration AddFatRewardPointsToUsers	fat_reward_points:integer
 
+
 rails g model Group name:string desc:string user:references  
 rails destroy model Group
 
@@ -33,7 +34,6 @@ rails destroy model Group
 rails g model Group name:string desc:string
 rails g model GroupUser user:references group:references datetime_sign_in:datetime 
 rails g migration removeGroupUserUniqueIndex
-
 
 
 ############################################

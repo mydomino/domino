@@ -20,15 +20,14 @@ class CfGauge extends React.Component {
     }, function(){
       this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf);
     });
-
   }
   render(){
     return(
       <div>
-        <canvas id="gauge"  
+        <canvas id="gauge"
           style={{ opacity: (this.props.cf == null) ? 0.4 : 1 }}></canvas>
 
-        <div className="bg-white h2 medium white my0 line-height-3 black">{ (this.props.method == "POST") ? "-" : this.state.cf } kg <div className="h3 mt0">Carbon Emissions</div>
+        <div className="bg-gray-05 rounded-top h2 medium white pt2 line-height-3 black">{ (this.props.method == "POST") ? "-" : this.state.cf } kg <div className="h4 mt0">Carbon Emissions</div>
         </div>
       </div>
     );
@@ -40,27 +39,26 @@ class CfGauge extends React.Component {
       radiusScale: 1, // Relative radius
       pointer: {
         length: 0.6, // // Relative to gauge radius
-        strokeWidth: 0.035, // The thickness
-        color: '#000000' // Fill color
+        strokeWidth: 0.1, // The thickness
+        color: '#00CCA0' // Fill color
       },
       limitMax: false,     // If false, the max value of the gauge will be updated if value surpass max
       limitMin: false,     // If true, the min value of the gauge will be fixed unless you set it manually
-      colorStart: '#6FADCF',   // Colors
-      colorStop: '#8FC0DA',    // just experiment with them
+      colorStart: '#A6FFD6',   // Colors
+      colorStop: '#FF7A7A',    // just experiment with them
       strokeColor: '#E0E0E0',  // to see which ones work best for you
       generateGradient: true,
       highDpiSupport: true,    // High resolution support
       // percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]],
-      staticLabels: {
-        font: "16px sans-serif",  // Specifies font
-        labels: [0, 6.2, 12.4],  // Print labels at these values
-        color: "#fff",  // Optional: Label text color
-        fractionDigits: 1  // Optional: Numerical precision. 0=round off.
-      },
+      // staticLabels: {
+      //   font: "16px sans-serif",  // Specifies font
+      //   labels: [0, 6.2, 12.4],  // Print labels at these values
+      //   color: "#fff",  // Optional: Label text color
+      //   fractionDigits: 1  // Optional: Numerical precision. 0=round off.
+      // },
       staticZones: [
-         {strokeStyle: "#87D37C", min: 0, max: 4.1},
-         {strokeStyle: "#81CFE0", min: 4.1, max: 8.2},
-         {strokeStyle: "#E26A6A", min: 8.2, max: 12.4}
+         {strokeStyle: "#00FFC4", min: 0, max:8.2},
+         {strokeStyle: "#FF7A7A", min: 8.2, max: 12.4}
       ]
     };
     var target = document.getElementById('gauge'); // your canvas element
