@@ -1,0 +1,78 @@
+:css
+  .welcome-tour-bg {
+    position: fixed;
+    z-index: 9999;
+    top: -5000px;
+    right: -5000px;
+    bottom: -5000px;
+    left: -5000px;
+    /* display: none; */
+    background: rgba(43, 46, 56, 0.9);
+  }
+
+  .remodal-overlay {
+     display: none;
+  }
+.welcome-tour-bg
+
+.remodal#first
+  %button.remodal-close{"data-remodal-action" => "close"}
+  %h1 Welcome new member!
+  %p We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Join us on the path to a sustainable future!
+
+  %br/
+  .btn.btn-md.btn-primary.btn-primary--hover.remodal-confirm{data: {next: "secondModal"}} Let's go!
+
+.remodal#second
+  %button.remodal-close{"data-remodal-action" => "close"}
+  %h1 Your carbon impact
+  %p Eating, getting around, powering your home … the small choices you make each day can have an epic impact on the environment.
+  %p The average American produces enough daily carbon emissions to fill a 12-foot-wide balloon. But it’s easy to fix this!
+  %p [person with 12ft balloon visual]
+  %p A full 3/4 of this 12-foot balloon comes from just 3 areas:
+
+  %p [Images of 3 categories]
+  %p Food   Transportation Energy
+  %br/
+  .btn.btn-md.btn-primary.btn-primary--hover.remodal-confirm Your first step
+
+.remodal#third
+  %button.remodal-close{"data-remodal-action" => "close"}
+  %p Let’s start with food
+  %p [4 categories with food highlighted, other 3 coming soon]
+  %p 
+    Food contributes up to 30% of our carbon emissions. It takes energy to grow, process, transport, and store our food.
+    The good news is, food changes are easy to make -- and you can make a dent in your “carbon foodprint” right away!
+    Join the food challenge and compete with your co-workers to see how big an impact you can make.
+  .btn.btn-md.btn-primary.btn-primary--hover.remodal-confirm See how we'll help you.
+  
+
+:javascript
+  var firstModal = $('.remodal#first').remodal();
+  var secondModal = $('.remodal#second').remodal();
+  var thirdModal = $('.remodal#third').remodal();
+  
+  firstModal.open();
+
+  $('.remodal-overlay').remove();
+
+  $('#first .remodal-confirm').on('click', function(){
+    $(this).parent().fadeOut(function() {
+      secondModal.open();
+    });
+  });
+
+  $('#second .remodal-confirm').on('click', function(){
+    $(this).parent().fadeOut(function() {
+      thirdModal.open();
+    });
+  });
+
+  $('#third .remodal-confirm').on('click', function(){
+    thirdModal.close();
+    thirdModal.destroy();
+    $('.welcome-tour-bg').fadeOut(function() {
+      alert('introjs tour starts here!');
+    });
+  });
+
