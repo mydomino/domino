@@ -10,7 +10,7 @@ modulejs.define('myhome_tour', function(){
 
       var remodalOpts = {
         closeOnOutsideClick: false,
-        closeOnEscape: true
+        closeOnEscape: false
       }
 
       var firstModal = $('#first').remodal(remodalOpts);
@@ -27,6 +27,13 @@ modulejs.define('myhome_tour', function(){
         background: "rgba(43, 46, 56, 0.9)"
       });
 
+      $('#wt-back').on('click', function(){
+        secondModal.close();
+        $('#first').fadeIn(function(){
+          firstModal.open();
+        });
+      });
+
       firstModal.open();
 
       // Remove remodal plugin overlay
@@ -35,6 +42,7 @@ modulejs.define('myhome_tour', function(){
 
       $('#first .btn').on('click', function(){
         $(this).parent().fadeOut(function() {
+          firstModal.close();
           secondModal.open();
         });
       });
