@@ -84,7 +84,7 @@ class FoodActionTracker extends React.Component {
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
-            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+            <span onClick={() => this.toggleView()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer sm-absolute">
             <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
               <h4 className="medium my0">Back</h4>
             </span>
@@ -110,7 +110,7 @@ class FoodActionTracker extends React.Component {
           </div>
         </div>
         <div className="center my2">
-          <a onClick={()=>this.getResults()} >
+          <a onClick={()=>this.toggleView()} >
             <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
           </a>
         </div>
@@ -134,29 +134,26 @@ class FoodActionTracker extends React.Component {
   componentWillUnmount() {
     $('.smooth-scroll').unbind('click');
   }
-  showFoodPicker() {
+  toggleView() {
     this.setState({
-      nextView: false
-    });
-  }
-  getResults() {
-    this.setState({
-      nextView: true
+      nextView: !this.state.nextView
     });
   }
   didntEat() {
-    let foods = Object.assign({}, this.state.foods);
+    if(!this.state.didntEat) {
+      let foods = Object.assign({}, this.state.foods);
 
-    for (var food in foods) {
-      let selector = "foodtype" + food;
-      this.refs[selector].removeFood();
-      delete foods[food];
+      for (var food in foods) {
+        let selector = "foodtype" + food;
+        this.refs[selector].removeFood();
+        delete foods[food];
+      }
+
+      this.setState({
+        foods: foods,
+        didntEat: true
+      }, this.getCarbonFootprint);
     }
-
-    this.setState({
-      foods: foods,
-      didntEat: true
-    }, this.getCarbonFootprint);
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
@@ -206,19 +203,19 @@ FoodActionTracker.defaultProps = {
         // Fruits avg: 95 cal
         "50" : {
                   details: "Just a few pieces, around 50 calories",
-                  examples: "Half an orange"
+                  examples: "An orange. 1/2 an apple. 1/2 a banana."
                 },
         "100" : {
                   details: "Average, around 100 calories",
-                  examples: "A whole orange"
+                  examples: "Two oranges. An apple. A banana."
                 },
         "150" : {
                   details: "A lot, around 150 calories",
-                  examples: "An orange and an apple"
+                  examples: "2.5 oranges. 1.5 Apples. 1.5 bananas."
                 },
         "200" : {
                   details: "Fruit monster, around 200 calories",
-                  examples: "A watermelon"
+                  examples: "4 oranges. 2 apples. 2 bananas."
                 }
     },
     // Vegetables
@@ -226,7 +223,7 @@ FoodActionTracker.defaultProps = {
       // Veg avg: 122 cal
       "50" :  {
                 details: "Just a little, around 60 calories",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                examples: "2 carrots. A head of lettuce. An onion"
               },
       "100" : {
                 details: "Average, around 120 calories",
