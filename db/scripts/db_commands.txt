@@ -26,7 +26,14 @@ rails g model PointsLog point_date:date point_type:string desc:string point:inte
 
 rails g migration AddFatRewardPointsToUsers	fat_reward_points:integer
 
-rails g migration AddTotalFatRewardPointsToUsers total_fat_reward_points:integer
+
+rails g model Group name:string desc:string user:references  
+rails destroy model Group
+
+# do this for has_many through
+rails g model Group name:string desc:string
+rails g model GroupUser user:references group:references datetime_sign_in:datetime 
+rails g migration removeGroupUserUniqueIndex
 
 
 ############################################
@@ -45,3 +52,23 @@ nullify for dependent when parent object is destroyed
 #rails g migration create_food_types category:int carbon_footprint:float icon name
 
 
+######################################################
+
+Adding this to the file
+
+class CreateGroupUsers < ActiveRecord::Migration
+  def change
+    create_table :group_users do |t|
+      t.references :user, index: true, foreign_key: true
+      t.references :group, index: true, foreign_key: true
+      t.datetime :datetime_sign_in
+
+      t.timestamps null: false
+
+    end
+
+    # add unique index to columns
+    add_index(:group_users, [:user_id, :group_id], unique: true)
+
+  end
+end
