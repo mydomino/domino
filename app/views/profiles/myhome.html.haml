@@ -84,7 +84,9 @@
           = render "profiles/myhome_components/discounts_module"
 
 :javascript
-  modulejs.require('myhome_tour')();
+  var myhomeTour = modulejs.require('myhome_tour');
+  myhomeTour.startTour(#{@tour});
+  
   $('li.complete, li.incomplete').on('click', function(){
     window.location = $(this).data('link');
   });
