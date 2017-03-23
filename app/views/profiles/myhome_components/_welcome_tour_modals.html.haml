@@ -38,8 +38,10 @@
 
   .right.mt2
     %a#wt-back.text-decoration-none.gray-80.pointer.mr2
-      %span.fa.fa-arrow-circle-o-left{"aria-hidden": "true"}
+      %span
+        =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray'
       Back
     .btn.btn-sm.btn-primary.btn-primary--hover.remodal-confirm 
       Next
-      .fa.fa-arrow-circle-o-right{"aria-hidden": "true"}
+      %span
+        = inline_svg "icons/i-arrow-right.svg", class: 'icon-s fill-white'

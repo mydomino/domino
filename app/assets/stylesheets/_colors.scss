@@ -56,3 +56,16 @@
 .overlay-blue-alpha-75 {
   &::before { background-color: $blue-alpha-75; }
 }
+
+// SVG color utilities
+/*svg icons*/
+.fill-blue path { fill: $blue; }
+.fill-blue rect { stroke: $blue; }
+
+.fill-gray-80 { fill:$gray-80; }
+.fill-gray-05 { fill: $gray-05; }
+
+.fill-black path{ fill: $black; }
+.fill-black rect { stroke: $black; }
+
+.fill-white path { fill: white; }
