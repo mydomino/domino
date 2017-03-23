@@ -36,12 +36,15 @@
 
   %p We'll work on these one at a time in the coming months.
 
-  .right.mt2
+  .right.mt2.flex.items-center
     %a#wt-back.text-decoration-none.gray-80.pointer.mr2
-      %span
-        =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray'
-      Back
-    .btn.btn-sm.btn-primary.btn-primary--hover.remodal-confirm 
-      Next
-      %span
-        = inline_svg "icons/i-arrow-right.svg", class: 'icon-s fill-white'
+      .flex.items-center
+        %span.inline-block.mr1
+          =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-80 block'
+        Back
+
+    .btn.btn-sm.btn-primary.btn-primary--hover
+      .flex.items-center
+        Next
+        %span.inline-block.ml1
+          = inline_svg "icons/i-arrow-right.svg", class: 'icon-s fill-white block'
