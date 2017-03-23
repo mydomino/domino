@@ -36,9 +36,6 @@
 
 
 
-
-
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -47,6 +44,8 @@ class User < ActiveRecord::Base
   belongs_to :organization, counter_cache: true
   has_many :meal_days, dependent: :destroy
   has_many :points_logs, dependent: :destroy
+  has_many :group_users 
+  has_many :groups, through: :group_users
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

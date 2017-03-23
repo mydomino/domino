@@ -4,6 +4,56 @@ module HelperFunctions
   # create a member for onboarding step via the script
 	def self.create_user(organization, first_name, last_name, u_email, role)
 
+
+    success = create_user_profile_dashboard(first_name, last_name, u_email, role)
+
+    if success
+
+      user = User.find_by!(email: u_email)
+
+      # Add user to organization
+      organization.users << user
+  
+      puts "Saving info for org #{organization.name}....\n"
+      organization.save!
+
+    end
+
+    puts "================================================================\n\n"
+
+    return success
+
+  end
+
+
+  def self.create_user_by_group(group, first_name, last_name, u_email, role)
+
+
+    success = create_user_profile_dashboard(first_name, last_name, u_email, role)
+
+    if success
+
+      user = User.find_by!(email: u_email)
+
+      # Add group and user to group_user
+
+      group_user = GroupUser.create!(user: user, group: group, datetime_sign_in: Time.zone.now)
+  
+      puts "Saving info for group_user #{group.name} #{user.email}....\n"
+      group_user.save!
+
+    end
+
+    puts "================================================================\n\n"
+
+    return success
+
+  end
+
+
+
+  def create_user_profile_dashboard(first_name, last_name, u_email, role)
+
     actions_complete = false
 
     ActiveRecord::Base.transaction do
@@ -81,12 +131,6 @@ module HelperFunctions
       user.save!
   
      
-      # Add user to organization
-      organization.users << user
-  
-      puts "Saving info for org #{organization.name}....\n"
-      organization.save!
-  
   
       # refer to registration_controller#after_sign_up_path_for
       # registered_user.rb
@@ -100,9 +144,6 @@ module HelperFunctions
    
     end
 
-
-    puts "================================================================\n\n"
-
     return actions_complete
 
   end
@@ -115,5 +156,6 @@ module HelperFunctions
     # Date object: Monday of current week
     @today - @today.cwday + 1
   end
+
 
 end

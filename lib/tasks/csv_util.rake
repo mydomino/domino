@@ -84,7 +84,7 @@ namespace :csv do
     # find an organization
     begin
       organization = Organization.find_by!(name: org_name)
-    rescue Exception => e  
+    rescue StandardError => e  
       puts "\nError! #{e.message}. Please note that the organization name is case sensitive."
       exit
     end
@@ -142,7 +142,7 @@ namespace :csv do
          
         end
 
-      rescue Exception => e  
+      rescue StandardError => e  
         puts "\nException in CSV for row: #{row}! Error is: #{e.message}."
       end
     end
@@ -176,13 +176,23 @@ namespace :csv do
 
     puts "Group name is #{group_name}.\n" 
 
-    # find an organization
+    # find a group
     begin
-      group = Group.find_by!(name: group_name)
-    rescue Exception => e  
+
+      group = Group.find_or_create_by!(name: group_name) do |g|
+
+        puts "Creating group #{group_name}.\n"
+  
+        g.name = group_name
+        g.desc = "This is a description for " + group_name
+        
+      end
+    rescue StandardError => e  
       puts "\nError! #{e.message}. Please note that the group name is case sensitive."
       exit
     end
+
+    puts "Group is #{group.name}."
    
 
     # check to see if the data folder exist, if not create it
@@ -226,19 +236,21 @@ namespace :csv do
         puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
 
         # email is case sensitive for the create, so convert it to lower case
-        if HelperFunctions::create_user(group, u_fn, u_ln, u_email.downcase, role)
+        if HelperFunctions::create_user_by_group(group, u_fn, u_ln, u_email.downcase, role)
 
           # send user email with on board url
           user = User.find_by!(email: u_email.downcase)
 
           # send user with on borad instructions and signup token
           #user.email_onboard_url(u_fn, u_ln)
+
+          puts "Sending user #{user.email} an email with signup_link."
           user.email_signup_link
          
         end
 
-      rescue Exception => e  
-        puts "\nException in CSV for row: #{row}! Error is: #{e.message}."
+      rescue StandardError => e  
+        puts "\nStandardError in CSV for row: #{row}! Error is: #{e.message}."
       end
     end
       
