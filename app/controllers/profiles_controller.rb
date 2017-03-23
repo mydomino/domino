@@ -50,7 +50,10 @@ class ProfilesController < ApplicationController
       @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
       fat_graph_date += 1.day
     end
-    # byebug
+
+    # If its users first time signing in, give them the tour of myhome
+    # @tour = (current_user.sign_in_count == 1)
+    @tour = true #debug
   end
 
   def verify_current_password

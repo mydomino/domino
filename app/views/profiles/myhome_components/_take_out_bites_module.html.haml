@@ -1,0 +1,29 @@
+.m1.p3.bg-white.rounded{style: 'flex: 1'}
+  .flex.items-center
+    =image_tag "icons/i-paper.png", :class => "mr1"
+    %h2.gray-90.bold.inline.line-height-1
+      Take-out bites
+  .flex.flex-auto.flex-wrap.justify-around.mt1
+    .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
+      .bg-gray-05.rounded
+        =link_to 'http://actions.mydomino.com', class:"text-decoration-none black" do
+          = image_tag "appetizers.jpg", class: 'fill-x rounded-top'
+          .p1.h5.sm-h4
+            Appetizers: Your first course
+    .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
+      .bg-gray-05.rounded
+        =link_to 'articles/cows-climate-change', class:"text-decoration-none black" do
+          = image_tag "cow-tongue.jpg", class: 'fill-x rounded-top'
+          .p1.h5.sm-h4
+            Are cows the key to saving the planet?
+    .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
+      .bg-gray-05.rounded
+        =link_to 'articles/hidden-health-benefits-of-ugly-produce/', class:"text-decoration-none black" do
+          = image_tag "ugly-apples.jpg", class: 'fill-x rounded-top'
+          .p1.h5.sm-h4
+            Hidden health. Benefits of ugly produce
+  %h4.mb0.center
+    Still hungry?
+  %h3.my1.line-height-1.center
+    =link_to 'http://mydomino.com/articles', class:"black line medium" do
+      Read more tasty bites

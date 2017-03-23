@@ -5,6 +5,17 @@
   bg-gray-05
   adelle
 
+:css
+  .shepherd-content {
+    max-width: 350px;
+    z-index: 1000000;
+  }
+  .shepherd-step {
+    z-index: 1000000;
+  }
+
+= render "profiles/myhome_components/welcome_tour_modals"
+.shep-overlay
 .mx-auto.relative
   .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
     .absolute.left-0.right-0.top-0.my3
@@ -39,7 +50,7 @@
                   %br
                   = (@user.created_at + 1.year).strftime("%B %Y")
 
-          .m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1'}
+          .clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {intro: 'Hello step one!', step: "2"}}
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
             %h4.gray-80.mb0.mt1.bold.caps Clean Score
@@ -68,117 +79,23 @@
                     .right.inline-block
                       .h4.gray-80 #{u.fat_reward_points}
 
-        = render 'food_impact_module'
-
+        = render 'profiles/myhome_components/food_impact_module'
+        
         .center.m3
-          .h1.black.bold Member Benefits
+          .member-benefits.h1.black.bold{data: {intro: 'Hello step one!', step: "3"}} Member Benefits
 
         .flex.items-stretch.flex-column.md-row.mx1
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-            .flex.items-center
-              =image_tag "icons/i-paper.png", :class => "mr1"
-              %h2.gray-90.bold.inline.line-height-1
-                Take-out bites
-            .flex.flex-auto.flex-wrap.justify-around.mt1
-              .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
-                .bg-gray-05.rounded
-                  =link_to 'http://actions.mydomino.com', class:"text-decoration-none black" do
-                    = image_tag "appetizers.jpg", class: 'fill-x rounded-top'
-                    .p1.h5.sm-h4
-                      Appetizers: Your first course
-              .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
-                .bg-gray-05.rounded
-                  =link_to 'articles/cows-climate-change', class:"text-decoration-none black" do
-                    = image_tag "cow-tongue.jpg", class: 'fill-x rounded-top'
-                    .p1.h5.sm-h4
-                      Are cows the key to saving the planet?
-              .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
-                .bg-gray-05.rounded
-                  =link_to 'articles/hidden-health-benefits-of-ugly-produce/', class:"text-decoration-none black" do
-                    = image_tag "ugly-apples.jpg", class: 'fill-x rounded-top'
-                    .p1.h5.sm-h4
-                      Hidden health. Benefits of ugly produce
-            %h4.mb0.center
-              Still hungry?
-            %h3.my1.line-height-1.center
-              =link_to 'http://mydomino.com/articles', class:"black line medium" do
-                Read more tasty bites
-
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-            .flex.flex-column.justify-between.fill-y
-              .flex.items-center
-                =image_tag "icons/i-concierge.png", :class => "mr1"
-                %h2.gray-90.bold.inline.line-height-1
-                  Hungry for more?
-              .p.line-height-4.gray-80.my2.center
-                Your concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
-              %div
-                .h4.mb0.center
-                  Talk to your concierge
-                .h3.mt1.mb2.line-height-2.center
-                  =link_to "tel:+18009792215", class:"black line medium" do
-                    Call 800-721-2215
+          = render "profiles/myhome_components/take_out_bites_module"
+          = render "profiles/myhome_components/concierge_module"
 
         .flex.items-stretch.flex-column.md-row.mx1
-
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-
-            .flex.items-center
-              =image_tag "icons/i-movie.png", :class => "mr1"
-              %h2.gray-90.bold.inline.line-height-1
-                All eyes are on...
-            .flex.flex-wrap.mt2.justify-center
-              .mr2
-                = link_to "http://www.timetochoose.com/", target: "_blank" do
-                  = image_tag "timetochoose_poster", class: 'fit', style: 'box-shadow: 2px 2px 6px #aaa; max-height:230px'
-              .flex.flex-column.justify-between{ style: 'flex: 1; min-width: 160px' }
-                .mt0.mb1
-                  %p.gray-80.m0.mb1
-                    Check out this film by our founder for some good climate news.
-
-                  .mt0
-                    =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank", class: 'text-decoration-none' do
-                      %span= image_tag "rotten_tomato", style: "vertical-align: top"
-                      %span.h3.gray-80 86%
-                      %span.h5.gray-80 on&nbsp;Rotten&nbsp;Tomatos
-                .h3.my1
-                  .black Watch the film
-
-                  .flex.flex-wrap.items-center
-                    .mr1
-                      =link_to "https://www.amazon.com/Time-Choose-Oscar-Isaac/dp/B01LOUPR34", target: "_blank" do
-                        = image_tag "amazon_video", style: 'max-width: 90px'
-                    .inline.h5.blue.text-link
-                      =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
-                        More viewing options
-              .mt2.flex.justify-between.fill-x{style: 'border-top: 1px solid #ddd'}
-                .mt1.black
-                  %span.h4.medium Share this movie
-                  %span.h6.gray-80 (+100 points)
-                .gray-80
-                  = form_tag points_add_watch_ttc_moive_points_path do
-                    = button_tag "I've shared it", class: 'rounded btn btn-outline px1 mt1 h5 blue'
-
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-            .flex.items-center
-              =image_tag "icons/i-wallet.png", :class => "mr1"
-              %h2.gray-90.bold.inline.line-height-1
-                Coins back in your pocket
-            %p.line-height-4.gray-80.my1.sm-mb4.center Get exclusive discounts on sustainable living products
-            .clearfix.flex.items-center
-              %div
-                = image_tag "imperfect_produce", class: "fit"
-              %div
-                = image_tag "arcadia_power", class: "fit"
-              -# .col.col-12.sm-col.sm-col-3
-              -#  = image_tag "badger", class: "fit", height: '100px'
-              %div
-                = image_tag "farm_fresh", class: "fit"
-            %h3.mb1.line-height-1.gray-60.medium.center
-              =link_to "articles/coins-in-your-pocket", class:"black line medium" do
-                See discount details
+          = render "profiles/myhome_components/film_module"
+          = render "profiles/myhome_components/discounts_module"
 
 :javascript
+  var myhomeTour = modulejs.require('myhome_tour');
+  myhomeTour.startTour(#{@tour});
+  
   $('li.complete, li.incomplete').on('click', function(){
     window.location = $(this).data('link');
   });
