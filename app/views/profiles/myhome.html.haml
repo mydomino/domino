@@ -54,15 +54,20 @@
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
             %h4.gray-80.mb0.mt1.bold.caps Clean Score
-            %span.h0.bold.my0.orange
-              = @user.get_current_week_grade
+            .border.border-gray-30.circle.center.m1{ style: 'width: 75px; width: 75px; border-color: orange; border-width: 2px' }
+              %span.h0.bold.my0.orange.align-middle
+                = @user.get_current_week_grade || '?'
             %div.h4.gray-60.col-11
-              Your carbon "foodprint" is
-              %span.bold
-                - cf_percent = 100 - @user.get_current_week_foodcf_percent.round(0)
-                #{cf_percent.abs}%
-                = cf_percent > 0 ? "lower" : "higher"
-              than the average American's this week.
+              - food_cf = @user.get_current_week_foodcf_percent
+              - if food_cf
+                Your carbon "foodprint" is
+                %span.bold
+                  - cf_percent_diff = 100 - food_cf
+                  #{cf_percent_diff.abs}%
+                  = cf_percent_diff > 0 ? "lower" : "higher"
+                than the average American's this week.
+              - else
+                Add your food logs in Food Impact Challange below to get your clean score.
 
           .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;'}
             .px3.py1.gray-90
