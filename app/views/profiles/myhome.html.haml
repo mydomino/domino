@@ -2,7 +2,7 @@
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
 -content_for :body_class do
-  bg-gray-05
+  bg-gray-1
   adelle
 
 :css
@@ -27,17 +27,17 @@
               - if @user.organization
                 = image_tag "organization_logos/#{@profile.user.organization.name.downcase}_logo_400x400.png", size: "80x80", class: "rounded"
               - else
-                .bg-gray-10.p2.rounded
-                  .h2.px1.gray-60 #{@profile.first_name[0].upcase}#{@profile.last_name[0].upcase}
+                .bg-gray-2.p2.rounded
+                  .h2.px1.gray-5 #{@profile.first_name[0].upcase}#{@profile.last_name[0].upcase}
 
             .m1.center
               .h2.m0.black= "#{@profile.first_name} #{@profile.last_name}"
-              .h4.gray-80
+              .h4.gray-6
                 = @user.organization ? @user.organization.name : ''
             .m1.center
               .h2.m0.black= @user.total_fat_reward_points
-              .h4.gray-80= "Total Points"
-            .m1.gray-80.h6
+              .h4.gray-6= "Total Points"
+            .m1.gray-6.h6
               .inline-block
                 Member since:
                 / show renewal date if user is an individual member
@@ -53,11 +53,11 @@
           .clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {step: "2"}}
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
-            %h4.gray-80.mb0.mt1.bold.caps Clean Score
-            .border.border-gray-30.circle.center.m1{ style: 'width: 75px; width: 75px; border-color: orange; border-width: 2px' }
+            %h4.gray-6.mb0.mt1.bold.caps Clean Score
+            .border.border-gray-4.circle.center.m1{ style: 'width: 75px; width: 75px; border-color: orange; border-width: 2px' }
               %span.h0.bold.my0.orange.align-middle
                 = @user.get_current_week_grade || '?'
-            %div.h4.gray-60.col-11
+            %div.h4.gray-5.col-11
               - food_cf = @user.get_current_week_foodcf_percent
               - if food_cf
                 Your carbon "foodprint" is
@@ -70,19 +70,19 @@
                 Add your food logs in Food Impact Challange below to get your clean score.
 
           .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;'}
-            .px3.py1.gray-90
+            .px3.py1.gray-7
               .h3.mr2.bold.inline-block Weeky leaders
               .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
               - unless u.profile.nil? # Skip any users wihtout a profile
                 .flex.px3.py1.items-center{style: "#{'background: #fff9c4' if u.email == current_user.email}"}
-                  .flex.items-center.justify-center.h6.border.circle.icon-m.gray-80
+                  .flex.items-center.justify-center.h6.border.circle.icon-m.gray-6
                     = (i == 6) ? i + @current_user_standing : i + 1
                   .fill-x
                     .left-align.inline-block
                       .h4.ml1.mr2.black #{u.profile.first_name} #{u.profile.last_name} #{"(You)" if u.email == current_user.email}
                     .right.inline-block
-                      .h4.gray-80 #{u.fat_reward_points}
+                      .h4.gray-6 #{u.fat_reward_points}
 
         = render 'profiles/myhome_components/food_impact_module'
         

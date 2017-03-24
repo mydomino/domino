@@ -1,12 +1,13 @@
 .welcome-tour-bg
-.remodal#first
-  = image_tag "i-earth"
-  %h1 Welcome new member!
-  %p.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Join us on the path to a sustainable future!
-  %p.left-align Eating, getting around, powering your home … the small choices you make each day can have an epic impact on the environment. They can even save you money -- we'll show you how.
+.rounded.remodal#first
+  = image_tag "i-earth", class:"col-4 sm-col-3"
+  %h2.sm-h1.medium.mb0 Welcome new member!
+  .h5.sm-h4.measure.mx-auto
+    %p.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Join us on the path to a sustainable future!
+    %p.left-align Eating, getting around, powering your home … the small choices you make each day can have an epic impact on the environment. They can even save you money -- we'll show you how.
 
   %br/
-  .btn.btn-md.btn-primary.btn-primary--hover.remodal-confirm{data: {next: "secondModal"}} Let's go!
+  .btn.btn-md.btn-primary.btn-primary--hover{data: {next: "secondModal"}} Let's go!
 
 .remodal#second
   .flex.items-center.justify-around.flex-wrap
@@ -14,9 +15,9 @@
     .left-align.max-width-1.px1
       %h1 Our carbon impact
       %p We all contribute to carbon emissions in our everyday lives, from going to work to turning on your lights.
-      %p 
-        The average American produces enough daily carbon emissions to fill a 
-        %span.bold 12-foot-wide balloon. 
+      %p
+        The average American produces enough daily carbon emissions to fill a
+        %span.bold 12-foot-wide balloon.
         But it’s easy to fix this!
 
   %p 75% of our individual emissions comes from 3 areas.
@@ -35,11 +36,11 @@
   %p We'll work on these one at a time in the coming months.
 
   .right.mt2.flex.items-center
-    %a#wt-back.text-decoration-none.gray-80.pointer.mr2
+    %a#wt-back.text-decoration-none.gray-6.pointer.mr2
       .flex.items-center
         %span.inline-block.mr1
-          =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-80 block'
-        Back
+          =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-1 block'
+        .h5.gray-5 Back
 
     .btn.btn-sm.btn-primary.btn-primary--hover
       .flex.items-center

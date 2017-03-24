@@ -10,25 +10,25 @@
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
-  %body{id: page_id, class: "#{page_class} concierge-tools bg-gray-10"}
-    .col.bg-gray-05.fixed.top-0.bottom-0{style: 'width: 80px;'}
+  %body{id: page_id, class: "#{page_class} concierge-tools bg-gray-2"}
+    .col.bg-gray-1.fixed.top-0.bottom-0{style: 'width: 80px;'}
       .clearfix.p1.center{style: 'margin-bottom: 10px'}
         =image_tag "penguin_vertical.png", class: 'fit'
       =link_to dashboards_path do
-        .clearfix.px2.py2.center.opt-concierge-tool{class: "#{"bg-gray-20" if(params[:controller] == 'dashboards')}"}
+        .clearfix.px2.py2.center.opt-concierge-tool{class: "#{"bg-gray-3" if(params[:controller] == 'dashboards')}"}
           =image_tag "icon_dashboard_black.png", class: 'fit'
       =link_to products_path do
-        .clearfix.px2.py2.center.mb2.opt-concierge-tool{class: "#{"bg-gray-20" if(params[:controller] == 'products')}"}
+        .clearfix.px2.py2.center.mb2.opt-concierge-tool{class: "#{"bg-gray-3" if(params[:controller] == 'products')}"}
           =image_tag "icon_energy_black.png", class: 'fit'
       =link_to tasks_path do
-        .clearfix.px2.py2.center.mb2.opt-concierge-tool{class: "#{"bg-gray-20" if(params[:controller] == 'tasks')}"}
+        .clearfix.px2.py2.center.mb2.opt-concierge-tool{class: "#{"bg-gray-3" if(params[:controller] == 'tasks')}"}
           =image_tag "icon_actions_black.png", class: 'fit'
       =link_to analytics_path do
-        .clearfix.px2.py2.center.mb2.opt-concierge-tool{class: "#{"bg-gray-20" if(current_page?(controller: 'analytics', action: 'show' ))}"}
+        .clearfix.px2.py2.center.mb2.opt-concierge-tool{class: "#{"bg-gray-3" if(current_page?(controller: 'analytics', action: 'show' ))}"}
           .fa.fa-line-chart.fit.black{style: "font-size: 1.8rem;"}
     .pl4
       .clearfix
-        .col.col-12.bg-gray-05
+        .col.col-12.bg-gray-1
           %nav
             .clearfix
               .col.opt-concierge-tool
