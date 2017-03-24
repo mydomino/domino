@@ -150,7 +150,6 @@ class User < ActiveRecord::Base
     end
 
     return total_cf
-
   end
  
   # calculate user reward points during the period and save it to the user's member variable

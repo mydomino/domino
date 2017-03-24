@@ -43,12 +43,12 @@
                 / show renewal date if user is an individual member
                 - if !@user.organization
                   %br
-                  Renewal date
+                  Renewal date:
               .inline-block.right-align
-                = @user.created_at.strftime("%b %Y")
+                = @user.created_at.strftime("%b. %Y")
                 - if !@user.organization
                   %br
-                  = (@user.created_at + 1.year).strftime("%B %Y")
+                  = (@user.created_at + 1.year).strftime("%b. %Y")
 
           .clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {step: "2"}}
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
@@ -66,7 +66,7 @@
 
           .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;'}
             .px3.py1.gray-90
-              .h3.mr1.bold.inline-block Weeky leaders
+              .h3.mr2.bold.inline-block Weeky leaders
               .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
               - unless u.profile.nil? # Skip any users wihtout a profile
@@ -91,6 +91,10 @@
         .flex.items-stretch.flex-column.md-row.mx1
           = render "profiles/myhome_components/film_module"
           = render "profiles/myhome_components/discounts_module"
+
+        - if !@user.organization && @user.dashboard
+          .md-row.mx1
+            = render "profiles/myhome_components/dashboard_module"
 
 :javascript
   var myhomeTour = modulejs.require('myhome_tour');
