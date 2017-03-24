@@ -89,14 +89,14 @@ modulejs.define('myhome_tour', function(){
       intro = introJs();
 
       // Element intro content
-      cleanScoreIntro = `<p class='bold'>Your clean score</p>
-                             <p>Earn points in this competition and rise to the top of your company leaderboard by staying below the average American’s Carbon Foodprint.</p>`;
+      cleanScoreIntro = "<p class='bold'>Your clean score</p>" +
+                        "<p>Earn points in this competition and rise to the top of your company leaderboard by staying below the average American’s Carbon Foodprint.</p>";
 
-      fatIntro = `<p class='bold'>Let’s start with food</h2>
-                      <p>Join the food challenge and compete with your co-workers to see how big an impact you can make.</p>`;
+      fatIntro =  "<p class='bold'>Let’s start with food</h2>" +
+                  "<p>Join the food challenge and compete with your co-workers to see how big an impact you can make.</p>";
 
-      benefitsIntro = `<p class='bold'>Member benefits</h2>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, numquam ea. Eveniet, optio est perspiciatis dicta assumenda iure, ad nulla quis nemo iste veritatis aspernatur quisquam a commodi. Eum, commodi.</p>`;               
+      benefitsIntro = "<p class='bold'>Member benefits</h2>" +
+                      "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, numquam ea. Eveniet, optio est perspiciatis dicta assumenda iure, ad nulla quis nemo iste veritatis aspernatur quisquam a commodi. Eum, commodi.</p>";               
       
       // Push element intro content into data attributes where they are digested by introJs
       $('.fat-module').attr('data-intro', fatIntro);
