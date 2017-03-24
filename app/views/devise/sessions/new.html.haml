@@ -14,14 +14,14 @@
         .flex.items-center.my2
           %button.btn-remember-me{ type: "button", data: {target: "user_remember_me"}, style: "width: 25px;height: 25px; border-radius: 3px; border: solid 1px #DDD; position:relative; background-color: white"}
             %i.fa.fa-check.white{style: "position:absolute;bottom:2px;right:2px;display: none"}
-          %label.gray-80.ml1{style: 'font-weight:100;'} Keep me logged in
+          %label.gray-80.h5.ml1 Keep me logged in
         .display-none
           = f.input_field :remember_me, class:'h1', as: :boolean, label: false if devise_mapping.rememberable?
         .center.mt3
-          = f.button :submit, "Log in", class: "btn btn-md btn-primary"
-        .mt2.center
+          = f.button :submit, "Log in", class: "btn btn-lg col-12 btn-primary mb0"
+        .mt1.mb2.center
           - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-            = link_to "Forgot my password", new_password_path(resource_name), style: 'color: black;font-weight:100;', class: 'gray-80'
+            = link_to "Forgot my password", new_password_path(resource_name), class: 'gray-60 h5 mt0 text-decoration-none'
   %p.center.gray-80
     Not a member?
     %span.blue
