@@ -246,6 +246,8 @@ class RegistrationsController < Devise::RegistrationsController
     @profile.update(dashboard_registered: true)
     DashboardRegisteredZohoJob.perform_later @profile
     
+    track_event "User signed up"
+
     user_dashboard_path
   end
 end

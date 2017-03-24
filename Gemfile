@@ -55,6 +55,9 @@ gem 'remodal-rails'
 gem 'chart-js-rails'
 gem "d3-rails"
 
+# for mixpanel integration
+gem 'event_tracker', '~> 0.3.0'
+
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end

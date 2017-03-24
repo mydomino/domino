@@ -15,27 +15,35 @@ class PagesController < ApplicationController
   end
 
   def about
+    track_event "Pages - about"
   end
 
   def terms
+    track_event "Pages - terms"
   end
 
   def privacy
+    track_event "Pages - privacy"
   end
 
   def team
+    track_event "Pages - team"
   end
 
   def faq
+    track_event "Pages - faq"
   end
 
   def example
+    track_event "Pages - example"
   end
 
   def partners
+    track_event "Pages - partners"
   end
 
   def fat_d3
+    track_event "Pages - fat_d3"
     
   end
 
@@ -46,6 +54,8 @@ class PagesController < ApplicationController
       SubscribeToMailchimpJob.perform_later params[:email]
       @message = "Thanks for signing up!"
     end
+
+    track_event "subscribe newsletter"
 
     respond_to do |format|
       format.js

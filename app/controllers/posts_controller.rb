@@ -21,6 +21,8 @@ class PostsController < ApplicationController
     @posts = JSON.parse(response.body)
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
+
+    track_event "Articles - index"
   end
 
   # GET /posts/1
@@ -31,6 +33,8 @@ class PostsController < ApplicationController
     response = @dh.get_post_by_id(post_id, query_param)
 
     process_post(response.body)
+
+    track_event "Articles - show", {"Article_id": post_id.to_s}
   end
 
   def get_post_by_slug
@@ -40,8 +44,9 @@ class PostsController < ApplicationController
 
     response = @dh.get_post_by_slug(query_param)
 
-
     process_post(response.body)
+
+    track_event "Articles - get_post_by_slug", {"Article_slug": slug}
   end
 
   def get_posts_by_category
@@ -63,6 +68,8 @@ class PostsController < ApplicationController
     @posts = JSON.parse(response.body)
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
+
+    track_event "Articles - get_posts_by_category", {"Article_category": category}
   end
 
   private

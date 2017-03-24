@@ -22,6 +22,8 @@ class FatMealsController < ApplicationController
       food_types: FoodType.all,
       graph_params: @graph_params
     }
+
+    track_event "FatMeal - edit"
   end
 
   # POST /food-action-tracker XmlHttpRequest
@@ -41,6 +43,8 @@ class FatMealsController < ApplicationController
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
     
+    track_event "FatMeal - create"
+
     fat_graph_params(@date)
     render_response
   end
@@ -62,6 +66,8 @@ class FatMealsController < ApplicationController
     end
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
+
+    track_event "FatMeal - create"
 
     fat_graph_params(@meal_day.date)
 

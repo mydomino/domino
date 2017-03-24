@@ -9,6 +9,8 @@ class ProfilesController < ApplicationController
   # GET /profile
   def show
     @profile = current_user.profile
+
+    track_event "Profile - show"
   end
 
   # /myhome/
@@ -50,7 +52,8 @@ class ProfilesController < ApplicationController
       @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
       fat_graph_date += 1.day
     end
-    # byebug
+
+    track_event "Profile - myhome"
   end
 
   def verify_current_password
@@ -82,6 +85,8 @@ class ProfilesController < ApplicationController
       message: "Password updated successfully",
       status: 200
     }, status: 200
+
+    track_event "Profile - update_password"
   end
 
   def edit
