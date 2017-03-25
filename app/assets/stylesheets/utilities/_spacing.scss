@@ -1,7 +1,9 @@
-$space-1: .5rem !default;
-$space-2: 1rem !default;
-$space-3: 2rem !default;
-$space-4: 4rem !default;
+$space-1: .5rem !default; //8x
+$space-2: 1rem !default;  //16px
+$space-3: 1.5rem !default;  //24px
+$space-4: 2rem !default;  //32px
+$space-5  2.5rem !default; //40px
+$space-6  3rem !default; //48px
 
 // Custom Media Query Variables
 
@@ -170,8 +172,62 @@ $breakpoint-sm: '(min-width: 40em)' !default;
 $breakpoint-md: '(min-width: 52em)' !default;
 $breakpoint-lg: '(min-width: 64em)' !default;
 
-/* Basscss Responsive Margin */
+// Spacing Scale: 8px, 16px,24px, 32px, 40px, 48px
 
+// Margin Spacing
+
+
+@for $i from 0 through $margin-count {
+  .m#{$i} { margin: #{$i * .5}rem; }
+  .mt#{$i} { margin-top: #{$i * .5}rem; }
+  .mr#{$i} { margin-right: #{$i * .5}rem; }
+  .mb#{$i} { margin-bottom: #{$i * .5}rem; }
+  .ml#{$i} { margin-left: #{$i * .5}rem; }
+  .my#{$i} { margin-bottom: #{$i * .5}rem; margin-top: #{$i * .5}rem; }
+  .mx#{$i} { margin-left: #{$i * .5}rem; margin-right: #{$i * .5}rem; }
+  .mnt#{$i} { margin-top: #{$i * .5}rem; }
+  .mnb#{$i} { margin-bottom: #{$i * -.5}rem; }
+  .mnx#{$i} { margin-left: #{$i * -.5}rem; margin-right: #{$i * -.5}rem; }
+}
+//Responsive Margin Spacing
+@if (variable-exists(breakpoints)) {
+  @each $bp-name, $bp-value in $breakpoints {
+    @for $i from 0 through $margin-count {
+      .#{$bp-name}.m#{$i} { margin: #{$i * .5}rem; }
+      .#{$bp-name}.mt#{$i} { margin-top: #{$i * .5}rem; }
+      .#{$bp-name}.mr#{$i} { margin-right: #{$i * .5}rem; }
+      .#{$bp-name}.mb#{$i} { margin-bottom: #{$i * .5}rem; }
+      .#{$bp-name}.ml#{$i} { margin-left: #{$i * .5}rem; }
+      .#{$bp-name}.my#{$i} { margin-bottom: #{$i * .5}rem; margin-top: #{$i * .5}rem; }
+      .#{$bp-name}.mx#{$i} { margin-left: #{$i * .5}rem; margin-right: #{$i * .5}rem; }
+      .#{$bp-name}.mnt#{$i} { margin-top: #{$i * .5}rem; }
+      .#{$bp-name}.mnb#{$i} { margin-bottom: #{$i * -.5}rem; }
+      .#{$bp-name}.mnx#{$i} { margin-left: #{$i * -.5}rem; margin-right: #{$i * -.5}rem; }
+    }
+  }
+}
+// Padding Spacing
+@for $i from 1 through $padding-count {
+  .p#{$i} { padding: #{$i * .5}rem; }
+  .pt#{$i} { padding-top: #{$i * .5}rem; }
+  .pb#{$i} { padding-bottom: #{$i * .5}rem; }
+  .pl#{$i} { padding-left: #{$i * .5}rem; }
+  .pr#{$i} { padding-right: #{$i * .5}rem; }
+  .py#{$i} { padding-bottom: #{$i * .5}rem; padding-top: #{$i * .5}rem; }
+  .px#{$i} { padding-left: #{$i * .5}rem; padding-right: #{$i * .5}rem; }
+}
+// Responsive Padding Spacing
+@if (variable-exists(breakpoints)) {
+  @each $bp-name, $bp-value in $breakpoints {
+    .#{$bp-name}p#{$i} { padding: #{$i * .5}rem; }
+    .#{$bp-name}pt#{$i} { padding-top: #{$i * .5}rem; }
+    .#{$bp-name}pb#{$i} { padding-bottom: #{$i * .5}rem; }
+    .#{$bp-name}pl#{$i} { padding-left: #{$i * .5}rem; }
+    .#{$bp-name}pr#{$i} { padding-right: #{$i * .5}rem; }
+    .#{$bp-name}py#{$i} { padding-bottom: #{$i * .5}rem; padding-top: #{$i * .5}rem; }
+    .#{$bp-name}px#{$i} { padding-left: #{$i * .5}rem; padding-right: #{$i * .5}rem; }
+  }
+}
 @media #{$breakpoint-sm} {
 
   .sm-m0  { margin:        0 }

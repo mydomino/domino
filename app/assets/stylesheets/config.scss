@@ -5,6 +5,12 @@ $breakpoints: (
   md: 52em,
   lg: 64em,
   );
+  
+// Loop Variables
+$margin-count: 8; // Spacing Scale (0.5rem increments): 8px, 16px,24px, 32px, 40px, 48px
+$padding-count: 8; // Spacing Scale (0.5rem increments): 8px, 16px, 24px, 32px, 40px, 48px
+$layout-count: 25;
+
 // Fonts
 $adelle-sans: 'adelle-sans',sans-serif;
 // Typography
@@ -26,7 +32,7 @@ $letter-spacing: 1 !default;
 $caps-letter-spacing: .1em !default;
 $bold-font-weight: bold !default;
 
-$layout-count: 25;
+
 
 // Color Variables
 
