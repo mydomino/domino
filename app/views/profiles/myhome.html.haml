@@ -85,21 +85,22 @@
                       .h4.gray-6 #{u.fat_reward_points}
 
         = render 'profiles/myhome_components/food_impact_module'
+        
+        #member-benefits-wrapper{data: {intro: 'Hello step one!', step: "3"}}
+          .center.m3
+            .member-benefits.h1.black.bold Member Benefits
 
-        .center.m3
-          .member-benefits.h1.black.bold{data: {intro: 'Hello step one!', step: "3"}} Member Benefits
+          .flex.items-stretch.flex-column.md-row.mx1
+            = render "profiles/myhome_components/take_out_bites_module"
+            = render "profiles/myhome_components/concierge_module"
 
-        .flex.items-stretch.flex-column.md-row.mx1
-          = render "profiles/myhome_components/take_out_bites_module"
-          = render "profiles/myhome_components/concierge_module"
+          .flex.items-stretch.flex-column.md-row.mx1
+            = render "profiles/myhome_components/film_module"
+            = render "profiles/myhome_components/discounts_module"
 
-        .flex.items-stretch.flex-column.md-row.mx1
-          = render "profiles/myhome_components/film_module"
-          = render "profiles/myhome_components/discounts_module"
-
-        - if !@user.organization && @user.dashboard
-          .md-row.mx1
-            = render "profiles/myhome_components/dashboard_module"
+          - if !@user.organization && @user.dashboard
+            .md-row.mx1
+              = render "profiles/myhome_components/dashboard_module"
 
 :javascript
   var myhomeTour = modulejs.require('myhome_tour');
