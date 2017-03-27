@@ -7,42 +7,44 @@
     %p.left-align Eating, getting around, powering your home … the small choices you make each day can have an epic impact on the environment. They can even save you money -- we'll show you how.
 
   %br/
-  .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {"remodal-selector": "#first", "step": 0}} Let's go!
+  .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} Let's go!
 
 .remodal#second{style: 'display: none;'}
   .flex.items-center.justify-around.flex-wrap
     = image_tag "illo-man-balloon"
     .left-align.max-width-1.px1
-      %h1 Our carbon impact
-      %p We all contribute to carbon emissions in our everyday lives, from going to work to turning on your lights.
-      %p
-        The average American produces enough daily carbon emissions to fill a
-        %span.bold 12-foot-wide balloon.
-        But it’s easy to fix this!
+      %h2.sm-h1.medium.mb0 Our carbon impact
+      .h5.sm-h4.measure.mx-auto
+        %p We all contribute to carbon emissions in our everyday lives, from going to work to turning on your lights.
+        %p
+          The average American produces enough daily carbon emissions to fill a
+          %span.bold 12-foot-wide balloon.
+          But it’s easy to fix this!
 
-  %p 75% of our individual emissions comes from 3 areas.
-  %p A full 3/4 of this 12-foot balloon comes from just 3 areas:
-  .flex.justify-around.max-width-1.mx-auto
-    .flex.flex-column.items-center
-      = image_tag "icons/i-apple-nofill"
-      Food
-    .flex.flex-column.items-center
-      = image_tag "icons/i-scooter"
-      Transportation
-    .flex.flex-column.items-center
-      = image_tag "icons/i-lightbulb"
-      Energy
+    .h5.sm-h4.measure.mx-auto
+      %p 75% of our individual emissions comes from 3 areas.
+      %p A full 3/4 of this 12-foot balloon comes from just 3 areas:
+      .flex.justify-around.max-width-1.mx-auto
+        .flex.flex-column.items-center
+          = image_tag "icons/i-apple-nofill"
+          Food
+        .flex.flex-column.items-center
+          = image_tag "icons/i-scooter"
+          Transportation
+        .flex.flex-column.items-center
+          = image_tag "icons/i-lightbulb"
+          Energy
 
-  %p We'll work on these one at a time in the coming months.
+      %p We'll work on these one at a time in the coming months.
 
   .right.mt2.flex.items-center
-    %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {"remodal-selector": "#second", "step": 1}} 
+    %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 1}} 
       .flex.items-center
         %span.inline-block.mr1
           =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-4 block'
         .h5.gray-4 Back
 
-    .wt-next.btn.btn-sm.btn-primary.btn-primary--hover{data: {"remodal-selector": "#second", "step": 1}}
+    .wt-next.btn.btn-sm.btn-primary.btn-primary--hover{data: {step: 1}}
       .flex.items-center
         Next
         %span.inline-block.ml1
@@ -52,26 +54,48 @@
   = image_tag "i-impact-categories.png", class: "fit"
 
   %h2.sm-h1.medium.mb0 Lets start with food!
-  %p.left-align
-    Food contributes up to 30% of our carbon emissions. It takes energy to grow, process, transport, and store our food.
 
-  %p.left-align
-    The good news is, food changes are easy to do, and you can make a dent in your carbon footprint right away!
+  .h5.sm-h4.measure.mx-auto
+    %p.left-align
+      Food contributes up to 30% of our carbon emissions. It takes energy to grow, process, transport, and store our food.
 
-  .flex.items-center
-    = image_tag "icons/i-apple-nofill"
-    %p.left-align.pl2
-      Join the food challenge and see how much you can lower your "Carbon Foodprint".
+    %p.left-align
+      The good news is, food changes are easy to do, and you can make a dent in your carbon footprint right away!
+
+    .flex.items-center
+      = image_tag "icons/i-apple-nofill"
+      %p.left-align.pl2
+        Join the food challenge and see how much you can lower your "Carbon Foodprint".
   
   .right.mt2.flex.items-center
-    %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {"remodal-selector": "#third", "step": 2}}
+    %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 2}}
       .flex.items-center
         %span.inline-block.mr1
           =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"
         .h5.gray-4 Back
 
-    .wt-finish.btn.btn-sm.btn-primary.btn-primary--hover
+    .btn.btn-sm.btn-primary.btn-primary--hover{class: "#{@mobile ? 'wt-next' : 'wt-finish'}", data: {"remodal-selector": "#third", "step": 2}}
       .flex.items-center
         Next
         %span.inline-block.ml1
           = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
+
+-if @mobile 
+  .remodal#fourth{style: "display: none;"}
+    %h2.sm-h1.medium.mb0 Mobile modal
+    .h5.measure.mx-auto
+      %p.left-align
+        Pellentesque et lorem nec tortor posuere efficitur nec nec velit. Vestibulum ac venenatis lorem. Nunc ac dui placerat, molestie tellus at, consectetur enim. Pellentesque ac enim id libero bibendum molestie. Nam ac nisl sit amet nulla varius cursus. Sed ligula sapien, eleifend lobortis quam sit amet, viverra molestie mi. 
+
+    .right.mt2.flex.items-center
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 3}}
+        .flex.items-center
+          %span.inline-block.mr1
+            =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"
+          .h5.gray-4 Back
+
+      .wt-finish.btn.btn-sm.btn-primary.btn-primary--hover{data: {step: 3}}
+        .flex.items-center
+          Next
+          %span.inline-block.ml1
+            = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"

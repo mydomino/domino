@@ -103,7 +103,7 @@
 
 :javascript
   var myhomeTour = modulejs.require('myhome_tour');
-  myhomeTour.startTour(#{@tour});
+  myhomeTour.startTour(#{@tour}, #{@mobile});
 
   $('li.complete, li.incomplete').on('click', function(){
     window.location = $(this).data('link');
