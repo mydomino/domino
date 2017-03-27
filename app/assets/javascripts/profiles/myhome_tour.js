@@ -103,7 +103,11 @@ modulejs.define('myhome_tour', function(){
             } 
             else {
               // Show intro js tour for non mobile devices
-              intro.setOptions({showStepNumbers: false});
+              intro.setOptions({
+                showStepNumbers: false,
+                exitOnEsc: false,
+                exitOnOverlayClick: false
+              });
               intro.start();
             }
           });
