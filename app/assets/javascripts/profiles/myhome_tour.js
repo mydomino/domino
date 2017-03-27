@@ -147,9 +147,9 @@ modulejs.define('myhome_tour', function(){
                         "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, numquam ea. Eveniet, optio est perspiciatis dicta assumenda iure, ad nulla quis nemo iste veritatis aspernatur quisquam a commodi. Eum, commodi.</p>";               
         
         // Push element intro content into data attributes where they are digested by introJs
-        $('.fat-module').attr('data-intro', fatIntro);
-        $('.clean-score').attr('data-intro', cleanScoreIntro);
-        $('.member-benefits').attr('data-intro', benefitsIntro);
+        $('#fat-module').attr('data-intro', fatIntro);
+        $('#clean-score').attr('data-intro', cleanScoreIntro);
+        $('#member-benefits').attr('data-intro', benefitsIntro);
       }
     }
   };
