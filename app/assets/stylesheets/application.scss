@@ -24,13 +24,24 @@
 
 // Reset
 @import 'base';
-@import 'spacing';
-@import 'layout';
-@import 'typography';
-@import 'colors';
-@import 'slick';
+
+//Components
+@import 'components/components';
+
+//Plugins
 @import 'slick-theme';
 @import 'parsley';
+
+
+//Layout
+
+@import 'spacing';
+@import 'layout';
+
+//Styling
+
+@import 'slick';
+@import 'typography';
+@import 'colors';
 @import 'shame';
-@import 'components/components';
 @import 'utilities/utilities';

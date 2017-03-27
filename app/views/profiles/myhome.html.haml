@@ -54,8 +54,8 @@
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
             %h4.gray-6.mb0.mt1.bold.caps Clean Score
-            .border.border-gray-4.circle.center.m1{ style: 'width: 75px; width: 75px; border-color: orange; border-width: 2px' }
-              %span.h0.bold.my0.orange.align-middle
+            .border.border-gray-4.circle.center.my1{ style: 'width: 75px; border-color:orange; border-width: 3px' }
+              %span.h0.bold.my0.mx1.orange.align-middle
                 = @user.get_current_week_grade || '?'
             %div.h4.gray-5.col-11
               - food_cf = @user.get_current_week_foodcf_percent
@@ -85,7 +85,7 @@
                       .h4.gray-6 #{u.fat_reward_points}
 
         = render 'profiles/myhome_components/food_impact_module'
-        
+
         .center.m3
           .member-benefits.h1.black.bold{data: {intro: 'Hello step one!', step: "3"}} Member Benefits
 
@@ -104,7 +104,7 @@
 :javascript
   var myhomeTour = modulejs.require('myhome_tour');
   myhomeTour.startTour(#{@tour});
-  
+
   $('li.complete, li.incomplete').on('click', function(){
     window.location = $(this).data('link');
   });

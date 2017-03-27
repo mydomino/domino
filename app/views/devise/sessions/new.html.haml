@@ -18,7 +18,7 @@
         .display-none
           = f.input_field :remember_me, class:'h1', as: :boolean, label: false if devise_mapping.rememberable?
         .center.mt3
-          = f.button :submit, "Log in", class: "btn btn-lg col-12 btn-primary mb0"
+          = f.button :submit, "Log in", class: "btn btn-lg col-12 h3 btn-primary mb0"
         .mt1.mb2.center
           - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
             = link_to "Forgot my password", new_password_path(resource_name), class: 'gray-5 h5 mt0 text-decoration-none'

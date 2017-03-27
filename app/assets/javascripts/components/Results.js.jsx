@@ -10,7 +10,7 @@ class Results extends React.Component {
           <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         </div>
 
-        <div id="learn-more" className="pt3 pb4 center bg-gray-05">
+        <div id="learn-more" className="pt3 pb4 center bg-gray-1">
           <div className="mx3 sm-mx0">
             <div className="h4 caps bold gray-80 my3">LEARN MORE</div>
               <div className="max-width-3 mx-auto">

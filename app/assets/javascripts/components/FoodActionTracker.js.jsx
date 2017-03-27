@@ -60,7 +60,7 @@ class FoodActionTracker extends React.Component {
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
-          <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
+          <div className='bg-gray-1 clearfix rounded-bottom p2 relative'>
 
             <div  id="food-picker"
                   className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>

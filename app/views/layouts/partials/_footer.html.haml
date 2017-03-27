@@ -17,8 +17,8 @@
       = form_tag "/newsletter-subscribe", remote: true, method: :get do
         .bold.mb1
           Sign up for our newsletter
-        %input#newsletter-email.bg-transparent.rounded.mt1.text-input{style: 'height: 2em', type: 'email', name: 'email', required: true}
-        %input#newsletter-subscribe.btn.btn-sm.btn-primary.btn-primary--hover.mt1{type: 'submit', value: 'Sign up'}
+        %input#newsletter-email.bg-transparent.rounded.mt1.text-input.mb1{style: 'height: 2em', type: 'email', name: 'email', required: true}
+        %input#newsletter-subscribe.btn.btn-sm.btn-primary.btn-primary--hover{type: 'submit', value: 'Sign up'}
 
     .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-6
       = link_to 'tel:8009792215', class: 'text-decoration-none gray-6 blue--hover' do
@@ -86,7 +86,7 @@
   %hr.gray-6.max-width-4
   .max-width-4.mx-auto.gray-6.h5.py1.px2
     &copy;&nbsp;
-    = Date.today.year 
+    = Date.today.year
     MyDomino Inc.
     = link_to 'Terms of Service', terms_path, class: 'text-decoration-none gray-6 mx1 pointer blue--hover'
     = link_to 'Privacy Policy', privacy_path, class: 'text-decoration-none gray-6 mx1 pointer blue--hover'
