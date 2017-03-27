@@ -22,6 +22,7 @@
 #  meal_carbon_footprint   :float            default(0.0)
 #  fat_reward_points       :integer          default(0)
 #  total_fat_reward_points :integer          default(0)
+#  welcome_tour_complete   :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -33,8 +34,6 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
-
-
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:

@@ -2,16 +2,17 @@ modulejs.define('myhome_tour', function(){
   return {
     startTour: function(start) {
       // Skip tour if start argument is false
-      // Or if a cookie indicates the user has completed tour
       if(!start) return;
-      if(Cookies.get('welcometour') === 'finished') return;
 
       var setTourDoneCookie,
           remodalOpts,
           firstModal,
           secondModal,
+          thirdModal,
+          modals,
           $firstModal,
           $secondModal,
+          $thirdModal,
           $welcomeTourBg,
           intro,
           cleanScoreIntro,
@@ -26,50 +27,72 @@ modulejs.define('myhome_tour', function(){
       // Remodal dialog instances
       firstModal = $('#first').remodal(remodalOpts);
       secondModal = $('#second').remodal(remodalOpts);
+      thirdModal = $('#third').remodal(remodalOpts);
 
       // Jquerified elements
       $firstModal = $('#first');
       $secondModal = $('#second');
+      $thirdModal = $('#third');
 
-      // /setTourDoneCookie/
-      // Purpose: set cookie to indicate user has completed welcome tour
-      setTourDoneCookie = function() {
-        Cookies.set('welcometour', 'finished');
-      }
+      $welcomeTourBg = $('.welcome-tour-bg');
+
+      modals = [{
+                  remodalInstance: firstModal,
+                  jQInstance: $firstModal
+                },
+                {
+                  remodalInstance: secondModal,
+                  jQInstance: $secondModal
+                },
+                { remodalInstance: thirdModal,
+                  jQInstance: $thirdModal
+                }];
 
       // BEGIN module event handlers
-      // Go back to first modal from second modal
-      $('#wt-back').on('click', function(){
-        secondModal.close();
-        $firstModal.fadeIn(function(){
-          firstModal.open();
+      $('.wt-back').on('click', function(){
+        var currStep = $(this).data('step');
+        var remodalSelector = $(this).data('remodal-selector');
+        var prevModal = modals[currStep - 1];
+
+        $(remodalSelector).fadeOut(200, function() {
+          modals[currStep].remodalInstance.close();
+
+          prevModal.jQInstance.fadeIn(50, function(){
+            prevModal.remodalInstance.open();
+          });
         });
       });
 
-      // Go to second modal
-      $firstModal.find('.btn').on('click', function(){
-        $firstModal.fadeOut(function() {
-          secondModal.open();
+      $('.wt-next').on('click', function() {
+        var currStep = $(this).data('step');
+        var remodalSelector = $(this).data('remodal-selector');
+        var nextModal = modals[currStep + 1];
+
+        $(remodalSelector).fadeOut(200, function(){
+          modals[currStep].remodalInstance.close();
+          nextModal.jQInstance.fadeIn(50, function(){
+            nextModal.remodalInstance.open();
+          })
         });
       });
 
       // End remodal portion of tour
       // Start introJs portion of tour
-      $secondModal.find('.btn').on('click', function(){
-        $secondModal.fadeOut(function() {
-          $('.welcome-tour-bg').fadeOut(function() {
+      $('.wt-finish').on('click', function(){
+        $thirdModal.fadeOut(function() {
+          $welcomeTourBg.fadeOut(function() {
             firstModal.destroy();
             secondModal.destroy();
+            thirdModal.destroy();
 
             intro.setOptions({showStepNumbers: false});
             intro.start();
           });
         });
       });
-      // END module event handlers
 
       // Remodal portion of welcome tour background overlay
-      $('.welcome-tour-bg').css({
+      $welcomeTourBg.css({
         position: "fixed",
         zIndex: 9999,
         top: "-5000px",
@@ -81,6 +104,7 @@ modulejs.define('myhome_tour', function(){
 
       // Start tour
       firstModal.open();
+      
       // Remove remodal plugin overlay
       // Else theres a glitch effect between modal transitions
       $('.remodal-overlay').remove();
