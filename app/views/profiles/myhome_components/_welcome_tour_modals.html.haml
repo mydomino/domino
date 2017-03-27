@@ -46,28 +46,32 @@
       .flex.items-center
         Next
         %span.inline-block.ml1
-          = inline_svg "icons/i-arrow-right.svg", class: 'icon-s fill-white block'
+          = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
-.remodal#third{style: 'display: none;'}
+.remodal#third{style: "display: none;"}
+  = image_tag "i-impact-categories.png", class: "fit"
+
   %h2.sm-h1.medium.mb0 Lets start with food!
-  %p
+  %p.left-align
     Food contributes up to 30% of our carbon emissions. It takes energy to grow, process, transport, and store our food.
 
-  %p
+  %p.left-align
     The good news is, food changes are easy to do, and you can make a dent in your carbon footprint right away!
 
-  %p
-    Join the food challenge and see how much you can lower your "Carbon Foodprint".
+  .flex.items-center
+    = image_tag "icons/i-apple-nofill"
+    %p.left-align.pl2
+      Join the food challenge and see how much you can lower your "Carbon Foodprint".
   
   .right.mt2.flex.items-center
     %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {"remodal-selector": "#third", "step": 2}}
       .flex.items-center
         %span.inline-block.mr1
-          =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-4 block'
+          =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"
         .h5.gray-4 Back
 
     .wt-finish.btn.btn-sm.btn-primary.btn-primary--hover
       .flex.items-center
         Next
         %span.inline-block.ml1
-          = inline_svg "icons/i-arrow-right.svg", class: 'icon-s fill-white block'
+          = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
