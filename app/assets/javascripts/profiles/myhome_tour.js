@@ -17,8 +17,10 @@ modulejs.define('myhome_tour', function(){
           $thirdModal,
           $welcomeTourBg,
           intro,
+          introStep,
           cleanScoreIntro,
-          fatIntro;
+          fatIntro,
+          benefitsIntro;
 
       mobile = mobile;
 
@@ -108,12 +110,18 @@ modulejs.define('myhome_tour', function(){
                 exitOnEsc: false,
                 exitOnOverlayClick: false
               });
+              
+              introStep = 0;
               intro.start();
               intro.oncomplete(function() {
-                alert("end of introduction");
+                console.log("end of introduction");
               });
-              intro.onchange(function(targetElement) {
-                alert("new step");
+              intro.onbeforechange(function(targetElement) {
+                introStep += 1;
+                
+                if(introStep === 2) {
+                  $('.introjs-skipbutton').css('display', 'inline-block');
+                }
               });
             }
           });
