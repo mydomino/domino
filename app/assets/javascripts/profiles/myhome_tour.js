@@ -109,6 +109,12 @@ modulejs.define('myhome_tour', function(){
                 exitOnOverlayClick: false
               });
               intro.start();
+              intro.oncomplete(function() {
+                alert("end of introduction");
+              });
+              intro.onchange(function(targetElement) {
+                alert("new step");
+              });
             }
           });
         });
