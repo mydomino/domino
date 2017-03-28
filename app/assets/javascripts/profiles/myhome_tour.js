@@ -15,7 +15,7 @@ modulejs.define('myhome_tour', function(){
           $firstModal,
           $secondModal,
           $thirdModal,
-          $welcomeTourBg,
+          $welcomeTourBg
           intro,
           introStep,
           cleanScoreIntro,
@@ -34,6 +34,8 @@ modulejs.define('myhome_tour', function(){
       $firstModal = $('#first');
       $secondModal = $('#second');
       $thirdModal = $('#third');
+
+      $wtLink = $('#wt-link');
 
       // Remodal dialog instances
       firstModal = $firstModal.remodal(remodalOpts);
@@ -110,7 +112,7 @@ modulejs.define('myhome_tour', function(){
                 exitOnEsc: false,
                 exitOnOverlayClick: false
               });
-              
+
               introStep = 0;
               intro.start();
               intro.oncomplete(function() {

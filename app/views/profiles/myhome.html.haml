@@ -11,12 +11,14 @@
   }
 
 = render "profiles/myhome_components/welcome_tour_modals"
-.shep-overlay
+
 .mx-auto.relative
   .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
     .absolute.left-0.right-0.top-0.my3
       .max-width-4.mx-auto
-
+        .clearfix
+          .col.col-12.p2
+            #wt-link.right.white What's all this?
         .flex.flex-column.sm-row
           .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
@@ -99,8 +101,10 @@
               = render "profiles/myhome_components/dashboard_module"
 
 :javascript
+  modulejs.require('myhome')();
   var myhomeTour = modulejs.require('myhome_tour');
-  myhomeTour.startTour(#{@tour}, #{@mobile});
+  myhomeTour.startTour(false, #{@mobile});
+
 
   $('li.complete, li.incomplete').on('click', function(){
     window.location = $(this).data('link');
