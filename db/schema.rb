@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327212029) do
+ActiveRecord::Schema.define(version: 20170317231859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,7 +291,6 @@ ActiveRecord::Schema.define(version: 20170327212029) do
     t.float    "meal_carbon_footprint",   default: 0.0
     t.integer  "fat_reward_points",       default: 0
     t.integer  "total_fat_reward_points", default: 0
-    t.boolean  "welcome_tour_complete",   default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
