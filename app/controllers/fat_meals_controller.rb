@@ -116,7 +116,7 @@ class FatMealsController < ApplicationController
       elsif(@date > @today)
         @date = @today
       end
-      @date_str = (@today - 1 == @date) ? 'Yesterday' : ( (@date == @today) ? 'Today' : @date.strftime("%a") )
+      @date_str = (@today - 1 == @date) ? 'Yesterday' : ( (@date == @today) ? 'Today' : @date.strftime("%A") )
     else
       @date = @today
       @date_str = "Today"
