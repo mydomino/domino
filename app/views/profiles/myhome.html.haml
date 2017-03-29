@@ -17,8 +17,8 @@
     .absolute.left-0.right-0.top-0.my3
       .max-width-4.mx-auto
         .clearfix
-          .col.col-12.p2
-            #wt-link.right.white.h5.pointer What's all this?
+          .col.col-12.px2
+            #wt-link.right.white.underline.pointer What's all this?
         .flex.flex-column.sm-row
           .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
@@ -52,7 +52,7 @@
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
             %h4.gray-6.mb0.mt1.bold.caps Clean Score
-            .border.border-gray-4.circle.center.my1{ style: 'width: 75px; border-color:orange; border-width: 3px' }
+            .border.border-orange.circle.center.my1{ style: 'width: 75px; border-width: 3px' }
               %span.h0.bold.my0.mx1.orange.align-middle
                 = @user.get_current_week_grade || '?'
             %div.h4.gray-5.col-11
@@ -69,11 +69,11 @@
 
           .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;'}
             .px3.py1.gray-7
-              .h3.mr2.bold.inline-block Weeky leaders
+              .h3.mr2.bold.inline-block Weekly leaders
               .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
               - unless u.profile.nil? # Skip any users wihtout a profile
-                .flex.px3.py1.items-center{style: "#{'background: #fff9c4' if u.email == current_user.email}"}
+                .flex.px3.py1.items-center{class: "#{'bg-orange' if u.email == current_user.email}"}
                   .flex.items-center.justify-center.h6.border.circle.icon-m.gray-6
                     = (i == 6) ? i + @current_user_standing : i + 1
                   .fill-x
@@ -83,7 +83,7 @@
                       .h4.gray-6 #{u.fat_reward_points}
 
         = render 'profiles/myhome_components/food_impact_module'
-        
+
         #member-benefits{data: {step: "3", position: "top"}}
           .center.m3
             .h1.black.bold Member Benefits

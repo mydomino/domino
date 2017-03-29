@@ -1,30 +1,27 @@
 .welcome-tour-bg
 .rounded.remodal#first
   = image_tag "i-earth", class:"col-4 sm-col-3"
-  %h2.sm-h1.medium.mb0 Welcome new member!
+  %h2.sm-h1.medium.mb0 Welcome,
   .h5.sm-h4.measure.mx-auto
-    %p.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Join us on the path to a sustainable future!
-    %p.left-align Eating, getting around, powering your home … the small choices you make each day can have an epic impact on the environment. They can even save you money -- we'll show you how.
-
+    %p.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Let’s begin with a short explanation of carbon impact.
+  -# Why are we using Br/ here?
   %br/
-  .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} Let's go!
+  .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} What's carbon impact?
 
 .remodal#second{style: 'display: none;'}
   .flex.items-center.justify-around.flex-wrap
     = image_tag "illo-man-balloon"
     .left-align.max-width-1.px1
-      %h2.sm-h1.medium.mb0 Our carbon impact
+      %h2.sm-h1.medium.mb0 Carbon impact
       .h5.sm-h4.measure.mx-auto
-        %p We all contribute to carbon emissions in our everyday lives, from going to work to turning on your lights.
-        %p
-          The average American produces enough daily carbon emissions to fill a
-          %span.bold 12-foot-wide balloon.
-          But it’s easy to fix this!
+        %span Did you know, the average American produces enough carbon emission to fill a
+        %span.bold 12-foot wide balloon per day ?
+        %span Every small choice you make enlarges this balloon (your carbon impact)!
+        %p Managing these small choices can be overwhelming. So, we grouped the primary causes into Food, Transportation, & Energy.
+
 
     .h5.sm-h4.measure.mx-auto
-      %p 75% of our individual emissions comes from 3 areas.
-      %p A full 3/4 of this 12-foot balloon comes from just 3 areas:
-      .flex.justify-around.max-width-1.mx-auto
+      .flex.justify-around.max-width-1.mx-auto.bg-orange
         .flex.flex-column.items-center
           = image_tag "icons/i-apple-nofill"
           Food
@@ -35,10 +32,10 @@
           = image_tag "icons/i-lightbulb"
           Energy
 
-      %p We'll work on these one at a time in the coming months.
+      %p.gray-4 75% of your carbon emissions comes from these 3 areas
 
   .right.mt2.flex.items-center
-    %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 1}} 
+    %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 1}}
       .flex.items-center
         %span.inline-block.mr1
           =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-4 block'
@@ -66,7 +63,7 @@
       = image_tag "icons/i-apple-nofill"
       %p.left-align.pl2
         Join the food challenge and see how much you can lower your "Carbon Foodprint".
-  
+
   .right.mt2.flex.items-center
     %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 2}}
       .flex.items-center
@@ -80,12 +77,12 @@
         %span.inline-block.ml1
           = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
--if @mobile 
+-if @mobile
   .remodal#fourth{style: "display: none;"}
     %h2.sm-h1.medium.mb0 Mobile modal
     .h5.measure.mx-auto
       %p.left-align
-        Pellentesque et lorem nec tortor posuere efficitur nec nec velit. Vestibulum ac venenatis lorem. Nunc ac dui placerat, molestie tellus at, consectetur enim. Pellentesque ac enim id libero bibendum molestie. Nam ac nisl sit amet nulla varius cursus. Sed ligula sapien, eleifend lobortis quam sit amet, viverra molestie mi. 
+        Pellentesque et lorem nec tortor posuere efficitur nec nec velit. Vestibulum ac venenatis lorem. Nunc ac dui placerat, molestie tellus at, consectetur enim. Pellentesque ac enim id libero bibendum molestie. Nam ac nisl sit amet nulla varius cursus. Sed ligula sapien, eleifend lobortis quam sit amet, viverra molestie mi.
 
     .right.mt2.flex.items-center
       %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 3}}
