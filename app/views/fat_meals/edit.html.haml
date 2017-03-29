@@ -9,13 +9,16 @@
 
 .max-width-4.mx-auto
   .center.mt3
-    %h2.black.mb0.bold What did you eat?
+    .h2.mb0.gray-7.bold
+      What did you eat
+      = (@date_str == "Today" || @date_str == "Yesterday") ? @date_str.downcase : "on " + @date_str
+      ?
     .flex.items-center.justify-center
       -if(@fat_day[:date] > @lower_date_bounds)
         = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
           =inline_svg "icons/i-arrow-left.svg", class:"icon-s"
       .mx1.my1
-        %h4.black.bold.inline= "#{@date_str},"
+        %h4.black.bold.inline= "#{@fat_day[:date].strftime("%A")},"
         %h4.black.inline="#{@fat_day[:date].strftime("%B %d")}"
       - if @next_date <= @today
         = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day), class:"line-height-0 icon-l flex items-center justify-center" do

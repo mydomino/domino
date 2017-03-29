@@ -54,28 +54,27 @@ class FoodActionTracker extends React.Component {
 
     return (
       <div className='remodal-bg'>
-        <div className='max-width-3 mx-auto py2 px1'>
+        <div className='max-width-3 mx-auto p1'>
           <CarbonFootprint ref="cf"
             cf={this.state.meal_day.carbon_footprint}
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
-          <div className='bg-gray-1 clearfix rounded-bottom p2 relative'>
+          <div className='bg-gray-1 clearfix rounded-bottom px2 pb2 relative'>
 
-            <div  id="food-picker"
-                  className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
+            <div id="food-picker" className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
-              <div className="center px2">
+              <div className="center p2">
                <a onClick={()=>this.didntEat()} >
                   <button id="btn-didnt-eat"
-                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-sm btn-secondary"}
+                    className={(this.state.didntEat ? "border " : null) + " fill-x mt1 btn btn-sm btn-secondary border-gray-2"}
                     style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
 
                     <span className="flex items-center justify-center">
                       <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                      {"Ate none of these"}
+                      {"I ate none of these"}
                     </span>
                   </button>
                 </a>
@@ -83,35 +82,39 @@ class FoodActionTracker extends React.Component {
             </div> {/* end food-picker */}
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
-
-            <span onClick={() => this.toggleView()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer sm-absolute">
-            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
-              <h4 className="medium my0">Back</h4>
-            </span>
-            <div className="bg-white mx2 my1 py2 rounded center">
-              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
-              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
-              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
-              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
+              <div className="bg-white mx2 my1 py2 rounded center">
+                <span onClick={() => this.toggleView()} style={{top:'1.5rem; left: 1rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 blue pointer sm-absolute">
+                  <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+                  <h4 className="medium my0">Back</h4>
+                </span>
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
+                <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                  Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit.
+                </p>
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
+                <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                  Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit.
+                </p>
+                <div className="mx-auto center my1">
+                  <span className="ml1">
+                    <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                  </span>
+                </div>
               </div>
               <div className="mx-auto center my2">
-                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See Weekly Progress</button>
-                <span className="ml1">
-                  or <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See my progress this week</button>
+                <span className="ml1 gray-5">
+                  or <a href="/myhome" className="black line ml1 line-height-1">Back to My Home</a>
                 </span>
               </div>
             </div> {/* end results-summary */}
           </div>
         </div>
-        <div className="center my2">
+        <div className="center mt1 mb3">
           <a onClick={()=>this.toggleView()} >
-            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
+            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-lg btn-primary bold"}>See results</button>
           </a>
         </div>
         <div className={((this.state.nextView) ? "inherit" : "display-none")}>
