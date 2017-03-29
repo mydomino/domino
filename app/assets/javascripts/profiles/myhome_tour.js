@@ -1,16 +1,15 @@
 modulejs.define('myhome_tour', function(){
   return {
     mobile: null,
-    start: null,
     modals: null,
     initModals: function() {
       var remodalOpts,
-          firstModal,
-          secondModal,
-          thirdModal,
           $firstModal,
           $secondModal,
-          $thirdModal;
+          $thirdModal,
+          firstModal,
+          secondModal,
+          thirdModal;
 
       remodalOpts = {
         closeOnOutsideClick: false,
@@ -27,7 +26,6 @@ modulejs.define('myhome_tour', function(){
       secondModal = $secondModal.remodal(remodalOpts);
       thirdModal = $thirdModal.remodal(remodalOpts);
 
-      this.modals = [];
       this.modals = [
         {
           remodalInstance: firstModal,
@@ -42,24 +40,43 @@ modulejs.define('myhome_tour', function(){
         }
       ];
 
+      // If user is on mobile device, create fourth modal elements
       if(this.mobile) {
         var $fourthModal = $('#fourth');
         var fourthModal = $fourthModal.remodal(remodalOpts);
         this.modals.push({remodalInstance: fourthModal, jQInstance: $fourthModal});
       }
+
       // reset display
       $('.remodal').css('display', 'inline-block');
-
     },
     init: function(mobile) {
       this.mobile = mobile;
-
       $('#wt-link').on('click', $.proxy(this.start, this, true));
-
     },
     startIntroJs: function() {
-      var intro = introJs();
-      var introStep = 0;
+      var intro,
+          introStep,
+          cleanScoreIntro,
+          fatIntro,
+          benefitsIntro;
+
+      intro = introJs();
+      introStep = 0;
+
+      cleanScoreIntro = "<p class='bold'>Your clean score</p>" +
+        "<p>Earn points in this competition and rise to the top of your company leaderboard by staying below the average American’s Carbon Foodprint.</p>";
+
+      fatIntro =  "<p class='bold'>Let’s start with food</h2>" +
+        "<p>Join the food challenge and compete with your co-workers to see how big an impact you can make.</p>";
+
+      benefitsIntro = "<p class='bold'>Member benefits</h2>" +
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, numquam ea. Eveniet, optio est perspiciatis dicta assumenda iure, ad nulla quis nemo iste veritatis aspernatur quisquam a commodi. Eum, commodi.</p>";
+      
+      // Push element intro content into data attributes where they are digested by introJs
+      $('#fat-module').attr('data-intro', fatIntro);
+      $('#clean-score').attr('data-intro', cleanScoreIntro);
+      $('#member-benefits').attr('data-intro', benefitsIntro);
 
       intro.setOptions({
         showStepNumbers: false,
@@ -67,53 +84,38 @@ modulejs.define('myhome_tour', function(){
         exitOnOverlayClick: false
       });
 
-      var cleanScoreIntro = "<p class='bold'>Your clean score</p>" +
-        "<p>Earn points in this competition and rise to the top of your company leaderboard by staying below the average American’s Carbon Foodprint.</p>";
-
-      var fatIntro =  "<p class='bold'>Let’s start with food</h2>" +
-        "<p>Join the food challenge and compete with your co-workers to see how big an impact you can make.</p>";
-
-      var benefitsIntro = "<p class='bold'>Member benefits</h2>" +
-        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, numquam ea. Eveniet, optio est perspiciatis dicta assumenda iure, ad nulla quis nemo iste veritatis aspernatur quisquam a commodi. Eum, commodi.</p>";               
-
-      // Push element intro content into data attributes where they are digested by introJs
-      $('#fat-module').attr('data-intro', fatIntro);
-      $('#clean-score').attr('data-intro', cleanScoreIntro);
-      $('#member-benefits').attr('data-intro', benefitsIntro);
-      
-      intro.start();
-      
-      // Workaround to prevent multiple overlays should
-      // a user go through the tour multiple times
-      $('.introjs-overlay').not(':first').remove();
-      
       intro.oncomplete(function() {
         console.log('intro complete');
       });
 
-      intro.onbeforechange(function(targetElement) {
+      intro.onchange(function(targetElement) {
         introStep += 1;
         
-        if(introStep === 2) {
+        if(introStep === 3) {
           $('.introjs-skipbutton').css('display', 'inline-block');
         }
       });
+
+      intro.start();
+
+      // Workaround to prevent multiple overlays should
+      // a user go through the tour multiple times
+      $('.introjs-overlay').not(':first').remove();
     },
     start: function(start) {
       if(!start) return;
 
       this.initModals();
-      
-      var that = this;
 
       var $welcomeTourBg,
           modals,
-          mobile;
-
-      mobile = this.mobile;
-      modals = this.modals;
+          mobile,
+          that;
 
       $welcomeTourBg = $('.welcome-tour-bg');
+      modals = this.modals;
+      mobile = this.mobile;
+      that = this;
       
       $welcomeTourBg.css({
         display: "block",
@@ -126,6 +128,7 @@ modulejs.define('myhome_tour', function(){
         background: "rgba(43, 46, 56, 0.9)"
       });
 
+      // Start tour
       modals[0].remodalInstance.open();
       
       // Hide remodal plugin overlay
@@ -164,17 +167,19 @@ modulejs.define('myhome_tour', function(){
       });
 
       // End remodal portion of tour
-      // Start introJs portion of tour
+      // Start introJs portion of tour for non-mobile users
       $('.wt-finish').on('click', function(){
         var currStep = $(this).data('step');
-        var currModal = modals[currStep];
-        currModal.remodalInstance.close();
+
+        modals[currStep].remodalInstance.close();
+
         $welcomeTourBg.fadeOut(function() {
           if(!mobile) {
             that.startIntroJs();
           }
         });
       });
+      // END Module event handlers
 
     } // end start
   } // end return
