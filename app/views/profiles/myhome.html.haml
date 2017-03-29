@@ -18,7 +18,7 @@
       .max-width-4.mx-auto
         .clearfix
           .col.col-12.p2
-            #wt-link.right.white What's all this?
+            #wt-link.right.white.h5.pointer What's all this?
         .flex.flex-column.sm-row
           .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
@@ -101,11 +101,9 @@
               = render "profiles/myhome_components/dashboard_module"
 
 :javascript
-  modulejs.require('myhome')();
+  modulejs.require('myhome');
+
   var myhomeTour = modulejs.require('myhome_tour');
-  myhomeTour.startTour(false, #{@mobile});
+  myhomeTour.init(#{@mobile});
+  myhomeTour.start(true);
 
-
-  $('li.complete, li.incomplete').on('click', function(){
-    window.location = $(this).data('link');
-  });

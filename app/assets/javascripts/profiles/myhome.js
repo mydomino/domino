@@ -1,11 +1,7 @@
 modulejs.define('myhome', function(){
-  return function() {
-    var $wtLink;
-
-    $wtLink = $('#wt-link');
-    
-    $wtLink.on('click', function() {
-      alert('test');
+  return (function() {    
+    $('li.complete, li.incomplete').on('click', function(){
+      window.location = $(this).data('link');
     });
-  };
+  }());
 });
