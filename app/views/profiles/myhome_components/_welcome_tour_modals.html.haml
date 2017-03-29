@@ -1,5 +1,5 @@
 .welcome-tour-bg
-.rounded.remodal#first
+.rounded.remodal#first{data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
   = image_tag "i-earth", class:"col-4 sm-col-3"
   %h2.sm-h1.medium.mb0 Welcome,
   .h5.sm-h4.measure.mx-auto.mt1.mb6
@@ -8,7 +8,7 @@
   %br/
   .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} What's carbon impact?
 
-.rounded.remodal#second{style: 'display: none;'}
+.rounded.remodal#second{style: 'display: none;', data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
   = image_tag "illo-man-balloon", class:"col-4 sm-col-3"
   %h2.sm-h1.medium.mb0 Carbon impact
   .h5.sm-h4.measure.mx-auto.left-align.mt1
@@ -46,7 +46,7 @@
         %span.inline-block.ml1
           = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
-.remodal#third{style: "display: none;"}
+.remodal#third{style: "display: none;", data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
   = image_tag "i-impact-categories.png", class: "fit"
 
   %h2.sm-h1.medium.mb0 Lets start with food!
@@ -79,7 +79,7 @@
           = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
 -if @mobile
-  .remodal#fourth{style: "display: none;"}
+  .remodal#fourth{style: "display: none;", data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
     %h2.sm-h1.medium.mb0 Mobile modal
     .h5.measure.mx-auto
       %p.left-align

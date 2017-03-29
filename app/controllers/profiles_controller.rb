@@ -51,9 +51,8 @@ class ProfilesController < ApplicationController
       fat_graph_date += 1.day
     end
 
-    # If its users first time signing in, give them the tour of myhome
-    # @tour = (current_user.sign_in_count == 1)
-    @tour = true #debug
+    # Welcome tour params
+    @tour = !@profile.welcome_tour_complete
     @mobile = @browser.device.mobile? ? true : false
   end
 
@@ -175,7 +174,12 @@ class ProfilesController < ApplicationController
   # Purpose: Set db flag indicating user has completed the myhome welcome tour
   # GET /profile/welcome-tour-complete XMLHttpRequest
   def welcome_tour_complete
+    current_user.profile.update(welcome_tour_complete: true)
 
+    render json: {
+      message: "Welcome tour complete flag set",
+      status: 200
+    }, status: 200
   end
 
   private

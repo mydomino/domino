@@ -3,28 +3,22 @@ modulejs.define('myhome_tour', function(){
     mobile: null,
     modals: null,
     initModals: function() {
-      var remodalOpts,
-          $firstModal,
+      var $firstModal,
           $secondModal,
           $thirdModal,
           firstModal,
           secondModal,
           thirdModal;
 
-      remodalOpts = {
-        closeOnOutsideClick: false,
-        closeOnEscape: false
-      }
-      
       // Jquerified elements
       $firstModal = $('#first');
       $secondModal = $('#second');
       $thirdModal = $('#third');
 
       // Remodal dialog instances
-      firstModal = $firstModal.remodal(remodalOpts);
-      secondModal = $secondModal.remodal(remodalOpts);
-      thirdModal = $thirdModal.remodal(remodalOpts);
+      firstModal = $firstModal.remodal();
+      secondModal = $secondModal.remodal();
+      thirdModal = $thirdModal.remodal();
 
       this.modals = [
         {
@@ -43,7 +37,7 @@ modulejs.define('myhome_tour', function(){
       // If user is on mobile device, create fourth modal elements
       if(this.mobile) {
         var $fourthModal = $('#fourth');
-        var fourthModal = $fourthModal.remodal(remodalOpts);
+        var fourthModal = $fourthModal.remodal();
         this.modals.push({remodalInstance: fourthModal, jQInstance: $fourthModal});
       }
 
@@ -85,7 +79,7 @@ modulejs.define('myhome_tour', function(){
       });
 
       intro.oncomplete(function() {
-        console.log('intro complete');
+        $.get("profile/welcome-tour-complete", $.noop)
       });
 
       intro.onchange(function(targetElement) {
@@ -176,6 +170,9 @@ modulejs.define('myhome_tour', function(){
         $welcomeTourBg.fadeOut(function() {
           if(!mobile) {
             that.startIntroJs();
+          } 
+          else {
+            $.get("profile/welcome-tour-complete", $.noop)
           }
         });
       });
