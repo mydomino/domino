@@ -1,12 +1,10 @@
 module FatCompetition
 
-
-  # define ACTIONS type CONTANT
+  # define ACTIONS type CONSTANTS
   TRACK_FOOD_LOG            = 'TRACK_FOOD_LOG'
   BEAT_CFP_EMISSION         = 'BEAT_CFP_EMISSION'
   EAT_NO_BEEF_LAMB_A_DAY    = 'EAT_NO_BEEF_LAMB_A_DAY'
   EAT_NO_DAIRY_A_DAY        = 'EAT_NO_DAIRY_A_DAY'
-
 
   # FAT specific point values
   TRACK_FOOD_LOG_POINTS           = 10
@@ -23,8 +21,11 @@ module FatCompetition
     # - Eat no dairy
     # - Eat no beef or lamb
     # - Beat US average CO2 emissions for day
+    if meal_day.carbon_footprint > 7
+      meal_day.update(points: 0)
+      return
+    end
 
-    # Award log food for day
     points = 0;
     
     points += award_track_food_log(meal_day)
