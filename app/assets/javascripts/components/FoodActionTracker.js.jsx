@@ -83,7 +83,7 @@ class FoodActionTracker extends React.Component {
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
-              <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+              <span onClick={() => this.toggleView()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
                 <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
                 <h4 className="medium my0">Back</h4>
               </span>
