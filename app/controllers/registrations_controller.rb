@@ -172,6 +172,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
+    puts "Reg new is called"
     # Redirect to root path if no slug or email in params
     # Email param comes from sign up link thats generated after a user completes
     # onboarding (i.e. https//mydomino.com/users/sign_up?email=[percent encoded email address])
@@ -202,6 +203,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+
+    puts "Reg Create is called"
     build_resource(sign_up_params)
 
     resource.save
@@ -226,6 +229,8 @@ class RegistrationsController < Devise::RegistrationsController
   # /after_sign_up_path_for/
   # This action is hit after a user registers through the devise registration form
   def after_sign_up_path_for(resource)
+    puts "Reg after_sign_up_path_for is called"
+
     @email = current_user.email
     @profile = Profile.find_by_email(@email)
 
@@ -246,7 +251,11 @@ class RegistrationsController < Devise::RegistrationsController
     @profile.update(dashboard_registered: true)
     DashboardRegisteredZohoJob.perform_later @profile
     
-    track_event "User signed up"
+    #  linking the current ID (anonymous) with a new ID 
+    mixpanel_alias (current_user.id)
+    track_event "User signed up - Devise registration"
+
+    puts "******************User signed up*****************"
 
     user_dashboard_path
   end

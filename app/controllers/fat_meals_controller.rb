@@ -67,7 +67,7 @@ class FatMealsController < ApplicationController
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
 
-    track_event "FatMeal - create"
+    track_event "FatMeal - update"
 
     fat_graph_params(@meal_day.date)
 
