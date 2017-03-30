@@ -73,47 +73,45 @@
   }
 
 #fat-module.mt3.max-width-4.mx-auto.relative{data: {step: "1", position: "top"}}
-  -if @fat_intro_overlay
-    .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded.bg-blue--overlay.z8
+  .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded.bg-blue--overlay.z8{class: "#{'display-none' unless @show_fat_intro}"}
+    .fat-overlay-1.absolute.top-0.bottom-0.left-0.right-0.rounded
+      .flex.flex-column.mx-auto.items-center.justify-center.white.fill-y.px1
+        .h1.medium Join the food challenge
+        .h4.py2.measure
+          Food production creates carbon emissions, we are calling that your “Foodprint”. You can lower your Foodprint by choosing the foods with lower emissions.
+        .pt3
+          .btn.btn-lg.btn-white.blue.mt2 How does it work?
 
-      .fat-overlay-1.absolute.top-0.bottom-0.left-0.right-0.rounded
-        .flex.flex-column.mx-auto.items-center.justify-center.white.fill-y.px1
-          .h1.medium Join the food challenge
-          .h4.py2.measure
-            Food production creates carbon emissions, we are calling that your “Foodprint”. You can lower your Foodprint by choosing the foods with lower emissions.
-          .pt3
-            .btn.btn-lg.btn-white.blue.mt2 How does it work?
+    .fat-overlay-2.fill-y{style: 'display: none'}
+      .flex.flex-column.max-width-4.mx-auto.items-center.justify-center.white.fill-y.px1
+        .h2.sm-h1.medium How does it work?
 
-      .fat-overlay-2.fill-y{style: 'display: none'}
-        .flex.flex-column.max-width-4.mx-auto.items-center.justify-center.white.fill-y.px1
-          .h2.sm-h1.medium How does it work?
+        .flex.flex-column.sm-row.justify-between.pt1.sm-pt3
+          .col-12.sm-col-4
+            .flex.flex-row.sm-column.items-center.justify-center
+              .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
+                1
+              .h5.sm-h4.sm-center.col-8.sm-col-7.m1 Log the food categories you ate for each day
 
-          .flex.flex-column.sm-row.justify-between.pt1.sm-pt3
-            .col-12.sm-col-4
-              .flex.flex-row.sm-column.items-center.justify-center
-                .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
-                  1
-                .h5.sm-h4.sm-center.col-8.sm-col-7.m1 Log the food categories you ate for each day
+          .col-12.sm-col-4
+            .flex.flex-row.sm-column.items-center.justify-center
+              .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
+                2
+              .h5.sm-h4.sm-center.col-8.m1 Earn points by staying below the average “Foodprint”
 
-            .col-12.sm-col-4
-              .flex.flex-row.sm-column.items-center.justify-center
-                .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
-                  2
-                .h5.sm-h4.sm-center.col-8.m1 Earn points by staying below the average “Foodprint”
+          .col-12.sm-col-4
+            .flex.flex-row.sm-column.items-center.justify-center
+              .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
+                3
+              .h5.sm-h4.sm-center.col-8.sm-col-7.m1 The lower your Foodprint, the more points you get
 
-            .col-12.sm-col-4
-              .flex.flex-row.sm-column.items-center.justify-center
-                .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
-                  3
-                .h5.sm-h4.sm-center.col-8.sm-col-7.m1 The lower your Foodprint, the more points you get
+        .h5.sm-h4.py1.px2.center Can you rise to the top of your company leaderboard?
+        .pt2
+          .btn.btn-md.btn-white.blue.my0 I'm ready
 
-          .h5.sm-h4.py1.px2.center Can you rise to the top of your company leaderboard?
-          .pt2
-            .btn.btn-md.btn-white.blue.my0 I'm ready
-
-    .absolute.z10.center.bottom-0.left-0.right-0.pb1.my0
-      .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.mr1
-      .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.o50
+  .absolute.z10.center.bottom-0.left-0.right-0.pb1.my0
+    .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.mr1
+    .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.o50
 
   .clearfix.mx2.lg-mx1
     .col.col-12.mb2.center
@@ -157,4 +155,5 @@
 
   $('.fat-overlay-2').find('.btn').on('click', function(){
     $('.fat-overlay').fadeOut();
+    $.get("profile/fat-intro-complete", $.noop)
   });
