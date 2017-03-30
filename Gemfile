@@ -55,6 +55,7 @@ gem 'remodal-rails'
 gem 'chart-js-rails'
 gem "d3-rails"
 
+
 # for mixpanel integration
 gem 'event_tracker', '~> 0.3.0'
 
@@ -74,8 +75,8 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
-  gem 'react-rails-hot-loader'
 end
+
 
 group :development, :test do
   gem 'byebug'

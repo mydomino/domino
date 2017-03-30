@@ -83,21 +83,14 @@ class FoodActionTracker extends React.Component {
             </div> {/* end food-picker */}
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
-
-            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
-            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
-              <h4 className="medium my0">Back</h4>
-            </span>
-            <div className="bg-white mx2 my1 py2 rounded center">
-              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
-              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Your Foodprint today is { this.state.meal_day.carbon_footprint } % below above the average American. 
-              </p> 
-              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
-              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
+              <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+                <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+                <h4 className="medium my0">Back</h4>
+              </span>
+              <div className="bg-white mx2 my1 py2 rounded center">
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">{ this.getResultTitle() }</h3>
+                <div className="col-10 sm-col-8 mx-auto" mx-auto dangerouslySetInnerHTML={this.getCfResultString()}>
+                </div>
               </div>
               <div className="mx-auto center my2">
                 <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See Weekly Progress</button>
@@ -118,6 +111,55 @@ class FoodActionTracker extends React.Component {
         </div>
       </div>
     );
+  }
+  getResultTitle() {
+    let cf = this.state.meal_day.carbon_footprint;
+
+    if(cf <= 6.5) {
+
+      return ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
+    } 
+    else if(cf >= 6.5 && cf < 8 ){
+      return "Not bad, I guess...";
+    }
+    else {
+      return "Doh!";
+    }
+  }
+  getCfResultString() {
+    let str =  "<p class='h5 sm-h4 left-align mx-auto mt1'>Your Foodprint today is ";
+    let cf = this.state.meal_day.carbon_footprint;
+    let avgPercent = (cf/7) * 100;
+
+    if(cf < 6.5) {
+      let val = (100 - avgPercent).toFixed(2);
+      str += val + "% below the American average."
+    }
+    else if(cf >= 6.5 && cf < 8) {
+      let val = (avgPercent - 100).toFixed(2);
+      str += val + "% above the American average.";
+    }
+    else {
+      str += "the American average";
+    }
+    str += "<br/>You've earned " + this.state.meal_day.points + " points</p>";
+
+    if(cf > 6.5) {
+      str += `
+        <p class='h5 sm-h4 left-align mx-auto mt1'>
+          <span class="bold">Did you know?</span><br/>
+          Beef and Lamb produces 5x more carbon emission than chicken, so choose your meats wisely.
+          Also, up to 40% of food produced is wasted…
+        </p>
+        <p class='h5 sm-h4 left-align mx-auto mt1'>
+          <span class="bold">How you can improve</span><br/>
+          Try cutting back on beef or lamb. They produces 5x more carbon emission than chicken.”
+        </p>
+      `;
+    }
+
+    // return $(str);
+    return {__html: str }; 
   }
   componentDidMount() {
     $('.smooth-scroll').on('click', function(){
