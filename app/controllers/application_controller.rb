@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   # Bypass handle_exceptions if in development environment
   around_action :handle_exceptions unless Rails.env.development? 
 
+  # for Mixpanel/Event Tracker
+  around_filter :append_event_tracking_tags
+
   #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Let views access current_user
@@ -21,6 +24,17 @@ class ApplicationController < ActionController::Base
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
+
+  def mixpanel_distinct_id
+    current_user.id if !current_user.nil?
+  end
+
+  def mixpanel_name_tag
+    current_user && current_user.email
+  end
+
+
+
   
   private
 

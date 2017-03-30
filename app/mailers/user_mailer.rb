@@ -71,9 +71,7 @@ class UserMailer < ActionMailer::Base
     "#{root_url}#{org_name}?a=#{token}"
   end
 
-  # /org_member_sign_up/
-  # Purpose: Returns an org member sign up link.
-  # ex: https://www.mydomino.com/sungevity?email=foo%40sungevity.com&a=vefwzr6tdy3-JD-6fFtM-A
+  # generate a sign_up link for non_org member
   def non_org_member_signup_link(user)
     email = user.email
     token = user.signup_token
