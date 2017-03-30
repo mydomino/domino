@@ -115,11 +115,11 @@ class FoodActionTracker extends React.Component {
   getResultTitle() {
     let cf = this.state.meal_day.carbon_footprint;
 
-    if(cf <= 6.5) {
+    if(cf <= 7) {
 
       return ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
     } 
-    else if(cf >= 6.5 && cf < 8 ){
+    else if(cf >= 7 && cf < 8 ){
       return "Not bad, I guess...";
     }
     else {
@@ -135,7 +135,7 @@ class FoodActionTracker extends React.Component {
       let val = (100 - avgPercent).toFixed(2);
       str += val + "% below the American average."
     }
-    else if(cf >= 7 && cf < 8) {
+    else if(cf >= 7) {
       let val = (avgPercent - 100).toFixed(2);
       str += val + "% above the American average.";
     }
