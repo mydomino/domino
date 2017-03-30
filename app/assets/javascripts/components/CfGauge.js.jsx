@@ -1,7 +1,7 @@
 class CfGauge extends React.Component {
   constructor(props){
     super(props);
-    let value = this.props.cf > 12.4 ? 12.4 : this.props.cf
+    let value = this.props.cf > 14 ? 14 : this.props.cf
 
     this.state = {
       cf: this.props.cf || 0,
@@ -9,8 +9,8 @@ class CfGauge extends React.Component {
     };
   }
   getValue(cf){
-    // 6.2kg == 50% gauge, 12.4k == 100% gauge
-    return (cf / 12.4) * 100;
+    // 7kg == 50% gauge, 14kg == 100% gauge
+    return (cf / 14) * 100;
   }
   setValue(v){
     let value = this.getValue(v);
@@ -18,7 +18,7 @@ class CfGauge extends React.Component {
       cf: v,
       value: value
     }, function(){
-      this.gauge.set(this.state.cf > 12.4 ? 12.4 : this.state.cf);
+      this.gauge.set(this.state.cf > 14 ? 14 : this.state.cf);
     });
   }
   render(){
@@ -52,21 +52,21 @@ class CfGauge extends React.Component {
       // percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]],
       // staticLabels: {
       //   font: "16px sans-serif",  // Specifies font
-      //   labels: [0, 6.2, 12.4],  // Print labels at these values
+      //   labels: [0, 6.2, 14],  // Print labels at these values
       //   color: "#fff",  // Optional: Label text color
       //   fractionDigits: 1  // Optional: Numerical precision. 0=round off.
       // },
       staticZones: [
          {strokeStyle: "#00FFC4", min: 0, max:8.2},
-         {strokeStyle: "#FF7A7A", min: 8.2, max: 12.4}
+         {strokeStyle: "#FF7A7A", min: 8.2, max: 14}
       ]
     };
     var target = document.getElementById('gauge'); // your canvas element
     this.gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-    this.gauge.maxValue = 12.4; // set max gauge value
+    this.gauge.maxValue = 14; // set max gauge value
     this.gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
     this.gauge.animationSpeed = 15; // set animation speed (32 is default value)
-    let value = this.state.cf > 12.4 ? 12.4 : this.state.cf
+    let value = this.state.cf > 14 ? 14 : this.state.cf
     this.gauge.set(value); // set actual value
   };
 }
