@@ -53,9 +53,16 @@ class ProfilesController < ApplicationController
       fat_graph_date += 1.day
     end
 
+    # Welcome tour params
+    @tour = !@profile.welcome_tour_complete
+    @mobile = @browser.device.mobile? ? true : false
+
     track_event "Profile - myhome"
   end
 
+  # /verify_current_password/
+  # Purpose: Verify current password to allow password change via member profile
+  # GET /profile/verify-current-password XMLHttpRequest
   def verify_current_password
     valid = current_user.valid_password? params[:current_password]
     if valid
@@ -71,6 +78,9 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # /update_password/
+  # Purpose: Update user password via member profile
+  # POST /profile/update-password XMLHttpRequest
   def update_password
     @user = current_user
     @user.update(
@@ -87,9 +97,6 @@ class ProfilesController < ApplicationController
     }, status: 200
 
     track_event "Profile - update_password"
-  end
-
-  def edit
   end
 
   def new
@@ -167,6 +174,18 @@ class ProfilesController < ApplicationController
 
   def resend_welcome_email
     UserMailer.welcome_email_universal(@profile.email).deliver_later
+  end
+
+  # /welcome_tour_complete/
+  # Purpose: Set db flag indicating user has completed the myhome welcome tour
+  # GET /profile/welcome-tour-complete XMLHttpRequest
+  def welcome_tour_complete
+    current_user.profile.update(welcome_tour_complete: true)
+
+    render json: {
+      message: "Welcome tour complete flag set",
+      status: 200
+    }, status: 200
   end
 
   private

@@ -2,11 +2,11 @@
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
 -content_for :body_class do
-  bg-gray-05
+  bg-gray-1
 
 /%p#notice= notice
 
-.bg-gray-05
+.bg-gray-1
   .max-width-4.mx-auto.p2
     .flex.items-center
       .fill-black
@@ -24,7 +24,7 @@
         
         %div.my2
           %h2.m0= @organization_name
-          %h4.m0.gray-60 
+          %h4.m0.gray-5 
             Employees enrolled: 
             %span#member-count= @member_count
 
@@ -34,12 +34,12 @@
         .bg-white.rounded.p3.mb2
           %h2.my0 Add multiple employees
           %h4.mb0 Step 1. Get the CSV template
-          %p.mt0.gray-60 Download the sample spreadsheet. The first 3 columns: first name, last name, email address are mandatory.
+          %p.mt0.gray-5 Download the sample spreadsheet. The first 3 columns: first name, last name, email address are mandatory.
           = form_tag download_csv_template_organization_path(@organization), method: :get do
-            = button_tag "Download template", class: 'btn btn-outline gray-60 px2'
+            = button_tag "Download template", class: 'btn btn-outline gray-5 px2'
 
           %h4.mb0 Step 2. Upload your updated CSV
-          %p.mt0.gray-60 After you've added new employees to your CSV file, upload it to add the employees to your account.
+          %p.mt0.gray-5 After you've added new employees to your CSV file, upload it to add the employees to your account.
           = form_tag email_members_upload_file_organization_path(@organization), multipart: true do
             = file_field_tag "file", accept: 'text/csv', class: 'p0'
             = button_tag "Upload CSV", class: 'rounded btn btn-primary px2 mt2'
@@ -52,13 +52,13 @@
           %h2.my0 Add an employee
           = simple_form_for @user, url: add_individual_organization_path, html: {class: 'new_user clearfix'} do |f|
             .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-              %label.h6.mb0.gray-60{for: 'first_name'} First name
+              %label.h6.mb0.gray-5{for: 'first_name'} First name
               = text_field_tag :first_name, nil, class: 'text-input', data: {"parsley-required": "true"}
             .col.col-12.sm-col.sm-col-6.px2.sm-pl0.sm-pr2
-              %label.h6.mb0.gray-60{for: 'last_name'} Last name
+              %label.h6.mb0.gray-5{for: 'last_name'} Last name
               = text_field_tag :last_name, nil, class: 'text-input', data: {"parsley-required": "true"}
             .col.col-12.px2.sm-pl0.sm-pr2
-              = f.input :email, input_html: {class: 'text-input', data: {"parsley-required": "true", "parsley-pattern": "#{@email_regex}", "parsley-pattern-message": "Must be company email"}}, label: "Email", label_html: {class: "h6 mb0 gray-60"}
+              = f.input :email, input_html: {class: 'text-input', data: {"parsley-required": "true", "parsley-pattern": "#{@email_regex}", "parsley-pattern-message": "Must be company email"}}, label: "Email", label_html: {class: "h6 mb0 gray-5"}
 
           .px2.sm-px0.mt2
             .flex.items-center.flex-wrap

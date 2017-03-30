@@ -34,14 +34,14 @@
       .clearfix
         -@recent_events.reverse.each do |event|
           .clearfix
-            .col.col-9.p2.border.border-gray-30.rounded-left.mt1
+            .col.col-9.p2.border.border-gray-4.rounded-left.mt1
               =link_to event.dashboard.lead_name, dashboard_path(event.dashboard), class: 'blue text-decoration-none'
               marked
               =event.recommendable.name
               done
               -if(!event.updated_by.nil?)
                 (marked by concierge)
-            .col.col-3.p2.bg-blue.white.border.border-gray-30.rounded-right.mt1.right-align
+            .col.col-3.p2.bg-blue.white.border.border-gray-4.rounded-right.mt1.right-align
               %small
                 =time_ago_in_words event.updated_at
                 ago

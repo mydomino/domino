@@ -107,9 +107,10 @@
 
 .line-height-4 { line-height: $line-height-4 }
 
-.measure { max-width: 48rem }
-.measure-narrow { max-width: 32rem }
-.measure-wide { max-width: 60rem }
+.measure-wide { max-width: 34rem; }
+.measure { max-width: 30em; }
+.measure-narrow { max-width: 20em; }
+
 
 .list-style-none { list-style: none }
 

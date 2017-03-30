@@ -16,6 +16,7 @@
  *= require nprogress
  *= require remodal-default-theme
  *= require remodal
+ *= require introjs
  */
 
 // Variables
@@ -23,12 +24,24 @@
 
 // Reset
 @import 'base';
-@import 'typography';
-@import 'layout';
-@import 'colors';
-@import 'slick';
+
+//Components
+@import 'components/components';
+
+//Plugins
 @import 'slick-theme';
 @import 'parsley';
+
+
+//Layout
+
+@import 'spacing';
+@import 'layout';
+
+//Styling
+
+@import 'slick';
+@import 'typography';
+@import 'colors';
 @import 'shame';
-@import 'components/components';
 @import 'utilities/utilities';

@@ -22,6 +22,7 @@
 #  meal_carbon_footprint   :float            default(0.0)
 #  fat_reward_points       :integer          default(0)
 #  total_fat_reward_points :integer          default(0)
+#  welcome_tour_complete   :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -33,8 +34,6 @@
 #
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
-
-
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -66,16 +65,20 @@ class User < ActiveRecord::Base
   end
 
   # Returns the percentage of user's current week CF compare to national avg
+  #   If no user FAT data in current week, returns false
   def get_current_week_foodcf_percent
     total_cf = get_fat_cf(Date.today.beginning_of_week, Date.today, true)
+    return false if !total_cf
+
     average_cf = (Date.today - Date.today.beginning_of_week + 1) * MealDay::AVG_DAILY_CF / 1000
-    return total_cf / average_cf * 100
+    return (total_cf / average_cf * 100).round(0)
   end
 
   # Returns a letter grade based on user's current week's food CF
   def get_current_week_grade
     # Get FAT CF and calculate % from national average
     cf_percent = self.get_current_week_foodcf_percent
+    return false if !cf_percent
 
     # Translate to grade in percent under these grading guidelines:
     #  A+ = 60% below average CF (Avg CF of a vegan diet)
@@ -112,14 +115,15 @@ class User < ActiveRecord::Base
     when 0..60
       "F"
     else
-      nil
+      false
     end
   end
 
 
-  # Returns total carbon footprint from FAT in a given period, number of days included
+  # Returns total carbon footprint from FAT in a given period if data exist
   #   start_date must =< end_date
   #   include missing days assumes avg american value if user didnt log
+  #   if user has no logs in the period, returns false
   def get_fat_cf(start_date, end_date = nil, include_missing_days = nil)
 
     # determine whether end_date is given. If not given, use start_date as end_date
@@ -129,7 +133,9 @@ class User < ActiveRecord::Base
     if end_date >= start_date
       # Get CF from all days in date range
       meal_days = self.meal_days.where(["date <= ? and date >= ?", end_date, start_date])
-      carbon_foodprints = meal_days.map(&:carbon_footprint) if meal_days.size > 0
+      return false if meal_days.size == 0
+
+      carbon_foodprints = meal_days.map(&:carbon_footprint) 
 
       # Sum values in the array
       total_cf = carbon_foodprints.inject(:+) if carbon_foodprints!= nil
@@ -140,17 +146,11 @@ class User < ActiveRecord::Base
         num_missing_days = total_days - meal_days.size
         total_cf += num_missing_days * MealDay::AVG_DAILY_CF / 1000
       end 
-
-      # [TODO: REMOVE] DEPRECATED - update the carbon footprint value
-      # self.meal_carbon_footprint = @total_carbon_foodprint
-      # self.save!
-      #return total_cf
     else
       raise "Error: end date can't be before start date"
     end
 
     return total_cf
-
   end
  
   # calculate user reward points during the period and save it to the user's member variable

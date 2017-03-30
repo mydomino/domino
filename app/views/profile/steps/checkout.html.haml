@@ -5,18 +5,18 @@
 
   = render :partial => 'steps_progress', :locals => {:step => 3}
 
-  .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-05'}"}
+  .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-1'}"}
     .clearfix.mb2
       .col.col-12.center{class: "#{'pt4' if !@browser.device.mobile?}"}
         .h1.line-height-2
           Your MyDomino Membership
-        .h4.gray-80.my0 If you have a partner code, enter it for a discount
+        .h4.gray-6.my0 If you have a partner code, enter it for a discount
 
     =simple_form_for @profile, turboboost: true, method: :put, url: wizard_path do |form|
       .clearfix.mx-auto.center
         .col.col-12.relative.my3
           =@profile.partner_code ? (render 'profiles/valid_partner_code_field', {f: form, partner_code: @profile.partner_code} ) : (render 'profiles/partner_code_field', f: form)
-          %button.inline{type: "button", disabled: (true if @profile.partner_code), id: 'btn-apply', class: "#{@profile.partner_code ? 'bg-gray-60' : 'bg-blue'} white", style: "padding: 8px;#{@profile.partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
+          %button.inline{type: "button", disabled: (true if @profile.partner_code), id: 'btn-apply', class: "#{@profile.partner_code ? 'bg-gray-5' : 'bg-blue'} white", style: "padding: 8px;#{@profile.partner_code ? 'border: 2px solid #858585;' : 'border: 2px solid #00CCFF;'}border-bottom-right-radius: 5px;border-top-right-radius: 5px;margin-left:-6px;"}
             -if @profile.partner_code
               %i.fa.fa-check.fa-3
             -else
@@ -27,23 +27,23 @@
           .center
             -if !@browser.device.mobile?
               =image_tag "member-card.svg", width: '200px'
-            %h2.gray-80 Membership benefits
+            %h2.gray-6 Membership benefits
           %ul.pl0.max-width-2.mx-auto.line-height-1
             %li.flex.content-center
               =image_tag 'i-message.svg', width: '24px', style: 'min-width:24px;'
-              %h4.ml1.my2.gray-80 
+              %h4.ml1.my2.gray-6 
                 Unlimited access to an energy savings concierge
             %li.flex.content-center
               =image_tag 'i-document.svg', width: '24px', style: 'min-width:24px;'
-              %h4.ml1.my2.gray-80 
+              %h4.ml1.my2.gray-6 
                 A personalized path to 100% clean energy and big savings
             %li.flex.content-center
               =image_tag 'i-dashboard.svg', width: '24px', style: 'min-width:24px;'
-              %h4.ml1.my2.gray-80 
+              %h4.ml1.my2.gray-6 
                 An online dashboard to track your progress
             %li.flex.content-center
               =image_tag 'i-like.svg', width: '24px', style: 'min-width:24px;'
-              %h4.ml1.my2.gray-80
+              %h4.ml1.my2.gray-6
                 Recommendations on clean energy products and services vetted by our team
       =render :partial => 'onboard_submit_btns', :locals => {:form  => form, :form_name => 'checkout', :vertical_offset => '74px'}
 

@@ -1,0 +1,36 @@
+.m1.p3.bg-white.rounded{ style: 'flex: 1'}
+  .flex.items-center
+    =image_tag "icons/i-movie.png", :class => "mr1"
+    %h2.gray-7.bold.inline.line-height-1
+      All eyes are on...
+  .flex.flex-wrap.mt2.justify-center
+    .mr2
+      = link_to "http://www.timetochoose.com/", target: "_blank" do
+        = image_tag "timetochoose_poster", class: 'fit', style: 'box-shadow: 2px 2px 6px #aaa; max-height:230px'
+    .flex.flex-column.justify-between{ style: 'flex: 1; min-width: 160px' }
+      .mt0.mb1
+        %p.gray-6.m0.mb1
+          Check out this film by our founder for some good climate news.
+
+        .mt0
+          =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank", class: 'text-decoration-none' do
+            %span= image_tag "rotten_tomato", style: "vertical-align: top"
+            %span.h3.gray-6 86%
+            %span.h5.gray-6 on&nbsp;Rotten&nbsp;Tomatos
+      .h3.my1
+        .black Watch the film
+
+        .flex.flex-wrap.items-center
+          .mr1
+            =link_to "https://www.amazon.com/Time-Choose-Oscar-Isaac/dp/B01LOUPR34", target: "_blank" do
+              = image_tag "amazon_video", style: 'max-width: 90px'
+          .inline.h5.blue.text-link
+            =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
+              More viewing options
+    .mt2.flex.justify-between.fill-x{style: 'border-top: 1px solid #ddd'}
+      .mt1.black
+        %span.h4.medium Share this movie
+        %span.h6.gray-6 (+100 points)
+      .gray-6
+        = form_tag points_add_watch_ttc_moive_points_path do
+          = button_tag "I've shared it", class: 'rounded btn btn-outline px1 mt1 h5 blue'

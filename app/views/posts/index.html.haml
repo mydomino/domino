@@ -6,7 +6,7 @@
     .col.col-12.md-col.md-col-8.px2
       .clearfix
         - if params[:cat]
-          %h1.mt0.black.light.border-bottom.border-gray-30.mb3
+          %h1.mt0.black.light.border-bottom.border-gray-4.mb3
             = PostsHelper::CATEGORY_SLUG_TO_TITLE[params[:cat]]
 
         - if @posts != nil
@@ -17,7 +17,7 @@
                   = link_to post_slug_path(article: post['slug']) do
                     = image_tag extract_post_thumbnail_src(post, 'first-post'), class: "fit"
                   %h2.my1
-                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-80 text-blue--hover'
+                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-6 text-blue--hover'
                     - if article_for_member_only?(post['categories'])
                       = image_tag("i-key.svg", alt: 'Members-only content', class: 'align-middle')
                   %p.light.mt0.mb1
@@ -29,7 +29,7 @@
                     = image_tag extract_post_thumbnail_src(post, 'maverick-medium-alt'), class: "fit"
                 .col.col-12.md-col.md-col-6.p0.sm-pl2
                   %h2.mt0.mb1
-                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-80 text-blue--hover'
+                    = link_to (raw post['title']['rendered']), post_slug_path(article: post['slug']), class: 'text-decoration-none gray-6 text-blue--hover'
                     - if article_for_member_only?(post['categories'])
                       = image_tag("i-key.svg", alt: 'Members-only content', class: 'align-middle')
                   %p.light.mt0.mb1

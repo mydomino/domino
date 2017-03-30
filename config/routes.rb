@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get '/profile/verify-current-password' => 'profiles#verify_current_password'
   patch '/profile/update-password' => 'profiles#update_password'
   get 'profile' => 'profiles#show', as: 'member_profile'
+  get 'profile/welcome-tour-complete' => 'profiles#welcome_tour_complete'
 
   get 'domino-team' => 'pages#team'
   get 'about' => 'pages#about'

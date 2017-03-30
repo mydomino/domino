@@ -54,28 +54,27 @@ class FoodActionTracker extends React.Component {
 
     return (
       <div className='remodal-bg'>
-        <div className='max-width-3 mx-auto py2 px1'>
+        <div className='max-width-3 mx-auto p1'>
           <CarbonFootprint ref="cf"
             cf={this.state.meal_day.carbon_footprint}
             getCarbonFootprint={()=>this.getCarbonFootprint()}
             method={this.state.method} />
 
-          <div className='bg-gray-05 clearfix rounded-bottom p2 relative'>
+          <div className='bg-gray-1 clearfix rounded-bottom px2 pb2 relative'>
 
-            <div  id="food-picker"
-                  className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
+            <div id="food-picker" className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
               <div className='col-12 p2'>
                 {foodTypes}
               </div>
-              <div className="center px2">
+              <div className="center p2">
                <a onClick={()=>this.didntEat()} >
                   <button id="btn-didnt-eat"
-                    className={(this.state.didntEat ? "border " : null) + " fill-x mt2 btn btn-sm btn-secondary"}
+                    className={(this.state.didntEat ? "border " : null) + " fill-x mt1 btn btn-sm btn-secondary border-gray-2"}
                     style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
 
                     <span className="flex items-center justify-center">
                       <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                      {"Ate none of these"}
+                      {"I ate none of these"}
                     </span>
                   </button>
                 </a>
@@ -83,35 +82,39 @@ class FoodActionTracker extends React.Component {
             </div> {/* end food-picker */}
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
-
-            <span onClick={() => this.showFoodPicker()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
-            <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
-              <h4 className="medium my0">Back</h4>
-            </span>
-            <div className="bg-white mx2 my1 py2 rounded center">
-              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
-              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
-              <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
-              <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
+              <div className="bg-white mx2 my1 py2 rounded center">
+                <span onClick={() => this.toggleView()} style={{top:'1.5rem; left: 1rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 blue pointer sm-absolute">
+                  <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+                  <h4 className="medium my0">Back</h4>
+                </span>
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
+                <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                  Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit.
+                </p>
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
+                <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
+                  Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit.
+                </p>
+                <div className="mx-auto center my1">
+                  <span className="ml1">
+                    <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                  </span>
+                </div>
               </div>
               <div className="mx-auto center my2">
-                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See Weekly Progress</button>
-                <span className="ml1">
-                  or <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See my progress this week</button>
+                <span className="ml1 gray-5">
+                  or <a href="/myhome" className="black line ml1 line-height-1">Back to My Home</a>
                 </span>
               </div>
             </div> {/* end results-summary */}
           </div>
         </div>
-        <div className="center my2">
-          <a onClick={()=>this.getResults()} >
-            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-md btn-primary"}>See results</button>
+        <div className="center mt1 mb3">
+          <a onClick={()=>this.toggleView()} >
+            <button disabled={!this.state.results} style={{display: (this.state.nextView ? "none" : "inherit")}} className={(this.state.results ? "btn-primary--hover " : "") + "btn btn-lg btn-primary bold"}>See results</button>
           </a>
         </div>
         <div className={((this.state.nextView) ? "inherit" : "display-none")}>
@@ -134,29 +137,26 @@ class FoodActionTracker extends React.Component {
   componentWillUnmount() {
     $('.smooth-scroll').unbind('click');
   }
-  showFoodPicker() {
+  toggleView() {
     this.setState({
-      nextView: false
-    });
-  }
-  getResults() {
-    this.setState({
-      nextView: true
+      nextView: !this.state.nextView
     });
   }
   didntEat() {
-    let foods = Object.assign({}, this.state.foods);
+    if(!this.state.didntEat) {
+      let foods = Object.assign({}, this.state.foods);
 
-    for (var food in foods) {
-      let selector = "foodtype" + food;
-      this.refs[selector].removeFood();
-      delete foods[food];
+      for (var food in foods) {
+        let selector = "foodtype" + food;
+        this.refs[selector].removeFood();
+        delete foods[food];
+      }
+
+      this.setState({
+        foods: foods,
+        didntEat: true
+      }, this.getCarbonFootprint);
     }
-
-    this.setState({
-      foods: foods,
-      didntEat: true
-    }, this.getCarbonFootprint);
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
@@ -206,19 +206,19 @@ FoodActionTracker.defaultProps = {
         // Fruits avg: 95 cal
         "50" : {
                   details: "Just a few pieces, around 50 calories",
-                  examples: "Half an orange"
+                  examples: "An orange. 1/2 an apple. 1/2 a banana."
                 },
         "100" : {
                   details: "Average, around 100 calories",
-                  examples: "A whole orange"
+                  examples: "Two oranges. An apple. A banana."
                 },
         "150" : {
                   details: "A lot, around 150 calories",
-                  examples: "An orange and an apple"
+                  examples: "2.5 oranges. 1.5 Apples. 1.5 bananas."
                 },
         "200" : {
                   details: "Fruit monster, around 200 calories",
-                  examples: "A watermelon"
+                  examples: "4 oranges. 2 apples. 2 bananas."
                 }
     },
     // Vegetables
@@ -226,7 +226,7 @@ FoodActionTracker.defaultProps = {
       // Veg avg: 122 cal
       "50" :  {
                 details: "Just a little, around 60 calories",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                examples: "2 carrots. A head of lettuce. An onion"
               },
       "100" : {
                 details: "Average, around 120 calories",

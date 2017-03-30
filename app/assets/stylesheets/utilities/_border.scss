@@ -1,5 +1,5 @@
 $border-width: 1px !default;
-$border-radius: 3px !default;
+$border-radius: 4px !default;
 
 // Custom Media Query Variables
 
@@ -57,9 +57,9 @@ $border-radius: 3px !default;
 
 .not-rounded { border-radius: 0 }
 
-.border-top--gray {border-top:1px solid $gray-30}
+.border-top--gray {border-top:1px solid $gray-4}
 
-.border-gray-30 { border-color: $gray-30; }
+.border-gray-4 { border-color: $gray-4; }
 
 .box-shadow-1 {box-shadow: 0 0 40px #B4F7F7;}
 
@@ -68,6 +68,4 @@ $border-radius: 3px !default;
   .sm-rounded-top-right { border-radius: 0 $border-radius 0 0; }
   .sm-rounded-bottom-right { border-radius: 0 0 $border-radius 0; }
   .sm-rounded-bottom-left { border-radius: 0 0 0 $border-radius; }
-
-
 }

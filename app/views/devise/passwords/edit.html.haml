@@ -2,15 +2,15 @@
   .bg-lightgray.rounded.p3.max-width-2.mx-auto
     .bg-blue.block.mx-auto{style: 'width: 100px; height: 100px; border-radius: 100px;'}
       = image_tag "penguin-white.svg", width: '100px', style: 'margin-top: 10px;'
-    %h1.center.gray-80 Change Your Password
+    %h1.center.gray-6 Change Your Password
     =simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put } do |f|
       = f.input :reset_password_token, as: :hidden
       = f.full_error :reset_password_token
       =render 'shared/error_messages', object: f.object, color: "#666"
       .form-inputs.max-width-1.mx-auto
-        %label.gray-80 New Password
+        %label.gray-6 New Password
         = f.input_field :password, required: true, class: 'mb2 mt1 text-input', autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-        %label.gray-80 Confirm Your New Password
+        %label.gray-6 Confirm Your New Password
         = f.input_field :password_confirmation, required: true, class: 'mb2 mt1 text-input'
         .center.py2
           = f.button :submit, "Change my password", class: "btn btn-md btn-primary"
