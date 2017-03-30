@@ -89,21 +89,20 @@
         margin-left: -50%;
         text-align: right;
     }
-    .fat-overlay {
-      z-index: 10;
-      background-color: rgba(0,204,255, 0.95)
+    .bg-blue--overlay{
+      background-color: rgba(76,219,255, 0.95)
     }
   }
 #fat-module.mt3.max-width-4.mx-auto.relative{data: {step: "1", position: "top"}}
   -if @fat_intro_overlay
-    .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded
+    .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded.bg-blue--overlay.z8
 
-      .fat-overlay-1.fill-y
-        .flex.flex-column.max-width-2.mx-auto.items-center.justify-center.white.fill-y.px1
-          .h1 Join the food challenge
-          .h4.py2
+      .fat-overlay-1.absolute.top-0.bottom-0.left-0.right-0.rounded
+        .flex.flex-column.mx-auto.items-center.justify-center.white.fill-y.px1
+          .h1.medium Join the food challenge
+          .h4.py2.measure
             Food production creates carbon emissions, we are calling that your “Foodprint”. You can lower your Foodprint by choosing the foods with lower emissions.
-          .btn.btn-lg.btn-primary.btn-primary--hover How does it work?
+          .btn.btn-lg.btn-white.blue.mt2 How does it work?
 
       .fat-overlay-2.fill-y{style: 'display: none'}
         .flex.flex-column.max-width-4.mx-auto.items-center.justify-center.white.fill-y.px1
@@ -130,7 +129,7 @@
 
           .h4.py2.center
             Can you rise to the top of your company leaderboard?
-          .btn.btn-lg.btn-primary.btn-primary--hover I'm ready
+          .btn.btn-lg.btn-white.blue.mt2 I'm ready
       
 
   .clearfix.mx2.lg-mx1

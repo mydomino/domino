@@ -74,7 +74,8 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
 
 
 /* initial button state for homepage */
-.btn-white {
+// Deprecated
+/*.btn-white {
   border-color: white;
   color: white;
   &:hover {
@@ -82,7 +83,7 @@ $transition-fast-linear: background-color  0.1s linear; /* property missing in c
     color: $blue;
     border-color: $blue;
   }
-}
+}*/
 
 /* remove border radius from middle buttons in btn-group*/
 .btn-group.btn {
