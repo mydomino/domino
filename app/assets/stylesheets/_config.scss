@@ -5,6 +5,12 @@ $breakpoints: (
   md: 52em,
   lg: 64em,
   );
+
+// Loop Variables
+$margin-count: 6; // Spacing Scale (0.5rem increments): 8px, 16px,24px, 32px, 40px, 48px
+$padding-count: 6; // Spacing Scale (0.5rem increments): 8px, 16px, 24px, 32px, 40px, 48px
+$layout-count: 25;
+
 // Fonts
 $adelle-sans: 'adelle-sans',sans-serif;
 // Typography
@@ -26,28 +32,30 @@ $letter-spacing: 1 !default;
 $caps-letter-spacing: .1em !default;
 $bold-font-weight: bold !default;
 
-$layout-count: 25;
+
 
 // Color Variables
 
 $white: #FFFFFF;
 $black: #333333;
-$gray-90: #5C5C5C;
-$gray-80: #666666; /*changed from domino-gray*/
-$gray-60: #858585;
-$gray-30: #C1C1C1;
-$gray-20: #D6D6D6;
-$gray-10: #EAEAEA;
-$gray-05: #F3F3F3;
-$green: #00BC02;
+$gray-7: #5C5C5C;
+$gray-6: #666666; /*changed from domino-gray*/
+$gray-5: #858585;
+$gray-4: #C1C1C1;
+$gray-3: #D6D6D6;
+$gray-2: #EAEAEA;
+$gray-1: #F3F3F3;
+
 
 
 // Brand color variables
 $blue: #00CCFF;
+$blue--light:#4CDCFF;
 $navy: #105585;
-$red: #FF0000;
-$orange: orange;
+$orange: #FFB973;
+$orange--light:#FFE6CC;
 $aqua:#66FFDB;
+$green: #00BC02;
 $leaf: #B3FFEE;
 
 // Alert color variables

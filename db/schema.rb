@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170317231859) do
+ActiveRecord::Schema.define(version: 20170330203640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,9 +79,8 @@ ActiveRecord::Schema.define(version: 20170317231859) do
   end
 
   add_index "group_users", ["group_id"], name: "index_group_users_on_group_id", using: :btree
-
   add_index "group_users", ["user_id", "group_id"], name: "index_group_users_on_user_id_and_group_id", using: :btree
-
+  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -212,17 +210,19 @@ ActiveRecord::Schema.define(version: 20170317231859) do
     t.string   "state"
     t.string   "zip_code"
     t.string   "housing"
-    t.integer  "avg_electrical_bill",  default: 0
-    t.boolean  "onboard_complete",     default: false
-    t.integer  "onboard_step",         default: 1
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.boolean  "dashboard_registered", default: false
+    t.integer  "avg_electrical_bill",   default: 0
+    t.boolean  "onboard_complete",      default: false
+    t.integer  "onboard_step",          default: 1
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "dashboard_registered",  default: false
     t.string   "campaign"
     t.string   "ip"
     t.string   "referer"
     t.string   "browser"
     t.integer  "partner_code_id"
+    t.boolean  "welcome_tour_complete", default: false
+    t.boolean  "fat_intro_complete",    default: false
   end
 
   add_index "profiles", ["partner_code_id"], name: "index_profiles_on_partner_code_id", using: :btree

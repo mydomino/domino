@@ -2,183 +2,107 @@
   %meta{name: "turbolinks-cache-control", content:"no-cache"}
 
 -content_for :body_class do
-  bg-gray-05
+  bg-gray-1
   adelle
+
+:css
+  .introjs-skipbutton {
+    display: none;
+  }
+
+= render "profiles/myhome_components/welcome_tour_modals"
 
 .mx-auto.relative
   .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
     .absolute.left-0.right-0.top-0.my3
       .max-width-4.mx-auto
-
+        .clearfix
+          .col.col-12.px2
+            #wt-link.right.white.underline.pointer What's all this?
         .flex.flex-column.sm-row
           .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
               - if @user.organization
                 = image_tag "organization_logos/#{@profile.user.organization.name.downcase}_logo_400x400.png", size: "80x80", class: "rounded"
               - else
-                .bg-gray-10.p2.rounded
-                  .h2.px1.gray-60 #{@profile.first_name[0].upcase}#{@profile.last_name[0].upcase}
+                .bg-gray-2.p2.rounded
+                  .h2.px1.gray-5 #{@profile.first_name[0].upcase}#{@profile.last_name[0].upcase}
 
             .m1.center
               .h2.m0.black= "#{@profile.first_name} #{@profile.last_name}"
-              .h4.gray-80
+              .h4.gray-6
                 = @user.organization ? @user.organization.name : ''
             .m1.center
               .h2.m0.black= @user.total_fat_reward_points
-              .h4.gray-80= "Total Points"
-            .m1.gray-80.h6
+              .h4.gray-6= "Total Points"
+            .m1.gray-6.h6
               .inline-block
                 Member since:
                 / show renewal date if user is an individual member
                 - if !@user.organization
                   %br
-                  Renewal date
+                  Renewal date:
               .inline-block.right-align
-                = @user.created_at.strftime("%b %Y")
+                = @user.created_at.strftime("%b. %Y")
                 - if !@user.organization
                   %br
-                  = (@user.created_at + 1.year).strftime("%B %Y")
+                  = (@user.created_at + 1.year).strftime("%b. %Y")
 
-          .m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1'}
+          #clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {step: "2"}}
             =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
-            %h4.gray-80.mb0.mt1.bold.caps Clean Score
-            %span.h0.bold.my0.orange
-              = @user.get_current_week_grade
-            %div.h4.gray-60.col-11
-              Your carbon "foodprint" is
-              %span.bold
-                - cf_percent = 100 - @user.get_current_week_foodcf_percent.round(0)
-                #{cf_percent.abs}%
-                = cf_percent > 0 ? "lower" : "higher"
-              than the average American's this week.
+            %h4.gray-6.mb0.mt1.bold.caps Clean Score
+            .border.border-orange.circle.center.my1{ style: 'width: 75px; border-width: 3px' }
+              %span.h0.bold.my0.mx1.orange.align-middle
+                = @user.get_current_week_grade || '?'
+            %div.h4.gray-5.col-11
+              - food_cf = @user.get_current_week_foodcf_percent
+              - if food_cf
+                Your carbon "foodprint" is
+                %span.bold
+                  - cf_percent_diff = 100 - food_cf
+                  #{cf_percent_diff.abs}%
+                  = cf_percent_diff > 0 ? "lower" : "higher"
+                than the average American's this week.
+              - else
+                Add your food logs in Food Impact Challange below to get your clean score.
 
           .m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;'}
-            .px3.py1.gray-90
-              .h3.mr1.bold.inline-block Weeky leaders
+            .px3.py1.gray-7
+              .h3.mr2.bold.inline-block Weekly leaders
               .h5.mt1.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
               - unless u.profile.nil? # Skip any users wihtout a profile
-                .flex.px3.py1.items-center{style: "#{'background: #fff9c4' if u.email == current_user.email}"}
-                  .flex.items-center.justify-center.h6.border.circle.icon-m.gray-80
+                .flex.px3.py1.items-center{class: "#{'bg-orange' if u.email == current_user.email}"}
+                  .flex.items-center.justify-center.h6.border.circle.icon-m.gray-6
                     = (i == 6) ? i + @current_user_standing : i + 1
                   .fill-x
                     .left-align.inline-block
                       .h4.ml1.mr2.black #{u.profile.first_name} #{u.profile.last_name} #{"(You)" if u.email == current_user.email}
                     .right.inline-block
-                      .h4.gray-80 #{u.fat_reward_points}
+                      .h4.gray-6 #{u.fat_reward_points}
 
-        = render 'food_impact_module'
+        = render 'profiles/myhome_components/food_impact_module'
 
-        .center.m3
-          .h1.black.bold Member Benefits
+        #member-benefits{data: {step: "3", position: "top"}}
+          .center.m3
+            .h1.black.bold Member Benefits
 
-        .flex.items-stretch.flex-column.md-row.mx1
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-            .flex.items-center
-              =image_tag "icons/i-paper.png", :class => "mr1"
-              %h2.gray-90.bold.inline.line-height-1
-                Take-out bites
-            .flex.flex-auto.flex-wrap.justify-around.mt1
-              .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
-                .bg-gray-05.rounded
-                  =link_to 'http://actions.mydomino.com', class:"text-decoration-none black" do
-                    = image_tag "appetizers.jpg", class: 'fill-x rounded-top'
-                    .p1.h5.sm-h4
-                      Appetizers: Your first course
-              .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
-                .bg-gray-05.rounded
-                  =link_to 'articles/cows-climate-change', class:"text-decoration-none black" do
-                    = image_tag "cow-tongue.jpg", class: 'fill-x rounded-top'
-                    .p1.h5.sm-h4
-                      Are cows the key to saving the planet?
-              .px1.mb2{style: 'max-width: 200px; min-width: 100px; flex: 1'}
-                .bg-gray-05.rounded
-                  =link_to 'articles/hidden-health-benefits-of-ugly-produce/', class:"text-decoration-none black" do
-                    = image_tag "ugly-apples.jpg", class: 'fill-x rounded-top'
-                    .p1.h5.sm-h4
-                      Hidden health. Benefits of ugly produce
-            %h4.mb0.center
-              Still hungry?
-            %h3.my1.line-height-1.center
-              =link_to 'http://mydomino.com/articles', class:"black line medium" do
-                Read more tasty bites
+          .flex.items-stretch.flex-column.md-row.mx1
+            = render "profiles/myhome_components/take_out_bites_module"
+            = render "profiles/myhome_components/concierge_module"
 
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-            .flex.flex-column.justify-between.fill-y
-              .flex.items-center
-                =image_tag "icons/i-concierge.png", :class => "mr1"
-                %h2.gray-90.bold.inline.line-height-1
-                  Hungry for more?
-              .p.line-height-4.gray-80.my2.center
-                Your concierge can help you slay the carbon calories, plus give you a taste for LED bulbs, clean power, fossil-free driving, and much more!
-              %div
-                .h4.mb0.center
-                  Talk to your concierge
-                .h3.mt1.mb2.line-height-2.center
-                  =link_to "tel:+18009792215", class:"black line medium" do
-                    Call 800-721-2215
+          .flex.items-stretch.flex-column.md-row.mx1
+            = render "profiles/myhome_components/film_module"
+            = render "profiles/myhome_components/discounts_module"
 
-        .flex.items-stretch.flex-column.md-row.mx1
-
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-
-            .flex.items-center
-              =image_tag "icons/i-movie.png", :class => "mr1"
-              %h2.gray-90.bold.inline.line-height-1
-                All eyes are on...
-            .flex.flex-wrap.mt2.justify-center
-              .mr2
-                = link_to "http://www.timetochoose.com/", target: "_blank" do
-                  = image_tag "timetochoose_poster", class: 'fit', style: 'box-shadow: 2px 2px 6px #aaa; max-height:230px'
-              .flex.flex-column.justify-between{ style: 'flex: 1; min-width: 160px' }
-                .mt0.mb1
-                  %p.gray-80.m0.mb1
-                    Check out this film by our founder for some good climate news.
-
-                  .mt0
-                    =link_to "https://www.rottentomatoes.com/m/time_to_choose/", target: "_blank", class: 'text-decoration-none' do
-                      %span= image_tag "rotten_tomato", style: "vertical-align: top"
-                      %span.h3.gray-80 86%
-                      %span.h5.gray-80 on&nbsp;Rotten&nbsp;Tomatos
-                .h3.my1
-                  .black Watch the film
-
-                  .flex.flex-wrap.items-center
-                    .mr1
-                      =link_to "https://www.amazon.com/Time-Choose-Oscar-Isaac/dp/B01LOUPR34", target: "_blank" do
-                        = image_tag "amazon_video", style: 'max-width: 90px'
-                    .inline.h5.blue.text-link
-                      =link_to "http://www.timetochoose.com/stream-or-download/", target: "_blank" do
-                        More viewing options
-              .mt2.flex.justify-between.fill-x{style: 'border-top: 1px solid #ddd'}
-                .mt1.black
-                  %span.h4.medium Share this movie
-                  %span.h6.gray-80 (+100 points)
-                .gray-80
-                  = form_tag points_add_watch_ttc_moive_points_path do
-                    = button_tag "I've shared it", class: 'rounded btn btn-outline px1 mt1 h5 blue'
-
-          .m1.p3.bg-white.rounded{ style: 'flex: 1' }
-            .flex.items-center
-              =image_tag "icons/i-wallet.png", :class => "mr1"
-              %h2.gray-90.bold.inline.line-height-1
-                Coins back in your pocket
-            %p.line-height-4.gray-80.my1.sm-mb4.center Get exclusive discounts on sustainable living products
-            .clearfix.flex.items-center
-              %div
-                = image_tag "imperfect_produce", class: "fit"
-              %div
-                = image_tag "arcadia_power", class: "fit"
-              -# .col.col-12.sm-col.sm-col-3
-              -#  = image_tag "badger", class: "fit", height: '100px'
-              %div
-                = image_tag "farm_fresh", class: "fit"
-            %h3.mb1.line-height-1.gray-60.medium.center
-              =link_to "articles/coins-in-your-pocket", class:"black line medium" do
-                See discount details
+          - if !@user.organization && @user.dashboard
+            .md-row.mx1
+              = render "profiles/myhome_components/dashboard_module"
 
 :javascript
-  $('li.complete, li.incomplete').on('click', function(){
-    window.location = $(this).data('link');
-  });
+  modulejs.require('myhome');
+
+  var myhomeTour = modulejs.require('myhome_tour');
+  myhomeTour.init(#{@mobile});
+  myhomeTour.start(#{@tour});

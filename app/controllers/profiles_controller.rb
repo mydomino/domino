@@ -28,7 +28,6 @@ class ProfilesController < ApplicationController
     @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
 
     #fat timeline data
-
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
     today = Date.new(time_now.year, time_now.month, time_now.day)
@@ -53,9 +52,19 @@ class ProfilesController < ApplicationController
       fat_graph_date += 1.day
     end
 
+    # Welcome tour params
+    @tour = !@profile.welcome_tour_complete
+    @mobile = @browser.device.mobile? ? true : false
+
+    # Display fat intro overlay if user has not joined food challenge yet
+    @show_fat_intro = !@profile.fat_intro_complete
+
     track_event "Profile - myhome"
   end
 
+  # /verify_current_password/
+  # Purpose: Verify current password to allow password change via member profile
+  # GET /profile/verify-current-password XMLHttpRequest
   def verify_current_password
     valid = current_user.valid_password? params[:current_password]
     if valid
@@ -71,6 +80,9 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # /update_password/
+  # Purpose: Update user password via member profile
+  # POST /profile/update-password XMLHttpRequest
   def update_password
     @user = current_user
     @user.update(
@@ -87,9 +99,6 @@ class ProfilesController < ApplicationController
     }, status: 200
 
     track_event "Profile - update_password"
-  end
-
-  def edit
   end
 
   def new
@@ -167,6 +176,27 @@ class ProfilesController < ApplicationController
 
   def resend_welcome_email
     UserMailer.welcome_email_universal(@profile.email).deliver_later
+  end
+
+  # /welcome_tour_complete/
+  # Purpose: Set db flag indicating user has completed the myhome welcome tour
+  # GET /profile/welcome-tour-complete XMLHttpRequest
+  def welcome_tour_complete
+    current_user.profile.update(welcome_tour_complete: true)
+
+    render json: {
+      message: "Welcome tour complete flag set",
+      status: 200
+    }, status: 200
+  end
+
+  def fat_intro_complete
+    current_user.profile.update(fat_intro_complete: true)
+
+    render json: {
+      message: "Fat intro complete flag set",
+      status: 200
+    }, status: 200
   end
 
   private

@@ -4,7 +4,7 @@
 
   = render :partial => 'steps_progress', :locals => {:step => 2}
 
-  .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-05'}"}
+  .max-width-3.mx-auto.p2.rounded{class: "#{@browser.device.mobile? ? 'bg-white' : 'bg-gray-1'}"}
 
     .clearfix.mb2
       .col.col-12.center
@@ -21,10 +21,10 @@
           =form.input_field :phone, class: "text-input bg-transparent required-field", placeholder: "", data: {reg: '\\(\\d{3}\\)\\s\\d{3}\\-\\d{4}', target: '#phone-error-msg'}
           #phone-error-msg.red.display-none
             Phone number is required. 
-            %span#why-phone.gray-80.pointer
+            %span#why-phone.gray-6.pointer
               Why?
 
-          %p#phone-input-hint.mt0.display-none.gray-80
+          %p#phone-input-hint.mt0.display-none.gray-6
             Your number makes it quicker for our concierge team to start helping you.
           .mt0.md-mt2.pt1
             %label.h4{for: 'avg_electrical_bill'} Average electric bill (Optional)

@@ -13,12 +13,12 @@
     =simple_form_for @profile, method: @response[:method] do |form|
       .clearfix.py2
         .col.col-6
-          =form.input_field :first_name, class: "text-input gray-80", placeholder: "First name", required: true
+          =form.input_field :first_name, class: "text-input gray-6", placeholder: "First name", required: true
         .col.col-6.pl1
-          =form.input_field :last_name, class: "text-input gray-80", placeholder: "Last name", required: true
+          =form.input_field :last_name, class: "text-input gray-6", placeholder: "Last name", required: true
       .clearfix
         .col.col-6
-          =form.input_field :email, class: "text-input gray-80", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
+          =form.input_field :email, class: "text-input gray-6", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
         .col.col-6.pl1
           =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
 
@@ -49,15 +49,15 @@
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.px1
-                    =form.input_field :first_name, class: "text-input gray-80", placeholder: "First name", required: true
+                    =form.input_field :first_name, class: "text-input gray-6", placeholder: "First name", required: true
                   .col.col-6.px1
-                    =form.input_field :last_name, class: "text-input gray-80", placeholder: "Last name", required: true
+                    =form.input_field :last_name, class: "text-input gray-6", placeholder: "Last name", required: true
               .sm-col.sm-col-12.md-col-6.py1
                 .clearfix
                   .col.col-6.md-col-8.px1
-                    =form.input_field :email, class: "text-input gray-80", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
+                    =form.input_field :email, class: "text-input gray-6", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
                   .col.col-6.md-col-4.px1
-                    =form.submit "Get started", class: "btn btn-sm btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
+                    =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
 
 :javascript
   modulejs.require('onboarding_name_and_email_form')();

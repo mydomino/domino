@@ -37,10 +37,6 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  get '/profile/verify-current-password' => 'profiles#verify_current_password'
-  patch '/profile/update-password' => 'profiles#update_password'
-  get 'profile' => 'profiles#show', as: 'member_profile'
-
   get 'domino-team' => 'pages#team'
   get 'about' => 'pages#about'
   get 'terms' => 'pages#terms'
@@ -49,7 +45,6 @@ Rails.application.routes.draw do
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
   get 'myhome' => 'profiles#myhome'
-  get 'fat-d3' => 'pages#fat_d3'
   
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
@@ -82,7 +77,12 @@ Rails.application.routes.draw do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
   end
 
-  # resources :profiles
+  get '/profile/verify-current-password' => 'profiles#verify_current_password'  # XmlHttpRequest
+  patch '/profile/update-password' => 'profiles#update_password'  # XmlHttpRequest
+  get 'profile' => 'profiles#show', as: 'member_profile'
+  get 'profile/welcome-tour-complete' => 'profiles#welcome_tour_complete' # XmlHttpRequest
+  get 'profile/fat-intro-complete' => 'profiles#fat_intro_complete'  # XmlHttpRequest
+
   resources :profiles, only: [:new, :update, :create, :show, :index] do
     resources :steps, only: [:show, :update], controller: 'profile/steps'
   end
@@ -93,9 +93,6 @@ Rails.application.routes.draw do
   # Devise routes
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   devise_scope :user do
-    #get "sungevity" => "registrations#new_org_member"
-    #get "mydomino" => "registrations#new_org_member"
-    #get "test" => "registrations#new_org_member"
     get ':org_name'  => "registrations#new_org_member", constraints: { org_name: /(sungevity|mydomino|test)/ }
     get 'pm'  => "registrations#new_member"
     

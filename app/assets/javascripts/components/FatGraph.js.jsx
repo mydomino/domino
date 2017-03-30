@@ -25,30 +25,33 @@ class FatGraph extends React.Component {
     });
   }
   onBarEnter(d,i) {
-    d3.select("#lbl-x2-" + i)
-      .text(function() {
-        return (d.cf == null ? "N/A" : d.pts + " pts")
-      });
+    if(d.cf !== "future") {
+      d3.select("#lbl-x2-" + i)
+        .text(function() {
+          return (d.cf == null ? "N/A" : d.pts + " pts")
+        });
 
-    d3.select("#aux-" + i)
-      .style("opacity", 1);
+      d3.select("#aux-" + i)
+        .style("opacity", 1);
+    }
   }
   onBarExit(d, i) {
-    d3.select("#lbl-x2-" + i)
-    .text(function() {
-      return (d.cf == null ? "Incomplete" : d.cf + " kg");
-    });
+    if(d.cf !== "future") {
+      d3.select("#lbl-x2-" + i)
+      .text(function() {
+        return (d.cf == null ? "Incomplete" : d.cf + " kg");
+      });
 
-    d3.select("#aux-" + i)
-      .style("opacity", 0);
+      d3.select("#aux-" + i)
+        .style("opacity", 0);
 
-    if(!d3.select(this).classed("aux")) {
-      d3.select(this)
-        .attr("fill", function(d){
-          if(d.cf == null) return "white";
-          // console.log(d3.select(this).classed("aux"));
-          return "#D6D6D6";
-        });
+      if(!d3.select(this).classed("aux")) {
+        d3.select(this)
+          .attr("fill", function(d){
+            if(d.cf == null) return "white";
+            return "#D6D6D6";
+          });
+      }
     }
   }
   drawGraph(){
@@ -62,7 +65,6 @@ class FatGraph extends React.Component {
     // Set margins, width, and height
     var margin = {top: 32, right: 16, bottom: 32, left: 16},
         width = winWidth - margin.left - margin.right,
-        // width = 960 - margin.left - margin.right,
         height = containerHeight - margin.top - margin.bottom;
 
     // x axis showing days of week
@@ -78,10 +80,10 @@ class FatGraph extends React.Component {
       if(el.cf == null){
         return "Incomplete";
       }
-      if(el.cf == "future") {
+      else if(el.cf == "future") {
         return " ";
       }
-      if(el.cf >= 0) {
+      else {
         return el.cf + " kg";
       }
     });
@@ -115,7 +117,7 @@ class FatGraph extends React.Component {
       .attr("height", "30px")
       .attr("fill", "#B3FFEE");
 
-     // Top axis background
+     // Bottom axis background
     d3.select(".chart").append("rect")
       .attr("transform", "translate(0," + 170 + ")")
       .attr("width", "100%")
@@ -135,7 +137,6 @@ class FatGraph extends React.Component {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var barWidth = 20;
-    // var barWidth = 20;
     var barContainerWidth = width/data.length;
     var barOffset = barWidth/barContainerWidth
     var dx = barContainerWidth/4;
@@ -155,27 +156,21 @@ class FatGraph extends React.Component {
       })
       .classed("pointer", "true")
       .classed("null", function(d) {
-        return (d.cf == null ? true : false);
+        return d.cf == null;
       })
       .classed("future", function(d) {
-          if(d.cf == "future") {
-            return true;
-          }
-          return false;
+        return d.cf == "future";
       })
       .attr("y", function(d){
         var v = (d.cf == "future" ? 15 : d.cf);
         return y(v);
       })
       .attr("height", function(d){
-        //return height-y(d.cf);
-        var v = (d.cf == "future" ? 15 : d.cf);
-
+        var v = (d.cf == "future" ? 0 : d.cf);
         return height-y(v);
       })
       .attr("width", barContainerWidth/2)
       .attr("fill", function(d){
-        // return "none";
         return "#D6D6D6";
       })
       .style("stroke", "#D6D6D6")
@@ -185,6 +180,7 @@ class FatGraph extends React.Component {
       .on('click', function(d){
         window.location = "/food/" + d.path;
       });
+
 
 
 
@@ -291,4 +287,8 @@ class FatGraph extends React.Component {
       this.drawGraph();
     });
   } // end componentWillMount()
+  componentWillUnmount() {
+    d3.selectAll('rect').on('mouseenter', null);
+    d3.selectAll('rect').on('mouseout', null);
+  }
 }

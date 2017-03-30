@@ -11,20 +11,16 @@ $darken-3: rgba(0, 0, 0, .25) !default;
 .btn-primary {
   background-color: $blue;
   color: $white;
-  /*&:hover {
-    box-shadow: inset 0 0 0 20rem $darken-1;
-  }*/
 }
 /* Secondary Button Color */
 .btn-secondary {
-  border-color: $gray-80;
-  color: $gray-80;
+  border-color: $gray-6;
+  color: $gray-6;
   -webkit-backface-visibility: hidden;
-  /*&:hover {
-    background-color: transparent;
-    color: $blue;
-    border-color: $blue;
-  }*/
+}
+
+.btn-white {
+  background-color: $white;
 }
 
 /* Hover States */
@@ -38,9 +34,9 @@ $darken-3: rgba(0, 0, 0, .25) !default;
   border-color: $blue;
 }
 
-.btn-secondary--active{ 
+.btn-secondary--active{
   color: white;
-  background-color: $gray-80; 
+  background-color: $gray-6;
 }
 
 .btn:disabled,

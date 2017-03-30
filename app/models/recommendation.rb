@@ -18,9 +18,6 @@
 #  recommendable_index                    (recommendable_id,recommendable_type)
 #
 
-
-
-
 class Recommendation < ActiveRecord::Base
   
   belongs_to :dashboard

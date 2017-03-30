@@ -1,0 +1,159 @@
+:scss
+  #fat-module {
+    li {
+      width: 2em;
+      height: 2em;
+      text-align: center;
+      line-height: 2em;
+      border-radius: 1em;
+      margin: 0 auto;
+      display: inline-block;
+      color: white;
+      position: relative;
+      border: 2px solid lightgrey;
+    }
+
+    li.chained::before{
+      content: '';
+      position: absolute;
+      top: .9em;
+      left: -5vw;
+      width: 5vw;
+      height: .2em;
+      background: #2ECC71;
+      z-index: 0;
+    }
+
+    li::after {
+      position: absolute;
+      top: 2em;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: black;
+      margin-bottom: 1em;
+    }
+
+    li.monday::after { content: 'Mo'; }
+    li.tuesday::after { content: 'Tu';}
+    li.wednesday::after { content: 'We';}
+    li.thursday::after { content: 'Th';}
+    li.friday::after { content: 'Fr';}
+    li.saturday::after { content: 'Sa';}
+    li.sunday::after { content: 'Su';}
+
+    li.complete {
+      background: #00F0B9;
+      border:none;
+    }
+
+    li.incomplete {
+      background: white;
+      border:none;
+      }
+
+    li.future {
+      border-color: #eaeaea;
+      background: white;
+    }
+    li.future::after {
+      color: #eaeaea
+    }
+
+    li:first-child::before {
+      display: none;
+    }
+
+    .bg-blue--overlay {
+      background-color: rgba(76,219,255, 0.95)
+    }
+    .fat-intro-indicator {
+      transition: opacity 0.3s linear;
+    }
+  }
+
+#fat-module.mt3.max-width-4.mx-auto.relative{data: {step: "1", position: "top"}}
+  .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded.bg-blue--overlay.z8{class: "#{'display-none' unless @show_fat_intro}"}
+    .fat-overlay-1.absolute.top-0.bottom-0.left-0.right-0.rounded
+      .flex.flex-column.mx-auto.items-center.justify-center.white.fill-y.px1
+        .h1.medium Join the food challenge
+        .h4.py2.measure
+          Food production creates carbon emissions, we are calling that your “Foodprint”. You can lower your Foodprint by choosing the foods with lower emissions.
+        .pt3
+          .btn.btn-lg.btn-white.blue.mt2 How does it work?
+
+    .fat-overlay-2.fill-y{style: 'display: none'}
+      .flex.flex-column.max-width-4.mx-auto.items-center.justify-center.white.fill-y.px1
+        .h2.sm-h1.medium How does it work?
+
+        .flex.flex-column.sm-row.justify-between.pt1.sm-pt3
+          .col-12.sm-col-4
+            .flex.flex-row.sm-column.items-center.justify-center
+              .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
+                1
+              .h5.sm-h4.sm-center.col-8.sm-col-7.m1 Log the food categories you ate for each day
+
+          .col-12.sm-col-4
+            .flex.flex-row.sm-column.items-center.justify-center
+              .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
+                2
+              .h5.sm-h4.sm-center.col-8.m1 Earn points by staying below the average “Foodprint”
+
+          .col-12.sm-col-4
+            .flex.flex-row.sm-column.items-center.justify-center
+              .flex.items-center.justify-center.h5.bold.border-2.circle.icon-l.white.p1
+                3
+              .h5.sm-h4.sm-center.col-8.sm-col-7.m1 The lower your Foodprint, the more points you get
+
+        .h5.sm-h4.py1.px2.center Can you rise to the top of your company leaderboard?
+        .pt2
+          .btn.btn-md.btn-white.blue.my0 I'm ready
+
+  .absolute.z10.center.bottom-0.left-0.right-0.pb1.my0
+    .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.mr1
+    .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.o50
+
+  .clearfix.mx2.lg-mx1
+    .col.col-12.mb2.center
+      .p3.bg-white.rounded.center
+        .mb3#step1
+          .flex.items-center.justify-center
+            =image_tag "icons/i-apple.png", :class => "mr1"
+            .h1.black.bold.inline.line-height-1
+              Food Impact
+          %p.col-12.sm-col-8.gray-5.mt2.mx-auto Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
+          = link_to 'food' do
+            %button.btn.btn-md.btn-primary.btn-primary--hover
+              .bold Update today
+          .mt2
+            .col.col-12.bg-gray-2.relative{style:"height:1px; top:1rem ;"}
+          .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
+            .h4.sm-h3
+              = @week_of
+        .col-12.sm-col-8.sm-col-7.mx-auto
+          %ul.list-reset.flex.justify-between
+            -z_index = 7
+            -prev_complete = false
+            -@timeline_params.each do |p|
+              %li.mb3{class: "#{p[:day]} #{p[:status]} #{'chained' if (prev_complete && p[:status]=='complete')} #{'pointer' if p[:status] != 'future'}", style: "z-index: #{z_index}", data: {link: p[:link]}}
+                -if p[:status]=="complete"
+                  =inline_svg "icons/i-success.svg", class:"icon-l fill-black"
+                  -prev_complete = true
+                -elsif p[:status]=="incomplete"
+                  =inline_svg "icons/i-question.svg", class:"icon-l"
+                  -prev_complete = false
+              -z_index -= 1
+
+:javascript
+  $('.fat-overlay-1').find('.btn').on('click', function(){
+    $('.fat-overlay-1').fadeOut(function(){
+      $('.fat-overlay-2').fadeIn();
+    });
+    $('.fat-intro-indicator:first').addClass('o50');
+    $('.fat-intro-indicator:nth-child(2)').removeClass('o50');
+  });
+
+  $('.fat-overlay-2').find('.btn').on('click', function(){
+    $('.fat-overlay').fadeOut();
+    $.get("profile/fat-intro-complete", $.noop)
+  });
