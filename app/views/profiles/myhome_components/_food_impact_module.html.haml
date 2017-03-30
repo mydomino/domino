@@ -97,11 +97,41 @@
 #fat-module.mt3.max-width-4.mx-auto.relative{data: {step: "1", position: "top"}}
   -if @fat_intro_overlay
     .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded
-      .flex.flex-column.max-width-2.mx-auto.items-center.justify-center.white.fill-y.px1
-        .h1 Join the food challenge
-        .h4.py2
-          Food production creates carbon emissions, we are calling that your “Foodprint”. You can lower your Foodprint by choosing the foods with lower emissions.
-        .btn.btn-lg.btn-primary.btn-primary--hover How does it work?
+
+      .fat-overlay-1.fill-y
+        .flex.flex-column.max-width-2.mx-auto.items-center.justify-center.white.fill-y.px1
+          .h1 Join the food challenge
+          .h4.py2
+            Food production creates carbon emissions, we are calling that your “Foodprint”. You can lower your Foodprint by choosing the foods with lower emissions.
+          .btn.btn-lg.btn-primary.btn-primary--hover How does it work?
+
+      .fat-overlay-2.fill-y{style: 'display: none'}
+        .flex.flex-column.max-width-4.mx-auto.items-center.justify-center.white.fill-y.px1
+          .h1 How does it work?
+
+          .clearfix.p2
+            .col.col-12.sm-col-4
+              .flex.flex-column.items-center.px2
+                .flex.items-center.justify-center.h5.border.circle.icon-l.white.p1
+                  1
+                .h5.sm-h4.mt1.center Log the food categories you ate for each day
+
+            .col.col-12.sm-col-4
+              .flex.flex-column.items-center.px2
+                .flex.items-center.justify-center.h5.border.circle.icon-l.white.p1
+                  2
+                .h5.sm-h4.mt1.center Earn points by staying below the average “Foodprint”
+
+            .col.col-12.sm-col-4
+              .flex.flex-column.items-center.px2
+                .flex.items-center.justify-center.h5.border.circle.icon-l.white.p1
+                  3
+                .h5.sm-h4.mt1.center The lower your Foodprint, the more points you get
+
+          .h4.py2.center
+            Can you rise to the top of your company leaderboard?
+          .btn.btn-lg.btn-primary.btn-primary--hover I'm ready
+      
 
   .clearfix.mx2.lg-mx1
     .col.col-12.mb2.center
@@ -133,3 +163,14 @@
                   =inline_svg "icons/i-question.svg", class:"icon-l"
                   -prev_complete = false
               -z_index -= 1
+
+:javascript
+  $('.fat-overlay-1').find('.btn').on('click', function(){
+    $('.fat-overlay-1').fadeOut(function(){
+      $('.fat-overlay-2').fadeIn();
+    });
+  });
+  
+  $('.fat-overlay-2').find('.btn').on('click', function(){
+    $('.fat-overlay').fadeOut();
+  });
