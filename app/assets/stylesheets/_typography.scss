@@ -27,6 +27,8 @@
       .#{$bp-name}-h4 { font-size: $h4 }
       .#{$bp-name}-h5 { font-size: $h5 }
       .#{$bp-name}-h6 { font-size: $h6 }
+      //text-align
+      .#{$bp-name}-center {text-align: center;}
     }
   }
 }

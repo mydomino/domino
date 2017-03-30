@@ -106,31 +106,30 @@
 
       .fat-overlay-2.fill-y{style: 'display: none'}
         .flex.flex-column.max-width-4.mx-auto.items-center.justify-center.white.fill-y.px1
-          .h1 How does it work?
+          .h1.pt2 How does it work?
 
-          .clearfix.p2
-            .col.col-12.sm-col-4
-              .flex.flex-column.items-center.px2
-                .flex.items-center.justify-center.h5.border.circle.icon-l.white.p1
+          .flex.flex-column.sm-row.justify-between.pt1.sm-pt3
+            .col-12.sm-col-4
+              .flex.flex-row.sm-column.items-center.justify-center
+                .flex.items-center.justify-center.h5.border.circle.icon-m.white.p1
                   1
-                .h5.sm-h4.mt1.center Log the food categories you ate for each day
+                .h5.sm-h4.sm-center.col-8.sm-col-9.m1 Log the food categories you ate for each day
 
-            .col.col-12.sm-col-4
-              .flex.flex-column.items-center.px2
-                .flex.items-center.justify-center.h5.border.circle.icon-l.white.p1
+            .col-12.sm-col-4
+              .flex.flex-row.sm-column.items-center.justify-center
+                .flex.items-center.justify-center.h5.border.circle.icon-m.white.p1
                   2
-                .h5.sm-h4.mt1.center Earn points by staying below the average “Foodprint”
+                .h5.sm-h4.sm-center.col-8.sm-col-9.m1 Earn points by staying below the average “Foodprint”
 
-            .col.col-12.sm-col-4
-              .flex.flex-column.items-center.px2
-                .flex.items-center.justify-center.h5.border.circle.icon-l.white.p1
+            .col-12.sm-col-4
+              .flex.flex-row.sm-column.items-center.justify-center
+                .flex.items-center.justify-center.h5.border.circle.icon-m.white.p1
                   3
-                .h5.sm-h4.mt1.center The lower your Foodprint, the more points you get
+                .h5.sm-h4.sm-center.col-8.sm-col-9.m1 The lower your Foodprint, the more points you get
 
-          .h4.py2.center
-            Can you rise to the top of your company leaderboard?
-          .btn.btn-lg.btn-white.blue.mt2 I'm ready
-      
+          .h4.py2.px2.center Can you rise to the top of your company leaderboard?
+          .btn.btn-lg.btn-white.blue I'm ready
+
 
   .clearfix.mx2.lg-mx1
     .col.col-12.mb2.center
@@ -169,7 +168,7 @@
       $('.fat-overlay-2').fadeIn();
     });
   });
-  
+
   $('.fat-overlay-2').find('.btn').on('click', function(){
     $('.fat-overlay').fadeOut();
   });
