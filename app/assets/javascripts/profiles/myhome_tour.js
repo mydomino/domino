@@ -47,6 +47,8 @@ modulejs.define('myhome_tour', function(){
     init: function(mobile) {
       this.mobile = mobile;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
+      
+
     },
     startIntroJs: function() {
       var intro,
@@ -124,12 +126,19 @@ modulejs.define('myhome_tour', function(){
 
       // Start tour
       modals[0].remodalInstance.open();
-      
+     
       // Hide remodal plugin overlay
       // Else theres a glitch effect between modal transitions
       $('.remodal-overlay').css("visibility", "hidden");
 
       // BEGIN module event handlers
+      // Allow users to skip modal portion of tour
+      $('.skip-for-now').on('click', function(){
+        var currStep = $(this).data('step');
+        modals[currStep].remodalInstance.close();
+        $welcomeTourBg.fadeOut()
+      });
+
       // Go back to previous modal
       $('.wt-back').on('click', function(){
         var currStep = $(this).data('step');
