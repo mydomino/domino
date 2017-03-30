@@ -31,6 +31,8 @@ class OrganizationsController < ApplicationController
     
     # Member count is shown in the admin dashboard
     @member_count = @organization.users.size
+
+    track_event "Organization - show"
   end
 
   # POST /organizations/1/add_individual
@@ -87,6 +89,8 @@ class OrganizationsController < ApplicationController
         status: 400
       }, status: 400
     end
+
+    track_event "Organization - add individual"
   end
 
   def email_members_upload_file

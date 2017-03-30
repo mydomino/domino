@@ -8,7 +8,6 @@
  email_members_upload_file_organization POST     /organizations/:id/email_members_upload_file(.:format)  organizations#email_members_upload_file
 import_members_upload_file_organization POST     /organizations/:id/import_members_upload_file(.:format) organizations#import_members_upload_file
             add_individual_organization POST     /organizations/:id/add_individual(.:format)             organizations#add_individual
-                      test_organization GET      /organizations/:id/test(.:format)                       organizations#test
      download_csv_template_organization GET      /organizations/:id/download_csv_template(.:format)      organizations#download_csv_template
                           organizations GET      /organizations(.:format)                                organizations#index
                                         POST     /organizations(.:format)                                organizations#create
@@ -45,8 +44,16 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                               post_slug GET      /articles/:article(.:format)                            posts#get_post_by_slug
                                    blog GET      /blog(.:format)                                         redirect(301, /articles)
                                         GET      /blog/:article(.:format)                                redirect(301, /articles/%{article})
-                                        GET      /blog/category/:cat(.:format)                           redirect(301, /category/%{cat})
-                                        GET      /category/:cat(.:format)                                posts#index
+                                        GET      /blog/category/:cat(.:format)                           redirect(301, /articles/?cat=%{cat})
+                                  posts GET      /articles(.:format)                                     posts#index
+                                        POST     /articles(.:format)                                     posts#create
+                               new_post GET      /articles/new(.:format)                                 posts#new
+                              edit_post GET      /articles/:id/edit(.:format)                            posts#edit
+                                   post GET      /articles/:id(.:format)                                 posts#show
+                                        PATCH    /articles/:id(.:format)                                 posts#update
+                                        PUT      /articles/:id(.:format)                                 posts#update
+                                        DELETE   /articles/:id(.:format)                                 posts#destroy
+                                        GET      /category/:cat(.:format)                                redirect(301, /articles?cat=%{cat})
                          user_dashboard GET      /dashboard(.:format)                                    dashboards#show
                   dashboard_bulk_update PATCH    /dashboards/:dashboard_id/bulk_update(.:format)         recommendations#bulk_update
                              dashboards GET      /dashboards(.:format)                                   dashboards#index
@@ -83,9 +90,8 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                         PATCH    /users(.:format)                                        registrations#update
                                         PUT      /users(.:format)                                        registrations#update
                                         DELETE   /users(.:format)                                        registrations#destroy
-                              sungevity GET      /sungevity(.:format)                                    registrations#new_org_member
-                               mydomino GET      /mydomino(.:format)                                     registrations#new_org_member
-                                   test GET      /test(.:format)                                         registrations#new_org_member
+                                        GET      /:org_name(.:format)                                    registrations#new_org_member {:org_name=>/(sungevity|mydomino|test)/}
+                                     pm GET      /pm(.:format)                                           registrations#new_member
                  check_org_member_email GET      /check-org-member-email(.:format)                       registrations#check_org_member_email
                       create_org_member POST     /create-org-member(.:format)                            registrations#create_org_member
                 set_org_member_password PATCH    /set-org-member-password(.:format)                      registrations#set_org_member_password
@@ -116,14 +122,6 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                         DELETE   /tasks/:id(.:format)                                    tasks#destroy
                               analytics GET      /analytics(.:format)                                    analytics#show
                             delayed_job GET|POST /delayed_job(.:format)                                  DelayedJobWeb
-                                  posts GET      /articles(.:format)                                     posts#index
-                                        POST     /articles(.:format)                                     posts#create
-                               new_post GET      /articles/new(.:format)                                 posts#new
-                              edit_post GET      /articles/:id/edit(.:format)                            posts#edit
-                                   post GET      /articles/:id(.:format)                                 posts#show
-                                        PATCH    /articles/:id(.:format)                                 posts#update
-                                        PUT      /articles/:id(.:format)                                 posts#update
-                                        DELETE   /articles/:id(.:format)                                 posts#destroy
                                mailkick          /mailkick                                               Mailkick::Engine
 
 Routes for Mailkick::Engine:

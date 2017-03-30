@@ -9,6 +9,8 @@ class ProfilesController < ApplicationController
   # GET /profile
   def show
     @profile = current_user.profile
+
+    track_event "Profile - show"
   end
 
   # /myhome/
@@ -56,6 +58,8 @@ class ProfilesController < ApplicationController
 
     # Display fat intro overlay if user has not joined food challenge yet
     @show_fat_intro = !@profile.fat_intro_complete
+
+    track_event "Profile - myhome"
   end
 
   # /verify_current_password/
@@ -93,6 +97,8 @@ class ProfilesController < ApplicationController
       message: "Password updated successfully",
       status: 200
     }, status: 200
+
+    track_event "Profile - update_password"
   end
 
   def new
