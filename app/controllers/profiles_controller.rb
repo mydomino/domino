@@ -28,7 +28,6 @@ class ProfilesController < ApplicationController
     @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
 
     #fat timeline data
-
     time_zone_name = Time.zone.name
     time_now = Time.now.in_time_zone(time_zone_name)
     today = Date.new(time_now.year, time_now.month, time_now.day)
@@ -56,6 +55,9 @@ class ProfilesController < ApplicationController
     # Welcome tour params
     @tour = !@profile.welcome_tour_complete
     @mobile = @browser.device.mobile? ? true : false
+
+    # Display fat intro overlay if user has not joined food challenge yet
+    @show_fat_intro = !@profile.fat_intro_complete
 
     track_event "Profile - myhome"
   end
@@ -184,6 +186,15 @@ class ProfilesController < ApplicationController
 
     render json: {
       message: "Welcome tour complete flag set",
+      status: 200
+    }, status: 200
+  end
+
+  def fat_intro_complete
+    current_user.profile.update(fat_intro_complete: true)
+
+    render json: {
+      message: "Fat intro complete flag set",
       status: 200
     }, status: 200
   end

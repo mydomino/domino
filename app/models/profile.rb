@@ -25,6 +25,7 @@
 #  browser               :string
 #  partner_code_id       :integer
 #  welcome_tour_complete :boolean          default(FALSE)
+#  fat_intro_complete    :boolean          default(FALSE)
 #
 # Indexes
 #
