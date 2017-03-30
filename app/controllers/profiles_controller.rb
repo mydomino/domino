@@ -54,6 +54,9 @@ class ProfilesController < ApplicationController
     # Welcome tour params
     @tour = !@profile.welcome_tour_complete
     @mobile = @browser.device.mobile? ? true : false
+
+    # Display fat intro overlay if user has not joined food challenge yet
+    @fat_intro_overlay = true; #debug
   end
 
   # /verify_current_password/
