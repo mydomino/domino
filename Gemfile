@@ -55,6 +55,7 @@ gem 'remodal-rails'
 gem 'chart-js-rails'
 gem "d3-rails"
 
+
 # for mixpanel integration
 gem 'event_tracker', '~> 0.3.0'
 
@@ -75,6 +76,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
 end
+
 
 group :development, :test do
   gem 'byebug'

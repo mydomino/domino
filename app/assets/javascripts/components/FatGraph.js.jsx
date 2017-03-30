@@ -99,7 +99,7 @@ class FatGraph extends React.Component {
       .tickPadding(10);
 
     var max = d3.max(data, function(d) { return +d.cf;} );
-    max = (max <= 12 ? 12 : max);
+    max = (max <= 14 ? 14 : max);
 
     var y = d3.scaleLinear()
       .domain([0,max])
@@ -181,60 +181,62 @@ class FatGraph extends React.Component {
         window.location = "/food/" + d.path;
       });
 
-      // auxillary bars to show amount below or above avg cf
-      bar.append("rect")
-        .attr("class", "pointer aux")
-        .attr("id", function(d, i){
-          return "aux-" + i;
-        })
-        .attr("y", function(d){
-          if(d.cf == null || d.cf == "future") { 
-            return null;
-          }
-          if(d.cf < 6.2) {
-            return y(6.2);
-          }
-          else {
-            var diff = y(6.2) - y(d.cf);
-            return y(6.2) - diff;
-          }
-        })
-        .attr("height", function(d){
-          if(d.cf == null || d.cf == "future") { 
-            return null;
-          }
-          if(d.cf < 6.2) {
-            var height = y(d.cf) - y(6.2);
-          }
-          else {
-            var height = y(6.2) - y(d.cf);
-          }
-          return height;
-        })
-        .attr("width", barContainerWidth/2)
-        .attr("fill", function(d){
-          if(d.cf == null) return "none";
-          return (d.cf < 6.2 ? "#B4FAFF" : "#FFA7A7");
-        })
-        .style("stroke", function(d){
-          if(d.cf == null) return "none";
-          return (d.cf < 6.2 ? "B4FAFF" : "#FFA7A7");
-        })
-        .style("stroke-width", 4)
-        .style("opacity", 0)
-        .on("mouseenter", componentCtx.onBarEnter)
-        .on("mouseout", componentCtx.onBarExit);
 
-      //incomplete sections
-      d3.selectAll(".null")
-        .attr("y", y(max))
-        .attr("height", height-y(max))
-        .attr("fill", "white")
-        .style("stroke-dasharray", ("16, 16"))
-        .style("stroke", "#FFA7A7")
-        .style("stroke-width", 4)
-        .style("position","relative")
-        .style("z-index","3")
+
+
+        // auxillary bars to show amount below or above avg cf
+        bar.append("rect")
+          .attr("class", "pointer aux")
+          .attr("id", function(d, i){
+            return "aux-" + i;
+          })
+          .attr("y", function(d){
+            if(d.cf == null || d.cf == "future") return null;
+            if(d.cf < 7) {
+              return y(7);
+            }
+            else {
+              var diff = y(7) - y(d.cf);
+              return y(7) - diff;
+            }
+          })
+          .attr("height", function(d){
+            if(d.cf == null || d.cf == "future") return null;
+            if(d.cf < 7) {
+              var height = y(d.cf) - y(7);
+            }
+            else {
+              var height = y(7) - y(d.cf);
+            }
+            return height;
+          })
+          .attr("width", barContainerWidth/2)
+          .attr("fill", function(d){
+            if(d.cf == null) return "none";
+            return (d.cf < 7 ? "#B4FAFF" : "#FFA7A7");
+          })
+          .style("stroke", function(d){
+            if(d.cf == null) return "none";
+            return (d.cf < 7 ? "B4FAFF" : "#FFA7A7");
+          })
+          .style("stroke-width", 4)
+          .style("opacity", 0)
+          .on("mouseenter", componentCtx.onBarEnter)
+          .on("mouseout", componentCtx.onBarExit);
+
+        //incomplete sections
+        d3.selectAll(".null")
+          .attr("y", y(max))
+          .attr("height", height-y(max))
+          .attr("fill", "white")
+          .style("stroke-dasharray", ("16, 16"))
+          .style("stroke", "#FFA7A7")
+          .style("stroke-width", 4)
+          .style("position","relative")
+          .style("z-index","3")
+
+        d3.selectAll(".future")
+          .attr("height", 0);
 
       // top axis
       chart.append("g")
@@ -260,9 +262,9 @@ class FatGraph extends React.Component {
       // Avg cf line
       chart.append("line")
         .attr("x1",0)
-        .attr("y1", y(6.2))
+        .attr("y1", y(7))
         .attr("x2",width)
-        .attr("y2", y(6.2))
+        .attr("y2", y(7))
         .attr('stroke-width', 2)
         .attr('stroke', "#87D37C")
         .style("opacity", 0.5)
