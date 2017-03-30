@@ -74,8 +74,7 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
-
-
+  gem 'react-rails-hot-loader'
 end
 
 group :development, :test do

@@ -91,9 +91,8 @@ class FoodActionTracker extends React.Component {
             <div className="bg-white mx2 my1 py2 rounded center">
               <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">What does my score mean?</h3>
               <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
-                Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit.
-              </p>
+                Your Foodprint today is { this.state.meal_day.carbon_footprint } % below above the average American. 
+              </p> 
               <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">How is food related to carbon footprint?</h3>
               <p className="h5 sm-h4 left-align mx-auto mt1 col-10 sm-col-8">
                 Quisque porta orci ac diam maximus blandit. Nullam in libero ante. Donec nec ante lorem. Lorem ipsum dolor sit amet,
