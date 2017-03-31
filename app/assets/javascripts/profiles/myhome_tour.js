@@ -55,6 +55,7 @@ modulejs.define('myhome_tour', function(){
           introStep,
           cleanScoreIntro,
           fatIntro,
+          leaderBoardIntro,
           benefitsIntro;
 
       intro = introJs();
@@ -66,13 +67,17 @@ modulejs.define('myhome_tour', function(){
       fatIntro =  "<p class='bold'>Let’s start with food</h2>" +
         "<p>Join the food challenge and compete with your co-workers to see how big an impact you can make.</p>";
 
+      leaderBoardIntro = "<p class='bold'>The Leaderboard</p>" +
+       "<p>See where your clean score stands against members of your organization!</p>"
+
       benefitsIntro = "<p class='bold'>Member benefits</h2>" +
-        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, numquam ea. Eveniet, optio est perspiciatis dicta assumenda iure, ad nulla quis nemo iste veritatis aspernatur quisquam a commodi. Eum, commodi.</p>";
+        "<p>Check out cool offerings you receive as a MyDomino member!";
       
       // Push element intro content into data attributes where they are digested by introJs
       $('#fat-module').attr('data-intro', fatIntro);
       $('#clean-score').attr('data-intro', cleanScoreIntro);
       $('#member-benefits').attr('data-intro', benefitsIntro);
+      $('#leader-board').attr('data-intro', leaderBoardIntro);
 
       intro.setOptions({
         showStepNumbers: false,
@@ -87,7 +92,7 @@ modulejs.define('myhome_tour', function(){
       intro.onchange(function(targetElement) {
         introStep += 1;
         
-        if(introStep === 3) {
+        if(introStep === 4) {
           $('.introjs-skipbutton').css('display', 'inline-block');
         }
       });
