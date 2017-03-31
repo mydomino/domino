@@ -89,7 +89,7 @@ class FoodActionTracker extends React.Component {
               </span>
               <div className="bg-white mx2 my1 py2 rounded center">
                 <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">{ this.getResultTitle() }</h3>
-                <div className="col-10 sm-col-8 mx-auto" mx-auto dangerouslySetInnerHTML={this.getCfResultString()}>
+                <div className="col-10 sm-col-8 mx-auto" dangerouslySetInnerHTML={this.getCfResultString()}>
 
                 </div>
               </div>
