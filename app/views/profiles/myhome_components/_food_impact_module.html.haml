@@ -73,7 +73,8 @@
   }
 
 #fat-module.mt3.max-width-4.mx-auto.relative{data: {step: "1", position: "top"}}
-  .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded.bg-blue--overlay.z8{class: "#{'display-none' unless @show_fat_intro}"}
+  
+  .fat-overlay.absolute.top-0.bottom-0.left-0.right-0.rounded.bg-blue--overlay.z8{style: "display: #{'none' unless @show_fat_intro}"}
     .fat-overlay-1.absolute.top-0.bottom-0.left-0.right-0.rounded
       .flex.flex-column.mx-auto.items-center.justify-center.white.fill-y.px1
         .h1.medium Join the food challenge
@@ -113,12 +114,15 @@
     .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.mr1
     .fat-intro-indicator.x1.y1.circle.inline-block.bg-white.o50
 
-  .clearfix.mx2.lg-mx1
+  .clearfix.mx2.lg-mx1.relative
+    #fat-intro.absolute.right-0.top-0.fill-blue.p2.pointer
+      = inline_svg "icons/i-question.svg", class: 'fill-blue icon-m'
     .col.col-12.mb2.center
       .p3.bg-white.rounded.center
         .mb3#step1
           .flex.items-center.justify-center
             =image_tag "icons/i-apple.png", :class => "mr1"
+
             .h1.black.bold.inline.line-height-1
               Food Impact
           %p.col-12.sm-col-8.gray-5.mt2.mx-auto Compete with your teammates! Enter the categories of food you eat everyday to see the carbon footprint of your diet. Earn points by staying below the national average.
@@ -145,15 +149,34 @@
               -z_index -= 1
 
 :javascript
-  $('.fat-overlay-1').find('.btn').on('click', function(){
-    $('.fat-overlay-1').fadeOut(function(){
-      $('.fat-overlay-2').fadeIn();
+
+  var $fatOverlay1,
+      $fatOverlay2,
+      $fatOverlay,
+
+      $fatOverlay1 = $('.fat-overlay-1');
+      $fatOverlay2 = $('.fat-overlay-2');
+      $fatOverlay = $('.fat-overlay');
+
+  $fatOverlay1.find('.btn').on('click', function(){
+    $fatOverlay1.fadeOut(function(){
+      $fatOverlay2.fadeIn();
     });
     $('.fat-intro-indicator:first').addClass('o50');
     $('.fat-intro-indicator:nth-child(2)').removeClass('o50');
   });
 
-  $('.fat-overlay-2').find('.btn').on('click', function(){
-    $('.fat-overlay').fadeOut();
+  $fatOverlay2.find('.btn').on('click', function(){
+    $fatOverlay2.fadeOut(function(){
+      $('.fat-overlay').fadeOut();
+    });
     $.get("profile/fat-intro-complete", $.noop)
+  });
+
+  $('#fat-intro').on('click', function(){
+    $('.fat-intro-indicator:first').removeClass('o50');
+    $('.fat-intro-indicator:nth-child(2)').addClass('o50');
+    $('.fat-overlay').fadeIn(function(){
+      $fatOverlay1.fadeIn();
+    });
   });
