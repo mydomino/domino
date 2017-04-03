@@ -131,19 +131,18 @@ class FoodActionTracker extends React.Component {
     let str =  "<p class='h5 sm-h4 left-align mx-auto mt1'>Your Foodprint today is ";
     let cf = this.state.meal_day.carbon_footprint;
     let avgPercent = (cf/7) * 100;
-
     if(cf < 7) {
       let val = (100 - avgPercent).toFixed(2);
-      str += val + "% below the American average."
+      str += "<span class='h3 blue bold'>" + val + "%</span> below the American average."
     }
     else if(cf >= 7) {
       let val = (avgPercent - 100).toFixed(2);
-      str += val + "% above the American average.";
+      str += "<span class='h3 red bold'>" + val + "%</span> above the American average.";
     }
     else {
       str += "the American average";
     }
-    str += "<br/>You've earned " + this.state.meal_day.points + " points</p>";
+    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points</p>";
 
     if(cf > 7) {
       str += `
