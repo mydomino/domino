@@ -36,11 +36,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new_member
-
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
     end
-    
   end
   
   # Action /set_org_member_password/
