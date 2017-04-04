@@ -56,12 +56,40 @@ class User < ActiveRecord::Base
   # Purpose: Send signup links to org members who have User accounts previously
   #  created by an org admin.
   def email_signup_link
+
     # Email signup link is valid until a password is successfully reset
-    if self.signup_token.nil?
-      generate_token(:signup_token)
-    end
+    # once the password was reset, the sign_up token will be set to nil.
+    # refer to registrations_controller.rb#set_org_member_password for details
+    generate_signup_token
+
     self.save
     UserMailer.email_signup_link(self).deliver_later
+  end
+
+  # export the member sign_up link to a csv file 
+  def export_email_signup_link
+    
+  end
+
+
+  # return a sign_up link for a user
+  def get_signup_link(root_url)
+
+    signup_link = ""
+
+    if self.organization
+      org_name = self.organization.name.downcase
+      
+      signup_link = "#{root_url}#{org_name}?a=#{self.signup_token}"
+    else
+
+      # "#{root_url}pm?email=#{email}&a=#{self.signup_token}"
+
+      signup_link = "#{root_url}pm?a=#{self.signup_token}"
+    end
+
+    return signup_link
+    
   end
 
   # Returns the percentage of user's current week CF compare to national avg
@@ -205,5 +233,11 @@ class User < ActiveRecord::Base
 
     return(reward_points)
     
+  end
+
+  def generate_signup_token
+    if self.signup_token.nil?
+      generate_token(:signup_token)
+    end
   end
 end

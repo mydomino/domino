@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
 
      rescue ActiveRecord::RecordNotFound => e
        log_error(e)
-       redirect_to controller: 'errors', action: 'user_error', err_mesg: e.message
+       redirect_to controller: 'errors', action: 'user_error', err_mesg: "We could not find the record based on your search." #e.message
 
      rescue Pundit::NotAuthorizedError => e
        log_error(e)
