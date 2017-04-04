@@ -47,14 +47,17 @@ class UserMailer < ActionMailer::Base
   # Arguments: User user
   def email_signup_link(user)
     @user = user
-    @organization = @user.organization
+    @signup_link = @user.get_signup_link(root_url)
 
-    @signup_link = ""
-    if @organization
-      @signup_link = org_member_signup_link(@user)
-    else
-      @signup_link = non_org_member_signup_link(@user)
-    end
+
+    #@organization = @user.organization
+#
+    #@signup_link = ""
+    #if @organization
+    #  @signup_link = org_member_signup_link(@user)
+    #else
+    #  @signup_link = non_org_member_signup_link(@user)
+    #end
 
     mail(from: 'MyDomino <team@mydomino.com>', to: @user.email, subject: "Welcome to Mydomino. Here is your on-boarding instructions.")
   end
@@ -64,17 +67,19 @@ class UserMailer < ActionMailer::Base
   # /org_member_sign_up/
   # Purpose: Returns an org member sign up link.
   # ex: https://www.mydomino.com/sungevity?email=foo%40sungevity.com&a=vefwzr6tdy3-JD-6fFtM-A
-  def org_member_signup_link(user)
-    org_name = user.organization.name.downcase
-    email = user.email
-    token = user.signup_token
-    "#{root_url}#{org_name}?a=#{token}"
-  end
+  # def org_member_signup_link(user)
+  #   org_name = user.organization.name.downcase
+  #   email = user.email
+  #   token = user.signup_token
+  #   "#{root_url}#{org_name}?a=#{token}"
+  # end
 
-  # generate a sign_up link for non_org member
-  def non_org_member_signup_link(user)
-    email = user.email
-    token = user.signup_token
-    "#{root_url}pm?email=#{email}&a=#{token}"
-  end
+  # /org_member_sign_up/
+  # Purpose: Returns an org member sign up link.
+  # ex: https://www.mydomino.com/sungevity?email=foo%40sungevity.com&a=vefwzr6tdy3-JD-6fFtM-A
+  # def non_org_member_signup_link(user)
+  #   email = user.email
+  #   token = user.signup_token
+  #   "#{root_url}pm?email=#{email}&a=#{token}"
+  # end
 end
