@@ -244,7 +244,7 @@ FoodActionTracker.defaultProps = {
         // Fruits avg: 95 cal
         "50" : {
                   details: "Just a few pieces (~50 calories)",
-                  examples: "Half of an orange, apple, or banana. Or a cup of grapes."
+                  examples: "Half of an orange, apple, or banana. Or a cup of grapes"
                 },
         "100" : {
                   details: "An average amount (~100 calories)",
@@ -256,11 +256,11 @@ FoodActionTracker.defaultProps = {
                 },
         "200" : {
                   details: "A lot (~200 calories)",
-                  examples: "2 oranges. 2 apples. 2 bananas."
+                  examples: "2 oranges. 2 apples. 2 bananas"
                 },
         "300" : {
                   details: "Fruit monster! (~300 calories)",
-                  examples: "A medium (24oz) fruit smoothie, or 3 medium oranges, apples, or bananas."
+                  examples: "A medium (24oz) fruit smoothie, or 3 medium oranges, apples, or bananas"
                 }
     },
     // Vegetables
@@ -268,7 +268,7 @@ FoodActionTracker.defaultProps = {
       // Veg avg: 122 cal
       "50" :  {
                 details: "Some (~60 calories)",
-                examples: "2 medium carrots, a head of lettuce, or a medium onion. Or 4 whole cups of mixed green salad."
+                examples: "2 medium carrots, 1 head of lettuce, 1 medium onion, or 4 cups of mixed green salad"
               },
       "100" : {
                 details: "An average amount (~120 calories)",
@@ -276,26 +276,26 @@ FoodActionTracker.defaultProps = {
               }, 
       "150" : {
                 details: "A healthy amount (~180 calories)",
-                examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots, "
+                examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots"
               }, 
       "200" : {
                 details: "A vegetarian's dream! (~240 calories)",
-                examples: "1/3 cup of corn, 80 button mushrooms, or 1 small serving of french fries."
+                examples: "1/3 cup of corn, 80 button mushrooms, or 1 small serving of french fries"
               }
     },
     // Dairy
     "3" : {
       // Dairy avg: 278 cal
       "50" : {
-                details: "Only a little, (~140 calories)",
-                examples: "1 slice of chadder cheese, 1 cup of yogurt, or 1 cup of milk"
+                details: "Only a little (~140 calories)",
+                examples: "1 slice of cheese, 1 cup of yogurt, or 1 cup of milk"
               },
       "100" : {
-                details: "Average (~280 calories)",
+                details: "An average amount (~280 calories)",
                 examples: "2 cup of milk, 1 cup of ice cream, or 2/3 cup of shredded cheese"
               },
       "150" : {
-                details: "A lot, around 420 calories",
+                details: "A lot (~420 calories)",
                 examples: "3 cups of milk, 1.5 cups of ice cream, 1 cup of shredded cheese"
               },
       "200" : {
@@ -307,40 +307,40 @@ FoodActionTracker.defaultProps = {
     "4" : {
       // Grains avg: 618 cal
       "50" :  {
-                details: "A little bit, around 310 calories",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                details: "A little bit (~310 calories)",
+                examples: "1.5 cup of rice or pasta noodles, 2 cups of oatmeal, 4 slices of bread"
               },
       "100" : {
-                details: "Average, around 620 calories",
-                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+                details: "An average amount (~620 calories)",
+                examples: "1 cup of pinto beans, 2 cups of breakfast cereal, 3 cups of rice, or 3 doughnuts"
               },
       "150" : {
-                details: "More than average, around 930 calories",
-                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+                details: "More than average (~930 calories)",
+                examples: "1 baguette, 7 cupcakes, or 4 cups of pasta"
               },
       "200" : {
-                details: "I love my carbs! Around 1240 calories",
-                examples: "In at iure excepturi praesentium tempora rerum?"
+                details: "Can't get enough carbs (~1240 calories)",
+                examples: "Whoa there... For reference, 2 cups of rice or pasta is around 400 calories. We'll let you do the math"
               }
     },
     // Fish, poultry, pork
     "5" : {
       // Fish, poultry, pork avg: 238 cal
       "50" : {
-                details: "Half portion, around 120 calories ",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                details: "Half portion (~120 calories)",
+                examples: "1/2 chicken breast, 3 chicken wings, or 3 slices of bacon"
               },
       "100" : {
-                details: "Average, around 240 calories",
-                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+                details: "An average amount (~240 calories)",
+                examples: "1 chiken breast, 6 chicken wings, 1 flat can of tuna or salmon"
               },
       "150" : {
-                details: "I had seconds, around 360 calories",
-                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+                details: "I had seconds (~360 calories)",
+                examples: "1 fillet of fish, 4 scrambled eggs"
               },
       "200" : {
-                details: "I pigged out! Around 480 calories",
-                examples: "In at iure excepturi praesentium tempora rerum?"
+                details: "I pigged out! (~480 calories)",
+                examples: "An 8 oz pork chop, half a rosted chicken"
               }
     },
     // Beef, lamb
@@ -348,20 +348,20 @@ FoodActionTracker.defaultProps = {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
       "50" : {
-                details: "Only a few bites, around 80 calories.",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                details: "Only a few bites (~80 calories)",
+                examples: "1 oz of cooked beef or lamb"
               },
       "100" : {
-                details: "A little bit, around 160 calories",
-                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+                details: "A little bit (~160 calories)",
+                examples: "A couple of medium meatballs"
               },
       "150" : {
-                details: "A burger, around 230 calories.",
-                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+                details: "A burger (~230 calories)",
+                examples: "A quarter pound hamberger patty, or a 3oz lamb chop"
               },
       "200" : {
-                details: "A big burger, around 310 calories",
-                examples: "In at iure excepturi praesentium tempora rerum?"
+                details: "A large burger (~310 calories)",
+                examples: "A 1/3 pound hamberger patty, or one cup of diced beef / lamb"
               }
     }
   }
