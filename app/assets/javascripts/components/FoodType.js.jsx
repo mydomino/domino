@@ -154,7 +154,7 @@ FoodType.defaultProps = {
     "50": "a little",
     "100": "some",
     "150": "a lot",
-    "200": "too much"
+    "200": "a boatload"
   },
 
   borderRadiusClasses : [
