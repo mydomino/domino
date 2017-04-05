@@ -207,6 +207,7 @@ namespace :csv do
     file_name_path = full_path + '/' +  ARGV[2] 
     puts "Data file is imported from #{file_name_path}."
 
+    
     # check to make sure the CSV file exists
     if !File.exist?(file_name_path) 
       
@@ -220,12 +221,26 @@ namespace :csv do
     for_production = false
     for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
       (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
+
+    # build the out file name from the name of the input CSV file
+    # the out file name is the input file name and the string 'with_signup_links'
+    tmp_file_name = ARGV[2].split('.')
+    out_file_name = tmp_file_name[0] + '_with_signup_links' + '.' + tmp_file_name[1]
+    out_file_name_path = full_path + '/' + out_file_name
+
+    # open a CSV file for saving the signup_link to it for each user
+    out_csv = CSV.open(out_file_name_path, 'w')
+
+    # write the headers
+    out_csv << ['First_name', 'Last_name', 'Email', 'Signup_link']
+
+
     
     CSV.foreach(file_name_path, headers: true) do |row|
       begin
 
         puts "\n\nRow is #{row}"
-        #puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
+        puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
 
         next if row.size == 0
 
@@ -241,18 +256,29 @@ namespace :csv do
           # send user email with on board url
           user = User.find_by!(email: u_email.downcase)
 
-          # send user with on borad instructions and signup token
-          #user.email_onboard_url(u_fn, u_ln)
+        
+          # per requirement change - We are no longer sending signup link with email here
+          #puts "Sending user #{user.email} an email with signup_link."
+          #user.email_signup_link
 
-          puts "Sending user #{user.email} an email with signup_link."
-          user.email_signup_link
-         
+          # export the member sign_up link to a csv file
+          signup_link = user.get_signup_link(Rails.application.routes.url_helpers.root_url)
+          puts "signup link = #{signup_link }"
+
+          # write the headers
+          out_csv << [u_fn, u_ln, u_email, signup_link]
+
         end
+
+        puts "================================================================\n\n"
 
       rescue StandardError => e  
         puts "\nStandardError in CSV for row: #{row}! Error is: #{e.message}."
       end
     end
+
+    #HelperFunctions::export_users_sign_up_link_to_csv(ARGV[2], #{ARGV[2]})
+    out_csv.close if out_csv
       
 
   end

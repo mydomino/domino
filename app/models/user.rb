@@ -64,16 +64,13 @@ class User < ActiveRecord::Base
     UserMailer.email_signup_link(self).deliver_later
   end
 
-  # export the member sign_up link to a csv file 
-  def export_email_signup_link
-    
-  end
-
-
+   
   # return a sign_up link for a user
   def get_signup_link(root_url)
 
     signup_link = ""
+
+    generate_signup_token
 
     if self.organization
       org_name = self.organization.name.downcase

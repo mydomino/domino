@@ -44,8 +44,6 @@ module HelperFunctions
 
     end
 
-    puts "================================================================\n\n"
-
     return success
 
   end
@@ -135,9 +133,11 @@ module HelperFunctions
       # refer to registration_controller#after_sign_up_path_for
       # registered_user.rb
   
-      # update Zoho
-      puts "Sending profile data to Zoho for #{u_email}"
-      profile.save_to_zoho
+      # update Zoho only if we are in production
+      if Rails.env.production?
+        puts "Sending profile data to Zoho for #{u_email}"
+        profile.save_to_zoho
+      end
 
       # all actions were completed sucessfully. Let's set the flag to indicate that
       actions_complete = true
@@ -155,6 +155,22 @@ module HelperFunctions
 
     # Date object: Monday of current week
     @today - @today.cwday + 1
+  end
+
+  def self.export_users_sign_up_link_to_csv(in_file_name, out_file_name)
+
+
+    full_path = File.expand_path("#{Rails.root.join('data')}")
+    in_file_name_path = full_path + '/' + in_file_name
+    out_file_name_path = full_path + '/' + out_file_name
+
+    # check to make sure the CSV file exists
+    if !File.exist?(in_file_name_path) 
+      
+      puts "\nError! #{file_name_path} does not exist. Program exit."
+      exit
+    end
+    
   end
 
 

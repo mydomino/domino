@@ -64,4 +64,7 @@ Rails.application.configure do
 
   # completely disable web_console whiny_requests for display with ips - Yong
   config.web_console.whiny_requests = false
+
+  # set the default host for url_helpers method
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 end
