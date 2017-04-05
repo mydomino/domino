@@ -36,11 +36,18 @@ module HelperFunctions
       user = User.find_by!(email: u_email)
 
       # Add group and user to group_user
+      #group_user = GroupUser.create!(user: user, group: group, datetime_sign_in: Time.zone.now)
+      group_user = GroupUser.find_or_create_by(user: user, group: group) do |gu|
+        gu.user = user
+        gu.group = group
+        gu.datetime_sign_in = Time.zone.now
 
-      group_user = GroupUser.create!(user: user, group: group, datetime_sign_in: Time.zone.now)
+        puts "Creating info for group_user #{group.name} #{user.email}....\n"
+
+      end
   
-      puts "Saving info for group_user #{group.name} #{user.email}....\n"
-      group_user.save!
+      #puts "Saving info for group_user #{group.name} #{user.email}....\n"
+      #group_user.save!
 
     end
 
@@ -157,21 +164,21 @@ module HelperFunctions
     @today - @today.cwday + 1
   end
 
-  def self.export_users_sign_up_link_to_csv(in_file_name, out_file_name)
-
-
-    full_path = File.expand_path("#{Rails.root.join('data')}")
-    in_file_name_path = full_path + '/' + in_file_name
-    out_file_name_path = full_path + '/' + out_file_name
-
-    # check to make sure the CSV file exists
-    if !File.exist?(in_file_name_path) 
-      
-      puts "\nError! #{file_name_path} does not exist. Program exit."
-      exit
-    end
-    
-  end
+  #def self.export_users_sign_up_link_to_csv(in_file_name, out_file_name)
+#
+#
+  #  full_path = File.expand_path("#{Rails.root.join('data')}")
+  #  in_file_name_path = full_path + '/' + in_file_name
+  #  out_file_name_path = full_path + '/' + out_file_name
+#
+  #  # check to make sure the CSV file exists
+  #  if !File.exist?(in_file_name_path) 
+  #    
+  #    puts "\nError! #{file_name_path} does not exist. Program exit."
+  #    exit
+  #  end
+  #  
+  #end
 
 
 end

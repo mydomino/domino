@@ -277,8 +277,14 @@ namespace :csv do
       end
     end
 
-    #HelperFunctions::export_users_sign_up_link_to_csv(ARGV[2], #{ARGV[2]})
+    
     out_csv.close if out_csv
+
+    # email the generated CSV file to MyDomino's staff
+    UserMailer.email_signup_link_csv_file(out_file_name_path).deliver_later
+
+
+    #HelperFunctions::export_users_sign_up_link_to_csv(ARGV[2], #{ARGV[2]})
       
 
   end

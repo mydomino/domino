@@ -49,17 +49,21 @@ class UserMailer < ActionMailer::Base
     @user = user
     @signup_link = @user.get_signup_link(root_url)
 
-
-    #@organization = @user.organization
-#
-    #@signup_link = ""
-    #if @organization
-    #  @signup_link = org_member_signup_link(@user)
-    #else
-    #  @signup_link = non_org_member_signup_link(@user)
-    #end
-
     mail(from: 'MyDomino <team@mydomino.com>', to: @user.email, subject: "Welcome to Mydomino. Here is your on-boarding instructions.")
+  end
+
+  
+  # email a CSV file to MyDomino's staff
+  def email_signup_link_csv_file(file_path)
+    
+    csv_file_recipients = ENV['CSV_FILE_RECIPIENTS'].nil? ? %w(yong@mydomino.com johnp@mydomino.com marcian@mydomino.com) : ENV['CSV_FILE_RECIPIENTS'].split(',')
+
+
+    attachments[file_path] = File.read(file_path)
+    mail(from: "dev@mydomino.com", to: csv_file_recipients, subject: "CSV file with signup links for member onboarding")
+
+    Rails.logger.info "Signup Link Function: Emailing CSV file attachment to #{csv_file_recipients}....\n"
+
   end
 
   private
