@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = current_user.profile
 
-    track_event "Profile - show"
+    track_event "/profile page view"
   end
 
   # /myhome/
@@ -59,7 +59,7 @@ class ProfilesController < ApplicationController
     # Display fat intro overlay if user has not joined food challenge yet
     @show_fat_intro = !@profile.fat_intro_complete
 
-    track_event "Profile - myhome"
+    track_event "/myhome page view"
   end
 
   # /verify_current_password/
@@ -98,7 +98,7 @@ class ProfilesController < ApplicationController
       status: 200
     }, status: 200
 
-    track_event "Profile - update_password"
+    track_event "User updated password"
   end
 
   def new

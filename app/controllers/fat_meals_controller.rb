@@ -4,8 +4,8 @@ class FatMealsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_date, only: [:edit, :create, :update]
  
-  # GET /food-action-tracker
-  # GET /food-action-tracker/:year/:month/:day
+  # GET /food
+  # GET /food/:year/:month/:day
   # Purpose: Display the FAT interface for a given date
   #  If no date params are provided, the interface will
   #  render for the current date based on users timezone
@@ -23,7 +23,7 @@ class FatMealsController < ApplicationController
       graph_params: @graph_params
     }
 
-    track_event "FatMeal - edit"
+    track_event "/food page view (FAT interface)"
   end
 
   # POST /food-action-tracker XmlHttpRequest
@@ -43,7 +43,7 @@ class FatMealsController < ApplicationController
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
     
-    track_event "FatMeal - create"
+    track_event "User created a FAT entry"
 
     fat_graph_params(@date)
     render_response
@@ -67,7 +67,7 @@ class FatMealsController < ApplicationController
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
 
-    track_event "FatMeal - update"
+    track_event "User updated a FAT entry"
 
     fat_graph_params(@meal_day.date)
 

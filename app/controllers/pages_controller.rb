@@ -15,31 +15,30 @@ class PagesController < ApplicationController
   end
 
   def about
-    track_event "Pages - about"
+    track_event "/about page view"
   end
 
   def terms
-    track_event "Pages - terms"
+    track_event "/terms page view"
   end
 
   def privacy
-    track_event "Pages - privacy"
+    track_event "/privacy page view"
   end
 
   def team
-    track_event "Pages - team"
+    track_event "/team page view"
   end
 
   def faq
-    track_event "Pages - faq"
+    track_event "/faq page view"
   end
 
   def example
-    track_event "Pages - example"
   end
 
   def partners
-    track_event "Pages - partners"
+    track_event "/partners page view"
   end
 
   def newsletter_subscribe
