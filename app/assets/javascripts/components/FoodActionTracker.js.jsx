@@ -243,60 +243,64 @@ FoodActionTracker.defaultProps = {
     "1" : {
         // Fruits avg: 95 cal
         "50" : {
-                  details: "Just a few pieces, around 50 calories",
-                  examples: "An orange. 1/2 an apple. 1/2 a banana."
+                  details: "Just a few pieces (~50 calories)",
+                  examples: "Half of an orange, apple, or banana. Or a cup of grapes."
                 },
         "100" : {
-                  details: "Average, around 100 calories",
-                  examples: "Two oranges. An apple. A banana."
+                  details: "An average amount (~100 calories)",
+                  examples: "A baseball size orange or apple. Or a medium (7\") banana"
                 },
         "150" : {
-                  details: "A lot, around 150 calories",
-                  examples: "2.5 oranges. 1.5 Apples. 1.5 bananas."
+                  details: "A healthy amount (~150 calories)",
+                  examples: "1 cup of fruit salad, or 1.5 oranges, apples, or bananas (medium sizes)"
                 },
         "200" : {
-                  details: "Fruit monster, around 200 calories",
-                  examples: "4 oranges. 2 apples. 2 bananas."
+                  details: "A lot (~200 calories)",
+                  examples: "2 oranges. 2 apples. 2 bananas."
+                },
+        "300" : {
+                  details: "Fruit monster! (~300 calories)",
+                  examples: "A medium (24oz) fruit smoothie, or 3 medium oranges, apples, or bananas."
                 }
     },
     // Vegetables
     "2" : {
       // Veg avg: 122 cal
       "50" :  {
-                details: "Just a little, around 60 calories",
-                examples: "2 carrots. A head of lettuce. An onion"
+                details: "Some (~60 calories)",
+                examples: "2 medium carrots, a head of lettuce, or a medium onion. Or 4 whole cups of mixed green salad."
               },
       "100" : {
-                details: "Average, around 120 calories",
-                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+                details: "An average amount (~120 calories)",
+                examples: "1 ear of medium corn, 1 can of tomato sauce, or 1 cup of vegetable stir-fry"
               }, 
       "150" : {
-                details: "A lot, around 180 calories",
-                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+                details: "A healthy amount (~180 calories)",
+                examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots, "
               }, 
       "200" : {
-                details: "A crap load, around 240 calories",
-                examples: "In at iure excepturi praesentium tempora rerum?"
-              } 
+                details: "A vegetarian's dream! (~240 calories)",
+                examples: "1/3 cup of corn, 80 button mushrooms, or 1 small serving of french fries."
+              }
     },
     // Dairy
     "3" : {
       // Dairy avg: 278 cal
       "50" : {
-                details: "Only a little, around 140 calories",
-                examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                details: "Only a little, (~140 calories)",
+                examples: "1 slice of chadder cheese, 1 cup of yogurt, or 1 cup of milk"
               },
       "100" : {
-                details: "Average, around 280 calories",
-                examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
+                details: "Average (~280 calories)",
+                examples: "2 cup of milk, 1 cup of ice cream, or 2/3 cup of shredded cheese"
               },
       "150" : {
                 details: "A lot, around 420 calories",
-                examples: "Quaerat nihil fugit deleniti ipsam nisi."
+                examples: "3 cups of milk, 1.5 cups of ice cream, 1 cup of shredded cheese"
               },
       "200" : {
-                details: "I went nuts, around 560 calories",
-                examples: "In at iure excepturi praesentium tempora rerum?"
+                details: "I went a bit nuts (~560 calories)",
+                examples: "1 medium (15oz) milkshake (e.g. from In-n-out or McDonalds)"
               }
     },
     // Grains
@@ -344,11 +348,11 @@ FoodActionTracker.defaultProps = {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
       "50" : {
-                details: "Only a little bit, around 80 calories.",
+                details: "Only a few bites, around 80 calories.",
                 examples: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
               },
       "100" : {
-                details: "Average, around 160 calories",
+                details: "A little bit, around 160 calories",
                 examples: "Ex, qui! Rem voluptates, harum sint ad sapiente debitis."
               },
       "150" : {
