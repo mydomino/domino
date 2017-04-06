@@ -22,6 +22,7 @@
 #  fk_rails_8cb1930a1d  (user_id => users.id)
 #
 
+
 class Dashboard < ActiveRecord::Base
   # extend FriendlyId
   # friendly_id :slug_candidates, use: :slugged

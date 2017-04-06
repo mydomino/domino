@@ -34,6 +34,7 @@
 #  fk_rails_d7b9ff90af  (organization_id => organizations.id)
 #
 
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
