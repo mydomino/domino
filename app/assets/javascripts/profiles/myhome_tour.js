@@ -2,6 +2,7 @@ modulejs.define('myhome_tour', function(){
   return {
     mobile: null,
     modals: [],
+    tourComplete: false,
     initModals: function() {
       var $firstModal,
           $secondModal,
@@ -55,8 +56,10 @@ modulejs.define('myhome_tour', function(){
           cleanScoreIntro,
           fatIntro,
           leaderBoardIntro,
-          benefitsIntro;
+          benefitsIntro,
+          that;
 
+      that = this;
       intro = introJs();
       introStep = 0;
 
@@ -85,7 +88,8 @@ modulejs.define('myhome_tour', function(){
       });
 
       intro.oncomplete(function() {
-        $('.skip-for-now').removeClass('hidden');
+        that.tourComplete = true;
+        that.showSkipTriggers();
         $.get("profile/welcome-tour-complete", $.noop)
       });
 
@@ -98,10 +102,16 @@ modulejs.define('myhome_tour', function(){
       });
 
       intro.start();
+      if(that.tourComplete) {
+        $('.introjs-skipbutton').css('display', 'inline-block');
+      }
 
       // Workaround to prevent multiple overlays should
       // a user go through the tour multiple times
       $('.introjs-overlay').not(':first').remove();
+    },
+    showSkipTriggers: function(){
+      $('.skip-for-now').removeClass('hidden');
     },
     start: function(start) {
       if(!start) return;
@@ -186,7 +196,7 @@ modulejs.define('myhome_tour', function(){
             that.startIntroJs();
           } 
           else {
-            $('.skip-for-now').removeClass('hidden');
+            that.showSkipTriggers();
             $.get("profile/welcome-tour-complete", $.noop)
           }
         });
