@@ -82,6 +82,7 @@ modulejs.define('myhome_tour', function(){
       $('#leader-board').attr('data-intro', leaderBoardIntro);
 
       intro.setOptions({
+        disableInteraction: true,
         showStepNumbers: false,
         exitOnEsc: false,
         exitOnOverlayClick: false
@@ -102,6 +103,7 @@ modulejs.define('myhome_tour', function(){
       });
 
       intro.start();
+
       if(that.tourComplete) {
         $('.introjs-skipbutton').css('display', 'inline-block');
       }
