@@ -83,11 +83,11 @@ class FoodActionTracker extends React.Component {
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
-              <span onClick={() => this.toggleView()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
-                <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
-                <h4 className="medium my0">Back</h4>
-              </span>
               <div className="bg-white mx2 my1 py2 rounded center">
+                <span onClick={() => this.toggleView()} style={{top:'1.5rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+                  <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+                  <h4 className="medium my0">Back</h4>
+                </span>
                 <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">{ this.getResultTitle() }</h3>
                 <div className="col-10 sm-col-8 mx-auto" dangerouslySetInnerHTML={this.getCfResultString()}>
 
@@ -132,11 +132,11 @@ class FoodActionTracker extends React.Component {
     let cf = this.state.meal_day.carbon_footprint;
     let avgPercent = (cf/7) * 100;
     if(cf < 7) {
-      let val = (100 - avgPercent).toFixed(2);
+      let val = (100 - avgPercent).toFixed(0);
       str += "<span class='h3 blue bold'>" + val + "%</span> below the American average."
     }
     else if(cf >= 7) {
-      let val = (avgPercent - 100).toFixed(2);
+      let val = (avgPercent - 100).toFixed(0);
       str += "<span class='h3 red bold'>" + val + "%</span> above the American average.";
     }
     else {
@@ -144,19 +144,30 @@ class FoodActionTracker extends React.Component {
     }
     str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points</p>";
 
-    if(cf > 7) {
+    if(cf < 7) {
       str += `
         <p class='h5 sm-h4 left-align mx-auto mt1'>
           <span class="bold">Did you know?</span><br/>
           Beef and Lamb produces 5x more carbon emission than chicken, so choose your meats wisely.
-          Also, up to 40% of food produced is wasted…
+          Also, up to 40% of food produced is wasted, but you can help change that.
         </p>
+      `;
+    } else {
+      str += `
         <p class='h5 sm-h4 left-align mx-auto mt1'>
           <span class="bold">How you can improve</span><br/>
           Try cutting back on beef or lamb. They produces 5x more carbon emission than chicken.”
         </p>
       `;
     }
+
+    str += `
+      <div className="mx-auto center my1">
+        <span className="ml1">
+          <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+        </span>
+      </div>
+    `
 
     // return $(str);
     return {__html: str }; 
