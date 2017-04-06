@@ -7,7 +7,8 @@
 
 :css
   .introjs-skipbutton {
-    display: none;
+    display: "#{@tour ? 'hidden': 'inline-block'}";
+    content: "#{1+2}";
   }
 
 = render "profiles/myhome_components/welcome_tour_modals"
