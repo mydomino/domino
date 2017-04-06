@@ -225,10 +225,13 @@ namespace :csv do
     # build the out file name from the name of the input CSV file
     # the out file name is the input file name and the string 'with_signup_links'
     tmp_file_name = ARGV[2].split('.')
-    out_file_name = tmp_file_name[0] + '_with_signup_links' + '.' + tmp_file_name[1]
+    #out_file_name = tmp_file_name[0] + '_with_signup_links' + '.' + tmp_file_name[1]
+    out_file_name = "members_with_signup_links.csv"
     out_file_name_path = full_path + '/' + out_file_name
 
     # open a CSV file for saving the signup_link to it for each user
+    # note: This output file need to pre-exist in the data folder because it now serves as a temp file area for CSV write in Heroku.
+    # Heroku file creation is ephemeral.
     out_csv = CSV.open(out_file_name_path, 'w')
 
     # write the headers
