@@ -8,7 +8,7 @@ module FatCompetition
 
   # FAT specific point values
   TRACK_FOOD_LOG_POINTS           = 10
-  BEAT_CFP_EMISSION_POINTS        = 1
+  BEAT_CFP_EMISSION_POINTS        = 10
   EAT_NO_BEEF_LAMB_A_DAY_POINTS   = 10
   EAT_NO_DAIRY_A_DAY_POINTS       = 5
 
@@ -87,15 +87,14 @@ module FatCompetition
     points = 0
     # user is not elible for points
     # Their carbon footprint exceeds 6.2 kg
-    if meal_day.carbon_footprint >= 6.2
+    if meal_day.carbon_footprint >= 7
       PointsLog.remove_point(meal_day.user, BEAT_CFP_EMISSION, meal_day.date)
     else
       # user is eligible for a point
-      # 1 pt per 10 percent below average
-      percent_average_emission = 1 - (meal_day.carbon_footprint / 6.2).round(1)
-
+      # 1 point for each % below cfp
+      percent_average_emission = (1-(meal_day.carbon_footprint)/7).round(2)
       if percent_average_emission >= 0.1 && percent_average_emission < 1.0
-        pts = ( percent_average_emission * 10 * BEAT_CFP_EMISSION_POINTS ).to_i
+        pts = ( percent_average_emission * 100 ).to_i
         if PointsLog.has_point?(meal_day.user, BEAT_CFP_EMISSION, meal_day.date)
           PointsLog.update_point(meal_day.user, BEAT_CFP_EMISSION, "Beat avg cfp emission", pts, meal_day.date)
           points = pts
