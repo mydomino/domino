@@ -26,10 +26,10 @@ module HelperFunctions
   end
 
 
-  def self.create_user_by_group(group, first_name, last_name, u_email, role)
+  def self.create_user_by_group(group, first_name, last_name, u_email, role, is_for_production)
 
 
-    success = create_user_profile_dashboard(first_name, last_name, u_email, role)
+    success = create_user_profile_dashboard(first_name, last_name, u_email, role, is_for_production)
 
     if success
 
@@ -57,7 +57,7 @@ module HelperFunctions
 
 
 
-  def create_user_profile_dashboard(first_name, last_name, u_email, role)
+  def create_user_profile_dashboard(first_name, last_name, u_email, role, is_for_production)
 
     actions_complete = false
 
@@ -141,7 +141,7 @@ module HelperFunctions
       # registered_user.rb
   
       # update Zoho only if we are in production
-      if Rails.env.production?
+      if is_for_production
         puts "Sending profile data to Zoho for #{u_email}"
         profile.save_to_zoho
       end
