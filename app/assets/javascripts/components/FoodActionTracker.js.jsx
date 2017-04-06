@@ -88,7 +88,7 @@ class FoodActionTracker extends React.Component {
                   <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
                   <h4 className="medium my0">Back</h4>
                 </span>
-                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">{ this.getResultTitle() }</h3>
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto gray-7">{ this.getResultTitle() }</h3>
                 <div className="col-10 sm-col-8 mx-auto" dangerouslySetInnerHTML={this.getCfResultString()}>
 
                 </div>
@@ -121,7 +121,7 @@ class FoodActionTracker extends React.Component {
       return ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
     } 
     else if(cf >= 7 && cf < 8 ){
-      return "Not bad, I guess...";
+      return "It's okay, I guess...";
     }
     else {
       return "Doh!";
@@ -142,7 +142,7 @@ class FoodActionTracker extends React.Component {
     else {
       str += "the American average";
     }
-    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points</p>";
+    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</p>";
 
     if(cf < 7) {
       str += `

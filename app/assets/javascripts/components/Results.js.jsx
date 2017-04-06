@@ -6,13 +6,13 @@ class Results extends React.Component {
     return (
       <div>
         <div id="weekly-progress" className="center bg-leaf py4">
-          <div className="h4 caps bold gray-80 pb4">WEEKLY PROGRESS</div>
+          <div className="h2 bold gray-7 pb4">Weekly Progress</div>
           <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         </div>
 
         <div id="learn-more" className="pt3 pb4 center bg-gray-1">
           <div className="mx3 sm-mx0">
-            <div className="h4 caps bold gray-80 my3">LEARN MORE</div>
+            <div className="h1 bold gray-7 my3">Learn More</div>
               <div className="max-width-3 mx-auto">
                 <div className="flex flex-column sm-row justify-around">
 
