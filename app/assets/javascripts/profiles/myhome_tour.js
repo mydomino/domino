@@ -1,7 +1,7 @@
 modulejs.define('myhome_tour', function(){
   return {
     mobile: null,
-    modals: null,
+    modals: [],
     initModals: function() {
       var $firstModal,
           $secondModal,
@@ -15,10 +15,11 @@ modulejs.define('myhome_tour', function(){
       $secondModal = $('#second');
       $thirdModal = $('#third');
 
+      var remodalOpts = {closeOnOutsideClick: false, closeOnEscape: false}
       // Remodal dialog instances
-      firstModal = $firstModal.remodal();
-      secondModal = $secondModal.remodal();
-      thirdModal = $thirdModal.remodal();
+      firstModal = $firstModal.remodal(remodalOpts);
+      secondModal = $secondModal.remodal(remodalOpts);
+      thirdModal = $thirdModal.remodal(remodalOpts);
 
       this.modals = [
         {
@@ -37,18 +38,16 @@ modulejs.define('myhome_tour', function(){
       // If user is on mobile device, create fourth modal elements
       if(this.mobile) {
         var $fourthModal = $('#fourth');
-        var fourthModal = $fourthModal.remodal();
+        var fourthModal = $fourthModal.remodal(remodalOpts);
         this.modals.push({remodalInstance: fourthModal, jQInstance: $fourthModal});
       }
 
       // reset display
-      $('.remodal').css('display', 'inline-block');
+      $('.remodal-wt').css('display', 'inline-block');
     },
     init: function(mobile) {
       this.mobile = mobile;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
-      
-
     },
     startIntroJs: function() {
       var intro,
@@ -86,6 +85,7 @@ modulejs.define('myhome_tour', function(){
       });
 
       intro.oncomplete(function() {
+        $('.skip-for-now').removeClass('hidden');
         $.get("profile/welcome-tour-complete", $.noop)
       });
 
@@ -186,6 +186,7 @@ modulejs.define('myhome_tour', function(){
             that.startIntroJs();
           } 
           else {
+            $('.skip-for-now').removeClass('hidden');
             $.get("profile/welcome-tour-complete", $.noop)
           }
         });

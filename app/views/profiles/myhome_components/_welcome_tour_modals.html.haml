@@ -1,5 +1,5 @@
 .welcome-tour-bg
-.rounded.p4.remodal#first{data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
+.rounded.p4.remodal-wt#first{data:{"remodal-id":"modal-0"}}
   %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 0}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
   = image_tag "i-earth", class:"col-4 sm-col-3"
@@ -8,7 +8,7 @@
     %p.my0.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Let’s begin with a short explanation of carbon impact.
   .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} What's carbon impact?
 
-.rounded.p4.remodal#second{style: 'display: none;', data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
+.rounded.p4.remodal-wt#second{style: 'display: none;', data:{"remodal-id":"modal-1"}}
   = image_tag "illo-balloon", class:"col-5 sm-col-4"
   %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 1}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
@@ -48,7 +48,7 @@
             = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
 
-.remodal.p4#third{style: "display: none;", data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
+.remodal-wt.p4#third{style: "display: none;", data:{"remodal-id":"modal-2"}}
   %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 2}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
   = image_tag "i-impact-categories.png", class: "col-4"
@@ -84,7 +84,7 @@
             = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
 -if @mobile
-  .remodal#fourth{style: "display: none;", data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
+  .remodal-wt#fourth{style: "display: none;", data:{"remodal-id":"modal-3"}}
     %h2.sm-h1.medium.mb0 Mobile modal
     .h5.measure.mx-auto
       %p.left-align
