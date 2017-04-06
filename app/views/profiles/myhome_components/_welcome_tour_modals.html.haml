@@ -1,14 +1,17 @@
 .welcome-tour-bg
 .rounded.p4.remodal#first{data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
+  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 0}}
+    %img.icon-m{src: "/fat_icons/i-close.svg"}
   = image_tag "i-earth", class:"col-4 sm-col-3"
   %h2.sm-h1.medium.mb0 Welcome, #{@profile.first_name}!
   .h5.sm-h4.measure.mx-auto.mt1.mb6
     %p.my0.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Let’s begin with a short explanation of carbon impact.
   .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} What's carbon impact?
-  %h5.center.mt1.mb0.gray-5.underline.skip-for-now.pointer{class: "#{'hidden' if @tour}", data: {step: 0}} Skip for now
 
 .rounded.p4.remodal#second{style: 'display: none;', data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
   = image_tag "illo-balloon", class:"col-5 sm-col-4"
+  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 1}}
+    %img.icon-m{src: "/fat_icons/i-close.svg"}
   %h2.sm-h1.medium.mt1.mb0 Carbon Impact
   .h5.sm-h4.measure.mx-auto.left-align.mt1
     %span Did you know, the average American produces enough carbon emission to fill a
@@ -31,7 +34,6 @@
       %p.gray-5.center.mt1 75% of your carbon emissions comes from these 3 areas
 
   .mt3.flex.justify-between
-    %h5.center.mt1.mb0.gray-5.underline.skip-for-now.pointer{class: "#{'hidden' if @tour}", data: {step: 1}} Skip for now
     .flex.items-center
       %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 1}}
         .flex.items-center
@@ -47,6 +49,8 @@
 
 
 .remodal.p4#third{style: "display: none;", data: {"remodal-options": "closeOnEscape: false, closeOnOutsideClick: false"}}
+  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 2}}
+    %img.icon-m{src: "/fat_icons/i-close.svg"}
   = image_tag "i-impact-categories.png", class: "col-4"
 
   %h2.sm-h1.medium.mt1.mb0 Let's start with food first
@@ -66,7 +70,6 @@
         Join the food challenge and see how much you can lower your "Carbon Foodprint".
 
   .mt3.flex.justify-between
-    %h5.center.mt1.mb0.gray-5.underline.skip-for-now.pointer{class: "#{'hidden' if @tour}", data: {step: 2}} Skip for now
     .flex.items-center
       %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 2}}
         .flex.items-center
