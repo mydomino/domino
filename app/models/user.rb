@@ -62,7 +62,6 @@ class User < ActiveRecord::Base
     # refer to registrations_controller.rb#set_org_member_password for details
     generate_signup_token
 
-    self.save
     UserMailer.email_signup_link(self).deliver_later
   end
 
@@ -235,6 +234,7 @@ class User < ActiveRecord::Base
   def generate_signup_token
     if self.signup_token.nil?
       generate_token(:signup_token)
+      self.save
     end
   end
 end

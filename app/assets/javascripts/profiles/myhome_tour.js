@@ -63,16 +63,16 @@ modulejs.define('myhome_tour', function(){
       intro = introJs();
       introStep = 0;
 
-      cleanScoreIntro = "<p class='bold'>Your clean score</p>" +
-        "<p>Earn points in this competition and rise to the top of your leaderboard by staying below the average American’s carbon foodprint.</p>";
+      cleanScoreIntro = "<p class='bold'>Check out your clean score</p>" +
+        "<p>This is calculated from your food challenge log. The lower your Foodprint, the better your grade.</p>";
 
-      fatIntro =  "<p class='bold'>Let’s start with food</h2>" +
-        "<p>Join the food challenge and compete with your teammates to see the impact you can make.</p>";
+      fatIntro =  "<p class='bold'>Here's your food challenge</h2>" +
+        "<p>Join and compete with your teammates to see the impact you can make.</p>";
 
-      leaderBoardIntro = "<p class='bold'>The Leaderboard</p>" +
-       "<p>See where you stands compare to your teammates.</p>"
+      leaderBoardIntro = "<p class='bold'>Your competition</p>" +
+        "<p>See where you stand compared to your teammates. Can you rise to the top?</p>"
 
-      benefitsIntro = "<p class='bold'>Member benefits</h2>" +
+      benefitsIntro = "<p class='bold'>Your member perks</h2>" +
         "<p>Check out the cool offerings you receive as a MyDomino member!";
       
       // Push element intro content into data attributes where they are digested by introJs

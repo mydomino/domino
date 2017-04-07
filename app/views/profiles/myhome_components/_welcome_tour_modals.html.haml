@@ -5,20 +5,20 @@
   = image_tag "i-earth", class:"col-4 sm-col-3"
   %h2.sm-h1.medium.mb0 Welcome, #{@profile.first_name}!
   .h5.sm-h4.measure.mx-auto.mt1.mb6
-    %p.my0.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy, starting with small steps. Let’s begin with a short explanation of carbon impact.
-  .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} What's carbon impact?
+    %p.my0.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy to lower your carbon footprint, starting with small steps.
+  .wt-next.btn.btn-md.btn-primary.btn-primary--hover.mb2{data: {step: 0}} What's my carbon footprint?
 
 .rounded.p4.remodal-wt#second{style: 'display: none;', data:{"remodal-id":"modal-1"}}
   = image_tag "illo-balloon", class:"col-5 sm-col-4"
   %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 1}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
-  %h2.sm-h1.medium.mt1.mb0 Carbon Impact
+  %h2.sm-h1.medium.mt1.mb0 Carbon Footprint
   .h5.sm-h4.measure.mx-auto.left-align.mt1
-    %span Did you know that the average American produces enough carbon emissions to fill a
-    %span.bold 12-foot-wide balloon per day?
-    %span Every small choice you make enlarges this balloon (your carbon impact)!
+    %span Did you know that the average American produces enough carbon emissions each day to fill a
+    %span.bold 12-foot-wide balloon?
+    %span Every small choice you make enlarges or shrinks this balloon (your carbon footprint)!
     %p.mt2.mb2
-      %span Managing these small choices can be overwhelming. So, we grouped the primary causes into
+      %span Managing these choices can be overwhelming. So we broke it down into simple steps you can take in your
       %span.bold food, transportation, and energy.
     .h5.sm-h4.measure.mx-auto.mt2
       .flex.justify-center.bg-orange--light.px1.py2.rounded
@@ -31,11 +31,11 @@
         .flex.flex-column.items-center.mx3
           = image_tag "icons/i-lightbulb", class:"icon-xl"
           Energy
-      %p.gray-5.center.mt1 75% of your carbon emissions comes from these 3 areas
+      %p.gray-5.center.mt1 These 3 areas account for 75% of your carbon emissions.
 
   .mt3.flex.justify-end
     .flex.items-center
-      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 1}}
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 1}}
         .flex.items-center
           %span.inline-block.mr1
             =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-4 block'
@@ -56,22 +56,22 @@
   %h2.sm-h1.medium.mt1.mb0 Let's start with food
 
   .h5.sm-h4.measure.mx-auto.left-align.mt1.mb3
-    %span.left-align
-      Food contributes up to
-    %span.bold 30% of our carbon emissions.
-    %span It takes energy to grow, process, transport, and store our food.
-
+    %p.left-align.mt1.mb2
+      %span.left-align
+        Food contributes up to
+      %span.bold 30% of our carbon emissions.
+      %span It takes energy to grow, process, transport, and store our food.
     %p.left-align.my1
-      The good news is that food changes are easy, and you can make a dent in your carbon footprint right away!
+      The good news is that with some simple food changes, you can easily make a dent in your carbon footprint right away!
 
     .flex.items-center.bg-orange--light.px3.py2.rounded.mt2.mb4
-      = image_tag "icons/i-apple--outline", class:"icon-xl"
+      = image_tag "icons/i-apple", class:"icon-xl"
       %p.left-align.pl2
         Join the food challenge and see how much you can lower your "Carbon Foodprint."
 
   .mt3.flex.justify-end
     .flex.items-center
-      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 2}}
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 2}}
         .flex.items-center
           %span.inline-block.mr1
             =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"
@@ -91,7 +91,7 @@
         Pellentesque et lorem nec tortor posuere efficitur nec nec velit. Vestibulum ac venenatis lorem. Nunc ac dui placerat, molestie tellus at, consectetur enim. Pellentesque ac enim id libero bibendum molestie. Nam ac nisl sit amet nulla varius cursus. Sed ligula sapien, eleifend lobortis quam sit amet, viverra molestie mi.
 
     .right.mt2.flex.items-center
-      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 3}}
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 3}}
         .flex.items-center
           %span.inline-block.mr1
             =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"

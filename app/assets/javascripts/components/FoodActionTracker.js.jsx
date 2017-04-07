@@ -83,12 +83,12 @@ class FoodActionTracker extends React.Component {
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
-              <span onClick={() => this.toggleView()} style={{top:'-1.4rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
-                <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
-                <h4 className="medium my0">Back</h4>
-              </span>
               <div className="bg-white mx2 my1 py2 rounded center">
-                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto">{ this.getResultTitle() }</h3>
+                <span onClick={() => this.toggleView()} style={{top:'1.5rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+                  <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
+                  <h4 className="medium my0">Back</h4>
+                </span>
+                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto gray-7">{ this.getResultTitle() }</h3>
                 <div className="col-10 sm-col-8 mx-auto" dangerouslySetInnerHTML={this.getCfResultString()}>
 
                 </div>
@@ -119,9 +119,9 @@ class FoodActionTracker extends React.Component {
     if(cf <= 7) {
 
       return ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
-    } 
+    }
     else if(cf >= 7 && cf < 8 ){
-      return "Not bad, I guess...";
+      return "It's okay, I guess...";
     }
     else {
       return "Doh!";
@@ -132,25 +132,28 @@ class FoodActionTracker extends React.Component {
     let cf = this.state.meal_day.carbon_footprint;
     let avgPercent = (cf/7) * 100;
     if(cf < 7) {
-      let val = (100 - avgPercent).toFixed(2);
+      let val = (100 - avgPercent).toFixed(0);
       str += "<span class='h3 blue bold'>" + val + "%</span> below the American average."
     }
     else if(cf >= 7) {
-      let val = (avgPercent - 100).toFixed(2);
+      let val = (avgPercent - 100).toFixed(0);
       str += "<span class='h3 red bold'>" + val + "%</span> above the American average.";
     }
     else {
       str += "the American average";
     }
-    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points</p>";
+    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</p>";
 
-    if(cf > 7) {
+    if(cf < 7) {
       str += `
         <p class='h5 sm-h4 left-align mx-auto mt1'>
           <span class="bold">Did you know?</span><br/>
           Beef and Lamb produces 5x more carbon emission than chicken, so choose your meats wisely.
-          Also, up to 40% of food produced is wasted…
+          Also, up to 40% of food produced is wasted, but you can help change that.
         </p>
+      `;
+    } else {
+      str += `
         <p class='h5 sm-h4 left-align mx-auto mt1'>
           <span class="bold">How you can improve</span><br/>
           Try cutting back on beef or lamb. They produces 5x more carbon emission than chicken.”
@@ -158,8 +161,16 @@ class FoodActionTracker extends React.Component {
       `;
     }
 
+    str += `
+      <div class="mx-auto center my1">
+        <span class="ml1">
+          <span data-target="#learn-more" class="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+        </span>
+      </div>
+    `
+
     // return $(str);
-    return {__html: str }; 
+    return {__html: str };
   }
   componentDidMount() {
     $('.smooth-scroll').on('click', function(){
@@ -172,9 +183,9 @@ class FoodActionTracker extends React.Component {
       );
     });
   }
-  componentWillUnmount() {
-    $('.smooth-scroll').unbind('click');
-  }
+  // componentWillUnmount() {
+  //   $('.smooth-scroll').unbind('click');
+  // }
   toggleView() {
     this.setState({
       nextView: !this.state.nextView
@@ -243,15 +254,15 @@ FoodActionTracker.defaultProps = {
     "1" : {
         // Fruits avg: 95 cal
         "50" : {
-                  details: "Just a few pieces (~50 calories)",
-                  examples: "Half of an orange, apple, or banana. Or a cup of grapes"
+                  details: "A few pieces (~50 calories)",
+                  examples: "Half of an orange, apple, or banana, or a cup of grapes"
                 },
         "100" : {
-                  details: "An average amount (~100 calories)",
-                  examples: "A baseball size orange or apple. Or a medium (7\") banana"
+                  details: "An average portion (~100 calories)",
+                  examples: "A baseball-size orange or apple. Or a 7\" banana"
                 },
         "150" : {
-                  details: "A healthy amount (~150 calories)",
+                  details: "A healthy portion (~150 calories)",
                   examples: "1 cup of fruit salad, or 1.5 oranges, apples, or bananas (medium sizes)"
                 },
         "200" : {
@@ -267,17 +278,17 @@ FoodActionTracker.defaultProps = {
     "2" : {
       // Veg avg: 122 cal
       "50" :  {
-                details: "Some (~60 calories)",
+                details: "A small portion (~60 calories)",
                 examples: "2 medium carrots, 1 head of lettuce, 1 medium onion, or 4 cups of mixed green salad"
               },
       "100" : {
-                details: "An average amount (~120 calories)",
-                examples: "1 ear of medium corn, 1 can of tomato sauce, or 1 cup of vegetable stir-fry"
-              }, 
+                details: "An average portion (~120 calories)",
+                examples: "1 can of tomato sauce, or 1 cup of vegetable stir-fry"
+              },
       "150" : {
-                details: "A healthy amount (~180 calories)",
+                details: "A healthy portion (~180 calories)",
                 examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots"
-              }, 
+              },
       "200" : {
                 details: "A vegetarian's dream! (~240 calories)",
                 examples: "1/3 cup of corn, 80 button mushrooms, or 1 small serving of french fries"
@@ -291,7 +302,7 @@ FoodActionTracker.defaultProps = {
                 examples: "1 slice of cheese, 1 cup of yogurt, or 1 cup of milk"
               },
       "100" : {
-                details: "An average amount (~280 calories)",
+                details: "An average portion (~280 calories)",
                 examples: "2 cup of milk, 1 cup of ice cream, or 2/3 cup of shredded cheese"
               },
       "150" : {
@@ -300,7 +311,7 @@ FoodActionTracker.defaultProps = {
               },
       "200" : {
                 details: "I went a bit nuts (~560 calories)",
-                examples: "1 medium (15oz) milkshake (e.g. from In-n-out or McDonalds)"
+                examples: "1 medium (15oz) milkshake (e.g. from McDonalds)"
               }
     },
     // Grains
@@ -320,7 +331,7 @@ FoodActionTracker.defaultProps = {
               },
       "200" : {
                 details: "Can't get enough carbs (~1240 calories)",
-                examples: "Whoa there... For reference, 2 cups of rice or pasta is around 400 calories. We'll let you do the math"
+                examples: "Well, 2 cups of rice or pasta = ~400 calories. You do the math!"
               }
     },
     // Fish, poultry, pork
@@ -328,19 +339,19 @@ FoodActionTracker.defaultProps = {
       // Fish, poultry, pork avg: 238 cal
       "50" : {
                 details: "Half portion (~120 calories)",
-                examples: "1/2 chicken breast, 3 chicken wings, or 3 slices of bacon"
+                examples: "1/2 chicken breast, 1/2 flat can of tuna, or 3 slices of bacon"
               },
       "100" : {
-                details: "An average amount (~240 calories)",
-                examples: "1 chiken breast, 6 chicken wings, 1 flat can of tuna or salmon"
+                details: "An average portion (~240 calories)",
+                examples: "1 chicken breast, 6 chicken wings, or 1 flat can of tuna"
               },
       "150" : {
-                details: "I had seconds (~360 calories)",
+                details: "A large portion (~360 calories)",
                 examples: "1 fillet of fish, 4 scrambled eggs"
               },
       "200" : {
-                details: "I pigged out! (~480 calories)",
-                examples: "An 8 oz pork chop, half a rosted chicken"
+                details: "An extra-large portion (~480 calories)",
+                examples: "An 8-oz pork chop, half a rosted chicken"
               }
     },
     // Beef, lamb
@@ -348,12 +359,12 @@ FoodActionTracker.defaultProps = {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
       "50" : {
-                details: "Only a few bites (~80 calories)",
-                examples: "1 oz of cooked beef or lamb"
+                details: "A few bites (~80 calories)",
+                examples: "1-oz of cooked beef or lamb"
               },
       "100" : {
-                details: "A little bit (~160 calories)",
-                examples: "A couple of medium meatballs"
+                details: "A small portion (~160 calories)",
+                examples: "2 medium meatballs"
               },
       "150" : {
                 details: "A burger (~230 calories)",
@@ -365,5 +376,5 @@ FoodActionTracker.defaultProps = {
               }
     }
   }
-  
+
 };
