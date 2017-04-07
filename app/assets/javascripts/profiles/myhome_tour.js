@@ -16,7 +16,7 @@ modulejs.define('myhome_tour', function(){
       $secondModal = $('#second');
       $thirdModal = $('#third');
 
-      var remodalOpts = {closeOnOutsideClick: false, closeOnEscape: false}
+      var remodalOpts = {closeOnOutsideClick: false, closeOnEscape: false, hashTracking: false}
       // Remodal dialog instances
       firstModal = $firstModal.remodal(remodalOpts);
       secondModal = $secondModal.remodal(remodalOpts);
