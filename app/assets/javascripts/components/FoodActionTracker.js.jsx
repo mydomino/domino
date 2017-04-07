@@ -254,15 +254,15 @@ FoodActionTracker.defaultProps = {
     "1" : {
         // Fruits avg: 95 cal
         "50" : {
-                  details: "A small piece (~50 calories)",
+                  details: "A few pieces (~50 calories)",
                   examples: "Half of an orange, apple, or banana, or a cup of grapes"
                 },
         "100" : {
-                  details: "An average amount (~100 calories)",
+                  details: "An average portion (~100 calories)",
                   examples: "A baseball-size orange or apple. Or a 7\" banana"
                 },
         "150" : {
-                  details: "A healthy amount (~150 calories)",
+                  details: "A healthy portion (~150 calories)",
                   examples: "1 cup of fruit salad, or 1.5 oranges, apples, or bananas (medium sizes)"
                 },
         "200" : {
@@ -278,15 +278,15 @@ FoodActionTracker.defaultProps = {
     "2" : {
       // Veg avg: 122 cal
       "50" :  {
-                details: "Some (~60 calories)",
+                details: "A small portion (~60 calories)",
                 examples: "2 medium carrots, 1 head of lettuce, 1 medium onion, or 4 cups of mixed green salad"
               },
       "100" : {
-                details: "An average amount (~120 calories)",
+                details: "An average portion (~120 calories)",
                 examples: "1 can of tomato sauce, or 1 cup of vegetable stir-fry"
               },
       "150" : {
-                details: "A healthy amount (~180 calories)",
+                details: "A healthy portion (~180 calories)",
                 examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots"
               },
       "200" : {
@@ -302,7 +302,7 @@ FoodActionTracker.defaultProps = {
                 examples: "1 slice of cheese, 1 cup of yogurt, or 1 cup of milk"
               },
       "100" : {
-                details: "An average amount (~280 calories)",
+                details: "An average portion (~280 calories)",
                 examples: "2 cup of milk, 1 cup of ice cream, or 2/3 cup of shredded cheese"
               },
       "150" : {
@@ -311,7 +311,7 @@ FoodActionTracker.defaultProps = {
               },
       "200" : {
                 details: "I went a bit nuts (~560 calories)",
-                examples: "1 medium (15oz) milkshake (e.g. from In-n-out or McDonalds)"
+                examples: "1 medium (15oz) milkshake (e.g. from McDonalds)"
               }
     },
     // Grains
