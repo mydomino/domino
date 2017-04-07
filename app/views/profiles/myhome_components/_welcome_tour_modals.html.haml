@@ -6,7 +6,7 @@
   %h2.sm-h1.medium.mb0 Welcome, #{@profile.first_name}!
   .h5.sm-h4.measure.mx-auto.mt1.mb6
     %p.my0.left-align We all want to make a positive impact on the environment. But where do you start? MyDomino makes it easy to lower your carbon footprint, starting with small steps.
-  .wt-next.btn.btn-md.btn-primary.btn-primary--hover{data: {step: 0}} What's my carbon footprint?
+  .wt-next.btn.btn-md.btn-primary.btn-primary--hover.mb2{data: {step: 0}} What's my carbon footprint?
 
 .rounded.p4.remodal-wt#second{style: 'display: none;', data:{"remodal-id":"modal-1"}}
   = image_tag "illo-balloon", class:"col-5 sm-col-4"
@@ -35,7 +35,7 @@
 
   .mt3.flex.justify-end
     .flex.items-center
-      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 1}}
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 1}}
         .flex.items-center
           %span.inline-block.mr1
             =inline_svg "icons/i-arrow-left.svg", class: 'icon-s fill-gray-4 block'
@@ -56,22 +56,22 @@
   %h2.sm-h1.medium.mt1.mb0 Let's start with food
 
   .h5.sm-h4.measure.mx-auto.left-align.mt1.mb3
-    %span.left-align
-      Food contributes up to
-    %span.bold 30% of our carbon emissions.
-    %span It takes energy to grow, process, transport, and store our food.
-
+    %p.left-align.mt1.mb2
+      %span.left-align
+        Food contributes up to
+      %span.bold 30% of our carbon emissions.
+      %span It takes energy to grow, process, transport, and store our food.
     %p.left-align.my1
       The good news is that with some simple food changes, you can easily make a dent in your carbon footprint right away!
 
     .flex.items-center.bg-orange--light.px3.py2.rounded.mt2.mb4
-      = image_tag "icons/i-apple--outline", class:"icon-xl"
+      = image_tag "icons/i-apple", class:"icon-xl"
       %p.left-align.pl2
         Join the food challenge and see how much you can lower your "Carbon Foodprint."
 
   .mt3.flex.justify-end
     .flex.items-center
-      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 2}}
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 2}}
         .flex.items-center
           %span.inline-block.mr1
             =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"
@@ -91,7 +91,7 @@
         Pellentesque et lorem nec tortor posuere efficitur nec nec velit. Vestibulum ac venenatis lorem. Nunc ac dui placerat, molestie tellus at, consectetur enim. Pellentesque ac enim id libero bibendum molestie. Nam ac nisl sit amet nulla varius cursus. Sed ligula sapien, eleifend lobortis quam sit amet, viverra molestie mi.
 
     .right.mt2.flex.items-center
-      %a.wt-back.text-decoration-none.gray-6.pointer.mr2{data: {step: 3}}
+      %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 3}}
         .flex.items-center
           %span.inline-block.mr1
             =inline_svg "icons/i-arrow-left.svg", class: "icon-s fill-gray-4 block"

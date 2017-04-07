@@ -254,12 +254,12 @@ FoodActionTracker.defaultProps = {
     "1" : {
         // Fruits avg: 95 cal
         "50" : {
-                  details: "Just a few pieces (~50 calories)",
-                  examples: "Half of an orange, apple, or banana. Or a cup of grapes"
+                  details: "A small piece (~50 calories)",
+                  examples: "Half of an orange, apple, or banana, or a cup of grapes"
                 },
         "100" : {
                   details: "An average amount (~100 calories)",
-                  examples: "A baseball size orange or apple. Or a medium (7\") banana"
+                  examples: "A baseball-size orange or apple. Or a 7\" banana"
                 },
         "150" : {
                   details: "A healthy amount (~150 calories)",
@@ -283,7 +283,7 @@ FoodActionTracker.defaultProps = {
               },
       "100" : {
                 details: "An average amount (~120 calories)",
-                examples: "1 ear of medium corn, 1 can of tomato sauce, or 1 cup of vegetable stir-fry"
+                examples: "1 can of tomato sauce, or 1 cup of vegetable stir-fry"
               }, 
       "150" : {
                 details: "A healthy amount (~180 calories)",
@@ -331,7 +331,7 @@ FoodActionTracker.defaultProps = {
               },
       "200" : {
                 details: "Can't get enough carbs (~1240 calories)",
-                examples: "Whoa there... For reference, 2 cups of rice or pasta is around 400 calories. We'll let you do the math"
+                examples: "Well, 2 cups of rice or pasta = ~400 calories. You do the math!"
               }
     },
     // Fish, poultry, pork
@@ -339,19 +339,19 @@ FoodActionTracker.defaultProps = {
       // Fish, poultry, pork avg: 238 cal
       "50" : {
                 details: "Half portion (~120 calories)",
-                examples: "1/2 chicken breast, 3 chicken wings, or 3 slices of bacon"
+                examples: "1/2 chicken breast, 1/2 flat can of tuna, or 3 slices of bacon"
               },
       "100" : {
-                details: "An average amount (~240 calories)",
-                examples: "1 chiken breast, 6 chicken wings, 1 flat can of tuna or salmon"
+                details: "An average portion (~240 calories)",
+                examples: "1 chicken breast, 6 chicken wings, or 1 flat can of tuna"
               },
       "150" : {
-                details: "I had seconds (~360 calories)",
+                details: "A large portion (~360 calories)",
                 examples: "1 fillet of fish, 4 scrambled eggs"
               },
       "200" : {
-                details: "I pigged out! (~480 calories)",
-                examples: "An 8 oz pork chop, half a rosted chicken"
+                details: "An extra-large portion (~480 calories)",
+                examples: "An 8-oz pork chop, half a rosted chicken"
               }
     },
     // Beef, lamb
@@ -359,12 +359,12 @@ FoodActionTracker.defaultProps = {
       // Beef and lamb avg: 156 cal
       // a 12 oz steak is about 900 calories
       "50" : {
-                details: "Only a few bites (~80 calories)",
-                examples: "1 oz of cooked beef or lamb"
+                details: "A few bites (~80 calories)",
+                examples: "1-oz of cooked beef or lamb"
               },
       "100" : {
-                details: "A little bit (~160 calories)",
-                examples: "A couple of medium meatballs"
+                details: "A small portion (~160 calories)",
+                examples: "2 medium meatballs"
               },
       "150" : {
                 details: "A burger (~230 calories)",

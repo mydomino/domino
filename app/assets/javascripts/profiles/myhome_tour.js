@@ -64,7 +64,7 @@ modulejs.define('myhome_tour', function(){
       introStep = 0;
 
       cleanScoreIntro = "<p class='bold'>Check out your clean score</p>" +
-        "<p>This is calculated from your food challange log. The lower your Foodprint, the better your grade.</p>";
+        "<p>This is calculated from your food challenge log. The lower your Foodprint, the better your grade.</p>";
 
       fatIntro =  "<p class='bold'>Here's your food challenge</h2>" +
         "<p>Join and compete with your teammates to see the impact you can make.</p>";

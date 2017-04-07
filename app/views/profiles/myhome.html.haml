@@ -60,7 +60,7 @@
             %div.h4.gray-6.col-11
               - food_cf = @user.get_current_week_foodcf_percent
               - if food_cf
-                Your carbon "foodprint" is
+                Your "Carbon Foodprint" is
                 %span.bold
                   - cf_percent_diff = 100 - food_cf
                   #{cf_percent_diff.abs}%
