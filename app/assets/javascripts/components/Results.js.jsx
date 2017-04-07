@@ -17,9 +17,9 @@ class Results extends React.Component {
                 <div className="flex flex-column flex-wrap sm-row justify-around">
                 <div className="flex self-stretch sm-col-4">
                   <div className="bg-white m2 rounded-bottom">
-                    <a href="http://actions.mydomino.com/" className="text-decoration-none black">
+                    <a href="http://actions.mydomino.com/guides/smart-food" className="text-decoration-none black">
                       <img src="/fat_icons/appetizers.jpg" className="fill-x rounded-top"/>
-                      <h3 className="px1 left-align mb0">Appetizers: Your first course</h3>
+                      <h3 className="px1 left-align mb0">Appetizers: Your food intro guide</h3>
                       <p className="h5 left-align gray-5 px1 mt1 mb3 col-10">Expand your gastronomy horizons.
                       </p>
                     </a>
