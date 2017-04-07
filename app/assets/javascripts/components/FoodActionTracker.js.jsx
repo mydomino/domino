@@ -119,7 +119,7 @@ class FoodActionTracker extends React.Component {
     if(cf <= 7) {
 
       return ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
-    } 
+    }
     else if(cf >= 7 && cf < 8 ){
       return "It's okay, I guess...";
     }
@@ -162,15 +162,15 @@ class FoodActionTracker extends React.Component {
     }
 
     str += `
-      <div className="mx-auto center my1">
-        <span className="ml1">
-          <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+      <div class="mx-auto center my1">
+        <span class="ml1">
+          <span data-target="#learn-more" class="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
         </span>
       </div>
     `
 
     // return $(str);
-    return {__html: str }; 
+    return {__html: str };
   }
   componentDidMount() {
     $('.smooth-scroll').on('click', function(){
@@ -183,9 +183,9 @@ class FoodActionTracker extends React.Component {
       );
     });
   }
-  componentWillUnmount() {
-    $('.smooth-scroll').unbind('click');
-  }
+  // componentWillUnmount() {
+  //   $('.smooth-scroll').unbind('click');
+  // }
   toggleView() {
     this.setState({
       nextView: !this.state.nextView
@@ -284,11 +284,11 @@ FoodActionTracker.defaultProps = {
       "100" : {
                 details: "An average amount (~120 calories)",
                 examples: "1 can of tomato sauce, or 1 cup of vegetable stir-fry"
-              }, 
+              },
       "150" : {
                 details: "A healthy amount (~180 calories)",
                 examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots"
-              }, 
+              },
       "200" : {
                 details: "A vegetarian's dream! (~240 calories)",
                 examples: "1/3 cup of corn, 80 button mushrooms, or 1 small serving of french fries"
@@ -376,5 +376,5 @@ FoodActionTracker.defaultProps = {
               }
     }
   }
-  
+
 };
