@@ -16,7 +16,7 @@ modulejs.define('myhome_tour', function(){
       $secondModal = $('#second');
       $thirdModal = $('#third');
 
-      var remodalOpts = {closeOnOutsideClick: false, closeOnEscape: false}
+      var remodalOpts = {closeOnOutsideClick: false, closeOnEscape: false, hashTracking: false}
       // Remodal dialog instances
       firstModal = $firstModal.remodal(remodalOpts);
       secondModal = $secondModal.remodal(remodalOpts);
@@ -64,7 +64,7 @@ modulejs.define('myhome_tour', function(){
       introStep = 0;
 
       cleanScoreIntro = "<p class='bold'>Check out your clean score</p>" +
-        "<p>This is calculated from your food challange log. The lower your Foodprint, the better your grade.</p>";
+        "<p>This is calculated from your food challenge log. The lower your Foodprint, the better your grade.</p>";
 
       fatIntro =  "<p class='bold'>Here's your food challenge</h2>" +
         "<p>Join and compete with your teammates to see the impact you can make.</p>";
@@ -78,7 +78,7 @@ modulejs.define('myhome_tour', function(){
       // Push element intro content into data attributes where they are digested by introJs
       $('#fat-module').attr('data-intro', fatIntro);
       $('#clean-score').attr('data-intro', cleanScoreIntro);
-      $('#member-benefits').attr('data-intro', benefitsIntro);
+      $('#benefits-introjs-wrapper').attr('data-intro', benefitsIntro);
       $('#leader-board').attr('data-intro', leaderBoardIntro);
 
       intro.setOptions({

@@ -83,7 +83,7 @@ class FoodType extends React.Component {
               </div>
             </div>
             <div className="col-10 sm-col-6 mb3 mx-auto left-align">
-              <h3 className="h5 gray-60 bold caps line-height-2 my0">Details</h3>
+              <h3 className="h5 gray-60 bold caps line-height-2 my0">How Much</h3>
               <p className="h4 size-information left-align mt1">
                 {this.props.sizeInfo[this.state.food.size].details}
               </p>
