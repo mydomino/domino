@@ -78,7 +78,7 @@ modulejs.define('myhome_tour', function(){
       // Push element intro content into data attributes where they are digested by introJs
       $('#fat-module').attr('data-intro', fatIntro);
       $('#clean-score').attr('data-intro', cleanScoreIntro);
-      $('#member-benefits').attr('data-intro', benefitsIntro);
+      $('#benefits-introjs-wrapper').attr('data-intro', benefitsIntro);
       $('#leader-board').attr('data-intro', leaderBoardIntro);
 
       intro.setOptions({
