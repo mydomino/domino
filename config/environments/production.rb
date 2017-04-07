@@ -103,5 +103,6 @@ Rails.application.configure do
 
   # set the default host for url_helpers method
   Rails.application.routes.default_url_options[:host] = 'mydomino.com'
+  Rails.application.routes.default_url_options[:protocol]= 'https'
 
 end

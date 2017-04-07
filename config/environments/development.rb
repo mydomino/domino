@@ -67,4 +67,5 @@ Rails.application.configure do
 
   # set the default host for url_helpers method
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  Rails.application.routes.default_url_options[:protocol]= 'http'
 end
