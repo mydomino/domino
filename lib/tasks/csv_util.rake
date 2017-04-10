@@ -147,14 +147,15 @@ namespace :csv do
   end
 
 
-  # Bulk user account creation - Takes a CSV file with first_name, last_name, email, and create member accounts
-  #   Script also creates a group and all user accounts created belongs to the new group
-  #   Takes 2 parameters: group_name, and the user CSV file
+  # Bulk member accounts creation - Takes a CSV file with first_name, last_name, email, and create member accounts
+  #   Script also creates a group that all user in this list will belong to
+  #   Takes 2 parameters: group_name, and the member list CSV
+  desc "Bulk add members by group. Example usage: rake csv:add_members_by_group group_fat_1 sample_3000.csv"
+  task add_members_by_group: :environment do 
 
-  desc "Onboard_member_with_csv by group. Example usage: rake csv:onboard_member_with_csv_by_group group_fat_1 sample_3000.csv"
-  task onboard_member_with_csv_by_group: :environment do 
+    DATA_SAVE_FOLDER = 'add_members_task'
 
-    DATA_SAVE_FOLDER = 'bulk_user_import'
+    # TODO: Refactor this S3 config stuff out to config/application.rb
     s3 = Aws::S3::Resource.new(
       region: 'us-west-2',
       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
@@ -162,42 +163,39 @@ namespace :csv do
     )
     bucket = s3.bucket('mydomino')
 
-    # generate an empty task for each argument pass in
+    # generate an empty task for each argument pass in & check right num of argvs
     ARGV.each { |a| task a.to_sym do ; end }
-
-    #puts "ARGV.size is #{ARGV.size}"
     if ARGV.size != 3 
-      puts "Error! Please provide proper parameters to your command. \n\n"
-      puts "Usage: rake csv:onboard_member_with_csv_by_group group_name csv_file_name.csv. Note: please put the csv file under project's root/data folder.\n"
-      puts "Example. rake csv:onboard_member_with_csv_by_group group_fat_1 sample_upload_3000.csv"
+      puts "Error! Wrong number of parameters.\n\n"
+      puts "Usage: rake csv:add_members_by_group group_name csv_filename.csv. (Put CSV source in S3 at mydomino bucket -> add_members_task/ folder\n"
+      puts "Example. rake csv:add_members_by_group group_fat_1 sample_upload_3000.csv"
       exit 1
     end
 
     # retrieve the org name
     group_name = ARGV[1]
-    puts "Group name is #{group_name}.\n" 
+    puts "Group name requested: #{group_name}.\n" 
 
     # find a group
     begin
       group = Group.find_or_create_by!(name: group_name) do |g|
-        puts "Creating group #{group_name}.\n"
+        puts "Creating group '#{group_name}'...\n"
         g.name = group_name
         g.desc = "This is a description for " + group_name
       end
     rescue StandardError => e  
-      puts "\nError! #{e.message}. Group name is case sensitive."
+      puts "\nError! #{e.message}. Group names are case sensitive."
       exit
     end
-
-    puts "Group is #{group.name}."
+    puts "Group is #{group.name}"
    
-    # Get bulk user list from S3 Bucket
+    # Get user list CSV from S3 Bucket
     import_path = DATA_SAVE_FOLDER + '/' + ARGV[2]
-    obj = s3.bucket('mydomino').object(import_path)
+    s3obj = bucket.object(import_path)
 
     # Check if CSV file exists
-    if !obj.exists?
-      puts "\nError! #{import_path} does not exist. Exiting..."
+    if !s3obj.exists?
+      puts "\nError! CSV file #{import_path} not found in 'mydomino' bucket on S3."
       exit
     end
 
@@ -209,66 +207,48 @@ namespace :csv do
     # build the out file name from the name of the input CSV file
     tmp_file_name = ARGV[2].split('.')
     out_file_name = tmp_file_name[0] + '_OUTPUT_' + Time.now.strftime('%Y-%m-%d_%H%M') + '.' + tmp_file_name[1]
-    #out_file_name_path = full_path + '/' + out_file_name
 
     # Create a write area for CSV output & write out headers
     out_csv = []
     out_csv << ['First_name', 'Last_name', 'Email', 'Signup_link']
 
-    CSV.parse(obj.get.body.read, headers: true) do |row|
+    CSV.parse(s3obj.get.body.read, headers: true) do |row|
       begin
-        puts "\n\nRow is #{row}"
-        #puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
-
+        puts "\nROW = #{row}"
         next if row.size == 0
 
         u_fn = for_production ? row['First_name'] : 'test_' + row['First_name']
         u_ln = for_production ? row['Last_name'] : 'test_' + row['Last_name']
         u_email = row['Email'] #for_production ? u_email : u_email
-
         puts "After checking env: First_name: #{u_fn}. Last_name: #{u_ln}. Email: #{u_email}\n"
 
         # email is case sensitive for the create, so convert it to lower case
         if HelperFunctions::create_user_by_group(group, u_fn, u_ln, u_email.downcase, role, for_production)
-
-          # send user email with on board url
           user = User.find_by!(email: u_email.downcase)
 
-        
-          # per requirement change - We are no longer sending signup link with email here
-          #puts "Sending user #{user.email} an email with signup_link."
-          #user.email_signup_link
-
-          # export the member sign_up link to a csv file
+          # Write the member's signup link to csv
           signup_link = user.get_signup_link(Rails.application.routes.url_helpers.root_url)
-          puts "signup link = #{signup_link }"
-
-          # write the headers
+          puts "Signup link = #{signup_link }"
           out_csv << [u_fn, u_ln, u_email, signup_link]
-
         end
-
-        puts "================================================================\n\n"
+        puts "================================================================\n"
 
       rescue StandardError => e  
         puts "\nStandardError in CSV for row: #{row}! Error is: #{e.message}."
       end
     end
 
-    
-    #out_csv.close if out_csv
-
-    # write the content in the CSV out array to the memory. 
-    # When the loop complete, the entire CSV content in memory will be converted to a string  
+    # Write the content in the CSV out array to memory
+    #   when the loop complete, the entire CSV content in memory will be converted to a string  
     a_csv_str = CSV.generate do |csv|
-
       out_csv.each { |x| csv << x }
-         
     end
 
-    # email the generated CSV file to MyDomino's staff
+    # Email the generated CSV to Product Team & save to S3
     UserMailer.email_signup_link_csv_file(out_file_name, a_csv_str).deliver_later
-
+    new_s3obj = bucket.object(DATA_SAVE_FOLDER + '/' + out_file_name)
+    new_s3obj.put(body: a_csv_str)
+    puts "Sign up links CSV emailed and saved on S3 as: #{out_file_name}"
   end
 
 
