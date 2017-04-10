@@ -204,9 +204,11 @@ namespace :csv do
     for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
       (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
 
+    current_time_str = Time.now.in_time_zone("America/Los_Angeles").strftime('%Y-%m-%d_%H%M')
+
     # build the out file name from the name of the input CSV file
     tmp_file_name = ARGV[2].split('.')
-    out_file_name = tmp_file_name[0] + '_OUTPUT_' + Time.now.strftime('%Y-%m-%d_%H%M') + '.' + tmp_file_name[1]
+    out_file_name = tmp_file_name[0] + '_OUTPUT_' + current_time_str + '.' + tmp_file_name[1]
 
     # Create a write area for CSV output & write out headers
     out_csv = []

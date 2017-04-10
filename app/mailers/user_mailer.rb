@@ -55,15 +55,12 @@ class UserMailer < ActionMailer::Base
   
   # email a CSV file to MyDomino's staff
   def email_signup_link_csv_file(file_name, csv_str)
-    
     csv_file_recipients = ENV['CSV_FILE_RECIPIENTS'].nil? ? %w(yong@mydomino.com johnp@mydomino.com marcian@mydomino.com) : ENV['CSV_FILE_RECIPIENTS'].split(',')
-
-
     attachments[file_name] = {mime_type: 'text/csv', content: csv_str}
-    mail(from: "dev@mydomino.com", to: csv_file_recipients, subject: "CSV file with signup links for member onboarding")
 
+    current_time_str = Time.now.in_time_zone("America/Los_Angeles").strftime('%Y-%m-%d_%H%M')
+    mail(from: "dev@mydomino.com", to: csv_file_recipients, subject: "CSV of newly added members on #{current_time_str}")
     Rails.logger.info "Signup Link Function: Emailing CSV file attachment to #{csv_file_recipients}....\n"
-
   end
 
   private
