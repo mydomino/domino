@@ -84,11 +84,32 @@
             = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
 -if @mobile
-  .remodal-wt#fourth{style: "display: none;", data:{"remodal-id":"modal-3"}}
-    %h2.sm-h1.medium.mb0 Mobile modal
+  .remodal-wt.center#fourth{style: "display: none;", data:{"remodal-id":"modal-3"}}
+    %h2.sm-h1.medium.mt1.mb0 We'll help you along the way
     .h5.measure.mx-auto
       %p.left-align
-        Pellentesque et lorem nec tortor posuere efficitur nec nec velit. Vestibulum ac venenatis lorem. Nunc ac dui placerat, molestie tellus at, consectetur enim. Pellentesque ac enim id libero bibendum molestie. Nam ac nisl sit amet nulla varius cursus. Sed ligula sapien, eleifend lobortis quam sit amet, viverra molestie mi.
+        We're here to support your journey with these member services.
+      .flex.items-center
+        =image_tag "icons/i-wallet.png", :class => "mr1"
+        %p.left-align
+          Enjoy
+          %span.bold discounts
+          on local foods and more.
+
+      .flex.items-center
+        =image_tag "icons/i-movie.png", :class => "mr1"
+        %p.left-align
+          Watch A Time To Choose, a
+          %span.bold film
+          about climate change.
+
+      .flex.items-center
+        =image_tag "icons/i-concierge.png", :class => "mr1"
+        %p.left-align
+          Ask your
+          %span.bold concierge
+          about any food questions.
+
 
     .right.mt2.flex.items-center
       %a.wt-back.text-decoration-none.gray-6.pointer.mr3{data: {step: 3}}
