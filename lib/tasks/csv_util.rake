@@ -109,8 +109,6 @@ namespace :csv do
       exit
     end
 
-   
-
     role = 'user'
     for_production = false
     for_production = ENV['IS_ENVIRONMENT_FOR_TESTING'] != nil && 
@@ -146,24 +144,28 @@ namespace :csv do
         puts "\nException in CSV for row: #{row}! Error is: #{e.message}."
       end
     end
-      
-
   end
 
 
-
-
+  # Bulk user account creation - Takes a CSV file with first_name, last_name, email, and create member accounts
+  #   Script also creates a group and all user accounts created belongs to the new group
+  #   Takes 2 parameters: group_name, and the user CSV file
 
   desc "Onboard_member_with_csv by group. Example usage: rake csv:onboard_member_with_csv_by_group group_fat_1 sample_3000.csv"
   task onboard_member_with_csv_by_group: :environment do 
 
-    DATA_SAVE_FOLDER = Rails.root.join('data')
+    DATA_SAVE_FOLDER = 'bulk_user_import'
+    s3 = Aws::S3::Resource.new(
+      region: 'us-west-2',
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    bucket = s3.bucket('mydomino')
 
     # generate an empty task for each argument pass in
     ARGV.each { |a| task a.to_sym do ; end }
 
     #puts "ARGV.size is #{ARGV.size}"
-    
     if ARGV.size != 3 
       puts "Error! Please provide proper parameters to your command. \n\n"
       puts "Usage: rake csv:onboard_member_with_csv_by_group group_name csv_file_name.csv. Note: please put the csv file under project's root/data folder.\n"
@@ -173,49 +175,31 @@ namespace :csv do
 
     # retrieve the org name
     group_name = ARGV[1]
-
     puts "Group name is #{group_name}.\n" 
 
     # find a group
     begin
-
       group = Group.find_or_create_by!(name: group_name) do |g|
-
         puts "Creating group #{group_name}.\n"
-  
         g.name = group_name
         g.desc = "This is a description for " + group_name
-        
       end
     rescue StandardError => e  
-      puts "\nError! #{e.message}. Please note that the group name is case sensitive."
+      puts "\nError! #{e.message}. Group name is case sensitive."
       exit
     end
 
     puts "Group is #{group.name}."
    
+    # Get bulk user list from S3 Bucket
+    import_path = DATA_SAVE_FOLDER + '/' + ARGV[2]
+    obj = s3.bucket('mydomino').object(import_path)
 
-    # check to see if the data folder exist, if not create it
-    full_path = File.expand_path("#{DATA_SAVE_FOLDER}")
-    #puts "\nFull save path is: #{full_path}"
-
-    if !File.exist?(full_path) 
-      Dir.mkdir(full_path)
-      puts "\nPath #{full_path} was created."
-    end
-
-    file_name_path = full_path + '/' +  ARGV[2] 
-    puts "Data file is imported from #{file_name_path}."
-
-    
-    # check to make sure the CSV file exists
-    if !File.exist?(file_name_path) 
-      
-      puts "\nError! #{file_name_path} does not exist. Program exit."
+    # Check if CSV file exists
+    if !obj.exists?
+      puts "\nError! #{import_path} does not exist. Exiting..."
       exit
     end
-
-   
 
     role = 'user'
     for_production = false
@@ -223,21 +207,16 @@ namespace :csv do
       (ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'true' && ENV['IS_ENVIRONMENT_FOR_TESTING'].downcase != 'yes')
 
     # build the out file name from the name of the input CSV file
-    # the out file name is the input file name and the string 'with_signup_links'
     tmp_file_name = ARGV[2].split('.')
-    out_file_name = tmp_file_name[0] + '_with_signup_links' + '.' + tmp_file_name[1]
+    out_file_name = tmp_file_name[0] + '_OUTPUT_' + Time.now.strftime('%Y-%m-%d_%H%M') + '.' + tmp_file_name[1]
     #out_file_name_path = full_path + '/' + out_file_name
 
-
-    # Create a write area for CSV output
+    # Create a write area for CSV output & write out headers
     out_csv = []
-
-    # write the headers
     out_csv << ['First_name', 'Last_name', 'Email', 'Signup_link']
 
-    CSV.foreach(file_name_path, headers: true) do |row|
+    CSV.parse(obj.get.body.read, headers: true) do |row|
       begin
-
         puts "\n\nRow is #{row}"
         #puts "Before checking env: First_name: #{row['First_name']}. Last_name: #{row['Last_name']}. Email: #{row['Email']}\n"
 

@@ -54,6 +54,7 @@ gem 'browser-timezone-rails'
 gem 'remodal-rails'
 gem 'chart-js-rails'
 gem "d3-rails"
+gem 'aws-sdk-rails'
 
 
 # for mixpanel integration
