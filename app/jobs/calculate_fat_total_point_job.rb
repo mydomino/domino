@@ -15,7 +15,7 @@ class CalculateFatTotalPointJob <  ActiveJob::Base
        # get the start day and end day of the current work week
        # start_day is the end of the work week. In our case, it is Sunday
        # end_day is the start of the work week. In our case, it is Monday
-       end_date =  Time.zone.today - Time.zone.today.wday + 1
+       end_date =  Time.zone.today - Time.zone.today.cwday + 1
        start_date = end_date + 6
        
        
