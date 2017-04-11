@@ -169,7 +169,6 @@ class FoodActionTracker extends React.Component {
       </div>
     `
 
-    // return $(str);
     return {__html: str };
   }
   componentDidMount() {
@@ -183,9 +182,9 @@ class FoodActionTracker extends React.Component {
       );
     });
   }
-  // componentWillUnmount() {
-  //   $('.smooth-scroll').unbind('click');
-  // }
+  componentWillUnmount() {
+    $('.smooth-scroll').unbind('click');
+  }
   toggleView() {
     this.setState({
       nextView: !this.state.nextView
