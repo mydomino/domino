@@ -92,6 +92,9 @@ class FoodActionTracker extends React.Component {
                 <div className="col-10 sm-col-8 mx-auto" dangerouslySetInnerHTML={this.getCfResultString()}>
 
                 </div>
+                 <div className="mx-auto center my1">
+                  <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
+                </div>
               </div>
               <div className="mx-auto center my2">
                 <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See my progress this week</button>
@@ -160,14 +163,6 @@ class FoodActionTracker extends React.Component {
         </p>
       `;
     }
-
-    str += `
-      <div class="mx-auto center my1">
-        <span class="ml1">
-          <span data-target="#learn-more" class="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
-        </span>
-      </div>
-    `
 
     return {__html: str };
   }
