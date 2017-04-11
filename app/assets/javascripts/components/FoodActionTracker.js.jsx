@@ -362,11 +362,11 @@ FoodActionTracker.defaultProps = {
               },
       "150" : {
                 details: "An average portion (~230 calories)",
-                examples: "A quarter-pound hamberger patty, or a 3-oz lamb chop"
+                examples: "A quarter-pound hamburger patty, or a 3-oz lamb chop"
               },
       "200" : {
                 details: "A large burger (~310 calories)",
-                examples: "A 1/3-pound hamberger patty, or one cup of diced beef / lamb"
+                examples: "A 1/3-pound hamburger patty, or one cup of diced beef / lamb"
               }
     }
   }
