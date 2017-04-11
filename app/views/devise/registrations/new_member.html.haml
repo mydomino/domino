@@ -1,17 +1,27 @@
 - content_for :body_class do
   bg-gray-1
 
-.max-width-4.mx-auto.bg-white.mt4.rounded
-  .clearfix.sm-flex
-    .col.col-12.sm-col.sm-col-6.p4.bg-cover.bg-top-right.gray-6{style: "background-image: url('#{image_url 'windpower-field-blue'}');"}
+.max-width-4.mx-auto.mt4
+  .sm-flex.mx1.bg-white.rounded.overflow-hidden
+    .col.col-12.sm-col.sm-col-6.p2.sm-p4.bg-cover.bg-top-right.gray-6{style: "background-image: url('#{image_url 'windpower-field-blue'}');"}
       .flex.flex-column{style: 'height: auto;'}
         %h1.bold Hello, #{@user.profile.first_name.capitalize}
-        %h2.mt0 Welcome to your new benefit from MyDomino.
+        %h2.mt0 Welcome to the new MyDomino.
         %p.mt0
-          You'll get help saving money and energy with simple actions. Compete with other members to take positive steps toward our clean energy future!
+          Get tips and discounts for lowering your carbon footprint. 
+          Compete with other MyDomino members to see how low you can go!
+        .py2.px2.md-px3.mt2.rounded{ style: "background-color:rgba(255,255,255,0.7)" }
+          %i.fa.fa-magic.fa-lg.mr1.orange
+          %h2.m0.orange.bold.inline Pardon our dust
+          %p.my1 Since this is a beta, not everything is perfect yet.
+          %p.my1 
+            We welcome any feedback or questions, email us at
+            = link_to 'feedback@mydomino.com', 'mailto:feedback@mydomino.com', class: "text-decoration-none blue"
+            or through the chat pod on the right.
+            = link_to 'More about giving feedback...', 'https://docs.google.com/document/d/18yBX_TlOF393L_GlBPw4G8u0CVrDS0KqRlbVsh3zX8U/pub', class: "text-decoration-none blue", target: '_blank'
     
     .col.col-12.sm-col.sm-col-6.p4
-      %h1.gray-6 Activate your membership
+      %h1.gray-6 Activate your account
       #msg-form-feedback.gray-5{style: 'display: none;'}
 
       = form_tag '#' do
