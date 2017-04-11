@@ -82,6 +82,8 @@ module HelperFunctions
         u.role = role
   
       end
+
+      
   
       puts "Find or create profile #{u_email}....\n"
   
@@ -95,8 +97,10 @@ module HelperFunctions
         p.email = u_email
   
       end
-  
-  
+
+      # update the user name info
+      profile.update(first_name: u_fn, last_name: u_ln)
+
       # user will have to specifically go to the website to register
       # himself/herself in order for the register process to be totally
       # completed 
@@ -121,6 +125,8 @@ module HelperFunctions
         #d.slug = " test slug #{u_email}"
   
       end
+
+      dashboard.update(lead_name: u_fn + " " + u_ln)
   
       # associate product and tasks with dashboard
       dashboard.products = Product.default
