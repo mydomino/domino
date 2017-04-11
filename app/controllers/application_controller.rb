@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
       session[:referer]
     elsif resource.role == 'concierge'
       dashboards_path
-    elsif resource.organization
+    elsif resource.organization || !resource.group_users.find {|g| g.group.name == "beta"}.nil?
       myhome_path
     else
       user_dashboard_path
