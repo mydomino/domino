@@ -64,13 +64,13 @@ modulejs.define('myhome_tour', function(){
       introStep = 0;
 
       cleanScoreIntro = "<p class='bold'>Check out your clean score</p>" +
-        "<p>This is calculated from your food challenge log. The lower your Foodprint, the better your grade.</p>";
+        "<p>This is calculated from your Food Challenge entries. The lower your \" Carbon Foodprint\", the better your grade.</p>";
 
       fatIntro =  "<p class='bold'>Here's your food challenge</h2>" +
-        "<p>Join and compete with your teammates to see the impact you can make.</p>";
+        "<p>Join and compete with other MyDomino members to see the impact you can make.</p>";
 
       leaderBoardIntro = "<p class='bold'>Your competition</p>" +
-        "<p>See where you stand compared to your teammates. Can you rise to the top?</p>"
+        "<p>See where you stand compared to other members. Can you rise to the top?</p>"
 
       benefitsIntro = "<p class='bold'>Your member perks</h2>" +
         "<p>Check out the cool offerings you receive as a MyDomino member!";

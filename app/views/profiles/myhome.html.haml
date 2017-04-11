@@ -18,7 +18,8 @@
       .max-width-4.mx-auto
         .clearfix
           .col.col-12.px2.mb1
-            #wt-link.right.white.underline.pointer See the tour again
+            = link_to 'Give beta feedback', 'https://docs.google.com/document/d/18yBX_TlOF393L_GlBPw4G8u0CVrDS0KqRlbVsh3zX8U/pub', class: 'text-decoration-none btn btn-outline btn-sm white', target: '_blank'
+            #wt-link.right.white.pointer See the tour again
             = inline_svg "icons/i-question.svg", class: 'right fill-white icon-m mr1'
 
         .flex.flex-column.sm-row
@@ -51,7 +52,7 @@
                   = (@user.created_at + 1.year).strftime("%b. %Y")
 
           #clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {step: "2"}}
-            =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
+            = image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
             %h3.gray-7.my0.bold Clean Score
             .border.border-orange.circle.center.my1{ style: 'width: 75px; border-width: 3px' }
@@ -67,7 +68,7 @@
                   = cf_percent_diff > 0 ? "lower" : "higher"
                 than the average American's this week.
               - else
-                Add your food logs in Food Challenge below to get your clean score.
+                Enter your food in Food Challenge below to get your clean score.
 
           #leader-board.m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;', data: {step: "3"}}
             .px3.py1.gray-7
