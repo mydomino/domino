@@ -151,7 +151,7 @@ class FoodActionTracker extends React.Component {
       str += `
         <p class='h5 sm-h4 left-align mx-auto mt1'>
           <span class="bold">Did you know?</span><br/>
-          Beef and Lamb produces 5x more carbon emission than chicken, so choose your meats wisely.
+          Beef and lamb produce 5x more carbon emissions than chicken, so choose your meats wisely.
           Also, up to 40% of food produced is wasted, but you can help change that.
         </p>
       `;
@@ -159,7 +159,7 @@ class FoodActionTracker extends React.Component {
       str += `
         <p class='h5 sm-h4 left-align mx-auto mt1'>
           <span class="bold">How you can improve</span><br/>
-          Try cutting back on beef or lamb. They produces 5x more carbon emission than chicken.”
+          Try cutting back on beef or lamb. They produce 5x more carbon emission than chicken.
         </p>
       `;
     }
@@ -248,20 +248,20 @@ FoodActionTracker.defaultProps = {
     "1" : {
         // Fruits avg: 95 cal
         "50" : {
-                  details: "A few pieces (~50 calories)",
+                  details: "A fruit-ish (~50 calories)",
                   examples: "Half of an orange, apple, or banana, or a cup of grapes"
                 },
         "100" : {
-                  details: "An average portion (~100 calories)",
+                  details: "One average fruit (~100 calories)",
                   examples: "A baseball-size orange or apple. Or a 7\" banana"
                 },
         "150" : {
                   details: "A healthy portion (~150 calories)",
-                  examples: "1 cup of fruit salad, or 1.5 oranges, apples, or bananas (medium sizes)"
+                  examples: "1 cup of fruit salad, or 1.5 medium-size oranges, apples, or bananas"
                 },
         "200" : {
-                  details: "A lot (~200 calories)",
-                  examples: "2 oranges. 2 apples. 2 bananas"
+                  details: "A couple fruits (~200 calories)",
+                  examples: "2 oranges, 2 apples, or 2 bananas"
                 },
         "300" : {
                   details: "Fruit monster! (~300 calories)",
@@ -277,51 +277,51 @@ FoodActionTracker.defaultProps = {
               },
       "100" : {
                 details: "An average portion (~120 calories)",
-                examples: "1 can of tomato sauce, or 1 cup of vegetable stir-fry"
+                examples: "1 can of tomato sauce or 1 cup of vegetable stir-fry"
               },
       "150" : {
                 details: "A healthy portion (~180 calories)",
-                examples: "1 medium potato, a hand full of corn chips, or 6 medium carrots"
+                examples: "1 medium potato or 6 medium carrots"
               },
       "200" : {
                 details: "A vegetarian's dream! (~240 calories)",
-                examples: "1/3 cup of corn, 80 button mushrooms, or 1 small serving of french fries"
+                examples: "80 button mushrooms or 1 small serving of fries"
               }
     },
     // Dairy
     "3" : {
       // Dairy avg: 278 cal
       "50" : {
-                details: "Only a little (~140 calories)",
+                details: "A small portion (~140 calories)",
                 examples: "1 slice of cheese, 1 cup of yogurt, or 1 cup of milk"
               },
       "100" : {
                 details: "An average portion (~280 calories)",
-                examples: "2 cup of milk, 1 cup of ice cream, or 2/3 cup of shredded cheese"
+                examples: "2 cups of milk, 1 cup of ice cream, or 2/3 cup of shredded cheese"
               },
       "150" : {
-                details: "A lot (~420 calories)",
+                details: "Several items or more than a cup (~420 calories)",
                 examples: "3 cups of milk, 1.5 cups of ice cream, 1 cup of shredded cheese"
               },
       "200" : {
-                details: "I went a bit nuts (~560 calories)",
-                examples: "1 medium (15oz) milkshake (e.g. from McDonalds)"
+                details: "More than a few items (~560 calories)",
+                examples: "1 medium (15-oz) milkshake (e.g. from McDonald's)"
               }
     },
     // Grains
     "4" : {
       // Grains avg: 618 cal
       "50" :  {
-                details: "A little bit (~310 calories)",
+                details: "A cup or two (~310 calories)",
                 examples: "1.5 cup of rice or pasta noodles, 2 cups of oatmeal, 4 slices of bread"
               },
       "100" : {
                 details: "An average amount (~620 calories)",
-                examples: "1 cup of pinto beans, 2 cups of breakfast cereal, 3 cups of rice, or 3 doughnuts"
+                examples: "2 cups of breakfast cereal or 3 cups of rice"
               },
       "150" : {
                 details: "More than average (~930 calories)",
-                examples: "1 baguette, 7 cupcakes, or 4 cups of pasta"
+                examples: "A 7-oz bag of corn chips, 1 baguette, or 4 cups of pasta"
               },
       "200" : {
                 details: "Can't get enough carbs (~1240 calories)",
@@ -341,11 +341,11 @@ FoodActionTracker.defaultProps = {
               },
       "150" : {
                 details: "A large portion (~360 calories)",
-                examples: "1 fillet of fish, 4 scrambled eggs"
+                examples: "1 fillet of fish or 4 scrambled eggs"
               },
       "200" : {
                 details: "An extra-large portion (~480 calories)",
-                examples: "An 8-oz pork chop, half a rosted chicken"
+                examples: "An 8-oz pork chop, or half a roasted chicken"
               }
     },
     // Beef, lamb
@@ -354,19 +354,19 @@ FoodActionTracker.defaultProps = {
       // a 12 oz steak is about 900 calories
       "50" : {
                 details: "A few bites (~80 calories)",
-                examples: "1-oz of cooked beef or lamb"
+                examples: "1 small meatball"
               },
       "100" : {
                 details: "A small portion (~160 calories)",
                 examples: "2 medium meatballs"
               },
       "150" : {
-                details: "A burger (~230 calories)",
-                examples: "A quarter pound hamberger patty, or a 3oz lamb chop"
+                details: "An average portion (~230 calories)",
+                examples: "A quarter-pound hamberger patty, or a 3-oz lamb chop"
               },
       "200" : {
                 details: "A large burger (~310 calories)",
-                examples: "A 1/3 pound hamberger patty, or one cup of diced beef / lamb"
+                examples: "A 1/3-pound hamberger patty, or one cup of diced beef / lamb"
               }
     }
   }
