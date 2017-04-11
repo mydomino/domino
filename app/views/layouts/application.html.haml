@@ -20,6 +20,8 @@
     %link{rel: "canonical", href: "#{canonical_url}"}
     = favicon_link_tag 'favicon.ico'
     = render 'layouts/partials/analytics'
+    = render 'layouts/partials/crisp'
+
 
   %body{id: page_id, class: "#{page_class} #{yield :body_class}"}
     .wrapper

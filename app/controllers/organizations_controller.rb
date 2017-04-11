@@ -32,7 +32,7 @@ class OrganizationsController < ApplicationController
     # Member count is shown in the admin dashboard
     @member_count = @organization.users.size
 
-    track_event "Organization - show"
+    track_event "Org admin dashboard page view"
   end
 
   # POST /organizations/1/add_individual
@@ -78,19 +78,20 @@ class OrganizationsController < ApplicationController
       # Send updated member count back to view
       member_count = @organization.users.size
       
+      track_event "Member added via org admin dashboard"
+      
       render json: {
-        message: "Member added successfully",
-        member_count: member_count, 
-        status: 200
-      }, status: 200
-    else
-      render json: {
-        error: "Email already taken",
-        status: 400
-      }, status: 400
+          message: "Member added successfully",
+          member_count: member_count, 
+          status: 200
+        }, status: 200
+      else
+        render json: {
+          error: "Email already taken",
+          status: 400
+        }, status: 400
     end
 
-    track_event "Organization - add individual"
   end
 
   def email_members_upload_file

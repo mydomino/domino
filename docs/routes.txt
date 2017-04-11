@@ -23,9 +23,6 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                                  /500(.:format)                                          errors#internal_server_error
                                apperror          /apperror(.:format)                                     errors#application_error
                                    root GET      /                                                       pages#index
-        profile_verify_current_password GET      /profile/verify-current-password(.:format)              profiles#verify_current_password
-                profile_update_password PATCH    /profile/update-password(.:format)                      profiles#update_password
-                         member_profile GET      /profile(.:format)                                      profiles#show
                             domino_team GET      /domino-team(.:format)                                  pages#team
                                   about GET      /about(.:format)                                        pages#about
                                   terms GET      /terms(.:format)                                        pages#terms
@@ -34,7 +31,6 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                 example GET      /example(.:format)                                      pages#example
                                partners GET      /partners(.:format)                                     pages#partners
                                  myhome GET      /myhome(.:format)                                       profiles#myhome
-                                 fat_d3 GET      /fat-d3(.:format)                                       pages#fat_d3
                                         GET      /welcome-email/:profile_id(.:format)                    profiles#welcome_email
                                         GET      /legacy-user-registration-email/:lu_id(.:format)        profiles#lu_registration_email
                                         GET      /dashboard/:slug(.:format)                              redirect(301)
@@ -64,6 +60,11 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                         PATCH    /dashboards/:id(.:format)                               dashboards#update
                                         PUT      /dashboards/:id(.:format)                               dashboards#update
                                         DELETE   /dashboards/:id(.:format)                               dashboards#destroy
+        profile_verify_current_password GET      /profile/verify-current-password(.:format)              profiles#verify_current_password
+                profile_update_password PATCH    /profile/update-password(.:format)                      profiles#update_password
+                         member_profile GET      /profile(.:format)                                      profiles#show
+          profile_welcome_tour_complete GET      /profile/welcome-tour-complete(.:format)                profiles#welcome_tour_complete
+             profile_fat_intro_complete GET      /profile/fat-intro-complete(.:format)                   profiles#fat_intro_complete
                            profile_step GET      /profiles/:profile_id/steps/:id(.:format)               profile/steps#show
                                         PATCH    /profiles/:profile_id/steps/:id(.:format)               profile/steps#update
                                         PUT      /profiles/:profile_id/steps/:id(.:format)               profile/steps#update

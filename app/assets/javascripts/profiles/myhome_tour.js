@@ -1,7 +1,8 @@
 modulejs.define('myhome_tour', function(){
   return {
     mobile: null,
-    modals: null,
+    modals: [],
+    tourComplete: false,
     initModals: function() {
       var $firstModal,
           $secondModal,
@@ -15,10 +16,11 @@ modulejs.define('myhome_tour', function(){
       $secondModal = $('#second');
       $thirdModal = $('#third');
 
+      var remodalOpts = {closeOnOutsideClick: false, closeOnEscape: false, hashTracking: false}
       // Remodal dialog instances
-      firstModal = $firstModal.remodal();
-      secondModal = $secondModal.remodal();
-      thirdModal = $thirdModal.remodal();
+      firstModal = $firstModal.remodal(remodalOpts);
+      secondModal = $secondModal.remodal(remodalOpts);
+      thirdModal = $thirdModal.remodal(remodalOpts);
 
       this.modals = [
         {
@@ -37,18 +39,16 @@ modulejs.define('myhome_tour', function(){
       // If user is on mobile device, create fourth modal elements
       if(this.mobile) {
         var $fourthModal = $('#fourth');
-        var fourthModal = $fourthModal.remodal();
+        var fourthModal = $fourthModal.remodal(remodalOpts);
         this.modals.push({remodalInstance: fourthModal, jQInstance: $fourthModal});
       }
 
       // reset display
-      $('.remodal').css('display', 'inline-block');
+      $('.remodal-wt').css('display', 'inline-block');
     },
     init: function(mobile) {
       this.mobile = mobile;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
-      
-
     },
     startIntroJs: function() {
       var intro,
@@ -56,36 +56,41 @@ modulejs.define('myhome_tour', function(){
           cleanScoreIntro,
           fatIntro,
           leaderBoardIntro,
-          benefitsIntro;
+          benefitsIntro,
+          that;
 
+      that = this;
       intro = introJs();
       introStep = 0;
 
-      cleanScoreIntro = "<p class='bold'>Your clean score</p>" +
-        "<p>Earn points in this competition and rise to the top of your company leaderboard by staying below the average American’s Carbon Foodprint.</p>";
+      cleanScoreIntro = "<p class='bold'>Check out your clean score</p>" +
+        "<p>This is calculated from your Food Challenge entries. The lower your \" Carbon Foodprint\", the better your grade.</p>";
 
-      fatIntro =  "<p class='bold'>Let’s start with food</h2>" +
-        "<p>Join the food challenge and compete with your co-workers to see how big an impact you can make.</p>";
+      fatIntro =  "<p class='bold'>Here's your food challenge</h2>" +
+        "<p>Join and compete with other MyDomino members to see the impact you can make.</p>";
 
-      leaderBoardIntro = "<p class='bold'>The Leaderboard</p>" +
-       "<p>See where your clean score stands against members of your organization!</p>"
+      leaderBoardIntro = "<p class='bold'>Your competition</p>" +
+        "<p>See where you stand compared to other members. Can you rise to the top?</p>"
 
-      benefitsIntro = "<p class='bold'>Member benefits</h2>" +
-        "<p>Check out cool offerings you receive as a MyDomino member!";
+      benefitsIntro = "<p class='bold'>Your member perks</h2>" +
+        "<p>Check out the cool offerings you receive as a MyDomino member!";
       
       // Push element intro content into data attributes where they are digested by introJs
       $('#fat-module').attr('data-intro', fatIntro);
       $('#clean-score').attr('data-intro', cleanScoreIntro);
-      $('#member-benefits').attr('data-intro', benefitsIntro);
+      $('#benefits-introjs-wrapper').attr('data-intro', benefitsIntro);
       $('#leader-board').attr('data-intro', leaderBoardIntro);
 
       intro.setOptions({
+        disableInteraction: true,
         showStepNumbers: false,
         exitOnEsc: false,
         exitOnOverlayClick: false
       });
 
       intro.oncomplete(function() {
+        that.tourComplete = true;
+        that.showSkipTriggers();
         $.get("profile/welcome-tour-complete", $.noop)
       });
 
@@ -99,9 +104,16 @@ modulejs.define('myhome_tour', function(){
 
       intro.start();
 
+      if(that.tourComplete) {
+        $('.introjs-skipbutton').css('display', 'inline-block');
+      }
+
       // Workaround to prevent multiple overlays should
       // a user go through the tour multiple times
       $('.introjs-overlay').not(':first').remove();
+    },
+    showSkipTriggers: function(){
+      $('.skip-for-now').removeClass('hidden');
     },
     start: function(start) {
       if(!start) return;
@@ -186,6 +198,7 @@ modulejs.define('myhome_tour', function(){
             that.startIntroJs();
           } 
           else {
+            that.showSkipTriggers();
             $.get("profile/welcome-tour-complete", $.noop)
           }
         });

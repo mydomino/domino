@@ -36,11 +36,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new_member
-
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
     end
-    
   end
   
   # Action /set_org_member_password/
@@ -62,7 +60,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user.profile.update(dashboard_registered: true)
 
     # Create zoho lead record
-    if @user.organization.name != 'test'
+    if !@user.organization.nil? && @user.organization.name != 'test'
       ZohoService.save_to_zoho(@user.profile)
     end
     
@@ -97,7 +95,6 @@ class RegistrationsController < Devise::RegistrationsController
       password_confirmation: @pw_confirmation,
       organization: @organization
     )
-
     if @user
       Dashboard.create(
         lead_email: @email, 
@@ -114,7 +111,7 @@ class RegistrationsController < Devise::RegistrationsController
       profile.update(user: @user)
 
       # Create zoho lead record
-      if @organization.name != 'test'
+      if !@orgnization.nil? && @organization.name != 'test'
         ZohoService.save_to_zoho(profile)
       end
 

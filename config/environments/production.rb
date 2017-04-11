@@ -92,13 +92,17 @@ Rails.application.configure do
 
   #sendgrid for email
   ActionMailer::Base.smtp_settings = {
-  :user_name => 'apikey',
-  :password => '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',
-  :domain => 'mydomino.com',
-  :address => 'smtp.sendgrid.net',
-  :port => 587,
-  :authentication => :plain,
-  :enable_starttls_auto => true
-}
+    :user_name => 'apikey',
+    :password => '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',
+    :domain => 'mydomino.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
+  # set the default host for url_helpers method
+  Rails.application.routes.default_url_options[:host] = 'mydomino.com'
+  Rails.application.routes.default_url_options[:protocol]= 'https'
 
 end

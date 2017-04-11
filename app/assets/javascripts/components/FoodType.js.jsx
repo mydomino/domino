@@ -68,21 +68,22 @@ class FoodType extends React.Component {
         {/* BEGIN foodSelector Modal */}
         <div data-remodal-id={this.props.index + "-modal"} className="rounded">
             <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
-              <img src={"/fat_icons/i-close.svg"} className= "icon-m"/>
+              <img src={"/fat_icons/i-close.svg"} className="icon-m"/>
             </a>
             <div className="mb3">
-              <img src={"/fat_icons/" + this.props.foodType.icon} className="mx-auto mb1"/>
-              <div className="h2 sm-h1 bold">
+              <div className="flex justify-center content-center">
+                <img src={"/fat_icons/" + this.props.foodType.icon} className="mb1 mx1"/>
+                <h1 className="gray-7 bold my0" style={{ lineHeight: '250%'}}>{this.props.foodType.name}</h1>
+              </div>
+              <div className="h2 bold">
                 I ate&nbsp; 
                 <span style={{color: this.props.bgColorMap[this.state.food.size]}}>
                   {this.props.sizeTextMap[this.state.food.size]}
                 </span>
-                &nbsp;
-                {this.props.foodType.name}
               </div>
             </div>
             <div className="col-10 sm-col-6 mb3 mx-auto left-align">
-              <h3 className="h5 gray-60 bold caps line-height-2 my0">Details</h3>
+              <h3 className="h5 gray-60 bold caps line-height-2 my0">How Much</h3>
               <p className="h4 size-information left-align mt1">
                 {this.props.sizeInfo[this.state.food.size].details}
               </p>
@@ -153,7 +154,7 @@ FoodType.defaultProps = {
     "50": "a little",
     "100": "some",
     "150": "a lot",
-    "200": "too much"
+    "200": "a boatload"
   },
 
   borderRadiusClasses : [

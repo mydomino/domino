@@ -47,16 +47,20 @@ class UserMailer < ActionMailer::Base
   # Arguments: User user
   def email_signup_link(user)
     @user = user
-    @organization = @user.organization
-
-    @signup_link = ""
-    if @organization
-      @signup_link = org_member_signup_link(@user)
-    else
-      @signup_link = non_org_member_signup_link(@user)
-    end
+    @signup_link = @user.get_signup_link(root_url)
 
     mail(from: 'MyDomino <team@mydomino.com>', to: @user.email, subject: "Welcome to Mydomino. Here is your on-boarding instructions.")
+  end
+
+  
+  # email a CSV file to MyDomino's staff
+  def email_signup_link_csv_file(file_name, csv_str)
+    csv_file_recipients = ENV['CSV_FILE_RECIPIENTS'].nil? ? %w(yong@mydomino.com johnp@mydomino.com marcian@mydomino.com) : ENV['CSV_FILE_RECIPIENTS'].split(',')
+    attachments[file_name] = {mime_type: 'text/csv', content: csv_str}
+
+    current_time_str = Time.now.in_time_zone("America/Los_Angeles").strftime('%Y-%m-%d_%H%M')
+    mail(from: "dev@mydomino.com", to: csv_file_recipients, subject: "CSV of newly added members on #{current_time_str}")
+    Rails.logger.info "Signup Link Function: Emailing CSV file attachment to #{csv_file_recipients}....\n"
   end
 
   private
@@ -64,17 +68,19 @@ class UserMailer < ActionMailer::Base
   # /org_member_sign_up/
   # Purpose: Returns an org member sign up link.
   # ex: https://www.mydomino.com/sungevity?email=foo%40sungevity.com&a=vefwzr6tdy3-JD-6fFtM-A
-  def org_member_signup_link(user)
-    org_name = user.organization.name.downcase
-    email = user.email
-    token = user.signup_token
-    "#{root_url}#{org_name}?a=#{token}"
-  end
+  # def org_member_signup_link(user)
+  #   org_name = user.organization.name.downcase
+  #   email = user.email
+  #   token = user.signup_token
+  #   "#{root_url}#{org_name}?a=#{token}"
+  # end
 
-  # generate a sign_up link for non_org member
-  def non_org_member_signup_link(user)
-    email = user.email
-    token = user.signup_token
-    "#{root_url}pm?email=#{email}&a=#{token}"
-  end
+  # /org_member_sign_up/
+  # Purpose: Returns an org member sign up link.
+  # ex: https://www.mydomino.com/sungevity?email=foo%40sungevity.com&a=vefwzr6tdy3-JD-6fFtM-A
+  # def non_org_member_signup_link(user)
+  #   email = user.email
+  #   token = user.signup_token
+  #   "#{root_url}pm?email=#{email}&a=#{token}"
+  # end
 end

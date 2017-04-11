@@ -7,18 +7,21 @@
 
 :css
   .introjs-skipbutton {
-    display: none;
+    display: #{@tour ? 'none': 'inline-block'};
   }
 
 = render "profiles/myhome_components/welcome_tour_modals"
 
 .mx-auto.relative
   .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
-    .absolute.left-0.right-0.top-0.my3
+    .absolute.left-0.right-0.top-0.mt2.mb3
       .max-width-4.mx-auto
         .clearfix
-          .col.col-12.px2
-            #wt-link.right.white.underline.pointer What's all this?
+          .col.col-12.px2.mb1
+            = link_to 'Give beta feedback', 'https://docs.google.com/a/mydomino.com/forms/d/e/1FAIpQLSeFyYmE_yfCRSzWJ52W-4T5fnO6nSWWhu6T0XXTdphpu3FhDw/viewform', class: 'text-decoration-none btn btn-outline btn-sm white', target: '_blank'
+            #wt-link.right.white.pointer See the tour again
+            = inline_svg "icons/i-question.svg", class: 'right fill-white icon-m mr1'
+
         .flex.flex-column.sm-row
           .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
             .mt1
@@ -39,38 +42,38 @@
               .inline-block
                 Member since:
                 / show renewal date if user is an individual member
-                - if !@user.organization
-                  %br
-                  Renewal date:
+                / - if !@user.organization
+                /   %br
+                /  Renewal date:
               .inline-block.right-align
-                = @user.created_at.strftime("%b. %Y")
-                - if !@user.organization
-                  %br
-                  = (@user.created_at + 1.year).strftime("%b. %Y")
+                = @user.created_at.strftime("%B %Y")
+              /  - if !@user.organization
+              /    %br
+              /    = (@user.created_at + 1.year).strftime("%b. %Y")
 
           #clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {step: "2"}}
-            =image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
+            = image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
 
-            %h4.gray-6.mb0.mt1.bold.caps Clean Score
+            %h3.gray-7.my0.bold Clean Score
             .border.border-orange.circle.center.my1{ style: 'width: 75px; border-width: 3px' }
               %span.h0.bold.my0.mx1.orange.align-middle
                 = @user.get_current_week_grade || '?'
-            %div.h4.gray-5.col-11
+            %div.h4.gray-6.col-11
               - food_cf = @user.get_current_week_foodcf_percent
               - if food_cf
-                Your carbon "foodprint" is
+                Your "Carbon Foodprint" is
                 %span.bold
                   - cf_percent_diff = 100 - food_cf
                   #{cf_percent_diff.abs}%
                   = cf_percent_diff > 0 ? "lower" : "higher"
                 than the average American's this week.
               - else
-                Add your food logs in Food Impact Challange below to get your clean score.
+                Enter your food in Food Challenge below to get your clean score.
 
           #leader-board.m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;', data: {step: "3"}}
             .px3.py1.gray-7
-              .h3.mr2.bold.inline-block Weekly leaders
-              .h5.mt1.right.inline-block Points
+              %h3.mr2.my0.bold.inline-block Weekly leaders
+              %h5.mt1.mb0.right.inline-block Points
             - @leaderboard_users.each_with_index do |u, i|
               - unless u.profile.nil? # Skip any users wihtout a profile
                 .flex.px3.py1.items-center{class: "#{'bg-orange' if u.email == current_user.email}"}
@@ -84,13 +87,14 @@
 
         = render 'profiles/myhome_components/food_impact_module'
 
-        #member-benefits{data: {step: "4", position: "left"}}
-          .center.m3
-            .h1.black.bold Member Benefits
+        #member-benefits
+          #benefits-introjs-wrapper{data: {step: "4", position: "top"}}
+            .center.m3
+              .h1.black.bold Member Benefits
 
-          .flex.items-stretch.flex-column.md-row.mx1
-            = render "profiles/myhome_components/take_out_bites_module"
-            = render "profiles/myhome_components/concierge_module"
+            .flex.items-stretch.flex-column.md-row.mx1
+              = render "profiles/myhome_components/take_out_bites_module"
+              = render "profiles/myhome_components/concierge_module"
 
           .flex.items-stretch.flex-column.md-row.mx1
             = render "profiles/myhome_components/film_module"
@@ -106,3 +110,4 @@
   var myhomeTour = modulejs.require('myhome_tour');
   myhomeTour.init(#{@mobile});
   myhomeTour.start(#{@tour});
+  console.log(#{@tour});

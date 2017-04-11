@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = current_user.profile
 
-    track_event "Profile - show"
+    track_event "/profile page view"
   end
 
   # /myhome/
@@ -26,6 +26,8 @@ class ProfilesController < ApplicationController
     #date to display on FAT module
     beginning_of_week = Date.today.beginning_of_week
     @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
+    @deadline = Date.today.end_of_week + 1
+    @deadline = @deadline.strftime("%A, %B %d")
 
     #fat timeline data
     time_zone_name = Time.zone.name
@@ -59,7 +61,7 @@ class ProfilesController < ApplicationController
     # Display fat intro overlay if user has not joined food challenge yet
     @show_fat_intro = !@profile.fat_intro_complete
 
-    track_event "Profile - myhome"
+    track_event "/myhome page view"
   end
 
   # /verify_current_password/
@@ -93,12 +95,14 @@ class ProfilesController < ApplicationController
     # keep user logged in
     sign_in(@user, :bypass => true)
     
+    track_event "User updated password"
+    
     render json: {
       message: "Password updated successfully",
       status: 200
     }, status: 200
 
-    track_event "Profile - update_password"
+ 
   end
 
   def new

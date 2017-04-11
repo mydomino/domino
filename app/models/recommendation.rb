@@ -13,6 +13,7 @@
 #  updated_by         :integer
 #
 
+
 class Recommendation < ActiveRecord::Base
   
   belongs_to :dashboard
