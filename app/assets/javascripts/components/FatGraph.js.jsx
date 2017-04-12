@@ -222,7 +222,10 @@ class FatGraph extends React.Component {
           .style("stroke-width", 4)
           .style("opacity", 0)
           .on("mouseenter", componentCtx.onBarEnter)
-          .on("mouseout", componentCtx.onBarExit);
+          .on("mouseout", componentCtx.onBarExit)
+          .on('click', function(d){
+            window.location = "/food/" + d.path;
+          });
 
         //incomplete sections
         d3.selectAll(".null")
