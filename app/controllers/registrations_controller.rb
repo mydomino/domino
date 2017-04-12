@@ -38,6 +38,13 @@ class RegistrationsController < Devise::RegistrationsController
   def new_member
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
+
+      #  linking the current ID (anonymous) with a new ID 
+      mixpanel_alias (@user.id)
+      track_event "User signed up - via email sign up link"
+
+      # setting People profile
+      mixpanel_people_set({email: @user.email, date_sign_up: Time.zone.today})
     end
   end
   
@@ -226,7 +233,6 @@ class RegistrationsController < Devise::RegistrationsController
   # /after_sign_up_path_for/
   # This action is hit after a user registers through the devise registration form
   def after_sign_up_path_for(resource)
-    puts "Reg after_sign_up_path_for is called"
 
     @email = current_user.email
     @profile = Profile.find_by_email(@email)
@@ -252,7 +258,8 @@ class RegistrationsController < Devise::RegistrationsController
     mixpanel_alias (current_user.id)
     track_event "User signed up - Devise registration"
 
-    puts "******************User signed up*****************"
+    # setting People profile
+    mixpanel_people_set({email: current_user.email, date_sign_up: Time.zone.today})
 
     user_dashboard_path
   end
