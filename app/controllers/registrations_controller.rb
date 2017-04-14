@@ -39,6 +39,8 @@ class RegistrationsController < Devise::RegistrationsController
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
 
+      track_event "Sign Up"
+
       #  linking the current ID (anonymous) with a new ID 
       mixpanel_alias (@user.id)
       track_event "User signed up - via email sign up link"
@@ -176,7 +178,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    puts "Reg new is called"
     # Redirect to root path if no slug or email in params
     # Email param comes from sign up link thats generated after a user completes
     # onboarding (i.e. https//mydomino.com/users/sign_up?email=[percent encoded email address])
@@ -208,7 +209,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
 
-    puts "Reg Create is called"
     build_resource(sign_up_params)
 
     resource.save

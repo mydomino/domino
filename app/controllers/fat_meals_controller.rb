@@ -23,7 +23,7 @@ class FatMealsController < ApplicationController
       graph_params: @graph_params
     }
 
-    track_event "/food page view (FAT interface)"
+    track_event "View Food", {"User": current_user.email}
   end
 
   # POST /food-action-tracker XmlHttpRequest
@@ -43,7 +43,7 @@ class FatMealsController < ApplicationController
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
     
-    track_event "User created a FAT entry"
+    track_event "Create Food", {"User": current_user.email}
 
     fat_graph_params(@date)
     render_response
@@ -67,7 +67,7 @@ class FatMealsController < ApplicationController
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
 
-    track_event "User updated a FAT entry"
+    track_event "Update Food", {"User": current_user.email}
 
     fat_graph_params(@meal_day.date)
 
