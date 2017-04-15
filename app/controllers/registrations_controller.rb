@@ -46,7 +46,6 @@ class RegistrationsController < Devise::RegistrationsController
       # setting People profile
       mixpanel_people_set({email: @user.email, 
         date_sign_up: Time.zone.today, 
-        "$Name" => "#{@user.profile.first_name} #{@user.profile.last_name}",
         "$first_name" => @user.profile.first_name,
         "$last_name" => @user.profile.last_name})
 
@@ -264,7 +263,6 @@ class RegistrationsController < Devise::RegistrationsController
     # setting People profile
     mixpanel_people_set({email: current_user.email, 
       date_sign_up: Time.zone.today, 
-      "$Name" => "#{@user.profile.first_name} #{@user.profile.last_name}",
       "$first_name" => @user.profile.first_name,
       "$last_name" => @user.profile.last_name})
 
