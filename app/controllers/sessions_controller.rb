@@ -5,7 +5,6 @@ class SessionsController < Devise::SessionsController
     (session[:referer] = URI(request.referer).path) if request.referer
     super
 
-    puts "***************User signed in"
-    track_event "User signed in"
+    track_event "User signed in", {"date": Time.zone.today}
   end
 end
