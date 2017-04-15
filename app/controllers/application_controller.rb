@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
 
     #  linking the current ID (anonymous) with a new ID 
-    mixpanel_alias (current_user.id)
+    #mixpanel_alias (current_user.id)
 
     # setting People profile
     mixpanel_people_set({email: resource.email, 
