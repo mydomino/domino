@@ -130,6 +130,15 @@ class FoodActionTracker extends React.Component {
       return "Doh!";
     }
   }
+  getCfpPoints() {
+    let percentAverageEmission = 1-(this.state.meal_day.carbon_footprint/7);
+    let points = 0;
+
+    if(percentAverageEmission >= 0.1 && percentAverageEmission < 1.0){
+      points = percentAverageEmission * 100;
+    }
+    return points.toFixed();
+  }
   getCfResultString() {
     let str =  "<p class='h5 sm-h4 left-align mx-auto mt1'>Your Foodprint today is ";
     let cf = this.state.meal_day.carbon_footprint;
@@ -145,7 +154,20 @@ class FoodActionTracker extends React.Component {
     else {
       str += "the American average";
     }
-    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</p>";
+    str += "<p/><p class='my0'>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</p>";
+    
+    str+="<ul class='p1 list-style-none'><li><span class='h3 blue bold'>+10 pts</span> - Daily food logging </li>";
+
+    if(this.state.foods['3'] === undefined) {
+      str+="<li class='my1'><span class='h3 blue bold'>+5 pts</span> - Eat no dairy </li>";
+    }
+
+    if(this.state.foods['6'] === undefined) {
+      str+="<li class='my1'><span class='h3 blue bold'>+10 pts</span> - Eat no beef, lamb </li>";
+    }
+
+    str += "<li class='my1'><span class='h3 blue bold'>+" + this.getCfpPoints() + " pts</span> - Beat average carbon footprint </li></ul>";
+    
 
     if(cf < 7) {
       str += `

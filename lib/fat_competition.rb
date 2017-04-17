@@ -21,10 +21,10 @@ module FatCompetition
     # - Eat no dairy
     # - Eat no beef or lamb
     # - Beat US average CO2 emissions for day
-    if meal_day.carbon_footprint > 7
-      meal_day.update(points: 0)
-      return
-    end
+    # if meal_day.carbon_footprint > 7
+    #   meal_day.update(points: 0)
+    #   return
+    # end
 
     points = 0;
     
