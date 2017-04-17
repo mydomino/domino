@@ -41,10 +41,14 @@ class RegistrationsController < Devise::RegistrationsController
 
       #  linking the current ID (anonymous) with a new ID 
       mixpanel_alias (@user.id)
-      track_event "User signed up - via email sign up link"
+      track_event "Sign Up via email sign up link"
 
       # setting People profile
-      mixpanel_people_set({email: @user.email, date_sign_up: Time.zone.today})
+      mixpanel_people_set({email: @user.email, 
+        date_sign_up: Time.zone.today, 
+        "$first_name" => @user.profile.first_name,
+        "$last_name" => @user.profile.last_name})
+
     end
   end
   
@@ -176,7 +180,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    puts "Reg new is called"
     # Redirect to root path if no slug or email in params
     # Email param comes from sign up link thats generated after a user completes
     # onboarding (i.e. https//mydomino.com/users/sign_up?email=[percent encoded email address])
@@ -208,7 +211,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
 
-    puts "Reg Create is called"
     build_resource(sign_up_params)
 
     resource.save
@@ -256,10 +258,13 @@ class RegistrationsController < Devise::RegistrationsController
     
     #  linking the current ID (anonymous) with a new ID 
     mixpanel_alias (current_user.id)
-    track_event "User signed up - Devise registration"
+    track_event "Sign Up via Devise registration"
 
     # setting People profile
-    mixpanel_people_set({email: current_user.email, date_sign_up: Time.zone.today})
+    mixpanel_people_set({email: current_user.email, 
+      date_sign_up: Time.zone.today, 
+      "$first_name" => @user.profile.first_name,
+      "$last_name" => @user.profile.last_name})
 
     user_dashboard_path
   end

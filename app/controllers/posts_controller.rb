@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
 
-    track_event "Article index page view"
+    #track_event "Article index page view"
   end
 
   # GET /posts/1
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
     process_post(response.body)
 
-    track_event "Article pageview", {"article_id": post_id.to_s}
+    track_event "View Article", {"article_id": post_id.to_s}
   end
 
   def get_post_by_slug
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 
     process_post(response.body)
 
-    track_event "Article page view", {"Article_slug": slug}
+    track_event "View Article", {"Article": slug}
   end
 
   private

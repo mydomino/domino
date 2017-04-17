@@ -49,6 +49,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+
+    #  linking the current ID (anonymous) with a new ID 
+    #mixpanel_alias (current_user.id)
+
+    # setting People profile
+    mixpanel_people_set({email: resource.email, 
+      "$first_name" => resource.profile.first_name,
+      "$last_name" => resource.profile.last_name})
+
     # If user logs in via article views, redirect to whichever article view they left off at
     if session[:referer] && session[:referer].include?('/articles')
       session[:referer]

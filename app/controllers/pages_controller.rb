@@ -38,7 +38,7 @@ class PagesController < ApplicationController
   end
 
   def partners
-    track_event "/partners page view"
+    track_event "View Partners"
   end
 
   def newsletter_subscribe

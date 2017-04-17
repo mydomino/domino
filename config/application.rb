@@ -43,7 +43,7 @@ module Domino
     config.react.addons = true
 
     # for Mixpanel - Event Tracking integration
-    config.event_tracker.mixpanel_key = "3b292635fcd5448b086f6484f902fcf5"
+    config.event_tracker.mixpanel_key = ENV["MIXPANEL_KEY"]
 
   end
 end
