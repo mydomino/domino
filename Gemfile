@@ -83,7 +83,6 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'spring'
-  gem 'mailcatcher', '~> 0.6.1'
 
 end
 
