@@ -54,7 +54,7 @@ class FatMealsController < ApplicationController
     track_event "Initiate Food tracking", { "User": current_user.email,
       "food_date": @meal_day.date,
       "food_type": food_type,
-      "food_size": food.size }
+      "food_size": size }
 
     fat_graph_params(@date)
     render_response
@@ -89,7 +89,7 @@ class FatMealsController < ApplicationController
     track_event "Update Food", { "User": current_user.email,
       "food_date": @meal_day.date,
       "food_type": food_type,
-      "food_size": food.size }
+      "food_size": size }
 
     fat_graph_params(@meal_day.date)
 
