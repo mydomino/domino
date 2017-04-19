@@ -44,7 +44,7 @@ class RegistrationsController < Devise::RegistrationsController
       track_event "Sign Up via email sign up link"
 
       # setting People profile
-      mixpanel_people_set({email: @user.email, 
+      mixpanel_people_set({"$email" => @user.email, 
         date_sign_up: Time.zone.today, 
         "$first_name" => @user.profile.first_name,
         "$last_name" => @user.profile.last_name})
@@ -261,7 +261,7 @@ class RegistrationsController < Devise::RegistrationsController
     track_event "Sign Up via Devise registration"
 
     # setting People profile
-    mixpanel_people_set({email: current_user.email, 
+    mixpanel_people_set({"$email" => @user.email, 
       date_sign_up: Time.zone.today, 
       "$first_name" => @user.profile.first_name,
       "$last_name" => @user.profile.last_name})

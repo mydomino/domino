@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     #mixpanel_alias (current_user.id)
 
     # setting People profile
-    mixpanel_people_set({email: resource.email, 
+    mixpanel_people_set({"$email" => @user.email,
       "$first_name" => resource.profile.first_name,
       "$last_name" => resource.profile.last_name})
 
