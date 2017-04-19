@@ -105,11 +105,10 @@
               = render "profiles/myhome_components/dashboard_module"
 
 :javascript
-  $('li.complete, li.incomplete').on('click', function(){
-        window.location = $(this).data('link');
-      });
+  $('.complete, .incomplete').on('click', function(){
+    window.location = $(this).data('link');
+  });
 
   var myhomeTour = modulejs.require('myhome_tour');
   myhomeTour.init(#{@mobile});
   myhomeTour.start(#{@tour});
-  console.log(#{@tour});
