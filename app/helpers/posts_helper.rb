@@ -5,7 +5,6 @@ module PostsHelper
                               'good-eats': 'Good eats',
                               'clean-power': 'Clean power', 
                               'getting-around': 'Getting around', 
-                              'heating-and-cooling': 'Heating & cooling', 
                               'energy-efficiency': 'Energy efficiency',
                               'buyer-guides': 'Buyer guides'
                             }.stringify_keys
@@ -13,8 +12,7 @@ module PostsHelper
   CATEGORY_SLUG_TO_ID = {
     'good-eats': 720,
     'clean-power': 4, 
-    'getting-around': 5, 
-    'heating-and-cooling': 6, 
+    'getting-around': 5,  
     'energy-efficiency': 7,
     'buyer-guides': 737
   }.stringify_keys
