@@ -29,6 +29,7 @@ class FatMealsController < ApplicationController
   # POST /food-action-tracker XmlHttpRequest
   # Create FAT resources for the date provided in params.
   def create
+    food = nil
     foods = params[:fat_day][:foods]
     @meal_day =  MealDay.create(
                   user: current_user,
@@ -36,14 +37,24 @@ class FatMealsController < ApplicationController
                 )
     if foods
       foods.each do |key, value|
-        @meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
+        food = Food.create(food_type_id: key.to_i, size: value[:size].to_f)
+        @meal_day.foods << food
       end
     end
 
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
     
-    track_event "Create Food", {"User": current_user.email}
+    food_type = 'None'
+    size = 0
+    unless food.nil? 
+      food_type = food.food_type.category
+      size = food.size
+    end 
+    track_event "Initiate Food tracking", { "User": current_user.email,
+      "food_date": @meal_day.date,
+      "food_type": food_type,
+      "food_size": size }
 
     fat_graph_params(@date)
     render_response
@@ -52,6 +63,7 @@ class FatMealsController < ApplicationController
   # PATCH /food-action-tracker/ XmlHttpRequest
   # Update FAT resources for date provided in params
   def update
+    food = nil
     meal_day_id = params[:fat_day][:meal_day][:id].to_i
     foods = params[:fat_day][:foods]
 
@@ -61,13 +73,23 @@ class FatMealsController < ApplicationController
 
     if foods 
       foods.each do |key, value|
-        @meal_day.foods << Food.create(food_type_id: key.to_i, size: value[:size].to_f)
+        food = Food.create(food_type_id: key.to_i, size: value[:size].to_f)
+        @meal_day.foods << food
       end
     end
     @meal_day.calculate_cf
     FatCompetition::award_points(@meal_day)
 
-    track_event "Update Food", {"User": current_user.email}
+    food_type = 'None'
+    size = 0
+    unless food.nil? 
+      food_type = food.food_type.category
+      size = food.size
+    end 
+    track_event "Update Food", { "User": current_user.email,
+      "food_date": @meal_day.date,
+      "food_type": food_type,
+      "food_size": size }
 
     fat_graph_params(@meal_day.date)
 
