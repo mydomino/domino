@@ -1,11 +1,13 @@
 %ul.list-reset.md-flex.flex-row.mt3.mb0.sm-mt0.sm-mb3.sm-ml2
   %li.block.light
-    = link_to "All", posts_path(), class: 'text-decoration-none gray-6 text-blue--hover'
-  %li.block.light.pl2
-    = link_to "Clean power", posts_path(cat: "clean-power"), class: 'text-decoration-none gray-6 text-blue--hover'
-  %li.block.light.pl2
-    = link_to "Getting around", posts_path(cat: "getting-around"), class: 'text-decoration-none gray-6 text-blue--hover'
-  %li.block.light.pl2
-    = link_to "Heating & cooling", posts_path(cat: "heating-and-cooling"), class: 'text-decoration-none gray-6 text-blue--hover'
-  %li.block.light.pl2
-    = link_to "Energy efficiency", posts_path(cat: "energy-efficiency"), class: 'text-decoration-none gray-6 text-blue--hover'
+    = link_to "All", posts_path(), class: 'pr4 text-decoration-none gray-6 white--hover sm-blue--hover'
+  %li.block.light
+    = link_to "Good Eats", posts_path(cat: "good-eats"), class: 'pr4 text-decoration-none white--hover gray-6 sm-blue--hover'
+  %li.block.light
+    = link_to "Clean Power", posts_path(cat: "clean-power"), class: 'pr4 text-decoration-none white--hover gray-6 sm-blue--hover'
+  %li.block.light
+    = link_to "Energy Efficiency", posts_path(cat: "energy-efficiency"), class: 'pr4 text-decoration-none white--hover gray-6 sm-blue--hover'
+  %li.block.light
+    = link_to "Getting Around", posts_path(cat: "getting-around"), class: 'pr4 text-decoration-none white--hover gray-6 sm-blue--hover'
+  %li.block.light.sm-pr2
+    = link_to "Buyer Guides", posts_path(cat: "buyer-guides"), class: 'pr4 text-decoration-none white--hover gray-6 sm-blue--hover'

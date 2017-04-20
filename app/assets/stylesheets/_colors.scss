@@ -18,7 +18,6 @@
 .aqua {color: $aqua;}
 .leaf {color: $leaf;}
 
-
 // Background colors
 .bg-transparent{ background-color: transparent; }
 .bg-white { background-color: $white; }
@@ -42,10 +41,15 @@
 
 .border-orange {border-color: $orange;}
 
-//Hover
-.blue--hover:hover {
-  color: $blue;
+// Hover
+.blue--hover:hover { color: $blue; }
+.white--hover:hover { color: $white; }
+
+@media (min-width: 40em) {
+  .sm-blue--hover:hover { color:$blue; }
+  .sm-white--hover:hover { color: $white; }
 }
+  
 // Overlays
 .overlay {
   position: relative;
