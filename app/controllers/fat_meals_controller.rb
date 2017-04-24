@@ -10,7 +10,6 @@ class FatMealsController < ApplicationController
   #  If no date params are provided, the interface will
   #  render for the current date based on users timezone
   def edit
-    set_date
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: @date)
 
     if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
