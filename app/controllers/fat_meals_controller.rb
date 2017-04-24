@@ -1,8 +1,10 @@
 class FatMealsController < ApplicationController
   include FatCompetition
+
   skip_before_filter  :verify_authenticity_token
   before_action :authenticate_user!
   before_action :set_date, only: [:edit, :create, :update]
+  
  
   # GET /food
   # GET /food/:year/:month/:day
@@ -11,13 +13,7 @@ class FatMealsController < ApplicationController
   #  render for the current date based on users timezone
   def edit
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: @date)
-
-    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
-      @graph_params = fat_graph_params(@today-7, true)
-    else
-      @graph_params = fat_graph_params(@date)
-    end
-
+    get_graph_params
     @fat_day = {
       meal_day: meal_day || MealDay.new,
       foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
@@ -59,11 +55,7 @@ class FatMealsController < ApplicationController
       "food_type": food_type,
       "food_size": size }
 
-    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
-      @graph_params = fat_graph_params(@today-7, true)
-    else
-      @graph_params = fat_graph_params(@date)
-    end
+    get_graph_params
     render_response
   end
 
@@ -98,17 +90,27 @@ class FatMealsController < ApplicationController
       "food_type": food_type,
       "food_size": size }
 
-    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
-      @graph_params = fat_graph_params(@today-7, true)
-    else
-      @graph_params = fat_graph_params(@date)
-    end
+    # if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
+    #   @graph_params = fat_graph_params(@today-7, true)
+    # else
+    #   @graph_params = fat_graph_params(@date)
+    # end
+    get_graph_params
 
     render_response
   end
 
   private
 
+  # /get_graph_params/
+  # Purpose: Set FAT card timeline parameters
+  def get_graph_params
+    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
+      @graph_params = fat_graph_params(@today-7, true)
+    else
+      @graph_params = fat_graph_params(@date)
+    end
+  end
   # /render_response/
   # Purpose: send response payload back to FAT react UI
   def render_response
