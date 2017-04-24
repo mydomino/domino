@@ -2,11 +2,23 @@ class Results extends React.Component {
   updateGraph(d) {
     this.refs.fatgraph.updateGraph(d);
   }
+  getGraphTitle(){
+    let today = new Date();
+    let monday = new Date(this.props.graph_params.values[0].path);
+    console.log(today);
+    console.log(monday);
+    if(monday.getDate() < today.getDate()){
+      return "Last Week's Progress";
+    }
+    else {
+      return "This Week's Progress"
+    }
+  }
   render() {
     return (
       <div>
         <div id="weekly-progress" className="center bg-leaf py4">
-          <div className="h2 bold gray-7 pb4">Progress This Week</div>
+          <div className="h2 bold gray-7 pb4">{this.getGraphTitle()}</div>
           <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         </div>
 
