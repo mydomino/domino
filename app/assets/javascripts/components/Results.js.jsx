@@ -5,8 +5,6 @@ class Results extends React.Component {
   getGraphTitle(){
     let today = new Date();
     let monday = new Date(this.props.graph_params.values[0].path);
-    console.log(today);
-    console.log(monday);
     if(monday.getDate() < today.getDate()){
       return "Last Week's Progress";
     }
