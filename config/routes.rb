@@ -95,10 +95,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     get ':org_name'  => "registrations#new_org_member", constraints: { org_name: /(sungevity|mydomino|test)/ }
     get 'pm'  => "registrations#new_member"
-    
-    get "check-org-member-email" => "registrations#check_org_member_email"
-    post "create-org-member" => "registrations#create_org_member"
-    patch "set-org-member-password" => "registrations#set_org_member_password"
+
+    get "check-org-member-email" => "registrations#check_org_member_email" # XMLHttpRequest
+    post "create-org-member" => "registrations#create_org_member" # XMLHttpRequest
+    patch "set-org-member-password" => "registrations#set_org_member_password" # XMLHttpRequest
   end
 
 

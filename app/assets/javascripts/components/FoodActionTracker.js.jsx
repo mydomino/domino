@@ -88,8 +88,8 @@ class FoodActionTracker extends React.Component {
                   <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
                   <h4 className="medium my0">Back</h4>
                 </span>
-                <h3 className="h4 sm-h3 bold mb0 col-8 mx-auto gray-7">{ this.getResultTitle() }</h3>
-                <div className="col-10 sm-col-8 mx-auto" dangerouslySetInnerHTML={this.getCfResultString()}>
+                <h3 className="sm-h2 bold mb0 col-8 mx-auto" dangerouslySetInnerHTML={this.getResultTitle()}></h3>
+                <div className="col-10 sm-col-8 mx-auto mb2" dangerouslySetInnerHTML={this.getCfResultString()}>
 
                 </div>
                  <div className="mx-auto center my1">
@@ -118,34 +118,61 @@ class FoodActionTracker extends React.Component {
   }
   getResultTitle() {
     let cf = this.state.meal_day.carbon_footprint;
-
+    result_title = ""
     if(cf <= 7) {
-
-      return ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
+      result_title += "<span class='green'>"
+      result_title += ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
     }
     else if(cf >= 7 && cf < 8 ){
-      return "It's okay, I guess...";
+      result_title += "<span class='yellow'>"
+      result_title += "It's okay, I guess...";
     }
     else {
-      return "Doh!";
+      result_title += "<span class='red'>"
+      result_title += "Doh!";
     }
+    result_title += "</span>"
+    return {__html: result_title };
+  }
+  getCfpPoints() {
+    let percentAverageEmission = 1-(this.state.meal_day.carbon_footprint/7);
+    let points = 0;
+
+    if(percentAverageEmission >= 0.1 && percentAverageEmission < 1.0){
+      points = percentAverageEmission * 100;
+    }
+    return points.toFixed();
   }
   getCfResultString() {
-    let str =  "<p class='h5 sm-h4 left-align mx-auto mt1'>Your Foodprint today is ";
+    let str =  "<p class='h4 sm-h4 mx-auto mt0'>Your Foodprint today is ";
     let cf = this.state.meal_day.carbon_footprint;
     let avgPercent = (cf/7) * 100;
     if(cf < 7) {
       let val = (100 - avgPercent).toFixed(0);
-      str += "<span class='h3 blue bold'>" + val + "%</span> below the American average."
+      str += "<span class='green'><span class='h3 bold'>" + val + "%</span> below</span> the American average."
     }
     else if(cf >= 7) {
       let val = (avgPercent - 100).toFixed(0);
-      str += "<span class='h3 red bold'>" + val + "%</span> above the American average.";
+      str += "<span class='red'><span class='h3 bold'>" + val + "%</span> above</span> the American average.";
     }
     else {
       str += "the American average";
     }
-    str += "<p/><p>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</p>";
+    str += "<p/>"
+
+    str += "<div class='p1 bg-gray-2 mb2'><h3 class='my0'>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</h3>";    
+    str += "<ul class='p1 m0 list-style-none h5 gray-6'><li><span class='blue'>+" + this.getCfpPoints() + " points </span> for beating the average American Foodprint </li>";
+    str+="<li><span class='blue'>+10 points</span> for logging today</li>";
+
+    if(this.state.foods['3'] === undefined) {
+      str+="<li class='my0'><span class='blue'>+5 points</span> for not having dairy </li>";
+    }
+
+    if(this.state.foods['6'] === undefined) {
+      str+="<li class='my0'><span class='blue'>+10 points</span> for not having beef or lamb </li>";
+    }
+
+    str += "</ul></div>"
 
     if(cf < 7) {
       str += `

@@ -19,7 +19,7 @@
         .clearfix
           .col.col-12.px2.mb1
             = link_to 'Give beta feedback', 'https://docs.google.com/a/mydomino.com/forms/d/e/1FAIpQLSeFyYmE_yfCRSzWJ52W-4T5fnO6nSWWhu6T0XXTdphpu3FhDw/viewform', class: 'text-decoration-none btn btn-outline btn-sm white', target: '_blank'
-            #wt-link.right.white.pointer See the tour again
+            #wt-link.right.white.pointer Site Tour
             = inline_svg "icons/i-question.svg", class: 'right fill-white icon-m mr1'
 
         .flex.flex-column.sm-row
@@ -105,11 +105,10 @@
               = render "profiles/myhome_components/dashboard_module"
 
 :javascript
-  $('li.complete, li.incomplete').on('click', function(){
-        window.location = $(this).data('link');
-      });
+  $('.complete, .incomplete').on('click', function(){
+    window.location = $(this).data('link');
+  });
 
   var myhomeTour = modulejs.require('myhome_tour');
   myhomeTour.init(#{@mobile});
   myhomeTour.start(#{@tour});
-  console.log(#{@tour});
