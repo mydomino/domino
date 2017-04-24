@@ -101,9 +101,7 @@
             .h1.gray-7.bold.inline.line-height-1
               Food Challenge
           %p.col-12.sm-col-8.gray-6.mt2.mx-auto Compete with your teammates! Enter the categories of food you eat every day to see the "Carbon Foodprint" of your diet. Earn points by staying below the national average.
-          = link_to 'food' do
-            %button.btn.btn-md.btn-primary.btn-primary--hover
-              .bold Update today
+
         .sm-mx3.mb1
           .mt2
             .col.col-12.bg-gray-2.relative{style:"height:1px; top:1rem ;"}
@@ -117,17 +115,19 @@
                   Go to last week
                 .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{style: 'display: none;', data: {target: '#curr-timeline', hide: '#prev-timeline', text: "#{@week_of}"}}
                   Go to this week
-              
-        .col-12.sm-col-8.mx-auto
-          %p.mt0.h6.gray-5 Get your submissions in by 11pm on #{@deadline}
-        
+
         #curr-timeline
           = render 'profiles/myhome_components/fat_timeline', timeline: @timeline_params
 
         -if @prev_timeline_params
           #prev-timeline{style: 'display: none;'}
             = render 'profiles/myhome_components/fat_timeline', timeline: @prev_timeline_params
-       
+        .col-12.sm-col-8.mx-auto
+          = link_to 'food' do
+            %button.btn.btn-md.btn-primary.btn-primary--hover.my1
+              .bold Update today
+          %p.mt0.h6.gray-5 Get your submissions in by 11pm on #{@deadline}
+
 :javascript
 
   var $fatOverlay1,

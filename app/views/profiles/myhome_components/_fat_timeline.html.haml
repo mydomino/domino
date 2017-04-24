@@ -1,4 +1,4 @@
-.col-12.sm-col-8.mx-auto.table.mb4
+.col-12.sm-col-8.mx-auto.table.mb1
   -prev_complete = false
   -timeline.each_with_index do |p,i|
     .mb3.table-cell.day{class: "#{p[:status]} #{p[:day]} #{'pointer' if p[:status] != 'future'}", data: {link: p[:link]}}
