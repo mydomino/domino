@@ -1,0 +1,16 @@
+.col-12.sm-col-8.mx-auto.table.mb4
+  -prev_complete = false
+  -timeline.each_with_index do |p,i|
+    .mb3.table-cell.day{class: "#{p[:status]} #{p[:day]} #{'pointer' if p[:status] != 'future'}", data: {link: p[:link]}}
+      -if p[:status]=="complete"
+        =inline_svg "icons/i-success.svg", class:"icon-l fill-black #{p[:status]}"
+        -prev_complete = true
+      -elsif p[:status]=="incomplete"
+        =inline_svg "icons/i-question.svg", class:"icon-l"
+        -prev_complete = false
+      -else
+        =inline_svg "icons/i-circle.svg", class:"icon-l #{p[:status]}"
+    - if i < 6
+      .table-cell.chain-wrapper
+        -if (p[:status] =='complete' && timeline[i+1][:status] == 'complete')
+          .chain

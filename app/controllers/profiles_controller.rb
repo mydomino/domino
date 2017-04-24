@@ -19,8 +19,11 @@ class ProfilesController < ApplicationController
   def myhome
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
+    
     # @profile used to display first and last name
     @profile = @user.profile
+
+    # Leader board list
     @leaderboard_users = cfp_ranking
 
     #date to display on FAT module
@@ -34,25 +37,17 @@ class ProfilesController < ApplicationController
     time_now = Time.now.in_time_zone(time_zone_name)
     today = Date.new(time_now.year, time_now.month, time_now.day)
 
+    #get timeline of current week
     active_days = today.cwday
-
     days_left = 7 - today.cwday
     fat_graph_date = today - active_days + 1
-    @timeline_params = []
+    @timeline_params = fat_timeline_params(fat_graph_date, active_days, days_left) 
+    
+    # Get timeline of previous week if Mon 12am < current time < Mon 11pm
+    if(time_now.monday? && time_now.hour < 23)
+      @prev_timeline_params = fat_timeline_params(fat_graph_date-7)
+    end 
 
-    active_days.times do
-      meal_day_t = MealDay.find_by(date: fat_graph_date, user: current_user)
-      day = fat_graph_date.strftime("%A").downcase
-      status = meal_day_t ? "complete" : "incomplete"
-      link = "/food/" + fat_graph_date.strftime("%Y/%m/%d")
-      @timeline_params << { day: day , status: status, link: link }
-      fat_graph_date += 1.day
-    end
-
-    days_left.times do 
-      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
-      fat_graph_date += 1.day
-    end
 
     # Welcome tour params
     @tour = !@profile.welcome_tour_complete
@@ -204,6 +199,38 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  # /fat_timeline_params/
+  def fat_timeline_params(start_date, active_days=nil, days_left=nil)
+
+    tmp_timeline_params = [];
+    
+    if(!active_days.nil?)
+      active_days.times do
+        meal_day_t = MealDay.find_by(date: start_date, user: current_user)
+        day = start_date.strftime("%A").downcase
+        status = meal_day_t ? "complete" : "incomplete"
+        link = "/food/" + start_date.strftime("%Y/%m/%d")
+        tmp_timeline_params << { day: day , status: status, link: link }
+        start_date += 1.day
+      end
+
+      days_left.times do 
+        tmp_timeline_params << {day: start_date.strftime("%A").downcase, status: "future", link: "#"}
+        start_date += 1.day
+      end
+    else 
+      7.times do
+        meal_day_t = MealDay.find_by(date: start_date, user: current_user)
+        day = start_date.strftime("%A").downcase
+        status = meal_day_t ? "complete" : "incomplete"
+        link = "/food/" + start_date.strftime("%Y/%m/%d")
+        tmp_timeline_params << { day: day , status: status, link: link }
+        start_date += 1.day
+      end
+    end
+    return tmp_timeline_params
+  end
 
   # /cfp_ranking/
   # Purpose: returns list of users to be displayed on the leaderboard

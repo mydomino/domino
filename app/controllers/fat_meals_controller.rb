@@ -124,7 +124,13 @@ class FatMealsController < ApplicationController
     @today = Date.new(time_now.year, time_now.month, time_now.day)
 
     # Food logging only permitted back to Monday of current week
-    @lower_date_bounds = @today - @today.cwday + 1
+    # Unless its before 11pm on Monday of the current week
+    # Then lower_date_bounds is Monday of the previous week
+    if(time_now.monday? && time_now.hour < 23)
+      @lower_date_bounds = @today - 7
+    else
+      @lower_date_bounds = @today - @today.cwday + 1
+    end
     
     if params[:fat_day]
       @date = Date.strptime(params[:fat_day][:date], "%Y-%m-%d")
