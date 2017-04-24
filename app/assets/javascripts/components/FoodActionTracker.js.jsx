@@ -10,6 +10,7 @@ class FoodActionTracker extends React.Component {
       method: mealDayNull ? 'POST' : 'PATCH',
       meal_day: fatDay.meal_day,
       foods: fatDay.foods,
+      graph_params: fatDay.graph_params,
       didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
       results: !mealDayNull,
       nextView: false

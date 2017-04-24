@@ -1,6 +1,6 @@
 class FatMealsController < ApplicationController
   include FatCompetition
-
+  skip_before_filter  :verify_authenticity_token
   before_action :authenticate_user!
   before_action :set_date, only: [:edit, :create, :update]
  
@@ -12,11 +12,11 @@ class FatMealsController < ApplicationController
   def edit
     set_date
     meal_day = MealDay.includes(:foods).find_by(user: current_user, date: @date)
-    
-    @graph_params = fat_graph_params(@date)
 
     if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
       @graph_params = fat_graph_params(@today-7, true)
+    else
+      @graph_params = fat_graph_params(@date)
     end
 
     @fat_day = {
@@ -60,7 +60,11 @@ class FatMealsController < ApplicationController
       "food_type": food_type,
       "food_size": size }
 
-    @graph_params = fat_graph_params(@date)
+    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
+      @graph_params = fat_graph_params(@today-7, true)
+    else
+      @graph_params = fat_graph_params(@date)
+    end
     render_response
   end
 
@@ -95,7 +99,11 @@ class FatMealsController < ApplicationController
       "food_type": food_type,
       "food_size": size }
 
-    @graph_params = fat_graph_params(@meal_day.date)
+    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
+      @graph_params = fat_graph_params(@today-7, true)
+    else
+      @graph_params = fat_graph_params(@date)
+    end
 
     render_response
   end
@@ -169,9 +177,8 @@ class FatMealsController < ApplicationController
   # /fat_graph_params/
   # Purpose: Create a data structure whose values are used to render fat graph
   def fat_graph_params(date, prev_week=false)
-
     if(prev_week)
-      graph_params = {day_index: date.cwday - 1, values: []}
+      graph_params = {day_index: @date.cwday - 1, values: []}
       7.times do
         meal_day_g = MealDay.find_by(date: date, user: current_user)
         cf = meal_day_g ? meal_day_g.carbon_footprint : nil
@@ -180,9 +187,7 @@ class FatMealsController < ApplicationController
         date += 1.day
       end
     else
-
       @active_days = @today.cwday
-
       days_left = 7 - @today.cwday
       fat_graph_date = @today - @active_days + 1
       graph_params = {day_index: date.cwday - 1, values: []}
