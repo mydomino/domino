@@ -49,8 +49,7 @@ class FoodActionTracker extends React.Component {
                                         sizeInfo={that.props.foodSizeInfo[foodType.id]}
                                         food={that.state.foods[foodType.id]} index={index}
                                         key={foodType.name}
-                                        foodType={foodType}
-                                        updateFoodSize={(f)=>that.updateFoodSize(f)} />
+                                        foodType={foodType} />
                     });
 
     return (
@@ -63,24 +62,11 @@ class FoodActionTracker extends React.Component {
 
           <div className='bg-gray-1 clearfix rounded-bottom px2 pb2 relative'>
 
-            <div id="food-picker" className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
-              <div className='col-12 p2'>
-                {foodTypes}
-              </div>
-              <div className="center p2">
-               <a onClick={()=>this.didntEat()} >
-                  <button id="btn-didnt-eat"
-                    className={(this.state.didntEat ? "border " : null) + " fill-x mt1 btn btn-sm btn-secondary border-gray-2"}
-                    style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
-
-                    <span className="flex items-center justify-center">
-                      <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                      {"I ate none of these"}
-                    </span>
-                  </button>
-                </a>
-              </div>
-            </div> {/* end food-picker */}
+            <FoodPicker foodTypes={this.props.fatDay.food_types}
+                        foods={this.state.foods}
+                        foodSizeInfo={this.props.foodSizeInfo} 
+                        addFood={(f)=>this.addFood(f)}
+                        removeFood={(f)=>this.removeFood(f)} />
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
