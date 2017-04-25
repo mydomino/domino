@@ -20,7 +20,8 @@ class FatMealsController < ApplicationController
       foods: meal_day ? meal_day.foods.map { |f| [f.food_type_id, f] }.to_h : {},
       date: @date,
       food_types: FoodType.all,
-      graph_params: @graph_params
+      graph_params: @graph_params,
+      prev_week: @prev_week
     }
 
     track_event "View Food", {"User": current_user.email}
@@ -101,8 +102,10 @@ class FatMealsController < ApplicationController
   # Purpose: Set FAT card timeline parameters
   def get_graph_params
     if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
-      return fat_graph_params(@today-7, true)
+      @prev_week = true
+      return fat_graph_params(@today-7, @prev_week)
     else
+      @prev_week = false
       return fat_graph_params(@date)
     end
   end

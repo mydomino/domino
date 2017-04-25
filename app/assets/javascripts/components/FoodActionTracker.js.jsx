@@ -112,7 +112,7 @@ class FoodActionTracker extends React.Component {
           </a>
         </div>
         <div className={((this.state.nextView) ? "inherit" : "display-none")}>
-          <Results ref="results" graph_params={this.props.fatDay.graph_params} />
+          <Results ref="results" prevWeek={this.props.fatDay.prev_week} graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
     );
