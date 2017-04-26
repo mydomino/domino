@@ -43,6 +43,11 @@ class FoodActionTracker extends React.Component {
                         updateFoods={(f)=>this.updateFoods(f)}
                         removeFood={(f)=>this.removeFood(f)} />
 
+            <ResultsSummary nextView={this.state.nextView}
+                            carbonFootprint={this.state.meal_day.carbon_footprint}
+                            points={this.state.meal_day.points}
+                            foods={this.state.foods} />
+
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
 
               <div className="bg-white mx2 my1 py2 rounded center">
