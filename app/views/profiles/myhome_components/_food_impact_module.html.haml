@@ -117,6 +117,8 @@
                   Last Week
                   .timeline-toggle.pointer.inline{data: {target: '#curr-timeline', hide: '#prev-timeline', show: '#this-week', text: "#{@week_of}"}}
                     =inline_svg "icons/i-arrow-right", class: 'icon-s fill-gray-4 fill-blue--hover'
+            -else 
+              .h3.sm-h2.gray-6 This Week
             .h5.sm-h4.gray-4           
               %span#text-week-of
                 = @show_prev_timeline ? @prev_week_of : @week_of
