@@ -1,7 +1,7 @@
 module FatCompetition
 
   # FAT Logging grace period
-  GRACE_PERIOD_DAY = 'wednesday'
+  GRACE_PERIOD_DAY = 'monday'
   GRACE_PERIOD_HOUR = 23
 
   # define ACTIONS type CONSTANTS
