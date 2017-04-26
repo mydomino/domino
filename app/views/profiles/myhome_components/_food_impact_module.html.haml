@@ -107,20 +107,20 @@
             .col.col-12.bg-gray-2.relative{style:"height:1px; top:1rem ;"}
           .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
             #text-week-of.h4.sm-h3
-              = @week_of
+              = @show_prev_timeline ? 'Last week' : @week_of
 
             -if @prev_timeline_params
               .timeline-toggle-wrapper
-                .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{data: {target: '#prev-timeline', hide: '#curr-timeline', text: "Last week"}}
+                .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{style: "#{'display: none' if @show_prev_timeline}", data: {target: '#prev-timeline', hide: '#curr-timeline', text: "Last week"}}
                   Go to last week
-                .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{style: 'display: none;', data: {target: '#curr-timeline', hide: '#prev-timeline', text: "#{@week_of}"}}
+                .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{style: "#{'display: none' if !@show_prev_timeline}", data: {target: '#curr-timeline', hide: '#prev-timeline', text: "#{@week_of}"}}
                   Go to this week
 
-        #curr-timeline
+        #curr-timeline{style: "#{'display: none' if @show_prev_timeline}"}
           = render 'profiles/myhome_components/fat_timeline', timeline: @timeline_params
 
         -if @prev_timeline_params
-          #prev-timeline{style: 'display: none;'}
+          #prev-timeline{style: "#{'display: none' if !@show_prev_timeline}"}
             = render 'profiles/myhome_components/fat_timeline', timeline: @prev_timeline_params
         .col-12.sm-col-8.mx-auto
           = link_to 'food' do
@@ -170,6 +170,11 @@
     var hide = $this.data('hide');
     var target = $(this).data('target');
     var text = $(this).data('text');
+    
+    if(target ==='#prev-timeline')
+      Cookies.set('prevtimeline', 'true');
+    else
+      Cookies.set('prevtimeline', 'false');
 
     $(this).fadeOut(function(){
       $('.timeline-toggle').not(this).show();

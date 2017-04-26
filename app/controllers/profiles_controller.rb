@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
   # Purpose: This is the membership home page
   # GET /myhome
   def myhome
+    @show_prev_timeline = request.cookies['prevtimeline'] == "true"
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
     
