@@ -1,5 +1,9 @@
 module FatCompetition
 
+  # FAT Logging grace period
+  GRACE_PERIOD_DAY = 'wednesday'
+  GRACE_PERIOD_HOUR = 23
+
   # define ACTIONS type CONSTANTS
   TRACK_FOOD_LOG            = 'TRACK_FOOD_LOG'
   BEAT_CFP_EMISSION         = 'BEAT_CFP_EMISSION'

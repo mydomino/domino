@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  include FatCompetition
+
   before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
   before_action :authenticate_user!, only: [:show, :myhome]
   
@@ -44,7 +46,8 @@ class ProfilesController < ApplicationController
     @timeline_params = fat_timeline_params(fat_graph_date, active_days, days_left) 
     
     # Get timeline of previous week if Mon 12am < current time < Mon 11pm
-    if(time_now.monday? && time_now.hour < 23)
+    if(time_now.send(FatCompetition::GRACE_PERIOD_DAY + '?') && time_now.hour < FatCompetition::GRACE_PERIOD_HOUR)
+      @prev_week = true
       @prev_timeline_params = fat_timeline_params(fat_graph_date-7)
     end 
 

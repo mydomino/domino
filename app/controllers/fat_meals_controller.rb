@@ -101,7 +101,7 @@ class FatMealsController < ApplicationController
   # /get_graph_params/
   # Purpose: Set FAT card timeline parameters
   def get_graph_params
-    if(@today_datetime.monday? && @today_datetime.hour < 23 && @date < @today )
+    if( @today_datetime.send(FatCompetition::GRACE_PERIOD_DAY + '?') && @today_datetime.hour < FatCompetition::GRACE_PERIOD_HOUR && @date < @today )
       @prev_week = true
       return fat_graph_params(@today-7, @prev_week)
     else
@@ -138,7 +138,7 @@ class FatMealsController < ApplicationController
     # Food logging only permitted back to Monday of current week
     # Unless its before 11pm on Monday of the current week
     # Then lower_date_bounds is Monday of the previous week
-    if(time_now.monday? && time_now.hour < 23)
+    if(time_now.send(FatCompetition::GRACE_PERIOD_DAY + '?') && time_now.hour < FatCompetition::GRACE_PERIOD_HOUR)
       @lower_date_bounds = @today - 7
     else
       @lower_date_bounds = @today - @today.cwday + 1
