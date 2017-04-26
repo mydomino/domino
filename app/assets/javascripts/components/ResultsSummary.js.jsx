@@ -83,7 +83,7 @@ class ResultsSummary extends React.Component {
     return (
       <div id="results-summary" className={(this.props.nextView ? "fadeIn" : "display-none") + " animated"}>
         <div className="bg-white mx2 my1 py2 rounded center">
-          <span onClick={() => this.toggleView()} style={{top:'1.5rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
+          <span onClick={() => this.props.toggleView()} style={{top:'1.5rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
             <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
             <h4 className="medium my0">Back</h4>
           </span>

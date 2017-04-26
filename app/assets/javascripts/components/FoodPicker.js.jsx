@@ -64,7 +64,7 @@ class FoodPicker extends React.Component {
                                         foodType={foodType} />
                     });
     return (
-      <div id="food-picker" className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
+      <div id="food-picker" className={((this.props.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
         <div className='col-12 p2'>
           {foodTypes}
         </div>
