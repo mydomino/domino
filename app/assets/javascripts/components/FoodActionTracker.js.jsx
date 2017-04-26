@@ -11,47 +11,21 @@ class FoodActionTracker extends React.Component {
       meal_day: fatDay.meal_day,
       foods: fatDay.foods,
       graph_params: fatDay.graph_params,
-      didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
       results: !mealDayNull,
       nextView: false
     };
   }
-  addFood(f) {
-    let food_base = {size: null, food_type_id: null};
-
-    let foods = Object.assign({}, this.state.foods);
-    let food = Object.assign(food_base, f);
-    foods[food.food_type_id] = food;
-
+  updateFoods(foods) {
     this.setState({
-      foods: foods,
-      didntEat: false
-    },this.getCarbonFootprint);
-  }
-  removeFood(f) {
-    let foods = Object.assign({}, this.state.foods);
-    delete foods[f.food_type_id];
-
-    this.setState({
-      foods: foods
-    }, this.getCarbonFootprint);
+        foods: foods
+      }, function(){this.getCarbonFootprint()}
+    );
   }
   updateGraph(d) {
     this.refs.results.updateGraph(d);
   }
   render() {
     var that = this;
-    var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
-                      return <FoodType  index={index}
-                                        ref={"foodtype" + (index+1)}
-                                        removeFood={(f)=>that.removeFood(f)}
-                                        addFood={(f)=>that.addFood(f)}
-                                        sizeInfo={that.props.foodSizeInfo[foodType.id]}
-                                        food={that.state.foods[foodType.id]} index={index}
-                                        key={foodType.name}
-                                        foodType={foodType} />
-                    });
-
     return (
       <div className='remodal-bg'>
         <div className='max-width-3 mx-auto p1'>
@@ -62,10 +36,11 @@ class FoodActionTracker extends React.Component {
 
           <div className='bg-gray-1 clearfix rounded-bottom px2 pb2 relative'>
 
-            <FoodPicker foodTypes={this.props.fatDay.food_types}
+            <FoodPicker ref='foodPicker'
+                        foodTypes={this.props.fatDay.food_types}
                         foods={this.state.foods}
                         foodSizeInfo={this.props.foodSizeInfo} 
-                        addFood={(f)=>this.addFood(f)}
+                        updateFoods={(f)=>this.updateFoods(f)}
                         removeFood={(f)=>this.removeFood(f)} />
 
             <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
@@ -198,22 +173,6 @@ class FoodActionTracker extends React.Component {
     this.setState({
       nextView: !this.state.nextView
     });
-  }
-  didntEat() {
-    if(!this.state.didntEat) {
-      let foods = Object.assign({}, this.state.foods);
-
-      for (var food in foods) {
-        let selector = "foodtype" + food;
-        this.refs[selector].removeFood();
-        delete foods[food];
-      }
-
-      this.setState({
-        foods: foods,
-        didntEat: true
-      }, this.getCarbonFootprint);
-    }
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server
