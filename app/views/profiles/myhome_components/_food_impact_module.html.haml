@@ -105,16 +105,22 @@
         .sm-mx3.mb1
           .mt2
             .col.col-12.bg-gray-2.relative{style:"height:1px; top:1rem ;"}
-          .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
-            #text-week-of.h4.sm-h3
-              = @show_prev_timeline ? 'Last week' : @week_of
 
+          .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
             -if @prev_timeline_params
               .timeline-toggle-wrapper
-                .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{style: "#{'display: none' if @show_prev_timeline}", data: {target: '#prev-timeline', hide: '#curr-timeline', text: "Last week"}}
-                  Go to last week
-                .timeline-toggle.gray-5.h5.sm-h4.pointer.blue--hover{style: "#{'display: none' if !@show_prev_timeline}", data: {target: '#curr-timeline', hide: '#prev-timeline', text: "#{@week_of}"}}
-                  Go to this week
+                #this-week.gray-6.h3.sm-h2{style: "#{'display: none' if @show_prev_timeline}"}
+                  .timeline-toggle.pointer.inline{data: {target: '#prev-timeline', hide: '#curr-timeline', show: '#last-week', text: "#{@prev_week_of}"}}
+                    =inline_svg "icons/i-arrow-left", class: 'icon-s fill-gray-4 fill-blue--hover'
+                  This Week
+                #last-week.gray-6.h3.sm-h2{style: "#{'display: none' if !@show_prev_timeline}"} 
+                  Last Week
+                  .timeline-toggle.pointer.inline{data: {target: '#curr-timeline', hide: '#prev-timeline', show: '#this-week', text: "#{@week_of}"}}
+                    =inline_svg "icons/i-arrow-right", class: 'icon-s fill-gray-4 fill-blue--hover'
+            .h5.sm-h4.gray-4           
+              %span#text-week-of
+                = @show_prev_timeline ? @prev_week_of : @week_of
+
 
         #curr-timeline{style: "#{'display: none' if @show_prev_timeline}"}
           = render 'profiles/myhome_components/fat_timeline', timeline: @timeline_params
@@ -176,8 +182,8 @@
     else
       Cookies.set('prevtimeline', 'false');
 
-    $(this).fadeOut(function(){
-      $('.timeline-toggle').not(this).show();
+    $(this).parent().fadeOut(function(){
+      $($this.data('show')).show();
     });
     $(hide).fadeOut(function(){
       $(target).fadeIn();

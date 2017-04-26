@@ -31,7 +31,9 @@ class ProfilesController < ApplicationController
 
     #date to display on FAT module
     beginning_of_week = Date.today.beginning_of_week
-    @week_of = "Week of " + beginning_of_week.strftime("%B #{beginning_of_week.day.ordinalize}")
+    end_of_week = beginning_of_week + 6
+
+    @week_of = beginning_of_week.strftime("%B #{beginning_of_week.day}") + " to " + end_of_week.strftime("%B #{end_of_week.day}")
     @deadline = Date.today.end_of_week + 1
     @deadline = @deadline.strftime("%A, %B %-d")
 
@@ -50,6 +52,7 @@ class ProfilesController < ApplicationController
     if(time_now.send(FatCompetition::GRACE_PERIOD_DAY + '?') && time_now.hour < FatCompetition::GRACE_PERIOD_HOUR)
       @prev_week = true
       @prev_timeline_params = fat_timeline_params(fat_graph_date-7)
+      @prev_week_of = (fat_graph_date-7).strftime("%B #{(fat_graph_date-7).day}") + " to " + (fat_graph_date-1).strftime("%B #{(fat_graph_date-1).day}") 
     end 
 
 
