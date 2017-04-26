@@ -176,8 +176,9 @@ class FatMealsController < ApplicationController
   # /fat_graph_params/
   # Purpose: Create a data structure whose values are used to render fat graph
   def fat_graph_params(date, prev_week=false)
+    graph_params = {day_index: @date.cwday - 1, values: []}
+    
     if(prev_week)
-      graph_params = {day_index: @date.cwday - 1, values: []}
       7.times do
         meal_day_g = MealDay.find_by(date: date, user: current_user)
         cf = meal_day_g ? meal_day_g.carbon_footprint : nil
@@ -189,7 +190,6 @@ class FatMealsController < ApplicationController
       @active_days = @today.cwday
       days_left = 7 - @today.cwday
       fat_graph_date = @today - @active_days + 1
-      graph_params = {day_index: date.cwday - 1, values: []}
 
       @active_days.times do
         meal_day_g = MealDay.find_by(date: fat_graph_date, user: current_user)
