@@ -103,7 +103,7 @@ class FatMealsController < ApplicationController
   def get_graph_params
     if( @today_datetime.send(FatCompetition::GRACE_PERIOD_DAY + '?') && @today_datetime.hour < FatCompetition::GRACE_PERIOD_HOUR && @date < @today )
       @prev_week = true
-      return fat_graph_params(@today-7, @prev_week)
+      return fat_graph_params(@today.beginning_of_week-7, @prev_week)
     else
       @prev_week = false
       return fat_graph_params(@date)
@@ -134,12 +134,12 @@ class FatMealsController < ApplicationController
     time_now = Time.now.in_time_zone(time_zone_name)
     @today = Date.new(time_now.year, time_now.month, time_now.day)
     @today_datetime = DateTime.new(time_now.year, time_now.month, time_now.day, time_now.hour)
-
+    byebug
     # Food logging only permitted back to Monday of current week
     # Unless its before 11pm on Monday of the current week
     # Then lower_date_bounds is Monday of the previous week
     if(time_now.send(FatCompetition::GRACE_PERIOD_DAY + '?') && time_now.hour < FatCompetition::GRACE_PERIOD_HOUR)
-      @lower_date_bounds = @today - 7
+      @lower_date_bounds = @today.beginning_of_week - 7
     else
       @lower_date_bounds = @today - @today.cwday + 1
     end
