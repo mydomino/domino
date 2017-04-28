@@ -112,9 +112,6 @@ modulejs.define('myhome_tour', function(){
       // a user go through the tour multiple times
       $('.introjs-overlay').not(':first').remove();
     },
-    showSkipTriggers: function(){
-      $('.skip-for-now').removeClass('hidden');
-    },
     start: function(start) {
       if(!start) return;
 
@@ -198,7 +195,6 @@ modulejs.define('myhome_tour', function(){
             that.startIntroJs();
           } 
           else {
-            that.showSkipTriggers();
             $.get("profile/welcome-tour-complete", $.noop)
           }
         });
