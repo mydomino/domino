@@ -1,0 +1,16 @@
+-content_for :body_class do
+  bg-gray-1
+  adelle
+.max-width-4.mx-auto.mt6.mb4
+  #member-benefits
+    #benefits-introjs-wrapper{data: {step: "4", position: "top"}}
+      .center.m3
+        .h1.black.bold Member Benefits
+
+      .flex.items-stretch.flex-column.md-row.mx1
+        = render "profiles/myhome_components/take_out_bites_module"
+        = render "profiles/myhome_components/concierge_module"
+
+    .flex.items-stretch.flex-column.md-row.mx1
+      = render "profiles/myhome_components/film_module"
+      = render "profiles/myhome_components/discounts_module"
