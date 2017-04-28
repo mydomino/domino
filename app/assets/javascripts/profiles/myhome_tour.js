@@ -1,6 +1,7 @@
 modulejs.define('myhome_tour', function(){
   return {
     mobile: null,
+    userEmail: null,
     modals: [],
     initModals: function() {
       var $firstModal,
@@ -45,13 +46,14 @@ modulejs.define('myhome_tour', function(){
       // reset display
       $('.remodal-wt').css('display', 'inline-block');
     },
-    init: function(mobile) {
+    init: function(mobile, userEmail) {
       this.mobile = mobile;
+      this.userEmail = userEmail;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
     },
     start: function(start) {
       if(!start) return;
-      mixpanel.track("Welcome tour start - client side");
+      mixpanel.track("Welcome tour start - client side", {"$email": this.userEmail});
       this.initModals();
 
       var $welcomeTourBg,
@@ -88,6 +90,7 @@ modulejs.define('myhome_tour', function(){
         var currStep = $(this).data('step');
         modals[currStep].remodalInstance.close();
         $welcomeTourBg.fadeOut()
+        mixpanel.track("Welcome tour skip", {"$email": this.userEmail});
       });
 
       // Go back to previous modal
@@ -103,6 +106,7 @@ modulejs.define('myhome_tour', function(){
             prevModal.remodalInstance.open();
           });
         });
+        mixpanel.track("Welcome tour - go back", {"$email": this.userEmail});
       });
 
       // Go to next modal
@@ -118,6 +122,8 @@ modulejs.define('myhome_tour', function(){
             nextModal.remodalInstance.open();
           });
         });
+        mixpanel.track("Welcome tour - next", {"$email": this.userEmail});
+
       });
 
       // End remodal portion of tour
@@ -130,6 +136,8 @@ modulejs.define('myhome_tour', function(){
         $welcomeTourBg.fadeOut(function() {
           $.get("profile/welcome-tour-complete", $.noop)
         });
+        mixpanel.track("Welcome tour - finish", {"$email": this.userEmail});
+
       });
       // END Mdule event handlers
 
