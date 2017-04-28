@@ -2,7 +2,6 @@ modulejs.define('myhome_tour', function(){
   return {
     mobile: null,
     modals: [],
-    tourComplete: false,
     initModals: function() {
       var $firstModal,
           $secondModal,
