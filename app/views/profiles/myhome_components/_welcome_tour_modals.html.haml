@@ -79,9 +79,10 @@
 
       .btn.btn-sm.btn-primary.btn-primary--hover{class: "#{@mobile ? 'wt-next' : 'wt-finish'}", data: {"remodal-selector": "#third", "step": 2}}
         .flex.items-center
-          = @mobile ? 'Next' : 'Take a tour'
-          %span.inline-block.ml1
-            = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
+          = @mobile ? 'Next' : 'Got it'
+          - if @mobile
+            %span.inline-block.ml1
+              = inline_svg "icons/i-arrow-right.svg", class: "icon-s fill-white block"
 
 -if @mobile
   .remodal-wt.center#fourth{style: "display: none;", data:{"remodal-id":"modal-3"}}
