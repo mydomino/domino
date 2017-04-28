@@ -18,7 +18,7 @@
                 =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
 
               -if (org_member || private_beta_member)
-                = link_to challenge_path, class: 'text-decoration-none mr2' do
+                = link_to challenge_path, class: 'text-decoration-none ml3 mr2' do
                   %span.inline-block.h5.gray-4.blue--hover{class: "#{(current_page? '/challenge') ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-challenge.svg", class:"block mx-auto", size:"32px * 22px"
                     Challenge
