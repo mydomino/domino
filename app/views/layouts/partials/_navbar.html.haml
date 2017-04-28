@@ -20,7 +20,7 @@
               -if (org_member || private_beta_member)
                 = link_to challenge_path, class: 'text-decoration-none mx1' do
                   %span.inline-block.h5.blue--hover{class: "#{(current_page? '/challenge') ? 'fill-blue blue' : nav_element_color}"}
-                    = inline_svg "icons/i-myhome.svg", class:"block mx-auto", size:"32px * 22px"
+                    = inline_svg "icons/i-challenge.svg", class:"block mx-auto", size:"32px * 22px"
                     Challenge
               -else
                 = link_to user_dashboard_path, class: 'text-decoration-none mr1' do
@@ -30,13 +30,12 @@
 
               = link_to "/articles", class: 'text-decoration-none mr1' do
                 %span.inline-block.h5.blue--hover{class: "#{(current_page? '/articles') ? 'fill-blue blue' : nav_element_color}"}
-                  = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
+                  = inline_svg "icons/i-articles.svg", class:"icon-m block mx-auto"
                   Articles
-
               = link_to member_benefits_path, class: 'text-decoration-none mr1' do
                 %span.inline-block.h5.blue--hover{class: "#{(current_page? '/member_benefits') ? 'fill-blue blue' : nav_element_color}"}
-                  = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
-                  Benefits
+                  = inline_svg "icons/i-benefits.svg", class:"icon-m block mx-auto"
+                  Member Benefits
               -if current_user.role == 'org_admin' && current_user.organization != nil
                 = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
                   %span.inline-block.mr2.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
@@ -84,16 +83,21 @@
         -else
           -if current_user.organization
             %li.h1
-              =link_to 'My Home', myhome_path, class: "white py1 inline-block text-decoration-none"
+              =link_to 'Challenge', challenge_path, class: "white py1 inline-block text-decoration-none"
+            %li.h1
+              =link_to 'Articles', '/articles', class: "white py1 inline-block text-decoration-none"
+            %li.h1
+              =link_to 'Member Benefits', member_benefits_path, class: "white py1 inline-block text-decoration-none"
+          -if current_user.role == 'org_admin' && current_user.organization != nil
+            %li.h1
+              =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
           -else
             %li.h1
               = link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
           %li.h1
             =link_to 'Profile', member_profile_path, class: "white py1 inline-block text-decoration-none"
 
-          -if current_user.role == 'org_admin' && current_user.organization != nil
-            %li.h1
-              =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
+
 
           %li.h1
             = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
