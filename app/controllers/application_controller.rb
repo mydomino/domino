@@ -54,9 +54,11 @@ class ApplicationController < ActionController::Base
     #mixpanel_alias (current_user.id)
 
     # setting People profile
-    mixpanel_people_set({"$email" => @user.email,
-      "$first_name" => resource.profile.first_name,
-      "$last_name" => resource.profile.last_name})
+    if resource.profile != nil
+      mixpanel_people_set({"$email" => @user.email,
+        "$first_name" => resource.profile.first_name,
+        "$last_name" => resource.profile.last_name})
+    end
 
     # If user logs in via article views, redirect to whichever article view they left off at
     if session[:referer] && session[:referer].include?('/articles')
