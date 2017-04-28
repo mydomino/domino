@@ -86,3 +86,11 @@
                       .h4.gray-6 #{u.fat_reward_points}
 
         = render 'profiles/myhome_components/food_impact_module'
+        :javascript
+          $('.complete, .incomplete').on('click', function(){
+            window.location = $(this).data('link');
+          });
+
+          var myhomeTour = modulejs.require('myhome_tour');
+          myhomeTour.init(#{@mobile});
+          myhomeTour.start(#{@tour});

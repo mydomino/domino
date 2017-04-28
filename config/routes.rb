@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get 'partners' => 'pages#partners'
   get 'myhome' => 'profiles#myhome'
   get 'challenge' => 'profiles#challenge'
+  get 'member_benefits' => 'profiles#member_benefits'
 
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
