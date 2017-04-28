@@ -134,7 +134,6 @@ class FatMealsController < ApplicationController
     time_now = Time.now.in_time_zone(time_zone_name)
     @today = Date.new(time_now.year, time_now.month, time_now.day)
     @today_datetime = DateTime.new(time_now.year, time_now.month, time_now.day, time_now.hour)
-    byebug
     # Food logging only permitted back to Monday of current week
     # Unless its before 11pm on Monday of the current week
     # Then lower_date_bounds is Monday of the previous week
