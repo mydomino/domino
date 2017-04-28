@@ -1,6 +1,6 @@
 .welcome-tour-bg
 .rounded.p4.remodal-wt#first{data:{"remodal-id":"modal-0"}}
-  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 0}}
+  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{data: {step: 0}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
   = image_tag "i-earth", class:"col-4 sm-col-3"
   %h2.sm-h1.medium.mb0 Welcome, #{@profile.first_name}!
@@ -10,7 +10,7 @@
 
 .rounded.p4.remodal-wt#second{style: 'display: none;', data:{"remodal-id":"modal-1"}}
   = image_tag "illo-balloon", class:"col-5 sm-col-4"
-  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 1}}
+  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{data: {step: 1}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
   %h2.sm-h1.medium.mt1.mb0 Carbon Footprint
   .h5.sm-h4.measure.mx-auto.left-align.mt1
@@ -49,7 +49,7 @@
 
 
 .remodal-wt.p4#third{style: "display: none;", data:{"remodal-id":"modal-2"}}
-  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{class: "#{'hidden' if @tour}", data: {step: 2}}
+  %a.skip-for-now.absolute.top-0.right-0.p2.pointer{data: {step: 2}}
     %img.icon-m{src: "/fat_icons/i-close.svg"}
   = image_tag "i-impact-categories.png", class: "col-4"
 
