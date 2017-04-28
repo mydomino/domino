@@ -48,14 +48,10 @@ modulejs.define('myhome_tour', function(){
     init: function(mobile) {
       this.mobile = mobile;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
-      mixpanel.track("Video started played", {
-        "Video length": 213,
-        "id": "hY7gQr0"
-      });
     },
     start: function(start) {
       if(!start) return;
-
+      mixpanel.track("Welcome tour start - client side");
       this.initModals();
 
       var $welcomeTourBg,
