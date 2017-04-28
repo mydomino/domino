@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   # END Food Action Tracker routes
 
   resources :organizations do
-    resources :users, only: [:create] 
-    member do 
+    resources :users, only: [:create]
+    member do
       post 'email_members_upload_file'
       post 'import_members_upload_file'
       post 'add_individual' #add_member
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   # exceptions and errors handling for application
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
-  match "/apperror", :to => "errors#application_error", :via => :all 
+  match "/apperror", :to => "errors#application_error", :via => :all
 
   root 'pages#index'
 
@@ -45,7 +45,8 @@ Rails.application.routes.draw do
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
   get 'myhome' => 'profiles#myhome'
-  
+  get 'challenge' => 'profiles#challenge'
+
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'
   get '/legacy-user-registration-email/:lu_id' => 'profiles#lu_registration_email'
   get "/dashboard/:slug" => redirect{ |params, req| "users/sign_up?#{req.params.to_query}" }
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
   get "/continue/:profile_id" => 'pages#index'
 
   get "/newsletter-subscribe" => 'pages#newsletter_subscribe'
-  
+
   ## BEGIN articles routes ##
   get "/articles/:id", to: 'posts#show', constraints: {id: /[0-9]+/}
   get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
@@ -71,7 +72,7 @@ Rails.application.routes.draw do
 
   get "/category/:cat", to: redirect('/articles?cat=%{cat}')
   ## END articles routes ##
-  
+
   get '/dashboard' => 'dashboards#show', as: :user_dashboard
   resources :dashboards do
     patch 'bulk_update' => 'recommendations#bulk_update', as: 'bulk_update'
@@ -89,7 +90,7 @@ Rails.application.routes.draw do
 
   put '/profiles/:id/apply-partner-code' => 'profiles#apply_partner_code'
   post '/profiles/create-completed-profile' => 'profiles#create_completed_profile', as: 'create_completed_profile'
-  
+
   # Devise routes
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   devise_scope :user do
