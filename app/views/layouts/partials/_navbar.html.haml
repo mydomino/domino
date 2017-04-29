@@ -83,7 +83,7 @@
             = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
 
         -else
-          -if current_user.organization
+          -if (org_member || private_beta_member)
             %li.h1
               =link_to 'Challenge', challenge_path, class: "white py1 inline-block text-decoration-none"
             %li.h1
