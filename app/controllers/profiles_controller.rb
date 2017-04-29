@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   # /myhome/
   # Purpose: This is the membership home page
   # GET /myhome
-  def challenge
+  def challenges
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
     # @profile used to display first and last name
