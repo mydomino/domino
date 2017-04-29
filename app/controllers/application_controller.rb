@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
     elsif resource.role == 'concierge'
       dashboards_path
     elsif resource.organization || !resource.group_users.find {|g| g.group.name == "beta"}.nil?
-      challenge_path
+      challenges_path
     else
       user_dashboard_path
       # myhome_path
