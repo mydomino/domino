@@ -1,0 +1,96 @@
+-content_for :meta do
+  %meta{name: "turbolinks-cache-control", content:"no-cache"}
+
+-content_for :body_class do
+  bg-gray-1
+  adelle
+
+:css
+  .introjs-skipbutton {
+    display: #{@tour ? 'none': 'inline-block'};
+  }
+
+= render "profiles/myhome_components/welcome_tour_modals"
+
+.mx-auto.relative
+  .page-header-image.bg-blue{style: 'background-image: url("assets/myhome_background.png"); background-repeat: no-repeat; background-size: 100% 100%'}
+    .absolute.left-0.right-0.top-0.mt2.mb3
+      .max-width-4.mx-auto
+        .clearfix
+          .col.col-12.px2.mb1
+            = link_to 'Give beta feedback', 'https://docs.google.com/a/mydomino.com/forms/d/e/1FAIpQLSeFyYmE_yfCRSzWJ52W-4T5fnO6nSWWhu6T0XXTdphpu3FhDw/viewform', class: 'text-decoration-none btn btn-outline btn-sm white', target: '_blank'
+            #wt-link.right.white.pointer Site Tour
+            = inline_svg "icons/i-question.svg", class: 'right fill-white icon-m mr1'
+
+        .flex.flex-column.sm-row
+          .m1.p2.rounded.bg-white.flex.items-center.justify-center.flex-column{style:'flex-grow:1'}
+            .mt1
+              - if @user.organization
+                = image_tag "organization_logos/#{@profile.user.organization.name.downcase}_logo_400x400.png", size: "80x80", class: "rounded"
+              - else
+                .bg-gray-2.p2.rounded
+                  .h2.px1.gray-5 #{@profile.first_name[0].upcase}#{@profile.last_name[0].upcase}
+
+            .m1.center
+              .h2.m0.black= "#{@profile.first_name} #{@profile.last_name}"
+              .h4.gray-6
+                = @user.organization ? @user.organization.name : ''
+            .m1.center
+              .h2.m0.black= @user.total_fat_reward_points
+              .h4.gray-6= "Total Points"
+            .m1.gray-6.h6
+              .inline-block
+                Member since:
+                / show renewal date if user is an individual member
+                / - if !@user.organization
+                /   %br
+                /  Renewal date:
+              .inline-block.right-align
+                = @user.created_at.strftime("%B %Y")
+              /  - if !@user.organization
+              /    %br
+              /    = (@user.created_at + 1.year).strftime("%b. %Y")
+
+          #clean-score.m1.p3.bg-white.rounded.sm-col-6.md-col-2{ style: 'flex-grow: 1', data: {step: "2"}}
+            = image_tag "i-impact-categories.png", :class => "mt1 col-5 sm-col-8 md-col-6"
+
+            %h3.gray-7.my0.bold Clean Score
+            .border.border-orange.circle.center.my1{ style: 'width: 75px; border-width: 3px' }
+              %span.h0.bold.my0.mx1.orange.align-middle
+                = @user.get_current_week_grade || '?'
+            %div.h4.gray-6.col-11
+              - food_cf = @user.get_current_week_foodcf_percent
+              - if food_cf
+                Your "Carbon Foodprint" is
+                %span.bold
+                  - cf_percent_diff = 100 - food_cf
+                  #{cf_percent_diff.abs}%
+                  = cf_percent_diff > 0 ? "lower" : "higher"
+                than the average American's this week.
+              - else
+                Enter your food in the Food Challenge below to get your clean score.
+
+          #leader-board.m1.pt1.pb2.bg-white.rounded{style: 'min-width: 250px;', data: {step: "3"}}
+            .px3.py1.gray-7
+              %h3.mr2.my0.bold.inline-block Weekly leaders
+              %h5.mt1.mb0.right.inline-block Points
+            - @leaderboard_users.each_with_index do |u, i|
+              - unless u.profile.nil? # Skip any users wihtout a profile
+                .flex.px3.py1.items-center{class: "#{'bg-orange' if u.email == current_user.email}"}
+                  .flex.items-center.justify-center.h6.border.circle.icon-m.gray-6
+                    = (i == 6) ? i + @current_user_standing : i + 1
+                  .fill-x
+                    .left-align.inline-block
+                      .h4.ml1.mr2.black #{u.profile.first_name} #{u.profile.last_name} #{"(You)" if u.email == current_user.email}
+                    .right.inline-block
+                      .h4.gray-6 #{u.fat_reward_points}
+
+        = render 'profiles/myhome_components/food_impact_module'
+        :javascript
+          $('.complete, .incomplete').on('click', function(){
+            window.location = $(this).data('link');
+          });
+
+          var myhomeTour = modulejs.require('myhome_tour');
+          myhomeTour.init(#{@mobile});
+          myhomeTour.start(#{@tour});

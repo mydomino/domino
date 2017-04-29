@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :capture_utm_campaign, :get_user_agent
 
   # Bypass handle_exceptions if in development environment
-  around_action :handle_exceptions unless Rails.env.development? 
+  around_action :handle_exceptions unless Rails.env.development?
 
   # for Mixpanel/Event Tracker
   around_filter :append_event_tracking_tags
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def article_for_member_only?(category)
 
     return category.include?(DHHtp::MEMBER_ONLY_CATEGORY)
-    
+
   end
 
   def not_found
@@ -35,14 +35,14 @@ class ApplicationController < ActionController::Base
 
 
 
-  
+
   private
 
   def get_user_agent
     @user_agent = request.env['HTTP_USER_AGENT']
     @browser = Browser.new(@user_agent, accept_language: "en-us")
   end
-  
+
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
 
-    #  linking the current ID (anonymous) with a new ID 
+    #  linking the current ID (anonymous) with a new ID
     #mixpanel_alias (current_user.id)
 
     # setting People profile
@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
     elsif resource.role == 'concierge'
       dashboards_path
     elsif resource.organization || !resource.group_users.find {|g| g.group.name == "beta"}.nil?
-      myhome_path
+      challenge_path
     else
       user_dashboard_path
       # myhome_path
@@ -74,10 +74,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    # Flash notice workaround so stale notice won't potentially 
+    # Flash notice workaround so stale notice won't potentially
     # appear in devise login/sign up forms
     flash[:notice] = nil
-    
+
     root_path
   end
 
@@ -109,26 +109,26 @@ class ApplicationController < ActionController::Base
        log_error(e)
 
        # this also works.... but it relies on the match statement in routes.rb
-       # if it is not in development, then do not send exception error 
-       if Rails.env.development? 
+       # if it is not in development, then do not send exception error
+       if Rails.env.development?
          redirect_to "/apperror?err_mesg=#{e.message}" and return
          #redirect_to controller: 'errors', action: 'application_error', err_mesg: e.message
-       else 
+       else
          redirect_to "/apperror"
        end
-     
+
      end
   end
 
 
   def log_error(e)
 
-    # only send Airbrake notification when not in development  
+    # only send Airbrake notification when not in development
     Airbrake.notify(e) if !Rails.env.development?
 
     Rails.logger.error "Error occured! Exception error is #{e.inspect}. Error: #{e.message}"
     # do not need to log trace error
     #Rails.logger.error  "#{e.backtrace.join("\n")}"
-    
+
   end
 end
