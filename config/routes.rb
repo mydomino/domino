@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
   get 'myhome' => 'profiles#myhome'
-  get 'challenge' => 'profiles#challenge'
+  get 'challenges' => 'profiles#challenges'
   get 'member_benefits' => 'profiles#member_benefits'
 
   get '/welcome-email/:profile_id' => 'profiles#welcome_email'

@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
-  before_action :authenticate_user!, only: [:show, :myhome]
+  before_action :authenticate_user!, only: [:show, :challenges]
 
   layout 'concierge', only: :new
 
@@ -13,10 +13,10 @@ class ProfilesController < ApplicationController
     track_event "/profile page view"
   end
 
-  # /myhome/
+  # /challenges/
   # Purpose: This is the membership home page
-  # GET /myhome
-  def challenge
+  # GET /challenges
+  def challenges
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
     # @profile used to display first and last name
