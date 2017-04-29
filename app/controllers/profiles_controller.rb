@@ -3,10 +3,10 @@ class ProfilesController < ApplicationController
 
   before_action :set_profile, only: [:apply_partner_code, :update, :resend_welcome_email]
   before_action :authenticate_user!, only: [:show, :myhome]
-  
+
   layout 'concierge', only: :new
-  
-  # /show/ 
+
+  # /show/
   # Purpose: This is the member profile info page
   # GET /profile
   def show
@@ -18,10 +18,10 @@ class ProfilesController < ApplicationController
   # /myhome/
   # Purpose: This is the membership home page
   # GET /myhome
-  def myhome
-    @show_prev_timeline = request.cookies['prevtimeline'] == "true"
+  def challenge
     # @user used to display membership type, member since, and renewal date info
     @user = current_user
+    @show_prev_timeline = request.cookies['prevtimeline'] == "true"
     
     # @profile used to display first and last name
     @profile = @user.profile
@@ -55,6 +55,10 @@ class ProfilesController < ApplicationController
       @prev_week_of = (fat_graph_date-7).strftime("%B #{(fat_graph_date-7).day}") + " to " + (fat_graph_date-1).strftime("%B #{(fat_graph_date-1).day}") 
     end 
 
+    days_left.times do
+      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
+      fat_graph_date += 1.day
+    end
 
     # Welcome tour params
     @tour = !@profile.welcome_tour_complete
@@ -93,18 +97,18 @@ class ProfilesController < ApplicationController
       password: params[:updated_password],
       password_confirmation: params[:updated_password]
     )
-  
+
     # keep user logged in
     sign_in(@user, :bypass => true)
-    
+
     track_event "User updated password"
-    
+
     render json: {
       message: "Password updated successfully",
       status: 200
     }, status: 200
 
- 
+
   end
 
   def new
@@ -116,7 +120,7 @@ class ProfilesController < ApplicationController
     @profile.onboard_complete = true
     @profile.onboard_step = 4
 
-    #don't send Stephen email when a user profile/dashboard is created 
+    #don't send Stephen email when a user profile/dashboard is created
     Profile.skip_callback(:create, :after, :send_onboard_started_email)
     if @profile.save
       Profile.set_callback(:create, :after, :send_onboard_started_email)
@@ -132,14 +136,14 @@ class ProfilesController < ApplicationController
       return
     end
   end
-  
+
   def create
-    #handle onboarding edge cases 
+    #handle onboarding edge cases
     @email = (params[:profile][:email]).downcase
     return if user_already_registered?
     return if onboarding_incomplete?
     return if onboarded_but_not_registered?
-    
+
     #create new profile
     set_tracking_variables
     @profile = Profile.create(profile_params)
@@ -249,14 +253,14 @@ class ProfilesController < ApplicationController
     #  organization = Organization.find_by!(name: 'MyDomino')
     #end
 
-  
+
     # use background job to perform point calculations
     CalculateFatTotalPointJob.perform_later organization
 
-    # find users with or without organization 
+    # find users with or without organization
     @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(6)
-    
-    
+
+
     if ( !@users.any?{|u| u.email == current_user.email} )
       @users << current_user
       @current_user_standing = @users.index{|u| u.email == current_user.email}
@@ -307,8 +311,8 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(
-      :first_name, 
-      :last_name, 
+      :first_name,
+      :last_name,
       :email,
       :phone,
       :address_line_1,
