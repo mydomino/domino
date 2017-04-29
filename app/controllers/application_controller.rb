@@ -69,7 +69,6 @@ class ApplicationController < ActionController::Base
       challenges_path
     else
       user_dashboard_path
-      # myhome_path
     end
   end
 

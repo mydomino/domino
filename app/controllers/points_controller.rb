@@ -7,7 +7,7 @@ class PointsController < ApplicationController
 
     # stay on the same page
   	#redirect_to :back
-    redirect_to myhome_path
+    redirect_to challenges_path
   end
 
 
