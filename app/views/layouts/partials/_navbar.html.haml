@@ -90,9 +90,9 @@
               =link_to 'Articles', '/articles', class: "white py1 inline-block text-decoration-none"
             %li.h1
               =link_to 'Member Benefits', member_benefits_path, class: "white py1 inline-block text-decoration-none"
-          -if current_user.role == 'org_admin' && current_user.organization != nil
-            %li.h1
-              =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
+            -if current_user.role == 'org_admin' && current_user.organization != nil
+              %li.h1
+                =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
           -else
             %li.h1
               = link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
