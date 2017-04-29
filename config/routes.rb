@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   get 'faq' => 'pages#faq'
   get 'example' => 'pages#example'
   get 'partners' => 'pages#partners'
-  get 'myhome' => 'profiles#myhome'
   get 'challenges' => 'profiles#challenges'
   get 'member_benefits' => 'profiles#member_benefits'
 
@@ -59,6 +58,8 @@ Rails.application.routes.draw do
   ## BEGIN articles routes ##
   get "/articles/:id", to: 'posts#show', constraints: {id: /[0-9]+/}
   get "/articles/:article", to: 'posts#get_post_by_slug', as: 'post_slug'
+
+  get 'myhome', to: redirect('/challenges')
 
   # for backward supports of old URLs
   get "/blog", to: redirect('/articles')

@@ -19,7 +19,7 @@
 
               -if (org_member || private_beta_member)
                 = link_to challenges_path, class: 'text-decoration-none ml3 mr2' do
-                  %span.inline-block.h5.gray-4.blue--hover{class: "#{(current_page? '/challenge') ? 'fill-blue blue' : nav_element_color}"}
+                  %span.inline-block.h5.gray-4.blue--hover{class: "#{(current_page? '/challenges') ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-challenge.svg", class:"block mx-auto", size:"32px * 22px"
                     Challenges
               -else
