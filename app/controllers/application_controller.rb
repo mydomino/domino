@@ -54,9 +54,11 @@ class ApplicationController < ActionController::Base
     #mixpanel_alias (current_user.id)
 
     # setting People profile
-    mixpanel_people_set({"$email" => @user.email,
-      "$first_name" => resource.profile.first_name,
-      "$last_name" => resource.profile.last_name})
+    if resource.profile != nil
+      mixpanel_people_set({"$email" => @user.email,
+        "$first_name" => resource.profile.first_name,
+        "$last_name" => resource.profile.last_name})
+    end
 
     # If user logs in via article views, redirect to whichever article view they left off at
     if session[:referer] && session[:referer].include?('/articles')
@@ -64,10 +66,9 @@ class ApplicationController < ActionController::Base
     elsif resource.role == 'concierge'
       dashboards_path
     elsif resource.organization || !resource.group_users.find {|g| g.group.name == "beta"}.nil?
-      challenge_path
+      challenges_path
     else
       user_dashboard_path
-      # myhome_path
     end
   end
 

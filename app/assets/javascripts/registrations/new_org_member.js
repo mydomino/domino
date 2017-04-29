@@ -97,7 +97,7 @@ modulejs.define('new_org_member', function (args) {
               },
         dataType: 'json',
         success: function(data) {
-          window.location.replace('/myhome');
+          window.location.replace('/challenges');
         }
       });
     };
@@ -116,7 +116,7 @@ modulejs.define('new_org_member', function (args) {
         },
         dataType: 'json',
         success: function() {
-          window.location.replace('/myhome');
+          window.location.replace('/challenges');
         }
       });
     };

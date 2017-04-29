@@ -7,7 +7,7 @@
       - org_member = current_user && !current_user.organization.nil?
       - private_beta_member = current_user && !current_user.group_users.find {|g| g.group.name == "beta"}.nil?
 
-      = link_to (org_member || private_beta_member ? challenge_path : root_path), id: "navbar-brand", class: 'pl2' do
+      = link_to (org_member || private_beta_member ? challenges_path : root_path), id: "navbar-brand", class: 'pl2' do
         = image_tag "mydomino_logo#{'_universal' if !homepage}.svg", id: 'logo', style: "#{'width: 128px;' if @browser.device.mobile?}"
 
       .xs-hide.sm-hide.my1.inline-block.col-10
@@ -18,10 +18,10 @@
                 =link_to 'Concierge tools', dashboards_path, class: "#{nav_element_color} navbar-element btn-navbar border p1 rounded text-decoration-none navbar-element"
 
               -if (org_member || private_beta_member)
-                = link_to challenge_path, class: 'text-decoration-none ml3 mr2' do
+                = link_to challenges_path, class: 'text-decoration-none ml3 mr2' do
                   %span.inline-block.h5.gray-4.blue--hover{class: "#{(current_page? '/challenge') ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-challenge.svg", class:"block mx-auto", size:"32px * 22px"
-                    Challenge
+                    Challenges
               -else
                 = link_to user_dashboard_path, class: 'text-decoration-none mr2' do
                   %span.inline-block.h5.gray-4.blue--hover{class: "#{(current_page? '/dashboard') ? 'fill-blue blue mx1' : nav_element_color}"}
@@ -69,7 +69,7 @@
         = yield :posts_menu
 
   / Mobile & small viewport navigation menu
-  #nav-overlay
+  #nav-overlay.overflow-scroll
     #nav-overlay-content
       %span#close-nav
         = embedded_svg 'i-close.svg', class:"white pointer absolute top-0 right-0 py3 pl3 pr2"
@@ -83,16 +83,16 @@
             = link_to 'Log in', new_user_session_path , class: "white py1 inline-block text-decoration-none"
 
         -else
-          -if current_user.organization
+          -if (org_member || private_beta_member)
             %li.h1
-              =link_to 'Challenge', challenge_path, class: "white py1 inline-block text-decoration-none"
+              =link_to 'Challenges', challenges_path, class: "white py1 inline-block text-decoration-none"
             %li.h1
               =link_to 'Articles', '/articles', class: "white py1 inline-block text-decoration-none"
             %li.h1
               =link_to 'Member Benefits', member_benefits_path, class: "white py1 inline-block text-decoration-none"
-          -if current_user.role == 'org_admin' && current_user.organization != nil
-            %li.h1
-              =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
+            -if current_user.role == 'org_admin' && current_user.organization != nil
+              %li.h1
+                =link_to 'Admin', organization_path(current_user.organization), class: "white py1 inline-block text-decoration-none"
           -else
             %li.h1
               = link_to 'Dashboard', user_dashboard_path, class: "white py1 inline-block text-decoration-none"
