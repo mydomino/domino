@@ -137,7 +137,7 @@
           #prev-timeline{style: "#{'display: none' if !@show_prev_timeline}"}
             = render 'profiles/myhome_components/fat_timeline', timeline: @prev_timeline_params
             .col-12.sm-col-8.mx-auto
-              %p.mt1.h5.gray-5
+              %p.h5.gray-5
                 -if @deadline_lastweek == Date.today
                   %span.red
                     Submissions for last week are due by
