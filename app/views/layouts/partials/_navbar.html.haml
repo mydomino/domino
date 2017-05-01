@@ -1,5 +1,5 @@
 - homepage = current_page?(root_path)
-- nav_element_color = "#{homepage ? 'white' : 'black'}"
+- nav_element_color = "#{homepage ? 'white' : 'gray-5'}"
 
 %header#header
   %nav#navbar.col-12.z3.top-0.pt2{class: "#{homepage ? 'absolute' : 'bg-white'}"}
@@ -19,36 +19,36 @@
 
               -if (org_member || private_beta_member)
                 = link_to challenges_path, class: 'text-decoration-none ml3 mr2' do
-                  %span.inline-block.h5.gray-5.blue--hover{class: "#{((current_page? '/challenges') || (request.fullpath.start_with? '/food')) ? 'fill-blue blue' : nav_element_color}"}
+                  %span.inline-block.h5.blue--hover{class: "#{((current_page? '/challenges') || (request.fullpath.start_with? '/food')) ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-challenge.svg", class:"block mx-auto", size:"32px * 22px"
                     Challenges
               -else
                 = link_to user_dashboard_path, class: 'text-decoration-none mr2' do
-                  %span.inline-block.h5.gray-5.blue--hover{class: "#{(request.fullpath.start_with? '/dashboard') ? 'fill-blue blue mx1' : nav_element_color}"}
+                  %span.inline-block.h5.blue--hover{class: "#{(request.fullpath.start_with? '/dashboard') ? 'fill-blue blue mx1' : nav_element_color}"}
                     = inline_svg "icons/i-dashboard-nav.svg", class:"block mx-auto", size:"32px * 22px"
                     Dashboard
 
               = link_to "/articles", class: 'text-decoration-none mr2' do
-                %span.inline-block.h5.gray-5.blue--hover{class: "#{(request.fullpath.start_with? '/articles') ? 'fill-blue blue' : nav_element_color}"}
+                %span.inline-block.h5.blue--hover{class: "#{(request.fullpath.start_with? '/articles') ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-articles.svg", class:"icon-m block mx-auto"
                   Articles
               = link_to member_benefits_path, class: 'text-decoration-none mr2' do
-                %span.inline-block.h5.gray-5.blue--hover{class: "#{(current_page? '/member_benefits') ? 'fill-blue blue' : nav_element_color}"}
+                %span.inline-block.h5.blue--hover{class: "#{(current_page? '/member_benefits') ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-benefits.svg", class:"icon-m block mx-auto"
                   Benefits
 
             .inline.pr2
               = link_to member_profile_path, class: 'text-decoration-none mr1' do
-                %span.inline-block.h5.gray-5.blue--hover{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
+                %span.inline-block.h5.blue--hover{class: "#{(current_page? '/profile') ? 'fill-blue blue' : nav_element_color}"}
                   = inline_svg "icons/i-user.svg", class:"icon-m block mx-auto"
                   Profile
               -if current_user.role == 'org_admin' && current_user.organization != nil
                 = link_to organization_path(current_user.organization), class: 'text-decoration-none' do
-                  %span.inline-block.mr2.gray-5.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
+                  %span.inline-block.mr2.h5.blue--hover{class: "#{(current_page? organization_path(current_user.organization)) ? 'fill-blue blue' : nav_element_color}"}
                     = inline_svg "icons/i-admin.svg", class:"icon-m block mx-auto"
                     Admin
               = link_to destroy_user_session_path, method: :delete, class: 'text-decoration-none' do
-                %span.inline-block.h5.gray-5.blue--hover{class: "#{nav_element_color}"}
+                %span.inline-block.h5.blue--hover{class: "#{nav_element_color}"}
                   = inline_svg "icons/i-logout.svg", class:"icon-m block mx-auto"
                   Logout
 
