@@ -55,11 +55,6 @@ class ProfilesController < ApplicationController
       @prev_week_of = (fat_graph_date-7).strftime("%B #{(fat_graph_date-7).day}") + " to " + (fat_graph_date-1).strftime("%B #{(fat_graph_date-1).day}") 
     end 
 
-    days_left.times do
-      @timeline_params << {day: fat_graph_date.strftime("%A").downcase, status: "future", link: "#"}
-      fat_graph_date += 1.day
-    end
-
     # Welcome tour params
     @tour = !@profile.welcome_tour_complete
     @mobile = @browser.device.mobile? ? true : false
