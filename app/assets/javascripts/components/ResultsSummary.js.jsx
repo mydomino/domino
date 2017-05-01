@@ -98,7 +98,7 @@ class ResultsSummary extends React.Component {
         <div className="mx-auto center my2">
           <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See my progress this week</button>
           <span className="ml1 gray-5">
-            or <a href="/myhome" className="black line ml1 line-height-1">Back to My Home</a>
+            or <a href="/challenges" className="black line ml1 line-height-1">Back to Challenges</a>
           </span>
         </div>
       </div>
