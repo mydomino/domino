@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
 
     @week_of = beginning_of_week.strftime("%B #{beginning_of_week.day}") + " to " + end_of_week.strftime("%B #{end_of_week.day}")
     @deadline = Date.today.end_of_week + 1
-    @deadline = @deadline.strftime("%A, %B %-d")
+    @deadline_lastweek = @deadline - 7
 
     #fat timeline data
     time_zone_name = Time.zone.name

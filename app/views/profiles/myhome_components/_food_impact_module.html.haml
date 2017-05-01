@@ -107,34 +107,45 @@
             .col.col-12.bg-gray-2.relative{style:"height:1px; top:1rem ;"}
 
           .bg-white.col-7.sm-col-3.mx-auto.sm-px1.relative
-            -if @prev_timeline_params
-              .timeline-toggle-wrapper
-                #this-week.gray-6.h3.sm-h2{style: "#{'display: none' if @show_prev_timeline}"}
+            .h3.sm-h2.gray-6.bold
+              -if @prev_timeline_params
+                #this-week{style: "#{'display: none' if @show_prev_timeline}"}
                   .timeline-toggle.pointer.inline{data: {target: '#prev-timeline', hide: '#curr-timeline', show: '#last-week', text: "#{@prev_week_of}"}}
-                    =inline_svg "icons/i-arrow-left", class: 'icon-s fill-gray-4 fill-blue--hover'
-                  This Week
-                #last-week.gray-6.h3.sm-h2{style: "#{'display: none' if !@show_prev_timeline}"} 
-                  Last Week
+                    =inline_svg "icons/i-arrow-left", class: 'icon-s fill-gray-5 fill-blue--hover'
+                  %span.pl1.pr2 This Week
+                #last-week{style: "#{'display: none' if !@show_prev_timeline}"} 
+                  %span.pl2.pr1 Last Week
                   .timeline-toggle.pointer.inline{data: {target: '#curr-timeline', hide: '#prev-timeline', show: '#this-week', text: "#{@week_of}"}}
-                    =inline_svg "icons/i-arrow-right", class: 'icon-s fill-gray-4 fill-blue--hover'
-            -else 
-              .h3.sm-h2.gray-6 This Week
-            .h5.sm-h4.gray-4           
+                    =inline_svg "icons/i-arrow-right", class: 'icon-s fill-gray-5 fill-blue--hover'
+              -else
+                %span This Week
+            .h5.sm-h4.gray-5
               %span#text-week-of
                 = @show_prev_timeline ? @prev_week_of : @week_of
 
-
         #curr-timeline{style: "#{'display: none' if @show_prev_timeline}"}
           = render 'profiles/myhome_components/fat_timeline', timeline: @timeline_params
+          .col-12.sm-col-8.mx-auto
+            = link_to 'food' do
+              %button.btn.btn-md.btn-primary.btn-primary--hover.my1
+                .bold Update today
+            %p.mt0.h6.gray-5
+              Submissions for this week are due by 11pm (Pacific Time) on 
+              %span.bold #{@deadline.strftime("%A, %B %-d")}.
 
         -if @prev_timeline_params
           #prev-timeline{style: "#{'display: none' if !@show_prev_timeline}"}
             = render 'profiles/myhome_components/fat_timeline', timeline: @prev_timeline_params
-        .col-12.sm-col-8.mx-auto
-          = link_to 'food' do
-            %button.btn.btn-md.btn-primary.btn-primary--hover.my1
-              .bold Update today
-          %p.mt0.h6.gray-5 Get your submissions in by 11pm on #{@deadline}
+            .col-12.sm-col-8.mx-auto
+              %p.mt1.h5.gray-5
+                -if @deadline_lastweek == Date.today
+                  %span.red
+                    Submissions for last week are due by
+                    %span.bold 11pm tonight!
+                    (Pacific Time)
+                -else
+                  Submissions for last week are due by 11pm (Pacific Time) on #{@deadline_lastweek.strftime("%A, %B %-d")}.
+
 
 :javascript
 
