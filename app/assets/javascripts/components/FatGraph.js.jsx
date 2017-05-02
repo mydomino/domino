@@ -39,7 +39,7 @@ class FatGraph extends React.Component {
     if(d.cf !== "future") {
       d3.select("#lbl-x2-" + i)
       .text(function() {
-        return (d.cf == null ? "Incomplete" : d.cf + " kg");
+        return (d.cf == null ? "No info" : d.cf + " kg");
       });
 
       d3.select("#aux-" + i)
@@ -69,7 +69,7 @@ class FatGraph extends React.Component {
 
     // x axis showing days of week
     var x = d3.scaleBand()
-      .domain(["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"])
+      .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
       .rangeRound([0, width]);
 
     var xAxis = d3.axisBottom(x)
@@ -78,7 +78,7 @@ class FatGraph extends React.Component {
 
     var x2labels = data.map(function(el){
       if(el.cf == null){
-        return "Incomplete";
+        return "No info";
       }
       else if(el.cf == "future") {
         return " ";
@@ -232,9 +232,9 @@ class FatGraph extends React.Component {
           .attr("y", y(max))
           .attr("height", height-y(max))
           .attr("fill", "white")
-          .style("stroke-dasharray", ("16, 16"))
+          .style("stroke-dasharray", ("1, 3"))
           .style("stroke", "#FFA7A7")
-          .style("stroke-width", 4)
+          .style("stroke-width", 2)
           .style("position","relative")
           .style("z-index","3")
 
@@ -268,10 +268,10 @@ class FatGraph extends React.Component {
         .attr("y1", y(7))
         .attr("x2",width)
         .attr("y2", y(7))
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 1)
         .attr('stroke', "#87D37C")
         .style("opacity", 0.5)
-        .style("stroke-dasharray", ("6, 4"));
+        .style("stroke-dasharray", ("10, 1"));
 
       d3.select(window).on('resize', this.resize.bind(this));
 

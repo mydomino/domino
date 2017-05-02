@@ -6,7 +6,7 @@ class Results extends React.Component {
     return (
       <div>
         <div id="weekly-progress" className="center bg-leaf py4">
-          <div className="h2 bold gray-7 pb4">{this.props.prevWeek ? "Last week's progress" : "This week's progress"}</div>
+          <div className="h1 bold gray-7 my3">Your progress {this.props.prevWeek ? "last week" : "this week"}</div>
           <FatGraph ref="fatgraph" graph_params={this.props.graph_params}/>
         </div>
 
