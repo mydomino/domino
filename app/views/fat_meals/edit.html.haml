@@ -8,20 +8,23 @@
   modulejs.require('gauge');
 
 .max-width-4.mx-auto
-  .center.mt3
+  .center.mt2
+    .inline-block.m1.px2.border.border-gray-5{style: 'border-radius: 20px;'}
+      .flex.items-center.justify-center
+        .m1
+          -if(@fat_day[:date] > @lower_date_bounds)
+            = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l" do
+              %div=inline_svg "icons/i-arrow-left.svg", class:"icon-s fill-gray-6 fill-blue--hover"
+        .m1.h4.black.bold
+          %span= "#{@fat_day[:date].strftime("%A")},"
+          %span="#{@fat_day[:date].strftime("%B %-d")}"
+        .m1
+          - if @next_date <= @today
+            = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day), class:"line-height-0 icon-l" do
+              %div=inline_svg "icons/i-arrow-right.svg", class:"icon-s fill-gray-6 fill-blue--hover"
     .h2.mb0.gray-7.bold
-      What did you eat
+      Did you eat these
       = (@date_str == "Today" || @date_str == "Yesterday") ? @date_str.downcase : "on " + @date_str
       ?
-    .flex.items-center.justify-center
-      -if(@fat_day[:date] > @lower_date_bounds)
-        = link_to fat_date_path(@prev_date.year, @prev_date.month, @prev_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
-          =inline_svg "icons/i-arrow-left.svg", class:"icon-s"
-      .mx1.my1
-        %h4.black.bold.inline= "#{@fat_day[:date].strftime("%A")},"
-        %h4.black.inline="#{@fat_day[:date].strftime("%B %d")}"
-      - if @next_date <= @today
-        = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day), class:"line-height-0 icon-l flex items-center justify-center" do
-          =inline_svg "icons/i-arrow-right.svg", class:"icon-s"
 .animated.fadeIn
   = react_component('FoodActionTracker', {fatDay: @fat_day})
