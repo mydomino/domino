@@ -28,7 +28,7 @@ class FatGraph extends React.Component {
     if(d.cf !== "future") {
       d3.select("#lbl-x2-" + i)
         .text(function() {
-          return (d.cf == null ? "N/A" : "+" + d.pts + " pts")
+          return (d.cf == null ? "N/A" : "+" + d.pts + " points")
         });
 
       d3.select("#aux-" + i)
