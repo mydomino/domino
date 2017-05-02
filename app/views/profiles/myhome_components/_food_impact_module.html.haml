@@ -13,7 +13,7 @@
       border: 2px solid lightgrey;
     }
 
-    li.chained::before{
+    li.chained::before {
       content: '';
       position: absolute;
       top: .9em;
@@ -22,6 +22,8 @@
       height: .2em;
       background: #2ECC71;
       z-index: 0;
+      grid-row-end: span 4;
+    
     }
 
     li::after {
