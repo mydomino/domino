@@ -67,16 +67,17 @@ class FatGraph extends React.Component {
         width = winWidth - margin.left - margin.right,
         height = containerHeight - margin.top - margin.bottom;
 
-    // x axis showing days of week
+    // bottom x axis carbon footprint and points earned
     var x = d3.scaleBand()
-      .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+      // .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+      .domain([1,2,3,4,5,6,7])
       .rangeRound([0, width]);
 
     var xAxis = d3.axisBottom(x)
       .tickSize(0)
       .tickPadding(8);
 
-    var x2labels = data.map(function(el){
+    var xlabels = data.map(function(el){
       if(el.cf == null){
         return "No info";
       }
@@ -88,9 +89,10 @@ class FatGraph extends React.Component {
       }
     });
 
-    // Top x axis showing c02 footprints and point values
+    // Top x axis showing days of week
     var x2 = d3.scaleBand()
-              .domain([1,2,3,4,5,6,7])
+              .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+              // .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
 
     var x2Axis = d3
@@ -247,20 +249,27 @@ class FatGraph extends React.Component {
         .attr("transform", "translate(0," + -2 + ")")
         .call(x2Axis)
         .selectAll("text")
-        .text(function(d,i){
-          return x2labels[i];
-        })
-        .attr("class", "top-axis-label")
-        .attr("id", function(d, i){
-          return "lbl-x2-" + i;
-        });
+        // .text(function(d,i){
+        //   return x2labels[i];
+        // })
+        .attr("class", "top-axis-label");
+        // .attr("id", function(d, i){
+        //   return "lbl-x2-" + i;
+        // });
 
       // bottom axis
       chart.append("g")
         .attr("class", "x axis adelle")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
-        .attr('fill', 'red');
+        .selectAll("text")
+        .text(function(d,i){
+          return xlabels[i];
+        })
+        .attr("class", "top-axis-label")
+        .attr("id", function(d, i){
+          return "lbl-x2-" + i;
+        });
 
       // Avg cf line
       chart.append("line")
