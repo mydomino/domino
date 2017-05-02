@@ -28,7 +28,7 @@ class FatGraph extends React.Component {
     if(d.cf !== "future") {
       d3.select("#lbl-x2-" + i)
         .text(function() {
-          return (d.cf == null ? "N/A" : d.pts + " pts")
+          return (d.cf == null ? "N/A" : "+" + d.pts + " pts")
         });
 
       d3.select("#aux-" + i)
@@ -67,9 +67,8 @@ class FatGraph extends React.Component {
         width = winWidth - margin.left - margin.right,
         height = containerHeight - margin.top - margin.bottom;
 
-    // bottom x axis carbon footprint and points earned
+    // bottom x axis - carbon footprint and points earned
     var x = d3.scaleBand()
-      // .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
       .domain([1,2,3,4,5,6,7])
       .rangeRound([0, width]);
 
@@ -92,7 +91,6 @@ class FatGraph extends React.Component {
     // Top x axis showing days of week
     var x2 = d3.scaleBand()
               .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
-              // .domain([1,2,3,4,5,6,7])
               .rangeRound([0, width]);
 
     var x2Axis = d3
