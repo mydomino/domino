@@ -8,11 +8,7 @@
   modulejs.require('gauge');
 
 .max-width-4.mx-auto
-  .center.mt3
-    .h2.mb0.gray-7.bold
-      What did you eat
-      = (@date_str == "Today" || @date_str == "Yesterday") ? @date_str.downcase : "on " + @date_str
-      ?
+  .center.mt2
     .inline-block.m1.px2.border.border-gray-5{style: 'border-radius: 20px;'}
       .flex.items-center.justify-center
         .m1
@@ -26,5 +22,9 @@
           - if @next_date <= @today
             = link_to fat_date_path(@next_date.year, @next_date.month, @next_date.day), class:"line-height-0 icon-l" do
               %div=inline_svg "icons/i-arrow-right.svg", class:"icon-s fill-gray-6 fill-blue--hover"
+    .h2.mb0.gray-7.bold
+      Did you eat these
+      = (@date_str == "Today" || @date_str == "Yesterday") ? @date_str.downcase : "on " + @date_str
+      ?
 .animated.fadeIn
   = react_component('FoodActionTracker', {fatDay: @fat_day})
