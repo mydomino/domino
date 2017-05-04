@@ -233,10 +233,9 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # /after_sign_up_path_for/
+  # # /after_sign_up_path_for/
   # This action is hit after a user registers through the devise registration form
   def after_sign_up_path_for(resource)
-    byebug
     @user = current_user
     @email = current_user.email
     @profile = Profile.find_by_email(@email)
