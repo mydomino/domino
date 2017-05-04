@@ -4,7 +4,5 @@ class SessionsController < Devise::SessionsController
     # For redirection back to article views
     (session[:referer] = URI(request.referer).path) if request.referer
     super
-
-    track_event "Load login page", {"date": Time.zone.today}
   end
 end
