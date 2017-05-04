@@ -42,16 +42,7 @@ class RegistrationsController < Devise::RegistrationsController
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
 
-      #  linking the current ID (anonymous) with a new ID 
-      mixpanel_alias (@user.id)
       track_event "User clicked signup link"
-
-      # setting People profile
-      mixpanel_people_set({"$email" => @user.email, 
-        date_sign_up: Time.zone.today, 
-        "$first_name" => @user.profile.first_name,
-        "$last_name" => @user.profile.last_name})
-      end
   end
   
   # Action /set_org_member_password/
@@ -265,7 +256,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def mp_people_set
-    mixpanel_alias (@user.id)
+    # mixpanel_alias (@user.id)
     # setting People profile
     mixpanel_people_set({"$email" => @user.email, 
       date_sign_up: Time.zone.today, 

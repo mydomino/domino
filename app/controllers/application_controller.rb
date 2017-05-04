@@ -53,8 +53,6 @@ class ApplicationController < ActionController::Base
         "$last_name" => resource.profile.last_name})
     end
 
-    track_event 'User signed in'
-
     # If user logs in via article views, redirect to whichever article view they left off at
     if session[:referer] && session[:referer].include?('/articles')
       session[:referer]
