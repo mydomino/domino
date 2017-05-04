@@ -46,7 +46,7 @@ class DashboardsController < ApplicationController
       @completed_recommendations = @dashboard.recommendations.done.includes(:recommendable)
       @incomplete_recommendations = @dashboard.recommendations.incomplete.includes(:recommendable)
     end
-
+    track_event "View dashboard"
     render :layout => 'dashboard'
   end
 

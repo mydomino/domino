@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  
+  after_action :mp_people_set, only: [:create_org_member, :set_org_member_password, :after_sign_up_path_for]
+
   # Action /new_org_member/
   # GET mydomino.com/[company name]
   # Purpose: Organziation landing page for org member onboarding
@@ -41,15 +42,14 @@ class RegistrationsController < Devise::RegistrationsController
 
       #  linking the current ID (anonymous) with a new ID 
       mixpanel_alias (@user.id)
-      track_event "Sign Up via email sign up link"
+      track_event "User clicked signup link"
 
       # setting People profile
       mixpanel_people_set({"$email" => @user.email, 
         date_sign_up: Time.zone.today, 
         "$first_name" => @user.profile.first_name,
         "$last_name" => @user.profile.last_name})
-
-    end
+      end
   end
   
   # Action /set_org_member_password/
@@ -78,6 +78,7 @@ class RegistrationsController < Devise::RegistrationsController
     sign_in(@user, scope: :user)
     flash[:notice] = 'Welcome to MyDomino!'
 
+    # Mixpanel event - User set password
     render json: {
       message: 'User password updated',
       status: 200
@@ -235,14 +236,14 @@ class RegistrationsController < Devise::RegistrationsController
   # /after_sign_up_path_for/
   # This action is hit after a user registers through the devise registration form
   def after_sign_up_path_for(resource)
-
+    byebug
+    @user = current_user
     @email = current_user.email
     @profile = Profile.find_by_email(@email)
 
     current_user.profile = @profile if !@profile.nil?
     # Assumption is that profiles exist
     # fallback to default profile
-    
 
     # Create and bind dashboard to user
     # Assign provisioned dashboard to newly registered user (i.e. user who onboarded through mydomino.com)
@@ -255,17 +256,21 @@ class RegistrationsController < Devise::RegistrationsController
 
     @profile.update(dashboard_registered: true)
     DashboardRegisteredZohoJob.perform_later @profile
-    
-    #  linking the current ID (anonymous) with a new ID 
-    mixpanel_alias (current_user.id)
-    track_event "Sign Up via Devise registration"
+   
+    track_event "Sign up via Devise registration"
+    user_dashboard_path
+  end
 
+  private
+
+  def mp_people_set
+    mixpanel_alias (@user.id)
+    byebug
     # setting People profile
     mixpanel_people_set({"$email" => @user.email, 
       date_sign_up: Time.zone.today, 
       "$first_name" => @user.profile.first_name,
       "$last_name" => @user.profile.last_name})
-
-    user_dashboard_path
   end
+
 end

@@ -25,10 +25,6 @@ class Profile::StepsController < ApplicationController
     
     if @profile.onboard_complete
       @profile.update_zoho
-
-      #  linking the current ID (anonymous) with a new ID 
-      mixpanel_alias (current_user.id) if current_user
-      track_event "User completed onboard profile setup."
     end
 
     if params[:commit] == 'Back'
@@ -45,6 +41,7 @@ class Profile::StepsController < ApplicationController
         @profile.onboard_complete = true
         Dashboard.create(lead_name: "#{@profile.first_name} #{@profile.last_name}", lead_email: @profile.email)
         @profile.save_to_zoho
+        track_event "User completed onboarding"
       end
 
       if params[:profile][:partner_code]

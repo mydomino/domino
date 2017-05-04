@@ -16,9 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :article_for_member_only?
 
   def article_for_member_only?(category)
-
     return category.include?(DHHtp::MEMBER_ONLY_CATEGORY)
-
   end
 
   def not_found
@@ -34,8 +32,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-
-
   private
 
   def get_user_agent
@@ -49,9 +45,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-
-    #  linking the current ID (anonymous) with a new ID
-    #mixpanel_alias (current_user.id)
 
     # setting People profile
     if resource.profile != nil
@@ -73,6 +66,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
+    track_event "User signed out"
     # Flash notice workaround so stale notice won't potentially
     # appear in devise login/sign up forms
     flash[:notice] = nil
