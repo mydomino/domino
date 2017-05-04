@@ -34,6 +34,8 @@ class RegistrationsController < Devise::RegistrationsController
         @user = nil unless @user.signup_token == params[:a]
       end
     end
+
+    track_event 'Load company landing page'
   end
 
   def new_member
@@ -264,7 +266,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def mp_people_set
     mixpanel_alias (@user.id)
-    byebug
     # setting People profile
     mixpanel_people_set({"$email" => @user.email, 
       date_sign_up: Time.zone.today, 
