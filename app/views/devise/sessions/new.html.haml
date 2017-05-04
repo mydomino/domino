@@ -46,7 +46,11 @@
         return !val;
       });
     });
+
+    $('input[type=submit]').on('click', function(){
+      mixpanel.track("User clicked login button");
+    });
   });
-  
+
   mixpanel.track("Load login page");
 
