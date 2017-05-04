@@ -35,7 +35,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    track_event 'Load company landing page'
+    track_event 'Load company landing page', { "Organization": @organization }
   end
 
   def new_member
