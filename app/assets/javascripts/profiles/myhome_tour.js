@@ -53,7 +53,8 @@ modulejs.define('myhome_tour', function(){
     },
     start: function(start) {
       if(!start) return;
-      mixpanel.track("Welcome tour start - client side", {"$email": this.userEmail});
+      // differentiate between auto start and user click start
+      mixpanel.track("Welcome tour start", {"$email": this.userEmail});
       this.initModals();
 
       var $welcomeTourBg,
