@@ -5,4 +5,9 @@ class SessionsController < Devise::SessionsController
     (session[:referer] = URI(request.referer).path) if request.referer
     super
   end
+
+  def create
+    super
+    track_event "User session created successfully﻿"
+  end
 end
