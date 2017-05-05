@@ -25,3 +25,6 @@
           =inline_svg "icons/i-arrow-right.svg", class:"icon-s"
 .animated.fadeIn
   = react_component('FoodActionTracker', {fatDay: @fat_day})
+
+:javascript
+  mixpanel.track('View FAT interface', {"fatDate": "#{@fat_day[:date]}"});

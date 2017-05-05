@@ -22,8 +22,6 @@ class FatMealsController < ApplicationController
       food_types: FoodType.all,
       graph_params: @graph_params
     }
-
-    track_event "View Food", {"User": current_user.email}
   end
 
   # POST /food-action-tracker XmlHttpRequest
