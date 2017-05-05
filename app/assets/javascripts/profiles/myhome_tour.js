@@ -50,12 +50,17 @@ modulejs.define('myhome_tour', function(){
       this.mobile = mobile;
       this.userEmail = userEmail;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
+      $('#wt-link').on('click', function(){
+        mixpanel.track('User clicked Site Tour link');
+        console.log('click');
+      });
     },
     start: function(start) {
       if(!start) return;
       // differentiate between auto start and user click start
-      mixpanel.track("Welcome tour start", {"$email": this.userEmail});
+      mixpanel.track("Welcome tour start");
       this.initModals();
+      var that = this; 
 
       var $welcomeTourBg,
           modals,

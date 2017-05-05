@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  # after_action :mp_people_set, only: [:create_org_member, :set_org_member_password, :after_sign_up_path_for]
+  after_action :mp_people_set, only: [:create_org_member, :set_org_member_password, :after_sign_up_path_for]
 
   # Action /new_org_member/
   # GET mydomino.com/[company name]
