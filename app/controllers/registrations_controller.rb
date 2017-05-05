@@ -46,8 +46,7 @@ class RegistrationsController < Devise::RegistrationsController
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
     end
-      track_event "User clicked signup link"
-    end
+    track_event "User clicked signup link"
   end
   
   # Action /set_org_member_password/
@@ -221,6 +220,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
         mixpanel_distinct_id = params[:distinct_id]
+        byebug
         @tracker.alias(current_user.id,mixpanel_distinct_id)
         @tracker.people.set(current_user.id,{
           '$first_name' => current_user.profile.first_name,
