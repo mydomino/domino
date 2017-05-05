@@ -24,3 +24,9 @@
     Already have an account?
     %span.blue
       = link_to "Log In", new_user_session_path, class: 'text-decoration-none blue'
+
+:javascript
+  
+  $(document).ready(function(){
+    mixpanel.track('Loaded devise sign up page');
+  });
