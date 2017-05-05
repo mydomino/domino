@@ -282,6 +282,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    mixpanel-ruby (2.2.0)
     modulejs-rails (1.9.0.1)
       railties (>= 4.0)
     multi_json (1.12.1)
@@ -523,6 +524,7 @@ DEPENDENCIES
   minitest-rails (~> 2.0)
   minitest-rails-capybara
   minitest-reporters
+  mixpanel-ruby
   modulejs-rails
   newrelic_rpm
   nokogiri (~> 1.6, >= 1.6.8)
@@ -565,4 +567,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
