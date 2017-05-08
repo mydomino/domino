@@ -1,10 +1,5 @@
 require 'mixpanel-ruby'
 class RegistrationsController < Devise::RegistrationsController
-  def initialize
-    @tracker = Mixpanel::Tracker.new('a1db6323a62fd5454249a6689ab084ee')
-    super
-  end
-
   # Action /new_org_member/
   # GET mydomino.com/[company name]
   # Purpose: Organziation landing page for org member onboarding

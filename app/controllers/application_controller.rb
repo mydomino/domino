@@ -1,14 +1,13 @@
+require 'mixpanel-ruby'
+
 class ApplicationController < ActionController::Base
   include Pundit
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
-  before_action :capture_utm_campaign, :get_user_agent
+  before_action :capture_utm_campaign, :get_user_agent, :mixpanel_tracker
 
   # Bypass handle_exceptions if in development environment
   around_action :handle_exceptions unless Rails.env.development?
-
-  # for Mixpanel/Event Tracker
-  around_filter :append_event_tracking_tags
 
   #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -23,16 +22,11 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
-  def mixpanel_distinct_id
-    current_user.id if !current_user.nil?
-  end
-
-  def mixpanel_name_tag
-    current_user && current_user.email
-  end
-
-
   private
+
+  def mixpanel_tracker
+    @tracker = Mixpanel::Tracker.new('a1db6323a62fd5454249a6689ab084ee')
+  end
 
   def get_user_agent
     @user_agent = request.env['HTTP_USER_AGENT']
