@@ -137,6 +137,8 @@ modulejs.define('new_org_member', function (args) {
           // if first name field is disabled
           // It means that the user account already exists,
           // So we have to call setOrgMemberPw()
+          // 733t Hack0r. We shouldn't rely
+          // On HTML attributes.
           if ($firstName.attr('disabled')){
             setOrgMemberPw();
           } 

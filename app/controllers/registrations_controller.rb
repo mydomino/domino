@@ -36,17 +36,22 @@ class RegistrationsController < Devise::RegistrationsController
       @user = User.includes(:profile).find_by_signup_token(params[:a])
       if @user
         @user = nil unless @user.signup_token == params[:a]
+        @tracker.track('OrgMember signup page loaded by known user',{
+        '$email' => @user.email
+        })
+      else
+        @tracker.track('OrgMember signup page loaded')
       end
     end
-
-    track_event 'Load company landing page', { "Organization": @organization }
   end
 
   def new_member
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
+      @tracker.track("User clicked signup link",{
+        '$email' => @user.email
+        })
     end
-    track_event "User clicked signup link"
   end
   
   # Action /set_org_member_password/
@@ -71,7 +76,17 @@ class RegistrationsController < Devise::RegistrationsController
     if !@user.organization.nil? && @user.organization.name != 'test'
       ZohoService.save_to_zoho(@user.profile)
     end
-    
+
+    # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+    @tracker.alias(@user.id,mixpanel_distinct_id)
+    @tracker.people.set(@user.id,{
+      '$first_name' => @user.profile.first_name,
+      '$last_name' => @user.profile.last_name,
+      '$email' => @user.email,
+      '$phone' => @user.profile.phone
+      })
+    @tracker.track(@user.id,'User account activated')
+
     sign_in(@user, scope: :user)
     flash[:notice] = 'Welcome to MyDomino!'
 
@@ -118,6 +133,16 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
       profile.update(user: @user)
+
+      # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+      @tracker.alias(@user.id,mixpanel_distinct_id)
+      @tracker.people.set(@user.id,{
+        '$first_name' => @user.profile.first_name,
+        '$last_name' => @user.profile.last_name,
+        '$email' => @user.email,
+        '$phone' => @user.profile.phone
+        })
+      @tracker.track(@user.id,'User account created for org. member')
 
       # Create zoho lead record
       if !@orgnization.nil? && @organization.name != 'test'
