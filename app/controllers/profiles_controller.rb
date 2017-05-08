@@ -61,7 +61,7 @@ class ProfilesController < ApplicationController
     # Display fat intro overlay if user has not joined food challenge yet
     @show_fat_intro = !@profile.fat_intro_complete
 
-    track_event "View Challenges"
+    # track_event "View Challenges"
   end
 
   # /verify_current_password/
