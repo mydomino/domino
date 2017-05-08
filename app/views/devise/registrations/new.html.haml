@@ -29,7 +29,7 @@
 :javascript
   $(document).ready(function(){
     mixpanel.track("Loaded Devise Sign up page for "+ $('#user_email').val());
-
+    
     var myForm = $('#new_user');
     myForm.submit(function(event){
       var hiddenInput = myForm.find("input[name='distinct_id']");
