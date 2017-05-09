@@ -22,10 +22,6 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
-  def mixpanel_distinct_id
-    current_user.id if !current_user.nil?
-  end
-
   private
 
   def mixpanel_tracker
