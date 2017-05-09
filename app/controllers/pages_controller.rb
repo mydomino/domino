@@ -15,30 +15,24 @@ class PagesController < ApplicationController
   end
 
   def about
-    track_event "/about page view"
   end
 
   def terms
-    track_event "/terms page view"
   end
 
   def privacy
-    track_event "/privacy page view"
   end
 
   def team
-    track_event "/team page view"
   end
 
   def faq
-    track_event "/faq page view"
   end
 
   def example
   end
 
   def partners
-    track_event "View Partners"
   end
 
   def newsletter_subscribe
