@@ -71,7 +71,7 @@ class RegistrationsController < Devise::RegistrationsController
       '$last_name' => @user.profile.last_name,
       '$email' => @user.email,
       '$phone' => @user.profile.phone
-      })
+    })
     @tracker.track(@user.id,'User account activated')
 
     sign_in(@user, scope: :user)
@@ -280,5 +280,4 @@ class RegistrationsController < Devise::RegistrationsController
     # track_event "Sign up via Devise registration"
     user_dashboard_path
   end
-
 end
