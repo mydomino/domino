@@ -31,11 +31,6 @@ class RegistrationsController < Devise::RegistrationsController
       @user = User.includes(:profile).find_by_signup_token(params[:a])
       if @user
         @user = nil unless @user.signup_token == params[:a]
-        @tracker.track('OrgMember signup page loaded by known user',{
-        '$email' => @user.email
-        })
-      else
-        @tracker.track('OrgMember signup page loaded')
       end
     end
   end
