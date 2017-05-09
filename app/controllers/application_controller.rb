@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   private
 
   def mixpanel_tracker
-    @tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_KEY'])
+    @tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
   end
 
   def get_user_agent
