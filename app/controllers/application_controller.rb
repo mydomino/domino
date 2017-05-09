@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def mixpanel_distinct_id
+    current_user.id if !current_user.nil?
+  end
+
   private
 
   def mixpanel_tracker
@@ -41,8 +45,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     # setting People profile
     if resource.profile != nil
-      @tracker.people.set(@user.id,
-        {"$email" => @user.email,
+      @tracker.people.set(resource.id,
+        {"$email" => resource.email,
         "$first_name" => resource.profile.first_name,
         "$last_name" => resource.profile.last_name})
     end
