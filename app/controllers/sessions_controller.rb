@@ -8,6 +8,6 @@ class SessionsController < Devise::SessionsController
 
   def create
     super
-    @tracker.track(current_user.id, "User session created successfully﻿");
+    @tracker.track(current_user.id, "User session created");
   end
 end
