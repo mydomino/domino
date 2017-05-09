@@ -45,8 +45,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     # setting People profile
     if resource.profile != nil
-      @tracker.alias(resource.id, mixpanel_distinct_id)
-
       @tracker.people.set(resource.id,
         {"$email" => resource.email,
         "$first_name" => resource.profile.first_name,
