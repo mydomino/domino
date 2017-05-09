@@ -22,6 +22,8 @@ class FatMealsController < ApplicationController
       food_types: FoodType.all,
       graph_params: @graph_params
     }
+
+    @tracker.track(current_user.id, 'FAT interface loaded')
   end
 
   # POST /food-action-tracker XmlHttpRequest
@@ -49,10 +51,6 @@ class FatMealsController < ApplicationController
       food_type = food.food_type.category
       size = food.size
     end 
-    track_event "Initiate Food tracking", { "User": current_user.email,
-      "food_date": @meal_day.date,
-      "food_type": food_type,
-      "food_size": size }
 
     fat_graph_params(@date)
     render_response
@@ -84,11 +82,7 @@ class FatMealsController < ApplicationController
       food_type = food.food_type.category
       size = food.size
     end 
-    track_event "Update Food", { "User": current_user.email,
-      "food_date": @meal_day.date,
-      "food_type": food_type,
-      "food_size": size }
-
+    
     fat_graph_params(@meal_day.date)
 
     render_response

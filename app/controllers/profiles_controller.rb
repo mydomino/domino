@@ -91,6 +91,7 @@ class ProfilesController < ApplicationController
     # keep user logged in
     sign_in(@user, :bypass => true)
 
+    @tracker.track(current_user.id, 'User updated password')
     render json: {
       message: "Password updated successfully",
       status: 200
