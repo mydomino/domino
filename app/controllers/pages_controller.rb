@@ -43,8 +43,6 @@ class PagesController < ApplicationController
       @message = "Thanks for signing up!"
     end
 
-    track_event "subscribe newsletter"
-
     respond_to do |format|
       format.js
     end
