@@ -129,11 +129,11 @@ class FoodType extends React.Component {
 
     $(document).on('confirmation', modalSelector, function (e) {
       that.addFood(that.$slider.slider("value"));
-      mixpanel.track('Food category save');
+      mixpanel.track('Food category saved');
     });
 
     $(document).on('cancellation', modalSelector, function () {
-      mixpanel.track('User closed food category modal');
+      mixpanel.track('Food category modal closed');
     });
   }
   remodal(e){

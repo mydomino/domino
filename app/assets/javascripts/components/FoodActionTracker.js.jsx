@@ -211,9 +211,9 @@ class FoodActionTracker extends React.Component {
     let nextView = this.state.nextView;
 
     if(!nextView) {
-      mixpanel.track('User clicked See results')
+      mixpanel.track('See results clicked')
     }
-    
+
     this.setState({
       nextView: !nextView
     });
