@@ -10,48 +10,22 @@ class FoodActionTracker extends React.Component {
       method: mealDayNull ? 'POST' : 'PATCH',
       meal_day: fatDay.meal_day,
       foods: fatDay.foods,
-      didntEat: (fatDay.meal_day.carbon_footprint == 1.06 && Object.keys(fatDay.foods).length == 0) ? true : false,
+      graph_params: fatDay.graph_params,
       results: !mealDayNull,
       nextView: false
     };
   }
-  addFood(f) {
-    let food_base = {size: null, food_type_id: null};
-
-    let foods = Object.assign({}, this.state.foods);
-    let food = Object.assign(food_base, f);
-    foods[food.food_type_id] = food;
-
+  updateFoods(foods) {
     this.setState({
-      foods: foods,
-      didntEat: false
-    },this.getCarbonFootprint);
-  }
-  removeFood(f) {
-    let foods = Object.assign({}, this.state.foods);
-    delete foods[f.food_type_id];
-
-    this.setState({
-      foods: foods
-    }, this.getCarbonFootprint);
+        foods: foods
+      }, function(){this.getCarbonFootprint()}
+    );
   }
   updateGraph(d) {
     this.refs.results.updateGraph(d);
   }
   render() {
     var that = this;
-    var foodTypes = this.props.fatDay.food_types.map(function(foodType, index){
-                      return <FoodType  index={index}
-                                        ref={"foodtype" + (index+1)}
-                                        removeFood={(f)=>that.removeFood(f)}
-                                        addFood={(f)=>that.addFood(f)}
-                                        sizeInfo={that.props.foodSizeInfo[foodType.id]}
-                                        food={that.state.foods[foodType.id]} index={index}
-                                        key={foodType.name}
-                                        foodType={foodType}
-                                        updateFoodSize={(f)=>that.updateFoodSize(f)} />
-                    });
-
     return (
       <div className='remodal-bg'>
         <div className='max-width-3 mx-auto p1'>
@@ -62,47 +36,20 @@ class FoodActionTracker extends React.Component {
 
           <div className='bg-gray-1 clearfix rounded-bottom px2 pb2 relative'>
 
-            <div id="food-picker" className={((this.state.nextView) ? "display-none fadeOut" : "fadeIn") + " animated"}>
-              <div className='col-12 p2'>
-                {foodTypes}
-              </div>
-              <div className="center p2">
-               <a onClick={()=>this.didntEat()} >
-                  <button id="btn-didnt-eat"
-                    className={(this.state.didntEat ? "border " : null) + " fill-x mt1 btn btn-sm btn-secondary border-gray-2"}
-                    style={{backgroundColor: (this.state.didntEat ? "#00ccff" : "white"), height:54}} >
+            <FoodPicker ref='foodPicker'
+                        nextView={this.state.nextView}
+                        foodTypes={this.props.fatDay.food_types}
+                        foods={this.state.foods}
+                        foodSizeInfo={this.props.foodSizeInfo} 
+                        updateFoods={(f)=>this.updateFoods(f)}
+                        removeFood={(f)=>this.removeFood(f)} />
 
-                    <span className="flex items-center justify-center">
-                      <img src="/fat_icons/i-empty.png" className="icon-m mr1"/>
-                      {"I ate none of these"}
-                    </span>
-                  </button>
-                </a>
-              </div>
-            </div> {/* end food-picker */}
+            <ResultsSummary nextView={this.state.nextView}
+                            toggleView={()=>this.toggleView()}
+                            carbonFootprint={this.state.meal_day.carbon_footprint}
+                            points={this.state.meal_day.points}
+                            foods={this.state.foods} />
 
-            <div id="results-summary" className={(this.state.nextView ? "fadeIn" : "display-none") + " animated"}>
-
-              <div className="bg-white mx2 my1 py2 rounded center">
-                <span onClick={() => this.toggleView()} style={{top:'1.5rem'}} id="btn-food-picker" className="flex items-center ml2 mb0 pointer absolute">
-                  <img src="/fat_icons/i-arrow-left.svg" className="icon-s inline mr1"/>
-                  <h4 className="medium my0">Back</h4>
-                </span>
-                <h3 className="sm-h2 bold mb0 col-8 mx-auto" dangerouslySetInnerHTML={this.getResultTitle()}></h3>
-                <div className="col-10 sm-col-8 mx-auto mb2" dangerouslySetInnerHTML={this.getCfResultString()}>
-
-                </div>
-                 <div className="mx-auto center my1">
-                  <span data-target="#learn-more" className="line pointer ml1 line-height-1 smooth-scroll">Learn More</span>
-                </div>
-              </div>
-              <div className="mx-auto center my2">
-                <button data-target="#weekly-progress" className="btn btn-sm btn-primary btn-primary--hover smooth-scroll">See my progress this week</button>
-                <span className="ml1 gray-5">
-                  or <a href="/challenges" className="black line ml1 line-height-1">Back to Challenges</a>
-                </span>
-              </div>
-            </div> {/* end results-summary */}
           </div>
         </div>
         <div className="center mt1 mb3">
@@ -111,87 +58,10 @@ class FoodActionTracker extends React.Component {
           </a>
         </div>
         <div className={((this.state.nextView) ? "inherit" : "display-none")}>
-          <Results ref="results" graph_params={this.props.fatDay.graph_params} />
+          <Results ref="results" prevWeek={this.props.fatDay.prev_week} graph_params={this.props.fatDay.graph_params} />
         </div>
       </div>
     );
-  }
-  getResultTitle() {
-    let cf = this.state.meal_day.carbon_footprint;
-    result_title = ""
-    if(cf <= 7) {
-      result_title += "<span class='green'>"
-      result_title += ["Well done!", "Hooray!", "Great job!", "Fabulous!"][Math.floor(Math.random() * 4)];
-    }
-    else if(cf >= 7 && cf < 8 ){
-      result_title += "<span class='yellow'>"
-      result_title += "It's okay, I guess...";
-    }
-    else {
-      result_title += "<span class='red'>"
-      result_title += "Doh!";
-    }
-    result_title += "</span>"
-    return {__html: result_title };
-  }
-  getCfpPoints() {
-    let percentAverageEmission = 1-(this.state.meal_day.carbon_footprint/7);
-    let points = 0;
-
-    if(percentAverageEmission >= 0.1 && percentAverageEmission < 1.0){
-      points = percentAverageEmission * 100;
-    }
-    return points.toFixed();
-  }
-  getCfResultString() {
-    let str =  "<p class='h4 sm-h4 mx-auto mt0'>Your Foodprint today is ";
-    let cf = this.state.meal_day.carbon_footprint;
-    let avgPercent = (cf/7) * 100;
-    if(cf < 7) {
-      let val = (100 - avgPercent).toFixed(0);
-      str += "<span class='green'><span class='h3 bold'>" + val + "%</span> below</span> the American average."
-    }
-    else if(cf >= 7) {
-      let val = (avgPercent - 100).toFixed(0);
-      str += "<span class='red'><span class='h3 bold'>" + val + "%</span> above</span> the American average.";
-    }
-    else {
-      str += "the American average";
-    }
-    str += "<p/>"
-
-    str += "<div class='p1 bg-gray-2 mb2'><h3 class='my0'>You've earned <span class='h3 blue bold'>" + this.state.meal_day.points + " </span> points.</h3>";    
-    str += "<ul class='p1 m0 list-style-none h5 gray-6'><li><span class='blue'>+" + this.getCfpPoints() + " points </span> for beating the average American Foodprint </li>";
-    str+="<li><span class='blue'>+10 points</span> for logging today</li>";
-
-    if(this.state.foods['3'] === undefined) {
-      str+="<li class='my0'><span class='blue'>+5 points</span> for not having dairy </li>";
-    }
-
-    if(this.state.foods['6'] === undefined) {
-      str+="<li class='my0'><span class='blue'>+10 points</span> for not having beef or lamb </li>";
-    }
-
-    str += "</ul></div>"
-
-    if(cf < 7) {
-      str += `
-        <p class='h5 sm-h4 left-align mx-auto mt1'>
-          <span class="bold">Did you know?</span><br/>
-          Beef and lamb produce 5x more carbon emissions than chicken, so choose your meats wisely.
-          Also, up to 40% of food produced is wasted, but you can help change that.
-        </p>
-      `;
-    } else {
-      str += `
-        <p class='h5 sm-h4 left-align mx-auto mt1'>
-          <span class="bold">How you can improve</span><br/>
-          Try cutting back on beef or lamb. They produce 5x more carbon emission than chicken.
-        </p>
-      `;
-    }
-
-    return {__html: str };
   }
   componentDidMount() {
     $('.smooth-scroll').on('click', function(){
@@ -217,22 +87,6 @@ class FoodActionTracker extends React.Component {
     this.setState({
       nextView: !nextView
     });
-  }
-  didntEat() {
-    if(!this.state.didntEat) {
-      let foods = Object.assign({}, this.state.foods);
-
-      for (var food in foods) {
-        let selector = "foodtype" + food;
-        this.refs[selector].removeFood();
-        delete foods[food];
-      }
-
-      this.setState({
-        foods: foods,
-        didntEat: true
-      }, this.getCarbonFootprint);
-    }
   }
   getCarbonFootprint(){
     // Ajax request to get cf calculation from server

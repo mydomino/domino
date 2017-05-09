@@ -22,7 +22,7 @@ class FoodType extends React.Component {
   }
   removeFood() {
     let food = Object.assign({}, this.state.food);
-    this.props.removeFood(food);
+    
 
     //reset slider value and color
     this.$slider.slider("value", 100);
@@ -34,16 +34,19 @@ class FoodType extends React.Component {
     this.setState({
       food: food,
       active: false
-    });
+    }, function(){this.props.removeFood(food);});
   }
   addFood(size){
     let food = Object.assign({}, this.state.food);
     food.size = size;
+
     this.setState({
       food: food,
       active: true
+    }, function(){
+      this.props.addFood(this.state.food);
     });
-    this.props.addFood(this.state.food);
+    
   }
   render() {
     return (

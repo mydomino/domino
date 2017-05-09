@@ -28,7 +28,7 @@ class FatGraph extends React.Component {
     if(d.cf !== "future") {
       d3.select("#lbl-x2-" + i)
         .text(function() {
-          return (d.cf == null ? "N/A" : d.pts + " pts")
+          return (d.cf == null ? "N/A" : "+" + d.pts + " points")
         });
 
       d3.select("#aux-" + i)
@@ -39,7 +39,7 @@ class FatGraph extends React.Component {
     if(d.cf !== "future") {
       d3.select("#lbl-x2-" + i)
       .text(function() {
-        return (d.cf == null ? "Incomplete" : d.cf + " kg");
+        return (d.cf == null ? "No info" : d.cf + " kg");
       });
 
       d3.select("#aux-" + i)
@@ -49,7 +49,7 @@ class FatGraph extends React.Component {
         d3.select(this)
           .attr("fill", function(d){
             if(d.cf == null) return "white";
-            return "#D6D6D6";
+            return "#a5a5a5";
           });
       }
     }
@@ -67,18 +67,18 @@ class FatGraph extends React.Component {
         width = winWidth - margin.left - margin.right,
         height = containerHeight - margin.top - margin.bottom;
 
-    // x axis showing days of week
+    // bottom x axis - carbon footprint and points earned
     var x = d3.scaleBand()
-      .domain(["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"])
+      .domain([1,2,3,4,5,6,7])
       .rangeRound([0, width]);
 
     var xAxis = d3.axisBottom(x)
       .tickSize(0)
       .tickPadding(8);
 
-    var x2labels = data.map(function(el){
+    var xlabels = data.map(function(el){
       if(el.cf == null){
-        return "Incomplete";
+        return "No info";
       }
       else if(el.cf == "future") {
         return " ";
@@ -88,9 +88,9 @@ class FatGraph extends React.Component {
       }
     });
 
-    // Top x axis showing c02 footprints and point values
+    // Top x axis showing days of week
     var x2 = d3.scaleBand()
-              .domain([1,2,3,4,5,6,7])
+              .domain(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
               .rangeRound([0, width]);
 
     var x2Axis = d3
@@ -150,6 +150,7 @@ class FatGraph extends React.Component {
 
     // Primary bar elements
     bar.append("rect")
+      .attr("class", "bg-gray-5")
       .classed("bar", true)
       .attr("id", function(d,i){
         return "rect-" + i;
@@ -171,9 +172,9 @@ class FatGraph extends React.Component {
       })
       .attr("width", barContainerWidth/2)
       .attr("fill", function(d){
-        return "#D6D6D6";
+        return "#a5a5a5";
       })
-      .style("stroke", "#D6D6D6")
+      .style("stroke", "#a5a5a5")
       .style("stroke-width", 4)
       .on("mouseenter", componentCtx.onBarEnter)
       .on("mouseout", componentCtx.onBarExit)
@@ -184,96 +185,103 @@ class FatGraph extends React.Component {
 
 
 
-        // auxillary bars to show amount below or above avg cf
-        bar.append("rect")
-          .attr("class", "pointer aux")
-          .attr("id", function(d, i){
-            return "aux-" + i;
-          })
-          .attr("y", function(d){
-            if(d.cf == null || d.cf == "future") return null;
-            if(d.cf < 7) {
-              return y(7);
-            }
-            else {
-              var diff = y(7) - y(d.cf);
-              return y(7) - diff;
-            }
-          })
-          .attr("height", function(d){
-            if(d.cf == null || d.cf == "future") return null;
-            if(d.cf < 7) {
-              var height = y(d.cf) - y(7);
-            }
-            else {
-              var height = y(7) - y(d.cf);
-            }
-            return height;
-          })
-          .attr("width", barContainerWidth/2)
-          .attr("fill", function(d){
-            if(d.cf == null) return "none";
-            return (d.cf < 7 ? "#B4FAFF" : "#FFA7A7");
-          })
-          .style("stroke", function(d){
-            if(d.cf == null) return "none";
-            return (d.cf < 7 ? "B4FAFF" : "#FFA7A7");
-          })
-          .style("stroke-width", 4)
-          .style("opacity", 0)
-          .on("mouseenter", componentCtx.onBarEnter)
-          .on("mouseout", componentCtx.onBarExit)
-          .on('click', function(d){
-            window.location = "/food/" + d.path;
-          });
+    // auxillary bars to show amount below or above avg cf
+    bar.append("rect")
+      .attr("class", "pointer aux")
+      .attr("id", function(d, i){
+        return "aux-" + i;
+      })
+      .attr("y", function(d){
+        if(d.cf == null || d.cf == "future") return null;
+        if(d.cf < 7) {
+          return y(7);
+        }
+        else {
+          var diff = y(7) - y(d.cf);
+          return y(7) - diff;
+        }
+      })
+      .attr("height", function(d){
+        if(d.cf == null || d.cf == "future") return null;
+        if(d.cf < 7) {
+          var height = y(d.cf) - y(7);
+        }
+        else {
+          var height = y(7) - y(d.cf);
+        }
+        return height;
+      })
+      .attr("width", barContainerWidth/2)
+      .attr("fill", function(d){
+        if(d.cf == null) return "none";
+        return (d.cf < 7 ? "#B4FAFF" : "#FFA7A7");
+      })
+      .style("stroke", function(d){
+        if(d.cf == null) return "none";
+        return (d.cf < 7 ? "B4FAFF" : "#FFA7A7");
+      })
+      .style("stroke-width", 4)
+      .style("opacity", 0)
+      .on("mouseenter", componentCtx.onBarEnter)
+      .on("mouseout", componentCtx.onBarExit)
+      .on('click', function(d){
+        window.location = "/food/" + d.path;
+      });
 
-        //incomplete sections
-        d3.selectAll(".null")
-          .attr("y", y(max))
-          .attr("height", height-y(max))
-          .attr("fill", "white")
-          .style("stroke-dasharray", ("16, 16"))
-          .style("stroke", "#FFA7A7")
-          .style("stroke-width", 4)
-          .style("position","relative")
-          .style("z-index","3")
+    //incomplete sections
+    d3.selectAll(".null")
+      .attr("y", y(max))
+      .attr("height", height-y(max))
+      .attr("fill", "white")
+      .style("stroke-dasharray", ("1, 3"))
+      .style("stroke", "#FFA7A7")
+      .style("stroke-width", 2)
+      .style("position","relative")
+      .style("z-index","3")
 
-        d3.selectAll(".future")
-          .attr("height", 0);
+    d3.selectAll(".future")
+      .attr("height", 0);
 
-      // top axis
-      chart.append("g")
-        .attr("class", "x2 axis adelle")
-        .attr("transform", "translate(0," + -2 + ")")
-        .call(x2Axis)
-        .selectAll("text")
-        .text(function(d,i){
-          return x2labels[i];
-        })
-        .attr("class", "top-axis-label")
-        .attr("id", function(d, i){
-          return "lbl-x2-" + i;
-        });
+    // top axis
+    chart.append("g")
+      .attr("class", "x2 axis adelle")
+      .attr("transform", "translate(0," + -2 + ")")
+      .call(x2Axis)
+      .selectAll("text")
+      // .text(function(d,i){
+      //   return x2labels[i];
+      // })
+      .attr("class", "top-axis-label");
+      // .attr("id", function(d, i){
+      //   return "lbl-x2-" + i;
+      // });
 
-      // bottom axis
-      chart.append("g")
-        .attr("class", "x axis adelle")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .attr('fill', 'red');
+    // bottom axis
+    chart.append("g")
+      .attr("class", "x axis adelle")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .selectAll("text")
+      .text(function(d,i){
+        return xlabels[i];
+      })
+      .attr("class", "top-axis-label")
+      .attr("id", function(d, i){
+        return "lbl-x2-" + i;
+      });
 
-      // Avg cf line
-      chart.append("line")
-        .attr("x1",0)
-        .attr("y1", y(7))
-        .attr("x2",width)
-        .attr("y2", y(7))
-        .attr('stroke-width', 2)
-        .attr('stroke', "#87D37C")
-        .style("opacity", 0.5)
-        .style("stroke-dasharray", ("6, 4"));
+    // Avg cf line
+    chart.append("line")
+      .attr("x1",0)
+      .attr("y1", y(7))
+      .attr("x2",width)
+      .attr("y2", y(7))
+      .attr('stroke-width', 1)
+      .attr('stroke', "#87D37C")
+      .style("opacity", 0.5)
+      .style("stroke-dasharray", ("10, 1"));
 
-      d3.select(window).on('resize', this.resize.bind(this));
+    d3.select(window).on('resize', this.resize.bind(this));
 
   } // end drawGraph();
   resize(){

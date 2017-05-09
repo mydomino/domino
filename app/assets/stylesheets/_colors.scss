@@ -73,6 +73,8 @@
 .fill-blue path { fill: $blue; }
 .fill-blue rect { stroke: $blue; }
 
+.fill-blue--hover:hover path { fill: $blue;}
+
 .fill-gray-6 path { fill:$gray-6; }
 .fill-gray-5 path { fill:$gray-5; }
 .fill-gray-4 path {fill: $gray-4; }
