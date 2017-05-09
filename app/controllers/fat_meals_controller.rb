@@ -22,6 +22,8 @@ class FatMealsController < ApplicationController
       food_types: FoodType.all,
       graph_params: @graph_params
     }
+
+    @tracker.track(current_user.id, 'FAT interface loaded')
   end
 
   # POST /food-action-tracker XmlHttpRequest
