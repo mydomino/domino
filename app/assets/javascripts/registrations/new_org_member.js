@@ -112,7 +112,8 @@ modulejs.define('new_org_member', function (args) {
           _method:'PATCH',
           email: $email.val(),
           password: $pw.val(),
-          password_confirmation: $pwConfirmation.val()
+          password_confirmation: $pwConfirmation.val(),
+          distinct_id: mixpanel.get_distinct_id()
         },
         dataType: 'json',
         success: function() {

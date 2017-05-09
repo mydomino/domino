@@ -65,6 +65,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+    mixpanel_distinct_id = params[:distinct_id]
     @tracker.alias(@user.id, mixpanel_distinct_id)
     @tracker.people.set(@user.id,{
       '$first_name' => @user.profile.first_name,
@@ -122,6 +123,7 @@ class RegistrationsController < Devise::RegistrationsController
       profile.update(user: @user)
 
       # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+      mixpanel_distinct_id = params[:distinct_id]
       @tracker.alias(@user.id,mixpanel_distinct_id)
       @tracker.people.set(@user.id,{
         '$first_name' => @user.profile.first_name,
