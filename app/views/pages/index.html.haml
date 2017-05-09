@@ -209,6 +209,7 @@
       =link_to "See more partners >", partners_path, class: " h3 blue text-decoration-none"
 / END partner module
 :javascript
+  mixpanel.track('Homepage loaded');
   $(document).ready(function(){
     modulejs.require('home')();
   });
