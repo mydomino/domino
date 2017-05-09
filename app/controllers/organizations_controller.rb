@@ -31,8 +31,6 @@ class OrganizationsController < ApplicationController
     
     # Member count is shown in the admin dashboard
     @member_count = @organization.users.size
-
-    track_event "Org admin dashboard page view"
   end
 
   # POST /organizations/1/add_individual
@@ -77,8 +75,6 @@ class OrganizationsController < ApplicationController
 
       # Send updated member count back to view
       member_count = @organization.users.size
-      
-      track_event "Member added via org admin dashboard"
       
       render json: {
           message: "Member added successfully",
