@@ -38,9 +38,6 @@ class RegistrationsController < Devise::RegistrationsController
   def new_member
     if params[:a]
       @user = User.includes(:profile).find_by!(signup_token: params[:a])
-      @tracker.track("User clicked signup link",{
-        '$email' => @user.email
-        })
     end
   end
   
