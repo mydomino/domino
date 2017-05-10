@@ -83,8 +83,7 @@ class FatMealsController < ApplicationController
       size = food.size
     end
   
-    fat_graph_params(@meal_day.date)
-
+    @graph_params = get_graph_params
     render_response
   end
 
