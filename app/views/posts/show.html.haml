@@ -13,3 +13,7 @@
     = @post_content.try(:html_safe)
   = render "subscribe_box"
   = render "disqus_comment"
+
+:javascript
+  mixpanel.track('Article loaded', {"title": "#{@title}"});
+
