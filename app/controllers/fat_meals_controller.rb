@@ -24,7 +24,6 @@ class FatMealsController < ApplicationController
       prev_week: @prev_week
     }
 
-    @tracker.track(current_user.id, 'FAT interface loaded')
   end
 
   # POST /food-action-tracker XmlHttpRequest

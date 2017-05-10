@@ -30,4 +30,4 @@
   = react_component('FoodActionTracker', {fatDay: @fat_day})
 
 :javascript
-  mixpanel.track('View FAT interface', {"fatDate": "#{@fat_day[:date]}"});
+  mixpanel.track('FAT interface loaded', {"date": "#{@fat_day[:date]}"});
