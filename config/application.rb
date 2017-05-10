@@ -41,9 +41,5 @@ module Domino
 
     # React addons
     config.react.addons = true
-
-    # for Mixpanel - Event Tracking integration
-    config.event_tracker.mixpanel_key = ENV["MIXPANEL_KEY"]
-
   end
 end

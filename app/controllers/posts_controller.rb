@@ -22,7 +22,6 @@ class PostsController < ApplicationController
     @total_posts, @total_pages = @dh.get_pagination_params(response.headers)
     @paginatable_array = Kaminari.paginate_array((1..@total_posts.to_i).to_a).page(params[:page] || 1).per(10)
 
-    #track_event "Article index page view"
   end
 
   # GET /posts/1
@@ -33,8 +32,6 @@ class PostsController < ApplicationController
     response = @dh.get_post_by_id(post_id, query_param)
 
     process_post(response.body)
-
-    track_event "View Article", {"article_id": post_id.to_s}
   end
 
   def get_post_by_slug
@@ -45,16 +42,9 @@ class PostsController < ApplicationController
     response = @dh.get_post_by_slug(query_param)
 
     process_post(response.body)
-
-    track_event "View Article", {"Article": slug}
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_post
-    #@post = Post.find(params[:id])
-  end
 
   # Only allow a trusted parameter "white list" through.
   def post_params

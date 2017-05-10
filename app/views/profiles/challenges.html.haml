@@ -82,6 +82,9 @@
         = render 'profiles/myhome_components/food_impact_module'
         
 :javascript
+  mixpanel.identify("#{current_user.id}");
+
+  mixpanel.track("View Challenges - client");
   $('.complete, .incomplete').on('click', function(){
     window.location = $(this).data('link');
   });

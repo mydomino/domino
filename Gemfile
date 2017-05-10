@@ -58,7 +58,7 @@ gem 'aws-sdk-rails'
 
 
 # for mixpanel integration
-gem 'event_tracker', '~> 0.3.0'
+gem 'mixpanel-ruby'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

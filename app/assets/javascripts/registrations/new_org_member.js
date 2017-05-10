@@ -112,7 +112,8 @@ modulejs.define('new_org_member', function (args) {
           _method:'PATCH',
           email: $email.val(),
           password: $pw.val(),
-          password_confirmation: $pwConfirmation.val()
+          password_confirmation: $pwConfirmation.val(),
+          distinct_id: mixpanel.get_distinct_id()
         },
         dataType: 'json',
         success: function() {
@@ -137,6 +138,8 @@ modulejs.define('new_org_member', function (args) {
           // if first name field is disabled
           // It means that the user account already exists,
           // So we have to call setOrgMemberPw()
+          // 733t Hack0r. We shouldn't rely
+          // On HTML attributes.
           if ($firstName.attr('disabled')){
             setOrgMemberPw();
           } 

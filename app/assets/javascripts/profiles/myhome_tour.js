@@ -50,11 +50,16 @@ modulejs.define('myhome_tour', function(){
       this.mobile = mobile;
       this.userEmail = userEmail;
       $('#wt-link').on('click', $.proxy(this.start, this, true));
+      $('#wt-link').on('click', function(){
+        mixpanel.track('User clicked Site Tour link');
+      });
     },
     start: function(start) {
       if(!start) return;
-      mixpanel.track("Welcome tour start - client side", {"$email": this.userEmail});
+      // differentiate between auto start and user click start
+      mixpanel.track("Welcome tour start");
       this.initModals();
+      var that = this; 
 
       var $welcomeTourBg,
           modals,
@@ -86,6 +91,7 @@ modulejs.define('myhome_tour', function(){
 
       // BEGIN module event handlers
       // Allow users to skip modal portion of tour
+      $('.skip-for-now').unbind('click');
       $('.skip-for-now').on('click', function(){
         var currStep = $(this).data('step');
         modals[currStep].remodalInstance.close();
@@ -94,6 +100,7 @@ modulejs.define('myhome_tour', function(){
       });
 
       // Go back to previous modal
+      $('.wt-back').unbind('click');
       $('.wt-back').on('click', function(){
         var currStep = $(this).data('step');
         var currModal = modals[currStep];
@@ -110,6 +117,7 @@ modulejs.define('myhome_tour', function(){
       });
 
       // Go to next modal
+      $('.wt-next').unbind('click');      
       $('.wt-next').on('click', function(){
         var currStep = $(this).data('step');
         var currModal = modals[currStep];
@@ -128,6 +136,7 @@ modulejs.define('myhome_tour', function(){
 
       // End remodal portion of tour
       // Start introJs portion of tour for non-mobile users
+      $('.wt-finish').unbind('click');
       $('.wt-finish').on('click', function(){
         var currStep = $(this).data('step');
 
@@ -139,7 +148,7 @@ modulejs.define('myhome_tour', function(){
         mixpanel.track("Welcome tour - finish", {"$email": this.userEmail});
 
       });
-      // END Mdule event handlers
+      // END Module event handlers
 
     } // end start
   } // end return

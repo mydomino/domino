@@ -1,14 +1,13 @@
+require 'mixpanel-ruby'
+
 class ApplicationController < ActionController::Base
   include Pundit
   # protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
-  before_action :capture_utm_campaign, :get_user_agent
+  before_action :capture_utm_campaign, :get_user_agent, :mixpanel_tracker
 
   # Bypass handle_exceptions if in development environment
   around_action :handle_exceptions unless Rails.env.development?
-
-  # for Mixpanel/Event Tracker
-  around_filter :append_event_tracking_tags
 
   #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -16,27 +15,18 @@ class ApplicationController < ActionController::Base
   helper_method :article_for_member_only?
 
   def article_for_member_only?(category)
-
     return category.include?(DHHtp::MEMBER_ONLY_CATEGORY)
-
   end
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
 
-  def mixpanel_distinct_id
-    current_user.id if !current_user.nil?
-  end
-
-  def mixpanel_name_tag
-    current_user && current_user.email
-  end
-
-
-
-
   private
+
+  def mixpanel_tracker
+    @tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
+  end
 
   def get_user_agent
     @user_agent = request.env['HTTP_USER_AGENT']
@@ -49,13 +39,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-
-    #  linking the current ID (anonymous) with a new ID
-    #mixpanel_alias (current_user.id)
-
     # setting People profile
     if resource.profile != nil
-      mixpanel_people_set({"$email" => @user.email,
+      @tracker.people.set(resource.id,
+        {"$email" => resource.email,
         "$first_name" => resource.profile.first_name,
         "$last_name" => resource.profile.last_name})
     end
