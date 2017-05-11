@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/beta_index'
+
   post 'points/add_watch_ttc_moive_points'
 
   # BEGIN Food Action Tracker routes
