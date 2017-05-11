@@ -1,2 +1,33 @@
-%h1 Users#beta_index
-%p Find me in app/views/users/beta_index.html.haml
+.clearfix.bg-white.mt3.mb1.p2.max-width-4.mx-auto
+  .col.col-12
+    %h1.inline-block.m0 Beta users
+    .p2.mr3.right{style: 'width:400px;'} 
+      =form_tag '/users/beta_index', method: 'GET' do
+        .inline-block
+          =text_field_tag 'search', @search_term, style: 'height: 1.6em;'
+        =hidden_field_tag 'filter', @filter
+        =hidden_field_tag 'view', 'table'
+        =submit_tag 'Search', class: 'btn btn-sm btn-primary'
+
+  .col.col-12
+    %table.table-light#tbl-dashboards.fill-x
+      %tr.left-align
+        %th
+          First name
+        %th
+          Last name
+        %th
+          Email address
+        %th 
+          =sortable "created_at", "Created", filter: @filter
+      -@users.each do |user|
+        %tr.dashboard-record.pointer
+          %td #{user.profile.first_name}
+          %td #{user.profile.last_name}
+          %td #{user.email}
+          %td #{user.created_at.strftime("%Y-%m-%d")}
+            
+.clearfix.max-width-4.mx-auto.center
+  .col.col-12
+    = paginate @users
+  
