@@ -18,6 +18,8 @@
           Last name
         %th
           Email address
+        %th
+          Activated?
         %th 
           =sortable "created_at", "Created", filter: @filter
       -@users.each do |user|
@@ -25,6 +27,7 @@
           %td #{user.profile.first_name}
           %td #{user.profile.last_name}
           %td #{user.email}
+          %td #{user.signup_token.nil?}
           %td #{user.created_at.strftime("%Y-%m-%d")}
             
 .clearfix.max-width-4.mx-auto.center

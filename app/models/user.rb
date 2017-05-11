@@ -80,12 +80,12 @@ class User < ActiveRecord::Base
     # (i.e. mydomino.com/my-organization?a=[signup-token]))
     if self.organization
       org_name = self.organization.name.downcase
-      signup_link = "#{domain}#{org_name}?a=#{self.signup_token}"
+      signup_link = "#{domain}/#{org_name}?a=#{self.signup_token}"
     # If User is not affiliated with an Organization
     # They will sign up through the private member landing page 
     # (i.e. mydomino.com/pm?a=[signup-token])
     else
-      signup_link = "#{domain}pm?a=#{self.signup_token}"
+      signup_link = "#{domain}/pm?a=#{self.signup_token}"
     end
 
     return signup_link
