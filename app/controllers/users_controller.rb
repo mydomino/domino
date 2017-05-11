@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :authenticate_user!
-  
+
   def beta_index
     @page = params.has_key?(:page) ? params[:page] : 1
 

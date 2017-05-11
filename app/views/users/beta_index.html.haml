@@ -27,7 +27,7 @@
           %td #{user.profile.first_name}
           %td #{user.profile.last_name}
           %td #{user.email}
-          %td #{user.signup_token.nil?}
+          %td #{user.signup_token.nil? ? 'Yes' : user.get_signup_link(request.host)}
           %td #{user.created_at.strftime("%Y-%m-%d")}
             
 .clearfix.max-width-4.mx-auto.center
