@@ -55,37 +55,40 @@ class User < ActiveRecord::Base
 
   # /email_sign_up_link/
   # Purpose: Send signup links to org members who have User accounts previously
-  #  created by an org admin.
+  #  created by an org admin. If user doesn't have a signup token, one will be generated
   def email_signup_link
-    # Email signup link is valid until a password is successfully reset
-    # once the password was reset, the sign_up token will be set to nil.
-    # refer to registrations_controller.rb#set_org_member_password for details
-    generate_signup_token
+    if !self.signup_token
+      generate_signup_token
+    end
 
     UserMailer.email_signup_link(self).deliver_later
   end
 
-   
-  # return a sign_up link for a user
-  def get_signup_link(root_url)
+  # /get_signup_link/
+  # Purpose: Get sign up links for User accounts that have not been activated
+  #    If no signup token exists for the user, one will be generated
+  # Args: domain - domain to which sign up link directs (i.e. mydomino.com, localhost:3000)
+  # Returns: a sign_up link for a user with a signup token as a query parameter
+  #  ex: mydomino.com/my-organization?a=[signup-token])
+  def get_signup_link(domain)
+    if !self.signup_token
+      generate_signup_token
+    end
 
-    signup_link = ""
-
-    generate_signup_token
-
+    # If User account is affiliated with an Organization,
+    # The signup link will direct them to the sign up form on their organization's landing page
+    # (i.e. mydomino.com/my-organization?a=[signup-token]))
     if self.organization
       org_name = self.organization.name.downcase
-      
-      signup_link = "#{root_url}#{org_name}?a=#{self.signup_token}"
+      signup_link = "#{domain}#{org_name}?a=#{self.signup_token}"
+    # If User is not affiliated with an Organization
+    # They will sign up through the private member landing page 
+    # (i.e. mydomino.com/pm?a=[signup-token])
     else
-
-      # "#{root_url}pm?email=#{email}&a=#{self.signup_token}"
-
-      signup_link = "#{root_url}pm?a=#{self.signup_token}"
+      signup_link = "#{domain}pm?a=#{self.signup_token}"
     end
 
     return signup_link
-    
   end
 
   # Returns the percentage of user's current week CF compare to national avg
@@ -176,7 +179,6 @@ class User < ActiveRecord::Base
 
     return total_cf
   end
- 
   # calculate user reward points during the period and save it to the user's member variable
   def get_fat_reward_points(start_date, end_date = nil)
 
