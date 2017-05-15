@@ -90,6 +90,14 @@
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
 
+
+        .clearfix.bg-white.rounded.px3.pt2.pb3
+          .h2.mb3 Notifications
+          .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr6.mt1.sm-mt0
+            =f.input :time_zone, collection: @us_time_zones, priority: ["Pacific Time (US & Canada)"], input_html: {class: "select-box bg-white"}, label_html: {class: 'h6 mb0 gray-5'}
+            
+
+
         .clearfix
           .col.col-12.mt2.px0.sm-px0.sm-py2
             .flex.items-center

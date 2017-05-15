@@ -35,6 +35,12 @@ rails g model Group name:string desc:string
 rails g model GroupUser user:references group:references datetime_sign_in:datetime 
 rails g migration removeGroupUserUniqueIndex
 
+# time zone
+rails g migration add_time_zone_to_profiles time_zone:string
+
+
+# change existing column default 
+rails g migration changeProfileTimeZoneDefault
 
 ############################################
 Rails destroy ....  
@@ -45,6 +51,13 @@ rake db:rollback
 
 rails destroy migration AddUserToOrganizations
 
+
+# To undo a migration with DB changes
+rake db:rollback
+rails destroy migration add_time_zone_to_users
+
+
+######################################################
 
 # test cases
 nullify for dependent when parent object is destroyed

@@ -26,6 +26,7 @@
 #  partner_code_id       :integer
 #  welcome_tour_complete :boolean          default(FALSE)
 #  fat_intro_complete    :boolean          default(FALSE)
+#  time_zone             :string           default("(GMT-08:00) Pacific Time (US & Canada)")
 #
 # Indexes
 #
@@ -37,6 +38,7 @@
 #  fk_rails_7c48a5d7d6  (partner_code_id => partner_codes.id)
 #  fk_rails_e424190865  (user_id => users.id)
 #
+
 
 
 class EmailValidator < ActiveModel::EachValidator

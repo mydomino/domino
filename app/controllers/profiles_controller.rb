@@ -11,6 +11,8 @@ class ProfilesController < ApplicationController
   # GET /profile
   def show
     @profile = current_user.profile
+    #@all_time_zones = ActiveSupport::TimeZone.all
+    @us_time_zones = ActiveSupport::TimeZone.us_zones
 
     track_event "/profile page view"
   end
@@ -149,9 +151,11 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    Rails.logger.info ("Update is called in Profile......")
     # Updates via member profile info page
     if request.xhr?
       xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
+      Rails.logger.info ("xhr_profile_params is #{xhr_profile_params}")
       if @profile.update(xhr_profile_params)
         render json: {
           message: "Profile updated successfully",
@@ -165,6 +169,7 @@ class ProfilesController < ApplicationController
       end
     # Updates via onboarding
     else
+      Rails.logger.info ("profile_params is #{profile_params}")
       @profile.update(profile_params)
       redirect_to profile_step_path(@profile, Profile.form_steps.first)
     end
