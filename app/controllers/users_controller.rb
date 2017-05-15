@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :authenticate_user!
+  after_action :verify_authorized
 
   def beta_index
+    authorize User
     @page = params.has_key?(:page) ? params[:page] : 1
 
     beta_group = Group.find_by_name('beta')
