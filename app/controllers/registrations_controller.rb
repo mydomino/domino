@@ -36,9 +36,15 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new_member
-    @user = User.includes(:profile).find_by!(signup_token: params[:a])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to new_user_session_path, :flash => { :error => 'Your account has been activated. Please log in.'}
+    begin
+      if params[:a]
+        @user = User.includes(:profile).find_by!(signup_token: params[:a])
+      else
+        raise 'Invalid signup link'
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to new_user_session_path, :flash => { :error => 'Your account has been activated. Please log in.'}
+    end
   end
   
   # Action /set_org_member_password/
