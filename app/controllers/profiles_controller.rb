@@ -151,7 +151,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    Rails.logger.info ("Update is called in Profile......")
     # Updates via member profile info page
     if request.xhr?
       xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
@@ -322,7 +321,8 @@ class ProfilesController < ApplicationController
       {:offering_ids => []},
       :housing,
       :avg_electrical_bill,
-      :partner_code_id
+      :partner_code_id,
+      :time_zone
     ).merge(session_params)
   end
 end

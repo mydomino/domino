@@ -106,7 +106,6 @@ modulejs.define('member_profile', function () {
 
     // /setUpdatedField/ On a profile field change, update updatedFields
     var setUpdatedField = function($field){
-      console.log("setUpdatedField is called")
       field_name = $field.attr('name');
       field_value = $field.val();
       updatedFields[field_name] = field_value;
@@ -122,7 +121,6 @@ modulejs.define('member_profile', function () {
 
     // On profile form success, send updatedFields payload to server
     $pProfileForm.on('form:success', function(){
-      console.log("Hello, Yong")
       $.ajax({
         type: "POST",
         data: { _method:'PATCH', updated_fields: updatedFields},

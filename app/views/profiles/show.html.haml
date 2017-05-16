@@ -54,6 +54,9 @@
           .col.col-12.sm-col.sm-col-10.sm-pl0.sm-pr2.mt1
             = f.input :phone, input_html: {class: "text-input", data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}}, label_html: {class: 'h6 mb0 gray-5'}
 
+          .col.col-12.sm-col.sm-col-5.px0.sm-pl0.sm-pr2.mt1
+            =f.input :time_zone, collection: @us_time_zones, priority: ["Pacific Time (US & Canada)"], input_html: {class: "select-box bg-white"}, label_html: {class: 'h6 mb0 gray-5'}
+
         .clearfix.bg-white.rounded.px3.pt2.pb3
           .h2.mb3 Home
           .col.col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2
@@ -90,14 +93,6 @@
                       %span#slider_val= @profile.avg_electrical_bill
               =f.input :avg_electrical_bill, as: :hidden, input_html: { value: @profile.avg_electrical_bill || "0" }
 
-
-        .clearfix.bg-white.rounded.px3.pt2.pb3
-          .h2.mb3 Notifications
-          .col.col-12.sm-col.sm-col-6.px0.sm-pl0.sm-pr6.mt1.sm-mt0
-            =f.input :time_zone, collection: @us_time_zones, priority: ["Pacific Time (US & Canada)"], input_html: {class: "select-box bg-white"}, label_html: {class: 'h6 mb0 gray-5'}
-            
-
-
         .clearfix
           .col.col-12.mt2.px0.sm-px0.sm-py2
             .flex.items-center
@@ -107,6 +102,17 @@
                 .h4.inline-block.ml2.mr1
                   Saved
                 = inline_svg "icons/i-success.svg", class: "icon-s block"
+
+    /.bg-white.px3.pt2.pb3.rounded.mb2
+    /  .h2.mb3 Notifications
+    /  = form_tag "#", method: 'post', class: 'edit_password clearfix', style: 'display: none;' do
+    /    / Inline styles used below for jQuery show and hide animations to work
+    /    .col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2.mt2
+    /      %label.h6.inline.mb0.gray-5{for: "current_password"} Current password
+    /      #curr-password-error.inline
+    /      = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "text-input"
+/
+
 
 :javascript
   modulejs.require('member_profile')(#{@profile.avg_electrical_bill});
