@@ -26,6 +26,12 @@ rails g model PointsLog point_date:date point_type:string desc:string point:inte
 
 rails g migration AddFatRewardPointsToUsers	fat_reward_points:integer
 
+rails g model Notification day:string time:integer user:references
+
+rails g model NotifyMethod name:string desc:string notification:references
+
+rails g model NotifyTask name:string desc:string notification:references
+
 
 rails g model Group name:string desc:string user:references  
 rails destroy model Group

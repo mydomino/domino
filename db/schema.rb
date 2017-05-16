@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515231130) do
+ActiveRecord::Schema.define(version: 20170516050832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,36 @@ ActiveRecord::Schema.define(version: 20170515231130) do
   end
 
   add_index "meal_days", ["user_id"], name: "index_meal_days_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "day"
+    t.integer  "time",       default: 21
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "notify_methods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "desc"
+    t.integer  "notification_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "notify_methods", ["notification_id"], name: "index_notify_methods_on_notification_id", using: :btree
+
+  create_table "notify_tasks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "desc"
+    t.integer  "notification_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "notify_tasks", ["notification_id"], name: "index_notify_tasks_on_notification_id", using: :btree
 
   create_table "offerings", force: :cascade do |t|
     t.string   "name"
@@ -308,6 +338,9 @@ ActiveRecord::Schema.define(version: 20170515231130) do
   add_foreign_key "interests", "offerings"
   add_foreign_key "interests", "profiles"
   add_foreign_key "meal_days", "users"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notify_methods", "notifications"
+  add_foreign_key "notify_tasks", "notifications"
   add_foreign_key "points_logs", "users"
   add_foreign_key "profiles", "partner_codes"
   add_foreign_key "profiles", "users"
