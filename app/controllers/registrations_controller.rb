@@ -38,7 +38,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new_member
     @user = User.includes(:profile).find_by!(signup_token: params[:a])
   rescue ActiveRecord::RecordNotFound
-    redirect_to new_user_session_path, :flash => { :error => 'Link Expired'}
+    redirect_to new_user_session_path, :flash => { :error => 'Your account has been activated. Please log in.'}
   end
   
   # Action /set_org_member_password/
