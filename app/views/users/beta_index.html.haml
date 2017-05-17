@@ -23,7 +23,7 @@
         %th 
           =sortable "created_at", "Created", filter: @filter
       -@users.each do |user|
-        %tr.dashboard-record.pointer
+        %tr.dashboard-record
           %td #{user.profile.first_name}
           %td #{user.profile.last_name}
           %td #{user.email}
