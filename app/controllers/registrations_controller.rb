@@ -37,7 +37,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new_member
     if params[:a]
-      @user = User.includes(:profile).find_by!(signup_token: params[:a])
+      @user = User.includes(:profile).find_by(signup_token: params[:a])
+    end
+
+    if !@user
+      redirect_to new_user_session_path, :flash => { :error => 'Invalid signup link'}
     end
   end
   
