@@ -28,3 +28,6 @@
       ?
 .animated.fadeIn
   = react_component('FoodActionTracker', {fatDay: @fat_day})
+
+:javascript
+  mixpanel.track('Food challenge loaded', {"date": "#{@fat_day[:date]}"});

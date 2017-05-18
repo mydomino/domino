@@ -1,5 +1,5 @@
+require 'mixpanel-ruby'
 class RegistrationsController < Devise::RegistrationsController
-  
   # Action /new_org_member/
   # GET mydomino.com/[company name]
   # Purpose: Organziation landing page for org member onboarding
@@ -37,18 +37,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new_member
     if params[:a]
-      @user = User.includes(:profile).find_by!(signup_token: params[:a])
+      @user = User.includes(:profile).find_by(signup_token: params[:a])
+    end
 
-      #  linking the current ID (anonymous) with a new ID 
-      mixpanel_alias (@user.id)
-      track_event "Sign Up via email sign up link"
-
-      # setting People profile
-      mixpanel_people_set({"$email" => @user.email, 
-        date_sign_up: Time.zone.today, 
-        "$first_name" => @user.profile.first_name,
-        "$last_name" => @user.profile.last_name})
-
+    if !@user
+      redirect_to new_user_session_path, :flash => { :error => 'Invalid signup link'}
     end
   end
   
@@ -74,10 +67,22 @@ class RegistrationsController < Devise::RegistrationsController
     if !@user.organization.nil? && @user.organization.name != 'test'
       ZohoService.save_to_zoho(@user.profile)
     end
-    
+
+    # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+    mixpanel_distinct_id = params[:distinct_id]
+    @tracker.alias(@user.id, mixpanel_distinct_id)
+    @tracker.people.set(@user.id,{
+      '$first_name' => @user.profile.first_name,
+      '$last_name' => @user.profile.last_name,
+      '$email' => @user.email,
+      '$phone' => @user.profile.phone
+    })
+    @tracker.track(@user.id,'User account activated')
+
     sign_in(@user, scope: :user)
     flash[:notice] = 'Welcome to MyDomino!'
 
+    # Mixpanel event - User set password
     render json: {
       message: 'User password updated',
       status: 200
@@ -120,6 +125,17 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
       profile.update(user: @user)
+
+      # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+      mixpanel_distinct_id = params[:distinct_id]
+      @tracker.alias(@user.id,mixpanel_distinct_id)
+      @tracker.people.set(@user.id,{
+        '$first_name' => @user.profile.first_name,
+        '$last_name' => @user.profile.last_name,
+        '$email' => @user.email,
+        '$phone' => @user.profile.phone
+        })
+      @tracker.track(@user.id,'User account created for org. member')
 
       # Create zoho lead record
       if !@orgnization.nil? && @organization.name != 'test'
@@ -186,7 +202,7 @@ class RegistrationsController < Devise::RegistrationsController
     # TODO: Figure out where slug param comes from
     redirect_to root_path and return if !(params[:slug] || params[:email])
 
-    # If sthe slug param is provided, it means that a user was a previous user of mydomino,
+    # If the slug param is provided, it means that a user was a previous user of mydomino,
     # prior to adding devise authentication. Grab the email associated with the dashboard for
     # registration
     if params[:slug]
@@ -219,6 +235,17 @@ class RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
+
+        # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+        mixpanel_distinct_id = params[:distinct_id]
+        @tracker.alias(current_user.id, mixpanel_distinct_id)
+        @tracker.people.set(current_user.id,{
+          '$first_name' => current_user.profile.first_name,
+          '$last_name' => current_user.profile.last_name,
+          '$email' => current_user.email,
+          '$phone' => current_user.profile.phone
+          })
+        @tracker.track(current_user.id,'Successful Sign up with Devise')
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
@@ -232,17 +259,15 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # /after_sign_up_path_for/
+  # # /after_sign_up_path_for/
   # This action is hit after a user registers through the devise registration form
   def after_sign_up_path_for(resource)
-
     @email = current_user.email
     @profile = Profile.find_by_email(@email)
 
     current_user.profile = @profile if !@profile.nil?
     # Assumption is that profiles exist
     # fallback to default profile
-    
 
     # Create and bind dashboard to user
     # Assign provisioned dashboard to newly registered user (i.e. user who onboarded through mydomino.com)
@@ -255,17 +280,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     @profile.update(dashboard_registered: true)
     DashboardRegisteredZohoJob.perform_later @profile
-    
-    #  linking the current ID (anonymous) with a new ID 
-    mixpanel_alias (current_user.id)
-    track_event "Sign Up via Devise registration"
-
-    # setting People profile
-    mixpanel_people_set({"$email" => @user.email, 
-      date_sign_up: Time.zone.today, 
-      "$first_name" => @user.profile.first_name,
-      "$last_name" => @user.profile.last_name})
-
+   
     user_dashboard_path
   end
 end

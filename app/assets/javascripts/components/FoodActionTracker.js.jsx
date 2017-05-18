@@ -78,8 +78,14 @@ class FoodActionTracker extends React.Component {
     $('.smooth-scroll').unbind('click');
   }
   toggleView() {
+    let nextView = this.state.nextView;
+
+    if(!nextView) {
+      mixpanel.track('See results clicked');
+    }
+
     this.setState({
-      nextView: !this.state.nextView
+      nextView: !nextView
     });
   }
   getCarbonFootprint(){

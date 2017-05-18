@@ -22,6 +22,7 @@
 #  fk_rails_40109e8fb1  (user_id => users.id)
 #
 
+
 class NotificationUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :notification

@@ -63,8 +63,6 @@ class ProfilesController < ApplicationController
 
     # Display fat intro overlay if user has not joined food challenge yet
     @show_fat_intro = !@profile.fat_intro_complete
-
-    track_event "View Home"
   end
 
   # /verify_current_password/
@@ -98,8 +96,7 @@ class ProfilesController < ApplicationController
     # keep user logged in
     sign_in(@user, :bypass => true)
 
-    track_event "User updated password"
-
+    @tracker.track(current_user.id, 'User updated password')
     render json: {
       message: "Password updated successfully",
       status: 200
@@ -154,7 +151,6 @@ class ProfilesController < ApplicationController
     # Updates via member profile info page
     if request.xhr?
       xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
-      Rails.logger.info ("xhr_profile_params is #{xhr_profile_params}")
       if @profile.update(xhr_profile_params)
         render json: {
           message: "Profile updated successfully",
@@ -168,7 +164,6 @@ class ProfilesController < ApplicationController
       end
     # Updates via onboarding
     else
-      Rails.logger.info ("profile_params is #{profile_params}")
       @profile.update(profile_params)
       redirect_to profile_step_path(@profile, Profile.form_steps.first)
     end

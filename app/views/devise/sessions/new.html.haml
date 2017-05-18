@@ -46,4 +46,9 @@
         return !val;
       });
     });
+
+   mixpanel.track_forms('.simple_form', 'Login form submitted');
   });
+
+  mixpanel.track("Login page loaded");
+

@@ -18,6 +18,7 @@
 #  fk_rails_adbe98f27f  (notification_id => notifications.id)
 #
 
+
 class NotifyMethod < ActiveRecord::Base
   belongs_to :notification
 end

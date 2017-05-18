@@ -4,7 +4,10 @@ class SessionsController < Devise::SessionsController
     # For redirection back to article views
     (session[:referer] = URI(request.referer).path) if request.referer
     super
+  end
 
-    track_event "User signed in", {"date": Time.zone.today}
+  def create
+    super
+    @tracker.track(current_user.id, "User logged in");
   end
 end

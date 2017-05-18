@@ -24,7 +24,6 @@ class FatMealsController < ApplicationController
       prev_week: @prev_week
     }
 
-    track_event "View Food", {"User": current_user.email}
   end
 
   # POST /food-action-tracker XmlHttpRequest
@@ -52,10 +51,6 @@ class FatMealsController < ApplicationController
       food_type = food.food_type.category
       size = food.size
     end 
-    track_event "Initiate Food tracking", { "User": current_user.email,
-      "food_date": @meal_day.date,
-      "food_type": food_type,
-      "food_size": size }
 
     @graph_params = get_graph_params
     render_response
@@ -86,11 +81,7 @@ class FatMealsController < ApplicationController
     unless food.nil? 
       food_type = food.food_type.category
       size = food.size
-    end 
-    track_event "Update Food", { "User": current_user.email,
-      "food_date": @meal_day.date,
-      "food_type": food_type,
-      "food_size": size }
+    end
   
     @graph_params = get_graph_params
     render_response

@@ -18,9 +18,21 @@
         = f.input_field :password, required: true, autofocus: true,class: 'mt1 mb2 text-input'
         %label.gray-6 Password Confirmation
         = f.input_field :password_confirmation, required: true, class: 'mt1 text-input'
+        = hidden_field_tag 'distinct_id'
         .center.py3
           = f.button :submit, "Register", class: "btn btn-md btn-primary"
   %p.center.gray-6
     Already have an account?
     %span.blue
       = link_to "Log In", new_user_session_path, class: 'text-decoration-none blue'
+
+:javascript
+  $(document).ready(function(){
+    mixpanel.track("Loaded Devise Sign up page");
+    
+    var myForm = $('#new_user');
+    myForm.submit(function(event){
+      var hiddenInput = myForm.find("input[name='distinct_id']");
+      hiddenInput[0].value = mixpanel.get_distinct_id();
+    });
+  });

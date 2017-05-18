@@ -70,7 +70,7 @@ class FoodType extends React.Component {
 
         {/* BEGIN foodSelector Modal */}
         <div data-remodal-id={this.props.index + "-modal"} className="rounded">
-            <a data-remodal-action="close" className="absolute top-0 right-0 p2 pointer">
+            <a data-remodal-action="cancel" className="absolute top-0 right-0 p2 pointer">
               <img src={"/fat_icons/i-close.svg"} className="icon-m"/>
             </a>
             <div className="mb3">
@@ -132,16 +132,24 @@ class FoodType extends React.Component {
 
     $(document).on('confirmation', modalSelector, function (e) {
       that.addFood(that.$slider.slider("value"));
+      mixpanel.track('Food category saved');
+    });
+
+    $(document).on('cancellation', modalSelector, function () {
+      mixpanel.track('Food category modal closed');
     });
   }
   remodal(e){
     if( $(e.target).parents()[0].id === "cancel-food-type" )
       this.removeFood();
-    else
+    else{
       this.$modal.open();
+      mixpanel.track('FAT Food category clicked');
+    }
   }
   componentWillUnmount(){
     $(document).unbind('confirmation');
+    $(document).unbind('cancellation');
   }
 }
 FoodType.defaultProps = {
