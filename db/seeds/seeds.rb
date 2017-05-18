@@ -33,27 +33,48 @@
 
 puts "Hello, Seeding records....\n"
 
-notify_tasks = [
-  {name: "FAT Reminder", desc: "Remind me to complete daily food challenge"},
-  {name: "Weekly Report", desc: "Send me new findings about Solar products"},
-  {name: "Quarterly Newsletter", desc: "Send me updates about MyDomino"}
+#notify_tasks = [
+#  {name: "FAT Reminder", desc: "Remind me to complete daily food challenge"},
+#  {name: "Weekly Report", desc: "Send me new findings about Solar products"},
+#  {name: "Quarterly Newsletter", desc: "Send me updates about MyDomino"}
+#  
+#]
+#
+#
+#ActiveRecord::Base.transaction do
+#
+#  notify_tasks.each do |noti_task|
+#    NotifyTask.find_or_create_by!(name: noti_task[:name]) do |t| 
+#
+#      puts "Creating notify_task #{noti_task[:name]}\n"
+#
+#      t.name = noti_task[:name]
+#      t.desc = noti_task[:desc]
+#    end
+#  end
+#end
+
+
+notify_methods = [
+  {name: "Email", desc: "Email notification"},
+  {name: "Web Push", desc: "Web push notificaiton"},
+  {name: "Text", desc: "Text notification"}
   
 ]
 
 
 ActiveRecord::Base.transaction do
 
-  notify_tasks.each do |noti_task|
-    NotifyTask.find_or_create_by!(name: noti_task[:name]) do |t| 
+  notify_methods.each do |noti_method|
+    NotifyMethod.find_or_create_by!(name: noti_method[:name]) do |t| 
 
-      puts "Creating notify_task #{noti_task[:name]}\n"
+      puts "Creating notify_method #{noti_method[:name]}\n"
 
-      t.name = noti_task[:name]
-      t.desc = noti_task[:desc]
+      t.name = noti_method[:name]
+      t.desc = noti_method[:desc]
     end
   end
 end
-
 
 
 

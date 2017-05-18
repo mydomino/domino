@@ -55,7 +55,7 @@
             = f.input :phone, input_html: {class: "text-input", data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}}, label_html: {class: 'h6 mb0 gray-5'}
 
           .col.col-12.sm-col.sm-col-5.px0.sm-pl0.sm-pr2.mt1
-            =f.input :time_zone, collection: @us_time_zones, priority: ["Pacific Time (US & Canada)"], input_html: {class: "select-box bg-white"}, label_html: {class: 'h6 mb0 gray-5'}
+            =f.input :time_zone, collection: @us_time_zones, input_html: {class: "select-box bg-white"}, label_html: {class: 'h6 mb0 gray-5'}#, include_blank: false
 
         .clearfix.bg-white.rounded.px3.pt2.pb3
           .h2.mb3 Home

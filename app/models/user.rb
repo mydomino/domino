@@ -47,7 +47,8 @@ class User < ActiveRecord::Base
   has_many :points_logs, dependent: :destroy
   has_many :group_users 
   has_many :groups, through: :group_users
-  has_many :notifications, dependent: :destroy
+  has_many :notification_users 
+  has_many :notifications, through: :notification_users
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

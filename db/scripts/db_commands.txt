@@ -32,9 +32,52 @@ rails g model NotifyMethod name:string desc:string notification:references
 
 rails g model NotifyTask name:string desc:string notification:references
 
+# drop reference from table
+rails g migration remove_user_from_notifications user:belongs_to
+
+rails g migration AddDescriptionToNotification description:string
+
+rails g model NotificationUser user:references notification:references day:string time:integer
+
+class CreateNotificationUsers < ActiveRecord::Migration
+  def change
+    create_table :notification_users do |t|
+      t.references :user, index: true, foreign_key: true
+      t.references :notification, index: true, foreign_key: true
+      t.string :day, default: 'Everyday'
+      t.integer :time, default: 21
+
+      t.timestamps null: false
+    end
+
+    # re-create the index with no unique
+    add_index(:notification_users, [:user_id, :notification_id], unique: false)
+
+  end
+end
+
+
+# To remove all the generated files from migration 
+# note: -p for dry run
+rails destroy model NotifyTask -p
+
+rails g migration DropNotifyTasks
+
+
+class DropNotifyTasks < ActiveRecord::Migration
+  def change
+    drop_table :notify_tasks
+  end
+end
+
+
+
 
 rails g model Group name:string desc:string user:references  
+
+# delete all the files it created and roll back any changes made, use -p for pretend and print out executing steps
 rails destroy model Group
+rails d controller welcome -p
 
 # do this for has_many through
 rails g model Group name:string desc:string

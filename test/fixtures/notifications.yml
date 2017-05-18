@@ -1,11 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  day: MyString
-  time: 1
-  user_id: 
+notification_1:
+  day: "everyday"
+  time: 19
+  description: "Remind me to complete daily food challenge"
 
-two:
-  day: MyString
-  time: 1
-  user_id: 
+notification_2:
+  day: "Monday"
+  time: 15
+  description: "Send me new findings about Solar products"
+
+
+notification_3:
+  day: "Friday"
+  time: 21
+  description: "Send me updates about MyDomino"
+
+
+notification_4:
+  day: "Friday"
+  time: 22
+  description: "Send me weekly news about MyDomino"
