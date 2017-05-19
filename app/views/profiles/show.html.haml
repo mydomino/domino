@@ -104,14 +104,14 @@
                   Saved
                 = inline_svg "icons/i-success.svg", class: "icon-s block"
 
-        #notifications.clearfix.bg-white.rounded.px3.pt2.pb3.mb4
-          .h2.mb3 Notifications
-          = form_for @user, :url => {controller: "profiles", action: "update_notifications"} do |f|
-            - Notification.all.each do |notification|
-              .pb1{data: {key: notification.id}}
-                = check_box_tag "user[notification_ids][]", notification.id, @user.notification_ids.include?(notification.id), id: dom_id(notification)
-                = label_tag dom_id(notification), notification.description
-                = select_tag "user[time][]", options_for_select(hours_am_pm)
+      #notifications.clearfix.bg-white.rounded.px3.pt2.pb3.mb4
+        .h2.mb3 Notifications
+        = form_for @user, :url => {controller: "profiles", action: "update_notifications"} do |f|
+          - Notification.all.each do |notification|
+            .pb2{data: {key: notification.id}}
+              = check_box_tag "user[notification_ids][]", notification.id, @user.notification_ids.include?(notification.id), id: dom_id(notification)
+              = label_tag dom_id(notification), notification.description
+              = select_tag "user[time][]", options_for_select(hours_am_pm)
               %br/
 
 :javascript
