@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :notification_users, only: [:create, :destroy]
+
   get 'users/beta_index'
 
   post 'points/add_watch_ttc_moive_points'

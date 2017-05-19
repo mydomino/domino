@@ -106,13 +106,14 @@
 
       #notifications.clearfix.bg-white.rounded.px3.pt2.pb3.mb4
         .h2.mb3 Notifications
-        = form_for @user, :url => {controller: "profiles", action: "update_notifications"} do |f|
-          - Notification.all.each do |notification|
-            .pb2{data: {key: notification.id}}
-              = check_box_tag "user[notification_ids][]", notification.id, @user.notification_ids.include?(notification.id), id: dom_id(notification)
-              = label_tag dom_id(notification), notification.description
-              = select_tag "user[time][]", options_for_select(hours_am_pm)
-              %br/
+        - Notification.all.each do |notification|
+          .pb2{data: {'notification-id': notification.id}}
+            - _notification = @user.notifications.find{|n| n == notification}
+            - _notification_user = _notification ? NotificationUser.find_by(notification: _notification) : nil
+
+            = check_box_tag "user[notification_ids][]", notification.id, !_notification.nil?, id: dom_id(notification)
+            = label_tag dom_id(notification), notification.description
+            = select_tag "user[time][]", options_for_select(hours_am_pm,  (_notification_user ? _notification_user.time : 12))
 
 :javascript
   modulejs.require('member_profile')(#{@profile.avg_electrical_bill});
