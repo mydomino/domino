@@ -209,7 +209,16 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     @user = current_user
 
+    Rails.logger.debug ("params[:user][:time] is #{params[:user][:time]}\n")
+    Rails.logger.debug ("params[:user][:notification_ids] is #{params[:user][:notification_ids]}\n")
+
+    # save user's selected notifications from checkbox
     if @user.update_attributes(notification_params)
+
+      # update user's notification time
+      #nu = @user.notification_users.where(notification_id: 2).first
+      #nu.update_attributes(time: 1) if nu != nil
+
       
       redirect_to @profile, notice: "Updated Successfully."
     else

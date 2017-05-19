@@ -110,7 +110,7 @@
           - Notification.all.each do |notification|
             = check_box_tag "user[notification_ids][]", notification.id, @user.notification_ids.include?(notification.id), id: dom_id(notification)
             = label_tag dom_id(notification), notification.description
-            = select_tag "time", options_for_select(hours_am_pm)
+            = select_tag "user[time][]", options_for_select(hours_am_pm)
             %br/
         .actions
           = f.submit("Update Notofications")

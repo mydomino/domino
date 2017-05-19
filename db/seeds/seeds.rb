@@ -39,7 +39,10 @@ puts "Hello, Seeding records....\n"
 notifications = [
   {day: "everyday", time: 19, description: "Remind me to complete daily food challenge"},
   {day: "everyday", time: 19, description: "Send me new findings about Solar products"},
-  {day: "everyday", time: 19, description: "Send me updates about MyDomino"},
+  {day: "Monday", time: 19, description: "Send me new coupons about MyDomino"},
+  {day: "Tuesdayday", time: 19, description: "Remind me to drink 5 cups of milk at dinner"},
+  {day: "everyday", time: 19, description: "Send me new findings about wind products"},
+  {day: "everyday", time: 19, description: "Send me updates about Solar plants"},
   
 ]
 
