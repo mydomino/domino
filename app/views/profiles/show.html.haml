@@ -104,15 +104,18 @@
                   Saved
                 = inline_svg "icons/i-success.svg", class: "icon-s block"
 
-    /.bg-white.px3.pt2.pb3.rounded.mb2
-    /  .h2.mb3 Notifications
-    /  = form_tag "#", method: 'post', class: 'edit_password clearfix', style: 'display: none;' do
-    /    / Inline styles used below for jQuery show and hide animations to work
-    /    .col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2.mt2
-    /      %label.h6.inline.mb0.gray-5{for: "current_password"} Current password
-    /      #curr-password-error.inline
-    /      = password_field_tag :current_password, nil, data: {"parsley-excluded": "true", "parsley-errors-container":"#curr-password-error"}, class: "text-input"
-/
+
+      = form_for @user, :url => {controller: "profiles", action: "update_notifications"} do |f|
+        .field
+          - Notification.all.each do |notification|
+            = check_box_tag "user[notification_ids][]", notification.id, @user.notification_ids.include?(notification.id), id: dom_id(notification)
+            = label_tag dom_id(notification), notification.description
+            %br/
+        .actions
+          = f.submit("Update Notofications")
+      
+ 
+    
 
 
 :javascript

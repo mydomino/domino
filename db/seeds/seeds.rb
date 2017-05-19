@@ -33,26 +33,30 @@
 
 puts "Hello, Seeding records....\n"
 
-#notify_tasks = [
-#  {name: "FAT Reminder", desc: "Remind me to complete daily food challenge"},
-#  {name: "Weekly Report", desc: "Send me new findings about Solar products"},
-#  {name: "Quarterly Newsletter", desc: "Send me updates about MyDomino"}
-#  
-#]
-#
-#
-#ActiveRecord::Base.transaction do
-#
-#  notify_tasks.each do |noti_task|
-#    NotifyTask.find_or_create_by!(name: noti_task[:name]) do |t| 
-#
-#      puts "Creating notify_task #{noti_task[:name]}\n"
-#
-#      t.name = noti_task[:name]
-#      t.desc = noti_task[:desc]
-#    end
-#  end
-#end
+
+
+
+notifications = [
+  {day: "everyday", time: 19, description: "Remind me to complete daily food challenge"},
+  {day: "everyday", time: 19, description: "Send me new findings about Solar products"},
+  {day: "everyday", time: 19, description: "Send me updates about MyDomino"},
+  
+]
+
+
+ActiveRecord::Base.transaction do
+
+  notifications.each do |noti_task|
+    Notification.find_or_create_by!(description: noti_task[:description]) do |t| 
+
+      puts "Creating notify_task #{noti_task[:name]}\n"
+
+      t.description = noti_task[:description]
+      t.day = noti_task[:day]
+      t.time = noti_task[:time]
+    end
+  end
+end
 
 
 notify_methods = [

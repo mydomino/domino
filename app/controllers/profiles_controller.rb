@@ -13,8 +13,8 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     #@all_time_zones = ActiveSupport::TimeZone.all
     @us_time_zones = ActiveSupport::TimeZone.us_zones
+    @user = current_user
 
-    track_event "/profile page view"
   end
 
   # /challenges/
@@ -203,6 +203,23 @@ class ProfilesController < ApplicationController
     }, status: 200
   end
 
+
+  def update_notifications
+
+    @profile = current_user.profile
+    @user = current_user
+
+    if @user.update_attributes(notification_params)
+      
+      redirect_to @profile, notice: "Updated Successfully."
+    else
+      # show error
+      redirect_to @profile, notice: "Updated profile failed."
+    end
+
+  end
+
+
   private
 
   # /fat_timeline_params/
@@ -320,4 +337,11 @@ class ProfilesController < ApplicationController
       :time_zone
     ).merge(session_params)
   end
+
+  def notification_params
+    params.require(:user).permit(
+      {notification_ids:[]}
+    )
+  end
+
 end

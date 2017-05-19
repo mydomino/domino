@@ -87,6 +87,7 @@ Rails.application.routes.draw do
   get 'profile' => 'profiles#show', as: 'member_profile'
   get 'profile/welcome-tour-complete' => 'profiles#welcome_tour_complete' # XmlHttpRequest
   get 'profile/fat-intro-complete' => 'profiles#fat_intro_complete'  # XmlHttpRequest
+  patch '/profile/update-notification' => 'profiles#update_notifications', as: 'update_notifications'
 
   resources :profiles, only: [:new, :update, :create, :show, :index] do
     resources :steps, only: [:show, :update], controller: 'profile/steps'
