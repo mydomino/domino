@@ -33,16 +33,18 @@
 
 puts "Hello, Seeding records....\n"
 
-
+#NotifyMethod.destroy_all
+#Notification.destroy_all
+#NotificationUser.destroy_all
 
 
 notifications = [
-  {day: "everyday", time: 19, description: "Remind me to complete daily food challenge"},
-  {day: "everyday", time: 19, description: "Send me new findings about Solar products"},
-  {day: "Monday", time: 19, description: "Send me new coupons about MyDomino"},
-  {day: "Tuesdayday", time: 19, description: "Remind me to drink 5 cups of milk at dinner"},
-  {day: "everyday", time: 19, description: "Send me new findings about wind products"},
-  {day: "everyday", time: 19, description: "Send me updates about Solar plants"},
+  { description: "Remind me to complete daily food challenge" },
+  { description: "Send me new findings about Solar products" },
+  { description: "Send me new coupons about MyDomino" },
+  { description: "Remind me to drink 5 cups of milk at dinner" },
+  { description: "Send me new findings about wind products" },
+  { description: "Send me updates about Solar plants" },
   
 ]
 
@@ -55,34 +57,46 @@ ActiveRecord::Base.transaction do
       puts "Creating notify_task #{noti_task[:name]}\n"
 
       t.description = noti_task[:description]
-      t.day = noti_task[:day]
-      t.time = noti_task[:time]
     end
   end
 end
 
 
-notify_methods = [
-  {name: "Email", desc: "Email notification"},
-  {name: "Web Push", desc: "Web push notificaiton"},
-  {name: "Text", desc: "Text notification"}
+# notify_methods = [
+#   {name: "Email", desc: "Email notification"},
+#   {name: "Web Push", desc: "Web push notificaiton"},
+#   {name: "Text", desc: "Text notification"}
+#   
+# ]
+# 
+# 
+# ActiveRecord::Base.transaction do
+# 
+#   notify_methods.each do |noti_method|
+#     NotifyMethod.find_or_create_by!(name: noti_method[:name]) do |t| 
+# 
+#       puts "Creating notify_method #{noti_method[:name]}\n"
+# 
+#       t.name = noti_method[:name]
+#       t.desc = noti_method[:desc]
+#     end
+#   end
+# end
+
+
+# Associate all notifications with a default method
+puts "Associating default send method to notifications..."
+Notification.find_each do |n|
+
+  if n.notify_methods.where(["name = ?", "Email"]).size == 0
+
+    puts "Creating method email for #{n.description}..."
+    method = NotifyMethod.create!(name: "Email", desc: "Email notification")
+    n.notify_methods << method
   
-]
-
-
-ActiveRecord::Base.transaction do
-
-  notify_methods.each do |noti_method|
-    NotifyMethod.find_or_create_by!(name: noti_method[:name]) do |t| 
-
-      puts "Creating notify_method #{noti_method[:name]}\n"
-
-      t.name = noti_method[:name]
-      t.desc = noti_method[:desc]
-    end
+    n.save!
   end
 end
-
 
 
 

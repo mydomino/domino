@@ -57,6 +57,13 @@ class CreateNotificationUsers < ActiveRecord::Migration
 end
 
 
+
+rails g migration RemoveColumnsfromNotification
+def change
+    remove_column :coupons, :kind
+    remove_column :coupons, :discount
+  end
+
 # To remove all the generated files from migration 
 # note: -p for dry run
 rails destroy model NotifyTask -p
