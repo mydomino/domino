@@ -7,13 +7,39 @@
 - content_for :posts_menu do
   = render '/layouts/partials/posts_menu'
 
+.center.mb2
+  :plain
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- MyDomino banner - Responsive -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1594886807481278"
+         data-ad-slot="2972595948"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
 .max-width-3.mx-auto.px2.sm-px3.mb3.sm-mb4
+
   = render "post_intro"
   .post-content.mb3.sm-mb4
     = @post_content.try(:html_safe)
   = render "subscribe_box"
   = render "disqus_comment"
 
+.center.mb2
+  :plain
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- MyDomino banner - Responsive -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1594886807481278"
+         data-ad-slot="2972595948"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
 :javascript
   mixpanel.track('Article loaded', {"title": "#{@title}"});
-
