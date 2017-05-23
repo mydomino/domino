@@ -100,15 +100,15 @@
                   Saved
                 = inline_svg "icons/i-success.svg", class: "icon-s block"
 
-      #notifications.clearfix.bg-white.rounded.px3.pt2.pb3.mb4
+      .clearfix.bg-white.rounded.px3.pt2.pb3.mb4
         .h2.mb3 Notifications
         #time-zone.col.col-12.sm-col.sm-col-6
           = label_tag 'time_zone', 'Time zone', class: 'h6 mb0 gray-5'
-          = select_tag "user[time_zone]", options_for_select(@us_time_zones), class: "select-box bg-white"
+          = select_tag "profile[time_zone]", options_for_select(@us_time_zones, @profile.time_zone), class: "select-box bg-white", data: {action: "/profiles/#{@profile.id}"}
 
-        .col.col-12.mt4
+        #notifications.col.col-12.mt4
           - Notification.all.each do |notification|
-            .pb2{data: {'notification-id': notification.id}}
+            .notification.pb2{data: {'notification-id': notification.id}}
               - _notification = @user.notifications.find{|n| n == notification}
               - _notification_user = _notification ? NotificationUser.find_by(notification: _notification) : nil
 

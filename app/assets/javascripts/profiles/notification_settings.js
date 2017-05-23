@@ -2,10 +2,18 @@ modulejs.define('notification_settings', function () {
   return (function() {
     var $inputs,
         $timezone;
-    $timezone = $('#timezone');
+    $timezone = $('#profile_time_zone');
 
     $timezone.on('change', function(){
-
+     $.ajax({
+        type: "PATCH",
+        data: {profile: {time_zone: $timezone.val()}},
+        url: $timezone.data('action'),
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+        }
+      });
     });
     
     $inputs = $('#notifications').find('input[type=checkbox], select');
@@ -19,7 +27,7 @@ modulejs.define('notification_settings', function () {
 
       $.ajax({
         type: "POST",
-        data: {notification_id: notificationId, checked: checked, time: time},
+        data: {_method: 'PATCH', notification_id: notificationId, checked: checked, time: time},
         url: '/notification_users',
         dataType: 'json',
         success: function(data) {

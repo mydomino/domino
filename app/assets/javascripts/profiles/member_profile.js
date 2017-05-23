@@ -1,7 +1,6 @@
 modulejs.define('member_profile', function () {
   return function(avgElectricalBill){
     var currentPasswordValid,
-        updatedFields,
         showPasswordForm,
         hidePasswordForm,
         submitChangedPassword,
@@ -20,7 +19,6 @@ modulejs.define('member_profile', function () {
 
     // Variable initializations
     currentPasswordValid = false;
-    updatedFields = {}; // Payload with updated info to send to server
 
     // jQuerified elements
     $pwForm = $('.edit_password');
@@ -73,62 +71,27 @@ modulejs.define('member_profile', function () {
       slide: function( event, ui ) {
         $('#slider_val').html(ui.value);
         $('#profile_avg_electrical_bill').val(ui.value);
-        setUpdatedField($($(event.target).attr('target')));
-        // enableSubmit();
       }
     });
     /*------------- END UI configurations -----------------------------------*/
 
     /*------------- BEGIN Profile form configurations -----------------------------------*/
-    // Fields to bind input change handler
-    var profileFields = {
-      first_name: $('#profile_first_name'),
-      last_name: $('#profile_last_name'),
-      phone: $('#profile_phone'),
-      address: $('#profile_address_line_1'),
-      city: $('#profile_city'),
-      state: $('#profile_state'),
-      zip_code: $('#profile_zip_code'),
-      time_zone: $('#profile_time_zone')
-    };
-
-    // Bind input event handler to profile fields
-    for (var key_name in profileFields){
-      profileFields[key_name].on('input', function(event){
-        setUpdatedField($(this));
-      });
-    }
-
-    // Event handler for housing radio buttons
-    $('input[type=radio]').change(function() {
-      setUpdatedField($(this));
-    });
-
-    // /setUpdatedField/ On a profile field change, update updatedFields
-    var setUpdatedField = function($field){
-      field_name = $field.attr('name');
-      field_value = $field.val();
-      updatedFields[field_name] = field_value;
-    };
-
     // Validate profile info fields on submit
     $btnProfileSubmit.on('click', function(event){
       event.preventDefault();
-      if(Object.keys(updatedFields).length > 0){
-        $pProfileForm.validate();
-      }
+      $pProfileForm.validate();
     });
 
-    // On profile form success, send updatedFields payload to server
+    // On profile form success, send form data to server
     $pProfileForm.on('form:success', function(){
+      var valuesToSubmit = $('form.edit_profile').serialize();
       $.ajax({
-        type: "POST",
-        data: { _method:'PATCH', updated_fields: updatedFields},
+        type: "PATCH",
+        data: valuesToSubmit,
         url: $profileForm.attr('action'),
         dataType: 'json',
         success: function(msg) {
           $pProfileForm.reset();
-          // $btnProfileSubmit.attr('disabled', true);
           $msgProfileUpdate.show('slow');
           setTimeout(function(){ $msgProfileUpdate.hide('slow'); }, 5000);
         }

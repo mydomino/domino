@@ -146,8 +146,9 @@ class ProfilesController < ApplicationController
   def update
     # Updates via member profile info page
     if request.xhr?
-      xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
-      if @profile.update(xhr_profile_params)
+      byebug
+      # xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
+      if @profile.update(profile_params)
         render json: {
           message: "Profile updated successfully",
           status: 200
