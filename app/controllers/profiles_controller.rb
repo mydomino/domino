@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
   # GET /profile
   def show
     @profile = current_user.profile
-    @us_time_zones = ActiveSupport::TimeZone.us_zones
+    @us_time_zones = ActiveSupport::TimeZone.us_zones.map {|tz| tz.name }
     @user = current_user
   end
 

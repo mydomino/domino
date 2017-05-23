@@ -54,8 +54,6 @@
           .col.col-12.sm-col.sm-col-10.sm-pl0.sm-pr2.mt1
             = f.input :phone, input_html: {class: "text-input", data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}}, label_html: {class: 'h6 mb0 gray-5'}
 
-          
-
         .clearfix.bg-white.rounded.px3.pt2.pb3
           .h2.mb3 Home
           .col.col-12.sm-col.sm-col-10.px0.sm-pl0.sm-pr2
@@ -97,7 +95,7 @@
             .flex.items-center
               =f.submit 'Save changes', class: 'btn btn-md btn-primary btn-primary--hover'
               / inline style so jquery show() works.
-              #msg-profile-update.flex.items-center.green{style:'display:none'}
+              #msg-profile-update.flex.items-center.green{style:'display: none;'}
                 .h4.inline-block.ml2.mr1
                   Saved
                 = inline_svg "icons/i-success.svg", class: "icon-s block"
