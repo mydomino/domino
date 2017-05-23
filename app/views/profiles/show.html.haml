@@ -54,8 +54,7 @@
           .col.col-12.sm-col.sm-col-10.sm-pl0.sm-pr2.mt1
             = f.input :phone, input_html: {class: "text-input", data: {"parsley-pattern": "^((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}$"}}, label_html: {class: 'h6 mb0 gray-5'}
 
-          .col.col-12.sm-col.sm-col-5.px0.sm-pl0.sm-pr2.mt1
-            =f.input :time_zone, collection: @us_time_zones, input_html: {class: "select-box bg-white"}, label_html: {class: 'h6 mb0 gray-5'}#, include_blank: false
+          
 
         .clearfix.bg-white.rounded.px3.pt2.pb3
           .h2.mb3 Home
@@ -70,7 +69,6 @@
 
           .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1.sm-mt0
             =f.input :zip_code, input_html: {class: "text-input", data: {"parsley-required": "true", "parsley-length": "[5,5]", "parsley-length-message": "Zip code should be 5 characters."}}, label_html: {class: 'h6 mb0 gray-5'}
-
 
           .clearfix
             .col.col-12.sm-col.sm-col-4.px0.sm-pl0.sm-pr2.mt1
@@ -106,14 +104,19 @@
 
       #notifications.clearfix.bg-white.rounded.px3.pt2.pb3.mb4
         .h2.mb3 Notifications
-        - Notification.all.each do |notification|
-          .pb2{data: {'notification-id': notification.id}}
-            - _notification = @user.notifications.find{|n| n == notification}
-            - _notification_user = _notification ? NotificationUser.find_by(notification: _notification) : nil
+        .col.col-12.sm-col.sm-col-6
+          = label_tag 'time_zone', 'Time zone', class: 'h6 mb0 gray-5'
+          = select_tag "user[time_zone]", options_for_select(@us_time_zones), class: "select-box bg-white"
 
-            = check_box_tag "user[notification_ids][]", notification.id, !_notification.nil?, id: dom_id(notification)
-            = label_tag dom_id(notification), notification.description
-            = select_tag "user[time][]", options_for_select(hours_am_pm,  (_notification_user ? _notification_user.time : 21))
+        .col.col-12.mt4
+          - Notification.all.each do |notification|
+            .pb2{data: {'notification-id': notification.id}}
+              - _notification = @user.notifications.find{|n| n == notification}
+              - _notification_user = _notification ? NotificationUser.find_by(notification: _notification) : nil
+
+              = check_box_tag "user[notification_ids][]", notification.id, !_notification.nil?, id: dom_id(notification)
+              = label_tag dom_id(notification), notification.description
+              = select_tag "user[time][]", options_for_select(hours_am_pm,  (_notification_user ? _notification_user.time : 21))
 
 :javascript
   modulejs.require('member_profile')(#{@profile.avg_electrical_bill});
