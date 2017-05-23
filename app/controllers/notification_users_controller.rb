@@ -2,7 +2,6 @@ class NotificationUsersController < ApplicationController
 
   #post /notification_users
   def create
-    byebug
     notification_id = params[:notification_id].to_i
     checked = params[:checked] == 'true'
     time = params[:time].to_i

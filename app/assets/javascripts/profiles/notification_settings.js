@@ -27,7 +27,7 @@ modulejs.define('notification_settings', function () {
 
       $.ajax({
         type: "POST",
-        data: {_method: 'PATCH', notification_id: notificationId, checked: checked, time: time},
+        data: {notification_id: notificationId, checked: checked, time: time},
         url: '/notification_users',
         dataType: 'json',
         success: function(data) {
