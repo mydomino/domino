@@ -1,4 +1,5 @@
 class NotificationUsersController < ApplicationController
+ 
 
   #post /notification_users
   def create

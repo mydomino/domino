@@ -11,10 +11,8 @@ class ProfilesController < ApplicationController
   # GET /profile
   def show
     @profile = current_user.profile
-    #@all_time_zones = ActiveSupport::TimeZone.all
     @us_time_zones = ActiveSupport::TimeZone.us_zones
     @user = current_user
-
   end
 
   # /challenges/
@@ -101,8 +99,6 @@ class ProfilesController < ApplicationController
       message: "Password updated successfully",
       status: 200
     }, status: 200
-
-
   end
 
   def new
