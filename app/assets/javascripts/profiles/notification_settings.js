@@ -1,7 +1,13 @@
 modulejs.define('notification_settings', function () {
   return (function() {
-    var $inputs;
+    var $inputs,
+        $timezone;
+    $timezone = $('#timezone');
 
+    $timezone.on('change', function(){
+
+    });
+    
     $inputs = $('#notifications').find('input[type=checkbox], select');
 
     $inputs.on('change', function(e){

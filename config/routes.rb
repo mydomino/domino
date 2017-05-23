@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :notification_users, only: [:create, :destroy]
+  resources :notification_users, only: [:create]
 
   get 'users/beta_index'
 
