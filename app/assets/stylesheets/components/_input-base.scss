@@ -23,9 +23,9 @@ input.error { border-color: #D65A5A!important; }
 
 .select-box {
   background:
-    linear-gradient(45deg, transparent 50%, blue 50%),
-    linear-gradient(135deg, blue 50%, transparent 50%),
-    linear-gradient(to right, #00ccff, #00ccff);
+    linear-gradient(45deg, transparent 50%, black 50%),
+    linear-gradient(135deg, black 50%, transparent 50%),
+    linear-gradient(to right, #c1c1c1, #c1c1c1);
   background-position:
     calc(100% - 21px) calc(1em + 2px),
     calc(100% - 16px) calc(1em + 2px),
@@ -47,9 +47,9 @@ input.error { border-color: #D65A5A!important; }
 
   border-radius: $border-radius;
    &:focus {
-    border-color: $blue;
+    border-color: $black;
   }
-  margin: 0;
+  margin-right: 5px;
   height: 42px;
   width: 100%;
   -webkit-box-sizing: border-box;
@@ -59,18 +59,6 @@ input.error { border-color: #D65A5A!important; }
   -webkit-appearance:none;
   -moz-appearance:none;
 }
-// Select box
-// .select-box {
-//   border: 1px solid #666;
-//   height: 42px;
-//   -webkit-appearance: none;
-//   width: 100%;
-//   padding-left: 10px;
-//   border-radius: $border-radius;
-//    &:focus {
-//     border-color: $blue;
-//   }
-// }
 // Radio buttons
 // Namespace custom radio components, .radio
 .radio {
