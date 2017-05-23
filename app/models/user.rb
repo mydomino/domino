@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   #  created by an org admin. If user doesn't have a signup token, one will be generated
   def email_signup_link
     if !self.signup_token
-    generate_signup_token
+      generate_signup_token
     end
 
     UserMailer.email_signup_link(self).deliver_later
@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   #  ex: mydomino.com/my-organization?a=[signup-token])
   def get_signup_link(domain)
     if !self.signup_token
-    generate_signup_token
+      generate_signup_token
     end
 
     # If User account is affiliated with an Organization,
