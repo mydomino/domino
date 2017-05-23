@@ -89,10 +89,21 @@ namespace :util do
   task send_user_fat__notification: :environment do 
 
     # get the current hour
-    t = Time.zone.now.in_time_zone("Pacific Time (US & Canada)")
+    #t = Time.zone.now.in_time_zone("Pacific Time (US & Canada)")
+    
+    t = Time.zone.now.getlocal
     hour = t.hour
+
+    duration = 10
+    start_date = duration.days.ago
+    end_date = t
+
+
     
     User.find_each do |u|
+
+      # find user who had logged food 10 days ago.
+
       u.fat_reward_points = 0
       u.save!
       puts "ID: #{u.id} points was set. Email: #{u.email}"
