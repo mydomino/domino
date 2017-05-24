@@ -34,6 +34,8 @@ rails g model NotifyTask name:string desc:string notification:references
 
 rails g migration AddNameToNotifications  name:string
 
+rails g migration AddLocalsendtimeToNotificationUsers local_send_time:integer sent_at:datetime
+
 # drop reference from table
 rails g migration remove_user_from_notifications user:belongs_to
 
