@@ -97,15 +97,39 @@ namespace :util do
     duration = 10
     start_date = duration.days.ago
     end_date = t
+    yesterday = 1.day.ago
 
 
     
     User.find_each do |u|
 
-      # find user who had logged food 10 days ago.
+      # find user who had logged food 10 days ago and did not log yesterday
+      if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
+         u.meal_days.where(date: yesterday).size == 0
 
-      u.fat_reward_points = 0
-      u.save!
+         if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
+
+           if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil
+
+             user_noti.notify_methods.each do |noti_method|
+
+                if noti_method.name =~ "/^email/i"
+                  
+                  puts "User email_fat_notification \n"
+                  #u.email_fat_notification
+                end
+
+             end
+           end
+
+         end
+
+
+
+
+      end
+
+      
       puts "ID: #{u.id} points was set. Email: #{u.email}"
     end
 

@@ -12,7 +12,7 @@ class NotificationTest < ActiveSupport::TestCase
 
   end
 
-  test "can be saved with a description" do
+  test "can be saved with a description and a name" do
     
   	notification = notifications(:notification_2)
 

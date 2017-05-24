@@ -32,6 +32,8 @@ rails g model NotifyMethod name:string desc:string notification:references
 
 rails g model NotifyTask name:string desc:string notification:references
 
+rails g migration AddNameToNotifications  name:string
+
 # drop reference from table
 rails g migration remove_user_from_notifications user:belongs_to
 

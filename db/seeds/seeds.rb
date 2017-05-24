@@ -33,18 +33,18 @@
 
 puts "Hello, Seeding records....\n"
 
-#NotifyMethod.destroy_all
-#Notification.destroy_all
-#NotificationUser.destroy_all
+NotifyMethod.destroy_all
+Notification.destroy_all
+NotificationUser.destroy_all
 
 
 notifications = [
-  { description: "Remind me to complete daily food challenge" },
-  { description: "Send me new findings about Solar products" },
-  { description: "Send me new coupons about MyDomino" },
-  { description: "Remind me to drink 5 cups of milk at dinner" },
-  { description: "Send me new findings about wind products" },
-  { description: "Send me updates about Solar plants" },
+  { description: "Remind me to complete daily food challenge", name: Notification::FAT_NOTIFICATION },
+  { description: "Send me new findings about Solar products", name: "TEST_STR_1" },
+  { description: "Send me new coupons about MyDomino", name: "TEST_STR_2" },
+  { description: "Remind me to drink 5 cups of milk at dinner", name: "TEST_STR_3" },
+  { description: "Send me new findings about wind products", name: "TEST_STR_4" },
+  { description: "Send me updates about Solar plants", name: "TEST_STR_5" },
   
 ]
 
@@ -52,11 +52,12 @@ notifications = [
 ActiveRecord::Base.transaction do
 
   notifications.each do |noti_task|
-    Notification.find_or_create_by!(description: noti_task[:description]) do |t| 
+    Notification.find_or_create_by!(name: noti_task[:name]) do |t| 
 
       puts "Creating notify_task #{noti_task[:name]}\n"
 
       t.description = noti_task[:description]
+      t.name = noti_task[:name]
     end
   end
 end

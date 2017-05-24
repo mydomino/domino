@@ -6,9 +6,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  description :string
+#  name        :string
 #
-
-
 
 class Notification < ActiveRecord::Base
   has_many :notification_users 
@@ -16,4 +15,8 @@ class Notification < ActiveRecord::Base
   has_many :notify_methods, dependent: :destroy
 
   validates :description, presence: true
+  validates_presence_of :name
+
+  # define constant name
+  FAT_NOTIFICATION = "FAT_NOTIFICATION"
 end
