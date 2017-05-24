@@ -109,7 +109,8 @@ namespace :util do
 
          if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
 
-           if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil
+           if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
+               user_noti.local_send_time == hour
 
              user_noti.notify_methods.each do |noti_method|
 

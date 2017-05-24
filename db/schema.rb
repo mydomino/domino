@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524034218) do
+ActiveRecord::Schema.define(version: 20170524202326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,8 @@ ActiveRecord::Schema.define(version: 20170524034218) do
     t.integer  "time",            default: 21
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "local_send_time"
+    t.datetime "sent_at"
   end
 
   add_index "notification_users", ["notification_id"], name: "index_notification_users_on_notification_id", using: :btree

@@ -9,6 +9,8 @@
 #  time            :integer          default(21)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  local_send_time :integer
+#  sent_at         :datetime
 #
 # Indexes
 #
@@ -21,14 +23,22 @@
 #  fk_rails_322b2277b4  (notification_id => notifications.id)
 #  fk_rails_40109e8fb1  (user_id => users.id)
 #
-
-
-
-
 class NotificationUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :notification
+  after_save :convert_time_to_local
 
   validates :user, presence: true
   validates :notification, presence: true
+
+  private
+
+    def convert_time_to_local
+
+    	puts "Converting time to local time"
+
+    	  
+    	
+    end
+
 end
