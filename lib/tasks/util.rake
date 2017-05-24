@@ -86,7 +86,7 @@ namespace :util do
 
 
   desc "Send user FAT reminder notification"
-  task send_user_fat__notification: :environment do 
+  task send_user_fat_notification: :environment do 
 
     # get the current hour
     #t = Time.zone.now.in_time_zone("Pacific Time (US & Canada)")
@@ -116,7 +116,7 @@ namespace :util do
                 if noti_method.name =~ "/^email/i"
                   
                   puts "User email_fat_notification \n"
-                  #u.email_fat_notification
+                  u.email_notification(nt)
                 end
 
              end
