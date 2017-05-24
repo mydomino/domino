@@ -64,7 +64,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def email_notification(user, notification)
-
+    @notification = notification
   end
   
   private

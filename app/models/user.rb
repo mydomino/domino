@@ -208,7 +208,6 @@ class User < ActiveRecord::Base
 
 
   def email_notification(notification)
-    
     UserMailer.email_fat_notification(self, notification).deliver_later
   end
 
