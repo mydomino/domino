@@ -26,19 +26,19 @@
 class NotificationUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :notification
-  after_save :convert_time_to_local
 
   validates :user, presence: true
   validates :notification, presence: true
 
+  after_create :convert_time_to_local
+
   private
 
-    def convert_time_to_local
+  def convert_time_to_local
+    timezone = self.user.profile.time_zone
+    send_at_hour = Time.now.in_time_zone(timezone).utc_offset / (60*60)
 
-    	puts "Converting time to local time"
-
-    	  
-    	
-    end
-
+    self.local_send_time = send_at_hour
+    self.save
+  end
 end
