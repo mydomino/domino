@@ -31,14 +31,20 @@ class NotificationUser < ActiveRecord::Base
   validates :notification, presence: true
 
   after_create :convert_time_to_local
+  # after_update :convert_time_to_local
 
   private
 
   def convert_time_to_local
     timezone = self.user.profile.time_zone
-    send_at_hour = Time.now.in_time_zone(timezone).utc_offset / (60*60)
+
+    Time.now.in_time_zone(timezone).utc_offset # 9pm EST - offset: -4 hours
+
+    send_at_hour = (self.time - Time.now.in_time_zone(timezone).utc_offset / (60*60))%24
 
     self.local_send_time = send_at_hour
+    # self.update({local_send_time: send_at_hour})
+    
     self.save
   end
 end

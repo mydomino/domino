@@ -84,6 +84,16 @@ namespace :util do
 
   end
 
+  # Heroku scheduler, runs at 12am - 0 UTC
+  #
+  #
+  # generate_daily_notifications
+  #
+  # 1st Task) query NotificationUsers
+  # Grab all notifications with day = "Everyday"
+  # Create a Delayed::job with the run_at field set to the same hour as `send_local_time`
+
+  # Heroku scheduler
 
   desc "Send user FAT reminder notification"
   task send_user_fat_notification: :environment do 
