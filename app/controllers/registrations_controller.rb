@@ -246,8 +246,7 @@ class RegistrationsController < Devise::RegistrationsController
           '$last_name' => current_user.profile.last_name,
           '$email' => current_user.email,
           '$phone' => current_user.profile.phone,
-          '$ip' => params[:client_ip]
-          })
+          },0)
         @tracker.track(current_user.id,'Successful Sign up with Devise')
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
