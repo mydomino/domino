@@ -219,7 +219,8 @@ class RegistrationsController < Devise::RegistrationsController
     #check if user already registered, if so redirect to login page
     #TODO should add flash message you already have an account
     redirect_to new_user_session_path and return if User.find_by_email(@email)
-    
+
+    @client_ip = session_params[:ip]
     if @profile = Profile.find_by_email(@email)
       @profile.onboard_complete ? (super and return) : (redirect_to "/continue/#{@profile.id}" and return)
     end
@@ -238,12 +239,14 @@ class RegistrationsController < Devise::RegistrationsController
 
         # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
         mixpanel_distinct_id = params[:distinct_id]
+
         @tracker.alias(current_user.id, mixpanel_distinct_id)
         @tracker.people.set(current_user.id,{
           '$first_name' => current_user.profile.first_name,
           '$last_name' => current_user.profile.last_name,
           '$email' => current_user.email,
-          '$phone' => current_user.profile.phone
+          '$phone' => current_user.profile.phone,
+          '$ip' => params[:client_ip]
           })
         @tracker.track(current_user.id,'Successful Sign up with Devise')
       else

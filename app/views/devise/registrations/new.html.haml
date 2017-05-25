@@ -19,6 +19,7 @@
         %label.gray-6 Password Confirmation
         = f.input_field :password_confirmation, required: true, class: 'mt1 text-input'
         = hidden_field_tag 'distinct_id'
+        = hidden_field_tag 'client_ip', @client_ip
         .center.py3
           = f.button :submit, "Register", class: "btn btn-md btn-primary"
   %p.center.gray-6
