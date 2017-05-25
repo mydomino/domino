@@ -76,7 +76,7 @@ class RegistrationsController < Devise::RegistrationsController
       '$last_name' => @user.profile.last_name,
       '$email' => @user.email,
       '$phone' => @user.profile.phone,
-    })
+    },params[:client_ip])
     @tracker.track(@user.id,'User account activated')
 
     sign_in(@user, scope: :user)
@@ -134,7 +134,7 @@ class RegistrationsController < Devise::RegistrationsController
         '$last_name' => @user.profile.last_name,
         '$email' => @user.email,
         '$phone' => @user.profile.phone
-        })
+        },params[:client_ip])
       @tracker.track(@user.id,'User account created for org. member')
 
       # Create zoho lead record

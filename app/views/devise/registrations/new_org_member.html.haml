@@ -38,6 +38,7 @@
           
           %label.h6.mt2.mb0.gray-5.block{for: 'password'} Password
           = password_field_tag :password, nil, class: 'text-input', required: true, data: { 'parsley-group': 'name-pw', 'parsley-minlength': '8', 'parsley-minlength-message': 'Your password needs at least 8 characters'}, autofocus: @user
+          = hidden_field_tag 'client_ip', @client_ip
 
           %label.h6.mt2.mb0.gray-5.block{for: 'password_confirmation'} Confirm password
           = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": "Oops, your passwords don't match"}
