@@ -76,7 +76,7 @@ class RegistrationsController < Devise::RegistrationsController
       '$last_name' => @user.profile.last_name,
       '$email' => @user.email,
       '$phone' => @user.profile.phone,
-    },params[:client_ip])
+    },session_params[:ip])
     @tracker.track(@user.id,'User account activated')
 
     sign_in(@user, scope: :user)
@@ -127,6 +127,7 @@ class RegistrationsController < Devise::RegistrationsController
       profile.update(user: @user)
 
       # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
+      @client_ip = session_params[:ip]
       mixpanel_distinct_id = params[:distinct_id]
       @tracker.alias(@user.id,mixpanel_distinct_id)
       @tracker.people.set(@user.id,{
@@ -134,7 +135,7 @@ class RegistrationsController < Devise::RegistrationsController
         '$last_name' => @user.profile.last_name,
         '$email' => @user.email,
         '$phone' => @user.profile.phone
-        },params[:client_ip])
+        },session_params[:ip])
       @tracker.track(@user.id,'User account created for org. member')
 
       # Create zoho lead record
