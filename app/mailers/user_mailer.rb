@@ -65,6 +65,8 @@ class UserMailer < ActionMailer::Base
 
   def email_notification(user, notification)
     @notification = notification
+    @user = user
+    mail(from: "dev@mydomino.com", to: @user.email, subject: "A friendly food action tracking reminder for you to take action")
   end
   
   private
