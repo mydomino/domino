@@ -68,6 +68,7 @@ class RegistrationsController < Devise::RegistrationsController
       ZohoService.save_to_zoho(@user.profile)
     end
 
+    sign_in(@user, scope: :user)
     # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
     @client_ip=session_params[:ip]
     mixpanel_distinct_id = params[:distinct_id]
@@ -77,10 +78,9 @@ class RegistrationsController < Devise::RegistrationsController
       '$last_name' => @user.profile.last_name,
       '$email' => @user.email,
       '$phone' => @user.profile.phone,
-    },params[:client_ip])
+    },@user.current_sign_in_ip.to_s)
     @tracker.track(@user.id,'User account activated')
 
-    sign_in(@user, scope: :user)
     flash[:notice] = 'Welcome to MyDomino!'
 
     # Mixpanel event - User set password
@@ -127,6 +127,13 @@ class RegistrationsController < Devise::RegistrationsController
 
       profile.update(user: @user)
 
+      # Create zoho lead record
+      if !@orgnization.nil? && @organization.name != 'test'
+        ZohoService.save_to_zoho(profile)
+      end
+
+      #sign in newly created user
+      sign_in(@user, scope: :user)
       # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
       @client_ip = session_params[:ip]
       mixpanel_distinct_id = params[:distinct_id]
@@ -136,16 +143,9 @@ class RegistrationsController < Devise::RegistrationsController
         '$last_name' => @user.profile.last_name,
         '$email' => @user.email,
         '$phone' => @user.profile.phone
-        },params[:client_ip])
+        },@user.current_sign_in_ip.to_s)
       @tracker.track(@user.id,'User account created for org. member')
 
-      # Create zoho lead record
-      if !@orgnization.nil? && @organization.name != 'test'
-        ZohoService.save_to_zoho(profile)
-      end
-
-      #sign in newly created user
-      sign_in(@user, scope: :user)
       # flash[:notice] = 'Welcome to MyDomino!'
       
       render json: {
