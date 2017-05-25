@@ -75,7 +75,7 @@ class RegistrationsController < Devise::RegistrationsController
       '$first_name' => @user.profile.first_name,
       '$last_name' => @user.profile.last_name,
       '$email' => @user.email,
-      '$phone' => @user.profile.phone
+      '$phone' => @user.profile.phone,
     })
     @tracker.track(@user.id,'User account activated')
 
@@ -246,7 +246,7 @@ class RegistrationsController < Devise::RegistrationsController
           '$last_name' => current_user.profile.last_name,
           '$email' => current_user.email,
           '$phone' => current_user.profile.phone,
-          },0)
+          },params[:client_ip])
         @tracker.track(current_user.id,'Successful Sign up with Devise')
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
