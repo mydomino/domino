@@ -102,6 +102,8 @@ namespace :util do
     t = Time.zone.now.getlocal
     hour = t.hour
 
+    puts("send_user_fat_notification is run at hour: #{hour}\n")
+
     duration = 10
     start_date = duration.days.ago
     end_date = t
@@ -115,17 +117,22 @@ namespace :util do
       if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
          u.meal_days.where(date: yesterday).size == 0
 
+         puts "Found user: #{u.email}\n"
+
          if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
 
            if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
                user_noti.local_send_time == hour
 
+               puts "Found UserNotification object #{user_noti.inspect}\n"
+
              user_noti.notify_methods.each do |noti_method|
 
                 if noti_method.name =~ "/^email/i"
                   
+                  puts "Sending user #{u.email} email_fat_notification ..."
                   u.email_notification(nt)
-                  puts "Sent user #{u.email} email_fat_notification ... \n"
+                  puts "Email_fat_notification was sent for user #{u.email}.\n"
 
                 end
              end
