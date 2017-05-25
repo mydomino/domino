@@ -48,7 +48,6 @@
 
           %label.h6.mt2.mb0.gray-5.block{for: 'password_confirmation'} Confirm password
           = password_field_tag :password_confirmation, nil, class: 'text-input', required: true, data: {'parsley-group': 'name-pw', 'parsley-equalto': '#password', "parsley-equalto-message": "Oops, your passwords don't match"}
-          = hidden_field_tag 'client_ip', @client_ip
 
         = submit_tag "#{@user ? 'Activate' : 'Continue'}", id: 'btn-sign-up', class: "mt2 btn btn-sm btn-primary btn-primary--hover"
 

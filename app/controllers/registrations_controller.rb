@@ -70,7 +70,6 @@ class RegistrationsController < Devise::RegistrationsController
 
     sign_in(@user, scope: :user)
     # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
-    @client_ip=session_params[:ip]
     mixpanel_distinct_id = params[:distinct_id]
     @tracker.alias(@user.id, mixpanel_distinct_id)
     @tracker.people.set(@user.id,{
@@ -135,7 +134,6 @@ class RegistrationsController < Devise::RegistrationsController
       #sign in newly created user
       sign_in(@user, scope: :user)
       # Setting up alias to map user id to mixapanel unique id. So we can use userid moving forward
-      @client_ip = session_params[:ip]
       mixpanel_distinct_id = params[:distinct_id]
       @tracker.alias(@user.id,mixpanel_distinct_id)
       @tracker.people.set(@user.id,{
@@ -222,7 +220,6 @@ class RegistrationsController < Devise::RegistrationsController
     #TODO should add flash message you already have an account
     redirect_to new_user_session_path and return if User.find_by_email(@email)
 
-    @client_ip = session_params[:ip]
     if @profile = Profile.find_by_email(@email)
       @profile.onboard_complete ? (super and return) : (redirect_to "/continue/#{@profile.id}" and return)
     end
@@ -248,7 +245,7 @@ class RegistrationsController < Devise::RegistrationsController
           '$last_name' => current_user.profile.last_name,
           '$email' => current_user.email,
           '$phone' => current_user.profile.phone,
-          },params[:client_ip])
+          },current_user.current_sign_in_ip.to_s)
         @tracker.track(current_user.id,'Successful Sign up with Devise')
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
