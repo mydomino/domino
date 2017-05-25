@@ -46,8 +46,8 @@ namespace :util do
           puts "user is #{user.inspect}"
 
           puts "Changing password for #{user.email}\n"
-          user.password='Invision98!!'
-          user.password_confirmation='Invision98!!'
+          user.password='ILoveCleanEnergy'
+          user.password_confirmation='ILoveCleanEnergy'
           
           user.save!  
           puts "user #{user.email} password is changed.\n"  
@@ -99,10 +99,11 @@ namespace :util do
   task send_user_fat_notification: :environment do 
 
     # get the current hour
-    t = Time.zone.now.getlocal
+    local_t = Time.zone.now.getlocal
+    t = Time.now.utc
     hour = t.hour
 
-    puts("send_user_fat_notification is run at hour: #{hour}\n")
+    puts("send_user_fat_notification is run at UTC hour: #{hour}. local hour: #{local_t}\n")
 
     duration = 10
     start_date = duration.days.ago
@@ -117,20 +118,18 @@ namespace :util do
       if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
          u.meal_days.where(date: yesterday).size == 0
 
-         puts "Found user: #{u.email}\n"
+         #puts "Found user: #{u.email}\n"
 
          if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
 
            if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
                user_noti.local_send_time == hour
 
-               puts "Found UserNotification object #{user_noti.inspect}\n"
+               nt.notify_methods.each do |noti_method|
 
-             user_noti.notify_methods.each do |noti_method|
-
-                if noti_method.name =~ "/^email/i"
+                if noti_method.name =~ /^email/i
                   
-                  puts "Sending user #{u.email} email_fat_notification ..."
+                  #puts "Sending user #{u.email} email_fat_notification ..."
                   u.email_notification(nt)
                   puts "Email_fat_notification was sent for user #{u.email}.\n"
 
