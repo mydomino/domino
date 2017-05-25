@@ -99,8 +99,6 @@ namespace :util do
   task send_user_fat_notification: :environment do 
 
     # get the current hour
-    #t = Time.zone.now.in_time_zone("Pacific Time (US & Canada)")
-    
     t = Time.zone.now.getlocal
     hour = t.hour
 
@@ -126,27 +124,15 @@ namespace :util do
 
                 if noti_method.name =~ "/^email/i"
                   
-                  puts "User email_fat_notification \n"
                   u.email_notification(nt)
-                end
+                  puts "Sent user #{u.email} email_fat_notification ... \n"
 
+                end
              end
            end
-
          end
-
-
-
-
       end
-
-      
-      puts "ID: #{u.id} points was set. Email: #{u.email}"
     end
-
   end
 
-
-
-  
 end
