@@ -107,7 +107,7 @@
           = select_tag "profile[time_zone]", options_for_select(@us_time_zones, @profile.time_zone), class: "select-box bg-white", style: 'width: initial', data: {action: "/profiles/#{@profile.id}"}
 
         #notifications.col.col-12.mt4
-          - Notification.all.each do |notification|
+          - @notifications.each do |notification|
             .notification.pb2{data: {'notification-id': notification.id}}
               - _notification = @user.notifications.find{|n| n == notification}
               - _notification_user = _notification ? NotificationUser.find_by(notification: _notification) : nil

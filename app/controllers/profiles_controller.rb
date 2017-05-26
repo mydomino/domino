@@ -10,9 +10,10 @@ class ProfilesController < ApplicationController
   # Purpose: This is the member profile info page
   # GET /profile
   def show
-    @profile = current_user.profile
-    @us_time_zones = ActiveSupport::TimeZone.us_zones.map {|tz| tz.name }
     @user = current_user
+    @profile = @user.profile
+    @us_time_zones = ActiveSupport::TimeZone.us_zones.map {|tz| tz.name }
+    @notifications = Notification.all
   end
 
   # /challenges/
