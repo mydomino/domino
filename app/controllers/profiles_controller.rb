@@ -308,4 +308,5 @@ class ProfilesController < ApplicationController
       :time_zone
     ).merge(session_params)
   end
+
 end
