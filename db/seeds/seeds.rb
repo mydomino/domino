@@ -33,9 +33,10 @@
 
 puts "Hello, Seeding records....\n"
 
-NotifyMethod.destroy_all
-Notification.destroy_all
-NotificationUser.destroy_all
+#NotificationUser.destroy_all
+#NotifyMethod.destroy_all
+#Notification.destroy_all
+
 
 
 notifications = [
