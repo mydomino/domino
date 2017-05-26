@@ -20,4 +20,21 @@ class NotificationUsersController < ApplicationController
     render json: { message: "Success"}, status: 200
   end
 
+  # /timezone_update/ XmlHttpRequest
+  # Purpose: To update NoticationUser.local_send_time when user timezone is updated
+  def timezone_update
+    @tz = params[:profile][:time_zone]
+    @notifications = current_user.notification_users
+
+    if !@notifications.empty?
+      @notifications.each do |n|
+        send_at_hour = (n.time - Time.now.in_time_zone(@tz).utc_offset / (60*60))%24
+        n.update(local_send_time: send_at_hour)
+      end
+      render json: { message: "Notifications updated successfully."}, status: 200
+    else
+      render json: { message: "No notifications to update."}, status: 200
+    end
+  end
+
 end

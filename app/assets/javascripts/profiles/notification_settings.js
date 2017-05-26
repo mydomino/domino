@@ -14,6 +14,15 @@ modulejs.define('notification_settings', function () {
           console.log(data);
         }
       });
+     $.ajax({
+        type: "POST",
+        data: {profile: {time_zone: $timezone.val()}},
+        url: 'notication_users/tz-update',
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+        }
+      });
     });
     
     $inputs = $('#notifications').find('input[type=checkbox], select');
