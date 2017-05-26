@@ -109,7 +109,6 @@ Rails.application.routes.draw do
     patch "set-org-member-password" => "registrations#set_org_member_password" # XMLHttpRequest
   end
 
-
   resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'
     delete 'undo' => 'recommendations#undo', as: 'undo_complete'
