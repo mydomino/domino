@@ -2,6 +2,7 @@ modulejs.define('notification_settings', function () {
   return (function() {
     var $inputs,
         $timezone;
+        
     $timezone = $('#profile_time_zone');
 
     $timezone.on('change', function(){

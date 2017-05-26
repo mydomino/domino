@@ -1,7 +1,7 @@
 class NotificationUsersController < ApplicationController
 
   #post /notification_users
-  def create
+  def create_update_or_destroy
     notification_id = params[:notification_id].to_i
     checked = params[:checked] == 'true'
     time = params[:time].to_i

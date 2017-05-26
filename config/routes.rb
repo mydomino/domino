@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :notification_users, only: [:create]
+  post 'notification_users' => 'notification_users#create_update_or_destroy'
   post 'notication_users/tz-update' => "notification_users#timezone_update"
 
   get 'users/beta_index'
