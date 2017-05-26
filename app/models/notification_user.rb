@@ -39,13 +39,8 @@ class NotificationUser < ActiveRecord::Base
   def convert_time_to_local
     timezone = self.user.profile.time_zone
 
-    Time.now.in_time_zone(timezone).utc_offset
-
     send_at_hour = (self.time - Time.now.in_time_zone(timezone).utc_offset / (60*60))%24
-    #Rails.logger.debug("send_at_hour is #{send_at_hour}\n")
 
     self.local_send_time = send_at_hour
-
-    #self.update_column(:local_send_time, send_at_hour)
   end
 end
