@@ -31,11 +31,11 @@ class NotificationUser < ActiveRecord::Base
   validates :user, presence: true
   validates :notification, presence: true
 
-  before_save :convert_time_to_local
+  before_save :set_server_send_hour
 
   private
 
-  def convert_time_to_local
+  def set_server_send_hour
     timezone = self.user.profile.time_zone
     send_at_hour = (self.send_hour - Time.now.in_time_zone(timezone).utc_offset / (60*60))%24
     self.server_send_hour = send_at_hour
