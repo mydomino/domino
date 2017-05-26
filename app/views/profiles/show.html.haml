@@ -114,7 +114,7 @@
 
               = check_box_tag "user[notification_ids][]", notification.id, !_notification.nil?, id: dom_id(notification)
               = label_tag dom_id(notification), notification.description
-              = select_tag "user[time][]", options_for_select(hours_am_pm,  (_notification_user ? _notification_user.time : 21)), class: "select-box bg-white", style: 'width: initial'
+              = select_tag "user[time][]", options_for_select(hours_am_pm,  (_notification_user ? _notification_user.send_hour : 21)), class: "select-box bg-white", style: 'width: initial'
 
 :javascript
   modulejs.require('member_profile')(#{@profile.avg_electrical_bill});

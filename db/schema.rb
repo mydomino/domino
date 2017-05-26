@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524202326) do
+ActiveRecord::Schema.define(version: 20170526194506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,11 +150,11 @@ ActiveRecord::Schema.define(version: 20170524202326) do
   create_table "notification_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "notification_id"
-    t.string   "day",             default: "Everyday"
-    t.integer  "time",            default: 21
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "local_send_time"
+    t.string   "day",              default: "Everyday"
+    t.integer  "send_hour",        default: 21
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "server_send_hour"
     t.datetime "sent_at"
   end
 

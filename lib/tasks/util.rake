@@ -91,7 +91,7 @@ namespace :util do
   #
   # 1st Task) query NotificationUsers
   # Grab all notifications with day = "Everyday"
-  # Create a Delayed::job with the run_at field set to the same hour as `send_local_time`
+  # Create a Delayed::job with the run_at field set to the same hour as `server_send_hour`
 
   # Heroku scheduler
 
@@ -123,7 +123,7 @@ namespace :util do
          if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
 
            if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
-               user_noti.local_send_time == hour
+               user_noti.server_send_hour == hour
 
                nt.notify_methods.each do |noti_method|
 
