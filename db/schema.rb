@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526194506) do
+ActiveRecord::Schema.define(version: 20170527003156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,8 +245,8 @@ ActiveRecord::Schema.define(version: 20170526194506) do
     t.integer  "avg_electrical_bill",   default: 0
     t.boolean  "onboard_complete",      default: false
     t.integer  "onboard_step",          default: 1
-    t.datetime "created_at",                                                               null: false
-    t.datetime "updated_at",                                                               null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
     t.boolean  "dashboard_registered",  default: false
     t.string   "campaign"
     t.string   "ip"
@@ -255,7 +255,7 @@ ActiveRecord::Schema.define(version: 20170526194506) do
     t.integer  "partner_code_id"
     t.boolean  "welcome_tour_complete", default: false
     t.boolean  "fat_intro_complete",    default: false
-    t.string   "time_zone",             default: "(GMT-08:00) Pacific Time (US & Canada)"
+    t.string   "time_zone",             default: "Pacific Time (US & Canada)"
   end
 
   add_index "profiles", ["partner_code_id"], name: "index_profiles_on_partner_code_id", using: :btree

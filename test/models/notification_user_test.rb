@@ -17,7 +17,7 @@ class NotificationUserTest < ActiveSupport::TestCase
     user_2 = users(:User_2)
     notification_2 = notifications(:notification_2)
 
-  	notification_user = NotificationUser.new(user: user, notification: notification, day: "Monday", time: 15)
+  	notification_user = NotificationUser.new(user: user, notification: notification, day: "Monday", send_hour: 15)
 
   	
 
@@ -37,7 +37,7 @@ class NotificationUserTest < ActiveSupport::TestCase
   	user = users(:User_1)
   	notification = notifications(:notification_2)
 
-  	notification_user = NotificationUser.new(user: user, notification: notification, day: "Monday", time: 15)
+  	notification_user = NotificationUser.new(user: user, notification: notification, day: "Monday", send_hour: 15)
   	
     assert notification_user.save
 
