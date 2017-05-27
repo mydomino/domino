@@ -111,6 +111,10 @@ namespace :util do
     yesterday = 1.day.ago
 
 
+    # retrieve the notification
+    nt = Notification.find_by(name: Notification::FAT_NOTIFICATION)
+
+
     
     User.find_each do |u|
 
@@ -132,6 +136,10 @@ namespace :util do
                   #puts "Sending user #{u.email} email_fat_notification ..."
                   u.email_notification(nt)
                   puts "Email_fat_notification was sent for user #{u.email}.\n"
+
+                  #update send timestamp
+                  user_noti.sent_at = Time.zone.now
+                  user_noti.save!
 
                 end
              end

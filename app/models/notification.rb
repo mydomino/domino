@@ -17,6 +17,7 @@ class Notification < ActiveRecord::Base
 
   validates :description, presence: true
   validates_presence_of :name
+  validates :name, uniqueness: true
 
   # define constant name
   FAT_NOTIFICATION = "FAT_NOTIFICATION"

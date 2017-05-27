@@ -42,4 +42,19 @@ class NotificationTest < ActiveSupport::TestCase
 
   end
 
+
+  test "can not have duplicate name" do
+    
+    
+    n1 = Notification.create!(name: 'n1', description: 'd1')
+
+    assert_raises ActiveRecord::RecordInvalid do 
+
+      n2 = Notification.create!(name: 'n1', description: 'd1')
+    end
+
+  end
+
+
+
 end
