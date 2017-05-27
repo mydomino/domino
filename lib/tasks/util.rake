@@ -114,39 +114,68 @@ namespace :util do
     # retrieve the notification
     nt = Notification.find_by(name: Notification::FAT_NOTIFICATION)
 
+    # retrieve users who had enabled this notification at this hour
+    users = NotificationUser.where(["notification_id = ? AND server_send_hour = ?",  nt.id, hour])
 
-    
-    User.find_each do |u|
+    users.each do |u|
 
       # find user who had logged food 10 days ago and did not log yesterday
       if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
          u.meal_days.where(date: yesterday).size == 0
 
-         #puts "Found user: #{u.email}\n"
+         puts "Found user: #{u.email}\n"
 
-         if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
+         nt.notify_methods.each do |noti_method|
 
-           if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
-               user_noti.server_send_hour == hour
-
-               nt.notify_methods.each do |noti_method|
-
-                if noti_method.name =~ /^email/i
-                  
-                  #puts "Sending user #{u.email} email_fat_notification ..."
-                  u.email_notification(nt)
-                  puts "Email_fat_notification was sent for user #{u.email}.\n"
-
-                  #update send timestamp
-                  user_noti.sent_at = Time.zone.now
-                  user_noti.save!
-
-                end
-             end
-           end
+            if noti_method.name =~ /^email/i
+              
+              #puts "Sending user #{u.email} email_fat_notification ..."
+              u.email_notification(nt)
+              puts "Email_fat_notification was sent for user #{u.email}.\n"
+              #update send timestamp
+              user_noti.sent_at = Time.zone.now
+              user_noti.save!
+            end
          end
+
       end
     end
+
+
+
+
+    
+    #User.find_each do |u|
+#
+    #  # find user who had logged food 10 days ago and did not log yesterday
+    #  if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
+    #     u.meal_days.where(date: yesterday).size == 0
+#
+    #     #puts "Found user: #{u.email}\n"
+#
+    #     if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
+#
+    #       if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
+    #           user_noti.server_send_hour == hour
+#
+    #           nt.notify_methods.each do |noti_method|
+#
+    #            if noti_method.name =~ /^email/i
+    #              
+    #              #puts "Sending user #{u.email} email_fat_notification ..."
+    #              u.email_notification(nt)
+    #              puts "Email_fat_notification was sent for user #{u.email}.\n"
+#
+    #              #update send timestamp
+    #              user_noti.sent_at = Time.zone.now
+    #              user_noti.save!
+#
+    #            end
+    #         end
+    #       end
+    #     end
+    #  end
+    #end
   end
 
 end
