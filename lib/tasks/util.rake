@@ -115,30 +115,41 @@ namespace :util do
     nt = Notification.find_by(name: Notification::FAT_NOTIFICATION)
 
     # retrieve users who had enabled this notification at this hour
-    users = NotificationUser.where(["notification_id = ? AND server_send_hour = ?",  nt.id, hour])
+    noti_users = NotificationUser.where(["notification_id = ? AND server_send_hour = ?",  nt.id, hour])
 
-    users.each do |u|
+    noti_users.each do |nu|
 
-      # find user who had logged food 10 days ago and did not log yesterday
-      if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
-         u.meal_days.where(date: yesterday).size == 0
+      begin
 
-         puts "Found user: #{u.email}\n"
+        u = User.find_by!(id: nu.user_id)
+  
+        # find user who had logged food 10 days ago and did not log yesterday
+        if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
+           u.meal_days.where(date: yesterday).size == 0
+  
+           puts "Found user: #{u.email}\n"
+  
+           nt.notify_methods.each do |noti_method|
+  
+              if noti_method.name =~ /^email/i
+                
+                #puts "Sending user #{u.email} email_fat_notification ..."
+                u.email_notification(nt)
+                puts "Email_fat_notification was sent for user #{u.email}.\n"
+                #update send timestamp
+                nu.sent_at = Time.zone.now
+                nu.save!
+              end
+           end
+  
+        end
 
-         nt.notify_methods.each do |noti_method|
+      rescue ActiveRecord::RecordNotFound => e
 
-            if noti_method.name =~ /^email/i
-              
-              #puts "Sending user #{u.email} email_fat_notification ..."
-              u.email_notification(nt)
-              puts "Email_fat_notification was sent for user #{u.email}.\n"
-              #update send timestamp
-              user_noti.sent_at = Time.zone.now
-              user_noti.save!
-            end
-         end
+        puts "Error: #{e.message}\n"
 
       end
+
     end
 
 
