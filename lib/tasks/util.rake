@@ -46,8 +46,8 @@ namespace :util do
           puts "user is #{user.inspect}"
 
           puts "Changing password for #{user.email}\n"
-          user.password='Invision98!!'
-          user.password_confirmation='Invision98!!'
+          user.password='ILoveCleanEnergy'
+          user.password_confirmation='ILoveCleanEnergy'
           
           user.save!  
           puts "user #{user.email} password is changed.\n"  
@@ -84,6 +84,109 @@ namespace :util do
 
   end
 
+  # Heroku scheduler, runs at 12am - 0 UTC
+  #
+  #
+  # generate_daily_notifications
+  #
+  # 1st Task) query NotificationUsers
+  # Grab all notifications with day = "Everyday"
+  # Create a Delayed::job with the run_at field set to the same hour as `server_send_hour`
 
+  # Heroku scheduler
+
+  desc "Send user FAT reminder notification"
+  task send_user_fat_notification: :environment do 
+
+    # get the current hour
+    local_t = Time.zone.now.getlocal
+    t = Time.now.utc
+    hour = t.hour
+
+    puts("send_user_fat_notification is run at UTC hour: #{hour}. local hour: #{local_t}\n")
+
+    duration = 10
+    start_date = duration.days.ago
+    end_date = t
+    yesterday = 1.day.ago
+
+
+    # retrieve the notification
+    nt = Notification.find_by(name: Notification::FAT_NOTIFICATION)
+
+    # retrieve users who had enabled this notification at this hour
+    noti_users = NotificationUser.where(["notification_id = ? AND server_send_hour = ?",  nt.id, hour])
+
+    noti_users.each do |nu|
+
+      begin
+
+        u = User.find_by!(id: nu.user_id)
   
+        # find user who had logged food 10 days ago and did not log yesterday
+        if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
+           u.meal_days.where(date: yesterday).size == 0
+  
+           puts "Found user: #{u.email}\n"
+  
+           nt.notify_methods.each do |noti_method|
+  
+              if noti_method.name =~ /^email/i
+                
+                #puts "Sending user #{u.email} email_fat_notification ..."
+                u.email_notification(nt)
+                puts "Email_fat_notification was sent for user #{u.email}.\n"
+                #update send timestamp
+                nu.sent_at = Time.zone.now
+                nu.save!
+              end
+           end
+  
+        end
+
+      rescue ActiveRecord::RecordNotFound => e
+
+        puts "Error: #{e.message}\n"
+
+      end
+
+    end
+
+
+
+
+    
+    #User.find_each do |u|
+#
+    #  # find user who had logged food 10 days ago and did not log yesterday
+    #  if u.meal_days.where(["date <= ? and date >= ?", end_date, start_date]).size > 0 and 
+    #     u.meal_days.where(date: yesterday).size == 0
+#
+    #     #puts "Found user: #{u.email}\n"
+#
+    #     if (nt = u.notifications.where(name: Notification::FAT_NOTIFICATION).first) != nil
+#
+    #       if (user_noti = u.notification_users.where(notification_id: nt.id).first) != nil and 
+    #           user_noti.server_send_hour == hour
+#
+    #           nt.notify_methods.each do |noti_method|
+#
+    #            if noti_method.name =~ /^email/i
+    #              
+    #              #puts "Sending user #{u.email} email_fat_notification ..."
+    #              u.email_notification(nt)
+    #              puts "Email_fat_notification was sent for user #{u.email}.\n"
+#
+    #              #update send timestamp
+    #              user_noti.sent_at = Time.zone.now
+    #              user_noti.save!
+#
+    #            end
+    #         end
+    #       end
+    #     end
+    #  end
+    #end
+  end
+
 end

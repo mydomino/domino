@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  post 'notification_users' => 'notification_users#create_update_or_destroy'
+  post 'notication_users/tz-update' => "notification_users#timezone_update"
+
   get 'users/beta_index'
 
   post 'points/add_watch_ttc_moive_points'
@@ -105,7 +108,6 @@ Rails.application.routes.draw do
     post "create-org-member" => "registrations#create_org_member" # XMLHttpRequest
     patch "set-org-member-password" => "registrations#set_org_member_password" # XMLHttpRequest
   end
-
 
   resources :recommendations, only: [:destroy, :update, :index] do
     post 'complete'

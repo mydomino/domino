@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+notification_1:
+  description: "Remind me to complete daily food challenge"
+  name: "TEST_STR1"
+
+notification_2:
+  description: "Send me new findings about Solar products"
+  name: "TEST_STR2"
+
+
+notification_3:
+  description: "Send me updates about MyDomino"
+  name: "TEST_STR3"
+
+
+notification_4:
+  description: "Send me weekly news about MyDomino"
+  name: "TEST_STR4"

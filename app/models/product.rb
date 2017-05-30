@@ -19,6 +19,10 @@
 
 
 
+
+
+
+
 require 'retries'
 class Product < ActiveRecord::Base
   has_many :recommendations, as: :recommendable, dependent: :destroy

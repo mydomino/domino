@@ -113,4 +113,15 @@ module ApplicationHelper
       ['WY', 'WY']
     ]
   end
+
+  def hours_am_pm
+
+    time_am = {"12 AM" => 0}.merge!(1.upto(11).collect { |n| {"#{n} AM" => n} }.reduce(Hash.new, :merge))
+    time_pm = {"12 PM" => 12}.merge!(1.upto(11).collect { |n| {"#{n} PM" => n + 12} }.reduce(Hash.new, :merge))
+    all_hours = time_am.merge!(time_pm)
+
+    return all_hours.to_a
+
+    
+  end
 end

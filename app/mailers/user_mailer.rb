@@ -63,6 +63,12 @@ class UserMailer < ActionMailer::Base
     Rails.logger.info "Signup Link Function: Emailing CSV file attachment to #{csv_file_recipients}....\n"
   end
 
+  def email_notification(user, notification)
+    @notification = notification
+    @user = user
+    mail(from: "dev@mydomino.com", to: @user.email, subject: "A friendly food action tracking reminder for you to take action")
+  end
+  
   private
 
   # /org_member_sign_up/

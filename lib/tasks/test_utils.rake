@@ -123,4 +123,19 @@ namespace :md_test do
   end
 
 
+  desc "show current time for all US timezone"
+  task test_show_timezone: :environment do 
+    
+    ActiveSupport::TimeZone.us_zones.map do |z| 
+    
+      puts "Time zone is #{z.name}\n"
+      puts "Time now is #{Time.zone.now.in_time_zone(z.name)}\n"
+      puts "Time now in UTC is #{Time.zone.now.in_time_zone(z.name).utc}\n\n"
+    end
+
+  end
+
+
+
+
 end

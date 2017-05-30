@@ -76,6 +76,7 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
+  gem 'mailcatcher', '~> 0.6.5'
 end
 
 
