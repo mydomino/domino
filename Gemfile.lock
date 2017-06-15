@@ -40,9 +40,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
-    airbrake (5.6.1)
-      airbrake-ruby (~> 1.6)
-    airbrake-ruby (1.6.0)
     animate-rails (1.0.10)
       rails
     annotate (2.7.1)
@@ -478,7 +475,6 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
-  airbrake (~> 5.6)
   animate-rails
   annotate (~> 2.7, >= 2.7.1)
   autoprefixer-rails
