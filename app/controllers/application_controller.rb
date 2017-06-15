@@ -109,8 +109,6 @@ class ApplicationController < ActionController::Base
 
   def log_error(e)
 
-    # only send Airbrake notification when not in development
-    Airbrake.notify(e) if !Rails.env.development?
 
     Rails.logger.error "Error occured! Exception error is #{e.inspect}. Error: #{e.message}"
     # do not need to log trace error

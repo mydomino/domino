@@ -461,7 +461,6 @@ Style/SpaceAroundOperators:
     - 'app/helpers/dashboards_helper.rb'
     - 'app/jobs/dashboard_registered_zoho_job.rb'
     - 'app/jobs/update_zoho_job.rb'
-    - 'config/initializers/airbrake.rb'
     - 'lib/misc/import_leads/import_leads.rb'
 
 # Offense count: 4
