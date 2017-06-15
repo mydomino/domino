@@ -54,9 +54,6 @@
 
         -else
           .flex.items-center.right
-            = link_to 'tel:+18009792215', target: '_blank', class: "h3 text-decoration-none white mr1" do
-              %i.fa.fa-phone
-              %span 800-979-2215
             =link_to "Log in", new_user_session_path, class: "#{nav_element_color} navbar-element btn-navbar border py1 px2 rounded text-decoration-none right", id: "link-login"
             .h4.mx2.inline.navbar-element.right{class: "#{nav_element_color}"}
 
@@ -104,8 +101,6 @@
 
           %li.h1
             = link_to 'Log out', destroy_user_session_path, method: :delete, class: "white py1 inline-block text-decoration-none"
-        %li.h1
-          = link_to 'Call us', 'tel:+18009792215', target: '_blank', class: "white py1 inline-block text-decoration-none"
 
 :javascript
   (function(){

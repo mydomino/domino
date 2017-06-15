@@ -42,22 +42,5 @@
           %i.fa.fa-play-circle.fa-5x.pointer.mt3.blue--hover
           %p.mt0.white Watch the video
 
-      .absolute.bottom-0.left-0.right-0.clearfix.mx-auto.px2.z2.py1{style: 'background-color: rgba(0,0,0,0.3)'}
-        .max-width-4.mx-auto
-          =simple_form_for @profile, method: @response[:method] do |form|
-            .clearfix
-              .sm-col.sm-col-12.md-col-6.py1
-                .clearfix
-                  .col.col-6.px1
-                    =form.input_field :first_name, class: "text-input gray-6", placeholder: "First name", required: true
-                  .col.col-6.px1
-                    =form.input_field :last_name, class: "text-input gray-6", placeholder: "Last name", required: true
-              .sm-col.sm-col-12.md-col-6.py1
-                .clearfix
-                  .col.col-6.md-col-8.px1
-                    =form.input_field :email, class: "text-input gray-6", placeholder: "Email address", required: true, disabled: (@response[:method] == :put)
-                  .col.col-6.md-col-4.px1
-                    =form.submit "Get started", class: "btn btn-md btn-primary btn-primary--hover fill-x", style: 'height: 42px;line-height: 0.6em;'
-
 :javascript
   modulejs.require('onboarding_name_and_email_form')();
