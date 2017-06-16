@@ -19,7 +19,12 @@
           Sign up for our newsletter
         %input#newsletter-email.bg-transparent.rounded.mt1.text-input.mb1{style: 'height: 2em', type: 'email', name: 'email', required: true}
         %input#newsletter-subscribe.btn.btn-sm.btn-primary.btn-primary--hover{type: 'submit', value: 'Sign up'}
+        %br
 
+        .col.col-12.sm-col.sm-col-6.md-col-3.p2.gray-6
+          = link_to 'mailto:hello@mydomino.com', class: 'text-decoration-none gray-6 blue--hover' do
+            %i.fa.fa-envelope
+            hello@mydomino.com
 
   %hr.gray-6.max-width-4
 
