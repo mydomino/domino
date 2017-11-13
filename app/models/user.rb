@@ -22,7 +22,6 @@
 #  meal_carbon_footprint   :float            default(0.0)
 #  fat_reward_points       :integer          default(0)
 #  total_fat_reward_points :integer          default(0)
-#  welcome_tour_complete   :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -36,6 +35,10 @@
 #
 
 
+
+
+
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -46,6 +49,8 @@ class User < ActiveRecord::Base
   has_many :points_logs, dependent: :destroy
   has_many :group_users 
   has_many :groups, through: :group_users
+  has_many :notification_users 
+  has_many :notifications, through: :notification_users
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

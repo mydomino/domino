@@ -11,6 +11,8 @@ class ProfilesController < ApplicationController
   # GET /profile
   def show
     @profile = current_user.profile
+    @us_time_zones = ActiveSupport::TimeZone.us_zones.map {|tz| tz.name }
+    @user = current_user
   end
 
   # /challenges/
@@ -144,8 +146,7 @@ class ProfilesController < ApplicationController
   def update
     # Updates via member profile info page
     if request.xhr?
-      xhr_profile_params = JSON.parse(params["updated_fields"]["profile"].to_json)
-      if @profile.update(xhr_profile_params)
+      if @profile.update(profile_params)
         render json: {
           message: "Profile updated successfully",
           status: 200
@@ -197,6 +198,32 @@ class ProfilesController < ApplicationController
     }, status: 200
   end
 
+
+  def update_notifications
+
+    @profile = current_user.profile
+    @user = current_user
+
+    Rails.logger.debug ("params[:user][:time] is #{params[:user][:time]}\n")
+    Rails.logger.debug ("params[:user][:notification_ids] is #{params[:user][:notification_ids]}\n")
+
+    # save user's selected notifications from checkbox
+    if @user.update_attributes(notification_params)
+
+      # update user's notification time
+      #nu = @user.notification_users.where(notification_id: 2).first
+      #nu.update_attributes(time: 1) if nu != nil
+
+      
+      redirect_to @profile, notice: "Updated Successfully."
+    else
+      # show error
+      redirect_to @profile, notice: "Updated profile failed."
+    end
+
+  end
+
+
   private
 
   # /fat_timeline_params/
@@ -236,18 +263,11 @@ class ProfilesController < ApplicationController
   def cfp_ranking
     organization = current_user.organization
 
-    #if organization.nil?
-    #  # find the default organization
-    #  organization = Organization.find_by!(name: 'MyDomino')
-    #end
-
-
     # use background job to perform point calculations
     CalculateFatTotalPointJob.perform_later organization
 
     # find users with or without organization
     @users = User.includes(:profile).where(organization: organization).order("fat_reward_points DESC").first(6)
-
 
     if ( !@users.any?{|u| u.email == current_user.email} )
       @users << current_user
@@ -310,7 +330,15 @@ class ProfilesController < ApplicationController
       {:offering_ids => []},
       :housing,
       :avg_electrical_bill,
-      :partner_code_id
+      :partner_code_id,
+      :time_zone
     ).merge(session_params)
   end
+
+  def notification_params
+    params.require(:user).permit(
+      {notification_ids:[]}
+    )
+  end
+
 end

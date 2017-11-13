@@ -95,11 +95,28 @@
             .flex.items-center
               =f.submit 'Save changes', class: 'btn btn-md btn-primary btn-primary--hover'
               / inline style so jquery show() works.
-              #msg-profile-update.flex.items-center.green{style:'display:none'}
+              #msg-profile-update.flex.items-center.green{style:'display: none;'}
                 .h4.inline-block.ml2.mr1
                   Saved
                 = inline_svg "icons/i-success.svg", class: "icon-s block"
 
+      .clearfix.bg-white.rounded.px3.pt2.pb3.mb4
+        .h2.mb3 Notifications
+        #time-zone.col.col-12.sm-col.sm-col-6
+          = label_tag 'time_zone', 'Time zone', class: 'block h6 mb0 gray-5'
+          = select_tag "profile[time_zone]", options_for_select(@us_time_zones, @profile.time_zone), class: "select-box bg-white", style: 'width: initial', data: {action: "/profiles/#{@profile.id}"}
+
+        #notifications.col.col-12.mt4
+          - Notification.all.each do |notification|
+            .notification.pb2{data: {'notification-id': notification.id}}
+              - _notification = @user.notifications.find{|n| n == notification}
+              - _notification_user = _notification ? NotificationUser.find_by(notification: _notification) : nil
+
+              = check_box_tag "user[notification_ids][]", notification.id, !_notification.nil?, id: dom_id(notification)
+              = label_tag dom_id(notification), notification.description
+              = select_tag "user[time][]", options_for_select(hours_am_pm,  (_notification_user ? _notification_user.time : 21)), class: "select-box bg-white", style: 'width: initial'
+
 :javascript
   modulejs.require('member_profile')(#{@profile.avg_electrical_bill});
+  modulejs.require('notification_settings');
   mixpanel.track('Profile page loaded');

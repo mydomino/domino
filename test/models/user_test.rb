@@ -49,4 +49,7 @@ class UserTest < ActiveSupport::TestCase
   def test_valid
     assert @user.valid?
   end
+
+
+  
 end

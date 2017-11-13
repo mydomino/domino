@@ -1,4 +1,5 @@
                                  Prefix Verb     URI Pattern                                             Controller#Action
+                       users_beta_index GET      /users/beta_index(.:format)                             users#beta_index
       points_add_watch_ttc_moive_points POST     /points/add_watch_ttc_moive_points(.:format)            points#add_watch_ttc_moive_points
                                fat_date GET      /food/:year/:month/:day(.:format)                       fat_meals#edit
                                     fat GET      /food(.:format)                                         fat_meals#edit
@@ -30,7 +31,8 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                                     faq GET      /faq(.:format)                                          pages#faq
                                 example GET      /example(.:format)                                      pages#example
                                partners GET      /partners(.:format)                                     pages#partners
-                                 myhome GET      /myhome(.:format)                                       profiles#myhome
+                             challenges GET      /challenges(.:format)                                   profiles#challenges
+                        member_benefits GET      /member_benefits(.:format)                              profiles#member_benefits
                                         GET      /welcome-email/:profile_id(.:format)                    profiles#welcome_email
                                         GET      /legacy-user-registration-email/:lu_id(.:format)        profiles#lu_registration_email
                                         GET      /dashboard/:slug(.:format)                              redirect(301)
@@ -38,6 +40,7 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                    newsletter_subscribe GET      /newsletter-subscribe(.:format)                         pages#newsletter_subscribe
                                         GET      /articles/:id(.:format)                                 posts#show {:id=>/[0-9]+/}
                               post_slug GET      /articles/:article(.:format)                            posts#get_post_by_slug
+                                 myhome GET      /myhome(.:format)                                       redirect(301, /challenges)
                                    blog GET      /blog(.:format)                                         redirect(301, /articles)
                                         GET      /blog/:article(.:format)                                redirect(301, /articles/%{article})
                                         GET      /blog/category/:cat(.:format)                           redirect(301, /articles/?cat=%{cat})
@@ -65,6 +68,7 @@ import_members_upload_file_organization POST     /organizations/:id/import_membe
                          member_profile GET      /profile(.:format)                                      profiles#show
           profile_welcome_tour_complete GET      /profile/welcome-tour-complete(.:format)                profiles#welcome_tour_complete
              profile_fat_intro_complete GET      /profile/fat-intro-complete(.:format)                   profiles#fat_intro_complete
+                   update_notifications PATCH    /profile/update-notification(.:format)                  profiles#update_notifications
                            profile_step GET      /profiles/:profile_id/steps/:id(.:format)               profile/steps#show
                                         PATCH    /profiles/:profile_id/steps/:id(.:format)               profile/steps#update
                                         PUT      /profiles/:profile_id/steps/:id(.:format)               profile/steps#update

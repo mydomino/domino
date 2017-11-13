@@ -85,5 +85,22 @@ namespace :util do
   end
 
 
+  desc "Send user FAT reminder notification"
+  task send_user_fat__notification: :environment do 
+
+    # get the current hour
+    t = Time.zone.now.in_time_zone("Pacific Time (US & Canada)")
+    hour = t.hour
+    
+    User.find_each do |u|
+      u.fat_reward_points = 0
+      u.save!
+      puts "ID: #{u.id} points was set. Email: #{u.email}"
+    end
+
+  end
+
+
+
   
 end

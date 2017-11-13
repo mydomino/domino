@@ -16,6 +16,8 @@
 
 
 
+
+
 class Task < ActiveRecord::Base
   has_many :recommendations, as: :recommendable, dependent: :destroy
   has_many :dashboards, through: :recommendations, source: :recommendable

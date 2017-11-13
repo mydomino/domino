@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+notification_user_1:
+  user_id: User_1
+  notification_id: notification_2
+  day: "Tuesday"
+  time: 15
+
+notification_user_2:
+  user_id: User_2
+  notification_id: notification_1
+  day: "Tuesday"
+  time: 18
